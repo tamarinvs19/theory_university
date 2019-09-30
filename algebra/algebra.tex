@@ -1,0 +1,668 @@
+\documentclass[12pt]{report}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[pdftex]{graphicx}
+
+
+\pagestyle{plain}
+
+\usepackage[left=20mm,top=20mm,left=20mm,bottom=30mm,nohead,nofoot]{geometry}
+
+\begin{document}
+\renewcommand{\proofname}{Доказательство}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Теорема}[section]
+\newtheorem*{lm}{Лемма}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Определение}
+\newtheorem*{ex}{Пример}
+\newtheorem*{exs}{Примеры}
+\newtheorem*{cor}{Следствие}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+% \newcommand{\Zero}{\mathbb{O}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+
+
+\part{Алгебра}
+\chapter{Линейная алгебра. Векторные пространства}
+\section{Лекция 1}
+Х - множество\\
+$ *: X \times X \to X$\\
+$ (x, y) \mapsto x * y$\\
+{\bf Аксиомы:}
+\begin{enumerate}
+    \item $\forall x,y,z \: \in X: x*(y*z) = (x*y)*z$ $\;$ (ассоциативность)
+    \item $\exists e \in X \; \forall a \in X: e*a = a*e = a \;$ (нейтральный элемент)
+    \item $\forall a \in X \; \exists a' \in X: a*a' = a' * a = e \;$ (обратный элемент)
+    \item $\forall a, b \in X: a * b = b * a \; $(коммутативность)
+\end{enumerate}
+
+\begin{defn}
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиоме 1, называется {\bf полугруппой}
+\end{defn}
+
+\begin{defn}
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-2, называется {\bf моноидом}
+\end{defn}
+
+\begin{defn}
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-3, называется {\bf группой}
+\end{defn}
+
+\begin{defn}
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-4, называется {\bf коммутативной} или {\bf абелевой группой}
+\end{defn}
+
+\begin{exs}$ $
+\begin{enumerate}
+    \item $(\mathbb{Z}, + )$ -- группа
+    \item $(\mathbb{N}, + )$ -- полугруппа
+    \item $(\mathbb N_0 , +)$ -- моноид
+    \item $(\mathbb R \backslash \{0\}, \cdot)$ -- группа
+    \item Пусть $A$ - множество\\
+	$X$ := множество биективныx отображений $A \to A$\\
+	$id_A $-- нейтральный элемент\\
+	Если $f(x) = y$, то $\tilde f (y) = x$ -- обратная функция ($f \circ \tilde f = \tilde f \circ f = id_A$).\\
+	$f(x) = x+1,\; g(x) - 2x,\;id_A(x)=x$\\
+	$f \circ g(x) = f(g(x)) = f(2x) = 2x + 1$\\
+	$g \circ f(x) = g(f(x)) = g(x+1) = 2x + 2 \ne 2x+1$\\
+	Следовательно, $(X, \circ)$ -- не коммутативная группа
+\end{enumerate}
+\end{exs}
+
+\begin{name}$ $
+\begin{itemize}
+    \item $\cdot$ -- мультипликативность, $1$, $x^{-1}$
+    \item $+$ -- аддитивность, $0$, $-x$
+    \item $\circ$ -- относительно композиции, $id$, $x^{-1}$
+    \item $*$ -- абстрактная операция, $e$, $x^{-1}$
+\end{itemize}
+\end{name}
+
+ Пусть $(R, +)$ -- абелева группа\\
+Определим отображение
+$$\cdot: R \times R \to R$$
+$$  (a,b) \mapsto a \cdot b$$\\
+Для $(R, +, \cdot)$ могут быть верны следующие аксиомы:
+\begin{enumerate}
+    \setcounter{enumi}{+4}
+    \item $a(b+c) = ab + ac\\ 
+	(b+c)a = ba + ca$ (дистрибутивность)
+    \item $a(bc) = (ab)c$ (ассоциативность)
+    \item $\exists 1_R \: \forall a \in R: 1_R \cdot a = a \cdot 1_R = a$ (нейтральный элемент)
+    \item ab = ba (коммутативность)
+    \item $0_R \ne 1_R$
+    \item $\forall a \ne 0_R \: \exists a^{-1}: a \cdot a^{-1} = a^{-1} \cdot a = 1_R$ (обратный элемент)
+\end{enumerate}
+
+\begin{defn}
+$(R, +, \cdot)$, удовлетворяющее аксиоме 5, называется {\bf не ассоциативным кольцом без единицы}.
+\end{defn}
+
+\begin{defn}
+$(R, +, \cdot)$, удовлетворяющее аксиомам 5-6, называется {\bf ассоциативным кольцом без единицы}.
+\end{defn}
+
+\begin{defn}
+$(R, +, \cdot)$, удовлетворяющее аксиоме 5-7, называется {\bf ассоциативным кольцом с единицей}.
+\end{defn}
+
+\begin{defn}
+$(R, +, \cdot)$, удовлетворяющее аксиомам 5-8, называется {\bf коммутативным кольцом}.
+\end{defn}
+
+\begin{exs}$ $
+\begin{enumerate}
+    \item $\mathbb Z$ --коммутативное кольцо
+    \item $\mathbb {Q, R, C}$ -- поля
+    \item Рассмотрим $\mathbb Z_n = {0, \ldots, n-1}$ с операциями $+_n, \cdot_n$ :\\
+	$a +_n b = (a + b) \% n \\
+	a \cdot_n b = (a \cdot b) \% n$\\
+	Обратимые элементы:\\
+	$ax = 1 + ny \\
+	ax - ny = 1$\\
+	Если $(a, n) = 1$, есть решение, иначе -- нет.
+	$\mathbb Z_p $-- поле $\Leftrightarrow$ $ p \in \mathbb P$
+\end{enumerate}
+\end{exs}
+
+    
+\begin{defn}
+$V$ -- векторное пространство над полем $F$ , если $(V, +)$ -- абелева группа, задано отображение $V\times F \to V \\ (x, \alpha) \mapsto x \cdot \alpha $ , удовлетворяющее аксиомам $\forall x, y \in V, \forall a, b \in F$:
+\begin{enumerate}
+    \setcounter{enumi}{+4}
+    \item $x \cdot (\alpha \cdot \beta) = (x \cdot \alpha) \cdot \beta$
+    \item$ (x + y) \cdot \alpha = x \cdot \alpha + y \cdot \alpha$\\
+     $x \cdot (\alpha + \beta) = x \cdot \alpha + x \cdot \beta$
+    \item $x \cdot 1_F = x$
+\end{enumerate}
+\end{defn}
+
+$A \in M_n(F), \alpha \in F \\ (A, \alpha)_{ij} = a_{ij} \cdot \alpha \\ (AB)\alpha = A(B\alpha)$
+\begin{exs}$ $
+\begin{enumerate}
+    \item Множество векторов в $\mathbb R ^3$
+    \item $F^n = \left\{ \left( 
+	\begin{array}{c} a_1 \\ a_2 \\ \vdots\\ a_n \end{array} \right) \mid a_i \in F \right\}$\\
+	$\left(\begin{array}{c}
+	    a_1 \\ \vdots \\ a_n 
+	\end{array} \right) +
+	\left( \begin{array}{c}
+		b_1 \\ \vdots \\ b_n
+	\end{array} \right)=
+	\left( \begin{array}{c}
+		a_1 + b_1 \\ \vdots \\ a_n + b_n
+	\end{array} \right)$
+    \item $X$ - множество, $F^X = \{f \mid f:X \to F\}$ \\
+	$f, g: X \to F$\\
+	$(f+g)(x) = f(x) + g(x)\\ (f \alpha) (x) = f(x)\alpha$
+    \item $F[t]$ - многочлены от одной переменной $t$
+    \item $V$ - абелева группа, в которой $\forall a \in V: \underbrace{a + a +\ldots + a}_{p \in \mathbb P} = 0$
+	Тогда $V$ - векторное пространство над $\Z_p$
+	$k \cdot a = \underbrace{a+ \ldots +a}_{k}$
+\end{enumerate}
+\end{exs}
+
+\section{Лекция 3}
+\begin{defn}
+    Алгебра $A$ над полем $F$ -- кольцо, являющееся векторным пространством над $F$ ("+" - операция в кольце и в векторном пространстве), такое что $(ab)\alpha = a(b\alpha) \qquad a, b \in A, \alpha \in F$
+\end{defn}
+\begin{ex}
+    $(\R^3, +, \times)$ - не ассоциативная алгебра на $\R$
+\end{ex}
+\begin{defn}
+    Матрица размера $I\times J$ ($I, J$ - множества индексов) над множеством $X$ - это функция \[
+	A: I\times J \to X ,\qquad (i,j) \to a_{ij}
+    .\] 
+    Пусть определено умножение $X \times Y \to Z, \qquad  (x, y) \to xy$ \\($Z$ - коммутативный моноид относительно "+")
+\end{defn}
+\begin{defn}
+    Строка - матрица размера $\{1\}\times J$\\
+    Столбец - матрица размера $J \times \{1\}$
+\end{defn}
+\noindent$A$ - строка длины $J$ над $X$\\
+$B$ - строка длины $J$ над $Y$\\
+Тогда произведение $AB = \sum\limits_{j \in J} a_{1j} b_{j1} \in Z$\\
+$x \to x_e$ - координаты вектора $x$\\
+$\underbrace{x\cdot y}_{\mbox{скалярное произведение}} = x_e^T \cdot y_e$
+\begin{defn}
+    Транспонирование матрицы.\\
+    $D$ - матрица $I \times J$ над $X$\\
+    $D^T$ - матрица $J \times I$ над $X: (D^T)_{ij} = (D)_{ji}$
+\end{defn}
+\begin{note}
+    Пусть в $X$ есть элемент $0 : 0\cdot y = 0 \quad \forall y \in Y$. Все кроме конечного числа $a_j = 0$. Тогда $AB$ имеет смысл, даже когда $|J| = \infty$.\\
+    "почти все" = кроме конечного количества\\
+\end{note}
+\begin{name}
+    $$a_{i*} \mbox{ - $i$-я строка матрицы }A$$
+    $$a_{*j} \mbox{ - $j$-й столбец матрицы }A$$
+\end{name}
+\subsection{Произведение матриц}
+\[
+    A \mbox{ - матрица } I\times J \mbox{ над } X
+.\] 
+\[
+    B \mbox{ - матрица } J\times K \mbox{ над } Y
+.\] 
+\[
+    AB \mbox{ - матрица } I\times K \mbox{ над } Z = X \cdot Y, \qquad (AB)_{ik} = a_{i*} \cdot b_{*k} = \sum\limits_{j\in J} a_{ij} \cdot b_{jk}
+.\] 
+\[
+(x_1, \ldots x_n) \cdot \left ( \begin{array}{c}a_1\\ \vdots\\ a_n \end{array}\right )=va, \qquad v \in V, a \in F
+.\] 
+%fccjwbfnbdyjcnm ghbjptltybz
+\section{Лекция 4}
+\begin{defn}
+$(G, *), (H, \#) $-- группа \\
+$\varphi: G \to H $- гомоморфизм, если: 
+$$\varphi (g_1 * g_2) = \varphi(g_1) \# \varphi(g_2)$$
+\end{defn}
+
+\begin{defn}
+$R, S$ -кольца\\
+$\varphi: R\to S$ - гомоморфизм, если:
+$$\varphi(r_1 + r_2) = \varphi(r_1) + \varphi(r_2)$$ 
+$$\varphi(r_1 \cdot r_2) = \varphi(r_1) \cdot \varphi(r_2)$$
+Для колец с 1:$\varphi(1) = 1$
+\end{defn}
+
+\begin{defn}
+$U, V$ - векторные пространства над $F$\\
+$\varphi: U \to V$ - линейное отображение, если:
+$$\varphi(u_1 + u_2) = \varphi(u_1) + \varphi(u_2)$$
+$$\varphi(u \alpha) = \varphi(u) \alpha$$
+\end{defn}
+
+\begin{note}
+Изоморфизм -- биективный гомоморфизм.
+\end{note}
+
+\begin{defn}
+$V$ - векторное пространство над полем $F$\\
+$v$ - строка элементов "длины" $I$ над $V$\\
+$a$ - столбец "высоты" $I$, почти все элементы которого равны 0\\
+Тогда $va$ - линейная комбинация набора $v$ с коэффициентами $а$.\\
+\end{defn}
+
+\begin{note}
+$U \subset V$\\
+$U$ является векторным пространством относительно тех же операций, которые заданы в $V$.
+Тогда $U$ - подпространство $V$\\
+\end{note}
+
+\begin{lm}
+$U \subseteq V$\\
+$\forall u_1, u_2 \in U, \alpha \in F:\\
+u_1+u_2 \in U, u_1 \alpha \in U$
+Тогда $U$ - подпространство.
+Если $U$ - подпространство в $V$, то пишут $U \subseteq V$.\\
+\end{lm}
+
+\begin{defn}
+$v = \{v_i | i \in I\}$, где $v_i \in V \: \forall i \in I$\\
+$<v>$ - наименьшее подпространство, содержащее все $v_i$
+\end{defn}
+
+\begin{lm}
+$<v> = \{va | a - \mbox{ столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$
+\end{lm}
+\begin{proof}
+$v_i \in <v> \Rightarrow v_i a_i \in <v>\\
+\Rightarrow v_{i_1} a_{i_1}a+ ... + v_{i_k} a_{i_k} \in <v>\\
+\Rightarrow <v> $ содержит все варианты комбинаций.
+$va + vb = v(a+b) \in U \\
+(va)\alpha = v(a\alpha )\in U\\
+\Rightarrow$ множество линейных комбинаций  -- подпространство 
+$U$ - подпространство, содержащее $v_i \forall i \in I$\\
+$<v> $a -- наименьшее подпространство, содержащее $v_i$\\
+$\Rightarrow <v> \subseteq U$
+тогда $<v> = U$
+\end{proof}
+
+\begin{defn}
+Если $<v> = V$, то $v$ -- система образующих пространство $V$\\
+Базис -- система образующих.
+\end{defn}
+
+\begin{name}
+$F^I$ -- множество функций из $I$ в $F$ = множество столбцов высоты $I$\\
+$\sideset{^I}{}V $--  множество строк длины $I$
+
+Набор элементов из $V$ ,  заиндексирванных множеством $I$ -- это функция $f: I \to V \\ i \mapsto f_c$
+\end{name}
+
+\begin{defn}
+$v \in \sideset{^I}{}V$\\
+$v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
+\end{defn}
+
+\begin{thm}
+$v \subseteq V $(можно считать, что $v$ - строка длины $v$\\
+Следующие утверждения эквивалентны:
+\begin{enumerate}
+    \item $v$ - линейно независимая система образующих
+    \item $v$ - максимальная линейно-независимая система
+    \item $v$ - минимальная система образующих
+    \item $\forall x \in V \exists! a \in F^v : x = v a = \sum\limits_{t \in v} t \cdot a_t  \;$ (почти все элементы равны 0)
+\end{enumerate}
+\end{thm}
+\begin{proof}
+$(1) \Rightarrow (4) $ -- доказали ранее
+$(1) \Rightarrow (2) $\\
+$x \in V \setminus  v \\ x = v a (a \in F^v)$\\
+$v a = x \cdot 1 = 0$ -- линейная зависимость набора $v \cup {x}$\\
+Т.о. любой набор , строго содержащий $v$, линейно зависим $\Rightarrow v$ -- максимальный.
+\\
+$(1)\Rightarrow(2) $\\
+$x \in V \setminus $\\
+$v \subseteq V \cup {x} $--линейно зависим\\
+$va + x a_x = 0 \\ a \ne 0$\\
+Если $a_x = 0 \Rightarrow va = 0 \Rightarrow a = 0 \; ?!$\\
+Значит $a_x \ne 0 \\ va = c\cdot (-a_x)$\\
+$x = v \cdot \frac{a}{-a_x} \Rightarrow v$ --система образующих.\\
+\end{proof}
+
+\begin{lm}(Цорн)
+Пусть $\mathbb A $ -- набор подмножеств (не всех) множества $X$. \\
+Если объединение любой цепи из $\mathbb A$ , принадлежащей $\mathbb A$, то в $\mathbb A$ существует максимальный элемент.\\
+$M \in \mathbb C$ - максимальная, если $M \subseteq M' \subseteq \mathbb A \Rightarrow M =M'$\\
+\end{lm}
+
+\begin{thm}(о существовании базиса)
+$V $ -- векторное пространства \\
+$X$  -- линейное независимое подмножество $V$\\
+$Y$ -- система образующих $V$\\
+$X \le Y$\\
+Тогда существует базис $Z$ пространства $V: X \le Z \le Y$
+\end{thm}
+\begin{proof}
+$\mathbb A - $множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathbb A$\\
+$\mathbb C \le \mathbb A $\\
+$X \le \cup {C \in \mathbb C} \le Y$\\
+Пусть $\cup {C \in \mathbb C}$ --  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
+
+$\ldots$
+
+Пусть $v$ - базис $V$.\\
+$$\forall x \in V \: \exists! x_v \in F^v : x = v \cdot x_v$$
+$$v = (v_1, \ldots , v_n), \; x_v = матрица столцов альфа и;$$\\
+$$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
+\end{proof}
+
+\section{Лекция 5}
+% теорема о замене, размерность, изоморфизм, финитная функция, теорема о классификации векторных пространств
+\section{Лекция 6}
+%внешняя прямая суммаб внутренняя, диаграммы 
+
+\section{Лекция 7}
+\begin{st}
+   $$U \le W \quad \exists V \le W : W=U\oplus V$$ 
+\end{st}
+\begin{proof}
+    Выберем базис $u$ в $U$. Дополним до базиса $u \cup v$ пространства $W$ и положим $V = <v>$. $$<u> = U \\ <v>=V \\ <u \cup v> = <u> + <v> = U \oplus V = W$$
+    $$ x \in U \cap V \Rightarrow x = ua = vb \Leftrightarrow ua-vb = 0 \Rightarrow a = 0, b = 0 (u \cup v - \mbox{линейно независимый}$$
+\end{proof}
+\begin{cor}
+    $$ u - \mbox{ базис } U, v - \mbox{ базис } V, U, V \le W$$
+    $$u \cup v - \mbox{ базис } W \Leftrightarrow U \oplus V$$
+\end{cor}
+
+
+25.09.2019
+\section{Лекция 8}
+$$v - (v_1, v_2 , \ldots v_n) \in n^V$$% change!!
+$$M_n(F) - \mbox{ алгебра матриц размера $n \times n$ над $F$ }$$
+$$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа степени $n$ над $F$}$$
+
+\begin{lm}
+    $$ v \in n^V , A \in GL_n(F)$$
+    $$ v - \mbox{ линейно независимый } \Leftrightarrow vA - \mbox{ линейно независимый }$$
+    $$ <v> = <vA> $$
+\end{lm}
+\begin{proof}
+    $(vA)A^{-1} = v(AA^{-1}) = vE = v$, поэтому можно доказывать только в одну строну.\\
+    $v$ - линейно независимый.\\
+    $vAb = 0 \Rightarrow A^{-1} Ab = 0 \Rightarrow b = 0$, т.е $vA$ - линейно независимый. \\
+    $(vA)b = v(Ab) \in <v>$, $<vA> \le <v>$
+\end{proof}
+\begin{st}
+    $u, v$ - два разных базиса пространства $V$.\\
+    Тогда $\exists ! $ матрица $A \in GL_n(F) : u = vA$\\
+    При этом $a_{*k} =(u_k)_v \qquad \forall k = {1, \ldots n}$. Такая матрица обозначается $C_{v\to u}$ и называется матрицей перехода от $v$ к $u$.
+    $$ C_{v\to u} C_{u\to v} = C_{v\to u} C_{u\to v} = E$$
+\end{st}
+
+\begin{proof}
+    Положим $a_{*k} = (a_k)_v \Rightarrow u_k = v a_{*k} \Rightarrow u = vA$. \\
+    $vA=vB \Leftrightarrow A = B$ то есть $A$ - единственно.\\
+    Далее:\\
+    $$ \left. 
+	    \begin{array}{rcl}
+		u = v C_{v \to u}\\ 
+		v = u C_{u \to v}\\
+	    \end{array}
+	\right \}
+	$$
+    $$ uE - u C_{v \to u} C_{v \to u} $$
+    $$ E = C_{u \to v} C_{v \to u}$$
+\end{proof}
+\begin{cor}
+    $v$ - базис $V$\\
+    $f: GL_n(F) \to$ множество базисов пространства $V$\\
+    $f(A) = vA$ - биекция.
+\end{cor}
+\begin{proof}
+    $$|F| = q \qquad \dim V = u$$
+    $$(q^n -1)(q^n - q) \ldots (q^{n} - q^{n-1}) - \mbox{количество базисов}$$
+    $ \mathbb F $ - поле из $q$ элементов.
+\end{proof}
+\begin{st}
+    Если матрица двусторонне обратима, то она квадратная.
+\end{st}
+
+\begin{cor}
+    $u, v$ - базисы $V$
+    $$x  \underset{u}= C_{u \to v} x_v$$
+\end{cor}
+\begin{proof}
+    $$ x = ux_u = v x_v$$
+    $$ v = u C_{u \to v}$$
+    $$ ux_u = u C_{u \to v} x_v \Rightarrow x_u = C_{u \to v} x_v$$
+\end{proof}
+\begin{cor}
+    (Матричные линейные отображения)\\
+    $$ L: U \to V, \quad u - \mbox{ базис } U, v - \mbox{базис } V$$
+    Тогда $\exists ! $ матрица $L_{v,u} (L_u^v: \forall x \in U L(x)_v = L_u^v x_u$\\
+    При этом $(L_u^v)_{*k} = L(u_k)_v$
+\end{cor}
+\begin{note}
+    $$u = (u_1, \ldots u_n) \in n^U$$
+    $$L:U \to V$$
+    $$L(a) := (L(u_1), \ldots, L(u_n))$$
+    $$L(u a) = L(u) a \qquad a \in F^n$$
+
+    $$\varphi_v : V \to F^n$$
+    $$\varphi _v(g) = y_v \qquad \forall q \in V$$
+    $\varphi_v$ - линейно $\Rightarrow (L(u) a) _v = L(u)_v a$
+    $$ L(u)_v := (L(u_1)_v, \ldots L(u_n))v)$$
+\end{note}
+\begin{proof}
+    $$x = u x_u$$ $$ \quad L(x) = L(u) x_u$$
+    $$ L(x)_v = L(u)_v x_u$$
+    Положим $L_u^v := L(u)_v$.\\
+    $$ \forall x \in U : L(x) _v = L_u^v x_u$$
+    
+    При $x = u_k : L(u_k)_v = L_u ^v (u_k)_u = (L_u^v)_k$
+\end{proof}
+\begin{note}
+    Если $Ax = Bx \quad \forall x \in F^n$, то $A=B$
+\end{note}
+
+26.09.2019
+\section{Лекция 9}
+\begin{exs}$ $
+    \begin{enumerate}
+	\item $V = \R[t]_3$ - многочлены степени не более 3\\
+	$$D(p) = p' \qquad V \to V$$
+	\[
+	    v =(1, t, t^2, t^3)
+	.\] 
+	\[
+	    D(1)=0, D(t) = 1, D(t^2)=2t
+	.\] 
+	\[
+	    D_v = \left(\begin{array}{cccc}
+		0&1&0&0\\
+		0&0&2&0\\
+		0&0&0&3\\
+		0&0&0&0
+	    \end{array}
+	\right )
+	.\] 
+	\[
+	v^{(1)} = (1, \frac{t}{1!}, \frac{t^2}{2!}, \frac{t^3}{3!})
+	.\] 
+    \item $V = \R[t]$
+	    \[
+		v = (1, t, \frac{t^2}{2}, \ldots , \frac{t^n}{n!}, \ldots)
+	    .\] 
+	    \[
+		D(v_0) = 0, D(v_k) = v_{k-1}
+	    .\] 
+	    $$
+	    \left(
+	    \begin{array}
+	    {cccc}\\
+	    0&1& &\cdots  \\
+	    &0&1&\cdots  \\
+	    &&0&1\\
+	    \vdots&\vdots&&\ddots 
+	    \end{array}
+	\right )
+	    $$
+	\item  $V = \R^3_{геом}$\\
+	    $|L(a)| = |a|$ \\
+	    \begin{picture}(50,50)
+		\put(10,0){\vector(0,1){50}}
+		\put(0,10){\vector(1,0){50}}
+		    \put(10,10){\vector(0,1){30}}
+		    \put(10,10){\vector(1,0){30}}
+		    \put(0,30){$e_1$}
+		    \put(30,0){$e_2$}
+		    \put(10,10){\vector(1,2){15}}
+		    \put(10,10){\vector(2,1){30}}
+		    \put(25,40){$L(a)$}
+		    \put(40,25){$\vec{a}$}
+	    \end{picture}\\
+	    $\widehat{a, L(a)} = \varphi$\\
+	    $e = (e_1, e_2) $- базис\\
+	    %3 картинка
+	    $$L(e_1)_e = \left( \begin{array}{c}
+		    \cos \varphi \\
+		    \sin \varphi 
+		\end{array}
+	    \right )$$
+	    $$L(e_2)_e = \left( \begin{array}{c}
+		    -\sin \varphi\\ 
+		    \cos \varphi 
+		\end{array}
+	    \right )$$
+\[
+    L_e = \left (\begin{array}{cc}
+	    \cos \varphi & -\sin \varphi \\
+	    \sin \varphi & \cos \varphi
+    \end{array}\right )
+.\] 
+\unitlength=2mm
+%рисунок не полный!!
+\begin{picture}(20,20)
+    % \put(5,5){\circle{12}}
+    \put(5,-2){\vector(0,1){14}}
+    \put(-2,5){\vector(1,0){14}}
+    \put(5,5){\vector(-2,-1){4}}
+    \put(5,5){\vector(-1,-2){2}}
+\end{picture}
+$a_e = \left ( \begin{array}{c}
+	\cos \psi\\ \sin \varphi
+\end{array} \right )$
+\[
+    L(a)_e = \left (\begin{array}{c} 
+	    \cos (\psi + \varphi) \\
+	    \sin(\psi + \varphi)
+    \end{array} \right )
+.\] 
+\[
+    L(a)_e = L_e \cdot a_e = \left ( \begin{array}{cc}
+	    \cos \varphi & - \sin \varphi \\
+	    \sin \varphi & \cos \varphi
+	\end{array}
+    \right ) \cdot \left ( 
+    \begin{array}{c}
+    	\cos \psi \\
+	\sin \psi
+    \end{array}
+    \right )  = \left ( 
+    \begin{array}{c}
+    \cos \varphi \cos \psi - \sin \varphi \sin \psi \\
+    \cos \varphi \sin \psi + \sin \varphi \cos \psi
+    \end{array}
+\right ) 
+.\] 
+    \end{enumerate}
+\end{exs}
+
+\begin{st}
+$L: U \to V \\ u, u' -\mbox{базис } U\\ v, v' - \mbox{ базис } V$\\
+Тогда $L_{u'}^{v'} = C_{v' \to v} \quad L_u^v C_{u \to u'}$
+\end{st}
+\begin{proof}
+    \[
+     L(x)_v = L_u^v x_u
+    .\] 
+    \[
+	C_{v' \to v} L(x)_v = L(x)_{v_1} = L_{u'} ^{v'} x_{u'}=L_{u'}^{v'} C_{u' \to u} x_u
+    .\] 
+    $\forall x_u \in F^{dim U}$
+    \[
+	L(x)_v = C_{v \to v'} L_{u'} ^{v'} C_{u' \to u} x_k
+    .\] 
+    \[
+	L_u^v = C_{v \to v'} L_{u'}^{v'}C_{u' \to u}
+    .\] 
+\end{proof}
+\begin{note}
+    \[
+    \mbox{Если }U=V \qquad u=v, u'=v'
+    .\] 
+    \[
+	L_{u'}=C_{u' \to u} L_u C_{u \to u'}
+    .\] 
+\end{note}
+\begin{st}
+    Линейное отображение однозначно определяется образом базисных векторов.\\
+    $u = (u_1 , \ldots u_n) -\mbox{ базис } U$ \\
+    Для любого векторного пространства $V$: $$ \forall v_1, \ldots v_n = V$$
+    $$\exists !\mbox{ линейное отображение (*)}L: U \to V: L(u_k) = v_k \quad \forall k $$
+\end{st}
+\begin{proof}
+    $$L(ua) := va$$
+    $$ \forall  L \mbox{*}: L(ua) = L(u) a = va$$
+\end{proof}
+При этом $L$ - инъективно тогда и только тогда, когда $v$ - линейно независимый\\
+$L$ - сюрьективно тогда и только тогда, когда $v$ - система образующих\\
+$L$ - изоморфизм тогда и тоько тогда, когда $v$ - базис.
+
+\begin{st}
+    %7
+    $V, \quad v, v' - \mbox{ базис } V$\\
+    $L: V \to V - \mbox{линейно}$\\
+    $L(v_k) = v'_k \qquad \forall k$
+    $$ (L_v)_k = L(v_k)_v = (v'_k)_v$$
+
+    \[
+	L_v = C_{v\to v'}
+	.\] (по другому)\[
+    (Id^v_{v'})_k = Id(v'_k)_v = (v'_k)_v
+    .\]  
+    Тогда $L_v = C_{v \to v'} = Id_{v'} ^{v}$
+\end{st}
+
+\begin{defn}
+$f: X \to Y \\
+Im f = \{f(x) \mid x \in X\}$\\
+$L: U \to V $ - линейное отображение \\
+$ Im L = \{L(x) \mid x\in U\}$\\
+$\ker L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
+\end{defn}
+\begin{lm}$ $\\
+    $ im L \le V$\\
+    $ \ker L \le U$\\
+    Пусть $L(x) = y$\\
+    $$ \forall y \in V : L^{-1} = x + \ker L$$
+	$$ L^{-1} (y) = \{z \in U \mid L(z) = y\}$$
+	$$ x + \ker L = \{x+z \mid z \in \ker L\}$$
+\end{lm}
+\end{document}

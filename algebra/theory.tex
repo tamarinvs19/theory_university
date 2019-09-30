@@ -1,0 +1,289 @@
+\documentclass[a_4paper,11pt]{report}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage[left=20mm,top=20mm,left=20mm,bottom=20mm,nohead,nofoot]{geometry}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\Zero}{\mathbb{O}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Теорема}[section]
+\newtheorem*{lm}{Лемма}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem*{defn}{Определение}
+\newtheorem*{ex}{Пример}
+\newtheorem*{cor}{Следствие}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\begin{document}
+\begin{center}
+\title{Линейная алгебра
+
+Векторные пространства}
+\end{center}
+Х - множество\\
+$ *: X \times X \to X$\\
+$ (x, y) \mapsto x * y$\\
+{\bf Аксиомы:}
+\begin{enumerate}
+    \item $\forall x,y,z \: \in X: x*(y*z) = (x*y)*z$ $\;$ (ассоциативность)
+    \item $\exists e \in X \; \forall a \in X: e*a = a*e = a \;$ (нейтральный элемент)
+    \item $\forall a \in X \; \exists a' \in X: a*a' = a' * a = e \;$ (обратный элемент)
+    \item $\forall a, b \in X: a * b = b * a \; $(коммутативность)
+\end{enumerate}
+
+{\bf Определение 1}
+
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиоме 1, называется {\bf полугруппой}
+
+{\bf Определение 2}
+
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-2, называется {\bf моноидом}
+
+{\bf Определение 3}
+
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-3, называется {\bf группой}
+
+{\bf Определение 4}
+
+Множество $X$ с операцией $*$ , удовлетворяющее  аксиомам 1-4, называется {\bf коммутативной} или {\bf абелевой группой}
+
+ Примеры:
+\begin{enumerate}
+    \item $(\mathbb{Z}, + )$ -- группа
+    \item $(\mathbb{N}, + )$ -- полугруппа
+    \item $(\mathbb N_0 , +)$ -- моноид
+    \item $(\mathbb R \backslash \{0\}, \cdot)$ -- группа
+    \item Пусть $A$ - множество\\
+	$X$ := множество биективныx отображений $A \to A$\\
+	$id_A $-- нейтральный элемент\\
+	Если $f(x) = y$, то $\tilde f (y) = x$ -- обратная функция ($f \circ \tilde f = \tilde f \circ f = id_A$).\\
+	$f(x) = x+1,\; g(x) - 2x,\;id_A(x)=x$\\
+	$f \circ g(x) = f(g(x)) = f(2x) = 2x + 1$\\
+	$g \circ f(x) = g(f(x)) = g(x+1) = 2x + 2 \ne 2x+1$\\
+	Следовательно, $(X, \circ)$ -- не коммутативная группа
+\end{enumerate}
+
+{\bf Обозначения}
+\begin{itemize}
+    \item $\cdot$ -- мультипликативность, $1$, $x^{-1}$
+    \item $+$ -- аддитивность, $0$, $-x$
+    \item $\circ$ -- относительно композиции, $id$, $x^{-1}$
+    \item $*$ -- абстрактная операция, $e$, $x^{-1}$
+\end{itemize}
+
+ Пусть $(R, +)$ -- абелева группа\\
+Определим отображение
+$$\cdot: R \times R \to R$$
+$$  (a,b) \mapsto a \cdot b$$\\
+Для $(R, +, \cdot)$ могут быть верны следующие аксиомы:
+\begin{enumerate}
+    \setcounter{enumi}{+4}
+    \item $a(b+c) = ab + ac\\ 
+	(b+c)a = ba + ca$ (дистрибутивность)
+    \item $a(bc) = (ab)c$ (ассоциативность)
+    \item $\exists 1_R \: \forall a \in R: 1_R \cdot a = a \cdot 1_R = a$ (нейтральный элемент)
+    \item ab = ba (коммутативность)
+    \item $0_R \ne 1_R$
+    \item $\forall a \ne 0_R \: \exists a^{-1}: a \cdot a^{-1} = a^{-1} \cdot a = 1_R$ (обратный элемент)
+\end{enumerate}
+
+{\bf Определение 5}
+
+$(R, +, \cdot)$, удовлетворяющее аксиоме 5, называется {\bf не ассоциативным кольцом без единицы}.
+
+{\bf Определение 6}
+
+$(R, +, \cdot)$, удовлетворяющее аксиомам 5-6, называется {\bf ассоциативным кольцом без единицы}.
+
+{\bf Определение 7}
+
+$(R, +, \cdot)$, удовлетворяющее аксиоме 5-7, называется {\bf ассоциативным кольцом с единицей}.
+
+{\bf Определение 8}
+
+$(R, +, \cdot)$, удовлетворяющее аксиомам 5-8, называется {\bf коммутативным кольцом}.
+
+ Примеры:
+\begin{enumerate}
+    \item $\mathbb Z$ --коммутативное кольцо
+    \item $\mathbb {Q, R, C}$ -- поля
+    \item Рассмотрим $\mathbb Z_n = {0, \ldots, n-1}$ с операциями $+_n, \cdot_n$ :\\
+	$a +_n b = (a + b) \% n \\
+	a \cdot_n b = (a \cdot b) \% n$\\
+	Обратимые элементы:\\
+	$ax = 1 + ny \\
+	ax - ny = 1$\\
+	Если $(a, n) = 1$, есть решение, иначе -- нет.
+	$\mathbb Z_p $-- поле $\Leftrightarrow$ $ p \in \mathbb P$
+\end{enumerate}
+
+{\bf Определение 9}
+
+$V$ -- векторное пространство над полем $F$ , если $(V, +)$ -- абелева группа, задано отображение $V\times F \to V \\ (x, \alpha) \mapsto x \cdot \alpha $ , удовлетворяющее аксиомам $\forall x, y \in V, \forall a, b \in F$:
+\begin{enumerate}
+    \setcounter{enumi}{+4}
+    \item $x \cdot (\alpha \cdot \beta) = (x \cdot \alpha) \cdot \beta$
+    \item$ (x + y) \cdot \alpha = x \cdot \alpha + y \cdot \alpha$\\
+     $x \cdot (\alpha + \beta) = x \cdot \alpha + x \cdot \beta$
+    \item $x \cdot 1_F = x$
+\end{enumerate}
+
+{Примеры:}
+\begin{enumerate}
+    \item Множество векторов в $\mathbb R ^3$
+    \item $F^n = \left\{ \left( 
+	\begin{array}{c} a_1 \\ a_2 \\ \vdots\\ a_n \end{array} \right) | a_i \in F \right\}$\\
+	$\left(\begin{array}{c}
+	    a_1 \\ \vdots \\ a_n 
+	\end{array} \right) +
+	\left( \begin{array}{c}
+		b_1 \\ \vdots \\ b_n
+	\end{array} \right)=
+	\left( \begin{array}{c}
+		a_1 + b_1 \\ \vdots \\ a_n + b_n
+	\end{array} \right)$
+\end{enumerate}
+    
+$A \in M_n(F), \alpha \in F \\ (A, \alpha)_{ij} = a_{ij} \cdot \alpha \\ (AB)\alpha = A(B\alpha)$
+
+{\bf Определение 1}\\
+$(G, *), (H, \#) $-- группа \\
+$\varphi: G \to H $- гомоморфизм, если: 
+$$\varphi (g_1 * g_2) = \varphi(g_1) \# \varphi(g_2)$$
+
+{\bf Определение 2}\\
+$R, S$ -кольца\\
+$\varphi: R\to S$ - гомоморфизм, если:
+$$\varphi(r_1 + r_2) = \varphi(r_1) + \varphi(r_2)$$ 
+$$\varphi(r_1 \cdot r_2) = \varphi(r_1) \cdot \varphi(r_2)$$
+Для колец с 1:$\varphi(1) = 1$
+
+{\bf Определение 3}\\
+$U, V$ - векторные пространства над $F$\\
+$\varphi: U \to V$ - линейное отображение, если:
+$$\varphi(u_1 + u_2) = \varphi(u_1) + \varphi(u_2)$$
+$$\varphi(u \alpha) = \varphi(u) \alpha$$
+
+{\bf Замечание}\\
+Изоморфизм -- биективный гомоморфизм.
+
+{\bf Определение 4}\\
+$V$ - векторное пространство над полем $F$\\
+$v$ - строка элементов "длины" $I$ над $V$\\
+$a$ - столбец "высоты" $I$, почти все элементы которого равны 0\\
+Тогда $va$ - линейная комбинация набора $v$ с коэффициентами $а$.\\
+
+
+{\bf Определение 5}\\
+$U anal \in V$\\
+$U$ является векторным пространством относительно тех же операций, которые заданы в $V$.
+Тогда $U$ - подпространство $V$\\
+
+{\bf Лемма}\\
+$U \subseteq V$\\
+$\forall u_1, u_2 \in U, \alpha \in F:\\
+u_1+u_2 \in U, u_1 \alpha \in U$
+Тогда $U$ - подпространство.
+Если $U$ - подпространство в $V$, то пишут $U \subseteq V$.\\
+
+
+{\bf Определение 6}\\
+$v = \{v_i | i \in I\}$, где $v_i \in V \: \forall i \in I$\\
+$<v>$ - наименьшее подпространство, содержащее все $v_i$
+
+{\bf Лемма}\\
+$<v> = \{va | a - \mbox{ столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$\\
+
+{\bf Доказательство}\\
+$v_i \in <v> \Rightarrow v_i a_i \in <v>\\
+\Rightarrow v_{i_1} a_{i_1}a+ ... + v_{i_k} a_{i_k} \in <v>\\
+\Rightarrow <v> $ содержит все варианты комбинаций.
+$va + vb = v(a+b) \in U \\
+(va)\alpha = v(a\alpha )\in U\\
+\Rightarrow$ множество линейных комбинаций  -- подпространство 
+$U$ - подпространство, содержащее $v_i \forall i \in I$\\
+$<v> $a -- наименьшее подпространство, содержащее $v_i$\\
+$\Rightarrow <v> \subseteq U$
+тогда $<v> = U$
+\\
+
+{\bf Определение 7}\\
+Если $<v> = V$, то $v$ -- система образующих пространство $V$\\
+Базис -- система образующих.\\
+
+$F^I$ -- множество функций из $I$ в $F$ = множество столбцов высоты $I$\\
+$\sideset{^I}{}V $--  множество строк длины $I$
+
+Набор элементов из $V$ ,  заиндексирванных множеством $I$ -- это функция $f: I \to V \\ i \mapsto f_c$
+
+{\bf Определение 8}\\
+$v \in \sideset{^I}{}V$\\
+$v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
+
+{\bf Теорема}\\
+$v \subseteq V $(можно считать, что $v$ - строка длины $v$\\
+Следующие утверждения эквивалентны:\\
+\begin{enumerate}
+    \item $v$ - линейно независимая система образующих\\
+    \item $v$ - максимальная линейно-независимая система\\
+    \item $v$ - минимальная система образующих\\
+    \item $\forall x \in V \exists! a \in F^v : x = v a = \sum\limits_{t \in v} t \cdot a_t  \;$ (почти все элементы равны 0)\\
+\end{enumerate}
+{\bf Доказательство}\\
+$(1) \Rightarrow (4) $ -- доказали ранее
+$(1) \Rightarrow (2) $\\
+$x \in V \setminus  v \\ x = v a (a \in F^v)$\\
+$v a = x \cdot 1 = 0$ -- линейная зависимость набора $v \cup {x}$\\
+Т.о. любой набор , строго содержащий $v$, линейно зависим $\Rightarrow v$ -- максимальный.
+\\
+$(1)\Rightarrow(2) $\\
+$x \in V \setminus $\\
+$v \subseteq V \cup {x} $--линейно зависим\\
+$va + x a_x = 0 \\ a \ne 0$\\
+Если $a_x = 0 \Rightarrow va = 0 \Rightarrow a = 0 \; ?!$\\
+Значит $a_x \ne 0 \\ va = c\cdot (-a_x)$\\
+$x = v \cdot \frac{a}{-a_x} \Rightarrow v$ --система образующих.\\
+
+{\bf Лемма Цорна}\\
+Пусть $\mathbb A $ -- набор подмножеств (не всех) множества $X$. \\
+Если объединение любой цепи из $\mathbb A$ , принадлежащей $\mathbb A$, то в $\mathbb A$ существует максимальный элемент.\\
+$M \in \mathbb C$ - максимальная, если $M \subseteq M' \subseteq \mathbb A \Rightarrow M =M'$\\
+
+{\bf Теорема (о существовании базиса)}\\
+$V $ -- векторное пространства \\
+$X$  -- линейное независимое подмножество $V$\\
+$Y$ -- система образующих $V$\\
+$X \subseteq Y$\\
+Тогда существует базис $Z$ пространства $V: X \subseteq Z \subseteq Y$
+
+{\bf Доказательство}\\
+$\mathbb A - $множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathbb A$\\
+$\mathbb C \subseteq \mathbb A $\\
+$X \subseteq \cup {C \in \mathbb C} \subseteq Y$\\
+Пусть $\cup {C \in \mathbb C}$ --  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
+
+$\ldots$
+
+Пусть $v$ - базис $V$.\\
+$$\forall x \in V \: \exists! x_v \in F^v : x = v \cdot x_v$$
+$$v = (v_1, \ldots , v_n), \; x_v = матрица столцов альфа и;$$\\
+$$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
+\end{document}
