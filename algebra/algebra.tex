@@ -5,12 +5,19 @@
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
 \usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
 
 
 \pagestyle{plain}
 
-\usepackage[left=20mm,top=20mm,left=20mm,bottom=30mm,nohead,nofoot]{geometry}
+\usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
 \begin{document}
 \renewcommand{\proofname}{Доказательство}
@@ -263,7 +270,7 @@ $$\varphi(u \alpha) = \varphi(u) \alpha$$
 \begin{defn}
 $V$ - векторное пространство над полем $F$\\
 $v$ - строка элементов "длины" $I$ над $V$\\
-$a$ - столбец "высоты" $I$, почти все элементы которого равны 0\\
+$a$ - столбец "высоты" $I$, почти все элементы которого равны 0.\\
 Тогда $va$ - линейная комбинация набора $v$ с коэффициентами $а$.\\
 \end{defn}
 
@@ -309,13 +316,13 @@ $\Rightarrow <v> \subseteq U$
 
 \begin{name}
 $F^I$ -- множество функций из $I$ в $F$ = множество столбцов высоты $I$\\
-$\sideset{^I}{}V $--  множество строк длины $I$
+$ ^I V $--  множество строк длины $I$
 
 Набор элементов из $V$ ,  заиндексирванных множеством $I$ -- это функция $f: I \to V \\ i \mapsto f_c$
 \end{name}
 
 \begin{defn}
-$v \in \sideset{^I}{}V$\\
+$v \in ^IV$\\
 $v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
 \end{defn}
 
@@ -368,7 +375,7 @@ $\ldots$
 
 Пусть $v$ - базис $V$.\\
 $$\forall x \in V \: \exists! x_v \in F^v : x = v \cdot x_v$$
-$$v = (v_1, \ldots , v_n), \; x_v = матрица столцов альфа и;$$\\
+$$v = (v_1, \ldots , v_n), \; x_v = \mbox{ матрица столцов альфа} и;$$\\
 $$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
 \end{proof}
 
@@ -644,7 +651,7 @@ $L$ - изоморфизм тогда и тоько тогда, когда $v$ -
 
     \[
 	L_v = C_{v\to v'}
-	.\] (по другому)\[
+	.\] по другому \[
     (Id^v_{v'})_k = Id(v'_k)_v = (v'_k)_v
     .\]  
     Тогда $L_v = C_{v \to v'} = Id_{v'} ^{v}$
@@ -655,14 +662,54 @@ $f: X \to Y \\
 Im f = \{f(x) \mid x \in X\}$\\
 $L: U \to V $ - линейное отображение \\
 $ Im L = \{L(x) \mid x\in U\}$\\
-$\ker L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
+$Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{defn}
 \begin{lm}$ $\\
-    $ im L \le V$\\
-    $ \ker L \le U$\\
+    $ Im L \le V$\\
+    $ Ker  L \le U$\\
     Пусть $L(x) = y$\\
-    $$ \forall y \in V : L^{-1} = x + \ker L$$
+    $$ \forall y \in V : L^{-1} = x + Ker  L$$
 	$$ L^{-1} (y) = \{z \in U \mid L(z) = y\}$$
-	$$ x + \ker L = \{x+z \mid z \in \ker L\}$$
+	$$ x + Ker  L = \{x+z \mid z \in Ker  L\}$$
 \end{lm}
+
+\section{Лекция 9}
+\begin{thm}
+    $L: U \to V$ \[
+	\dim U = \dim Ker L + \dim Im L
+    .\] 
+\end{thm}
+\begin{proof}
+    $u = (u_1, \ldots u_k) - \mbox{ базис } Ker L \\
+    v = (v_1, \ldots U_m)$ 
+    Дополним базис ядра до базиса $U$:
+    $u \cup v $ - базис $U$ \\
+    $L(v) = (L(v_1), L(v_2), \ldots L(v_m))$ - базис образа.
+    $\sphericalangle \; x \in Im L \quad \exists y \in U: L(y) = x$. $y = ua + vb , \qquad a \in F^k, b \in F^m $ \\
+   \[
+       x = L(y) = {\underbrace{L(u)}_{(L(u_1), \ldots L(u_k)) = (0, \ldots 0)}} + L(v) 
+   .\]  
+   Следовательно, $L(v)$ - система образующих.\\
+    \[
+	L(v) c = 0, \qquad c \in F^m
+   .\] 
+   \[
+       L(vc) = 0 \Rightarrow vc \in Ker L \Rightarrow vc = ud \qquad \mbox{ для некоторого } d \in F^k
+   .\] 
+   Тогда $vc - ud = 0$, но $v$ и $u$ - два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ - линейно незвисимый.
+\end{proof}
+\begin{thm}
+    (формула Грассмана о размерности суммы и пересечения)
+    \\
+    $U, V \le W$
+    \[
+    \dim U\cap V + \dim U+V = \dim U + \dim V
+    .\] 	
+\end{thm}
+\begin{proof}
+    $\sphericalangle$ внешнюю сумму $U \oplus V$, $L(u, v) = u+v$\\
+    Тогда $Im L = U+V$. $(u, v) \in Ker L \Leftrightarrow u + v = 0 \Leftrightarrow u = -v \subset U\cap V$\\
+    $Ker L = {(u, -u) \mid u \in U \cap V} \cong U\cap V$ \\
+    $\dim (U \oplus V = \dim Ker L + \dim Im L = \dim U\cap V + \dim U+V $
+\end{proof}
 \end{document}
