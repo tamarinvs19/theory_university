@@ -2,6 +2,7 @@
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
+\usepackage{eufrak}
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -13,6 +14,16 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
 
 
 \pagestyle{plain}
@@ -711,5 +722,7 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
     Тогда $Im L = U+V$. $(u, v) \in Ker L \Leftrightarrow u + v = 0 \Leftrightarrow u = -v \subset U\cap V$\\
     $Ker L = {(u, -u) \mid u \in U \cap V} \cong U\cap V$ \\
     $\dim (U \oplus V = \dim Ker L + \dim Im L = \dim U\cap V + \dim U+V $
+    $\mathfrak{ABC}$
 \end{proof}
+
 \end{document}
