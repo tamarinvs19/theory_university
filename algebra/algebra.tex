@@ -724,4 +724,141 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
     $\dim (U \oplus V = \dim Ker L + \dim Im L = \dim U \cap V + \dim U+V $
 \end{proof}
 
+08.10.2019
+\section{Лекция 11}
+$$
+x = 
+ \left ( 
+\begin{array}{c}
+x_1 \\ \vdots \\x_n 
+\end{array}
+\right )
+= \left ( 
+\begin{array}{c}
+1 \\ \vdots \\ 0
+\end{array}
+\right )\cdot x_1 + \cdots + \left ( 
+\begin{array}{c}
+0 \\ \vdots \\ 1
+\end{array}
+\right ) \cdot x_n = 
+\left ( 
+\begin{array}{ccccc}
+    1 & 0  & \ldots & 0 & 0 \\
+    0 & 1  & 0 & & 0\\
+    \vdots & & 1 & & \vdots \\
+    0 &  & 0 & 1 & 0\\
+    0 & 0  & \ldots & 0 & 1 \\
+\end{array}
+\right )
+\left ( 
+\begin{array}{c}
+    x_1 \\ x_2 \\ \vdots \\ x_n
+\end{array}
+\right )
+$$
+Простейший базис:
+\[
+e_1 = 
+\left ( 
+\begin{array}{c}
+1 \\ 0 \vdots \\ 0
+\end{array}
+\right )
+, \ldots e_n = \left ( 
+\begin{array}{c}
+0 \\ 0 \\ \vdots \\ 1
+\end{array}
+\right )
+
+.\] 
+$x = v x_v, \quad x = e x_e = E x_e$\\
+ \[
+     e C_{e \to v} = v - \mbox{ из столбцов } v
+.\] 
+\[
+    C_{e \to v} = v - \mbox{ матрица из столбцов } (v_1, \ldots v_n)
+.\] 
+$L: F^m \to F^n , \qquad A \in M_{n \times m}(F)$
+$L(x) = A x$\\
+ \[
+     L(x)_e = L_0^e x_e , L(x)_e = L(x) = Ax = L_e ^e x_e
+.\] 
+$Hom (F^n , F^m ) \cong M_{m\times n} (F)$ - изоморфизм векторных пространств.
+В дальнейшем $A$ отождествляется с $L$ , пишем $A_u ^v $ вместо $L_u ^v$ ($A$ в базисе $u-v$). 
+\begin{defn}
+Линейный оператор  из $V $ в  $V$ называется эндоморфизмом $V$ .
+Множество эндоморфизмов $V = End(V)$ - ассоциативная алгебра над $f$\\
+$+, *\alpha$ - поточечные операции, $*$ - композиция.\\
+$L, M, N \in End(V): \quad L\circ (M + N) = L \circ M + L \circ N$ - следует из линейности  $L$
+\end{defn}
+$v$  - базис $V$, $u = \dim V$ \\
+$\theta _v : End(V) \to M_n (F)$ \\
+$\theta _v = L_v$
+\begin{st}
+    $\theta_v$ -  биективно.
+\end{st}
+\begin{probl}
+    Построить обратное $\theta_v$
+\end{probl}
+
+\begin{lm}
+    $(M \circ L)_v = M_v \circ L_v$
+\end{lm}
+ \begin{st}
+     $\theta _v$ - изоморфизм \\ $F$ - алгебра \\ $End V \cong M_n(F)$
+\end{st}
+
+--
+
+\begin{thm}
+    $U \le V$ \\
+    $\forall L: V \to V, \quad U \le Ker L, \exists ! \tilde L : V \textbackslash U \to W $
+    %4
+\end{thm}
+\begin{proof}
+    Диаграмма коммутативна, следовательно, $\tilde L$ строится однозначно. Пусть $\tilde L(x + U) : = L(x)$.% ??
+    $y \in U \in Ker L: \; L(x + y) = L(x) + L(y) = L(x)$
+    $\tilde L$ задано корректно (легко проверить, что оно линейно, единственность следует из коммутативности диаграммы.
+    $\tilde L(x + U) = L(x) $ - необходимо и достаточно коммутативности диаграммы.\\
+    $\tilde L(x +U)=0_W \Leftrightarrow L(x) = 0 \Leftrightarrow x \in Ker L = U \Leftrightarrow x + U = 0 +U = O_{V \textbackslash U}$
+    \\
+    Для инъективности : $ Ker \tilda L = 0_{V \textbackslash U}$
+\end{proof}
+\begin{thm}[О гомоморфизме]
+    $L : V \to W$
+     \[
+    V по Ker L \cong Im L
+    .\] 
+\end{thm}
+\begin{proof}
+    Возьмем $U = Ker L$ и заменим $W$ на $Im L$
+\end{proof}
+
+\begin{defn}Ранг:\\
+    $rk (v_1, v_2 , \ldots , v_n) = \dim \langle v_1, \ldots v_n \rangle $, \\
+    $rk L = \dim Im L$\\
+    $u_1, \ldots u_n $ - базис $U$, $L: U \to V$ \\
+    $rk L = rk ((L(u)) = \dim \langle L(u_1), \ldots L(u_n) \rangle $\\
+    $A \in M _ {m \times n} (f)$\\
+    Столбцовый ранг  $A$ : $rk A - rk(a_{*1}, \ldots a_{*m})$\\
+    Строчный ранг : $rk A = rk (a_{1*}, \ldots a_{n*})$\\
+    или наибольшее количество независимых столбцов (строк).
+\end{defn}
+\begin{lm}
+    $A \in M_{m \times n}$
+     \begin{enumerate}
+	 \item столбцы $A$ линейно независимы $\Leftrightarrow$   столбцовый $rk A = n$ 
+	 \item столбцы $A$  - система образующих в $F^m$ $\Leftrightarrow$  столбцовый $rk A = m$
+	 \item строки $A$ линейно независимы $\Leftrightarrow$ строчной $rk A = m$ 
+	 \item строки $A$  - система образующих в $m^F$ $\Leftrightarrow$ строчной $ rk A = n$ 
+	 \item столбцы являются базисом $F^n$ $\Leftrightarrow$ $m = n =  \mbox{строчной }rk A$
+	 \item если столбцы и строки  $A$ линейно независимы $\Leftrightarrow$ $n = m $, строки и столбцы - базисы, $A$ - обратима.
+    \end{enumerate}
+\end{lm}
+\begin{proof}
+    (6)\\
+    из (1) $\Rightarrow  c.rk A = n $\\
+    $n = \dim \langle a_{*1}, \ldots a_{*n} \rangle $
+\end{proof}
 \end{document}
