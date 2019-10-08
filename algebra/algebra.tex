@@ -725,7 +725,7 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{proof}
 
 08.10.2019
-\section{Лекция 11}
+\section{Лекция 10}
 $$
 x = 
  \left ( 
@@ -770,7 +770,6 @@ e_1 =
 0 \\ 0 \\ \vdots \\ 1
 \end{array}
 \right )
-
 .\] 
 $x = v x_v, \quad x = e x_e = E x_e$\\
  \[
@@ -814,7 +813,17 @@ $\theta _v = L_v$
 \begin{thm}
     $U \le V$ \\
     $\forall L: V \to V, \quad U \le Ker L, \exists ! \tilde L : V \textbackslash U \to W $
-    %4
+    \[
+    \tau : 
+    \begin{array}{ccc}
+	V \textbackslash U &  \longrightarrow & W\\
+	\uparrow \lefteqn{\pi_U} && \\
+	V & \stackrel{L}{\longrightarrow} & W\\
+    \end{array}
+    .\] 
+    $\tau \circ \pi _U = L$\\
+    $L   \mbox{ - эпиморфизм } \Rightarrow \tau  \mbox{ - эпиморфизм }$ \\
+    $Ker L = U \Rightarrow  \tau  \mbox{ - мономорфизм }$
 \end{thm}
 \begin{proof}
     Диаграмма коммутативна, следовательно, $\tilde L$ строится однозначно. Пусть $\tilde L(x + U) : = L(x)$.% ??
@@ -823,7 +832,7 @@ $\theta _v = L_v$
     $\tilde L(x + U) = L(x) $ - необходимо и достаточно коммутативности диаграммы.\\
     $\tilde L(x +U)=0_W \Leftrightarrow L(x) = 0 \Leftrightarrow x \in Ker L = U \Leftrightarrow x + U = 0 +U = O_{V \textbackslash U}$
     \\
-    Для инъективности : $ Ker \tilda L = 0_{V \textbackslash U}$
+    Для инъективности : $ Ker \tilde{L} = 0_{V \textbackslash U}$
 \end{proof}
 \begin{thm}[О гомоморфизме]
     $L : V \to W$
@@ -833,6 +842,9 @@ $\theta _v = L_v$
 \end{thm}
 \begin{proof}
     Возьмем $U = Ker L$ и заменим $W$ на $Im L$
+    $n = \dim \langle a_{*1} , \ldots a_{*n} \rangle \le \dim F^m = m$. Из линейной независимости строк следует, что $m \le n$ Таким образом $m = n$.\\
+    $n$ линейно независимых столбцов (строк) в $n$-мерном пространстве - базис и матрица $A$ - матрица перехода $C_{e \to a}$, где $a=(a_{*1}, \ldots a_{*n})$ - набор столбцов $A$ .
+    Следовательно, $A \in GL_n(F)$ -- множество обратных матриц.
 \end{proof}
 
 \begin{defn}Ранг:\\
