@@ -2,7 +2,7 @@
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
-\usepackage{eufrak}
+% \usepackage{eufrak}
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -166,7 +166,7 @@ $(R, +, \cdot)$, удовлетворяющее аксиомам 5-8, назыв
 \end{enumerate}
 \end{exs}
 
-    
+  \section{Лекция 2} 
 \begin{defn}
 $V$ -- векторное пространство над полем $F$ , если $(V, +)$ -- абелева группа, задано отображение $V\times F \to V \\ (x, \alpha) \mapsto x \cdot \alpha $ , удовлетворяющее аксиомам $\forall x, y \in V, \forall a, b \in F$:
 \begin{enumerate}
@@ -684,7 +684,7 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 	$$ x + Ker  L = \{x+z \mid z \in Ker  L\}$$
 \end{lm}
 
-\section{Лекция 9}
+\section{Лекция 10}
 \begin{thm}
     $L: U \to V$ \[
 	\dim U = \dim Ker L + \dim Im L
@@ -725,7 +725,7 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{proof}
 
 08.10.2019
-\section{Лекция 10}
+\section{Лекция 11}
 $$
 x = 
  \left ( 
@@ -873,4 +873,133 @@ $\theta _v = L_v$
     из (1) $\Rightarrow  c.rk A = n $\\
     $n = \dim \langle a_{*1}, \ldots a_{*n} \rangle $
 \end{proof}
+
+10.10.2019
+\section{Лекция 12}
+\begin{lm}
+    $L: U \to V$ - линейное отображение.\\
+    $rk L = \mbox{ c.} L_U ^V$ \\
+    Для любых базисов $u, v$ пространств $U, V$.
+\end{lm}
+\begin{proof}
+    \[
+	\begin{array}{ccc}
+	    U & \stackrel{L}\to & V \\
+	    \downarrow \lefteqn {\varphi_n} && \downarrow \lefteqn{\varphi_v} \\
+	    F^n & \stackrel{L_U ^V} \to & F^m
+    \end{array}
+    .\] 
+    %1
+\end{proof}
+\begin{lm}
+    $A \in M_{m \times n} (F)$\\
+    $B \in GL_m(F), C \in GL_n (F)$ \\
+    $rk A = rk B A C$ - строчной или столбцовый.
+\end{lm}
+\begin{proof}
+    $L : F^n \to F^m $- оператор умножения на $A$. $A = L_e ^e$.\\
+    $B = C_{e \to v}, C = C_{e \to u}$, где $u, v$ - базисы пространств $F^m , F^n$.\\
+    $BAC = L_v ^ u$
+    Тогда  $c. rk A = c.rk BAC = rk L$.
+    Со столбцами все хорошо.
+    Теперь со строками:
+    $r. rk A^T = c. rk A$ \\
+    $r. rk (BAC)^T = r. rk (A^T B^T C^T)$
+    $r. rk (BAC)^T = c. rk BAC$ \\
+    Тогда $r. rk A^T = r. rk C^T A^T B^T$. (Заметим, что   $(B^T)^{-1} = ((B^{-1})^T)$
+    Следовательно, $B^T, C^T$ - произвольные обратимые матрицы.
+\end{proof}
+\begin{probl}
+    $(AB)^T = B^T A^T$
+\end{probl}
+\begin{thm}[PDQ - разложение, равенство базисов]
+    \begin{enumerate}
+    $L: U \to V \mbox{ - линейное отображений}, \qquad U, V \mbox{ - конечномерные}$
+\item Существуют базисы $u, v$ пространств $U, V$ такие что \[
+   L_u ^v = 
+\left ( 
+\begin{array}{cc}
+	E & 0 \\
+	0 & 0
+\end{array}
+\right )
+   .\]  
+   Размер $E = rk L$.
+   \item $\forall A \in M_{m \times n} (F) \exists  P \in GL_m (F), Q = \in GL_n (F): A = P D Q, \qued \mbox{ где } D =  \left ( 
+\begin{array}{cc}
+    E & 0 \\ 0 & 0
+\end{array}
+\right )
+       $
+   \item $c. rk A = r. rk A$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $(f_1, \ldots f_k) $ - базис $Ker L$. Дополним до базиса на пространства $U: g \cup f = u $. Тогда (см. Теорему о ядре и о,разе).  $L(g)$ - базис Im L. Дополним его до базиса  $v$ пространства $V$.
+    \[
+	v = (L(g_1), \ldots , L(g_l), v_{l+1}, \ldots, v_n)
+    .\]
+    %3
+    таким образом $L_u ^v = 
+\left ( 
+\begin{array}{cc}
+	E & 0 \\
+	0 & 0
+\end{array}
+\right )
+    $
+\end{proof}
+
+\begin{defn}
+    $W$ - множество матриц-перестановок (группа Вейля).
+    \[
+	a_{*i} = e_{\sigma(k)}, \qquad \mbox{ где } \sigma : \{1, \ldots n \} \to \{1, \ldots n\} \mbox{ -биекция}
+    .\] 
+    %4
+    $B = $
+    - множество обратимых верхнетреугольных матриц.(борелевская подгруппа)
+    $B^{-}$ - множество обратимых нижнетругольных матриц.
+\end{defn}
+\begin{thm}[разложение Брюа]
+\[
+    GL_n(F) = BWB = \{b_1 w b_2 \mid b_1, b_2 \in B, w \in W\}
+.\] 
+$ w  \in W: B w B$ - клетка Брюа.
+\end{thm}
+\begin{proof}
+    $a \in GL_n (F)$ 
+    \[
+    \exists b, c \in B: \; bac \in W
+    .\] 
+    Индукция по $n$\\
+    В первом столбце   $a$ выберем низший ненулевой элемент.%5
+    \[
+    \left ( 
+    \begin{array}{cccccc}
+    1 &&& * && \\
+    0 &1&&  && \\
+    %6
+    \end{array}
+    \right )
+    .\] 
+    $$
+    ua = \left ( 
+    \begin{array}{ccc}
+    
+    \end{array}
+    \right )
+    $$
+    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. ТОгда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+\end{proof}
+\begin{thm}[разложение Гаусса]
+    \[
+	GL_n(F) = W B^{-} B
+    .\] 
+    $w \in W: w B^{-1} B $ - клетка Гаусса.
+\end{thm}
+\begin{st}
+    \[
+    B w B \cap B w ' B = \emptyset \qued \forall w \ne w'
+    .\] 
+\end{st}
 \end{document}
