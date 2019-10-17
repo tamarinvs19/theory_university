@@ -28,7 +28,8 @@
 
 \pagestyle{plain}
 
-\usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
+\usepackage{fullpage}
+% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
 \begin{document}
 \renewcommand{\proofname}{Доказательство}
@@ -863,7 +864,7 @@ $\theta _v = L_v$
 	 \item столбцы $A$ линейно независимы $\Leftrightarrow$   столбцовый $rk A = n$ 
 	 \item столбцы $A$  - система образующих в $F^m$ $\Leftrightarrow$  столбцовый $rk A = m$
 	 \item строки $A$ линейно независимы $\Leftrightarrow$ строчной $rk A = m$ 
-	 \item строки $A$  - система образующих в $\sideset{^m}{}F \Leftrightarrow$ строчной $ rk A = n$ 
+	 \item строки $A$  - система образующих в $^m F \Leftrightarrow$ строчной $ rk A = n$ 
 	 \item столбцы являются базисом $F^n$ $\Leftrightarrow$ $m = n =  \mbox{строчной }rk A$
 	 \item если столбцы и строки  $A$ линейно независимы $\Leftrightarrow$ $n = m $, строки и столбцы - базисы, $A$ - обратима.
     \end{enumerate}
@@ -989,17 +990,265 @@ $ w  \in W: B w B$ - клетка Брюа.
     \end{array}
     \right )
     $$
-    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. ТОгда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. Тогда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+
+\end{proof}
+\begin{proof}
+    см конспект
+    $GL_n (F) = BWB$ \\
+    $a \in  GL_n(F)$
 \end{proof}
 \begin{thm}[разложение Гаусса]
     \[
 	GL_n(F) = W B^{-} B
     .\] 
-    $w \in W: w B^{-1} B $ - клетка Гаусса.
+    $w \in W: w B^{-} B $ - клетка Гаусса.
 \end{thm}
+\begin{proof}
+    Докажем, что $\forall w \in  W: BwB \subset w B^- B$ \\
+    $B W B = \bigcup _{w \in  W} B w B \subset ...$%1
+    \begin{lm}[1]
+	$D = D_n (F)$ - множество обратимых диагональных матриц. $U = U_n(F)$ - множество унитреугольных матриц. Тогда $B = D U = U D$.
+    \end{lm}
+    \begin{probl}
+        $a = \left ( 
+        \begin{array}{ccc}
+	    \alpha_i & \cdots & 0 \\
+	     & \ddots &\\
+	    0 & \cdots & 0
+        \end{array}
+        \right ), \qquad \alpha _i \ne \alpha_j , \mbox{если } i \ne j \; \Rightarrow \; ab = ba \Rightarrow b \in  D$
+    \end{probl}
+    \begin{proof}
+    $$
+    \left ( 
+    \begin{array}{ccc}
+	\frac{1}{b_{11}} & \cdots & 0 \\
+	&\ddots & \\
+	0 & \cdots & \frac{1}{b_{nn}}
+    \end{array}
+    \right )
+    $$%2
+    \end{proof}
+    %3
+    \begin{lm}[2]
+	$U = \prod_{i < j} X_{ij}$, причем произведение берется в любом наперед заданном порядке.
+    \end{lm}
+     \begin{proof}
+        Будет в теории групп
+    \end{proof}
+    \begin{name}
+	$w \in  W : U_w := \prod_{i < j, \sigma (i) >\sigma(J)} X_{ij}$, где $\sigma$ - перестановка соответствующая $w$.
+	То есть $w^{-1} X _{ij} w = X_{\sigma(i) \sigma(j)}$.
+    \end{name}
+    \begin{thm}[Приведенной разложение Брюа]
+	$B = \bigcup _{w \in  W} U_w w D U$
+	% $BwB = UwDU$
+	При этом $ w$, а также элеметны из $U_w, D, U$ определены по элементам из $B$  из единственным образом.
+    \end{thm}
+    \begin{proof}
+        %4
+    \end{proof}
+    \begin{cor}
+	$BwB \subset w B^{-1}B = w (w^{-1} U_w w)B \subset w U^{-} B \subset w B ^{-} B$
+    \end{cor}
+    \begin{proof}
+        $B w B = U_w w B$
+    \end{proof}
+\end{proof}
 \begin{st}
     \[
-    B w B \cap B w ' B = \emptyset \qued \forall w \ne w'
+    B w B \cap B w ' B = \o ,\; \forall w \ne w'
     .\] 
 \end{st}
+
+\section{Лекция 13}
+15.10.2019
+Доказательство теорем
+
+\section{Лекция 14}
+17.10.2019
+\begin{proof}[Разложение Гаусса]
+    Идея доказательства: $a \in  GL_n(F), \; wa \in  U^- B$. Найдем такое $w$.\\
+    \begin{defn}
+        Главная подматрица матрицы $A$- подматрица $k \times k$ стоящая в левом верхнем углу матрицы $A$.
+    \end{defn}
+
+    \begin{lm}
+        Обратимость любой главной подматрицы не зависит от умножения на  $U^-$ слева и на  $U$ справа.
+    \end{lm}
+    \begin{proof}
+	$a^{(k)}$ - главная подматрица $k \times k$ в $a$.
+	 \[
+	\left ( 
+	\begin{array}{cc}
+	    b&0\\
+	    c&d
+	\end{array}
+	\right )
+	\left ( 
+	\begin{array}{cc}
+	    a^{(k)}&* \\
+	    *& *
+	\end{array}
+	\right )=
+	\left ( 
+	\begin{array}{cc}
+	    ba^{(k)}&*\\
+	    *&*
+	\end{array}
+	\right )
+	.\] 
+	$\mbox{Где } b \in  U^- F$ 
+	Обратимость $a^{(k)} $ равносильно обратимости $ba^{(k)}$, так как $b$ - обратима.
+    \end{proof}
+
+    \begin{lm}
+        $a \in  U^- B \Leftrightarrow $ все главны подматрицы обратимы.
+    \end{lm}
+    \begin{proof}
+	Доказываем следствие влево.
+        Индукция по $n$.
+	База: $n=1$ - очевидно\\
+	Переход: \\
+	\[
+	a = 
+	\left ( 
+	\begin{array}{cc}
+	    a^{(n-1)} & * \\
+	    * & a_{nn}
+	\end{array}
+	\right )
+	.\] 
+	\[
+	     \left ( 
+	    \begin{array}{cc}
+		1&0\\-xa^{(n-1)}&1
+	    \end{array}
+	    \right )
+	    \left ( 
+	    \begin{array}{cc}
+		a^{(n-1)} & *\\
+		x&a_{nn}
+	    \end{array}
+	    \right )=
+	    \left ( 
+	    \begin{array}{cc}
+		a^{(n-1)}&*\\0&*
+	    \end{array}
+	    \right )
+	.\] 
+	Дальше применим предположение индукции к $a^{(n-1)}$. Она раскладывается в произведение верхне- и нижнетреугольной.
+
+	В обратную сторону следует из прошлой леммы.
+	Действительно, у обратимой верхнетреугольной матрицы все главные подматрицы обратимы, а умножение слева на обратимые 	нижнетреугольные не меняет их обратимость.
+    \end{proof}
+
+    \begin{lm}
+	$\forall a \in  GL_n(F) \exists w \in  W : $ все подматрицы в $wa$ обратимы.
+	По условию $a^{(n-1)}$ обратима, 
+    \end{lm}
+    \begin{proof}
+	Индукция по $k$.
+	Докажем, что существует перестановка $a \in  GL_n(F)$ такая, что главные подматрицы размера не более $k \times k$ обратимы.
+	\\
+	$k=1$ \[
+	    a_{*1} = 0 \Rightarrow \exists i: a_{ij} \ne 0
+	.\] Меняем $i$- строку с первой.
+	\\
+	Переход:
+	\[
+	a = 
+	\left ( 
+	\begin{array}{cc}
+	    a^{(k)}& *\\
+	    * & *
+	\end{array}
+	\right )
+	.\] 
+	По индукционному предположению все главные подматрицы в $a^{(k)}$ обратимы.
+	Все столбцы линейно независимы, следовательно, ранг матрицы $
+	\left ( 
+	\begin{array}{ccc}
+	    a_{11} &\cdots&a_{1 k+1} \\
+		   &\ddots&\\
+	    a_{n 1}& \cdots a_{n k+1}
+	\end{array}
+	\right ) = k+1$
+	$k+1$ - мерное подпространство $U$  в $^{k+1} F$. А первые $k$ строк этой матрицы линейно независимы. 
+	$X = {b_1, \ldots b_k}, Y={b_1, \ldots b_n}, \quad b_i = (a_{i 1} , \ldots a_{i k+1})$. \\
+	$X$ - линейно независимый, $\langle y \rangle = U, \dim U = k+1$.\\
+	\[
+	\exists Z : X \ge X \ge Y, \mbox{ где }Z - \mbox{ базис} U.
+	.\] 
+	\[
+	    |Z| = k+1 \Rightarrow Z = {b_1, \ldots b_k, b_i}, i>k.
+	.\] 
+	Переставляем $ i$-ю строку на $k+1$ место. У получившейся матрицы первые $k$ главных подматриц равны главным подматрицам в $a$, а строки $k+1$-й строки главной подматрицы линейно независимы. Следовательно, она независима.
+    \end{proof}
+    $wa \in  B^- B$. Домножая на $B, B^-$, получим, что хотели.
+\end{proof}
+\begin{thm}[Кронокера-Капелли]
+    Система линейных уравнений $Ax = b$ Имеет хотя бы одно решение тогда и только тогда, когда $rk A = rk (A b)$, где $(A b)$ - расширенная матрица.
+\end{thm}
+\begin{proof}
+    \[
+	rk A = rk(A b) \Leftrightarrow \langle a_{*1}, \ldots \rangle = \langle a_{*1} , \ldots a_{*n}, b \rangle \Leftrightarrow b \in  \langle a_{*1}, \ldots a_{*n} \rangle \Leftrightarrow \mbox{ система имеет решение}
+    .\] 
+\end{proof}
+
+\chapter{Начала теории групп}
+\section{Лекция 14}
+\begin{defn}
+    Подмножество $H \subset G$ называется подгруппой, если $H$ -- группа относительно операции, заданной в $G$.
+    \[
+    H \le G
+    .\] 
+\end{defn}
+\begin{lm}
+    $H \subset B$
+    $H$ - подгруппа $\Leftrightarrow \forall h, g \in H: gh, g^{-1} \in  H$.
+\end{lm}
+\begin{st}
+    $G, H$ - группы. 
+    \[
+	G \times H = \{(g, h) \mid g \in  G, h \in  H \}
+    .\] 
+    \[
+     (g, h) \cdot (g', h') : = (g\cdot g', h\cdot h')
+    .\] 
+\end{st}
+\begin{defn}
+    $\varphi  X \to  Y , (X, *), (Y, \cdots) - группы.$\\
+    $\varphi$ - гомоморфизм групп, если:
+    \[
+	\varphi(x_1 * x_2) = \varphi (x_1) \cdot \varphi(x_2) , \qquad \forall x_1, x_2 \in  X
+    .\] 
+    Изоморфизм - биективный гомоморфизм.
+\end{defn}
+\begin{lm}
+    $G, H \le F$
+    \begin{enumerate}
+	\item $G \cap H  = \{1\}$
+	\item $G \cdot H = F$
+	\item $\forall g \in  G, h \in  H: gh = hg$
+    \end{enumerate}
+    Тогда $F \cong G \times H$.
+\end{lm}
+\begin{proof}
+$
+    \varphi : G\times H \to F \\ \varphi(g, h) = g \cdot h$
+    \[
+	\varphi ((g, h) \cdot (g', h')) = \varphi (gg', hh') = gg' hh'
+    .\] 
+    \[
+	\varphi (g, h) \cdot \varphi (g', h') = gh g'h'
+    .\] 
+
+    (1) $\Leftrightarrow \varphi$ - сюрьективно.
+    \[
+	\varphi (g, h) = \varphi(g', h') \Leftrightarrow gh = g'h' \Leftrightarrow g'^{-1} g = h' h^{-1} = 1 \Rightarrow g' = g, h' = h
+    .\] 
+\end{proof}
+
 \end{document}
