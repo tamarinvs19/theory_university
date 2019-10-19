@@ -1,0 +1,331 @@
+\documentclass[12pt]{article}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
+\pagestyle{plain}
+
+\usepackage{fullpage}
+% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
+
+\begin{document}
+\renewcommand{\proofname}{Доказательство}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Теорема}[section]
+\newtheorem*{thesis}{Thesis}[section]
+\newtheorem*{lm}{Лемма}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Def.}
+\newtheorem*{ex}{Пример}
+\newtheorem*{exs}{Примеры}
+\newtheorem*{cor}{Следствие}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+
+\section{Определения}
+\subsection{Машины Тьюринга}
+
+\begin{defn}
+    Алфавит $\Sigma$ - конечное множество символов. Строка над $\Sigma$ - конечная последовательность символов из $\Sigma$. Множество строк $\bigcup_{n \ge 0} \Sigma ^n = \Sigma ^ *$,  $\varepsilon $ - пустая строка.
+\end{defn}
+\begin{defn}
+    Машина Тьюринга - семерка $(\Sigma, \Gamma, Q, q_0, \delta, q_{acc}, q_{rej})$, где:
+    $ \Sigma$ - входной алфавит, $\Gamma \supset \Sigma$ - рабочий алфавит (содержит особый символ пробела, $Q$ - множество всех состояний, $q_0 \in Q$ - начальное состояние, $\delta: (Q \textbackslash  q_{acc} ; q_{rej}) \times \Gamma \to Q \times \Gamma \times {-1, +1}$ - функция переходов.
+\end{defn}
+\begin{defn}
+    Конфигурация МТ - строка вида $\alpha q_a \beta, \quad \alpha, \beta in \Gamma^*, q \in Q$ - машина в состоянии $q$, головка указывает на символ $a$ между $\alpha, \beta$, окруженные бесконечным числом пробелов. \\
+    Начальная конфигурация $q_0 \omega$ - состояние  $q_0$, головка в позиции 0, с одной стороны пробелы, с другой - $\omega$.\\
+    Функция переходов - $\delta(q, a) = (q', a', \pm 1)$
+\end{defn}
+% тезис черча -тьюрина
+
+\begin{defn}
+    Проблема остановки - 
+    для любой машины Тьюринга с входным алфавитом $\{0, 1\}$ можно дать на вход описание $\sigma (M):$ 
+    \[
+	\begin{array}{l}
+	    L_1 = \{ \sigma (M) \mid \sigma(M) \in L(M) \} \mbox{ - МТ, принимающая свое описание} \\
+	    L_0 = \{ \sigma (M) \mid \sigma(M) \notin L(M) \} \mbox{ -  MT, не принимающая свое описание}
+     \end{array}
+    .\] 
+\end{defn}
+
+\subsection{Булевы функции}
+\begin{defn}
+    Булева функция - функция вида $f: \{0, 1\}^n \to \{0, 1\}$
+\end{defn}
+\begin{defn}
+    Базис $\mathcal{F}$ - некоторое подмножество булевых функций.\\
+    База: любая функция $f \in \mathcal{F}$ является функцией над $\mathcal{F}$. Индукционный переход: Если  $f(x_1, \ldots x_n)$ - формула над базисом $\mathcal{F}$, а $F_1, \ldots F_n$ - формулы, то $f(F_1, \ldots F_n)$ - формула над базисом $\mathcal{F}$.
+\end{defn}
+\begin{defn}
+    Простая конъюнкция - конъюнкция одной или нескольких переменных или их отрицаний, причем все переменные встречаются не более одного раза.
+\end{defn}
+\begin{defn}
+    Дизъюнктивная  нормальная форма - преставление булевой функции в виде дизъюнкции простых конъюнкций. $(x \wedge \neg y) \vee z$
+\end{defn}
+\begin{defn}
+    Совершенная ДНФ - ДНФ, в любой конъюнкции которой участвуют все переменные.
+\end{defn}
+\begin{defn}
+    Простая дизъюнкция - дизъюнкция  одной или нескольких переменных или их отрицаний, причем все переменные встречаются не более одного раза.
+\end{defn}
+\begin{defn}
+    Конъюктивная нормальная форма - представление булевой функции в виде простых дизъюнкций. $(x \vee \neg y) \wedge z$
+\end{defn}
+\begin{defn}
+    Совершенная КНФ - КНФ, в любой конъюнкции которой участвуют все переменные.
+\end{defn}
+\begin{defn}
+    Многочлен Жегалкина - сумма по модулю два конъюнкций переменных (допускается слагаемое единица) без повторения слагаемых, а также константа ноль.
+\end{defn}
+
+\begin{defn}
+    Замыкание $[\mathcal{F} \mbox{ - множество булевых функций}]$ относительно суперпозиции - множество всех булевых функций, представимых формулой над $\mathcal{F}$.
+\end{defn}
+\begin{defn}
+    Замкнутый класс - класс БФ, равный своему замыканию.
+\end{defn}
+\begin{defn}
+    $T_0$ - класс функций, сохраняющих ноль:  \[
+	T_0 = \{f \mid f(0, \ldots 0) = 0\}
+    .\] 
+\end{defn}
+\begin{defn}
+    $T_1$ - класс функций, сохраняющих единицу: \[
+	T_1 = \{ f \mid f(1, \ldots 1) = 1\}
+    .\] 
+\end{defn}
+\begin{defn}
+    Двойственная функция к $f$ - $f^*(x_1, \ldots x_n) = \neg f(\neg x_1, \ldots \neg x_n)$.
+\end{defn}
+\begin{defn}
+    Самодвойственная функция - равная двойственной к себе.
+\end{defn}
+\begin{defn}
+    Монотонная функция - функция $f$,  такая что $f(\alpha ) \le f(\beta), \; \forall \alpha \le \beta$.
+\end{defn}
+\begin{defn}
+    Линейная функция - функция, многочлен Жегалкина, которой не использует конъюнкций, а также константа ноль.
+\end{defn}
+
+\subsection{Комбинаторика}
+\begin{defn}
+    Выборки:
+    \begin{enumerate}
+	\item Упорядоченная с повторами: $n^k$ 
+	\item Упорядоченная без повторов: $A_n^k = \frac{n!}{(n-k)!}$
+	\item Неупорядоченная без повторов: $C_n^k = \frac{n!}{k! (n-k)!}={n \choose k}$
+	\item Неупорядоченная с повторами: $\widehat{C_n^k} = C_{n+k-1}^k$
+    \end{enumerate}
+\end{defn}
+\begin{defn}
+    Формула Стирлинга - $n! = (1 + o(1))\sqrt{2\pi n} (\frac{n}{e})^n$
+\end{defn}
+\begin{defn}
+    Правильная скобочная последовательность - пустая строка, объединение двух ПСП и ПСП в скобках.
+\end{defn}
+\begin{defn}
+    Язык Дика - множество всех правильных скобочных последовательностей.
+\end{defn}
+\begin{defn}
+    Числа Каталана - количество последовательностей длины $2n$ в языке Дика.\\
+    \[
+	\begin{array}{l}
+	c_0 = 1 \\
+	c_n = \sum_{k=0}^{n-1}{c_k c_{n-k-1}}
+    \end{array}
+    .\] 
+    \[
+	c_n = \frac{1}{n+1}C_{2n}^n
+    .\] 
+    \[
+	c_n = (1 + o(1)) \frac{4^n}{n^{\frac{3}{2} \sqrt{\pi}}}
+    .\] 
+\end{defn}
+
+\subsection{Графы}
+\begin{defn}
+    Граф - пара $G = (V, E)$, где $V$ - конечное множество вершин, $E \subseteq V \times V$ - множество  ребер.
+\end{defn}
+ \begin{defn}
+    Матрица смежности - матрица $A$ размером $|V| \times |V|$, где \[
+	a_{ij} = 
+	\left \{ 
+	\begin{array}{ll}
+	    1& (i, j) \in E\\
+	    0& else
+	\end{array}
+	\right 
+    .\] 
+\end{defn}
+\begin{defn}
+    Неориентированный граф - если $\left ((u, v) \in  E \to (v, u) \in  E \right )$
+\end{defn}
+\begin{defn}
+    Ориентированный граф - не неориентированный.
+\end{defn}
+\begin{defn}
+    Мультиграф - допустимы кратные ребра.
+\end{defn}
+\begin{defn}
+    Смежные вершины $u, v : =  (u, v) \in  E$
+\end{defn}
+\begin{defn}
+    Петля - $(v, v) \in  E$
+\end{defn}
+\begin{defn}
+    Путь в графе - последовательность ребер и вершин $v_0 \stackrel{e_1} \to v_1 \ldots v_n$, такая что $e_i = (v_{i-1}, v_i)$
+\end{defn}
+\begin{defn}
+    Простой путь - все вершины которого различны.
+\end{defn}
+\begin{defn}
+    Реберно-простой путь - все ребра которого различны.
+\end{defn}
+\begin{defn}
+    Цикл - путь, первая и последняя вершина которого совпадают.
+\end{defn}
+\begin{defn}
+    Простой цикл - все вершины которого различны.
+\end{defn}
+\begin{defn}
+    Реберно-простой цикл - все ребра которого различны.
+\end{defn}
+\begin{defn}
+    Две вершины связны, если они совпадают или соединены некоторым путем.
+\end{defn}
+\begin{defn}
+    Связный граф - имеющий ровно одну компоненту связности.
+\end{defn}
+\begin{defn}
+    Эйлеров путь - реберно-простой путь, проходящий по всем ребрам.
+\end{defn}
+\begin{defn}
+    Эйлеров цикл - эйлеров путь, возвращающийся в первую вершину.
+\end{defn}
+\begin{defn}
+    Строка де Брейна порядка $n$ для $k$-символьного алфавита $\Sigma $:
+    \begin{itemize}
+	\item множество вершин $V = \Sigma ^n$ 
+	\item $k$ - исходящих дуг у каждой вершины $w_1, \ldots w_n \in \Sigma ^n: \forall b \in  \Sigma \mbox{ дуга из } w_1, \ldots w_n \mbox{ в } w_2, \ldots w_n b$
+    \end{itemize}
+\end{defn}
+\begin{defn}
+    Гамильтонов путь - простой путь, проходящий через каждую вершину ровно один раз.
+\end{defn}
+\begin{defn}
+    Гамильтонов цикл - простой цикл, проходящий через каждую вершину ровно один раз.
+\end{defn}
+\begin{defn}
+    Лес - граф без циклов.
+\end{defn}
+\begin{defn}
+    Дерево - связный граф без циклов.
+\end{defn}
+\begin{defn}
+    Ориентированное дерево - ориентированный граф без циклов, где только одна вершина имеет степень входа ноль, а остальные - один.
+\end{defn}
+\begin{defn}
+    Мост - ребро, удаление которого увеличивает количество компонент связности.
+\end{defn}
+\begin{defn}
+    Остовный подграф $H$ в графе $G$ - $V(H) = V(G)$
+\end{defn}
+\begin{defn}
+   Остовное дерево - остовный подграф, являющийся деревом.
+\end{defn}
+\begin{defn}
+    Графы $G_1(V_1, E_1) , G_2(V_2, E_2)$ изоморфны, если существует биекция $f:V_1 \to V_2$, такая что $\forall u, v \in  V_1 , (u, v) \in  E_1 \Leftrightarrow (f(u), f(v)) \in  E_2$
+\end{defn}
+\begin{defn}
+   Плоский граф - граф, который можно изобразить в виде геометрической фигуры на плоскости без пересечения ребер.
+\end{defn}
+\begin{defn}
+    Планарный граф - изоморфный плоскому.
+\end{defn}
+\begin{defn}
+    Двойственный граф - граф, где каждая грань становится вершиной, а каждое ребро, служившее границей, - ребро, соединяющее соответствующие вершины.
+\end{defn}
+\begin{defn}
+    Операция разбиения ребра - добавить вершину $w$ и заменить ребро $(v, u)$ на $(v, w), (w, u)$.
+\end{defn}
+\begin{defn}
+    Графы изоморфны, если, применяя к каждому операции разбиения можно получить два изоморфных.
+\end{defn}
+\begin{defn}
+    Раскраска графа - функция $c: V \to C$, где $C$ - множество цветов.
+\end{defn}
+\begin{defn}
+    Правильная раскраска - такая раскраска,  что $\forall v, u , (u, v) \in E: c(u) \ne c(v)$
+\end{defn}
+\begin{defn}
+    Хроматическое число $\chi(G)$ - наименьшее число цветов, в которое можно правильно раскрасить вершины графа $G$.
+\end{defn}
+\begin{defn}
+    Паросочетание - подмножество ребер, где никакие два ребра не имеют общих концов.
+\end{defn}
+\begin{defn}
+    Совершенное паросочетание - паросочетание, в котором участвуют все вершины.
+\end{defn}
+\begin{defn}
+    Множество $X \subseteq V(G)$ - $(V_1, V_2)$ - разделяющее, если в графе  $G \textbackslash X$ нет путей из $V_1$ в $V_2$.
+\end{defn}
+\begin{defn}
+    Реберная раскраска - функция $c: E \to C$.
+\end{defn}
+\begin{defn}
+    Правильная раскраска - такая раскраска, что $\forall (e, e_1) \in V: c(e) \ne c(e_1)$.
+\end{defn}
+\begin{defn}
+    Устойчивое паросочетание $M$ : $\nexists (v_1, v_2) \in  E \textbackslash M$ :
+    \begin{itemize}
+	\item $(v_1, v_2)$ у $v_1$ выше в списке предпочтений, чем текущая пара $(v_1, v_2 \prime) \in  M$, либо $v_1$ не в паре.
+	\item $(v_1, v_2)$ у $v_2$ выше в списке предпочтений, чем текущая пара $(v_1\prime, v_2)$, либо $v_2$ не в паре.
+    \end{itemize}
+\end{defn}
+
+\subsection{Теория Рамсея}
+\begin{defn}
+    $n \in  \N$ обладает свойством Рамсея $\mathcal{R}(k; m_1, \ldots m_d)$, если для любой покраски всех $k$-элементных подмножеств в $M$ ($|M| = N$ ) в $d$ цветов $\{1, \ldots d\}$ существует номер $i$ и подмножество $A \subseteq M, |A| = m_i$ такой, что все $k$-элементные подмножества $A$ покрашены в цвет $i$.
+    Число Рамсея $R(k, m_1, \ldots  m_d)$ - наименьшее из $\N$ , удовлетворяющих $\mathcal{R}(k; m_1, \ldots m_d).$
+\end{defn}
+\end{document}
