@@ -1,0 +1,36 @@
+\documentclass[12pt]{article}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+
+\usepackage{fullpage}
+
+\begin{document}
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thesis}{Thesis}[section]
+\newtheorem{lm}{Lemma}
+\newtheorem{st}{Statement}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Def.}
+\newtheorem{cor}{Corollary}
+
+\newcommand{\N}{\mathbb{N}}
+\pagestyle{plain}
+
+\input defs.tex
+\input theorems.tex
+\end{document}
+
