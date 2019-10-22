@@ -890,7 +890,12 @@ $\theta _v = L_v$
 	    F^n & \stackrel{L_U ^V} \to & F^m
     \end{array}
     .\] 
-    %1
+    $A \in M_{m \times n} (F)$
+    \[
+	Im A = \{A x \mid x \in  F^m\} = \{a_{*1} x_1 + \ldots a_{*n}x_n \mid x_i \in  F\} = \langle a_{*1} , \ldots a_{*n} \rangle
+    .\] 
+    $rk A = c. rk A$ - ранг оператора умножения на А.
+    Из диаграммы $Im L \cong Im L_U ^V \Rightarrow rk L = c.rk L_U ^V $
 \end{proof}
 \begin{lm}
     $A \in M_{m \times n} (F)$\\
@@ -926,8 +931,8 @@ $\theta _v = L_v$
 \right )
    .\]  
    Размер $E = rk L$.
-   \item $\forall A \in M_{m \times n} (F) \exists  P \in GL_m (F), Q = \in GL_n (F): A = P D Q, \qued \mbox{ где } D =  \left ( 
-\begin{array}{cc}
+   \item $\forall A \in M_{m \times n} (F) \exists  P \in GL_m (F), Q = \in GL_n (F): A = P D Q, \: \mbox{ где } D =  $
+$\left ( \begin{array}{cc}
     E & 0 \\ 0 & 0
 \end{array}
 \right )
@@ -940,8 +945,26 @@ $\theta _v = L_v$
     \[
 	v = (L(g_1), \ldots , L(g_l), v_{l+1}, \ldots, v_n)
     .\]
-    %3
-    таким образом $L_u ^v = 
+    \[
+	\begin{array}{l}
+	L(g_1)_v = 
+	\left ( 
+	\begin{array}{c}
+	1 \\ 0 \\ \vdots \\ 0
+	\end{array}
+	\right ) \\
+	\vdots \\
+	L(g_l)_v = 
+	\left ( 
+	\begin{array}{c}
+	0 \\ \vdots \\ 1 \\ \vdots \\ 0
+	\end{array}
+	\right )\\
+	\vdots
+    \end{array}
+    .\] 
+    $L(f_i) = 0$
+    таким образом $L_u ^v = %3
 \left ( 
 \begin{array}{cc}
 	E & 0 \\
@@ -1104,7 +1127,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     \end{proof}
 
     \begin{lm}
-        $a \in  U^- B \Leftrightarrow $ все главны подматрицы обратимы.
+        $a \in  U^- B \Leftrightarrow $ все главные подматрицы обратимы.
     \end{lm}
     \begin{proof}
 	Доказываем следствие влево.
@@ -1198,7 +1221,7 @@ $ w  \in W: B w B$ - клетка Брюа.
 \end{proof}
 
 \chapter{Начала теории групп}
-\section{Лекция 14}
+\section{Лекция 15}
 \begin{defn}
     Подмножество $H \subset G$ называется подгруппой, если $H$ -- группа относительно операции, заданной в $G$.
     \[
@@ -1251,4 +1274,137 @@ $
     .\] 
 \end{proof}
 
+\section{Лекция 16}
+22.10.2019
+\begin{ex}
+    $\ln : \R_{>0}^{*} \to (\R, +)$ \\
+    $\ln ab = \ln a + \ln b$ - гомоморфизм.
+\end{ex}
+\begin{defn}
+    \[
+    \varphi G \to H - \mbox{ гомоморфизм}
+    .\] 
+    \[
+	Im \varphi = \{\varphi(g) \mid g \in  G\} 
+    .\] 
+    \[
+	Ker \varphi = \varphi{-1} = \{g \in  G \mid \varphi (g) = 1\}
+    .\] 
+\end{defn}
+\begin{lm}
+    $Im \varphi$ и $Ker \varphi$ - подгруппы.
+\end{lm}
+\begin{proof}
+    \[
+    a, b \in  Ker \varphi
+    .\] 
+    \[
+	\varphi(a b) = \varphi(a) \varphi(b) = 1 \Leftrightarrow ab \in  Ker \varphi
+    .\] 
+    \[
+	\varphi(a^{-1}) = \varphi(a)^{-1} = 1 \Rightarrow a^{-1} \in  Ker \varphi
+    .\] 
+\end{proof}
+\begin{lm}
+    \[
+	\varphi (g) = h, \quad \varphi : G \to H - \mbox{ гомоморфизм} 
+    .\] 
+    \[
+	\varphi^{-1} = \underbrace{g Ker \varphi}_{\mbox{левый смежный класс по ядру} \varphi} = \underbrace{Ker \varphi g}_{\mbox{правый}}
+    .\] 
+\end{lm}
+\begin{proof}
+    $
+    \varphi(x) = h = \varphi (g))  \Leftrightarrow \varphi \varphi^{-1} = 1 \Leftrightarrow \varphi(x y^{-1}) = 1\Leftrightarrow xg^{-1} \in  Ker \varphi \Leftrightarrow x \in  Ker \varphi g
+	$
+\end{proof}
+\begin{defn}
+    $H \le G$ \\
+    $H$ называется нормальной подгруппой , если $gH = Hg \quad g \in  G$. ($H \trianglelefteq G$)
+\end{defn}
+\begin{note}
+    $g^{-1} H g = H \quad \forall g \in  G\Leftrightarrow g^{-1} H g \subseteq H \quad \forall g \in  G$
+\end{note}
+\begin{lm}
+    $H \le G$\\
+    \[
+    g_1H \cap g_2H \ne 0 \Leftrightarrow g_1H = g_2H
+    .\] 
+\end{lm}
+\begin{proof}
+    $x \in  g_1H \cap g_2H \Rightarrow x = g_1h_1 = g_2h_2, \quad h_1, h_2 \in H$. Тогда $g_1 = g_2 (h_2 h_1^{-1}) \Rightarrow g_1H = g_2 (h_2 h{-1}) H$.
+\end{proof}
+\begin{cor}
+    $G =\bigsqcup\limits_{g \in X} g H $, где $X$ - множество представителей левых смежных классов по $h$. \\
+    $g_1 \stackrel{H}\sim g_2 \Leftrightarrow g_1^{-1} g_2 \in H$
+\end{cor}
+\begin{lm}
+    \[
+    |g_1H| = |g_2H|, \quad \forall g_1, g_2 \in  G, H \le G 
+    .\] 
+\end{lm}
+\begin{proof}
+     \[
+     \left ( 
+     \begin{array}{c}
+     g_1H \to g_2H \\
+     x \mapsto g_2 g_1^{-1} x
+     \end{array}
+     \right )
+     .\] 
+     Обратная $y \mapsto g_1 g_2^{-1} y$
+\end{proof}
+\begin{thm}[Лагранж]
+    $G$ - конечна группа. Тогда $|G| = |H| |G:H|$, где $|G:H|$ - количество левых смежных классов $G$ по $H$. $|G:H|$ - индекс $H$в $G$.
+\end{thm}
+\begin{proof}
+    Из прошлой леммы и следствия
+\end{proof}
+\begin{cor}
+    Если $p = |G| \in  \P$, то $\forall g \in  G \textbackslash {1}: G = \{1, g, \ldots g^{p-1}\} \cong \Z_p$
+\end{cor}
+\begin{proof}
+    $\{g^n\mid n \in  \Z\} \le G = \langle g \rangle$. \\
+    $|\langle g \rangle|$ делит $p$ и больше единицы, так как содержит единицу и $g \ne 1$. Следовательно, $|\langle g \rangle|=p$. \\
+    Докажем, что все элементы $1, g, \ldots g^{p-1}$ различны. Рассмторим $0 \le k, l \le p -1$.
+    Пусть $g^k = g^l \Rightarrow g^{k-l} = 1$. При $k - l \ne 0$, $g^n = g^{m(k-l) + r} = g^r, \quad r < k -l \le p-1$. 
+    ТОгда бы $\{1, g, \ldots g^{k-l-1}\} = \langle g \rangle$ . Из чего следует $| \langle g \rangle| < p$. Противоречие.\\
+    Рассмотрим $k \in  [0, p-1]$.
+    $g^p = g^k \Leftrightarrow g^{p-k} = 1 \Rightarrow k = 0 \Rightarrow g^p = 1$.\\
+    Теперь проверим изоморфность.
+    $\varphi : \Z_p \to G, \varphi (k) = g^k$
+\end{proof}
+\begin{defn}
+    Группа, порожденная одним элементом, называется циклической.
+\end{defn}
+\begin{st}
+    Любая циклическая группа изоморфна $\Z$ или $\Z_n$.
+\end{st}
+\begin{proof}
+    $G = \{g^m \mid m \in \Z\}$. Разберем два случая:
+     \begin{enumerate}
+	 \item $g^m \ne 1 \: \forall m \in  \N  \Rightarrow g^m \ne 1 \: \forall m \ne 0$. 
+	     \[
+		 \varphi  \Z \to  G, \quad \varphi (m) = g^m
+	     .\] 
+	     \[
+		 \varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
+	     .\] 
+	 \item Пусть $n$ - наименьшее натуральное число, такоe что $g^n = 1$. 
+	     \[
+		 \varphi : \Z \to G, \quad \varphi (m) = g^m \mbox{ сюрьективно }.
+	     .\] 
+	     $g^m = 1 \Leftrightarrow g^{nk + r} = 1  \Leftrightarrow g ^r = 1 \Rightarrow r = 0$
+	     \[
+		 Ker \varphi  = \{m \mid g^m = 1\} = n\Z
+	     .\] 
+    \end{enumerate}
+\end{proof}
+\begin{defn}
+    Порядок $g \in  G$ - наименьшее натуральное число, такое что $g^n = 1$.  $ord(g) = | \langle g \rangle|$
+\end{defn}
+\begin{st}[из теоремы Силова]
+    $|G| = p^m , \: p \nmid m$. Тогда $\exists H \le G: |H| = p^k \: \forall h \in  H \textbackslash {1}$.\\
+    $ord (h \mid p^k)$, следовательно,  $h^{p{l}} = 1 \Rightarrow (h^{p^{l-1}})^p =1$
+\end{st}
 \end{document}
