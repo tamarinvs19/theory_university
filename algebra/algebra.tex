@@ -1361,14 +1361,14 @@ $
     Из прошлой леммы и следствия
 \end{proof}
 \begin{cor}
-    Если $p = |G| \in  \P$, то $\forall g \in  G \textbackslash {1}: G = \{1, g, \ldots g^{p-1}\} \cong \Z_p$
+    Если $p = |G| \in  \Pm$, то $\forall g \in  G \textbackslash {1}: G = \{1, g, \ldots g^{p-1}\} \cong \Z_p$
 \end{cor}
 \begin{proof}
     $\{g^n\mid n \in  \Z\} \le G = \langle g \rangle$. \\
     $|\langle g \rangle|$ делит $p$ и больше единицы, так как содержит единицу и $g \ne 1$. Следовательно, $|\langle g \rangle|=p$. \\
-    Докажем, что все элементы $1, g, \ldots g^{p-1}$ различны. Рассмторим $0 \le k, l \le p -1$.
+    Докажем, что все элементы $1, g, \ldots g^{p-1}$ различны. Рассмотрим $0 \le k, l \le p -1$.
     Пусть $g^k = g^l \Rightarrow g^{k-l} = 1$. При $k - l \ne 0$, $g^n = g^{m(k-l) + r} = g^r, \quad r < k -l \le p-1$. 
-    ТОгда бы $\{1, g, \ldots g^{k-l-1}\} = \langle g \rangle$ . Из чего следует $| \langle g \rangle| < p$. Противоречие.\\
+    Тогда бы $\{1, g, \ldots g^{k-l-1}\} = \langle g \rangle$ . Из чего следует $| \langle g \rangle| < p$. Противоречие.\\
     Рассмотрим $k \in  [0, p-1]$.
     $g^p = g^k \Leftrightarrow g^{p-k} = 1 \Rightarrow k = 0 \Rightarrow g^p = 1$.\\
     Теперь проверим изоморфность.
@@ -1407,4 +1407,121 @@ $
     $|G| = p^m , \: p \nmid m$. Тогда $\exists H \le G: |H| = p^k \: \forall h \in  H \textbackslash {1}$.\\
     $ord (h \mid p^k)$, следовательно,  $h^{p{l}} = 1 \Rightarrow (h^{p^{l-1}})^p =1$
 \end{st}
+
+\section{Лекция 17}
+24.10.2019
+
+$G$ - группа.
+\begin{defn}
+    $S \subseteq G$ \\
+    $\langle S \rangle$ - наименьшая подгруппа содержащая $S$. 
+\end{defn}
+\begin{st}
+    $\langle S \rangle = \{S_1 ^{n_1}\cdot \ldots  S_k^{n_k}\mid k \in  \N , S_i \in  S, n_i \in  \Z\}$, для абелевой :$s_i \ne s_j$ при $j \ne j$.
+\end{st}
+\begin{defn}
+    $s ^g := g^{-1} s g$
+\end{defn}
+\begin{note}
+    $(s^g)^h = s^{g^h}$\\
+    $^h\!(^g\!s) = ^h\!^g\!S$
+\end{note}
+\begin{prop}$ $
+    \begin{enumerate}
+	\item $(s_1 s_2)^g = s_1 ^g s_2 ^g$ 
+	\item $(s^g)^{-1} = (s^{-1})^g$\\
+	    $s \mapsto s^g$ - автоморфизм $G $.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    $H \le G$ 
+    \[
+	H^G = \langle h^g \mid h \in  H, g \in  G \rangle  \mbox{ -- нормальное замыкание} H \mbox{ в } G
+    .\]  
+    Нормальное замыкание равно наименьшей нормальной подгруппе в $G$, содержащей $H$.\\
+    $\langle S \rangle ^G$ - наименьшая нормальная подгруппа, содержащая $S$.\\
+    $s^g= g^{-1} s g$  - сопряженный с $s$ при помощи $g$.\\
+    \[
+	H^g=\langle h^g \mid h \in  H\rangle \mbox{ -- подгруппа, сопряженная с $H$ при помощи $g$}
+    .\] 
+\end{defn}
+\begin{defn}
+    $aba^{-1}b^{-1} = [a, b] $ -- коммутатор элементов $a, b$.
+\end{defn}
+\begin{note}
+    $ab = ba \Leftrightarrow aba^{-1}b^{-1} = 1$\\
+\end{note}
+\begin{st}
+    $\varphi  : G \to A$ - гомоморфизм в абелеву группу.\\
+    $\varphi([g, h]) = 1$ \\
+    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq Ker \varphi $ - коммутант $G$. \\
+    $[g, h] ^f = [g^f , h^f]$
+\end{st}
+\begin{st}
+    $[a, b] ^{-1} = [a,b]$
+\end{st}
+\begin{defn}
+    Центр группы - $Center(G) = Z(G) := \{ c \in  G \mid cg = gc \forall g  \in  G$
+\end{defn}
+\begin{name}$ $\\
+    $G \diagup H = \{gH \mid g \in G\} $ -- множество левых смежных классов.\\
+    $H \smallsetminus G = \{Hg \mid g \in G\} $ -- множество левых смежных классов.
+\end{name}
+$H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
+\begin{defn}
+    Фактор-группа $G \diagup H$ - множество смежных классов по $H$ c операцией $(g_1H)(g_2H) = g_1g_2H$.
+\end{defn}
+\begin{proof}[корректнсть определения]
+    \[
+    g_1 \prime  \in  g_1H \Rightarrow g_1 \prime h_1
+    .\] 
+    \[
+    g_2 \prime  \in  g_2H \Rightarrow g_2 \prime h_1
+    .\] 
+    \[
+	g_1\mid + g_2\mid = g_1 h_1g_2h_2 = g_1g_2g_2^{-1} = (g_1 g_2)(g_2^{-1}h_1g_2)h_2 \in  g_1g_2H
+    .\] 
+\end{proof}
+\begin{defn}
+    $\pi_{\mbox{н}} : G \to G \diagup H, \: g \mapsto gH$\\
+    $\pi_{\mbox{н}} $ - эпиморфизм, $Ker \pi_{\mbox{н}} = H $
+\end{defn}
+\begin{thm}[универсальное свойство факторгруппы]
+    $H \trianglelefteq G$ \\
+    Для любого гомоморфизма $\varphi : G \to F$, такого что $H \le Ker \varphi \exists! \bar \varphi : G \diagup H \to  F$коммутативна для диаграммы 
+    $$\begin{array}{ccc}
+	G & \stackrel {\pi_{n}} \to & G \diagup H \\
+	\downarrow F && \downarrow \exists ! \hat{\varphi } \\
+	F &&F
+    \end{array}
+    $$
+\end{thm}
+\begin{thm}
+    $\varphi  G \to F$ 
+    \[
+	G\diagup {Ker \varphi } \cong Im \varphi 
+    .\] 
+\end{thm}
+\begin{proof}
+    Заменим $F$ на $Im \varphi $.
+    \[
+    \varphi \prime \to Im \varphi \quad Ker \varphi  \prime = Ker \varphi 
+    .\] 
+    По прошлой теореме существует единственное:
+    \[
+	\hat{\varphi }:
+	\begin{array}{ccc}
+	    G\diagup Ker \varphi & \to  & Im \varphi \\
+	    \uparrow \pi && \uparrow \varphi \prime \\
+	    G &  &G
+    \end{array}
+    .\] 
+    $\varphi $ -сюрьективно. Следовательно, $\varphi  \prime$ - сюрьективно.\\
+\end{proof}
+$g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi ) = 1 \Leftrightarrow \\varphi (g) = 1 \Leftrightarrow g Ker \varphi  = Ker \varphi  = 1_{G \diagup Ker \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
+\begin{ex}
+    $\Z \to \Z_n, \quad \varphi (x) = x \mod n$.\\
+    $Ker \varphi  = n \Z$\\
+    $\Z \cong \Z \diagup n\Z$
+\end{ex}
 \end{document}
