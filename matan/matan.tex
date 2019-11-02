@@ -36,12 +36,13 @@
 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
+\newtheorem*{aks}{Аксиома}[section]
 \newtheorem*{lm}{Lemma}
 \newtheorem*{st}{Statement}
 \newtheorem*{prop}{Properties}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Def.}
+\newtheorem{defn}{Def}
 \newtheorem*{ex}{Example}
 \newtheorem*{exs}{Examples}
 \newtheorem*{cor}{Corollary}
@@ -63,12 +64,95 @@
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
-\title{Конспект по матанализу за I семестр бакалавриата Чебышёва СПбГУ (лекции Кислякова Сергея Витальевича)}                      
+\title{Конспект по матанализу в формате вопросов коллоквиума \\ (лекции Кислякова Сергея Витальевича)}                      
 \maketitle
 \clearpage
 \tableofcontents
 \clearpage
-\chapter{Линейная алгебра. Векторные пространства}
-\section{Лекция 1}
+\chapter{Введение}
+\section{Простейшие свойства вещественных чисел}
+\begin{enumerate}
+    \item Алгебраические операции
+	\begin{enumerate}
+	    \item сложение $a, b \in \R$ : сумма $a+b$ определяется единственным образом
+		\begin{enumerate}
+		    \item  $a+b = b+a$ (коммутативность)
+		    \item  $(a+b)+c = a+(b+c)$ (ассоциативность)
+		    \item  $\exists 0: a +0 = a, \forall a \in \R$ (нейтральный по сложению)
+		    \item  $\forall a \in \R \exists a': a +a' = a' + a = 0 $ (обратный по сложению)
+		\end{enumerate}
+	    \item умножение $x,y \in \R$ : произведение $x\cdot y$ определяется единственным образом
+		\begin{enumerate}
+		    \item  $x y = y x$ (коммутативность)
+		    \item  $(xy)z = x(yz)$ (ассоциативность)
+		    \item  $\exists 1: x \cdot 1 = x, \forall x \in \R$ (нейтральный по умножению)
+		    \item  $x(a+b) =xa + xb$ (дистрибутивность)
+		    \item  $\forall x\ne 0 \in \R \exists y  \stackrel{def} = x^{-1}: xy = 1$ (обратный по умножению)
+		\end{enumerate}
+	\end{enumerate}
+    \item Порядок на $\R$
+	\begin{defn}
+	    Упорядоченная пара $(u, v) = \{\{u\}, \{u, v\}\}$ .
+	\end{defn}
+	\begin{defn}
+	    Декартово произведение $X \times Y = \{(x, y) \mid \forall x \in X, y \in Y\}$.
+	\end{defn}
+	\begin{defn}
+	    Отношение между элементами множеств $X, Y$ - $A \subset X \times Y$
+	\end{defn}
+	Отношения порядка: $a < b, a>b, a=b$
+	 \begin{enumerate}
+	    \item $\forall a, b \in \R: \left [ 
+		    \begin{matrix}
+		        a = b \\ a > b \\ a< b
+		    \end{matrix}
+		\right. $ (антисимметричность)
+	    \item $a<b \wedge b < c \Rightarrow a < c$ (транзитивность)
+	    \item $a<b \wedge c \in \R \Rightarrow a + c < b + c$ 
+	    \item $a<b \wedge c > 0 \Rightarrow ac < bc$ 
+	    \item $u < v \wedge x < y \Rightarrow u+x  < v + y$ 
+	\end{enumerate}
+\end{enumerate}
+\section{Множества на $\R$ }
+\begin{defn}[Отрезки, интервалы, сегменты] 
+    $a, b \in \R, a \le b$
+    $$
+    [a, b] = \{a \in \R \mid a \le x \le b\} \mbox{(замкнутый отрезок)}
+    $$
+    $$
+    (a, b] = \{a \in \R \mid a < x \le b\} \mbox{(открытый слева отрезок)}
+    $$
+    $$
+    [a, b) = \{a \in \R \mid a \le x < b\}  \mbox{(открытый справа отрезок)}
+    $$
+    $$(a, b) = \{a \in \R ~|~ a < x < b\} \mbox{(открытый отрезок)}$$
+\end{defn}
 
+\begin{defn}[Лучи] $a \in \R$
+$$[a, +\infty) = \{x \in \R \mid x \ge a\}$$
+$$(a, +\infty) = \{x \in \R \mid x > a\}  $$
+$$(-\infty, a] = \{x \in \R \mid x \le a\}$$
+$$ (-\infty, a) =\{x \in \R \mid x < a\}$$
+\end{defn}
+
+\begin{defn}$ $
+
+Множество $A \subseteq \R$ ограничено сверху, если $\exists ~x \in \R: a \le x ~\forall a \in A$. Любое такое $x$ - верхняя граница      $A$.
+
+Множество $A \subseteq \R$ ограничено снизу, если $\exists ~y \in \R: a \ge y ~\forall a \in A$. Любое такое $y$ - нижняя граница $     A$.
+
+//$\pm\infty$ - не нижняя/верхняя граница.
+
+Ограниченное множество - ограниченное сверху и снизу. 
+\end{defn}
+
+\begin{aks}[Архимед]
+    Множество натуральных чисел не ограниченно сверху.
+\end{aks}
+\begin{lm}
+    $x > 0 \Rightarrow \exists~n \in \N: \frac{1}{n} < x$
+\end{lm}
+\begin{proof}
+    Предположим противное. $\forall n \in \N: x \le \frac{1}{n}$. Тогда $\forall n: n < x^{-1}$, а это противоречит аксиоме Архимеда.
+\end{proof}
 \end{document}
