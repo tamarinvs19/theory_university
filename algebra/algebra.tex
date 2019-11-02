@@ -1469,7 +1469,7 @@ $G$ - группа.
 \end{defn}
 \begin{name}$ $\\
     $G \diagup H = \{gH \mid g \in G\} $ -- множество левых смежных классов.\\
-    $H \smallsetminus G = \{Hg \mid g \in G\} $ -- множество левых смежных классов.
+    $H \diagdown G = \{Hg \mid g \in G\} $ -- множество левых смежных классов.
 \end{name}
 $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \begin{defn}
@@ -1477,10 +1477,10 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \end{defn}
 \begin{proof}[корректнсть определения]
     \[
-    g_1 \prime  \in  g_1H \Rightarrow g_1 \prime h_1
+    g_1 '  \in  g_1H \Rightarrow g_1 ' h_1
     .\] 
     \[
-    g_2 \prime  \in  g_2H \Rightarrow g_2 \prime h_1
+    g_2 '  \in  g_2H \Rightarrow g_2 ' h_1
     .\] 
     \[
 	g_1\mid + g_2\mid = g_1 h_1g_2h_2 = g_1g_2g_2^{-1} = (g_1 g_2)(g_2^{-1}h_1g_2)h_2 \in  g_1g_2H
@@ -1509,20 +1509,20 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \begin{proof}
     Заменим $F$ на $Im \varphi $.
     \[
-    \varphi \prime \to Im \varphi \quad Ker \varphi  \prime = Ker \varphi 
+    \varphi ' \to Im \varphi \quad Ker \varphi  ' = Ker \varphi 
     .\] 
     По прошлой теореме существует единственное:
     \[
 	\hat{\varphi }:
 	\begin{array}{ccc}
 	    G\diagup Ker \varphi & \to  & Im \varphi \\
-	    \uparrow \pi && \uparrow \varphi \prime \\
+	    \uparrow \pi && \uparrow \varphi ' \\
 	    G &  &G
     \end{array}
     .\] 
-    $\varphi $ -сюрьективно. Следовательно, $\varphi  \prime$ - сюрьективно.\\
+    $\varphi $ -сюрьективно. Следовательно, $\varphi  '$ - сюрьективно.\\
 \end{proof}
-$g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi ) = 1 \Leftrightarrow \\varphi (g) = 1 \Leftrightarrow g Ker \varphi  = Ker \varphi  = 1_{G \diagup Ker \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
+$g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi ) = 1 \Leftrightarrow \varphi (g) = 1 \Leftrightarrow g Ker \varphi  = Ker \varphi  = 1_{G \diagup Ker \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
 \begin{ex}
     $\Z \to \Z_n, \quad \varphi (x) = x \mod n$.\\
     $Ker \varphi  = n \Z$\\
