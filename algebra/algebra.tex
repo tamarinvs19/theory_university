@@ -868,7 +868,7 @@ $\theta _v = L_v$
 	 \item столбцы $A$ линейно независимы $\Leftrightarrow$   столбцовый $rk A = n$ 
 	 \item столбцы $A$  - система образующих в $F^m$ $\Leftrightarrow$  столбцовый $rk A = m$
 	 \item строки $A$ линейно независимы $\Leftrightarrow$ строчной $rk A = m$ 
-	 \item строки $A$  - система образующих в $\sideset{^m}{}F \Leftrightarrow$ строчной $ rk A = n$ 
+	 \item строки $A$  - система образующих в $^m F \Leftrightarrow$ строчной $ rk A = n$ 
 	 \item столбцы являются базисом $F^n$ $\Leftrightarrow$ $m = n =  \mbox{строчной }rk A$
 	 \item если столбцы и строки  $A$ линейно независимы $\Leftrightarrow$ $n = m $, строки и столбцы - базисы, $A$ - обратима.
     \end{enumerate}
@@ -894,7 +894,12 @@ $\theta _v = L_v$
 	    F^n & \stackrel{L_U ^V} \to & F^m
     \end{array}
     .\] 
-    %1
+    $A \in M_{m \times n} (F)$
+    \[
+	Im A = \{A x \mid x \in  F^m\} = \{a_{*1} x_1 + \ldots a_{*n}x_n \mid x_i \in  F\} = \langle a_{*1} , \ldots a_{*n} \rangle
+    .\] 
+    $rk A = c. rk A$ - ранг оператора умножения на А.
+    Из диаграммы $Im L \cong Im L_U ^V \Rightarrow rk L = c.rk L_U ^V $
 \end{proof}
 \begin{lm}
     $A \in M_{m \times n} (F)$\\
@@ -930,8 +935,8 @@ $\theta _v = L_v$
 \right )
    .\]  
    Размер $E = rk L$.
-   \item $\forall A \in M_{m \times n} (F) \exists  P \in GL_m (F), Q = \in GL_n (F): A = P D Q, \qued \mbox{ где } D =  \left ( 
-\begin{array}{cc}
+   \item $\forall A \in M_{m \times n} (F) \exists  P \in GL_m (F), Q = \in GL_n (F): A = P D Q, \: \mbox{ где } D =  $
+$\left ( \begin{array}{cc}
     E & 0 \\ 0 & 0
 \end{array}
 \right )
@@ -944,8 +949,26 @@ $\theta _v = L_v$
     \[
 	v = (L(g_1), \ldots , L(g_l), v_{l+1}, \ldots, v_n)
     .\]
-    %3
-    таким образом $L_u ^v = 
+    \[
+	\begin{array}{l}
+	L(g_1)_v = 
+	\left ( 
+	\begin{array}{c}
+	1 \\ 0 \\ \vdots \\ 0
+	\end{array}
+	\right ) \\
+	\vdots \\
+	L(g_l)_v = 
+	\left ( 
+	\begin{array}{c}
+	0 \\ \vdots \\ 1 \\ \vdots \\ 0
+	\end{array}
+	\right )\\
+	\vdots
+    \end{array}
+    .\] 
+    $L(f_i) = 0$
+    таким образом $L_u ^v = %3
 \left ( 
 \begin{array}{cc}
 	E & 0 \\
@@ -977,7 +1000,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     \exists b, c \in B: \; bac \in W
     .\] 
     Индукция по $n$\\
-    В первом столбце   $a$ выберем низший ненулевой элемент.%5
+    В первом столбце $a$ выберем низший ненулевой элемент.%5
     \[
     \left ( 
     \begin{array}{cccccc}
@@ -994,17 +1017,515 @@ $ w  \in W: B w B$ - клетка Брюа.
     \end{array}
     \right )
     $$
-    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. ТОгда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. Тогда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+
+\end{proof}
+\begin{proof}
+    см конспект
+    $GL_n (F) = BWB$ \\
+    $a \in  GL_n(F)$
 \end{proof}
 \begin{thm}[разложение Гаусса]
     \[
 	GL_n(F) = W B^{-} B
     .\] 
-    $w \in W: w B^{-1} B $ - клетка Гаусса.
+    $w \in W: w B^{-} B $ - клетка Гаусса.
 \end{thm}
+\begin{proof}
+    Докажем, что $\forall w \in  W: BwB \subset w B^- B$ \\
+    $B W B = \bigcup _{w \in  W} B w B \subset ...$%1
+    \begin{lm}[1]
+	$D = D_n (F)$ - множество обратимых диагональных матриц. $U = U_n(F)$ - множество унитреугольных матриц. Тогда $B = D U = U D$.
+    \end{lm}
+    \begin{probl}
+        $a = \left ( 
+        \begin{array}{ccc}
+	    \alpha_i & \cdots & 0 \\
+	     & \ddots &\\
+	    0 & \cdots & 0
+        \end{array}
+        \right ), \qquad \alpha _i \ne \alpha_j , \mbox{если } i \ne j \; \Rightarrow \; ab = ba \Rightarrow b \in  D$
+    \end{probl}
+    \begin{proof}
+    $$
+    \left ( 
+    \begin{array}{ccc}
+	\frac{1}{b_{11}} & \cdots & 0 \\
+	&\ddots & \\
+	0 & \cdots & \frac{1}{b_{nn}}
+    \end{array}
+    \right )
+    $$%2
+    \end{proof}
+    %3
+    \begin{lm}[2]
+	$U = \prod_{i < j} X_{ij}$, причем произведение берется в любом наперед заданном порядке.
+    \end{lm}
+     \begin{proof}
+        Будет в теории групп
+    \end{proof}
+    \begin{name}
+	$w \in  W : U_w := \prod_{i < j, \sigma (i) >\sigma(J)} X_{ij}$, где $\sigma$ - перестановка соответствующая $w$.
+	То есть $w^{-1} X _{ij} w = X_{\sigma(i) \sigma(j)}$.
+    \end{name}
+    \begin{thm}[Приведенной разложение Брюа]
+	$B = \bigcup _{w \in  W} U_w w D U$
+	% $BwB = UwDU$
+	При этом $ w$, а также элеметны из $U_w, D, U$ определены по элементам из $B$  из единственным образом.
+    \end{thm}
+    \begin{proof}
+        %4
+    \end{proof}
+    \begin{cor}
+	$BwB \subset w B^{-1}B = w (w^{-1} U_w w)B \subset w U^{-} B \subset w B ^{-} B$
+    \end{cor}
+    \begin{proof}
+        $B w B = U_w w B$
+    \end{proof}
+\end{proof}
 \begin{st}
     \[
-    B w B \cap B w ' B = \emptyset \qued \forall w \ne w'
+    B w B \cap B w ' B = \o ,\; \forall w \ne w'
     .\] 
 \end{st}
+
+\section{Лекция 13}
+15.10.2019
+Доказательство теорем
+
+\section{Лекция 14}
+17.10.2019
+\begin{proof}[Разложение Гаусса]
+    Идея доказательства: $a \in  GL_n(F), \; wa \in  U^- B$. Найдем такое $w$.\\
+    \begin{defn}
+        Главная подматрица матрицы $A$- подматрица $k \times k$ стоящая в левом верхнем углу матрицы $A$.
+    \end{defn}
+
+    \begin{lm}
+        Обратимость любой главной подматрицы не зависит от умножения на  $U^-$ слева и на  $U$ справа.
+    \end{lm}
+    \begin{proof}
+	$a^{(k)}$ - главная подматрица $k \times k$ в $a$.
+	 \[
+	\left ( 
+	\begin{array}{cc}
+	    b&0\\
+	    c&d
+	\end{array}
+	\right )
+	\left ( 
+	\begin{array}{cc}
+	    a^{(k)}&* \\
+	    *& *
+	\end{array}
+	\right )=
+	\left ( 
+	\begin{array}{cc}
+	    ba^{(k)}&*\\
+	    *&*
+	\end{array}
+	\right )
+	.\] 
+	$\mbox{Где } b \in  U^- F$ 
+	Обратимость $a^{(k)} $ равносильно обратимости $ba^{(k)}$, так как $b$ - обратима.
+    \end{proof}
+
+    \begin{lm}
+        $a \in  U^- B \Leftrightarrow $ все главные подматрицы обратимы.
+    \end{lm}
+    \begin{proof}
+	Доказываем следствие влево.
+        Индукция по $n$.
+	База: $n=1$ - очевидно\\
+	Переход: \\
+	\[
+	a = 
+	\left ( 
+	\begin{array}{cc}
+	    a^{(n-1)} & * \\
+	    * & a_{nn}
+	\end{array}
+	\right )
+	.\] 
+	\[
+	     \left ( 
+	    \begin{array}{cc}
+		1&0\\-xa^{(n-1)}&1
+	    \end{array}
+	    \right )
+	    \left ( 
+	    \begin{array}{cc}
+		a^{(n-1)} & *\\
+		x&a_{nn}
+	    \end{array}
+	    \right )=
+	    \left ( 
+	    \begin{array}{cc}
+		a^{(n-1)}&*\\0&*
+	    \end{array}
+	    \right )
+	.\] 
+	Дальше применим предположение индукции к $a^{(n-1)}$. Она раскладывается в произведение верхне- и нижнетреугольной.
+
+	В обратную сторону следует из прошлой леммы.
+	Действительно, у обратимой верхнетреугольной матрицы все главные подматрицы обратимы, а умножение слева на обратимые 	нижнетреугольные не меняет их обратимость.
+    \end{proof}
+
+    \begin{lm}
+	$\forall a \in  GL_n(F) \exists w \in  W : $ все подматрицы в $wa$ обратимы.
+	По условию $a^{(n-1)}$ обратима, 
+    \end{lm}
+    \begin{proof}
+	Индукция по $k$.
+	Докажем, что существует перестановка $a \in  GL_n(F)$ такая, что главные подматрицы размера не более $k \times k$ обратимы.
+	\\
+	$k=1$ \[
+	    a_{*1} = 0 \Rightarrow \exists i: a_{ij} \ne 0
+	.\] Меняем $i$- строку с первой.
+	\\
+	Переход:
+	\[
+	a = 
+	\left ( 
+	\begin{array}{cc}
+	    a^{(k)}& *\\
+	    * & *
+	\end{array}
+	\right )
+	.\] 
+	По индукционному предположению все главные подматрицы в $a^{(k)}$ обратимы.
+	Все столбцы линейно независимы, следовательно, ранг матрицы $
+	\left ( 
+	\begin{array}{ccc}
+	    a_{11} &\cdots&a_{1 k+1} \\
+		   &\ddots&\\
+	    a_{n 1}& \cdots a_{n k+1}
+	\end{array}
+	\right ) = k+1$
+	$k+1$ - мерное подпространство $U$  в $^{k+1} F$. А первые $k$ строк этой матрицы линейно независимы. 
+	$X = {b_1, \ldots b_k}, Y={b_1, \ldots b_n}, \quad b_i = (a_{i 1} , \ldots a_{i k+1})$. \\
+	$X$ - линейно независимый, $\langle y \rangle = U, \dim U = k+1$.\\
+	\[
+	\exists Z : X \ge X \ge Y, \mbox{ где }Z - \mbox{ базис} U.
+	.\] 
+	\[
+	    |Z| = k+1 \Rightarrow Z = {b_1, \ldots b_k, b_i}, i>k.
+	.\] 
+	Переставляем $ i$-ю строку на $k+1$ место. У получившейся матрицы первые $k$ главных подматриц равны главным подматрицам в $a$, а строки $k+1$-й строки главной подматрицы линейно независимы. Следовательно, она независима.
+    \end{proof}
+    $wa \in  B^- B$. Домножая на $B, B^-$, получим, что хотели.
+\end{proof}
+\begin{thm}[Кронокера-Капелли]
+    Система линейных уравнений $Ax = b$ Имеет хотя бы одно решение тогда и только тогда, когда $rk A = rk (A b)$, где $(A b)$ - расширенная матрица.
+\end{thm}
+\begin{proof}
+    \[
+	rk A = rk(A b) \Leftrightarrow \langle a_{*1}, \ldots \rangle = \langle a_{*1} , \ldots a_{*n}, b \rangle \Leftrightarrow b \in  \langle a_{*1}, \ldots a_{*n} \rangle \Leftrightarrow \mbox{ система имеет решение}
+    .\] 
+\end{proof}
+
+\chapter{Начала теории групп}
+\section{Лекция 15}
+\begin{defn}
+    Подмножество $H \subset G$ называется подгруппой, если $H$ -- группа относительно операции, заданной в $G$.
+    \[
+    H \le G
+    .\] 
+\end{defn}
+\begin{lm}
+    $H \subset B$
+    $H$ - подгруппа $\Leftrightarrow \forall h, g \in H: gh, g^{-1} \in  H$.
+\end{lm}
+\begin{st}
+    $G, H$ - группы. 
+    \[
+	G \times H = \{(g, h) \mid g \in  G, h \in  H \}
+    .\] 
+    \[
+     (g, h) \cdot (g', h') : = (g\cdot g', h\cdot h')
+    .\] 
+\end{st}
+\begin{defn}
+    $\varphi  X \to  Y , (X, *), (Y, \cdots) - группы.$\\
+    $\varphi$ - гомоморфизм групп, если:
+    \[
+	\varphi(x_1 * x_2) = \varphi (x_1) \cdot \varphi(x_2) , \qquad \forall x_1, x_2 \in  X
+    .\] 
+    Изоморфизм - биективный гомоморфизм.
+\end{defn}
+\begin{lm}
+    $G, H \le F$
+    \begin{enumerate}
+	\item $G \cap H  = \{1\}$
+	\item $G \cdot H = F$
+	\item $\forall g \in  G, h \in  H: gh = hg$
+    \end{enumerate}
+    Тогда $F \cong G \times H$.
+\end{lm}
+\begin{proof}
+$
+    \varphi : G\times H \to F \\ \varphi(g, h) = g \cdot h$
+    \[
+	\varphi ((g, h) \cdot (g', h')) = \varphi (gg', hh') = gg' hh'
+    .\] 
+    \[
+	\varphi (g, h) \cdot \varphi (g', h') = gh g'h'
+    .\] 
+
+    (1) $\Leftrightarrow \varphi$ - сюрьективно.
+    \[
+	\varphi (g, h) = \varphi(g', h') \Leftrightarrow gh = g'h' \Leftrightarrow g'^{-1} g = h' h^{-1} = 1 \Rightarrow g' = g, h' = h
+    .\] 
+\end{proof}
+
+\section{Лекция 16}
+22.10.2019
+\begin{ex}
+    $\ln : \R_{>0}^{*} \to (\R, +)$ \\
+    $\ln ab = \ln a + \ln b$ - гомоморфизм.
+\end{ex}
+\begin{defn}
+    \[
+    \varphi G \to H - \mbox{ гомоморфизм}
+    .\] 
+    \[
+	Im \varphi = \{\varphi(g) \mid g \in  G\} 
+    .\] 
+    \[
+	Ker \varphi = \varphi{-1} = \{g \in  G \mid \varphi (g) = 1\}
+    .\] 
+\end{defn}
+\begin{lm}
+    $Im \varphi$ и $Ker \varphi$ - подгруппы.
+\end{lm}
+\begin{proof}
+    \[
+    a, b \in  Ker \varphi
+    .\] 
+    \[
+	\varphi(a b) = \varphi(a) \varphi(b) = 1 \Leftrightarrow ab \in  Ker \varphi
+    .\] 
+    \[
+	\varphi(a^{-1}) = \varphi(a)^{-1} = 1 \Rightarrow a^{-1} \in  Ker \varphi
+    .\] 
+\end{proof}
+\begin{lm}
+    \[
+	\varphi (g) = h, \quad \varphi : G \to H - \mbox{ гомоморфизм} 
+    .\] 
+    \[
+	\varphi^{-1} = \underbrace{g Ker \varphi}_{\mbox{левый смежный класс по ядру} \varphi} = \underbrace{Ker \varphi g}_{\mbox{правый}}
+    .\] 
+\end{lm}
+\begin{proof}
+    $
+    \varphi(x) = h = \varphi (g))  \Leftrightarrow \varphi \varphi^{-1} = 1 \Leftrightarrow \varphi(x y^{-1}) = 1\Leftrightarrow xg^{-1} \in  Ker \varphi \Leftrightarrow x \in  Ker \varphi g
+	$
+\end{proof}
+\begin{defn}
+    $H \le G$ \\
+    $H$ называется нормальной подгруппой , если $gH = Hg \quad g \in  G$. ($H \trianglelefteq G$)
+\end{defn}
+\begin{note}
+    $g^{-1} H g = H \quad \forall g \in  G\Leftrightarrow g^{-1} H g \subseteq H \quad \forall g \in  G$
+\end{note}
+\begin{lm}
+    $H \le G$\\
+    \[
+    g_1H \cap g_2H \ne 0 \Leftrightarrow g_1H = g_2H
+    .\] 
+\end{lm}
+\begin{proof}
+    $x \in  g_1H \cap g_2H \Rightarrow x = g_1h_1 = g_2h_2, \quad h_1, h_2 \in H$. Тогда $g_1 = g_2 (h_2 h_1^{-1}) \Rightarrow g_1H = g_2 (h_2 h{-1}) H$.
+\end{proof}
+\begin{cor}
+    $G =\bigsqcup\limits_{g \in X} g H $, где $X$ - множество представителей левых смежных классов по $h$. \\
+    $g_1 \stackrel{H}\sim g_2 \Leftrightarrow g_1^{-1} g_2 \in H$
+\end{cor}
+\begin{lm}
+    \[
+    |g_1H| = |g_2H|, \quad \forall g_1, g_2 \in  G, H \le G 
+    .\] 
+\end{lm}
+\begin{proof}
+     \[
+     \left ( 
+     \begin{array}{c}
+     g_1H \to g_2H \\
+     x \mapsto g_2 g_1^{-1} x
+     \end{array}
+     \right )
+     .\] 
+     Обратная $y \mapsto g_1 g_2^{-1} y$
+\end{proof}
+\begin{thm}[Лагранж]
+    $G$ - конечна группа. Тогда $|G| = |H| |G:H|$, где $|G:H|$ - количество левых смежных классов $G$ по $H$. $|G:H|$ - индекс $H$в $G$.
+\end{thm}
+\begin{proof}
+    Из прошлой леммы и следствия
+\end{proof}
+\begin{cor}
+    Если $p = |G| \in  \Pm$, то $\forall g \in  G \textbackslash {1}: G = \{1, g, \ldots g^{p-1}\} \cong \Z_p$
+\end{cor}
+\begin{proof}
+    $\{g^n\mid n \in  \Z\} \le G = \langle g \rangle$. \\
+    $|\langle g \rangle|$ делит $p$ и больше единицы, так как содержит единицу и $g \ne 1$. Следовательно, $|\langle g \rangle|=p$. \\
+    Докажем, что все элементы $1, g, \ldots g^{p-1}$ различны. Рассмотрим $0 \le k, l \le p -1$.
+    Пусть $g^k = g^l \Rightarrow g^{k-l} = 1$. При $k - l \ne 0$, $g^n = g^{m(k-l) + r} = g^r, \quad r < k -l \le p-1$. 
+    Тогда бы $\{1, g, \ldots g^{k-l-1}\} = \langle g \rangle$ . Из чего следует $| \langle g \rangle| < p$. Противоречие.\\
+    Рассмотрим $k \in  [0, p-1]$.
+    $g^p = g^k \Leftrightarrow g^{p-k} = 1 \Rightarrow k = 0 \Rightarrow g^p = 1$.\\
+    Теперь проверим изоморфность.
+    $\varphi : \Z_p \to G, \varphi (k) = g^k$
+\end{proof}
+\begin{defn}
+    Группа, порожденная одним элементом, называется циклической.
+\end{defn}
+\begin{st}
+    Любая циклическая группа изоморфна $\Z$ или $\Z_n$.
+\end{st}
+\begin{proof}
+    $G = \{g^m \mid m \in \Z\}$. Разберем два случая:
+     \begin{enumerate}
+	 \item $g^m \ne 1 \: \forall m \in  \N  \Rightarrow g^m \ne 1 \: \forall m \ne 0$. 
+	     \[
+		 \varphi  \Z \to  G, \quad \varphi (m) = g^m
+	     .\] 
+	     \[
+		 \varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
+	     .\] 
+	 \item Пусть $n$ - наименьшее натуральное число, такоe что $g^n = 1$. 
+	     \[
+		 \varphi : \Z \to G, \quad \varphi (m) = g^m \mbox{ сюрьективно }.
+	     .\] 
+	     $g^m = 1 \Leftrightarrow g^{nk + r} = 1  \Leftrightarrow g ^r = 1 \Rightarrow r = 0$
+	     \[
+		 Ker \varphi  = \{m \mid g^m = 1\} = n\Z
+	     .\] 
+    \end{enumerate}
+\end{proof}
+\begin{defn}
+    Порядок $g \in  G$ - наименьшее натуральное число, такое что $g^n = 1$.  $ord(g) = | \langle g \rangle|$
+\end{defn}
+\begin{st}[из теоремы Силова]
+    $|G| = p^m , \: p \nmid m$. Тогда $\exists H \le G: |H| = p^k \: \forall h \in  H \textbackslash {1}$.\\
+    $ord (h \mid p^k)$, следовательно,  $h^{p{l}} = 1 \Rightarrow (h^{p^{l-1}})^p =1$
+\end{st}
+
+\section{Лекция 17}
+24.10.2019
+
+$G$ - группа.
+\begin{defn}
+    $S \subseteq G$ \\
+    $\langle S \rangle$ - наименьшая подгруппа содержащая $S$. 
+\end{defn}
+\begin{st}
+    $\langle S \rangle = \{S_1 ^{n_1}\cdot \ldots  S_k^{n_k}\mid k \in  \N , S_i \in  S, n_i \in  \Z\}$, для абелевой :$s_i \ne s_j$ при $j \ne j$.
+\end{st}
+\begin{defn}
+    $s ^g := g^{-1} s g$
+\end{defn}
+\begin{note}
+    $(s^g)^h = s^{g^h}$\\
+    $^h\!(^g\!s) = ^h\!^g\!S$
+\end{note}
+\begin{prop}$ $
+    \begin{enumerate}
+	\item $(s_1 s_2)^g = s_1 ^g s_2 ^g$ 
+	\item $(s^g)^{-1} = (s^{-1})^g$\\
+	    $s \mapsto s^g$ - автоморфизм $G $.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    $H \le G$ 
+    \[
+	H^G = \langle h^g \mid h \in  H, g \in  G \rangle  \mbox{ -- нормальное замыкание} H \mbox{ в } G
+    .\]  
+    Нормальное замыкание равно наименьшей нормальной подгруппе в $G$, содержащей $H$.\\
+    $\langle S \rangle ^G$ - наименьшая нормальная подгруппа, содержащая $S$.\\
+    $s^g= g^{-1} s g$  - сопряженный с $s$ при помощи $g$.\\
+    \[
+	H^g=\langle h^g \mid h \in  H\rangle \mbox{ -- подгруппа, сопряженная с $H$ при помощи $g$}
+    .\] 
+\end{defn}
+\begin{defn}
+    $aba^{-1}b^{-1} = [a, b] $ -- коммутатор элементов $a, b$.
+\end{defn}
+\begin{note}
+    $ab = ba \Leftrightarrow aba^{-1}b^{-1} = 1$\\
+\end{note}
+\begin{st}
+    $\varphi  : G \to A$ - гомоморфизм в абелеву группу.\\
+    $\varphi([g, h]) = 1$ \\
+    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq Ker \varphi $ - коммутант $G$. \\
+    $[g, h] ^f = [g^f , h^f]$
+\end{st}
+\begin{st}
+    $[a, b] ^{-1} = [a,b]$
+\end{st}
+\begin{defn}
+    Центр группы - $Center(G) = Z(G) := \{ c \in  G \mid cg = gc \forall g  \in  G$
+\end{defn}
+\begin{name}$ $\\
+    $G \diagup H = \{gH \mid g \in G\} $ -- множество левых смежных классов.\\
+    $H \smallsetminus G = \{Hg \mid g \in G\} $ -- множество левых смежных классов.
+\end{name}
+$H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
+\begin{defn}
+    Фактор-группа $G \diagup H$ - множество смежных классов по $H$ c операцией $(g_1H)(g_2H) = g_1g_2H$.
+\end{defn}
+\begin{proof}[корректнсть определения]
+    \[
+    g_1 \prime  \in  g_1H \Rightarrow g_1 \prime h_1
+    .\] 
+    \[
+    g_2 \prime  \in  g_2H \Rightarrow g_2 \prime h_1
+    .\] 
+    \[
+	g_1\mid + g_2\mid = g_1 h_1g_2h_2 = g_1g_2g_2^{-1} = (g_1 g_2)(g_2^{-1}h_1g_2)h_2 \in  g_1g_2H
+    .\] 
+\end{proof}
+\begin{defn}
+    $\pi_{\mbox{н}} : G \to G \diagup H, \: g \mapsto gH$\\
+    $\pi_{\mbox{н}} $ - эпиморфизм, $Ker \pi_{\mbox{н}} = H $
+\end{defn}
+\begin{thm}[универсальное свойство факторгруппы]
+    $H \trianglelefteq G$ \\
+    Для любого гомоморфизма $\varphi : G \to F$, такого что $H \le Ker \varphi \exists! \bar \varphi : G \diagup H \to  F$коммутативна для диаграммы 
+    $$\begin{array}{ccc}
+	G & \stackrel {\pi_{n}} \to & G \diagup H \\
+	\downarrow F && \downarrow \exists ! \hat{\varphi } \\
+	F &&F
+    \end{array}
+    $$
+\end{thm}
+\begin{thm}
+    $\varphi  G \to F$ 
+    \[
+	G\diagup {Ker \varphi } \cong Im \varphi 
+    .\] 
+\end{thm}
+\begin{proof}
+    Заменим $F$ на $Im \varphi $.
+    \[
+    \varphi \prime \to Im \varphi \quad Ker \varphi  \prime = Ker \varphi 
+    .\] 
+    По прошлой теореме существует единственное:
+    \[
+	\hat{\varphi }:
+	\begin{array}{ccc}
+	    G\diagup Ker \varphi & \to  & Im \varphi \\
+	    \uparrow \pi && \uparrow \varphi \prime \\
+	    G &  &G
+    \end{array}
+    .\] 
+    $\varphi $ -сюрьективно. Следовательно, $\varphi  \prime$ - сюрьективно.\\
+\end{proof}
+$g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi ) = 1 \Leftrightarrow \\varphi (g) = 1 \Leftrightarrow g Ker \varphi  = Ker \varphi  = 1_{G \diagup Ker \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
+\begin{ex}
+    $\Z \to \Z_n, \quad \varphi (x) = x \mod n$.\\
+    $Ker \varphi  = n \Z$\\
+    $\Z \cong \Z \diagup n\Z$
+\end{ex}
 \end{document}
