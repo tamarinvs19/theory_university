@@ -29,10 +29,15 @@
 \pagestyle{plain}
 
 \usepackage{fullpage}
-% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
+\title{Конспект по матанализу в формате вопросов коллоквиума \\ (лекции Кислякова Сергея Витальевича)}                      
 \begin{document}
-\renewcommand{\proofname}{Доказательство}
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+
+\renewcommand{\proofname}{Proof}
 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
@@ -64,11 +69,6 @@
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
-\title{Конспект по матанализу в формате вопросов коллоквиума \\ (лекции Кислякова Сергея Витальевича)}                      
-\maketitle
-\clearpage
-\tableofcontents
-\clearpage
 \chapter{Введение}
 \section{Простейшие свойства вещественных чисел}
 \begin{enumerate}
@@ -113,7 +113,7 @@
 	    \item $u < v \wedge x < y \Rightarrow u+x  < v + y$ 
 	\end{enumerate}
 \end{enumerate}
-\section{Множества на $\R$ }
+\section{Множества в $\R$ }
 \begin{defn}[Отрезки, интервалы, сегменты] 
     $a, b \in \R, a \le b$
     $$
@@ -146,6 +146,8 @@ $$ (-\infty, a) =\{x \in \R \mid x < a\}$$
 Ограниченное множество - ограниченное сверху и снизу. 
 \end{defn}
 
+\section{Натуральные числа}
+\subsection{Аксиома Архимеда}\label{ques_1}
 \begin{aks}[Архимед]
     Множество натуральных чисел не ограниченно сверху.
 \end{aks}
@@ -155,4 +157,658 @@ $$ (-\infty, a) =\{x \in \R \mid x < a\}$$
 \begin{proof}
     Предположим противное. $\forall n \in \N: x \le \frac{1}{n}$. Тогда $\forall n: n < x^{-1}$, а это противоречит аксиоме Архимеда.
 \end{proof}
+
+\subsection{Аксиома индукции}\label{ques_2}
+\begin{aks}[индукции]
+    Любое не пустое подмножество натуральных чисел имеет наименьший элемент.
+\end{aks}
+\begin{st}[Обоснование метода математической индукции]
+    Пусть $P_1, P_2, \ldots $ - последовательность суждений.
+    Предположим, что 
+    \begin{enumerate}
+        \item $P_1$  - верно
+	\item Для любого $k : P_k \to P_{k+1}$
+    \end{enumerate}
+    Тогда все условия $P_i$ верны.
+\end{st}
+\begin{proof}
+    Рассмотрим множество $A= \{n \in \N \mid P_n \mbox{ - верно}\} $ и его дополнение $B = \N \setminus A$. Если не все $P_i$ верны, то $B \ne \varnothing$. По аксиоме индукции существует наименьший элемент  $l \in B$. Если $l \ne 1$, $l-1 \notin B $. А тогда $P_{l-1}$ - верно, из чего следует, что $P_l $ - верно. То есть $l \notin B$. Противоречие. Иначе не выполнено первое условие.
+\end{proof}
+\subsection{Неравенство Бернулли}\label{ques_3}
+\begin{thm}[Неравенство Бернулли]
+    Пусть $a>1$. Тогда $a^n \ge 1 + n(a-1), \quad n \in \N$
+\end{thm}
+\begin{proof}
+    Индукция:\\
+    База: $n = 1: \quad a \ge 1 + (a - 1)$\\
+    Переход: $n \to n+1$ \\
+    Известно: \[
+	a^n \ge 1 +n(a-1)
+    .\] 
+    Тогда: 
+   \[
+       \begin{array}{c}
+       a^{n+1} \ge a + n(a-1)a = (a-1) + 1 + n(a-1)a =\\
+       1 + (a-1)(1+na) \ge 1+ (a-1)(1+n)
+       \end{array}
+   .\] 
+\end{proof}
+\begin{cor}
+    Множество $\{a^n \mid n \in \N\}$ для $a > 1$ не ограничено сверху.
+\end{cor}
+\begin{proof}
+    Пусть $a^n \le b, \quad \forall n \in \N$. Тогда $1 + (a-1)n \le b \Rightarrow n \le \frac{b-1}{a-1}$. Противоречие
+\end{proof}
+\subsection{Аксиома Кантора-Дедекинда}\label{ques_4}
+\begin{defn}
+    Щель -- пара вещественных чисел $(A, B)$, где  $A, B \subset \R \wedge A \ne \varnothing \wedge B \ne \varnothing$, такая что всякое число из $A$ не более любого из $B$.
+\end{defn}
+\begin{defn}
+    Число $c$ лежит в щели $(A, B) $, если $\forall a \in A, b \in B: a \le c \le b$
+\end{defn}
+\begin{defn}
+    Щель называется узкой, если она содержит ровно одно число.
+\end{defn}
+\begin{aks}[Кантор, Дедекинд]
+    В любой щели есть хотя бы одно вещественное число.
+\end{aks}
+\begin{st}
+    Квадратный корень из 2 существует и единственный.
+\end{st}
+\begin{proof}
+    $ $
+    \begin{enumerate}
+        \item Существование \\
+	    Рассмотрим множества:
+	    $$A = \{a > 0 \mid a^2 < 2\}, ~ B = \{b > 0\mid b^2 > 2\}$$
+	    Они образуют щель: $a^2 - b^2 = (a + b)(a - b) < 0$. По аксиоме Кантора-Дедекинда $\exists v: a \le v \le b ~\forall a \in A, \forall b \in B$. Тогда $v^2 = 2$.
+	    \begin{lm}
+	        В множестве $ B$ нет наименьшего элемента.
+	        В множестве $ A$ нет наибольшего элемента.
+	    \end{lm}
+	    Докажем, что $v^2 = 2$. Пусть $v^2 > 2 \vee b^2<2$. То есть $v \in A \vee v \in B$. Следовательно, \[
+	    \left [ 
+	    \begin{array}{l}
+	    \exists v_1 \in A : v_1 > v ~ \Rightarrow ~ v \mbox{ - не в щели}\\ 
+	    \exists v_1 \in B : v_1 < v ~ \Rightarrow ~ v \mbox{ - не в щели}
+	    \end{array}
+	    \right 
+	    .\] 
+Противоречие.
+	\item Единственность \\
+	    Возьмем $c \ge 0: c^2 = 2$. Пусть существует еще одно $c_1 \ge 0 \wedge c_1 \ne c: c_1^2 = 2$. Тогда \[
+	    \left [ 
+	    \begin{array}{c}
+	   c<c_1 \\
+	   c>c_1
+	    \end{array}
+	    \right . \Rightarrow 2 > 2
+	\] 
+	    Опять противоречие.
+    \end{enumerate}
+\end{proof}
+\subsection{Иррациональность корня из двух}\label{ques_5}
+\begin{defn}
+    Квадратный корень из числа 2 -- такое вещественное неотрицательное число $c$, для которого верно $c^2 = 2$.
+\end{defn}
+\begin{thm}
+    Квадратный корень из двух иррационален.
+\end{thm}
+\begin{proof}
+    Пусть $\sqrt{2} \in  \Q$. Тогда $ \sqrt{2} = \frac{p}{q}, \quad p, q \in \N$. Не умоляя общности, считаем эту дробь несократимой. \\
+    $$2 = \frac{p^2}{q^2} \Rightarrow 2 q^2 = p^2 \Rightarrow 2 \mid p \Rightarrow 4 \mid p^2 \Rightarrow 2 \mid q$$
+\end{proof}
+\subsection{Существование рациональных и иррациональных чисел в каждом невырожденном отрезке}\label{ques_6}
+\begin{defn}
+    $\langle u, v \rangle $ - любой отрезок с концами в $u, v\quad (u \le v)$. Его длина $|\langle u, v \rangle | := v-u$
+\end{defn}
+\begin{thm}\label{thm_about_rc_in_ab}
+    Пусть $c > 0$. Тогда на каждом отрезке вида $(a, b), \quad \mbox{ где } a < b$ существует точка вида $rc$, где  $r \in \Q$.
+\end{thm}
+\begin{proof}
+    Заменим $c \to 1, a \to \frac{a}{c} , b \to \frac{b}{c}$. Теперь будем доказывать ${a}\le r \le {b}$.
+    Существует $q \in \N: \frac{1}{q}<b-a$. Рассмотрим множество $\{\frac{p}{q}\mid p \in \Z\}$. Кроме того $ \exists p: \frac{p}{q} \ge b$. Среди таких $p$ существует наименьший $p_0$.\\
+    Возьмем $\frac{p_0-1}{q} = \frac{p_0}{q} - \frac{1}{q} \in ( a, b )$
+\end{proof}
+\begin{cor}
+    На каждом отрезке вида $(a, b),  \mbox{ где } a < b$, существует рациональное число.
+\end{cor}
+\begin{thm}
+    На каждом отрезке вида $(a, b),  \mbox{ где } a < b$, существует иррациональное число.
+\end{thm}
+\begin{proof}
+    По следствию из теоремы \ref{thm_about_rc_in_ab} $\exists r \in  \Q: r \in \left ( \frac{a}{\sqrt{2}}, \frac{b}{\sqrt{2}} \right )$. Тогда $r \sqrt{2} \in (a, b) \wedge r \notin \Q$.
+\end{proof}
+\subsection{Число $e$}\label{ques_28}
+\begin{defn}
+    Рассмотрим последовательность $a_n = \slim_{k=0}^n \frac{1}{k!}$.\\
+    Число $e$ -- предел $\{a_n\}$. 
+\end{defn}
+\begin{st}
+    $\{a_n\}$ - сходится.
+\end{st}
+\begin{proof}
+    \[
+	\begin{array}{c}
+	1 + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \ldots \frac{1}{n!} \le 1 + \frac{1}{1!} +\frac{1}{2!} + \frac{1}{6} + \frac{1}{6}\cdot \frac{1}{2} + \frac{1}{6}\cdot \frac{1}{4} \ldots + \frac{1}{6} \cdot \frac{1}{2^{n-2}} = \\ \\
+	= 2.5 +\frac{1}{6} (1 + \frac{1}{2} + \frac{1}{4} + \ldots +\frac{1}{2^{n-2}}) < 2.5 + \frac{1}{6} \cdot 2 \approx 2.8333
+	\end{array}
+    .\] 
+\end{proof}
+\begin{thm}
+    $e$ - иррационально.
+\end{thm}
+\begin{proof}
+    $2 < e < 3$ \\
+    Пусть $e = \frac{p}{q}, ~p, q \in \N$. Тогда $q > 1$.
+    \[
+	\frac{p}{q} = \lim\limits_{n \to \infty} \left ( (1 + \frac{1}{1!} + \frac{1}{2!} + \ldots \frac{1}{q!}) + \frac{1}{(q+1)!} + \ldots +\frac{1}{n!} \right) = 
+    \] 
+    \[
+	= (1 + \frac{1}{1!} + \frac{1}{2!} + \ldots  + \frac{1}{q!} + \lim\limits_{n \to \infty} \left ( \frac{1}{(q+1)!} + \ldots + \frac{1}{n!} \right)
+    .\] 
+    \[
+	q! p = S + \lim\limits_{n \to \infty} \left ( \frac{1}{(q+1)} + \frac{1}{(q+1)(q+2)} +\ldots + \frac{1}{(q+1) \ldots n} \right) = S + a
+    .\] 
+    $q! p \in \Z, S \in \N$. Обозначим предел за $a$.
+    Докажем, что $a \notin \Z$. 
+    \begin{st}
+	$0 < a < 1$
+    \end{st}
+    \begin{proof}
+        \[
+	    \frac{1}{q+1} + \frac{1}{(q+1)(q+2)} + \ldots + \frac{1}{(q+1) \ldots  n} \le \frac{1}{q+1} + \frac{1}{(q+1)^2} + \ldots \frac{1}{(q+1)^{n-q-1}}
+        .\] 
+	\[
+	0<a \le \frac{1}{q+1} + \frac{1}{1- \frac{1}{q+1}} = \frac{1}{q+1-1} = \frac{1}{q} <1
+	.\] 
+    \end{proof}
+\end{proof}
+\section{Свойства подмножеств $\R$}
+\subsection{Грани}\label{ques_7}
+\begin{defn}[supremum]
+    Пусть $A \subset \R$ - ограничено сверху. \\
+    Точная верхняя грань (супремум) -- наименьшая из всех его верхних границ.
+\end{defn}
+\begin{defn}[infimum]
+    Пусть $A \subset \R$ - ограничено снизу. \\
+    Точная нижняя грань (инфимум) -- наибольшая из всех его верхних границ.
+\end{defn}
+\begin{thm}[об описании точной верхней грани]
+    Пусть $A \ne \varnothing$ и ограничено сверху. Следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $x = \sup A$
+	\item $x$ -- верхняя граница для $A$ и $\forall \varepsilon >0 \exists y \in A \cap (x - \varepsilon , x]$
+    \end{enumerate}
+\end{thm}
+\begin{proof}$ $
+    \begin{description}
+	\item $1 \Rightarrow 2$\\
+	    $x = \sup A \Rightarrow x $ - верхняя граница. Пусть $\exists \varepsilon >0: A \cap (x-\varepsilon , x] = \varnothing$. Тогда $y \le x - \varepsilon , \quad \forall y \in A$.
+	    Но из этого следует, что $x-\varepsilon $ тоже наименьшая граница, которая меньше $x$. Следовательно, $x \ne \sup A$. Противоречие.
+	\item $2 \Rightarrow 1$ \\
+	        $x$ - верхняя граница, $\forall \varepsilon >0 \exists y \in  A \cap (x-\varepsilon , x]$. Докажем, что $x$ - наименьшая верхняя граница.
+    \end{description}
+    Пусть $\exists y < x: y$  - верхняя граница $A$. Рассмотрим $(y, x]$. Для него верно $\forall z \in (y, x]: z \notin A$ . Но тогда $x$ - не верхняя граница.
+\end{proof}
+\begin{thm}[об описании точной нижней грани]
+    Пусть $A \ne \varnothing$ и ограничено снизу. Следующие условия эквивалентны:
+    \begin{enumerate}
+        \item $x = \inf  A$
+	\item $x$ -- нижняя граница для $A$ и $\forall \varepsilon >0 \exists y \in A \cap [x, x+ \varepsilon)$
+    \end{enumerate}
+\end{thm}
+\subsection{Связность отрезка}\label{ques_8}
+\begin{defn}
+    Замкнутое множество -- множество, содержащее все свои предельные точки.
+\end{defn}
+\begin{note}
+    Любое замкнутое, ограниченное, непустое множество содержит все свои грани.
+\end{note}
+\begin{thm}[о связности отрезка]
+    Никакой замкнутый отрезок нельзя представить в виде объединения двух непустых непересекающихся замкнутых множеств.\\
+
+\end{thm}
+Для любого отрезка $[a, b], ~a \le b$: если $[a, b] = E \cup F \wedge E,F - \mbox{ замкнуты} \wedge E \ne \varnothing \wedge F \ne \varnothing$, то $E \cap F \ne \varnothing$.
+\begin{proof}
+    $E, F$ замкнуты, значит и ограничены сверху. Предположим, что $E\cap F = \varnothing$. Не умоляя общности $x = \sup E < b$, тогда $ (x, b] \in F$. С одной стороны, $x$ - предельная точка для $E$, с другой стороны, предельная точка для $F$. Так как $E, F$ - замкнуты, $x \in E \wedge x \in F$. Следовательно, $E\cap F \ne \varnothing$. Противоречие.
+\end{proof}
+\subsection{Предельные и изолированные точки}\label{ques_9}
+\begin{defn}
+    Окрестность точки $x \in \R$ -- любой открытый интервал вида $(x-\varepsilon , x+\varepsilon )$, где $\varepsilon >0$.
+\end{defn}
+\begin{defn}
+    Проколотая окрестность точки $x \in \R$ -- объединение двух открытых интервалов вида $(x-\varepsilon , x) \cup (x, x+\varepsilon )$
+\end{defn}
+\begin{defn}
+    Пусть $A \subset \R, u \in \R$.\\
+    $u $ называется предельной точкой для $A$, если в любой проколотой окрестности точки  $u$ есть точки множества $A$.
+    \[
+	\forall \varepsilon > 0 \quad \stackrel{{\circ}} U_{\varepsilon }(u) \cap A \ne \varnothing
+    .\] 
+\end{defn}
+\begin{exs}$ $
+    \begin{enumerate}
+        \item $\Z, \N $ не имеют предельных точек.
+	\item $\{\frac{1}{n}\mid n \in \N\}$ имеет одну предельную точку 0.
+	\item Для $\Q$ все предельные точки - $\R$.
+    \end{enumerate}
+\end{exs}
+\begin{defn}
+    Все точки множества $A$, не являющиеся предельными, называются изолированными:
+    $$u \in A - \mbox{изолированная, если} ~\exists ~\varepsilon > 0 : ~U_\varepsilon (u) \cap A = \{u\} \Leftrightarrow \stackrel{\circ} U_\varepsilon (u) \cap A = \varnothing$$ 
+\end{defn}
+\begin{exs}$ $
+    \begin{enumerate}
+	\item $[1, 2] \cup \{3\}$ имеет одну изолированную точку $3$.
+	\item $[1, 2]$ не имеет ни одной изолированной точки.
+    \end{enumerate}
+\end{exs}
+\begin{lm}
+      Пусть  $A$  ограничено сверху (снизу),  $y = \sup{A} ~(y = \inf{A})$.
+      $$
+      \left [ 
+      \begin{array}{l}
+      y \notin A \Rightarrow \mbox{$y$ - предельная точка  A}\\
+	y \in A
+      \end{array}
+      \right .
+      $$
+\end{lm}
+\subsection{Теорема о вложенных отрезках}\label{ques_10}
+\begin{thm}[о вложенных отрезках]\label{thm_nested_segment}
+    $a \le b, I = \langle a, b \rangle$.\\
+    $\{I_n\}_{n \in \N}$ - последовательность замкнутых отрезков $I_{n+1} \subseteq I_n$. Тогда у этих отрезков есть хотя бы одна общая точка.
+\end{thm}
+\begin{proof}
+    Рассмотрим две последовательности концов отрезков:
+     \[
+	 \begin{array}{c}
+         a_1 \le a_2 \le a_3 \ldots \\
+	 b_1 \ge b_2 \ge b_3 \ldots 
+     \end{array}
+     \] 
+     Заметим, что  $a_k \le b_j ~ \forall k, j \in \N$. Тогда множества $A = \{a_k \mid k \in \N\}$ и $B=\{b_j \mid j \in \N\}$ образуют щель. По аксиоме Кантора-Дедекинда $\exists t \in \R : t \in (A, B)$.
+     \[
+     a_k \le t \le b_j \forall j, k \in \N
+     .\] 
+     Возьмем $k = j$ :
+     \[
+	 t \in [a_j, b_j], ~ \forall j \in \N
+     .\] 
+     А эта точка принадлежит всем отрезкам.
+\end{proof}
+\begin{note}
+    Эта точка единственна тогда и только тогда, когда $\forall \varepsilon > 0 ~\exists n : |I_n| < \varepsilon $
+\end{note}
+\begin{proof}
+    Если такая точка единственная, $(A, B)$ - узкая щель. То есть $\forall \varepsilon >0 ~\exists k, j \in \N: b_j - a_k < \varepsilon $. Не умоляя общности, $j \ge k$. Тогда $b_j - a_j < \varepsilon $ . \\
+    В обратную сторону очевидно. 
+\end{proof}
+\subsection{Теорема о компактности}\label{ques_11}
+\begin{thm}[о компактности]
+    Любое бесконечное ограниченное подмножество вещественных чисел имеет хотя бы одну предельную точку.
+\end{thm}
+\begin{proof}
+    Пусть $A$ - ограничено. Тогда $\exists a_1, b_1: a_1 \le x \le b_1 \quad \forall x \in A$. Получаем $A \subset [a_1, b_1]$. Возьмем середину отрезка $c = \frac{b_1+a_1}{2}$. Теперь $I_2 = \left \{ 
+    \begin{array}{ll}
+	{[a_1, c]} & \mbox{если } A \cap [a_1, c] \mbox{ - бесконечно}\\
+	{[c, b_1]} & \mbox{если } A \cap [c, b_1] \mbox{ - бесконечно}
+\end{array}
+\right .$
+Будем аналогично делить пополам получаемый отрезок. Эти отрезки представляют собой последовательность вложенных замкнутых отрезков: \[
+I_1 \supset I_2 \supset I_3 \ldots \supset I_n \supset \ldots 
+.\] 
+Причем $|I_n| = \frac{|I_1|}{2^{n-1}} , \quad \forall n \in \N$. По теореме о вложенных отрезках \ref{thm_nested_segment} $\forall n \in \N \exists ! x: x \in I_n $. Этот $x$ и есть предельная точка для множества $A $.\\
+$\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_n \Rightarrow I_n \subset U_{\varepsilon } (x)$. Тогда $\exists y \in A \cap I_n: y\ne x$. 
+\end{proof}
+\subsection{Теорема о вложенных полуоткрытых отрезках}\label{ques_12}
+\begin{thm}[о вложенных полуоткрытых отрезках]\label{thm_nested_segment_2}
+    Рассмотрим последовательность вложенных полуоткрытых интервалов, среди которых существуют полуинтервалы сколь угодно малой длины:
+    \[
+	J_1 \supset J_2 \ldots \supset J_n \supset\ldots  ,  \qquad \mbox{где } J_n = [a_n, b_n)
+    .\] 
+    \[
+    \mbox{Тогда } \left [ 
+    \begin{array}{l}
+	\bigcap \limits_{n=1}^{\infty} J_n = \varnothing\\
+	\bigcap \limits_{n=1}^{\infty} J_n = \{x_0\} \Longleftrightarrow \exists n_0 : b_{n_0} = b_{n_0 + 1} = b_{n_0 +2} =\ldots 
+    \end{array}
+    \right .
+    \] 
+\end{thm}
+\begin{proof}
+    Рассмотрим последовательность $I_n = [a_n, b_n]$.
+    По теореме о вложенных отрезках \ref{thm_nested_segment} $\exists ! t \in  \bigcap \limits_{n=1}^{\infty} I_n$. Если $t \notin \bigcap \limits_{n=1}^{\infty} J_n$, то $\exists n_0: t \notin J_{n_0} \wedge t \in I_{n_0}$.
+    А тогда $t = b_{n_0}$, которое совпадает совпадает со концами всех следующих интервалов. Иначе $t \in \bigcap \limits_{n=1}^{\infty} J_n$ и правые концы одинаковы.
+\end{proof}
+\subsection{Десятичное разложение вещественного числа}\label{ques_13}
+Пусть $x \in  [0, 1)$. Разобьем полуинтервал на десять равных полуинтервалов $\{I_i\}$.
+\begin{figure}[ht]
+    \centering
+    \incfig{decimal-decomposition}
+    \caption{Decimal decomposition}
+    \label{fig:decimal-decomposition}
+\end{figure}
+Будем собирать десятичную запись:
+\begin{enumerate}
+    \item $i_1$  - номер интервала, куда попало $x$ 
+    \item $i_2$ - номер интервала второго ранга --- результата разбиения каждого полуинтервала на 10 частей
+    \item
+	И так далее
+\end{enumerate}
+Получим $0.i_1i_2i_3 \ldots $ -- десятичную запись числа $x$.
+\begin{note}
+    Не существует десятичного представления, в котором с некоторого момента все девятки.
+\end{note}
+\begin{thm}
+    Пусть $(j_1, j_2, \ldots )$ - цифры от нуля до девяти. $\nexists n \in \N: j_k = 9 ~ \forall k \ge n$.\\
+    Тогда $\exists ! x \in [0, 1) $ для которого $0.j_1j_2 \ldots $ - десятичное представление.
+\end{thm}
+\begin{proof}
+    Рассмотрим последовательность полуинтервалов $I_1 \supset I_2 \supset \ldots $. По теореме \ref{thm_nested_segment_2} существует непустое пересечение, равное одной точке - и есть наше число.
+\end{proof}
+\chapter{Пределы}
+\section{Основные свойства пределов функций}
+\subsection{Определение предела}\label{ques_14}
+\begin{defn}
+    $b$ -- предел функции $f$ в точке  $x_0$, если для любой окрестности  $U$ в точке $b$ существует такая проколотая окрестность $\stackrel{\circ} V$ точки $x_0: f(\stackrel{\circ} V\cap A) \subset U$.
+\end{defn}
+\begin{defn}
+    $b$ -- предел функции $f$ в точке  $x_0$, если
+    $$\forall \varepsilon >0 \exists \stackrel{\circ} V (x_0): \forall x \in  \stackrel{\circ} V \cap A: |f(x)-b| < \varepsilon  $$
+\end{defn}
+\begin{defn}
+    $b$ -- предел функции $f$ в точке  $x_0$, если
+    \[
+	\forall \varepsilon >0 \exists \delta >0 :\forall x \in A \wedge x \ne x_0 \wedge |x-x_0|<\delta : |f(x)-b| < \varepsilon 
+    .\] 
+    Если $x_0 = \infty$ :
+    \[
+	\forall \varepsilon >0 \exists N >0 :\forall x \in A \wedge x > N : |f(x)-b| < \varepsilon 
+    .\] 
+\end{defn}
+\begin{note}
+    \[
+	\lim \limits_{x \to x_0} f(x) = b \Longleftrightarrow \lim \limits{x \to x_0} |f(x) -b|=0
+    .\] 
+\end{note}
+\subsection{Единственность предела}\label{ques_15}
+\begin{thm}
+    $f : A \to \R$, $x$ - предельная точка для $A$.\\
+    Если $a, b$ - предельные для $f$ в точке $x_0$, то $a=b$.
+\end{thm}
+\begin{proof}
+    Пусть $a\ne b$. Тогда существуют $U_1 , U_2$ - не пересекающиеся окрестности точек $a, b$. Так как $a, b$ - предельные, \[
+	\begin{array}{c}
+	    \exists \stackrel{\circ} V_1 (x_0): f(\stackrel{\circ} V_1 \cap A) \subset U_1 \\
+	    \exists \stackrel{\circ} V_2 (x_0): f(\stackrel{\circ} V_2 \cap B) \subset U_2 \\
+    \end{array}
+    .\] 
+    Рассмотрим $\stackrel{\circ} V(x) = \stackrel{\circ} V_1(x) \cap \stackrel{\circ} V_2(x)$ . $\exists y \in  \stackrel{\circ}V \cap A: f(y) \in  U_1 \wedge f(y) \in  U_2 \Rightarrow U_1 \cap U_2 \ne \varnothing$. Противоречие. 
+\end{proof}
+\subsection{Теорема о пределе сужения}\label{ques_16}
+\begin{defn}
+    $A'$ -- множество всех предельных точек.
+\end{defn}
+\begin{thm}[о пределе сужения]
+    $f: A \to \R, x \in A'$, $B \subset A'$\\
+    Пусть $x_1 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\upharpoonright_B)$.
+\end{thm}
+\begin{proof}
+    По условию $\forall U(z) \exists \stackrel \circ V: f(\stackrel \circ V \cap A) \subset U $, тем более $f(\stackrel \circ V \cap B) \subset U$.
+\end{proof}
+\begin{thm}[частичное обращение теоремы о пределе сужения]
+    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
+\end{thm}
+\begin{proof}
+    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\upharpoonright_B(\stackrel \circ V \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
+    $\stackrel \circ V \cap \stackrel \circ W_{\delta }$ - тоже окрестность точки $x_0$.
+\end{proof}
+\subsection{Предел постоянной функции и предел тождественного отображения}\label{ques_17}
+\begin{st}
+    $f(x) = x \Longleftrightarrow \lim\limits_{x \to x_0} f(x) = x_0$
+\end{st}
+\begin{st}
+    $f(x) = c \Longleftrightarrow \lim\limits_{x \to x_0} f(x) = c$
+\end{st}
+\subsection{Предельный переход в неравенстве}\label{ques_18}
+\begin{thm}[Предельный переход в неравенстве]
+    $f, g :A \to \R, ~x \in A'$. Предположим, что существуют пределы у $f, g$ в точке $x_0$ равные соответственно $a, b$. Пусть $a<b$. \\
+    Тогда существует проколотая окрестность  $\stackrel \circ V (x_0): f(x) < g(x) \quad \forall x \in \stackrel \circ V \cap A$.
+\end{thm}
+\begin{proof}
+    Рассмотрим $U_1 , U_2$ - не пересекающиеся окрестности точек $a, b$. Так как $a, b$ - предельные, \[
+	\begin{array}{c}
+	    \exists \stackrel{\circ} V_1 (x_0): f(\stackrel{\circ} V_1 \cap A) \subset U_1 \\
+	    \exists \stackrel{\circ} V_2 (x_0): f(\stackrel{\circ} V_2 \cap B) \subset U_2 \\
+    \end{array}
+    .\] 
+    Возьмем $\stackrel{\circ} V(x) = \stackrel{\circ} V_1(x) \cap \stackrel{\circ} V_2(x)$ . Тогда $\forall x \in \stackrel \circ V \cap A: f(x) \in  U_1 \wedge g(x) \in  U_2 \Rightarrow f(x) < g(x)$.
+\end{proof}
+\subsection{Принцип двух полицейских}\label{ques_19}
+\begin{thm}[Принцип двух полицейских]
+     $f, g, k: A \to \R, x_0 \in A$ \\
+     Пусть $\lim_{x_0} f = \lim_{x_0} h = b$, $f(x) \le g(x) \le h(x) \quad \forall x \in A$.
+     Тогда $\lim_{x_0} g = b$.
+\end{thm}
+\begin{proof}
+    Рассмотрим $\stackrel \circ U(b)$. Существуют проколотые окрестности $$\stackrel \circ V_1, \stackrel \circ V_2:\quad \stackrel \circ V_1 \cap \stackrel \circ V_2  = \stackrel \circ V \wedge 
+    f(\stackrel \circ V_1\cap A) \subset \stackrel \circ U \wedge h(\stackrel \circ V_2 \cap B) \subset \stackrel \circ U$$
+    $$
+    \left . 
+    \begin{array}{c}
+	f(\stackrel \circ V \cap A) \subset U \\
+	h(\stackrel \circ V \cap A) \subset U
+    \end{array}
+\right \} \Rightarrow g(\stackrel \circ V \cap A) \subset U
+    $$
+\end{proof}
+\subsection{Предел линейной комбинации}\label{ques_20}
+\begin{thm}[Предел линейной комбинайии]
+    $f, g : A \to \R, ~x_0 \in A' , ~ \alpha , \beta \in \R$\\
+    Пусть существуют пределы $\lim_{x_0} f = a, \lim_{x_0} g = b$. 
+    \[
+	h(x) = \alpha  f(x) +\beta g(x) , \quad x \in A
+    .\] 
+    Тогда $\lim_{x_0} h = \alpha a +\beta b$
+\end{thm}
+\begin{proof}
+    \[
+	\begin{array}{c}
+	|\alpha f(x) =\beta g(x) -\alpha a -\beta b| =\\
+	=|\alpha (f(x) -a) + \beta (g(x) -b)| \le \\
+	\le |\alpha ||f(x) - a| + |\beta ||g(x) -b|
+	\end{array}
+    .\] 
+    Достаточно доказать, что $
+	|\alpha ||f(x) - a| + |\beta ||g(x) -b| \to  0
+    $.  Будем считать, что $\alpha , \beta \ne 0$.
+    \[
+	\forall \varepsilon > 0
+	\begin{array}{c}
+	    \exists \delta_1 >0: |f(x) - a| < \frac{\varepsilon}{2|\alpha |}, x_0 \in A, |x-x_0|<\delta_1, x\ne x_0\\
+	    \exists \delta_2 >0: |g(x) - b| < \frac{\varepsilon}{2|\beta |}, x_0 \in A, |x-x_0|<\delta_2 , x \ne x_0
+    \end{array}
+    .\] 
+    Теперь возьмем $\delta = \min(\delta_1, \delta_2)$. Тогда для $x \in A, |x-x_0|<\delta , x\ne x_0:$ 
+    \[
+	|\alpha ||f(x) -a| +|\beta ||g(x)-b| \le |\alpha |\cdot \frac{\varepsilon}{2 |\alpha| } + |\beta |\cdot \frac{\varepsilon}{2 |\beta |} = \varepsilon 
+    .\] 
+\end{proof}
+\subsection{Предел произведения стремящейся к нулю и ограниченной функций}\label{ques_21}
+\begin{st}\label{lim_0_const}
+    $A \subset \R, ~f, g: A \to \R, ~ x_0 \in A' $\\
+    Предположим, что $\lim _{x_0} f = 0$ и $\exists c \in \R : |g(x)| \le  c \forall x \in A$. Тогда $\lim\limits_{x \to x_0} f(x)g(x) = 0$
+\end{st}
+\begin{proof}
+    Если $c = 0$, утверждение очевидно (хотя оно и в любом случае очевидно).
+    Будем считать, что $c >0$. Запишем определение предела $f$: \[
+	\forall \varepsilon : \exists \stackrel \circ V(x_0) : |f(x) - 0| = |f(x)| < \frac{\varepsilon}{c}, \quad \forall x \in \stackrel \circ V \cap A
+    .\] 
+    Тогда \[
+	|f(x)g(x)|< c |f(x)| \cdot c < \frac{\varepsilon}{c} \cdot c = \varepsilon , \quad \forall x \in \stackrel \circ V \cap A
+    .\] 
+    Следовательно,  $\lim\limits_{x \to x_0} f(x)g(x) = 0$.
+\end{proof}
+\subsection{Предел произведения имеющих предел функций}\label{ques_22}
+\begin{st}
+    $A \subset \R, ~f, g: A \to \R, ~ x_0 \in A' , ~ \lim_{x_0} f= a, \lim_{x_0} g =b$\\
+    Тогда $\lim\limits_{x \to  x_0} f(x) g(x) = ab$.
+\end{st}
+\begin{proof}
+    \[
+	\begin{array}{c}
+	    |f(x)g(x) -ab| = |f(x)g(x) - a g(x) + a g(x) - ab| \le \\
+	    \le |g(x)||f(x)-a| + |a||g(x) - b|
+    \end{array}
+   \] 
+   $|g(x)| \le c$ в некоторой проколотой окрестности $x_0$, а $f(x) - a$ и $g(x) -b$ стремятся к нулю в точке $x_0$. Тогда можем применить утверждение \ref{lim_0_const}:
+   \[
+   \left .
+   \begin{array}{l}
+       |g(x)||f(x) - a|  \stackrel{x \to  x_0} \longrightarrow  0\\
+       |a||g(x) - b|  \stackrel{x \to  x_0} \longrightarrow  0
+   \end{array}
+   \right \} \Rightarrow \mbox{ их сумма стремится к нулю при $x \to x_0$}
+   .\] 
+\end{proof}
+\subsection{Предел частного}\label{ques_23}
+\begin{st}
+    $A \subset \R, ~f, g: A \to \R, ~ x_0 \in A' , ~ \lim_{x_0} f= a, \lim_{x_0} g =b, ~b\ne 0$\\
+    Тогда $\lim\limits_{x \to x_0}  \frac{f(x)}{g(x)} = \frac{a}{b}$
+\end{st}
+\begin{proof}
+    \begin{lm}
+	В условии утверждения функция $g$ удалена от нуля в некоторой проколотой окресности  $\stackrel \circ V(x_0)$. То есть $\exists c > 0 ~\forall x \in \stackrel \circ V \cap A : |g(x)| \ge c$
+    \end{lm}
+    \begin{proof}{(леммы)}
+	$\forall \varepsilon >0 \exists \stackrel \circ U(x_0) : |g(x) = b| < \varepsilon , \quad \forall  x \in \stackrel \circ U \cap A$. Возьмем $\varepsilon =\frac{|b|}{2}$. \[
+	    |b| - |g(x)| \le |g(x) - b| \le \frac{|b|}{2} \Longrightarrow \frac{|b|}{2} \le |g(x)|
+	.\] 
+    \end{proof}
+    $\forall x \in \stackrel \circ V(x_0) \cap A$ (из леммы):
+    \[
+    \begin{array}{c}
+	|\frac{f(x)}{g(x)} - \frac{a}{b}| = \frac{|b f(x) - a g(x)|}{|b g(x)|} \le \\
+	\le \frac{1}{c |b|} |(b-g(x))f(x) + (f(x) - a) g(x)| \le\\
+	\le\frac{1}{|b|c} |g(x) - b| |f(x)| + |(f(x) - a||g(x)| \longrightarrow 0
+    \end{array}
+    .\] 
+\end{proof}
+\subsection{Сумма геометрической прогрессии}\label{ques_24}
+Рассмотрим функцию $f(n) = \sum\limits_{j=1}^n q^j = \frac{1-q^n}{1-q}, \quad q \in \R$.
+\begin{st}
+    Если $|q| < 1$, то $f(x)$ имеет предел, иначе не имеет предела.
+\end{st}
+\begin{proof}
+    \begin{enumerate}$ $
+        \item $|q| < 1$ \\
+	    {\begin{lm}
+	    \[
+		q^{n+1} \stackrel{n \to  \infty } \longrightarrow 0 \Longleftrightarrow |q|^n\stackrel{n \to  \infty } \longrightarrow 0 
+	   .\] 
+	    \end{lm}
+	    \begin{proof}
+		\[
+		    \left (\frac{1}{|q|} \right)^n = \left(1 + \frac{1}{|q|} -1\right)^n \ge 1 +n \left(\frac{1}{|q|}-1\right)
+		.\]
+		Тогда \[
+		    0 \le |q|^n \le \frac{1}{1+n \left(\frac{1}{|q|} -1 \right)} \stackrel{n \to  \infty } \longrightarrow 0
+		.\]  
+		Теперь найдем $\forall \varepsilon>0 ~N \in \N \forall n > N: \frac{1}{\varepsilon } < 1 + n \left(\frac{1}{|q|} -1 \right)$. Подойдет $N = \frac{1}{\varepsilon \left(\frac{1}{|q|}-1 \right)}$. \\
+	    \end{proof}
+	    Из леммы получаем:
+	    $f(n) = \frac{1-q^n}{1-q} \longrightarrow \frac{1}{1-q}$. 
+	\item $q=- 1$  \[
+		f(n) = \left \{ 
+		    \begin{array}{ll}
+			1 ,& 2 \mid n \\
+			0  ,& 2 \nmid n
+		    \end{array}
+		    \right . \mbox{ нет предела}
+	    \]  }
+    \item $q = 1$,  $f(n) = n+1$ - нет предела
+    \item $q > 1$ \\
+	\[
+	    \lim f(n) = \lim \frac{1 - q^n}{1 - q} = \lim \frac{q^n-1}{q-1} 
+	.\] 
+	Эта функция не имеет предела.
+    \item $q < 1$ \\
+	\[
+	    |f(n) | = |\frac{q^n-1}{q-1}| \ge  \frac{1}{|q-1|}(|q|^n -1)
+	.\] 
+	Эта функция тоже не имеет предела.
+    \end{enumerate}
+\end{proof}
+\subsection{Предел монотонной функции}\label{ques_25}
+\begin{defn}
+    $f:A \to \R, A \cap \R$ \\
+    $f$ -- (строго) возрастающая, если \[
+	x_1, x_2 \in A, x_1 <x_2 \Rightarrow f(x_1) \le f(x_2) ~ (f(x_1) < f(x_2))
+    .\] 
+    $f$ -- (строго) убывающая, если \[
+	x_1, x_2 \in A, x_1 > x_2 \Rightarrow f(x_1) \ge f(x_2) ~ (f(x_1) > f(x_2))
+    .\] 
+    $f$ -- (строго) монотонна, если (строго) возрастает или (строго) убывает.
+\end{defn}
+\begin{thm}[о пределе монотонной функции]
+    $f: A \to \R$ - монотонная и ограниченная функция на $A, x_0 \in A'$, (допускается $x_0 = \pm \infty$, то есть $A$ - неограничено).
+    Если $f$ - возрастает и ограничена сверху или убывает и ограничена снизу, то $\exists \lim\limits_{x \to x_0} f(x)$.
+\end{thm}
+\begin{proof}
+    Пусть $f$ - возрастает и ограничена сверху. $f(x) \le  M ~ \forall x \in A$.\\
+    $b = \sup \{f(x) \mid x \in A\}$. Докажем, что $b = \lim\limits_{x \to x_0} f(x)$. \\
+    Пусть $\varepsilon  > 0$. Рассмотрим $U_{\varepsilon } (b) = (b-\varepsilon , b+\varepsilon )$. 
+    \[
+	\exists  y \in A: b-\varepsilon < f(y)
+    .\] 
+    Тогда $\forall x \in A: y < x <x_0 \Rightarrow f(y) \le f(x) \le b$
+    \begin{note}
+	Доказали, что $$\lim_{x_0} f=\sup\limits_{x \in A} f(x).$$ Аналогично, если $f$ убывает и ограничена снизу $$\lim_{x_0} f = \inf\limits_{x \in  A}f(x).$$
+    \end{note}
+\end{proof}
+\section{Ряды}
+\subsection{Понятие ряда. Теорема Лейбница}\label{ques_26}
+\begin{defn}
+    Рассмотрим последовательность $\{a_n\}_{n \in  \N}$. Ряд -- символ $\slim_{n=1}^{\infty}a_n$.\\
+    Частичные суммы ряда -- последовательность $\{S_k\}_{k \in \N}, \quad S_k = \slim_{n = 1}^k a_n$.\\
+    Говорят, что ряд $\slim_{n = 1}^\infty{y_n}$ сходится, если последовательность его частичных сумм имеет предел. Иначе  говорят, что ряд расходится.
+\end{defn}
+\begin{st}
+    \[
+	\slim_{n=2}^\infty \frac{1}{n(\log n)^\alpha } \mbox{ - сходится } \Longleftrightarrow \slim_{n=1}^\infty 2^n \frac{1}{2^n (\log 2^n )^\alpha } = \slim_{n=1}^\infty \frac{1}{(\log 2)^\alpha }\cdot \frac{1}{n^\alpha }, \quad \alpha  > 1
+    .\] 
+\end{st}
+\begin{thm}[Лейбниц]
+    Пусть $a_n$ - монотонно убывающая неотрицательная последовательность $0 \ge  a_1 \ge a_2 \ldots ~~$. Тогда ряд $\slim_{n=1}^{\infty}$ - сходится тогда и только тогда, 
+    когда 
+    $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится.
+\end{thm}
+\begin{proof}
+	$ $ \\$ \Rightarrow  $\\
+	    $\slim_{n=1}^\infty a_n $ - сходится. Достаточно доказать, что частичные суммы второго ряда ограничены.\[
+		\begin{array}{l}
+	    S_k = a_1, + a_2 + \ldots +a_k, \quad k = 2^n\\
+	    S_{2^n} = a_1 + a_2 + (a_3+a_4) + (a_5+a_6+a_7+a_8) + \ldots +(a_{2^{n-1}} + \ldots a_{2^n} ) 
+		\end{array}
+	    .\] 
+	    Заменим в каждой скобке на минимальный:
+	    \[
+		S_{2^n} \le a_2 \le 2 a_4 + 4 a_8 + \ldots 2^{n-1} a_{2^n}
+	    .\] 
+	    Тогда  \[
+		2 a_2 + 4 a_4 + \ldots 2^n a_{2^n} \le 2 S_{2^n}
+	    .\] 
+	    Из чего следует, что $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится.
+	\\$ \Leftarrow $\\
+	$\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится. Обозначим его сумму за $T$. Тогда 
+	\[
+	    a_1+(a_2+a_3) + (a_4+a_5+a_6+a_7) + \ldots +(a^{2^n} + \ldots a_{2^{n+1} -1} \le a_1 + a_2 +a_4 + \ldots a_{2^n} \le a_1 +T
+	.\] 
+\end{proof}
+\begin{thm}
+    Пусть $s>0$, тогда ряд $\slim_{n=1}^\infty \frac{1}{n^s}$ сходится при $s > 1$ и расходится при $s \le 1$.
+\end{thm}
+
 \end{document}
