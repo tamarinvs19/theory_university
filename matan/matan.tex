@@ -68,6 +68,7 @@
 % \newcommand{\Zero}{\mathbb{O}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
+\newcommand{\pivi}{\stackrel \circ }
 
 \chapter{Введение}
 \section{Простейшие свойства вещественных чисел}
@@ -768,6 +769,82 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 	Доказали, что $$\lim_{x_0} f=\sup\limits_{x \in A} f(x).$$ Аналогично, если $f$ убывает и ограничена снизу $$\lim_{x_0} f = \inf\limits_{x \in  A}f(x).$$
     \end{note}
 \end{proof}
+\subsection{Предел композиции}\label{ques_37}
+\begin{defn}
+    $f : A \to  \R, g: B \to  \R, f(A) \subset B$. Тогда задана функция композиции $h = g \circ h$.
+\end{defn}
+\begin{thm}
+    Пусть $b = \lim_{x \to x_0} f(x) \wedge b \in  B' \wedge \lim_{y \to  b} g(y) = d $. Тогда $\lim_{x \to  x_0} f \circ g (x)= d$, если хотя бы одно условие выполнено:
+    \begin{enumerate}
+	\item $f(x) \ne b, \quad x \ne x_0$ 
+	\item $b \in  B, g \mbox{ - непрерывна в точке }b: d = g(b)$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Пусть $U$ окрестность точки $d$ ; $\exists V(b)$:
+    \[
+	y \in  \pivi V \cap B \Rightarrow g(y) \in  U
+    .\] 
+    \[
+	\exists \pivi W(x_0): x \in  \pivi W \cap A \to f(x) \in  V
+    .\] 
+    Пусть выполнено первое условие. Тогда $f(x) \in  \pivi V \Rightarrow  g(f(x)) in U$.
+    Пусть выполнено второе условие. Либо $f(x) \ne b$, тогда $g(f(x)) \in  U$, либо $f(x) = b$, тогда $g(f(x)) = d \in  U$
+\end{proof}
+
+\section{Критерий Коши}
+\subsection{Критерий Коши}\label{ques_29}
+\begin{thm}[Критерий Коши]
+    $f: A \to \R, A \subset \R, ~x_0 \in A'$. $x$ - либо число, либо $\pm \infty$.\\
+    Функция $f$ имеет предел в точке $x_0$ тогда и только тогда, когда выполняется условие Коши: 
+    \[
+	\forall \varepsilon >0 \exists \stackrel \circ V(x_0): |f(x_1) - f(x_2)| < \varepsilon , \quad \forall x_1, x_2 \in  \stackrel \circ V\cap A
+    .\] 
+\end{thm}
+\begin{proof}
+$1 \Rightarrow 2$.
+$$\lim\limits_{x \to x_0}{f(x)} \to a \in \R \Leftrightarrow ~\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0) :|f(x) - a | < \frac{\varepsilon}{2} \forall x \in \pivi V \cap A$$
+$$\Rightarrow ~\forall ~x_1, x_2 \in \pivi V \cap A \Rightarrow |f(x_1) - f(x_2)| \le |f(x_1) - a| + |f(x_2) - a| < \varepsilon$$
+
+$2 \Rightarrow 1$. 
+\begin{lm}
+Если выполнено условие Коши, то $f$ ограничено вблизи $x_0$. 
+\end{lm}
+\begin{proof}
+Применим условие при $\varepsilon = 1$, зафиксируем какую-то точку $y$ из нашего множества. Это будет означать, что для всей окрестности $x_0$ выполнено $f(y) - \varepsilon \le f(x) \le f(y) + \varepsilon$, то есть $f(x)$ ограничена.
+
+От того, что мы в одной точке (которую выкололи из окрестности) добавим значение, ограниченность не испортится. Значит НУО $f$ ограничена.
+
+\begin{defn}
+Пусть $g: B \to \R$ ограничена на $B, E \subset B$. Колебание $f$ на $E$ - это $\sup_{x \in E}{g(x)} - \inf_{x \in E}{g(x)} = osc_E(g)$
+\end{defn} 
+Если $\forall x, y \in E |g(x) - g(y)| \le \rho \Rightarrow osc_E(g) \le \rho$:
+$\forall ~x, y \in E -\rho < g(x) - g(y) \le g \Rightarrow g(x) \le g(y) + \rho \Rightarrow \sup_E{g} \le g(y) + \rho, \sup_E{g} - \rho \le g(y) ~\forall ~y \in E \Rightarrow \sup_E{g} - \rho$ - нижняя граница, $\inf_E{g} \ge \sup_E{g} - \rho$.
+
+//$sup - inf \le sup - (sup - \rho) = \rho$
+
+Еще одна полезная формула для колебаний: $$osc_B(f) = \sup{\{|f(x) - f(y)| | x, y \in B\}}$$.
+Доказали, что $|f(x) - f(y)| \le \rho ~\forall ~x, y \in B \Rightarrow osc_B(f) \le \rho$. Пусть $d - osc_B(f)$; $x, y \in B$
+$$m = \inf_{z \in B}{f(z)} \le f(x) \le \sup_{z \in B}{f(x)} = M$$
+$$\inf_{z \in B}{f(z)} \le f(y) \le \sup_{z \in B}{f(x)}$$
+$$\Rightarrow |f(x) - f(y)| \le M - m = osc_B(f) = d$$
+$d$ - верхняя граница для множества чисел $|f(x) - f(y)|$, доказали, что она меньше всех верхних границ, значит она точная верхняя граница, что и надо.
+\end{proof}
+
+$f$ удовлетворяет условию Коши в $x_0: \forall \varepsilon > 0 ~\exists ~\pivi V(x_0): ~|f(x) - f(y)| < \varepsilon ~\forall x, y \in \pivi V\cap A$. По лемме $f$ ограничена. 
+
+Заведем вспомогательную функцию $g: A \to \R, x_0 \in \R, \pm\infty$ - предельная точка для $g, ~g$ ограничена на $A$. $\pivi V(x_0); m = m_{\pivi V} = m_{\pivi V, g} = \inf_{x \in \pivi V \cap A}{g(x)}; M = \sup_{x \in \pivi V \cap A}{g(x)}$. Всегда $m \le M$, заведем еще $\Gamma_{x_0} = \Gamma_{x_0, g} = {m_{\pivi V}}$ - множество inf по всем проколотым окрестностям, аналогично заведем множество sup. 
+
+//здесь мы просто смотрим на произвольную функцию и вводим терминологию
+
+Пара $(\Gamma_{x_0}, \Delta_{x_0})$ образует щель. Если $\pivi W \subset \pivi V \Rightarrow m_{\pivi W} \ge m_{\pivi V}; M_{\pivi W} \le M_{\pivi V}$. Пусть $a \in \Gamma, b \in \Delta, ~\exists ~\pivi V, \pivi W: a = m_{\pivi V}, b = M_{\pivi W}$. Пусть $\pivi V  \subset \pivi W; ~a \le M_{\pivi V} \le b$. Воспользовались какими нужно неравенствами, которые тут есть, проверили, что щель.
+
+Для нашей $f$ это щель. $(\Gamma_{x_0, f}, \Delta_{x_0, f})$ узкая щель. $\varepsilon > 0; ~\exists \pivi V: |f(x) - f(y)| < \varepsilon ~\forall x, y \in \pivi V \cap A \Rightarrow M_{\pivi V, f} - m_{\pivi V, f} \le \varepsilon$, то есть там только одно число $c$.
+
+$\forall \pivi V(x_0) ~m_{\pivi V, f} \le c \le M_{\pivi V, f}. x \in \pivi V \cap A \Rightarrow m_{\pivi V, f} \le f(x) \le M_{\pivi V, f} \Rightarrow |f(x) - c| \le |M - m| \le \varepsilon$.
+
+$\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0): osc_{\pivi V \cap A}(f - c) \le \varepsilon$.
+\end{proof}
 \section{Ряды}
 \subsection{Понятие ряда. Теорема Лейбница}\label{ques_26}
 \begin{defn}
@@ -810,5 +887,266 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \begin{thm}
     Пусть $s>0$, тогда ряд $\slim_{n=1}^\infty \frac{1}{n^s}$ сходится при $s > 1$ и расходится при $s \le 1$.
 \end{thm}
+\section{Верхние и нижние пределы}
+\subsection{Определение и свойства}\label{ques_30}
+\begin{defn}
+    $f: A \to \R$\\
+    \[
+	a = \varlimsup_{x \to x_0}=\lim\limits_{x \to x_0} \sup f(x)
+    \]\[
+    b = \varliminf_{x \to x_0}=\lim\limits_{x \to x_0} \inf f(x)
+    .\] 
+    Число $a$ называется верхним пределом $f$ в точке $x_0$. \\
+Число $a$ называется нижним пределом $f$ в точке $x_0$.
+\end{defn}
+\begin{prop}
+    \begin{enumerate}
+        \item $\lambda \in \R$ 
+	    \[
+		\overline \lim_{x_0} \lambda f = \left \{
+		    \begin{array}{ll}
+			\lambda \overline \lim_{x_0} f, & \lambda \ge 0\\
+			\lambda \underline \lim_{x_0} f, & \lambda <0
+		    \end{array}
+		    \right .
+	    .\] 
+	    \[
+		\underline \lim_{x_0} \lambda f = \left \{
+		    \begin{array}{ll}
+			\lambda \underline \lim_{x_0} f, & \lambda \ge 0\\
+			\lambda \overline \lim_{x_0} f, & \lambda <0
+		    \end{array}
+		    \right .
+	    .\] 
+	\item Сумма двух функций $f, g : A \to \R$\\
+	    \[
+		\overline {\lim}_{x_0} (f+g) \le \overline\lim_{x_0} f + \overline \lim_{x_0} g
+	    .\] 
+	    Рассмотрим $x \in \pivi V(x_0)\cap A$.
+	    \[
+		(f+g)(x) = f(x) + g(x) \le M_{\pivi V} (f) + M_{\pivi V} (g) \Rightarrow 
+	    \] 
+	    \[
+		\Rightarrow M_{\pivi V}  (f + g) \le M_{\pivi V} \le  M_{\pivi V} (f) + M_{\pivi V} (g) 
+	    .\] 
+	    Тогда 
+	    \[
+		\varlimsup _{x_0} (f+g) \le M_{\pivi V} (f) + M_{\pivi V}(g) - M_{\pivi V}(f)(g) + \varlimsup_{x_0}(f, g) \le M_{\pivi V} 
+	    .\] 
+	    / Не дописано!!!
+% Не дописано!!!
+    \end{enumerate}
+\end{prop}
+\subsection{Теорема об описании верхнего и нижнего предела}\label{ques_31}
+\begin{thm}[Теорема об описании верхнего предела]
+    Пусть $f$ - ограниченная функция на множестве $A$. $x_0 \in A$. Число $a$ является верхним пределом функции $f$ в точке $x_0$ тогда и только тогда, когда выполнены условия:
+    \begin{enumerate}
+	\item $\forall \varepsilon >0 \exists \pivi V (x_0):$ 
+	    \[
+		\forall x \in  \pivi V \cap A: f(x) < a + \varepsilon 
+	    .\] 
+	\item $\forall \varepsilon >0 ~ \forall \pivi  U(x_0):$
+	    \[
+		\exists x \in \pivi U\cap A: f(x) > a -\varepsilon 
+	    .\] 
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Пусть 1 и 2 выполнены. $a \in  \varlimsup_{x_0} f$.\\
+    Рассмотрим $\varepsilon >0$ и найдем для него $\pivi V$.
+    \[
+	\varlimsup_{x_0}f \le  M_{\pivi V} \le a + \varepsilon 
+    .\] 
+Тогда $\varlimsup_{x_0} \le a$.
+\[
+    \forall \pivi U: M_{\pivi U} > a - \varepsilon  \Rightarrow \varlimsup_{x_0} f \ge  a+ \varepsilon 
+.\] 
+Так как $\varepsilon $ любое, $\varlimsup_{x_0} f \ge a$
 
+Теперь в обратную сторону. Пусть $a = \varlimsup_{x_0} f$.
+\[
+    a = \varlimsup_{x_0} f \Rightarrow a = 
+    \inf M_{\pivi V} (f)
+.\] 
+$\varepsilon >0 : \exists \pivi V: a \le M_{\pivi V} < a+ \varepsilon $
+\[
+    M_{\pivi V} = \sup\limits_{x \in \pivi V \cap A} f(x) \Rightarrow f(x) < a + \varepsilon \quad \forall x \in \pivi V \cap A
+.\] 
+Рассмотрим произвольную проколотую окрестность $\pivi  V$ точки $x_0$.
+\[
+    M_{\pivi V} \Rightarrow  \exists x \in  \pivi V \cap A: f(x) > a- \varepsilon 
+.\] 
+\end{proof}
+\begin{thm}[Теорема об описании нижнего предела]
+    Пусть $f$ - ограниченная функция на множестве $A$. $x_0 \in A$. Число $b$ является нижним пределом функции $f$ в точке $x_0$ тогда и только тогда, когда выполнены условия:
+    \begin{enumerate}
+	\item $\forall \varepsilon >0 \exists \pivi V (x_0):$ 
+	    \[
+		\forall x \in  \pivi V \cap A: f(x) > b - \varepsilon 
+	    .\] 
+	\item $\forall \varepsilon >0 ~ \forall \pivi  U(x_0):$
+	    \[
+		\exists x \in \pivi U\cap A: f(x) < b + \varepsilon 
+	    .\] 
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Аналогично
+\end{proof}
+
+\section{Последовательности}
+\subsection{Сходящиеся последовательности и их пределы}\label{ques_33}\label{ques_34}
+$x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную предельную точку $+\infty$.
+\begin{defn}
+    $\{x_n\} $ называется сходящейся, если существует конечный предел $\lim_{\infty} x_n$.
+\end{defn}
+\begin{st}
+    Пусть $\{x_n\}$ - последовательность, $b \in \R$. Следующие условия эквивалентны:$ $
+    \begin{enumerate}
+	\item $\lim\limits_{n \to \infty} x_n = b$
+	\item $\forall \varepsilon >0 \exists A \subset \N \mbox{ - конечное }: \forall x \notin A : |x_n -b| < \varepsilon $
+    \end{enumerate}
+\end{st}
+\begin{proof}
+    Запишем определение того, что $\lim_{\infty} x_n = b$: 
+    \begin{equation}\label{eq_lim}
+    \forall \varepsilon >0 \exists N \in \R: |x_n - b|<\varepsilon \quad \forall n > N
+    \end{equation}
+    $1 \Rightarrow 2.$ Пусть \ref{eq_lim} верно.
+    Возьмем $A = \{1, \ldots N\}$ - конечно. Следовательно, верно $2$.\\
+    $2 \Rightarrow 1$. Возьмем $N = \max \{A\}$, получим $1$.
+\end{proof}
+\begin{defn}
+    Пусть $\varphi : \N \to \N$ - биекция. 
+    $y_n = x_{\varphi(n)}$ -- перестановка $\{x_n\}$.
+\end{defn}
+\begin{cor}
+    Последовательность сходится тогда и только тогда, когда любая перестановка сходится.
+\end{cor}
+\begin{defn}
+    Пусть $\{n_k\}$ - строго возрастающая последовательность натуральных чисел.
+    $\{y_k\}: y_k = y_{n_k} $ - подпоследовательность $\{x_n\}$
+\end{defn}
+\begin{st}
+    Если $\{x_n\}$ сходится к $b$, то любая подпоследовательность тоже сходится к $b$.
+\end{st}
+\begin{proof}
+    Аналогично \ref{ques_16}. 
+\end{proof}
+\subsection{Вторая форма теоремы о компактности}\label{ques_35}
+\begin{lm}\label{lm_for_the_second_form_of_the_theorm_of_compact}
+    $x \subseteq \R, x_0 \in  \R$. Следующие условия эквивалентны: $ $
+    \begin{enumerate}
+        \item $x_0$ - предельная точка для $X$.
+	\item $\exists \{x_n\}_{n \in \N} : x_n \in  X, x_n \ne x_0$. Более того $\{x_n\}$ можно выбрать такБ что $x_k \ne x_j, \quad i\ne j$.
+    \end{enumerate}
+\end{lm}
+\begin{proof}
+    $2 \Rightarrow  1$.
+    Возьмем любую проколотую окрестность точки $x_0$. Хотим:  $\pivi V \cap X \ne 0$.\[
+	\pivi V = (x -\varepsilon , x_0) \cup (x_0, x+ \varepsilon )
+    .\] 
+     \[
+    \exists k : x_k \in  V, x_k \ne x_0 \Rightarrow x_k \in  \pivi V, x_k \in  X
+    .\] 
+    $1 \Rightarrow 2$.
+    Теперь возьмем 
+     \[
+	 V_n = (x_0 -\frac{1}{n}, x_0 + \frac{1}{n}), n \in  \N
+    .\] 
+    \[
+	\exists x_n \in  X \cap V_n \wedge x_n \ne x_0
+    .\] 
+    Тогда $|x_n - x_0| < \frac{1}{n}$. По принципу двух полицейских $|x_n - x_0| \to  0$.
+    Теперь сделаем все неравными:
+    $x_1 \in  V_1 \cap X, x_1 \ne x_0$, дальше возьмем $\delta_1  < \min (\frac{1}{n} , |x_n - x_0|)$ и скажем, что $x_2 \in  (x_0 - \delta , x_0 + \delta ) \cap X_1, x_2 \ne x_1$ и так далее, $\delta_{n-1} \min (\frac{1}{n}, |x_0 -x_1|, \ldots |x_0 - x_{n-1}|, x_n \in  (x_0 - \delta _{n-1}, x_0 + \delta_{n-1}), x_n \ne x_0 $
+\end{proof}
+\begin{thm}[Вторая форма теоремы о компактности]
+    Всякая ограниченная последовательность имеет сходящуюся подпоследовательность.
+\end{thm}
+\begin{proof}
+    $\{x_n\}_{n \in \N}$ - ограниченная последовательность. Тогда $\exists M: |x_n| \le M, \quad \forall n$. Разберем два случая:
+    $ $
+    \begin{enumerate}
+        \item $\{x_n \mid n \in  \N\}$ - конечно, тогда какое-то значение принимается бесконечное число раз, тогда с некоторого момента все элементы равны. Возьмем эту последовательность, она сходится.
+	\item $A$ - бесконечно, но ограничено. Следовательно, есть предельная точка для $A$.
+	    Тогда по лемме \ref{lm_for_the_second_form_of_the_theorm_of_compact} существует $\{a_k\} \in  A, a_k \to  b,  a_k \ne a_l , k \ne l$.
+
+	    Тогда $\forall k \exists ! n_k: a_k=x_{n_k}$, где номера $n_k$ попарно различны, но не упорядочены. То есть $\{x_{n_k}\}$ - перестановка $\{x_n\}$, а значит тоже сходится.
+    \end{enumerate}
+\end{proof}
+\subsection{Предел функции в терминах последовательности}\label{ques_36}
+\begin{thm}
+Пусть $A \subset \R, x_0 \in A', x_0 \in \R, f: A \to \R$. Следующие утверждения эквивалентны:
+\begin{enumerate}
+\item $\lim\limits_{x \to x_0}{f(x)} = a$
+\item $\forall \{a_n\}: a_n \in A, a_n \neq x_0, a_n \to x_0  ~f(a_n) \to a$
+\end{enumerate}
+\end{thm}
+\begin{proof}
+    $1 \Rightarrow 2$. 
+    Берем последовательность $a_n \in  A, a_n \ne x_0$.
+    Надо $f(a_n) \to  b$.
+    \[
+	\varepsilon >0; \exists  V(x_0): x \in  \pivi V \cap A \Rightarrow |f(x) - b| < \varepsilon 
+    .\] 
+    Тогда \[
+	\exists N: a_n \in V ~ \forall n > N \Rightarrow a_n \in  \pivi V (a_n \ne x_0)
+    .\] 
+    Получаем \[
+	|f(a_n) - b| < \varepsilon 
+    .\] 
+
+    $2 \Rightarrow 1$.
+    От противного. Пусть первое условие не выполнено. Предположим, что $x_0 \in  \R$. \[
+	\neg "a = \lim_{x_0} f": \exists \varepsilon >0 \forall \beta >0 \exists x: |x-x_0|<\delta  , x= x_0, x \in A, \quad |f(x) - a| \ge \varepsilon 
+    .\] 
+   Возьмем \[
+     \delta  _n = \frac{1}{n} \exists x_n : |x - x_n| < \frac{1}{n}, x_n \ne x_0, \in A 
+    .\] 
+    Получаем, что $|f(x_n) - a| \ge  \varepsilon $. С другой стороны, по принципу двух полицейских:
+    \[
+	0 \le |x_n -x_0| < \frac{1}{n} \Longrightarrow x_n \to  x_0
+    .\] 
+    Противоречие.
+
+    Случай $x_0 = \infty$.
+    $$\exists \varepsilon >0 \forall  M \exists x > M , x \in  A: |f(x) -a| \ge  \varepsilon $$
+    Возьмем $x_n > n , x_n \in A: |f(x_n) - b| \ge \varepsilon \Rightarrow x_n \to  \infty$.
+\end{proof}
+
+\section{Бесконечные пределы}
+\subsection{Бесконечные пределы}\label{ques_38}
+\begin{defn}
+    $f: A \to \R, x_0 \in A' (x_0 \in  \R \vee x_0 = \pm \infty)$.
+    Говорят, что $f $ имеет предел $+\infty (-\infty)$ в точке $x_0$, если: $\forall U(\pm \infty)$ существует проколотая окрестность $\pivi V(x_0): f(x) \in  U \forall x \in  \pivi V \cap A$.
+
+    На языке неравенств: $\forall M \in \R \exists \pivi V (x_0) : f(x) > M \forall x \in  \pivi V \cap A$.
+\end{defn}
+\begin{defn}
+    Говорят, что $f$ стремиться к бесконечности в точке $x_0$, если $\lim_{x \to x_0} |f(x)| = +\infty$. То есть $\forall  M >0 \exists \pivi V(x_0): |f(x)| > M \forall x \in  A \cap \pivi V$.
+\end{defn}
+\begin{st}
+    Пусть $f(x) \ne 0$ в проколотой окрестности $x_0$.\label{inf_if}
+    Следующие условия эквивалентны: 
+    \begin{enumerate}
+        \item $f$ - стремиться к бесконечности в точке  $x_0$
+	\item $\lim_{x \to  x_0} \frac{1}{f(x)}$ = 0
+    \end{enumerate}
+\end{st}
+\begin{proof}
+    $1 \Rightarrow 2$ (тогда дополнительное условие \ref{inf_if} можно не накладывать).
+    $$\varepsilon  >0 M = \frac{1}{\varepsilon }: \exists \pivi W(x_0): |f(x)| > \frac{1}{\varepsilon } ~ \forall x \in  \pivi W \cap A \Leftrightarrow \left |\frac{1}{f(x)} \right |< \varepsilon $$
+
+    $2 \Rightarrow  1$ (здесь условие \ref{inf_if} необходимо). 
+    $M > 0, \varepsilon  = \frac{1}{M}$. Тогда существует проколотая окрестность $\pivi V$ точки $x_0$ :
+    \[
+	\left | \frac{1}{f(x)} \right | < \frac{1}{M}, x \in  \pivi V \cap A \Longleftrightarrow |f(x) |> M
+    .\] 
+\end{proof}
+\section{Бесконечно большие и бесконечно малые}
+\subsection{O и o. Соотношения транзитивности}\label{ques_39}
+\begin{defn}
+    
+\end{defn}
 \end{document}
