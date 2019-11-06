@@ -44,7 +44,7 @@
 \newtheorem*{aks}{Аксиома}[section]
 \newtheorem*{lm}{Lemma}
 \newtheorem*{st}{Statement}
-\newtheorem*{prop}{Properties}
+\newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Def}
@@ -1147,6 +1147,90 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
 \section{Бесконечно большие и бесконечно малые}
 \subsection{O и o. Соотношения транзитивности}\label{ques_39}
 \begin{defn}
-    
+    $f : A \to \R, x_0 \in  A'$.\\
+    $f$ называется бесконечно малой в точке $x_0$, если $\lim_{x \to x_0} |f(x)| = 0$ .\\
+    $f$ называется бесконечно большой в точке $x_0$, если $\lim_{x \to  x_0} |f(x)| = +\infty$.
 \end{defn}
+\begin{defn}
+    $f, g: A \to  \R, x_0 \in  A'$. Говорят, что $g$ доминирует функцию $f$ вблизи $x_0$ и пишут $f = O(g) ~ (x \to  x_0)$, если $\exists \pivi U(x_0) , \exists C:  |f(x)| \le  C |g(x)| \quad \forall x \in  \pivi U$.
+\end{defn}
+\begin{defn}
+    Функции $f, g$ называются сравнимым вблизи $x_0$, если $f=O(g) \wedge g = O(f)$.  Обозначение: $f \asymp g$.
+\end{defn}
+\begin{prop}
+    $f=O(g) \wedge g=O(h) \Longrightarrow f = O(h)$
+\end{prop}
+\begin{proof}
+    $$\exists \pivi U (x_0), \exists c_1: |f(x)| \le c_1 |g(x)| \quad \forall x \in  \pivi U$$
+    $$\exists \pivi V (x_0), \exists c_1: |g(x)| \le c_2 |h(x)| \quad \forall x \in  \pivi V \cap A$$
+    Тогда  $\forall x \in  \pivi V \cap \pivi U:$
+    \[
+	|f(x)| \le  c_1 |g(x)| \le  c_1 c_2 |h(x)| \Rightarrow |f(x)| \le  c |h_(x)|
+    .\] 
+\end{proof}
+\begin{note}
+    Если $g(x)$ не обращается в ноль вблизи  $x_0$, то $f(x) = O(g(x)) \Longleftrightarrow \frac{f}{g}$ - ограниченная функция.
+\end{note}
+\begin{defn}
+    $f, g: A \to  \R, x_0 \in  A'$. Говорят, что $f(x) = o(g(x))$ вблизи $x_0$, если  $\forall \varepsilon >0 \exists \pivi U(x_0): $ 
+    \[
+	|f(x)| \le \varepsilon |g(x)|, \quad \forall x \in  \pivi U \cap A
+    .\] 
+\end{defn}
+\begin{note}
+    Если $g(x)$ не обращается в ноль вблизи  $x_0$, то $f(x) = o(g(x)) \Longleftrightarrow \lim_{x_0}\frac{f}{g}=0$ - ограниченная функция.
+\end{note}
+\subsection{Эквивалентные функции}\label{ques_40}
+\begin{defn}
+    $f, g : A \to  \R, x_0 \in A'$. Говорят, что $f, g$ эквивалентны вблизи $x_0$ , если $f-g = o(g)$, при $x \to  x_0$. Обозначение: $f \sim g$.
+\end{defn}
+\begin{note}
+    Определение асимметрично!
+\end{note}
+\begin{lm}
+    $f \sim g$, при $x \to  x_0 \Longrightarrow g \sim x_0$, при $x \to  x_0$
+\end{lm}
+\begin{proof}
+    Проверим, что $g = O(f)$ вблизи  $x_0$ :
+    \[
+	\varepsilon >0: \exists \pivi V(x_0): |f(x) - g(x)| \le \varepsilon |g(x)| \quad \forall x \in  \pivi V \cap A
+    .\] 
+    Возьмем $\varepsilon =\frac{1}{2}$:
+    \[
+	|f(x)| - |g(x)| \le \frac{1}{2} |g(x)|
+    .\] 
+    \[
+	\frac{1}{2} |g(x)| \le  |f(x)|
+    .\] 
+    \[
+ |g(x)| \le  2|f(x)|
+    .\] 
+\end{proof}
+\begin{note}
+    Если $g(x) \ne 0$ вблизи $x_0$, $f \sim g \Longleftrightarrow \lim_{x \to  x_0} \frac{f(x)}{g(x)} =1$
+\end{note}
+\subsection{Отношение эквивалентности и вычисление пределов}\label{ques_41}
+\begin{st}
+    Полезные преобразования для вычисления пределов:
+    \begin{enumerate}
+	\item $p(x) = \slim_{i = 1}^n a_n x^n, \quad a_n \ne 0$. При $x \to +\infty : p(x) \sim a_n x^n$ 
+	\item  $p(x) = (x -x_0) ^l (b_0 + q(x)), \quad b \ne 0, q(x_0) = 0$. Тогда $p(x) \sim b_0(x-x_0)^l$
+	\item $f(x) = \sqrt[n]{1+x} -1 = \frac{1 + x -1}{(\sqrt[n]{1 + x})^{n-1} \ldots + 1} \sim \frac{x}{n} \to 0, \quad x \to x_0$
+    \end{enumerate}
+\end{st}
+\begin{thm}
+    $f, g$ не обращаются в нуль вблизи $x_0$, $f\sim f_1 \wedge g\sim g_1$ вблизи $x_0$. Тогда $fg, f_1g_1$ одновременно имеют или не имеют предел в точке $x_0$. Ели пределы существуют, то они равны.
+\end{thm}
+\begin{note}
+    Аналогичная теорема верна для $\frac{f}{g}$ и $\frac{f_1}{g_1}$
+\end{note}
+\begin{proof}
+    \[
+	fg = f_1g_1 \underbrace{\frac{f}{f_1} \frac{g}{g_1}}_{\mbox{предел этого равен} 1}
+    .\] 
+    \[
+	\frac{f}{g} = \frac{f_1}{g_1} \underbrace{\frac{f}{f_1} \frac{g_1}{g}}_{\mbox{предел этого равен} 1}
+    .\] 
+\end{proof}
+
 \end{document}
