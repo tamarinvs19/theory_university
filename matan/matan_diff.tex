@@ -1,0 +1,76 @@
+\documentclass[12pt]{report}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
+\pagestyle{plain}
+
+\usepackage{fullpage}
+
+\title{Конспект по матанализу в формате вопросов коллоквиума \\ (лекции Кислякова Сергея Витальевича)}                      
+\begin{document}
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+
+\renewcommand{\proofname}{Proof}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{aks}{Аксиома}[section]
+\newtheorem*{lm}{Lemma}
+\newtheorem*{st}{Statement}
+\newtheorem*{prop}{Property}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Def}
+\newtheorem*{ex}{Example}
+\newtheorem*{exs}{Examples}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Name}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remain}
+\newtheorem*{note}{Note}
+\newtheorem*{probl}{Exercise}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+% \newcommand{\Zero}{\mathbb{O}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+\newcommand{\pivi}{\stackrel \circ }
+
+\chapter{Непрерывные функции}
+\section{Дифференцирование}
+\end{document}
+
