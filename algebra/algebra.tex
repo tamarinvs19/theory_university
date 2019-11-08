@@ -1528,4 +1528,114 @@ $g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi 
     $Ker \varphi  = n \Z$\\
     $\Z \cong \Z \diagup n\Z$
 \end{ex}
+\section{Лекция 18}
+\begin{ex}
+\[
+    U_n(F)  = \left \{ 
+	\left ( 
+	\begin{array}{ccc}
+	    1 &  & * \\
+	      & \ddots & \\
+	    0 & & 1
+	\end{array}
+	\right )
+    \right \}
+.\] 
+Обозначим  \[
+    U_n {(k)} = 
+    \left \{
+	\left ( 
+	\begin{array}{cccccc}
+	    1 & 0 & \ldots & 0 & \ldots & * \\
+	    0 & 1 & 0 & \ldots & & * \\
+	    0 & 0 & 1 & 0 &\ldots& \\
+	    \vdots &&&&\\
+	    0 & 0 & \ldots & 0 && 1
+	\end{array}
+	\right )
+    \right \}
+	=
+	\{a \mid a_{ij} = 1, a_{ij} = 0, \forall i \ne j, j - i < k\}
+.\] 
+Мартица трансвекций:
+\[
+    t_{ij}(\alpha ) = 
+    \left ( 
+    \begin{array}{ccccc}
+	1 & \ldots & \alpha & \ldots  & 0 \\
+	0 && \ddots && 0\\\
+	0 &&0&& 1
+    \end{array}
+    \right )
+.\] 
+Тогда $U^{(k)} _ n(F) = U _n^{(k)} = \langle t_{ij} (\alpha ) \mid j -i \ge  k, \alpha  \in  F \rangle$ - группа.
+\begin{lm}
+    $U_n^{(k)} \setminus U_n ^{(k-1)} \cong \underbrace {F \times \ldots \times F}_{n-k}, \quad F= (F, +)$. Проверим, что есть гомоморфизм, и применим теорему о гомоморфизме.
+\end{lm}
+\begin{proof}
+\[
+    \varphi : U_n ^k \to F^{n-k}, \quad \varphi (a) = (a_{i~ k+1}, \ldots , a_{n-k~ n})^T
+.\] 
+Заметим, что $\varphi$ - сюрьективна, $\varphi ^{-1} (e) = U^{k+1} _n$. 
+\[
+    a, b \in  U_n^{(k)} , \qquad (a, b) _{i~ i+k} = \slim _{j=1} ^n a_{ij} \cdot b_{i~ j+k} = b_{j~ i+k} + a_{i~ i+k}
+.\] 
+Тогда $\varphi (a \cdot b) = \varphi(a) + \varphi(b) $. Следовательно, $\varphi $ - гомоморфизм.
+\end{proof}
+\end{ex}
+\begin{defn}
+    $[a, b] = aba^{-1}b^{-1}$ -- коммутатор.\\
+    $H, K \le G, \quad [H, K]:= \langle [h, k] \mid h \in  H, k \in  K \rangle$ -- коммутант.
+\end{defn}
+\begin{st}
+    $[h, k]^g = [h^g, k^g] \Rightarrow [G, G] \trianglelefteq G$.
+\end{st}
+\begin{st}
+    $\varphi : G \to  A$ - гомоморфизм. \\
+    $A$ - абелева $\Longrightarrow [G, G] \subseteq Ker \varphi $.
+\end{st}
+\begin{proof}
+    \[
+	\varphi ([g, h]) = [\varphi (g), \varphi (h)] = 1 
+    .\] 
+    Тогда \[
+	[g, h] \in  Ker \varphi , \quad \forall g, h \in  G
+    .\] 
+    Из этого следует, что $[G, G] \subseteq  Ker \varphi $.
+\end{proof}
+\begin{cor}
+    $[U_n^{(k)}, U_n^{(k}] \le U^{(k+1)}_n $
+\end{cor}
+\begin{lm}
+    $[U_n^{(k)}, U_n^{(m)}] = U_n^{(m+k)}$,( если $l \ge n 	$, то $U^l_n := {e}$).
+\end{lm}
+\begin{proof}
+\[
+    [t_{ij}(\alpha ), t_{jh} (\beta )] = t_{ih} (\alpha \beta), \quad i, j, h \mbox{ - различны} 
+.\]     
+$\forall i, h : h - i \ge  m:$
+\[
+\exists j: j-i \ge k, h -j \ge m
+.\] 
+Следовательно, любая образующая (и сама группа) содержится: $U_n^{(m+k)}\subseteq [U_n^{(m)}, U_n^{(k)}$.
+В обратную сторону:
+$$
+\begin{array}{c}
+[xy, z] = xyzy^{-1}x^{-1}z^{-1} = x (yzy^{-1}z^{-1}z x^{-1} z^{-1} =\\
+x [y, z] x^{-1} x z x^{-1} z{-1} = [y, z]^{x^{-1}} \cdot [x, z]
+\end{array}
+$$
+Заметим, что \[
+    [t_{ij}(\alpha ) , t_{lh}(\beta )] = e, ~\mbox{если }j \ne l, h \ne i
+.\] 
+Тогда
+\[
+    t_{ij}(\alpha ) \in  U^{(k)}_n , ~ t_{hk}(\beta ) \Longrightarrow [t_{ij}(\alpha ), t_{lh}(\beta )] \in U^{(m+k)_n}
+.\] 
+Посчитаем 
+\[
+    \underbrace{[t_{ij}(\alpha ), t_{li}(\beta )] }_{\quad j \ne l } = [t_{li} (\beta), t_{ij} (\alpha ) ]^{-1} = t_{lj} (\beta \alpha )^{-1} = t_lj (-\beta \alpha ) 
+.\] 
+Так как $U_n^{(k+m)}$ - нормальная подгруппа, то есть трансвекцию во включении можно заменить на произведение трансвекций, то есть на любые элементы $U_n^{(k)}, U_n^{(m)}$. Доказали обратное утверждение.
+\end{proof}
 \end{document}
