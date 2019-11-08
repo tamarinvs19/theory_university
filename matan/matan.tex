@@ -1189,7 +1189,7 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
     Определение асимметрично!
 \end{note}
 \begin{lm}
-    $f \sim g$, при $x \to  x_0 \Longrightarrow g \sim x_0$, при $x \to  x_0$
+    $f \sim g$, при $x \to  x_0 \Longrightarrow g \sim f$ при $x \to  x_0$
 \end{lm}
 \begin{proof}
     Проверим, что $g = O(f)$ вблизи  $x_0$ :
@@ -1215,7 +1215,7 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
     Полезные преобразования для вычисления пределов:
     \begin{enumerate}
 	\item $p(x) = \slim_{i = 1}^n a_n x^n, \quad a_n \ne 0$. При $x \to +\infty : p(x) \sim a_n x^n$ 
-	\item  $p(x) = (x -x_0) ^l (b_0 + q(x)), \quad b \ne 0, q(x_0) = 0$. Тогда $p(x) \sim b_0(x-x_0)^l$
+	\item  $p(x) = (x -x_0) ^l (b + q(x)), \quad b \ne 0, q(x_0) = 0$. Тогда $p(x) \sim b_0(x-x_0)^l$
 	\item $f(x) = \sqrt[n]{1+x} -1 = \frac{1 + x -1}{(\sqrt[n]{1 + x})^{n-1} \ldots + 1} \sim \frac{x}{n} \to 0, \quad x \to x_0$
     \end{enumerate}
 \end{st}
