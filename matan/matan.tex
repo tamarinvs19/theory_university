@@ -811,20 +811,21 @@ $2 \Rightarrow 1$.
 Если выполнено условие Коши, то $f$ ограничено вблизи $x_0$. 
 \end{lm}
 \begin{proof}
-Применим условие при $\varepsilon = 1$, зафиксируем какую-то точку $y$ из нашего множества. Это будет означать, что для всей окрестности $x_0$ выполнено $f(y) - \varepsilon \le f(x) \le f(y) + \varepsilon$, то есть $f(x)$ ограничена.
+Применим условие : зафиксируем какую-то точку $y$ из нашего множества. Это будет означать, что для всей окрестности $x_0$ выполнено $f(y) - \varepsilon \le f(x) \le f(y) + \varepsilon$, то есть $f(x)$ ограничена.
 
-От того, что мы в одной точке (которую выкололи из окрестности) добавим значение, ограниченность не испортится. Значит НУО $f$ ограничена.
+От того, что мы в одной точке (которую выкололи из окрестности) добавим значение, ограниченность не испортится. Значит, не умоляя общности, $f$ -  ограничена.
 
 \begin{defn}
 Пусть $g: B \to \R$ ограничена на $B, E \subset B$. Колебание $f$ на $E$ - это $\sup_{x \in E}{g(x)} - \inf_{x \in E}{g(x)} = osc_E(g)$
 \end{defn} 
-Если $\forall x, y \in E |g(x) - g(y)| \le \rho \Rightarrow osc_E(g) \le \rho$:
+Если $\forall x, y \in E ~ |g(x) - g(y)| \le \rho \Rightarrow osc_E(g) \le \rho$:
 $\forall ~x, y \in E -\rho < g(x) - g(y) \le g \Rightarrow g(x) \le g(y) + \rho \Rightarrow \sup_E{g} \le g(y) + \rho, \sup_E{g} - \rho \le g(y) ~\forall ~y \in E \Rightarrow \sup_E{g} - \rho$ - нижняя граница, $\inf_E{g} \ge \sup_E{g} - \rho$.
 
-//$sup - inf \le sup - (sup - \rho) = \rho$
+/$sup - inf \le sup - (sup - \rho) = \rho$
 
-Еще одна полезная формула для колебаний: $$osc_B(f) = \sup{\{|f(x) - f(y)| | x, y \in B\}}$$.
-Доказали, что $|f(x) - f(y)| \le \rho ~\forall ~x, y \in B \Rightarrow osc_B(f) \le \rho$. Пусть $d - osc_B(f)$; $x, y \in B$
+Еще одна полезная формула для колебаний:
+$$osc_B(f) = \sup{\{|f(x) - f(y)| \mid x, y \in B\}}$$.
+Доказали, что $|f(x) - f(y)| \le \rho ~\forall ~x, y \in B \Rightarrow osc_B(f) \le \rho$. Пусть $d = osc_B(f)$; $x, y \in B$
 $$m = \inf_{z \in B}{f(z)} \le f(x) \le \sup_{z \in B}{f(x)} = M$$
 $$\inf_{z \in B}{f(z)} \le f(y) \le \sup_{z \in B}{f(x)}$$
 $$\Rightarrow |f(x) - f(y)| \le M - m = osc_B(f) = d$$
@@ -858,7 +859,7 @@ $\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0): osc_{\pivi V \cap A}(f - c) \l
     .\] 
 \end{st}
 \begin{thm}[Лейбниц]
-    Пусть $a_n$ - монотонно убывающая неотрицательная последовательность $0 \ge  a_1 \ge a_2 \ldots ~~$. Тогда ряд $\slim_{n=1}^{\infty}$ - сходится тогда и только тогда, 
+    Пусть $a_n$ - монотонно убывающая неотрицательная последовательность $0 \ge  a_1 \ge a_2 \ldots ~~$. Тогда ряд $\slim_{n=1}^{\infty} a_n$ - сходится тогда и только тогда, 
     когда 
     $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится.
 \end{thm}
@@ -881,7 +882,7 @@ $\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0): osc_{\pivi V \cap A}(f - c) \l
 	\\$ \Leftarrow $\\
 	$\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится. Обозначим его сумму за $T$. Тогда 
 	\[
-	    a_1+(a_2+a_3) + (a_4+a_5+a_6+a_7) + \ldots +(a^{2^n} + \ldots a_{2^{n+1} -1} \le a_1 + a_2 +a_4 + \ldots a_{2^n} \le a_1 +T
+	    a_1+(a_2+a_3) + (a_4+a_5+a_6+a_7) + \ldots +(a_{2^n} + \ldots a_{2^{n+1} -1} \le a_1 + 2 a_2 +4 a_4 + \ldots 2^n a_{2^n} \le a_1 +T
 	.\] 
 \end{proof}
 \begin{thm}
