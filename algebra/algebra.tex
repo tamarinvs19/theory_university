@@ -1617,7 +1617,7 @@ $\forall i, h : h - i \ge  m:$
 \[
 \exists j: j-i \ge k, h -j \ge m
 .\] 
-Следовательно, любая образующая (и сама группа) содержится: $U_n^{(m+k)}\subseteq [U_n^{(m)}, U_n^{(k)}$.
+Следовательно, любая образующая (и сама группа) содержится: $U_n^{(m+k)}\subseteq [U_n^{(m)}, U_n^{(k)}] \label{subseteq_1}$.
 В обратную сторону:
 $$
 \begin{array}{c}
@@ -1636,6 +1636,111 @@ $$
 \[
     \underbrace{[t_{ij}(\alpha ), t_{li}(\beta )] }_{\quad j \ne l } = [t_{li} (\beta), t_{ij} (\alpha ) ]^{-1} = t_{lj} (\beta \alpha )^{-1} = t_lj (-\beta \alpha ) 
 .\] 
-Так как $U_n^{(k+m)}$ - нормальная подгруппа, то есть трансвекцию во включении можно заменить на произведение трансвекций, то есть на любые элементы $U_n^{(k)}, U_n^{(m)}$. Доказали обратное утверждение.
+Так как $U_n^{(k+m)}$ - нормальная подгруппа, то есть трансвекцию во включении \ref{subseteq_1} можно заменить на произведение трансвекций, то есть на любые элементы $U_n^{(k)}, U_n^{(m)}$. Доказали обратное утверждение.
 \end{proof}
+
+\section{Лекция 19}
+\subsection{Поговорим о комутаторах}
+\begin{lm}
+    \[
+	H = \langle X \rangle \le  G = \langle y \rangle
+    .\] 
+    Тогда \[
+    H \trianglelefteq G \Longleftrightarrow x ^y \in H \quad \forall x \in  X, y \in  Y
+    .\] 
+\end{lm}
+\begin{proof}
+    В правую сторону очевидно (по определению), обратно: нужно доказать, что $h^g \in  H \quad \forall h \in  H, g \in G$. Разложим $g = y_1 \cdot \ldots y_m, \quad y_i = U \cup Y^{-1}$. 
+
+    Индукция по $m$. При $m = 0: g=1 \wedge h^1 = h \in  H$.
+
+    Переход: $m \ge 1$. По ИП $h^{y_1 \ldots y_{m-1}} \in  H, ~ h = x_1 \ldots x_n, \quad x_i \in  X \cup X^{-1}$.
+	\[
+	    h^y = (h^{y_1 \ldots y^{m-1}})^y_m = x_1^{y_m} \ldots x_n^{y_m}	
+	.\] 
+	$x_i \in X \Rightarrow  x_i \in  H$ по условию.
+	\[
+	x_i \in  X^{-1} \Rightarrow \left ((x_i)^{-1} )^{y_m} \right ) = \left ( (x^{-1})^{y_m} \right ) ^{-1} \in  H
+	.\] 
+\end{proof}
+\begin{note}
+    В определении нормальной подгруппы вместо $h^g$ такде можно написать $[g, h]$, так так для $h \in H, g \in  G$
+     \[
+	 [g, h] - ghg^{-1}h^{-1} = h^{g^{-1}} h \in  H \Longleftrightarrow h^{g^{-1}} \in  H 
+    .\] 
+    $g^{-1} $ можно заменить на $g$.\\
+    Аналогично в лемме можно заменить $x^y$ на $[x, y]$. 
+\end{note}
+
+\begin{prop}[Формулы для комутаторов]
+    \begin{enumerate}
+	\item $[x, y] = [y, x]^{-1}$
+	\item $[xy, z] = \!^x[y, z] \cdot [x, z]$
+	\item  $[x, y]^z = [x^z, y^z]$
+    \end{enumerate}
+\end{prop}
+\begin{lm}
+    $H, K \le G, \quad [H, K] \trianglelefteq \langle H \cup K \rangle$\\
+    \[
+	h \in  H, k \in  K, x \in  H \mbox{ (для $x \in  K$ аналогично)} 
+    .\] 
+    \[
+	[h, k]^x = \!^{x^{-1}}[h, k] = [h^{-1} h, k]^{-1}\cdot [x^{-1}, k]^{-1} \in  [H, K]
+    .\] 
+\end{lm}
+\subsection{Возвращаемся к матрицам}
+\[
+    U^{(k)}_n (F) = U_n ^{(k)} = \{a \in  M_n(F) \mid a_{i~i} = 1, a_{i~j} \forall i \ne j, j-i < k\} = \langle t_{i ~j}(\alpha ) \mid \alpha  \in F, j - i \ge k \rangle
+.\] 
+\begin{lm}
+    $U_n^{(k)} \trianglelefteq U_n = U_n^{(1)}$
+\end{lm}
+\begin{proof}
+    Докажем, что $a = [t_{i~j}(\alpha ), t_{h~l} (\beta )] \in  U_n^{(k)} \quad \forall j - i \ge  k$. $l > h$\\
+    Первый случай $i \ne h, i \ne l \Rightarrow a = e \in  U_n^{(k)}$. \\
+    Второй случай $j = h \Rightarrow  i \ne j: \quad a =t_{i~l}(\alpha  \beta ), l -i \ge  k+1$. Тогда $a \in U_n^{(k+1)} \le  U_n^{(k)}$.\\
+    Третий случай $j \ne h, i=l: \quad a = [t_{h~j}(\beta ), t_{i~j}(\alpha )]^{-1} = t_{h~j}(\beta  \alpha )^{-1} = t_{h~j}(-\beta \alpha )$. $j -h \ge k+1 \Rightarrow  t_{h~j}(-\beta \alpha ) \in  U_n^{(k+1)}$.
+\end{proof}
+\begin{lm}
+    Пусть  $\preccurlyeq$ - отношение линейного порядка на $P = \{(i, j) \mid 1 \le  i < j \le  n\}$.
+    \[
+	U_n(F) = \{\prod\limits_{(i, j)) \in  P} t_{ij} (\alpha _{ij})\mid \alpha _{ij} \in F\}
+    .\] 
+\end{lm}
+\begin{note}
+    $H \trianglelefteq G, ~x, y \in  G: \quad xH = y H \Leftrightarrow y^{-1}x \in  H \Leftrightarrow x \equiv y \mod H $
+\end{note}
+\begin{proof}
+    Рассмотрим элемент $h \in  U_n(F)$. Докажем по индукции (по $k$ ), что 
+    \[
+    h \equiv \prod\limits_{
+	\begin{array}{c}
+	    (i, j) \in  P \\
+	    0 \le  j - i < k
+    \end{array}}
+    t_{ij}(\alpha _{ij}) \mod U_n^{(k)}
+    .\] 
+    При $k = 1$ утверждение очевидно, доказыать нечего. \\
+    Переход: $k-1 \to  k$ \\
+    По предположению индукции $$h \equiv \prod\limits_{0< j - i < k-1}t_{ij}(\alpha _{ij}) \mod U^{(k-1)}_n =
+    \prod\limits_{0<j-i< k-1}t_{ij} (\alpha _{ij}) \cdot \prod\limits_{j -i = k-1} t_{ij} (\alpha _{ij}) U_n^{(k)}$$
+	Так как комутатор $[u, t_{i ~ i+k-1} (\alpha )] \in  U_n^{(k)} \quad \forall u \in  U_n$. То есть $[u, t_{i~ i+k-1} (\alpha )] \equiv 1 \mod U_n^{(k)}$. 
+	Это равосильно \[
+	    ut_{i~i+k-1} (\alpha ) \equiv t_{i~i+k-1} \cdot u \mod U_n^{(k)}
+	.\] 
+	Получаем
+	\[
+	    h \equiv \prod\limits_{0<j-i<k} t_{ij}(\alpha _{ij} \mod U_n^{(k)}
+	.\] 
+
+\end{proof}
+\begin{cor}[приведенное разложение Брюа]
+    $w$ - матрица перестановки.
+    \[
+    BwB = U_w w B, \mbox{ где }U_w = \langle t_{ij} (\alpha ) \mid \alpha  \in  F, j > i ~ t_{ij} (\alpha )^w \in  U^{-}_n \mbox{- нижне треугольные}
+    .\] 
+\end{cor}
+\begin{cor}
+    $BwB \le w B^{-} B$
+\end{cor}
 \end{document}
