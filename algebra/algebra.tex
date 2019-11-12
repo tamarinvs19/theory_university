@@ -1734,13 +1734,127 @@ $$
 	.\] 
 
 \end{proof}
-\begin{cor}[приведенное разложение Брюа]
+Введем обозначения:
     $w$ - матрица перестановки.
     \[
-    BwB = U_w w B, \mbox{ где }U_w = \langle t_{ij} (\alpha ) \mid \alpha  \in  F, j > i ~ t_{ij} (\alpha )^w \in  U^{-}_n \mbox{- нижне треугольные}
+    \left ( 
+    \begin{array}{ccc}
+	1 & & * \\
+	  & \ddots & \\
+	0 & & 1
+    \end{array}
+    \right ) \in  U
     .\] 
-\end{cor}
+    \[
+    \left ( 
+    \begin{array}{ccc}
+	\bullet & & 0 \\
+	  & \ddots & \\
+	0 & & \bullet
+    \end{array}
+    \right ) \in  D
+    .\] 
+    \[
+	B_n = D_n U_n = U_n D_n \quad (\forall d \in  D_n: U_n ^ d = U_n)
+    .\] 
+    \[
+	B_nwB_n = U_nD_n w B_n, \mbox{ где }U_w = \langle t_{ij} (\alpha ) \mid \alpha  \in  F, j > i, ~ t_{ij} (\alpha )^w \rangle \in  U^{-}_n \mbox{- нижне треугольные}
+    .\] 
+    \[
+	U_w = \langle t_{ij} (\alpha )\mid j > 1 , \alpha \in F, t_{ij} (\alpha  )^w \in  U_n \rangle
+    .\] 
 \begin{cor}
-    $BwB \le w B^{-} B$
+	Матрица и $U_n$ представляется     в виде произведения трансвекций в любом порядке. $U_n = U_w \cdot \overline{U}_w$  % U_w c чертой
 \end{cor}
+\begin{proof}
+\end{proof}
+\begin{cor}
+[приведенное разложение Брюа]
+    $B_nwB_ \subseteq w B_n^{-} B_n$
+\end{cor}
+\begin{proof}
+    $
+    B_n w B_n = U_n w B_n = w U_w w^{-1} \overline{U}_w w B_n = w \underbrace {U_w^w}_{\subseteq U_n^{-}} \underbrace{\overline{U}_w^w B_n}_{\subseteq U_n} \subseteq w U_n^{-} B_n = w B_n^{-} B_n
+	    $
+\end{proof}
+\section{Лекция 20}
+\subsection{Симметрическая группа}
+\begin{defn}[Перестановка]
+    $\sigma \in  S_n \Longleftrightarrow \sigma : \{1, \ldots n \} \stackrel{\sim} \to  \{1, \ldots n\}$
+    Табличная запись перестановки:
+    \[
+    \sigma  = \left ( 
+    \begin{array}{ccc}
+	1 &\ldots& n \\
+	i_1, & \ldots  & i_n 
+    \end{array}
+\right ), i_j \ne i_k (j \ne k)
+    .\] 
+    Циклическая запись перестановки:
+    \[
+	\tau = (j_1, \ldots j_n) \Longleftrightarrow 
+	\tau(j_1) = j_2, ~ \tau(j_2) = j_3, ~ \ldots , \tau(j_{n-1}) = j_n, ~ \tau(j_n) = j_1, \quad \tau(i) = i, \forall i \ne j_k
+    .\] 
+\end{defn}
+\begin{defn}
+    $(j_1 \ldots j_n)$ и $(k_1 \ldots .k_m)$ независимы, если $j_h \ne j_l \quad \forall h, l$.
+\end{defn}
+\begin{lm}
+    Любая перестановка равна произведению независимых (композиции) циклов.
+\end{lm}
+\begin{defn}
+    Циклический (цикленный) тип перестановки -- набор из длин независимых циклов,в произведение которых раскладывается перестановка.
+\end{defn}
+\begin{note}
+    В определении слово "набор" подразумевает мультимножество, то есть порядок не важен, но элементы повторятся.
+\end{note}
+\begin{ex}
+    $(12) (345) \in  S_6$ записывают $2 + 3$.
+\end{ex}
+\begin{lm}\label{lm_sim_group_1}
+    \[
+	\sigma (i_1, i_2, \ldots i_k) \sigma ^{-1} = ( \sigma (i_1), \ldots \sigma (i_k))
+    .\] 
+    Следовательно, сопряжение не меняет циклический тип.
+\end{lm}
+\begin{proof}
+    $\sigma (i_1 \ldots i_k) \sigma ^{-1} (\sigma (t_j))=  \sigma \circ (i_1 \ldots i_k) \sigma  (i_{l+1 \mod' m})$
+\end{proof}
+\begin{defn}
+    Отношение на группе $G$ :
+    \[
+    x \sim_c y \Leftrightarrow \exists z: x = y^z
+    .\] 
+    $x=y^z \wedge y=ab \Rightarrow x = (a^b)^z - a^{bz}$.\\
+    Класс эквивалентности "$\sim _c$" -- класс сопряженных элементов.
+\end{defn}
+\begin{thm}
+    Класс сопряженных элементов в $S_n$ состоит из всех перестановок  фиксированного циклического типа.
+\end{thm}
+\begin{proof}
+    Следует из леммы \ref{lm_sim_group_1}
+\end{proof}
+\begin{ex}
+   Рассмотрим группу $S_4$ и перестановки циклического типа $2+2$: 
+    \[
+   \begin{array}{c}
+       (12)(34)\\
+       (13)(24)\\
+       (14)(32)
+   \end{array}
+   \] 
+   $\sigma (12)(34) \sigma ^{-1} = (\sigma (1) \sigma (2))(\sigma (3) \sigma (4))$\\
+   Еще есть нейтральный класс $e$ и $2, 3, 4$.
+   Двумерная группа Клейна
+   \[
+      K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
+   .\]  - единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
+\end{ex}
+\begin{probl}
+    Найти $S_4 \diagup K_4$.  Там 6 элементов.
+\end{probl}
+\begin{st}
+    $ord(ab) \mid НОК(ord(a), ord(b))$. \\
+    Порядок перестановки равен НОКу порядков независмых циклов.
+\end{st}
 \end{document}
