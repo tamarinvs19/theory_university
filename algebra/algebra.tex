@@ -1819,6 +1819,7 @@ $$
 \end{lm}
 \begin{proof}
     $\sigma (i_1 \ldots i_k) \sigma ^{-1} (\sigma (t_j))=  \sigma \circ (i_1 \ldots i_k) \sigma  (i_{l+1 \mod' m})$
+    , где $\mod ' m$ - почти модуль (вместо 0 будет $m$ ).
 \end{proof}
 \begin{defn}
     Отношение на группе $G$ :
@@ -1854,7 +1855,162 @@ $$
     Найти $S_4 \diagup K_4$.  Там 6 элементов.
 \end{probl}
 \begin{st}
-    $ord(ab) \mid НОК(ord(a), ord(b))$. \\
-    Порядок перестановки равен НОКу порядков независмых циклов.
+    $ord(ab) \mid \mbox{НОК} (ord(a), ord(b))$. \\
+    Порядок перестановки равен НОКу порядков независимых циклов.
 \end{st}
+\section{Лекция 20}
+\subsection{Продолжаем возиться с перестановками. Четность.}
+\begin{defn}[Инверсия]
+    $\sigma \in  S_n  $. \\
+    Инверсия в $\sigma $ -- пара $(i, j): i < j \wedge \sigma  (i) > \sigma (j)$.
+\end{defn}
+\begin{ex}
+    Четыре инверсии:
+    \[
+	\left ( 
+	\begin{array}{ccccc}
+	    1 &2&3&4&5\\
+	    2 &3&4&5&1
+	\end{array}
+	\right )
+    .\] 
+\end{ex}
+\begin{defn}[Четность перестановки]
+    \[
+    \varepsilon : S_n \to \Z \diagup 2\Z
+    .\] 
+    \[
+    \sigma  \mapsto \mbox{ количество инверсий по модулю 2}
+    .\] 
+\end{defn}
+\begin{defn}
+    Транспозиция -- цикл длины 2.
+    \[
+	\tau(i)= \tau(j), ~\tau(j) = \tau(i), ~ \tau(k)=k
+    .\] 
+\end{defn}
+\begin{lm}
+    Любая перестановка $\sigma $ раскладывается в произведении транспозиций соседних индексов.
+    \[
+	S_n = \left \langle (12), (23) \ldots (n-1~n) \right \rangle
+    .\] 
+\end{lm}
+\begin{proof}
+    Индукция по количеству инверсий $I$ в $\sigma \in  S_n$.
+
+    База: $I = 0$ Это $\sigma  = id$.
+
+    Переход: $I>0$. Заметим, что \[
+	\exists i: \sigma (i) > \sigma (i+1)
+    .\] 
+    Тогда рассмотрим $\tau = \sigma \circ (i, i-1)$.
+    \[
+	\tau(i) = \sigma (i+1) < \tau(i+1) = \sigma  (i)
+    .\] 
+    Так как $\tau(k) = \sigma (k) \quad \forall k \notin \{i, i+1\}$, количество инверсий стало на одну меньше, чем количество инверсий в $\sigma $.
+    Теперь по предположению индукции полученная перестановка раскладывается, а тогда и $\sigma $ раскладывается.
+\end{proof}
+\begin{lm}
+    $\tau = \sigma (i ~ i+1) \Rightarrow |I(\tau) - I(\sigma )| =1$
+\end{lm}
+\begin{lm}
+    Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ - транспозиция соседних индексов}$, то \[
+	\varepsilon (\sigma ) = k \mod 2
+    .\] 
+\end{lm}
+\begin{thm}
+    $\varepsilon  :S_n \to \Z \diagup  2\Z$ - гомоморфизм группы.
+\end{thm}
+\begin{proof}
+    \[
+	\begin{array}{l}
+	\sigma  = \tau_1 \cdot \ldots\tau_k \\
+	\rho = \tau_{k+1} \cdot \ldots \tau_n\\
+    \sigma \cdot \rho = \tau_1 \cdot \ldots \tau_n
+    \end{array} \quad \forall i: \tau_i = (j~j+1)
+    .\] 
+    Проверим требуемые свойства: \\
+    $\varepsilon = k \mod 2, \quad \varepsilon (\rho) = n-k\mod 2$\\
+    $\varepsilon (\sigma \rho) = m \mod 2 = \varepsilon (\sigma ) + \varepsilon (\rho) \mod 2$ \\
+    $\varepsilon (\rho^{-1} \sigma \rho) = - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
+    $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) = k-1 \mod 2$
+\end{proof}
+Рассмотрим кольцо $(\Z_n, +_n, \cdot_n)$. $\Z_n^* $ - множество обратимых элементов.
+
+$x \in  \Z_n$ - обратимо тогда и только тогда, когда $\gcd(x, n) = 1$.
+
+$\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ взаимно простых с $n$.
+Из теоремы Лагранжа очевидно следует, что:
+\[
+    x^{\varphi(n)} \mod n= 1
+.\] 
+\begin{st}
+    $A$ -- абелева группа.
+    $a, b \in  A, \quad ord(a) = m, ~ord(b) = n, ~h= lcm(m, n)$
+    \[
+	(ab)^k = a^k b^k = (a^m)^x (b^n)^y = 1
+    .\] 
+    Тогда $ord(ab) \mid k$.
+\end{st}
+\begin{lm}
+    $\langle a \rangle \cap \langle b \rangle =\{1\} \Rightarrow ord(ab) = lcm(ord (a) , ord(b))$
+\end{lm}
+\begin{proof}
+    \[
+	(ab)^l = 1 \Rightarrow \underbrace{in \langle b \rangle }a^l = \underbrace{in \langle b \rangle }b^{-l} = 1
+    .\] 
+    Тогда \[
+    \left . 
+    \begin{array}{ll}
+	ord(a) \mid l \\
+	ord(b) \mid l
+    \end{array}
+\right \} \Rightarrow  lcm(ord(s), ord(b)) \mid l
+    .\] 
+\end{proof}
+\begin{cor}
+    \[
+    a \in  A, b \in  B, \quad  A,B \le A\times B 
+    .\] 
+    Тогда $ord(ab) = lcm(ord(a), ord(b))$
+\end{cor}
+\begin{cor}
+    \[
+	lcd(ord(a) ,ord(b)) = 1 
+    .\] 
+    Тогда $ord(ab) = lcm(ord(a), ord(b))$
+\end{cor}
+\begin{proof}
+    $ | \langle a \rangle \cap \langle b \rangle | = h$
+    \[
+	h \mid |\langle a \rangle| \wedge h \mid |\langle b \rangle| \Rightarrow h \mid gcd(ord(a), ord(b)) = 1 \Rightarrow  h =1
+    .\] 
+    Следовательно, $\langle a \rangle \cap \langle b \rangle =\{1\}$.
+\end{proof}
+\begin{cor}
+    Порядок перестановки равен наибольшему общему делителю полядков независимых циклв, в произведение которых она раскладывается.
+\end{cor}
+\begin{defn}[Экспонента (показатель)]
+    $\exp(A)$ -- наименьшее натуральное число, такое что $a^n = 1 \quad \forall a \in  A$.
+\end{defn}
+\begin{lm}
+    $\exp(A) = lcm_{a \in A} (ord(a))$
+\end{lm}
+\begin{thm}
+    $A$ - абелева группа. $\exp(A) < \infty$.\\
+    Тогда  $\exists a \in  A: ord(a) = \exp(A)$
+\end{thm}
+\begin{proof}
+    Разложим экспоненту на простые множители: 
+    \[
+	\exp A = p_1^{k_1} \cdot \ldots p_m^{k_m}, \quad \forall i \in [1, m] : p_i \in  \Pm, k_i \in  \N \N
+    .\] 
+    Так как $\exp(A) = lcm_{x \in  A}(ord x)$, существует $\forall i \in [1, m] x_i : p_i^{k_i} \mid ord(x_i) $.
+    \[
+	ord x_i - p_i^{k_i} \cdot n_i = ord(x_i^{n_i}) = p_i{k_i}
+    .\] 
+    Так как порядки всех $x_i^{n_i}$ взаимно просты, то \[
+	ord(\prod\limits_{i=1}^{m} x_i^{n_i}) = \prod\limits_{i=1}^m = \prod p_i^{k_i} = \exp(A)
+    .\]  
+\end{proof}
 \end{document}
