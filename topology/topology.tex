@@ -1,0 +1,253 @@
+\documentclass[12pt]{report}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
+\pagestyle{plain}
+
+\usepackage{fullpage}
+% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
+
+\begin{document}
+\renewcommand{\proofname}{Доказательство}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Теорема}[section]
+\newtheorem*{lm}{Лемма}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Определение}
+\newtheorem*{ex}{Пример}
+\newtheorem*{exs}{Примеры}
+\newtheorem*{tasks}{Tasks}
+\newtheorem*{cor}{Следствие}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+% \newcommand{\Zero}{\mathbb{O}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+
+
+\title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+\chapter{Введение в топологию}
+\section{Произведение топологических пространств}
+\begin{defn}\label{def_ptp}
+    $X, Y$ - топологические пространства.
+
+    Топология произведения на $X \times Y$, база которой равна 
+    \[
+    \{A \times B \mid A \subset X, B \subset Y \mbox{ - открыты.}\}
+    .\] 
+    $X \times Y$ с такой топологией -- произведение $X$ и $Y$.
+\end{defn}
+\begin{thm}
+    Определение \ref{def_ptp} корректно.
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+        \item Все пространства открыто
+	\item Пересечение двух множеств из базы = объединение множеств базы.
+% \begin{figure}[ht]
+%     \centering
+%     \incfig{пересечение}
+%     \caption{Пересечение}
+%     \label{fig:пересечение}
+% \end{figure}
+\[
+    (A \times B) \cap (c \times D) = (A\cap D) \times (B\cap D)
+.\] 
+Получили объединение открытого в $X$ и в $Y$, а значит принадлежит базе.
+    \end{enumerate}
+\end{proof}
+\begin{thm}
+    $A \cap X$ -- замкнуто, $B \cap Y$ -- замкнуто. Тогда $A \times B $ -- замкнуто в $X \times Y$.
+\end{thm}
+\begin{proof}
+    Докажем, что дополнение открыто.
+    \[
+	(X \times Y) \setminus(A \times B) = X \times (Y \setminus B) \cup (X \setminus A) \times Y
+    .\] 
+\end{proof}
+\begin{probl}
+    Для любых $A \subset X, ~ B \subset Y$ :
+    \begin{enumerate}
+	\item $Int (A \times B) = Int(A) \times Int(B)$
+	\item  $Cl (A \times B) = Cl(A) \times Cl(B)$
+	\item  $A \times B$  как произведение подпространств равно $A \times B$ как подпространство произведения.
+    \end{enumerate}
+\end{probl}
+\subsection{Произведение параметризуемых метрических пространств}
+Здесть все также, только топология задается метрикой.
+$d_X, d_Y$ - метрики.
+% \begin{figure}[ht]
+%     \centering
+%     \incfig{img}
+%     \caption{img}
+%     \label{fig:img}
+% \end{figure}
+\begin{thm}
+    \[
+	d((x, y) , (x', y')) = max \{d_X(x, x'), d_Y(y, y')\}
+    .\] 
+    $d$ - метрика на $X \times Y$.
+   Произведение метризуемых пространств метризуемо. 
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+	\item
+    Проверим, что $d$ - метрика.
+    \[
+	d(p, p') + d(p', p'') \ge  d(p, p'') \stackrel{НУО} = d_X(x, x'')
+    .\] 
+    \[
+	d_X(x, x') + d_X(x, x'') \ge d_X(x, x'')
+    .\] 
+\item $\Omega_d \subset \Omega _{X \times Y} $
+    \[
+	B_r((x, y)) = B_r^X(x) \times B_r^Y(y) 
+    .\] 
+    А  это базовое множество.
+
+\item $\Omega _{X \times Y} \subset \Omega_d$
+    Рассмотрим  $W \in \Omega _{X \times Y}$.
+    катринка
+    \[
+	\exists A \subset X, ~ B \subset Y \mbox{- открытые}, (x, y) \in  A\times B \subset W 
+    .\] 
+    \[
+	\exists r_1 > 0: B_{r_1}^X(x) \subset A
+    .\] 
+    \[
+	\exists r_2 > 0: B_{r_2}^Y(y) \subset A
+    .\] 
+    Теперь возьмем $r = \min (r_1, r_2)$
+    \[
+	B_r^{X \times Y} ((x, y)) = B_r^X(x) \times B_r^Y(y) \subset A \times B \subset W
+    .\] 
+    \end{enumerate}
+\end{proof}
+\begin{st}[Согласование метрик]
+    \[
+	d_1 ((x, y), (x', y')) = d(x, x') + d_Y(y, y')
+    .\] 
+    \[
+	d_2((x, y), (x', y')) = \sqrt{d_X(x, x')^2 + d_Y (y, y')^2}
+    .\] 
+\end{st}
+\begin{proof}
+    Проверим неравентсво треугольника для второй метрики (для превого - очевидно).
+    \[
+	\sqrt{(a + b)^2 + (c+d)^2} = d_2((x, y), (x'', y'')) \le? d_2((x, y), (x', y')), d_2((x', y'), (x'', y'')) = \sqrt {a^2+c^2} + \sqrt {b^2+d^2}
+    .\] 
+    
+\end{proof}
+\begin{defn}
+    Бесконечное произведение пространств
+
+    $\left \{ X_i \right \}_{i \in  I}$ - семеййство топологичеких пространств. $\Omega_i$ - топология.
+
+    Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, x_i \in  X_i \}$.
+
+    Тагде расмотрим отображение $p_i: X \mapsto X_i$ - проекция.
+    
+    Тихоновская топология на $X$ -- топология с предбазой
+    \[
+	\left \{ p^{-1}_i (U) \right \}_{i \in  I, ~ U \in  \Omega}
+    .\] 
+    %img_2
+\end{defn}
+\begin{tasks}
+    \begin{enumerate}
+	\item Счетное произведение метризуемых -- метризуемо. Сначала можно разобраться с отрезком $[0, 1]^\N = \prod_{i \in  \N} [0, 1]$.
+	\item Канторовское множество $\approx \{0, 1\}^\N$
+    \end{enumerate}
+\end{tasks}
+\subsection{Непрерывность}
+$X, Y$ - топологические пространства, $\Omega_1, \Omega_2$ -  топологии, $f: X \to  Y$.
+\begin{defn}
+    $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} \subset \Omega_X$.
+\end{defn}
+\begin{note}
+    \[
+	f^{-1} (A \cap B) = f^{-1}(A) \cap f^{-1}(B)
+    .\] 
+\end{note}
+\begin{exs}
+    \begin{enumerate}
+	\item Тождественное отображение непрерывно. $id_X : X \to  X$
+	\item Константа тоже непрерывна. $Const_{y_0}:X \to Y, ~ \forall x \in  X \quad x\mapsto y_0 $
+	\item Если $X$ - дискретно, $\forall f: X \to  Y$ - непрерывно.
+	\item Если $Y$ - антидискретно, $\forall f: X \to  Y$ - непрерывно.
+    \end{enumerate}
+\end{exs}
+\begin{defn}
+    $f: X \to  Y, ~ x_0 \in Y$
+    $f$ непрерывна в точке $ x_0$, если \[
+	\forall \mbox{ окрестности } U \ni y_0 = f(x_0) \exists \mbox{ окрестность } V \ni x_0: f(U) \subset V
+    .\] 
+\end{defn}
+\begin{thm}
+    $f$ - непрерывна тогда и только тогда, когда $\forall x_0 \in  X: f$ - непрерывна в точке $x_0$.
+\end{thm}
+\begin{proof}
+    $\Rightarrow )$\\
+	$y_0 \in  U$.
+	\[
+	\left \{ 
+	    \begin{array}{ll}
+		f^{-1}(U) \mbox{ открыт} & V:=f^{-1}(U)\\
+		x_0 \in f^{-1}(U) & f(V) \subset U
+	        
+	    \end{array}
+	    \right .
+	.\] 
+	$\Leftarrow )$\\
+	$U \subset Y$ - открыто, хотим доказать $f^{-1}(U)$ - открыто.
+	Достаточно доказать, что $\forall x \in  f^{-1}(x) $- внутренняя.
+	\[
+	    \exists V \ni x: f(V)\subset U \Leftrightarrow x \in  V \subset f^{-1}(U)
+	.\] 
+	Тогда $x$ - внутренняя точка $f^{-1}(U)$.
+\end{proof}
+\end{document}
