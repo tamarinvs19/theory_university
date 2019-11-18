@@ -29,29 +29,28 @@
 \pagestyle{plain}
 
 \usepackage{fullpage}
-% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
 \begin{document}
-\renewcommand{\proofname}{Доказательство}
+\renewcommand{\proofname}{Proof.}
 
 \theoremstyle{plain}
-\newtheorem{thm}{Теорема}[section]
-\newtheorem*{lm}{Лемма}
-\newtheorem*{st}{Утверждение}
-\newtheorem*{prop}{Свойства}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{lm}{Lemma}
+\newtheorem*{st}{St.}
+\newtheorem*{prop}{Prop.}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Определение}
-\newtheorem*{ex}{Пример}
-\newtheorem*{exs}{Примеры}
+\newtheorem{defn}{Def.}
+\newtheorem*{ex}{Ex.}
+\newtheorem*{exs}{Exs.}
 \newtheorem*{tasks}{Tasks}
-\newtheorem*{cor}{Следствие}
-\newtheorem*{name}{Обозначение}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Name}
 
 \theoremstyle{remark}
-\newtheorem*{rem}{Ремарка}
-\newtheorem*{note}{Замечание}
-\newtheorem*{probl}{Упражнение}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{probl}{Probably}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -65,17 +64,23 @@
 \newcommand{\slim}{\sum\limits}
 
 
-\title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
+\title{Конспект по топологии за I семестр бакалавриата Чебышёва СПбГУ (лекции Иванова Сергея Владимировича)}                      
 \maketitle
 \clearpage
 \tableofcontents
 \clearpage
-\chapter{Введение в топологию}
+\chapter{Общая топология}
+\section{Метрические пространства}
+\section{Топологические пространства}
+\section{Внутренность, замыкание, граница}
+\section{Подпространства}
+\section{Сравнение топологий}
+\section{База топологии}
 \section{Произведение топологических пространств}
 \begin{defn}\label{def_ptp}
     $X, Y$ - топологические пространства.
 
-    Топология произведения на $X \times Y$, база которой равна 
+    Топология произведения на $X \times Y$ -- топология, база которой равна 
     \[
     \{A \times B \mid A \subset X, B \subset Y \mbox{ - открыты.}\}
     .\] 
@@ -86,16 +91,16 @@
 \end{thm}
 \begin{proof}
     \begin{enumerate}
-        \item Все пространства открыто
+        \item Все пространство открыто
 	\item Пересечение двух множеств из базы = объединение множеств базы.
-% \begin{figure}[ht]
-%     \centering
-%     \incfig{пересечение}
-%     \caption{Пересечение}
-%     \label{fig:пересечение}
-% \end{figure}
+\begin{figure}[ht]
+    \centering
+    \incfig{cap}
+    \caption{Пересечение}
+    \label{fig:cap}
+\end{figure}
 \[
-    (A \times B) \cap (c \times D) = (A\cap D) \times (B\cap D)
+    (A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)
 .\] 
 Получили объединение открытого в $X$ и в $Y$, а значит принадлежит базе.
     \end{enumerate}
@@ -108,6 +113,7 @@
     \[
 	(X \times Y) \setminus(A \times B) = X \times (Y \setminus B) \cup (X \setminus A) \times Y
     .\] 
+$Y \setminus B$ открыто в $Y$, а $X \setminus A$ открыто в $X$. Тогда объединение произведений с $X$ и $Y$ есть объединение открытых в $X \times Y$.
 \end{proof}
 \begin{probl}
     Для любых $A \subset X, ~ B \subset Y$ :
@@ -118,14 +124,8 @@
     \end{enumerate}
 \end{probl}
 \subsection{Произведение параметризуемых метрических пространств}
-Здесть все также, только топология задается метрикой.
+Здесь все также, только топология задается метрикой.
 $d_X, d_Y$ - метрики.
-% \begin{figure}[ht]
-%     \centering
-%     \incfig{img}
-%     \caption{img}
-%     \label{fig:img}
-% \end{figure}
 \begin{thm}
     \[
 	d((x, y) , (x', y')) = max \{d_X(x, x'), d_Y(y, y')\}
@@ -151,7 +151,12 @@ $d_X, d_Y$ - метрики.
 
 \item $\Omega _{X \times Y} \subset \Omega_d$
     Рассмотрим  $W \in \Omega _{X \times Y}$.
-    катринка
+\begin{figure}[ht]
+    \centering
+    \incfig{img}
+    \caption{Произведение метрических пространств}
+    \label{fig:img}
+\end{figure}
     \[
 	\exists A \subset X, ~ B \subset Y \mbox{- открытые}, (x, y) \in  A\times B \subset W 
     .\] 
@@ -176,26 +181,36 @@ $d_X, d_Y$ - метрики.
     .\] 
 \end{st}
 \begin{proof}
-    Проверим неравентсво треугольника для второй метрики (для превого - очевидно).
+    Проверим неравенство треугольника для второй метрики (для первого - очевидно).
     \[
 	\sqrt{(a + b)^2 + (c+d)^2} = d_2((x, y), (x'', y'')) \le? d_2((x, y), (x', y')), d_2((x', y'), (x'', y'')) = \sqrt {a^2+c^2} + \sqrt {b^2+d^2}
     .\] 
-    
+\begin{figure}[ht]
+    \centering
+    \incfig{img2}
+    \caption{Неравенство треугольника}
+    \label{fig:img2}
+\end{figure}
 \end{proof}
 \begin{defn}
     Бесконечное произведение пространств
 
-    $\left \{ X_i \right \}_{i \in  I}$ - семеййство топологичеких пространств. $\Omega_i$ - топология.
+    $\left \{ X_i \right \}_{i \in  I}$ - семейство топологических пространств. $\Omega_i$ - топология.
 
     Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, x_i \in  X_i \}$.
 
-    Тагде расмотрим отображение $p_i: X \mapsto X_i$ - проекция.
+    Тогда рассмотрим отображение $p_i: X \mapsto X_i$ - проекция.
     
     Тихоновская топология на $X$ -- топология с предбазой
     \[
 	\left \{ p^{-1}_i (U) \right \}_{i \in  I, ~ U \in  \Omega}
     .\] 
-    %img_2
+\begin{figure}[ht]
+    \centering
+    \incfig{tikhon_topology}
+    \caption{Тихоновская топология}
+    \label{fig:tikhon_topology}
+\end{figure}
 \end{defn}
 \begin{tasks}
     \begin{enumerate}
@@ -203,7 +218,8 @@ $d_X, d_Y$ - метрики.
 	\item Канторовское множество $\approx \{0, 1\}^\N$
     \end{enumerate}
 \end{tasks}
-\subsection{Непрерывность}
+
+\section{Непрерывность}
 $X, Y$ - топологические пространства, $\Omega_1, \Omega_2$ -  топологии, $f: X \to  Y$.
 \begin{defn}
     $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} \subset \Omega_X$.
