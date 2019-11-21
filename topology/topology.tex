@@ -40,9 +40,9 @@
 \newtheorem*{prop}{Prop.}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Def.}
-\newtheorem*{ex}{Ex.}
-\newtheorem*{exs}{Exs.}
+\newtheorem{defn}{Def}
+\newtheorem*{ex}{Ex}
+\newtheorem*{exs}{Exs}
 \newtheorem*{tasks}{Tasks}
 \newtheorem*{cor}{Corollary}
 \newtheorem*{name}{Name}
@@ -50,7 +50,8 @@
 \theoremstyle{remark}
 \newtheorem*{rem}{Remark}
 \newtheorem*{note}{Note}
-\newtheorem*{probl}{Probably}
+\newtheorem*{probl}{Practice}
+\newtheorem*{prac}{Practice}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -137,17 +138,18 @@ $d_X, d_Y$ - метрики.
     \begin{enumerate}
 	\item
     Проверим, что $d$ - метрика.
+    Очевидно, что $d((x, y), (x', y')) = 0 \Longleftrightarrow d_X(x, x') = d_Y(y, y') = 0 \Longleftrightarrow x = y \wedge x' = y'$. Также значение не зависит от порядка. Осталось проверить неравенство треугольника.
     \[
-	d(p, p') + d(p', p'') \ge  d(p, p'') \stackrel{НУО} = d_X(x, x'')
+	d(p, p') + d(p', p'') \stackrel{?}\ge  d(p, p'') \stackrel{\text{НУО}} = d_X(x, x'')
     .\] 
     \[
-	d_X(x, x') + d_X(x, x'') \ge d_X(x, x'')
+	d_X(x, x') + d_X(x', x'') \ge d_X(x, x'')
     .\] 
 \item $\Omega_d \subset \Omega _{X \times Y} $
     \[
 	B_r((x, y)) = B_r^X(x) \times B_r^Y(y) 
     .\] 
-    А  это базовое множество.
+    А  это базовое множество, которое мы представили через базовые множества $X$ и $Y$.
 
 \item $\Omega _{X \times Y} \subset \Omega_d$
     Рассмотрим  $W \in \Omega _{X \times Y}$.
@@ -164,7 +166,7 @@ $d_X, d_Y$ - метрики.
 	\exists r_1 > 0: B_{r_1}^X(x) \subset A
     .\] 
     \[
-	\exists r_2 > 0: B_{r_2}^Y(y) \subset A
+	\exists r_2 > 0: B_{r_2}^Y(y) \subset B
     .\] 
     Теперь возьмем $r = \min (r_1, r_2)$
     \[
@@ -174,7 +176,7 @@ $d_X, d_Y$ - метрики.
 \end{proof}
 \begin{st}[Согласование метрик]
     \[
-	d_1 ((x, y), (x', y')) = d(x, x') + d_Y(y, y')
+	d_1 ((x, y), (x', y')) = d_X(x, x') + d_Y(y, y')
     .\] 
     \[
 	d_2((x, y), (x', y')) = \sqrt{d_X(x, x')^2 + d_Y (y, y')^2}
@@ -183,7 +185,11 @@ $d_X, d_Y$ - метрики.
 \begin{proof}
     Проверим неравенство треугольника для второй метрики (для первого - очевидно).
     \[
-	\sqrt{(a + b)^2 + (c+d)^2} = d_2((x, y), (x'', y'')) \le? d_2((x, y), (x', y')), d_2((x', y'), (x'', y'')) = \sqrt {a^2+c^2} + \sqrt {b^2+d^2}
+	\begin{array}{ccc}
+	    d_2((x, y), (x'', y'')) &\stackrel{?}\le & d_2((x, y), (x', y')) + d_2((x', y'), (x'', y'')) \\
+	    \shortparallel & & \shortparallel \\
+	    \sqrt{(a + b)^2 + (c+d)^2} & \le & \sqrt {a^2+c^2} + \sqrt {b^2+d^2}
+	\end{array}
     .\] 
 \begin{figure}[ht]
     \centering
@@ -222,7 +228,7 @@ $d_X, d_Y$ - метрики.
 \section{Непрерывность}
 $X, Y$ - топологические пространства, $\Omega_1, \Omega_2$ -  топологии, $f: X \to  Y$.
 \begin{defn}
-    $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} \subset \Omega_X$.
+    $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} (U)\subset \Omega_X$.
 \end{defn}
 \begin{note}
     \[
@@ -259,7 +265,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	    \right .
 	.\] 
 	$\Leftarrow )$\\
-	$U \subset Y$ - открыто, хотим доказать $f^{-1}(U)$ - открыто.
+	$U \subset Y$ - открыто, хотим доказать, что $f^{-1}(U)$ - открыто.
 	Достаточно доказать, что $\forall x \in  f^{-1}(x) $- внутренняя.
 	\[
 	    \exists V \ni x: f(V)\subset U \Leftrightarrow x \in  V \subset f^{-1}(U)
