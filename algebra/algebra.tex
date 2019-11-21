@@ -32,25 +32,26 @@
 % \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
 \begin{document}
-\renewcommand{\proofname}{Доказательство}
+\renewcommand{\proofname}{Proof.}
 
 \theoremstyle{plain}
-\newtheorem{thm}{Теорема}[section]
-\newtheorem*{lm}{Лемма}
-\newtheorem*{st}{Утверждение}
-\newtheorem*{prop}{Свойства}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{lm}{Lemma}
+\newtheorem*{st}{Statement}
+\newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Определение}
-\newtheorem*{ex}{Пример}
-\newtheorem*{exs}{Примеры}
-\newtheorem*{cor}{Следствие}
-\newtheorem*{name}{Обозначение}
+\newtheorem{defn}{Def}
+\newtheorem*{ex}{Ex}
+\newtheorem*{exs}{Exs}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Designation}
 
 \theoremstyle{remark}
-\newtheorem*{rem}{Ремарка}
-\newtheorem*{note}{Замечание}
-\newtheorem*{probl}{Упражнение}
+\newtheorem*{rem}{Remark}
+\newtheorem*{com}{Comment}
+\newtheorem*{note}{Note}
+\newtheorem*{prac}{Practice}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -802,9 +803,9 @@ $\theta _v = L_v$
 \begin{st}
     $\theta_v$ -  биективно.
 \end{st}
-\begin{probl}
+\begin{prac}
     Построить обратное $\theta_v$
-\end{probl}
+\end{prac}
 
 \begin{lm}
     $(M \circ L)_v = M_v \circ L_v$
@@ -919,9 +920,9 @@ $\theta _v = L_v$
     Тогда $r. rk A^T = r. rk C^T A^T B^T$. (Заметим, что   $(B^T)^{-1} = ((B^{-1})^T)$
     Следовательно, $B^T, C^T$ - произвольные обратимые матрицы.
 \end{proof}
-\begin{probl}
+\begin{prac}
     $(AB)^T = B^T A^T$
-\end{probl}
+\end{prac}
 \begin{thm}[PDQ - разложение, равенство базисов]
     \begin{enumerate}
     $L: U \to V \mbox{ - линейное отображений}, \qquad U, V \mbox{ - конечномерные}$
@@ -1037,7 +1038,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     \begin{lm}[1]
 	$D = D_n (F)$ - множество обратимых диагональных матриц. $U = U_n(F)$ - множество унитреугольных матриц. Тогда $B = D U = U D$.
     \end{lm}
-    \begin{probl}
+    \begin{prac}
         $a = \left ( 
         \begin{array}{ccc}
 	    \alpha_i & \cdots & 0 \\
@@ -1045,7 +1046,7 @@ $ w  \in W: B w B$ - клетка Брюа.
 	    0 & \cdots & 0
         \end{array}
         \right ), \qquad \alpha _i \ne \alpha_j , \mbox{если } i \ne j \; \Rightarrow \; ab = ba \Rightarrow b \in  D$
-    \end{probl}
+    \end{prac}
     \begin{proof}
     $$
     \left ( 
@@ -1851,9 +1852,9 @@ $$
       K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
    .\]  - единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
 \end{ex}
-\begin{probl}
+\begin{prac}
     Найти $S_4 \diagup K_4$.  Там 6 элементов.
-\end{probl}
+\end{prac}
 \begin{st}
     $ord(ab) \mid \mbox{НОК} (ord(a), ord(b))$. \\
     Порядок перестановки равен НОКу порядков независимых циклов.
@@ -2030,16 +2031,17 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
     \end{note}
 \end{proof}
 \begin{thm}$p \in  \Pm$
+
     $(\Z \diagup p^k \Z)^{*}$ - циклическая, если $p \ne 2$ или $k \le  2$. Иначе
     $(\Z \diagup p^k \Z)^{*} \cong C_2 \times C_{2^{k-2}}$ 
 \end{thm}
 \begin{proof}
     % Будем доказывать, что экспонента
-    Обозначим $G = \Z \diagup n\Z $
+    Обозначим $G = \Z \diagup p^k\Z $
     \[
 	|(\Z \diagup p^{k}\Z)^{*}| = p^{k} - p^{k-1} = p^{k-1} (p-1)
     .\] 
-    Рассмотрим множество чисел вида $1 + px$. Они не делятся на $p$. Чтобы были меньше $(|\Z_n)|)^*$, ограничим $x$.
+    Рассмотрим множество чисел вида $1 + px$. Они не делятся на $p$. Чтобы эти числа были меньше $|G^*|$, ограничим $x$.
     \[
     H = \{1 + px \mid x \in  \{0, \ldots p^{k-1}-1\}\}
     .\] 
@@ -2085,7 +2087,7 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
     ,\] 
     так как 
     \[
-	(1+ p)^{p^{k-2}} = 1 + p^{n+1}\underbrace{(x + py)}_{\mbox{\tiny не делится на} p}
+	(1+ p)^{p^{k-2}} = 1 + p^{n+1}\underbrace{(x + py)}_{\mbox{\scriptsize не делится на } p}
     .\] 
 $n+1 < k \Rightarrow p^k \nmid (1 + p)^{p^{k-2}}-1$
     \begin{rem}
@@ -2145,4 +2147,139 @@ $5^{2^{k-1}} = 1 + 2^{n}z, \quad 1 < n < k-1, ~ 2 \nmid z$.
     \end{array}
 .\] 
 \end{proof}
+\section{Лекция 23}
+\subsection{Теорема о гомоморфизме для колец}
+\begin{note}{Воспоминания} $ $
+$R, R'$ -- кольца с 1 ( не обязательно коммутативные). 
+
+$\varphi: R \to  R'$ -- гомоморфизм, если
+\[
+    \begin{array}{l}
+    \varphi ( r + s) = \varphi(r) + \varphi(s)\\
+    \varphi(r \cdot s) = \varphi(r) \cdot \varphi(s) \\
+    \varphi(1) = 1
+    \end{array}
+.\] 
+\[
+    Im \varphi = \{\varphi(r) \mid r \in  R\} \text{ -- подкольцо в } R'
+.\] 
+\[
+    Ker \varphi = \{r \mid \varphi(r) = 0\} \text{ -- аддитивная подгруппа в }R
+.\] 
+\end{note}
+\begin{defn}
+    $I$ -- аддитивная подгруппа в $R$.
+    $I$ называется двусторонним (правым, левым) идеалом в $R$ тогда и только тогда, когда \[
+	\forall a \in  R, t \in I: ar, ra \in  I \quad \text{(соответственно для правого и левого $ra \in  I, ar \in  I$)}
+    .\] 
+\end{defn}
+\begin{lm}
+    $Ker \varphi $ -- двусторонний идеал.
+\end{lm}
+\begin{defn}
+    $I$ -- двусторонний идеал, $R$ -- кольцо.
+    Аддитивная факторгруппа $R \diagup I$ является кольцом относительно операции $(r + I) (s + I) = rs + I$
+\end{defn}
+\begin{proof}
+    Если $x, y \in  I$ : $(r + x) (s + y) = rs + \underbrace{xs + sy + xy} _{ \in I} \in rs + I$
+\end{proof}
+\begin{ex}
+    $2\Z \trianglelefteq \Z$
+     \[
+	 4\Z \stackrel{\text{как множества}} = (0 + 2\Z)\cdot(0 + 2\Z) \stackrel{def} = 0 + 2\Z
+    .\] 
+\end{ex}
+\begin{name}
+$\pi: R \to  R\diagup I \quad \pi(r ) = r+I$
+\end{name}
+\begin{thm}{Универсальное свойство}
+    $I$ -- идеал в $R$. $\varphi R \to R', \quad I \subseteq Ker \varphi $
+    $\exists ! \psi: R \diagup I \to  R':$
+    \[
+	\begin{array}{ccc}
+	    R & \stackrel{\varphi} \rightarrow & R' \\
+	    \downarrow \lefteqn{\pi} & \nearrow \lefteqn{\psi} & \\
+	    R\diagup I &&
+    \end{array}
+    \]  -- коммутативна.
+   $Ker \varphi = I \Rightarrow \psi $ -- инъективна. 
+   $\varphi$ -- сюрьективна $ \Rightarrow $ $\phi$ -- сюрьективна. 
+\end{thm}
+ \begin{note}
+    Далее считаем кольца коммутативными.
+\end{note}
+\begin{defn}
+$X \subseteq R$  -- кольцо.
+Идеал, порожденный $X$  -- наименьший идеал, содержащих $X$. Он равен \[
+    \left\{\slim_{i=1}^{n}a_ix_i \mid a_i \in  R, x_i \in  X, n \in \N\right\}
+.\] 
+Обозначается: $\slim_{x \in  X} x R = \langle X \rangle_R$
+
+$xR = (x)$ -- главный идеал, порожденный $x$.
+\end{defn}
+\begin{ex}
+    В $\Z$ любой идеал главный.
+
+    $I \trianglelefteq \Z$,  \[
+    0 < r< I, \quad r \le |s| \forall s \in I
+    .\] 
+    Рассмотрим  $x \in  I$.
+    \[
+    x = rs + y, \quad 0 \le y < r
+    .\] 
+    \[
+    y = x - rs \in  I
+    .\] 
+    Так как $r$  -- наименьший, то $y=0$.
+\end{ex}
+\begin{ex}
+    \[
+	\Z [ \sqrt{-1}] = \{a + b\sqrt{-3} \mid a, b \in  \Z\}
+    .\] 
+    \[
+	(1 + \sqrt{-3} )(1 - \sqrt{-3} = 2 \cdot 2
+    .\] 
+    Идел, порожденный $1+\sqrt{-3}$ и $2$ ($(1 + \sqrt{-3}) R + 2 R $ ), не является главным идеалом. 
+\end{ex}
+\subsection{Комплексные числа}
+    $\Cm = \R[x]\diagup (x^2+1)$
+    \[
+	i := x + (x^2+1) \R[x]
+    .\] 
+    \[
+	i^2+1 = x^2 + 1 + (x^2+1)\R[x] = 0_\Cm \Longrightarrow i^2 = -1
+    .\] 
+    $\R \hookrightarrow \R[x] \to \Cm$ -- инъективное отображение.   
+    % Напомнить про нулевое кольцо!
+    Отождествляем $r \in  R \longleftrightarrow r + (x^2+1) \R[x]$ и считаем, что $\R = \Cm$.
+
+   $p \in  \R[x]$
+   \[
+       p = (x^2 + 1) \cdot f + (a + b x) \in  a + bx + (x^2 + 1)\R[x]
+   .\] 
+   \[
+       p + (x^2+1) \R[x] = a + bi
+   .\] 
+   Таким образом \[
+       (a + bi) + (c + di) = (a+c)+ (b+d)i
+   .\] 
+   \[
+       (a + bi)(c + di) = ac - bd + i (ad+bc)
+   .\] 
+  $\overline{a+ bi} = a-bi $
+
+   $ \forall  w, z \in  \Cm:$
+   \[
+       \begin{array}{c}
+	   \overline{z\cdot w} = \overline{z} \cdot \overline{w}\\
+	   \overline{z + w} = \overline{z} + \overline{w}\\
+	   \overline{\overline{z}} = z
+       \end{array}
+   .\] 
+
+   $\overline{\circ} :\Cm \to  \Cm$  - автоморфизм.
+
+   $a = Re z, \quad b = Im z$
+   
+   $\Cm$ -- векторное пространство над $\R$ с базисом $\{1, i\}$
 \end{document}
