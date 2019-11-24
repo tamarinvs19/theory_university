@@ -272,4 +272,43 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	.\] 
 	Тогда $x$ - внутренняя точка $f^{-1}(U)$.
 \end{proof}
+\subsection{Непрерывность в метрических пространствах}
+\begin{thm}
+    $X, Y$ -- метрические пространства.  $f: X \to  Y, ~ x_0 \in  X$.
+
+    Тогда $f$ -- непрерывна в точка $x_0$ тогда и только тогда, когда 
+    \[
+	\forall  \varepsilon > \exists  \delta  >0: f(B_{ \delta }) \subset B_{ \varepsilon } (f(x))
+    .\] 
+    Или можем записать альтернативную формулировку непрерывности:
+    \[
+	\forall  \varepsilon  \exists \delta : \forall x' \in  X \wedge d(x, x') < d \Rightarrow  d(f(x) , f(x')) < \varepsilon 
+    .\] 
+\end{thm}
+\begin{proof}
+    $ \Rightarrow )$ Так как $f$ -- непрерывна в точке $x$, существует окрестность $V \ni x: f(v) \subset  B_{ \varepsilon }(f(x))$. Так как $V$ открыто, $\exists  \delta >0 : B_{ \delta } \subset  V$.
+
+    $ \Leftarrow )$ Рассмотрим $U \ni f(x)$.
+    Тогда $\exists  \varepsilon >0: B_{ \varepsilon }(f(x)) \subset U: \\
+    \exists \delta  >0 : f(B_{\delta}(x)) \subset  B_{ \varepsilon } (f(x)) \subset  U$.
+    Можем взять  $V:=B_{ \delta } (x)$.
+\end{proof}
+\subsection{Липшицевы отображения}
+\begin{defn}
+    $X, Y$ -- метрические пространства.
+
+    $f: X \to  Y$ -- липшицево, если $\exists c > 0 \forall  x, x' \in  X: d_Y(f(x), f(x')) \le c d_X(x, x')$. $C$ -- константа Липшица данного отображения.
+\end{defn}
+\begin{cor}
+    Все липшицевы отображения непрерывны.
+\end{cor}
+\begin{proof}
+    Рассмотрим $ \delta = \frac{\varepsilon}{c}$. 
+    \[
+	d_X(x, x') < \delta  \Rightarrow d_Y(f(x), f(x')) \le C \delta = \varepsilon 
+    .\] 
+\end{proof}
+\begin{ex}
+    $X $
+\end{ex}
 \end{document}
