@@ -44,6 +44,7 @@
 \newtheorem*{ex}{Ex}
 \newtheorem*{exs}{Exs}
 \newtheorem*{tasks}{Tasks}
+\newtheorem*{task}{Task}
 \newtheorem*{cor}{Corollary}
 \newtheorem*{name}{Name}
 
@@ -309,6 +310,31 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     .\] 
 \end{proof}
 \begin{ex}
-    $X $
+    $X $ -- метрика, $x0 \in  X$.
+    $f: X \to  \R, \quad f(x) = d(x, x_0)$
+    \[
+	|f(x) = f(y)| = f(y) - f(x) = d(y, x_0) - d(x, x_0) \le d(x, y)
+    .\] 
+    Получили, что липшицево с константой $1$.
 \end{ex}
+\begin{task}
+    $A \subset  X$ 
+    \[
+	f(x) = dist(x, A) := \inf \{d(x, y) \mid y \in  A\}
+    .\] 
+    Доказать, что $X$ тоже липшицево с константой $1$.
+\end{task}
+\begin{ex}
+    $d : X \times X \to  \R$ -- непрерывна.
+\end{ex}
+\subsection{Композиция непрерывных отображений}
+\begin{thm}
+    Композиция непрерывных отображений непрерывна.
+\begin{figure}[ht]
+    \centering
+    \incfig{compose}
+    \caption{compose}
+    \label{fig:compose}
+\end{figure}
+\end{thm}
 \end{document}
