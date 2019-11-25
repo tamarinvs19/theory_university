@@ -30,7 +30,7 @@
 
 \usepackage{fullpage}
 
-\title{Конспект по матанализу в формате вопросов коллоквиума \\ (лекции Кислякова Сергея Витальевича)}                      
+\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}                      
 \begin{document}
 \maketitle
 \clearpage
@@ -71,6 +71,142 @@
 \newcommand{\pivi}{\stackrel \circ }
 
 \chapter{Непрерывные функции}
-\section{Дифференцирование}
+\section{Определения, свойства}
+\section{Теоремы}
+\subsection{Теоремы Вейерштрасса}
+\subsection{Теорема о промежуточном значении}
+\section{Степени с рациональным показателем}
+\section{Равномерная непрерывность}
+\subsection{Теорема Кантора}
+\chapter{Дифференцирование}
+\section{Определения}
+\section{Правила дифф}
+\section{Сходимость последовательностей}
+\begin{thm}
+    $f_n, f : A \to  \R$, $f_n \to  f$
+    Следующие условия эквивалентны:
+     \begin{enumerate}
+	 \item $\exists M : |f_n(x)| \le  M \quad \forall  n, x \longrightarrow |f(x)| \le  M$
+	 \item $f$ -- ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
+	     |f_n(x)| \le A \quad \forall  n \le  N \forall  x$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Очевидно
+\end{proof}
+\begin{thm}
+    $f_n \rightrightarrows  f, g_n \to  \to  g$ на $A$.
+    Пусть $\exists M: \forall x \in A \forall  n |f_n)x) | \le  M$. Тогда  $f_n g_n \rightrightarrows fg$
+\end{thm}
+\begin{proof}
+    \[
+	|f(x) g(x) - f_n(x) g_n(x)| \le  |f(x) ||g(x) - g_n(x) | + | g_n(x)| |f(x) - f_n(x)| \le  M | g(x) - f_n(x)  |+ | f(x) - f_n(x)|
+    .\]  
+\end{proof}
+\begin{thm}{Критерий Коши для равномерной сходимости}
+    Пусть $f_n$ -- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда  
+    \[
+	\forall  \varepsilon >0 \exists  N \forall  k, j> N \forall x : |f_k(x) - f_j(x)| < \varepsilon 
+    .\] \label{usl}
+\end{thm}
+\begin{proof}
+    Необходимость.\\ 
+    Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x in A$.
+    \[
+	\forall k, l > N \quad |(f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon  \forall x \in A
+    .\] 
+    Достаточность.\\
+    Пусть  \ref{usl} выполнено. $x \in A$ - фиксировано.
+    Тогда $\{f_n(x)\}_{n \in  \N}$ есть последовательность Коши (см \ref{usl}). Следовательно, 
+    \[
+	\forall  x \exists \lim_{n \to  \infty} f_n(x) \stackrel{def} = f(x)
+    .\] 
+    $ \varepsilon  >0$. Нашли $N: |f_k(x) - f_j(x)| < \varepsilon  \quad \forall  x \in A \forall  k, j > N$
+Зафиксируем $k, x$, перейдем к пределу по $j$ :
+\[
+    |f_n(x) - f(x) | < \varepsilon  
+.\] 
+Что верно для $ \forall  x \in  A, \forall  k > N$.
+\end{proof}
+\begin{ex}
+    Функция на $\R$, непрерывная всюду, но не дифференцируемая на в одной точке.
+    \[
+	\text{(Вейерштрасс): } f(x) = \slim_{j=1}^{\infty} b^{ j} \cos l^{j} \pi x, \quad |b| < 1
+    .\] 
+\end{ex}
+\begin{thm}[Вейерштрасс]
+    Пусть $f_n$ -- функция на множестве $A$.
+    \[
+	\forall  x : |f_n(x)| \le a_n, \text{ где ряд } \slim a_n \text{ сходится}
+    .\] 
+    Тогда $\slim_0^{\infty} f_n(x) $ сходится равномерно.
+\end{thm}
+\begin{note}
+    Из этой теоремы следует, что функция из примера непрерывна.
+\end{note}
+\begin{proof}
+    Рассмотрим $ \varepsilon  > 0$. Найдем $N: \slim_{n=k+1}^{l} a_n < \varepsilon  \quad \forall  k, l > N$.
+\[
+    S_j(x) = \slim_{n=0}^{j}f_n(x)
+.\] 
+\[
+    |S_j(x) - S_k(x)| = | f_{k+1} \ldots + f_k(x)| \le  |f_{k+1}(x)| + \ldots  + |f_l(x)| \le a_{k+1} + \ldots a_l < \varepsilon 
+.\] 
+\end{proof}
+\begin{ex}[Ван дер Варден]
+    $f_1(x) = 
+	    |x|,  |x| < \frac{1}{2} $ ; продолжим с периодом $1$.
+\begin{figure}[h]
+    \centering
+    \incfig{vandervarden}
+    \caption{График функции Ван дер Вардена}
+    \label{fig:vandervarden}
+\end{figure}
+$f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- непрерывна, но нигде не дифференцируема, так как:
+\[
+    |f_n(x) | \le \frac{1}{2 \cdot 4^{n-1}}
+.\] 
+ \[
+     h \ne 0, ~ h_k = \pm \frac{1}{4^{n-1}}: \quad \frac{g(x + h) - g(x)}{h} = \slim_{j=1}^{\infty} (f_j(x + h_k) - f_j(x))h_k = \slim_{j=1}^{k-1} \frac{f_j(x + h_k) - f_j(x)}{h_k}
+.\] 
+Будем выбирать знак  в $h_k$ ($\pm$), чтобы во всех слагаемых значение лежал в одинаковых частях графика. Тогда при четном и нечетном $j$ значение будет разных знаков.
+\end{ex}
+\begin{name}
+    Ряд из функций $\slim_{n=1}^{\infty} h_n(x)$ -- сходится обозначает, что функции $S_j(x) = h_1(x) \ldots  h_j(x)$  сходятся в соответствующем смысле.
+\end{name}
+\begin{ex}
+    $f_n(x) = \sqrt{x^2 + \frac{1}{n}} \to  |x|$
+    \[
+	\sqrt{x^2 + \frac{1}{n} }- |x| = \frac{x^2 + \frac{1}{n}  - x^2}{\sqrt{x^2 + \frac{t}{n} + |x|}} = \frac{1}{n }\cdot \frac{1}{\sqrt{x ^2 + \frac{1}{n} + |x|}} \le  \frac{1}{n}, \quad \text{ при } |x \ge  1|
+    .\] 
+\end{ex}
+\begin{thm}
+    $f_n, f, g_n : \langle a, b \rangle  \to  \R$ Предположим, что $f_n \to  f$ поточечно.
+    $f_n$ дифференцируемы и $f_n \rightrightarrows g$ равномерно. Тогда $f$  дифференцируемая на $\langle a, b \rangle$ и $f '= g$.
+\end{thm}
+\begin{proof}
+    Запишем определение равномерной сходимости:
+    \[
+	\forall  eps >0 \exists  N : k, l > N \to  \forall  x \in  \langle a, b\rangle : |f_k(x) ' - f_l(x) '| < \varepsilon 
+    .\] 
+    \[
+	u_{k, l} - f_k(x) - f_l(x)
+    .\] 
+    Теперь рассмотрим для $x y \in  \langle a, b \rangle:$
+    \[
+	\frac{u_{k, l} (x)  - u_{k, l} (y)}{x-1} = u'{k,l}(c), \quad c \text{ между } x, y.
+    .\] 
+    \[
+	\begin{array}{r}
+	\forall x, y \in  \langle a, b \rangle : \left | \frac{u_{k, l} (x) - u_{k, l} (y_)}{x - y} \right | < \varepsilon  \Longleftrightarrow \forall  x \in  \langle a, b \rangle , \forall  k, l > N:\\
+	\left | \frac{f_k(x) - f_k(y) }{x-y} - \frac{f_l(x) - f_l(y)}{x-y} \rangle | < \varepsilon 
+	\right |
+    \end{array}
+    .\] 
+    Фиксируем $k$, $l \to  \infty$. 
+\[
+    \left | \frac{f_k(x) - f_l(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle 
+.\] 
+\end{proof}
 \end{document}
 
