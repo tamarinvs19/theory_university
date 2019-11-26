@@ -2282,4 +2282,160 @@ $xR = (x)$ -- главный идеал, порожденный $x$.
    $a = Re z, \quad b = Im z$
    
    $\Cm$ -- векторное пространство над $\R$ с базисом $\{1, i\}$
+
+\section{Лекция 24}
+\subsection{Окончание комплексных чисел}
+   \[
+       \Cm := \R[x] \diagup (x^2 + 1)
+   .\] 
+   $$i := x + x(^2+1)\R[x]$$
+   Любое комплексное число представляется в виде $a + bi, \quad a, b \in \R$, сопряжение: $\overline{a+ bi} = a - bi$.
+   Умножение на сопряженное: $(a+bi) (a-bi) = a^2 + b^2$ .
+   Сложение с сопряженным: $(a+bi) + (a-bi) = 2a$.
+   Получили, что $z \cdot \overline{z} , z + \overline{z} \in \R$.
+
+   \begin{st}
+       Существует ровно два автоморфизма на комплексных числах, оставляющие вещественные на месте.
+   \end{st}
+   \begin{proof}
+       $f \in  \R[x]$.
+       \[
+	   f( \varphi (i)) = \varphi  (f(i)), \quad \alpha \in  \Cm
+       \]  
+       так как $\varphi ( \alpha ^2)  = \varphi ( \alpha )^n \\
+       \varphi (a \alpha ^n) = a \varphi ( \alpha )^n, a \in  \R$.
+       Если $f(x) = x^2 + 1, ~ f(i) = 0$. 
+       $f( \varphi (i)) = \varphi (f(i))$, то есть корень переходит в корень. Значит, нетривиальный только один.
+       А второй --- тривиальный.
+   \end{proof}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{img_cm}
+    \caption{Комплексное число на плоскости}
+    \label{fig:img_cm}
+\end{figure}
+\[
+    |z| = \sqrt{a^2 + b^2}  = 
+    \sqrt{z \cdot \overline{z}}
+.\] 
+\[
+Arg z:= \alpha \in  \R\diagup 2\pi\Z
+.\] 
+Можно выразить через аргумент:
+\[
+    \begin{array}{l}
+    a = |z| \cdot \cos \alpha \\
+    b = |z| \cdot \sin \alpha  \\
+    z = |z| \cdot (\cos \alpha + i \sin \alpha ) \text{ -- тригонометрическая формула}
+\end{array}
+Arg z = 
+\left \{
+\begin{array}{ll}
+    arctg \frac{b}{a} + 2\pi \Z, & a >0 \\
+    \pi + arcctg \frac{b}{a} + 2\pi \Z, & a<0\\
+    \frac{\pi}{2}\cdot sign (b) , & a = 0
+\end{array}
+\right .
+.\] 
+\begin{st}
+    \[
+	(\cos \alpha  + i \sin \alpha ) (\cos \beta  + i \sin \beta ) = \cos( \alpha + \beta ) + i \sin( \alpha + \beta )
+    .\] 
+\end{st}
+\begin{st}
+    $ \varepsilon : \R\diagup 2\pi\Z \to  \Cm^* , \quad \varepsilon ( \alpha ) = \cos \alpha  + i \sin \alpha )$ -- это гомоморфизм.
+    \[
+    Im \varepsilon = S^{1} : = \{z \in  \Cm \mid |z| = 1\}
+    .\] 
+    Так же:
+    \[
+	\begin{array}{l}
+	    \varepsilon ( \alpha  + \beta ) = \varepsilon ( \alpha ) \varepsilon ( \beta )\\
+	    \varepsilon ( - \alpha ) = \varepsilon ( \alpha )^{-1} \\
+	    \varepsilon  ( \beta  - \alpha ) = \frac{\varepsilon ( \alpha)}{ \varepsilon ( \beta)} \\
+	    \varepsilon (n \alpha ) = \varepsilon ( \alpha ) ^{n}, \quad n \in  \Z\\
+	    (\cos \alpha  + i \sin \alpha )^{n} = \cos n \alpha  + i \sin n \alpha \text{ -- формула Муавра} 
+    \end{array}
+    .\] 
+\end{st}
+\paragraph{Несколько слов о комплекснопеременных функциях}
+\begin{defn}
+    Дифференциал: \[
+	f(x + \delta  x) = f(x) + df( \delta  x) + \overline{o( \delta  x)}
+    .\] 
+    В случае дифференцирования функции от двух переменных, $x$ -- столбец, а $df$ -- матрица $2 \times 2$.
+\end{defn}
+\begin{note}
+    Для комплексных коэффициентов:
+    умножение на $\lambda + \mu i \to  
+    \left (
+    \begin{array}{cc}
+	\lambda & - \mu \\
+	\mu & \lambda
+    \end{array}
+\right )
+    $ 
+\end{note}
+\begin{st}
+    Напишем степенные ряды для тригонометричеких функций:
+    \[
+	\begin{array}{l}
+	    e^{t} = \slim_{n=0}^{\infty} \frac{t ^{n}}{n!}\\
+	    \cos t = \slim_{n=1}^{ \infty} \frac{t ^{2k}}{(2k)!} \cdot (-1)^{k} = \slim_{k=0}^{\infty} \frac{ \alpha ^{2k}}{(2k)!}\\
+	    \sin t = \slim_{n=1}^{ \infty} \frac{t ^{2k+1}}{(2k+1)!} \cdot (-1)^{k} = i\slim_{k=0}^{\infty} \frac{ \alpha ^{2k+1}}{(2k+1)!}
+    \end{array} 
+    .\] 
+    \[
+	e ^{i \alpha} = \slim_{n= 2k} \frac{(i\alpha)^{2k}}{(2k)!} + \slim_{n= 2k+1}\frac{(i \alpha )^{2k+1}}{(2k+1)!} %%= \cos \alpha  + i \sin \alpha 
+    .\] 
+    \[
+    e ^{i \alpha} := \cos \alpha + i \sin \alpha 
+    .\] 
+    $$ \varepsilon  ( \alpha ) = e ^{i \alpha }$$
+\end{st}
+\begin{note}[Показательная форма комплексного числа]
+    $$z = |z| \cdot e ^{i \cdot Arg z}$$
+    \[
+    e^{2\pi i} = \cos 2\pi + i \sin 2\pi = 1
+    .\] 
+    $2
+    \pi$ -- период для экспоненты.
+    \[
+    e ^{\alpha + 2\pi i} = e^{ \alpha }
+    .\] 
+    \[
+	a, b \in  \R: ~ e^{a + bi} = e ^{ a} e ^{bi} = e^{a ( \cos b + i \sin a)}    
+    .\] 
+    На языке теории групп:
+    \[
+	r \in  \R^{*}_{>0} , \alpha  \in  \R\diagup 2 \pi \Z: (r, \alpha ) \mapsto r \cdot e ^{i \alpha} 
+    .\] 
+    То есть  $\R^{*}_{>0} \times  \R\diagup 2\pi\Z \to  \Cm ^{*}$ -- изоморфизм.
+    \[
+	\Cm^{*} \cong \underbrace{\R^{*}_{>0} \times  \R\diagup 2\pi\Z}_{\ln} \cong \R \times  \R\diagup 2\pi \Z \cong \Cm\diagup 2\pi\Z
+    .\] 
+    \[
+    Ln: \Cm^{*} \to  \Cm\diagup 3\pi\Z
+    .\] 
+    $Ln: (r, e^{i\alpha + 2\pi\Z} = \ln r + i (\alpha + 2\pi\Z)= \ln r + i \alpha  + 2\pi\Z$.
+\end{note}
+\begin{st}[вычисление корня $n$-й степени]
+    Вычисление корня в аддитивной  группе $\Cm\diagup 2\pi\Z$  -- решение уравнения:
+    \[
+	\begin{array}{l}
+	xn = 0 \mod 2\pi i \Z\\
+	xn = 2\pi i n, k \in  \Z \\
+	x = \frac{2\pi i k}{n} \mod 2\pi i \Z, ~ k \in  \Z\diagup n\Z
+	\end{array}
+    .\] 
+    $z ^{n} = 1, \quad z = Ln z$,  далее
+    \[
+    nx = 0 \mid 2\pi i \Z
+    .\] 
+    \[
+	z = e^{x}=e ^{\frac{2\pi ik}{n}}
+    .\] 
+\end{st}
 \end{document}
+
