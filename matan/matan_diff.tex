@@ -238,23 +238,24 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
 \begin{thm}
     Если $ f_1, f_2$ -- первообразные для $ g$, то $ f_1 - f_2 = const$
 \end{thm}
-\begin{tabular*}{7cm}[ht]{lc}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}[ht]{|l|l|}
     \hline
-    Функция | Первообразная \\
+    Функция & Первообразная \\
     \hline
-    $ x^{ \alpha }$ | $ \frac{x^{ \alpha + 1}}{\alpha + 1}, ~ \alpha \ne -1$\\
+    $ x^{ \alpha }$ & $ \frac{x^{ \alpha + 1}}{\alpha + 1}, ~ \alpha \ne -1$\\
     \hline
-    $ \frac{1}{x}$ | $ \log x + c, ~ \alpha \ne -1$ \\
+    $ \frac{1}{x}$ & $ \log x + c, ~ \alpha \ne -1$ \\
     \hline
-    $ \sin x$ | $ -\cos x + c$\\
+    $ \sin x$ & $ -\cos x + c$\\
     \hline
-    $ \cos x$ | $ \sin x + c$\\
+    $ \cos x$ & $ \sin x + c$\\
     \hline
-    $ \frac{1}{x^2+1}$ | $ arctg x + c$\\
+    $ \frac{1}{x^2+1}$ & $ \arctan x + c$\\
     \hline
-     $ e^{x}$ | $ e^{x} + c$ \\
+     $ e^{x}$ & $ e^{x} + c$ \\
      \hline
-\end{tabular*}
+\end{tabular}
 \begin{name}
     Пишут: \[
 	f = \int g \text{ или } f(x) = \int g(x) dx
