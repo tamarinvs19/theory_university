@@ -205,8 +205,161 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
     .\] 
     Фиксируем $k$, $l \to  \infty$. 
 \[
-    \left | \frac{f_k(x) - f_l(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle 
+    \left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle 
+.\] 
+Оценим разность. Зафикируем $ x$.
+\[
+    \exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  |\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)|  < \varepsilon 
+.\] 
+Объединяем неравенства: 
+для данных $ k, x$:
+\[
+    |y - x| < \delta  , y \ne x \to  |f'_k(x) - \frac{f(x) - f(y)}{x-y}| \le  2 \varepsilon 
+.\] 
+Следовательно,
+\[
+    |x - y| < \delta \to  |g(x) - \frac{f(x) - f(y)}{x-y}| \le 3 \varepsilon 
 .\] 
 \end{proof}
-\end{document}
+\section{Первообразные}
+Пусть все происходит на $ \langle a, b \rangle$. $ g : \langle a, b \rangle \to  \R$
+\begin{defn}
+    Говорят, что $ f$ есть первообразная для $ g$, если $ f$ дифференцируема на $ \langle a, b \rangle y$ и $ f' = g$ всюду. 
+\end{defn}
+\begin{thm}[Ньютон, Лейбниц]
+    Если $ g$ -- непрерывна, то у нее есть первообразная.
+\end{thm}
+\begin{note}
+    К этой теореме мы еще вернемся.
+\end{note}
+\begin{st}
+    Если $ f' = g$, то $ (f + c)' = g$ для любой константы  $ c$.
+\end{st}
+\begin{thm}
+    Если $ f_1, f_2$ -- первообразные для $ g$, то $ f_1 - f_2 = const$
+\end{thm}
+\begin{tabular*}{7cm}[ht]{lc}
+    \hline
+    Функция | Первообразная \\
+    \hline
+    $ x^{ \alpha }$ | $ \frac{x^{ \alpha + 1}}{\alpha + 1}, ~ \alpha \ne -1$\\
+    \hline
+    $ \frac{1}{x}$ | $ \log x + c, ~ \alpha \ne -1$ \\
+    \hline
+    $ \sin x$ | $ -\cos x + c$\\
+    \hline
+    $ \cos x$ | $ \sin x + c$\\
+    \hline
+    $ \frac{1}{x^2+1}$ | $ arctg x + c$\\
+    \hline
+     $ e^{x}$ | $ e^{x} + c$ \\
+     \hline
+\end{tabular*}
+\begin{name}
+    Пишут: \[
+	f = \int g \text{ или } f(x) = \int g(x) dx
+    .\] 
+\end{name}
+\begin{st}
+    $ \int f'(x) \cdot g' = f \circ g \pm C$
+\end{st}
+\begin{defn}
+    Линейная функция -- это функция вида $ \varphi  (h) = ch$.
 
+    Линейная форма: 
+    $\langle a, b \rangle; \quad \Phi $ -- отображение отрезка $ \langle a, b \rangle$ в множество линейных функций.
+
+    $ x \in  \langle a, b \rangle$, $ \Phi(x) $ -- линейная функция.
+    \[
+	\Phi(x)(h) = c (x) h
+    .\] 
+\end{defn}
+\begin{defn}[дифференциал]
+    $ f $ -- дифференцируема на $ \langle a, b \rangle$ 
+    \[
+	df(u, h) = f'(u) h = df
+    .\] 
+\end{defn}
+\begin{ex}
+    $ x: \langle a, b \rangle \to  \langle a, b \rangle$ -- тождественная. $ dx (u, h)= h$
+\end{ex}
+\begin{st}
+    $ \Phi = c \cdot dx$, где  $ c$ - некая функция на $ \langle a, b \rangle$
+\end{st}
+$ f' = g \\
+df = f' dx = g dx$ 
+
+Задача первообразной: дана линейная форма $ \varphi = g dx$ ; найти функцию $ f: df = \varphi $
+\begin{st}
+    \[
+	d(f \circ g) = (f' \circ g) \cdot g: dx = f' \circ g dg
+    .\] 
+\end{st}
+\begin{ex}
+    \[
+	\int \sqrt{1 - x^2} dx, \quad x \in  (-1, 1)
+    .\] 
+    Сделаем замену $ x = \sin t$, пусть $ t \in  [- \pi , \pi]$
+    $$
+    \begin{array}{c}
+	\int \sqrt{1-\sin^2(t)} \cos t dt = \int \cos^2(t) dt =\\
+	\int \frac{1 + \cos 2t}{2} dt = \frac{1}{2} \int ((1 + \cos 2t) dt = \\
+	\frac{1}{2}(t + \frac{1}{2} \int \cos t d(2t)) = \frac{1}{2} (t + \frac{\sin
+	2 t}{2})
+    \end{array}
+    $$
+    Тогда $ \int \sqrt{1 - x^2} dx = \frac{1}{2} (\arcsin x + \frac{\sin 2 \arcsin x}{2})$
+\end{ex}
+\begin{st}[Формула интегрирования по частям]
+
+    $ (fg)' = f'g + fg'$
+    Перепишем:
+     \[
+	 d(fg) = g df + f dg
+    .\] 
+    \[
+	g df = -f dy + d(fg)
+    .\] 
+    \[
+    \int g df = fg - \int f dg
+    .\] 
+\end{st}
+\begin{ex}
+    \[
+    \int \log x dx = x \log x - \int x d \log x = x \log x - \int 1 dx = x \log x -x + C
+    .\] 
+\end{ex}
+\begin{ex}
+    \[
+    \int e^{x} \sin x dx = \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx
+    .\] 
+    \[
+     = \sin x e^{x} - \int xos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
+    .\] 
+    Теперь решим уравнение и получим:
+    \[
+	\int e^{x} \sin x dx = \frac{e^{x} \sin x - e^{x} \cos x}{2} + c
+    .\] 
+\end{ex}
+\section{Интеграл}
+\begin{defn}
+    $ A$ -- множество произвольной природы. $ \Phi: A \to  \R$. $ \Phi$ -- функционал на $ A$. 
+\end{defn}
+\begin{defn}
+    Интеграл -- функционал на множестве функций, заданных на отрезке $ [a, b]$.
+
+    $ f \mapsto \Phi (f)$
+    \[
+	\Phi(f+g) = \Phi(f) + \Phi(g)
+    .\] 
+    \[
+	\Phi( \alpha  f) = \alpha \Phi
+    .\] 
+    \[
+	 f \ge  0 \Longrightarrow \Phi(f) \ge 0
+    .\] 
+    \[
+	\langle c, d \rangle \subset \langle a, b \rangle, f= \Phi(\chi)  \langle c, d \rangle = d - c
+    .\] 
+\end{defn}
+\end{document}
