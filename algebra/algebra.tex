@@ -24,9 +24,18 @@
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{Overleaf}
+\fancyhead[RE,LO]{Guides and tutorials}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+ 
+\renewcommand{\headrulewidth}{2pt}
+\renewcommand{\footrulewidth}{1pt}
 
-
-\pagestyle{plain}
+% \pagestyle{plain}
 
 \usepackage{fullpage}
 % \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
@@ -66,6 +75,15 @@
 
 
 \title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
+\author{Тамарин Вячеслав}
+% \usepackage{fancyhdr}
+%  
+% \pagestyle{fancy}
+% \fancyhf{}
+% \rhead{Overleaf}
+% \lhead{Guides and tutorials}
+% \rfoot{Page \thepage}
+
 \maketitle
 \clearpage
 \tableofcontents
@@ -2437,5 +2455,152 @@ Arg z =
 	z = e^{x}=e ^{\frac{2\pi ik}{n}}
     .\] 
 \end{st}
-\end{document}
+\section{Лекция 25}
+\[
+    z^{n} \Longleftrightarrow z = e^{\frac{2 \pi  i k}{n}}, k \in  \Z \diagup n\Z
+.\] 
+\[
+    \Theta_n (Z) = z^{k} \text{ -- гомеоморфизм }  \Cm \to  \Cm^{*}
+.\] 
+\[
+    \mu_n = Ker \Theta_n = \{e ^{ \frac{2\pi i k}{n}} \mid k \in  \Z\diagup n\Z\}
+.\] 
+Эти числа делят окружность на $ n$ равных частей.
 
+$ \Z \diagup  n \Z \to  \mu_n\\
+k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
+\begin{defn}
+    Образующие элементы $ \mu_n$ называются превообразными корнями из 1.
+\end{defn}
+\begin{cor}
+    $ e^{\frac{2\pi i k}{n}}$ -- превообразный корень тогда и только тогда, когда $ gcd(k, n) = 1$.
+\end{cor}
+\begin{st}
+    $ z^{n} = w = r e^{i \varphi }$.
+    Одно из решений этого уравнения: $ \left( \sqrt[n]{r} \cdot e ^{\frac{i \varphi }{n}} \right)^{n} $.
+
+    А все решения можно записать:
+    \[
+	\sqrt[n]{w} = \{\sqrt[n]{r} \cdot e ^{i \frac{phi  + 2 \pi k}{n}} \mid k \in  \Z\diagup n\Z\}, \quad z^{n} = w
+    .\] 
+\end{st}
+\begin{thm}[Основная теорема алгебры]
+    $ p \in  \Cm[x], ~ \deg p \ge 1$
+
+    Тогда $ \exists \alpha  \in  \Cm: p( \alpha ) = 0$.
+\end{thm}
+\begin{thm}[Лиувилль]
+    Любая ограниченная дифиринцируемая функция $ \Cm \to  \Cm$ -- константа.
+\end{thm}
+\subsection{Кольца главных идеалов}
+\subsubsection{Евклидовы кольца}
+\begin{defn}
+ 	Область целостности -- коммутативное кольцо с единицей без делителей нуля.   
+\end{defn}
+\begin{name}
+    $ R$ -- коммутативное кольцо с $ 1$ без делителей нуля.
+\end{name}
+\begin{defn}
+    $ f: R \to  \N_0 \cup \{-\infty\}$ 
+    Обладает свойствами:
+    \begin{enumerate}
+	\item $ f(0) < f(r), \quad \forall  r \in  R$
+	\item $ \forall a, b \in  R, b\ne 0 ~ \exists  c, r \in R: a = b c + r \wedge f(r) < f(b)$
+    \end{enumerate}
+    Тогда $ R$ -- евклидова кольцо с евклидовой нормой  $ f$.
+\end{defn}
+\begin{thm}
+    Любой идеал евклидова кольца главный.
+\end{thm}
+\begin{proof}
+    Пусть $ I \triangleleft  R$. 
+    \[
+	a \in  I \setminus \{0\}: f(a) \le  f(b) \quad \forall  b \in  I \setminus \{0\}
+    .\] 
+    \[
+	b = ac + r, \quad f(r) < f(a)
+    .\] 
+    \[
+	r = \underbrace{b}_{\in I} - \underbrace{ac}_{ \in  I} \in  I 
+    .\] 
+    Если $r \ne 0$, то $ f(a) \le  f(r) < f(a)$ . Противоречие. 
+\end{proof}
+\begin{note}
+    На практике ищется с помощью алгоритма Евклида.
+\end{note}
+\begin{st}
+    $ b = ac + r_1 \\
+    a = r_1 c_1 + r_2 \\
+    r_1 = r_2 c_2 + r_3 \\
+    \vdots\\
+    f(r_{i+1}) < f(r_i)\\
+    \vdots\\
+    f(r_n)  \le f(d) \quad \forall  d \in  I$
+    $ a R + b R = r_n R$
+\end{st}
+\begin{st}
+    $ R$ -- область главных идеалов.
+    $ a_i \in  R$
+    \[
+	\slim_{i=1}^{m} a_i R = d R
+    .\] 
+    Тогда $ d:= \gcd(a_i)$.
+\end{st}
+\begin{exs}
+    % $ $\\
+    \begin{tabular}[ht]{l|l}
+	Кольцо & Норма\\
+	\hline
+	$ \Z$ &$ |\cdot|$\\
+	$ F[x], ~ F \text{ -- поле}$ & $  \deg$\\
+	Гауссовы целые числа: $ \Z[i] = \{a + bi \mid a, b \in\Z\}$ & $ |\cdot|$
+    \end{tabular}
+\end{exs}
+\begin{ex}[не евклидово число]
+    $ \Z [\sqrt{19}]$ -- не евклидово кольцо главных идеалов. 
+\end{ex}
+\subsection{Китайская теорема об остатках}
+\begin{thm}{КТО для целых чисел} $ $
+    $ x \equiv x_1 \mod n_1 \\
+    x \equiv x \mod n_2 \\
+    \vdots \\
+    x  \equiv x_m \mod n_m$ 
+
+    Сущействует единстваенное  $ x$по модулю произведения $ n1 .. n_m$, удовлетворяющее данным сравнениям.
+\end{thm}
+\begin{thm}{КТО}
+    $ R$ -- коммутативное кольцо с 1.
+    $ I_1, \ldots I_m$ -- идеалы в $ R$.
+
+$ I_i + I_k = R ~ \forall  j \ne k$.
+Тогда \[
+    R\diagup _{I_1} \oplus \ldots  \oplus R\diagup _{I_m} \cong R \diagup _{I_1 \ldots I_M}
+.\] 
+\end{thm}
+\begin{rem}
+    $ A, B$ -- кольца. Декартово произведение \[
+    A \oplus B = a \times  B
+    .\] 
+    с покомпонентными операциями.
+    \[
+	(a_1, b_1) + \cdot (a_2, b_2) = (a_1 + \cdot a_2, b_1 +\cdot b_2)
+    .\] 
+\end{rem}
+\begin{st}
+    Идеалы $ I, J$ взаимно простые, если $ I + J = R$.
+\end{st}
+\begin{proof}
+    $ I \cap  J $ -- идеал.
+    $ I + J = \{a + b \mid a \in I, b \in J\}$ -- идеал.
+    $ I \cdot J = \{\slim _{i=1} ^{m} a_i b_i \mid m \in  \N, a_i in I, b_i \in  J\}$
+\end{proof}
+\begin{lm}
+   $I \cdot J \subseteq I \cap J$  верно всегда.
+\end{lm}
+\begin{lm}
+    $ I + J = R \Longrightarrow I \cdot J = I \cap  J$
+\end{lm}
+\begin{proof}
+    $ I \cap  J = (I \cap  J) \cdot R = (I \cap  J) (I + J) = \underbrace{(I \cap  J) \cdot I}_{ \in I \cdot J} + \underbrace{(I \cap J) \cdot J}_{ \in I \cdot J} \subseteq I \cdot J$
+\end{proof}
+\end{document}
