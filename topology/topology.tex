@@ -31,13 +31,13 @@
 \usepackage{fullpage}
 
 \begin{document}
-\renewcommand{\proofname}{Proof.}
+\renewcommand{\proofname}{Proof}
 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem*{lm}{Lemma}
-\newtheorem*{st}{St.}
-\newtheorem*{prop}{Prop.}
+\newtheorem*{st}{St}
+\newtheorem*{prop}{Prop}
 
 \theoremstyle{definition}
 \newtheorem{defn}{Def}
@@ -337,4 +337,144 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     \label{fig:compose}
 \end{figure}
 \end{thm}
+\section{Аксиомы}
+\subsection{Аксиомы счетности}
+\begin{defn}
+    $ X = (X , \Omega )$  
+    База в точке $ x \in  X$ -- такое множество $ \Sigma _x \subset \Omega $, что:
+    \begin{enumerate}
+        \item $ \forall V \in  \Sigma _x: x \in  V$
+	\item $ \forall U \not\ni x \exists V \in  \Sigma _x: V \subset U$
+    \end{enumerate}
+    
+\end{defn}
+\begin{name}
+    Счетное множество -- не более, чем счетное.
+\end{name}
+\begin{defn}
+    Пространство $ X$ удовлетворяет первой аксиоме сетности (1АС), если для любой точки $ x \in  X$ существует счетная база в этой точке.
+\end{defn}
+\begin{defn}
+    Пространство $ X$ удовлетворяет второй аксиоме счетности (2АС), если у него есть счетная база топологии.
+\end{defn}
+\begin{thm}
+    2AC  $ \Rightarrow $ 1АС
+\end{thm}
+\begin{proof}
+    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть \ldots 
+\end{proof}
+\begin{thm}
+    Все метрические пространства удовлетворяют второй аксиоме счетности.
+\end{thm}
+\begin{st}
+    $ \R$ имеет счетную базу.
+\end{st}
+\begin{thm}
+    Если $ X$ и $ Y$ имеют счетную базу, то $ X \times  Y$ тоже имеет счетную базу.
+\end{thm}
+\begin{thm}
+    Если $ X$ имеет счетную базу, то любое его подпространство тоже имеет счетную базу.
+\end{thm}
+\begin{cor}
+    $ \R^{n}$ имеет счетную базу.
+\end{cor}
+\begin{probl}
+    1AC тоже наследуется подпространствами и произведениями.
+\end{probl}
+\begin{defn}
+    Топологические свойство -- наследственное, если оно сохраняется при замене пространства на любое подпространство.
+\end{defn}
+\begin{ex}
+    Дискретность, антидискретность, 1АС, 2АС -- наследственные свойства.
+\end{ex}
+\begin{thm}{Линделёф}
+    Если $ X$ удовлетворяет 2AC, то из любого открытого покрытия можно выбрать счетное подпокрытие.
+\end{thm}
+\begin{proof}
+    Пусть  $ \Lambda $ -- множество тех элементов базы, которые содержатся хотя бы в одном из элементов покрытия. $ \Lambda$ -- счетное покрытие.
+
+    Каждому $ U \in A$ сопоставим $ V$ из исходного покрытия, для которого  $ U \subset V$.
+
+    Все такие $ V$ образуют искомое счетное покрытие.
+\end{proof}
+\subsection{Сеперабельность}
+\begin{defn}
+    Всюду плотное множество -- множество, замыканние которого есть все пространство.
+\end{defn}
+\begin{defn}
+    Множество всюду плотно тогда и только тогда, когда оно не пересекается с любым непустым открытым множеством.
+\end{defn}
+\begin{ex}
+    $ \Q$ всюду плотно в $ \R$
+\end{ex}
+\begin{defn}
+    Топологическое пространство сепарабельно, если в нем есть счетное всюду плотное множество.
+\end{defn}
+\begin{prop}
+        $ X, Y$ -- сепарабельны $ \Longrightarrow  X \times Y$  тоже.
+\end{prop}
+\begin{note}
+    Сепарабельность -- не наследственное свойство.
+\end{note}
+\begin{thm}$ $
+    \begin{itemize}
+        \item Счетная база $ \Longrightarrow  $ сепарабельность.
+	\item Для метризуемых пространств сеперабельность $\Longrightarrow$ счетная база
+	\end{itemize}
+\end{thm}
+\section{Аксиомы отделимости}
+\begin{defn}
+    $ X$ обладает свойтсвом $ T_1$, если для любой различных точек $ x, y \in X$ существует такое открытое $ U$, что $ x \not\in U \wedge y \not\in U$ .
+\end{defn}
+\begin{thm}
+    $ T_1 \Longleftrightarrow $  любая точка является замкнутым множеством.
+\end{thm}
+\begin{defn}
+    $ X$ -- хаусдорфово, если для любых $ x, y \in  X$ существуют окрестности $ U \ni x \wedge V \ni y: ~ U \cap V = \varnothing$.
+\end{defn}
+\begin{defn}
+    $ X$ хаусдорфово $ \Longleftrightarrow $ Диагональ $ \Delta := \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
+\end{defn}
+\begin{defn}
+    $ X$ -- регулярно, если 
+    \begin{itemize}
+	\item обладает $ T_1$
+	\item $ \forall  \text{ замкнутого }A \subset X~ \forall x \in  X \setminus A~ \exists \text{ открытые } U, V : A \subset  U \wedge x \in V \wedge U \cap  V = \varnothing $
+
+	    Другое название $ T_3$-пространство
+    \end{itemize}
+\end{defn}
+\begin{defn}
+    $ X$ -- нормально, если 
+    \begin{itemize}
+        \item обладает $ T_1$ 
+	\item $ \forall  A, B \in  X (A \cap  B = \varnothing) ~ \exists  \text{ открытые } U, V: A \subset U,  B  \subset V  \wedge U \cap  V= \varnothing$
+	\end{itemize}
+
+	    Другое название $ T_4$-пространство
+\end{defn}
+\begin{st}
+    $ T_4 \Rightarrow T_3 \Rightarrow  T_2 \Rightarrow T_1$
+\end{st}
+\begin{probl}
+    Свойства $ T_1 - T_3$ наследуются подпространствами и произведениям.
+
+    Нормальность не наследственная.
+\end{probl}
+\begin{defn}
+    Все метрические пространства нормальны.
+\end{defn}
+\begin{proof}
+    Хороший метод.
+
+    $ f: X \to  Y$
+    \[
+	f(x) = \frac{d(x, A)}{d(x, A) + d(x, B)}
+    .\] 
+    Она корректна, непрерывна, и принимает значение ноль на $ A$  и  единице $ B$.
+\end{proof}
+\begin{lm}[Урысон]
+    $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
+    
+\end{lm}
 \end{document}
