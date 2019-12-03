@@ -363,4 +363,132 @@ df = f' dx = g dx$
 	\langle c, d \rangle \subset \langle a, b \rangle, f= \Phi(\chi)  \langle c, d \rangle = d - c
     .\] 
 \end{defn}
+\begin{st}
+    Каким должен быть интеграл?
+    \begin{enumerate}
+	\item Функционал, заданный на каких-то функциях сопоставляет число ($ f \mapsto I( \alpha )$)
+	\item $ I( \alpha  f + \beta  g) = \alpha I(f) = I ( \beta ) $ (Линейность)
+	\item $ f \le  g \Longrightarrow I(f) \le  I(g)$
+	\item $  \langle a, b \rangle: I(\chi _{ \langle a, b \rangle} ) = b - a$
+    \end{enumerate}
+\end{st}
+\begin{defn}
+    Разбиение -- ступенчатая функция на отрезке $ \langle a, b \rangle, ~ a, b \in  \R:$
+    \[
+	\langle a, b \rangle = \bigcup_{i= 1}^{n} \langle \alpha _i, \beta _i \rangle, \quad \langle \alpha_i , \beta _i \rangle\cap \langle \alpha _j, \beta _j \rangle  \ne \varnothing
+    .\] 
+\end{defn}
+\begin{defn}
+    $ g $  на $ \langle a, b \rangle$ -- ступенчатая, если при $ i \ne j$ она постоянна  на отрезках какого-то разиения нашего отрезка $ \langle a, b \rangle$
+\end{defn}
+Теперь можно зажать функцию между ступенчатыми. В этом состоит идея Дарбу.
+\subsection{Интеграл Дарбу}
+\begin{defn}
+    $ J$ -- конечный интервал, если его разбиение -- это набор  интервалов $ \{J_k\}^{N}_{k=1}$, такой что $ J_k \\cap  J_s = \varnothing, ~k \ne s $,
+    $ \bigcup_{k=1}^{{N}} J_k = J_i $. (ДОпускаются одноточечные и пустые множества.)
+
+\end{defn}
+    \begin{defn}
+    Длина интервала $ \langle a, b \rangle$ -- это $ b - a$
+    Обозначается $ |J| = b-a$, $ |\varnothing| = 0$
+\end{defn}
+\begin{lm}
+    Если $ \{J_k\}_{k= 1}^{N}$ -- разбиение $ J$, то $|J| = \slim_{k=1}^{N}  |J_k|$
+\end{lm}
+\begin{defn}
+    $ e$ -- множетсво, $ f$ -- ограниченная функция на $ у$. 
+
+    Колебание $ f$ на $  e$ :
+    \[
+	esc_e (f) = \sup_{x, y \in  e} |f(x) - f(y)|= 
+    \]
+    \[
+=	\sup_{y} \left( \sup_x (f(x) - f(y)) \right)  = \sup_x \left( \sup_y (f(x) - f(y))  \right) =
+    \] 
+    \[
+	=\sup_{x \in  e}  f(x)  + \sup_{y \in  e}(-f(x) = \sup _{x \in  e} f(x) - \inf_{y \in  e} f(y)
+    .\] 
+\end{defn}
+\begin{figure}[ht]
+    \centering
+    \incfig{func-darby}
+    \caption{График функции}
+    \label{fig:func-darby}
+\end{figure}
+Пока предполагаем, что $ f$ ограничена.
+Просуммируем отрезки $ J_1, \ldots J_N $ из разбиения отрезка $ J$.
+\[
+    \slim_{k= 1}^{N} |J_k|\inf_{x \in  J_k} f(x) \underline{S}
+.\] -- нижняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
+\[
+\slim_{k= 1}^{N} |J_k|\sup_{x \in  J_k} f(x) =\overline{S}
+.\] -- верхняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
+\begin{name}
+    $ A$ -- множество всех нижних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
+
+    $ B$ -- множество всех верхних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
+\end{name}
+\begin{st}
+    Пусть $ \{A, B\}$ -- щель. Тогда  
+    \[
+	\underline{I}(f) = \sup{ A} , \quad \overline{I}(f) = \inf(B)
+    .\] 
+    Все числа, лежащие в этой щели -- это $ [ \underline{I} (f) , \overline{I}(f)]$ (верхний и нижний интегралы Римана-Дарбу от $ f$)
+\end{st}
+\begin{st}
+    $\{A, B\}$ -- щель.
+\end{st}
+\begin{proof}
+    $ \varepsilon $ -- разбиение отрезка $ J_i$.
+    $ \underline{S}_{ \mathcal{E} } (f) , ~ \overline{S} _{ \mathcal{E} }(f)$ -- верхняя и нижняя сумма Дарбу.
+    Очевидно, что $ \underline{S} _ \mathcal{E}  (f) \le  \overline{S} (f)$
+
+    $ \mathcal{E} , \mathcal{F}$ -- разбиение  $ J_i$ : $ \mathcal{F}$ -- измельчение $ \mathcal{E} $, если $ \forall  a \in  \mathcal{F} ~ \exists  b \in  \mathcal{E} : a<b$.
+    \begin{lm}
+        Если $ \mathcal{F}$ -- измельчение для $ \mathcal{E} $, то \[
+	    \underline{S} _\mathcal{F} (f) \ge \underline{S}_ \mathcal{E} , \quad \overline{S}_\mathcal{F} \le \overline{S}_ \mathcal{E} 
+        .\] 
+    \end{lm}
+    \begin{lm}
+    Рассмотрим  $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения отрезка $ J_i$.
+    Тогда у них есть общее измельчение. (Можем взять пересечение всех отрезков из первого и из второго)
+    \end{lm}
+    Пусть $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения. $ \mathcal{F}$ -- общее измельчение.
+    \[
+	\underline{S}_{\mathcal{E}_1} (f) \le  \underline{S}_{\mathcal{F}} (f) \le \overline{S}_\mathcal{F} \le \overline{S}_{\mathcal{E}_2}
+    .\] 
+    Следовательно, $ \{A, B\}$ -- щель.
+\end{proof}
+\begin{note}
+    Определенные величины $ \overline{I}(f) , \underline{I}(f)$ законны.
+\end{note}
+\begin{defn}
+    $ f$ называется интегрируемой по Риману, если $ \overline{I}(f) = \underline{I}(f)$
+\end{defn}
+\begin{ex}
+        \item Все ступенчатые функции интегрируемы по Риману.
+	     $\varphi $-- ступенчатая функция на $ J$, 
+	     Существует разбиение $ \underline{S}$ отрезка на $ J$.
+	     $ \mathcal{E} = \{e_1, \ldots  e_k\} : \varphi  (x) = \slim{i=1}^{k} c_i \chi_{e_i}$
+	     \[
+		 \underline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i 
+		 \overline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i 
+	     \] 
+	     Тогда $ \underline{I} ( \varphi ) - \overline{I} \varphi = I( \varphi ) = \slim_{i=1}^{k} |e_i| c_i$ 
+\end{ex}
+\begin{note}
+    Пусть $ J$ -- произвольный отрезок, $ f$ -- ограниченная функция на $ J$, $ \matcal{E}$ -- разбиение отрезка $ J  $ на непустве отрезки $ \{e_1, \ldots  e_n\}$.
+    \[
+   % фото 14:28 
+    .\] 
+\end{note}
+ % теорема 14:28
+% утверждение 14:30
+\begin{thm}{Критерий интегрируемости по Риману}
+    $ f$ -- интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 \exists $ разбиение $ e_1, .. e_k$ Отрезка $ J$, такое что $ \slim_{i=1}^{k}|e_k| osc_{e_k} f < \varepsilon $. \label{iff_1}
+\end{thm}
+\begin{proof}
+    Проверим, что $ f$ удовлетворяет условию  \ref{iff_1}
+    % proof 14:36
+\end{proof}
 \end{document}
