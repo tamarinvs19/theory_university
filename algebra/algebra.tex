@@ -2603,4 +2603,181 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \begin{proof}
     $ I \cap  J = (I \cap  J) \cdot R = (I \cap  J) (I + J) = \underbrace{(I \cap  J) \cdot I}_{ \in I \cdot J} + \underbrace{(I \cap J) \cdot J}_{ \in I \cdot J} \subseteq I \cdot J$
 \end{proof}
+\section{Лекция 26}
+$ I, J$ -- идеалы в $ R$ 
+\[
+I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
+.\] 
+\begin{lm}
+    $ I + J = R$. Тогда \[
+	R \diagup _ {IJ} \cong R \diagup_I \oplus R \diagup _ J
+    .\] 
+\end{lm}
+\begin{proof}
+    \[
+    \varphi : R \to  R \diagup_I \oplus R \diagup _ J
+    .\] 
+    \[
+	r \mapsto (r + I, r + J)
+    .\] 
+    $ Ker \varphi  \ni r \Leftrightarrow 
+    \left \{ 
+	\begin{array}{l}
+	    r + I = I \\
+	    r + J
+	\end{array}
+	 \right .
+	 \Leftrightarrow r \in  I \cap  J
+	$
+	\[
+	Ker \varphi  = I \cdot J
+	.\] 
+	\[
+	\exists  a \in I, b \in J: a + b = 1
+	.\] 
+	\[
+	r = br_1+ar_2 \equiv r_1 \mod I
+	.\] 
+	\[
+	r = br_1+ar_2 \equiv r_2 \mod J
+	.\] 
+	То есть $ \varphi (r) =  (r_1 + I, r_2 + J)$, следовательно, $ \varphi $ -- сюрьективно.
+
+	По теореме о гомоморфизме колец \[
+	    R \diagup _{IJ} \cong R\diagup_I \oplus R\diagup_J
+	.\] 
+\end{proof}
+\begin{lm}
+    $ J, I_1, \ldots I_n $ --  идеалы в $ R$. 
+    \[
+    J + I_n = R \forall k \Longrightarrow J + I_1 \cdot \ldots I_n = R
+    .\] 
+\end{lm}
+\begin{proof}
+    Индукция.
+    База для $ k=1$. Очевидно.
+    Переход:
+
+    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказть , что $ J + I \cdot I_n = R$.
+
+     \[
+	 \begin{array}{l}
+	     R = J + I\cdot R = J + I(J + I_n) = \\
+	     = J + I J + I I _n  = J + I I_n
+     \end{array}
+     .\] 
+\end{proof}
+\begin{thm}[Китайская теорема об остатках]
+    $ I_1, \ldots  I_n$ -- попарно взаимнопростые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
+    Тогда \[
+	\frac{R}{I_1\cdot \ldots I_n } \cong \frac{R}{I} \oplus \ldots  \oplus \frac{R}{I_n}
+    .\] 
+    \begin{note}
+        Здесь дробью обозначается фактор кольцо.
+    \end{note}
+\end{thm}
+\begin{proof}
+    Индукция по $ n$.
+    Так как $ I_k$ взаимно просто с  $ I_1\cdot \ldots I_{n-1}$
+    \[
+	\frac{R}{I_1 \ldots I_n} \cong \frac{R}{I_1 \cdot \ldots I_{n-1} } \oplus \frac{R}{I_n}
+    .\] 
+    Дальше по предположению индукции получаем то, что хотим.
+\end{proof}
+\begin{st}
+ $ x \equiv x_k \mod I_k, \quad k = 1, \ldots n$ равносильно тому, что \[
+	x \equiv \slim_{k=1}^{n} x_k c_k \mod I_1 \ldots I_n, \quad c_k \in  \prod_{j \ne k} I_j \cap (1 + I_k)
+    .\] 
+\end{st}
+\begin{note}
+    В целых числах:
+    \[
+    x \equiv x_k \mod m_k, \quad k = 1, \ldots  n
+    .\] 
+    Чтобы найти $ c_k$, нужно решить диофантово уравнение:
+    \[
+	y \cdot m_k + \underbrace{z \cdot \prod_{j \ne k} m_j}_{=c_k} = 1 
+    .\] 
+\end{note}
+\begin{st}[применение КТО]
+    В $ F[t]$ :
+    \[
+	p(x_k) = y_k \quad \forall  k = 1, \ldots n, x_i \ne x_k  ~ \forall  i \ne k
+    \] 
+равносильно
+    \[
+	p \equiv y_k \mod (t - x_k)    
+    .\] 
+    \[
+	p(t) \equiv \slim_{k=1}^{n} y_k \prod \frac{t -x_i}{x_k - x_i} \mod (t - x_i) \ldots (t - x_n)
+    .\] 
+\end{st}
+\subsection{Простые и максимальные идеалы}
+Все кольца будут коммутативные с единицей.
+\begin{defn}
+    Простой идеал $ P \ne R$ кольца $ R$ называется простым, если $ ab \in  P \Rightarrow a \in  P \vee b \in  P$ 
+\end{defn}
+\begin{note}
+    Другими словами $ R \setminus P$ замкнуто относительно умножения
+\end{note}
+\begin{ex}
+    В $ \Z$ идеал $ n\Z$ -- простой тогда и только тогда, когда  $ n $ -- простое.
+\end{ex}
+\begin{ex}
+    В $ F[t]$ идеал $ f \cdot F[t]$ простой тогда и только тогда, когда $ f$ -- неприводимый многочлен.
+\end{ex}
+\begin{ex}
+    Однако в $ \Z[\sqrt{-3}]=R$  идеал $ 2R$ -- не простой, хотя $ 2$ не приводимо.
+	\[
+	    (1 + \sqrt{-3})(1-\sqrt{-3}) = 4 \in  2R
+	.\] 
+	Докажем, что элементы $ 2, 1 \pm \sqrt{-3}$ неприводимы.   Обозначим их за $ \alpha  = \beta \gamma$. Квадраты равны  $ 4$. 
+	\[
+	| \alpha |^2 = 4 = | \beta |^2 \cdot | \gamma|^2
+	.\] 
+	\[
+	    |a + b\sqrt{-3}| ^2 = a^2+ 3 b^2, ~a, b \in  \Z 
+	.\] 		
+	Либо $ | \beta |^2 = 1$, либо $ | \gamma|^2 = 1$, то есть $ \beta $ или $ \gamma$ обратимы.
+\end{ex}
+\begin{ex}
+    $ F[x, y] = R$
+     \[
+    I = xR + yR
+    .\] -- простой.
+\end{ex}
+\begin{defn}
+    Максимальны идеал -- максимальный собственный идеал. 
+    Что равносильно тому, что это максимальный из идеалов, не содержащих единицу.
+\end{defn}
+\begin{note}
+     Другими словами, $ M$ -- максимальный идеал, если $ M \ne R$ и $ M \subseteq I \subset R \Rightarrow I = M$
+\end{note}
+\begin{thm}
+    Любой собственный идеал содержится в каком-то максимальном.
+\end{thm}
+\begin{proof}
+    $ J \trianglelefteq R$. % делать отрицание нестрогости!!
+
+    $ \mathcal{X}$ -- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
+
+    $\mathcal{Y}$ -- линейно упорядоченное подмножество $ \mathcal{X}$, то $ \bigcup_{I \in \mathcal{Y}} \in \mathcal{X}$
+    \[
+	a, b \in  \bigcup_{I \in \mathcal{Y}} I \Longrightarrow \exists I_1, I 2 \in \mathcal{Y}: a \in  I_1, b \in I_2 \wedge (I_1 \subseteq I_2 \vee I_2 \subseteq I_1) 
+    ,\] 
+    так как $\mathcal{Y}$ -- линейно упорядочено.
+    \[
+	a, b \in  I_k ~(k = 1, 2): a+b \in  I_k \subseteq \bigcup_{I \in \mathcal{Y}}  I
+    .\] 
+    \[
+    a \in  \bigcup I \Longrightarrow ra \in  \bigcup I, r \in  R
+    .\] 
+    Следовательно, $ \bigcup_{I \in \mathcal{Y}}  $ -- идеал.
+    \[
+    \bigcup_{I \in\mathcal{Y}} \subseteq J \wedge \bigcup_{ I \in \mathcal{Y}} \not\ni 1 
+    .\] 
+    По лемме Цорна $ \mathcal{X}$ содержит максимальный элемент. Пусть это $ M$.
+    Если $ M \subset N \subset R$ %2 nnot
+    , $ N \in  \mathcal{X} \Rightarrow  N = M$
+\end{proof}
 \end{document}
