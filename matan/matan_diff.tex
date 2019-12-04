@@ -477,7 +477,7 @@ df = f' dx = g dx$
 	     Тогда $ \underline{I} ( \varphi ) - \overline{I} \varphi = I( \varphi ) = \slim_{i=1}^{k} |e_i| c_i$ 
 \end{ex}
 \begin{note}
-    Пусть $ J$ -- произвольный отрезок, $ f$ -- ограниченная функция на $ J$, $ \matcal{E}$ -- разбиение отрезка $ J  $ на непустве отрезки $ \{e_1, \ldots  e_n\}$.
+    Пусть $ J$ -- произвольный отрезок, $ f$ -- ограниченная функция на $ J$, $ \mathcal{E}$ -- разбиение отрезка $ J  $ на непустве отрезки $ \{e_1, \ldots  e_n\}$.
     \[
    % фото 14:28 
     .\] 
@@ -491,4 +491,144 @@ df = f' dx = g dx$
     Проверим, что $ f$ удовлетворяет условию  \ref{iff_1}
     % proof 14:36
 \end{proof}
+\begin{prop}
+    \begin{enumerate}
+        \item $ f$ -- непрерывна на $ \langle a, b \rangle \Rightarrow $ $ f$ -- интегрируема. 
+	\item  $ \Sigma  $ -- разбиение, \[
+		\overline{S}_{ \Omega } (-f) =  -\underline{S}_{ \Omega } (f)
+	.\] 
+	\item Если $ \alpha >0$, \[
+		\bar{S}_{ \Sigma }(\alpha f) = \alpha \bar{S}_{ \Sigma}(f)
+	.\] 
+	Аналогично с нижней суммой.
+    \item Если $ f$ -- интергируема и $ \alpha  \in  \R$, то $ \alpha  f$ -- интегрируема и $ I( \alpha  f) = \alpha I(f)$
+    \item $ f, g : \langle a, b \rangle \to  \R$ -- ограничены. $ \Sigma $ -- разбиение.
+	\[
+	    \overline{S}_{ \Sigma }(f+g) \le  \overline{iS}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
+	.\] 
+    \item 
+	\[
+	    \underline{S}_{ \Sigma } (f + g)  \ge  \underline{S}_{ \Sigma } (f) + \underline{S}_{ \Sigma }(g)
+	.\] 
+    \item  Если $ f , g$ -- интегрируемы на $ \langle a, b \rangle$, то $ f + g $ -- интегрируема и \[
+	    I(f+g) = I(f) + I(g)
+    .\] 
+    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и прошлым свойством. Для второго утверждения: просто записываем неравенство.
+\item $ f, g$ -- интегрируемы, $ \alpha , \beta \in  \R$.
+    Тогда $ \alpha f + \beta  g$ --интегрируема и 
+    \[
+	I( \alpha f+ \beta g) = \alpha I(f) + \beta  I(g)
+    .\] 
+\item Монотонность. 
+    $ f \ge 0, f$ -- интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
+\item $ f, g$ -- интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$ -- интегрируема.
+    \begin{proof}
+        \[
+        \exists  C, D \in  \R: |f| \le  C, |g| \le D \text{ на } \langle a, b \rangle
+        .\] 
+	Пусть $ J$ -- отрезок. Оценим осцилляцию.
+	\[
+	    \forall  x, y \in  J: | f(x) g(x) - f(y) g(y_| = |f(x) g(x) - f(x) g(y)  | + | f(x) g(y) - f(y) g(x)|=
+	\] 
+	\[
+	    \le  |f(x) g(x) - f(x) g(y)| + |f(x) g(y) - f(y) g(y)| = 
+	\] 
+	\[
+	    =  |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le 
+	\] 
+	\[
+	\le  C \cdot osc_J g + D \cdot osc_J f
+	.\] 
+	$ f, g$ -- интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
+
+	Получаем \[
+	    \begin{array}{c}
+		\slim_{J \in  \Sigma} |J| osc_J f \le  \varepsilon \\
+		\slim_{J \in  \Sigma} |J| osc_J g \le  \varepsilon 
+	\end{array}
+	.\] 
+	Тогда $ \forall  J \in  \Sigma: osc_J (f g) \le  C \cdot osc_J g + D \cdot osc_J f$.
+
+	Следовательно, \[
+	    \slim_{J \in  \Sigma} |J| \cdot osc_J fg \le C \cdot \slim_J |J| \cdot osc_J g + D \cdot \slim_J | J| \cdot osc_J f \le  (C + D ) \varepsilon 
+	.\] 
+    \end{proof}
+    \item
+    $ f$ -- интегрируема на $ \langle a, b \rangle$. $ J \subset  \langle a, b \rangle$.
+    Тогда $ f \cdot \chi_J $ -- интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
+
+    Если $ J = \{c\}$, то $ I(f \chi_J)  = 0$.
+\item $ J_1, J_2$ -- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда 
+    \[
+	I(f \chi_{J_1 \cup J_2}) = I(f \chi_{J_1}) + I(f \chi _{J_2})
+    .\] 
+\item Основная оценка интеграла.
+    $ f$ -- интегрируема на $ \langle a, b \rangle$.
+    $ |f | \le M$ на $ [c, d] \subset \langle a, b \rangle$
+    \[
+	\left| \int_c ^{ d} f \right| \le  M(d-c)
+    .\] 
+    \end{enumerate}
+\end{prop}
+\begin{name}
+    $ I(f \chi_J)$ не зависит от того, вклочает ли $ J$ концы.
+    \[
+	\int_c^{d} f  =  \int_c^{d} f(x) dx\stackrel{def} =  I(f \chi _ {\langle c, d \rangle})
+    .\] 
+\end{name}
+\begin{name}
+    Если $ d < c$ :
+    \[
+    \int_c^{d} f = - \int_d ^{c} f
+    .\] 
+\end{name}
+\begin{st}
+    $ f$ -- интегрируема на $ \langle a, b \rangle$.
+    \[
+    \int_c ^{e} f = \int _c^{ d} f+ \int_d ^{e} f
+    .\] 
+\end{st}
+\subsection{Связь интеграла и производящей}
+$ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- первообразная функция $ f$, если $ F$ -- дифференцируема и $ F' = f$.
+ \begin{thm}
+     [Ньютон-Лейбниц]
+     Пусть $ f$ интегрируема по Риману на $ \langle a, b \rangle$ и непрерына в точке $ t \in  \langle a, b \rangle$. Пусть $ t_0 \in  \langle a, b \rangle: F(s) = \int_{t_0} ^{s} f$.
+     Тогда $ F$ -- дифференцируема в точке $ t$и $ F'(t) = f(t)$.
+\end{thm}
+\begin{proof}
+    $ x \ne t$.\[
+	\left |	\frac{F(x) - f(t)}{x-t} - f(t) \right | = \left| \frac{\int_{t_0}^{x} f = \int_{t_0} ^{t} f}{x - t} \right| = \left| \frac{\int_t^{x}}{x - t} - f(t) \right|  = 
+    \] 
+    \[
+	\frac{1}{|x-t|} \left| \int _t ^{ x} f - (x-t)f(x) \right|  = \frac{1}{|x-t|}\left |{\int_t ^{x} f(s) - f(t) ds } \right | \le  \sup_{s \in  [t, x] } |f(s) = f(t)|
+    .\] 
+    $ f$ -- непрерывна в $ t$. Тогда $ \forall  \varepsilon  > 0 ~ \exists  \delta  $. Если $| s- t| < \delta$, $ |f(t) - f(s) |< \varepsilon $
+    \[
+	|x - t| < \delta  \Longrightarrow \forall s \in  [t, x]: |s - t| < \varepsilon  \to |f(s) - f(t) | < \varepsilon 
+    .\] 
+    Тогда \[
+	\sup{s \in [t, x]} |f(x) - f(t)| \le  \varepsilon 
+    .\] 
+    А значит \[
+	\lim_{x \to  t} |\frac{F(x) - f(t)}{x -t}- f(t)| = 0 \Longrightarrow F'(t) = f(t)
+    .\] 
+\end{proof}
+\begin{cor}
+    Если $ f$ дифференцируема на $ \langle a, b \rangle$, то $ \forall t_0 \in  [a, b]: F $ --первообразная $ f$.
+\end{cor}
+\begin{cor}[Формула Ньютона-Лейбница]
+    $ f$ -- непрерывна на $ [a, b]$, $ F$ --первообразная $ f$. Тогда \[
+	\int_a^{b} f = F(b) - F(a)
+    .\] 
+\end{cor}
+\begin{defn}
+    $ f \in  C^{k} \langle a, b \rangle, \quad k \in \N \cap  \{0,  \infty\}$, если $ f, f', \ldots f^{(k)} $ -- непрерывны.
+\end{defn}
+\begin{thm}
+    Если $ f, g \le  C^{1} (a, b)$ , то
+    \[
+    \int _b ^{a} f g' = f \cdot g \mid _a ^{ b} - \int_a ^{ b} f' g
+    ,\] 
+    где $ \Phi \mid _a ^{ b} = \Phi(b) - \Phi(a)$
+\end{thm}
 \end{document}
