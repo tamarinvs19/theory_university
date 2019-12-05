@@ -14,6 +14,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+\usepackage{epstopdf}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -25,17 +26,17 @@
     \import{./figures/}{#1.pdf_tex}
 }
 \usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LE,RO]{Overleaf}
-\fancyhead[RE,LO]{Guides and tutorials}
-\fancyfoot[CE,CO]{\leftmark}
-\fancyfoot[LE,RO]{\thepage}
- 
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[LE,RO]{Overleaf}
+% \fancyhead[RE,LO]{Guides and tutorials}
+% \fancyfoot[CE,CO]{\leftmark}
+% \fancyfoot[LE,RO]{\thepage}
+
 \renewcommand{\headrulewidth}{2pt}
 \renewcommand{\footrulewidth}{1pt}
 
-% \pagestyle{plain}
+\pagestyle{myheadings}
 
 \usepackage{fullpage}
 % \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
@@ -73,6 +74,8 @@
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
+\renewcommand{\@oddhead}{\hfil \thepage} 
+\renewcommand{\@evenhead}{\hfil \thepage} 
 
 \title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
 \author{Тамарин Вячеслав}
@@ -2780,4 +2783,150 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
     Если $ M \subset N \subset R$ %2 nnot
     , $ N \in  \mathcal{X} \Rightarrow  N = M$
 \end{proof}
+\section{Лекция 27}
+\subsection{Фактор кольцо по максимальному идеалу}
+\begin{st}
+    $ P$ -- простой идеал в $ R$ тогда и только тогда, когда  $ R \diagup P$ -- область целостности.
+
+    $ \mathfrak{M}$ -- максимальный тогда и только тогда, когда $ R \diagup M$ -- поле.
+\end{st}
+\begin{proof}
+$ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
+
+Пусть $ \bar{\cdot } : R \to  R \diagup P$.
+
+Тогда предыдущее утерждение равносильно
+\[
+\overline{a} \overline{b} \Leftrightarrow \overline{a} =0 \vee \overline{b}=0
+.\] 
+Обозначим $ L(I, \mathfrak{R})$ -- множество идеалов в $ R$, содержащих  $ I$.
+\[
+\overline{\cdot} : R \to  R \diagup P
+.\] 
+Докажем, что 
+ \[
+     \overline{\cdot}: L(R \diagup \mathfrak{M}), ~ I \mapsto \overline{I}
+ .\] -- Образ этого идеала в $ R \diagup \mathfrak{M}$
+ При эпиморфизме идеал отображается в идеал.
+  $ \overline{ a} \in  \overline{I}$ , где $ a \in I$.
+  $ \overline{r} \in  R \diagup \mathfrak{M}$, $ \overline{r} \overline{a} \in  \overline{I}$
+
+  Обратное: $ L(0, R\diagup\mathfrak{M}) \to  L(\mathfrak{M}, R)$. 
+  Взятие полного прообраза $ \overline{I} \mapsto I + \mathfrak{M} \triangleleft R$.
+
+  $ L(M, R) = \{\mathfrak{M}, R\} \Leftrightarrow L(\{0\}, R \diagup M ) = \{\{0\}, R \diagup M\} \Leftrightarrow R\diagup M$ -- поле.
+\[
+\overline{ \alpha } \in  R \diagup M \wedge \alpha \ne 0 \Leftarrow  \overline{ \alpha } R \diagup M = R \diagup M \Leftrightarrow \overline{ \alpha } \text{ -- обратим}
+.\] 
+\end{proof}
+\begin{cor}
+    Любой максимальный идеал является простым.
+\end{cor}
+\begin{thm}
+    В $ R$ любой ненулевой простой идеал является максимальным.
+\end{thm}
+\begin{proof}
+    Обозначим простой идеал $ pR$ и предположим, что он содержится в каком-то идеале $ mR \ne R$.
+    Тогда  $ p = mr \Longrightarrow m \in  pR \vee r \in  pR$. В первом случае $ mR = pR$, а втором  $ r = pa$, то есть $ p = map \Longrightarrow  1 = ma \Longrightarrow  mR = R$. Противоречие. 
+\end{proof}
+\subsection{Единственность разложения}
+$ R$ -- кольцо с $ 1$.
+ \begin{defn}
+    $ p \in R$ -- простой, если $ pR$ -- простой.
+\end{defn}
+\begin{defn}
+    $ a, b \in  R$ ассоциированные тогда и только тогда, когда $ aR = bR$
+\end{defn}
+\begin{lm}
+    $ R $-- область целостности. $ a, b$ -- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon  in \R^{*}$
+\end{lm}
+\begin{proof}
+    $ aR = bR \Rightarrow a = b \cdot \varepsilon , b = a \delta  \Rightarrow a = a \delta  \varepsilon  \Leftrightarrow a (1- \delta  \varepsilon ) = 0 \Rightarrow \varepsilon  \text{ обратим }$
+\end{proof}
+\begin{defn}
+    $ a \in R$ приводим, если $ a = bc \wedge aR \ne bR \wedge  aR \ne cR$. Иначе $ a$ называется неприводимым.
+\end{defn}
+\begin{lm}
+    Простой элемент неприводим. В ОГИ неприводимый является простым.
+\end{lm}
+\begin{proof}
+    $ pR$ -- простой идеал, следовательно,
+    \[
+    ab = p \Rightarrow 
+    \left [
+    \begin{array}{l}
+	a \in  pR \\
+	b \in  pR
+        
+    \end{array}
+    \right .
+    \Rightarrow 
+    \left[
+    \begin{array}{l}
+        aR \subset pR \\
+	bR \subset  pR
+    \end{array}
+    \right .
+    .\] 
+    Но $ pR \subset  aR \cap bR$. Тогда 
+    \[
+	\left[
+	\begin{array}{l}
+        aR = pR \\
+	bR = pR
+    \end{array}
+    \right.
+    .\] 
+    Получаем, что $ p$ -- неприводим.
+
+    Теперь в обратную сторону.
+
+    $ R$ -- область главных идеалов, $ p $ -- неприводим. $ ab \in  pR$.
+
+    $ aR + bR = cR \Longrightarrow p = cd \Longrightarrow c, d \in  R^{*}$
+
+    Если $ d \in  R^{*} \Longrightarrow cR = pR \Longrightarrow aR \subset pR$, если $ c \in  R^{*} \Longrightarrow  aR +pR = R$, домножим на $ b: \underbrace{abR + pbR }_ { \subset   pR}= bR \Longrightarrow  bR \subset pR$
+\end{proof}
+\begin{defn}
+    Для колец $ \dim R$ --  размерность Крулля кольца или максимальная длина цепочки строго вложенных простых идеалов.
+\end{defn}
+\begin{ex}
+    $ \dim F[x_1, \ldots x_n] = n$
+\end{ex}
+\subsection{Нётеровы кольца}
+\begin{defn}
+    $R$ -- нётерово тогда и только тогда, когда любое линейно упорядоченное множество идеалов содержит наибольший элемент.
+
+ACC -- ascending, chain, condition (условие обрыва возрастающих цепей)
+\end{defn}
+\begin{defn}
+Артиново кольцо -- аналогично, но заменить наибольший, на наименьший.
+
+DCC -- descending, chain, condition (условие обрыва убывающих цепей)
+\end{defn}
+\begin{lm}
+    $ R$ -- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
+\end{lm}
+\begin{proof}
+    Пусть $ R$ -- нётерово, $ I \triangleleft R$. Возьмем $ a_1 \in  I$. \[
+    a_1 R = I_1\ne I \Longrightarrow  \exists  a_2 \in  I \setminus R , I_2 := a_1R + a_2R \ldots  
+    .\] 
+    Получаем цепочку, которая на может быть бесконечной, значит она где-то оборвется и мы получим, что любой идеал порожден этим набором.
+     
+    В обратную сторону.
+
+    $ \mathcal{A} $ -- линейно упорядоченное множество идеалов. 
+    \[
+	\bigcup_{I \in  \mathcal A} I = a_1 R + \ldots  +a_n R
+    .\] (так как оно конечно порожден)
+    $ \exists  I_1, \ldots I_n \in  \mathcal{A}$, такие что $ a_k \in  I_k$.
+    Так как $ \mathcal{A}$ -- линейно упорядочено, существует наибольший из $ I_k$, пусть $ I_j$.
+     \[
+    a_1, \ldots a_n \in  I_j \Longrightarrow a_1R + \ldots + a_n R = I_j
+    .\] 
+$ I_j$ -- наибольший из $ \mathcal{A}$
+\end{proof}
+\begin{thm}
+    $ R$ -- нётерово. Тогда любой элемент раскладывается в произведение неприводимых.
+\end{thm}
 \end{document}
