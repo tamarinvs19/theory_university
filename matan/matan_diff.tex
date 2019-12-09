@@ -631,4 +631,165 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
     ,\] 
     где $ \Phi \mid _a ^{ b} = \Phi(b) - \Phi(a)$
 \end{thm}
+\subsection{Формула интегрирования по частям}
+$ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f, g, f', g'$ -- непрерывны.
+Тогда \[
+    (fg)' = f' g+g'f
+.\] 
+Пусть $ \Phi$ -- первообразная для $ f' g$.
+Запишем первообразную для $ fg'$
+\[
+    \Psi (x) = \int_a^{x} f(t) g'(x) dt = f(x) g(x) - \Phi (x) + c
+.\] 
+\[
+    \Phi (x) = f(x) g(x) \int_a^{x} f(t) g'(t) dt + c
+.\] 
+Обозначим $ u |_y^{x} = u(x) - u(y)$.
+\[
+    \Phi (x) - \Phi(y) = fg |_y^{x} - \int_y^{x} f(t)g'(t)dt
+.\] 
+
+Получаем
+\[
+    \int_y^{x} f'(t) g(t) dt = fg |_y^{x} - \int f(t) g'(t) dt
+.\] 
+\begin{thm}
+    $ f_n, f$ -- Заданы на $ \langle a, b \rangle; n \in \N$
+    Пусть 
+    \begin{enumerate}
+	\item все $ f_n$ интегрируемы по Риману на $ \langle a, b \rangle$
+	\item $ f_n \rightrightarrows f$. Тогда  $ f$ интегрируема по Риману
+	    \[
+		\int_a^{b}f_n(x) dx \to \int_a^{b}f(x) dx
+	    .\] 
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    \begin{lm}
+	$ E$ -- множество, $ u, v $ -- вещественные функции на $ E$. $ |u(x) - v(x) | \le  \lambda ~ \forall  E.$
+	Тогда $ |ose_E(u) - ose_E(v) | \le  2 \lambda$
+    \end{lm}
+    \[
+	\varepsilon  >0: \exists  n: |f_n(x) - f(x)| \le \varepsilon ~ \forall x \in  \langle a, b \rangle
+    .\] 
+    \[
+	|ose_{\langle a, b \rangle} - ose_{_\langle a, b \rangle(f)}| \le 2 \varepsilon 
+    .\] 
+    $\exists  \{I_1, \ldots I_N \} $ -- отрезки $ \langle  a, b \rangle$:
+    \[
+	\sum_{j=1}^{N }|I_j| ose_{I_j} < \varepsilon 
+    .\] 
+    \[
+	\sum_{j=1}^{N} |I_j| osc_{I_j}(f)  \le  \varepsilon +\sum_{j=1}^{N} |I_j| (2 \varepsilon ) = \varepsilon (2 (b-a) + 1)
+    .\] 
+    Следовательно, $ f$ -- интегрируема.
+
+    \[
+	\left|\int_a^{b} f_n(x_) dx - \int _a^{b}f(x) dx \right|= \left|\int_a^{b} f_1(x) - f(x) dx\right| \le  \varepsilon (b-a)
+    .\] 
+    \[
+	\varepsilon  >0  ~ \exists M : \forall n \ge M ~ \forall  x \in  \langle a, b \rangle: |f_n(x) - f(x) | \le  \varepsilon 
+    .\] 
+    Тем самым получили последнее неравенство в прошлой строке.
+\end{proof}
+\begin{st}
+    Если $ f$ интегрируема по Риману на $ \langle  a,b \rangle$, то $ |f|$ тоже интегрируема и \[
+	\left |\int_a ^{b} f(x) dx\right| \le  \int_a^{b} |f(x) |dx
+    .\] 
+\end{st}
+\section{Логарифм и экспонента}
+Пусть функция $ l$ удовлетворяет соотношению 
+\[
+    l(xy) = l(x)+l(y)
+,\] 
+ и ноль лежит в ее области определения.
+\[
+    l(0) = l(0, a) = l(0) + l(a) \Longrightarrow l(0) = 0
+.\] 
+Будем искать $ l$, заданную на $ \R_{+}$.
+\[
+    l(x^2) = l((-x)^2)
+.\] 
+\[
+    2l(x) = 2 l(-x)
+.\] 
+То есть \[
+    l(x) = l(|x|)
+.\] 
+\begin{defn}
+    Логарифм -- строго монотонная функция, заданная на $ \R_{+}$, такая что \[
+	f(xy) = l(x) + l(y) \quad x, y >0
+    .\] 
+\end{defn}
+\begin{st}
+    Для $ n \in  \N$:
+    \[
+	l(x^{n}) = n\cdot l(x)
+    ,\] 
+    \[
+	l(x^{\frac{1}{n}}) = \frac{1}{n} l(x)
+    .\] 
+    \[
+	l(1) = l(1^2) = 2 l(1) \Longrightarrow l(1) = 0
+    .\] 
+\end{st}
+\begin{st}
+    Если $ l$ -- логарифм, $ c\ne 0$, то $ cl$ -- тоже логарифм.
+\end{st}
+\begin{lm}
+    Если $ l$ -- логарифм, то $ l$ -- непрерывна на всей области определения.
+\end{lm}
+\begin{proof}
+    Пусть $ l$ -- логарифм. Считаем, что $ f$строго возрастает.
+    \[
+	t = \lim_{x \to 1 + 0} f(x) 
+    .\] 
+    Покажем, что $ t = l(1) = 0$.
+    Пусть  $ t>0$. \[
+	l((1+ x)^{2}) = 1 l(1+ x) 
+    .\] 
+    При $ x to 1+$ получаем, что $ t=0$.
+    Если  $ x \to  1-$, получаем тое самое. Значит $l$ -- непрерывна в 1.
+    И равна нулю в этой точке.
+\end{proof}
+\begin{lm}
+    Если $ l$ -- логарифм, то функция $ l$ -- дифференцируема.
+\end{lm}
+\begin{proof}
+    \[
+	\Phi (x) - \int_1^{x}l(t) dt \quad x \in  (0, + \infty)
+    .\] 
+    $ \Phi$  дифференцируема.
+    \[
+	\begin{array}{cc}
+	\Phi(2x) = \int_1^{2x} l(t) dt = \int_1^{x}  l(t) dt + \int_x^{2x}l(t) dt = \Phi(x) = \\
+	x \int_x^{2x} l(x \cdot \frac{t}{x}) d(\frac{t}{x}) = \Phi (x) + x \int_1 ^{2} l(x \cdot y) dy = \\
+	\Phi(x) + x l(x) + x \int_1^{2} l(y) dy
+	\end{array}
+    .\] 
+    $ l(x) = \frac{\Phi(2x) -\Phi(x) }{x} - C$.
+    А $ \Phi$  дифференцируема, следовательно, $ f$  тоже дифференцируема.
+\end{proof}
+\begin{thm}[Производная логарифма]$ $
+
+    $ l(xy) = l(x) + l(y)$.
+    Зафиксируем $ y$ и возьмем производную:
+\[
+    y l'(xy) = l'(x) \qquad x, y \in  \R_{+}
+.\] 
+\[
+    l'(x) = \frac{C}{x}, \quad C = l'(y)
+.\] 
+\end{thm}
+\begin{thm}
+    Если $ l$ логарифм, то \[
+	\exists  C \ne 0 : l(x) = C \int_1 ^{x} \frac{dt}{t}
+    .\] 
+\end{thm}
+\begin{proof}
+    Только что доказали.
+\end{proof}
+\begin{thm}
+    $ \Phi(x) = \int_1^{x} \frac{dt}{t}$ -- логарифм.
+\end{thm}
 \end{document}
