@@ -30,7 +30,7 @@
 
 \usepackage{fullpage}
 
-\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}                      
+\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}
 \begin{document}
 \maketitle
 \clearpage
@@ -85,10 +85,10 @@
 \begin{thm}
     $f_n, f : A \to  \R$, $f_n \to  f$
     Следующие условия эквивалентны:
-     \begin{enumerate}
-	 \item $\exists M : |f_n(x)| \le  M \quad \forall  n, x \longrightarrow |f(x)| \le  M$
-	 \item $f$ -- ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
-	     |f_n(x)| \le A \quad \forall  n \le  N \forall  x$
+    \begin{enumerate}
+	\item $\exists M : |f_n(x)| \le  M \quad \forall  n, x \longrightarrow |f(x)| \le  M$
+	\item $f$ -- ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
+	    |f_n(x)| \le A \quad \forall  n \le  N \forall  x$
     \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -101,44 +101,44 @@
 \begin{proof}
     \[
 	|f(x) g(x) - f_n(x) g_n(x)| \le  |f(x) ||g(x) - g_n(x) | + | g_n(x)| |f(x) - f_n(x)| \le  M | g(x) - f_n(x)  |+ | f(x) - f_n(x)|
-    .\]  
+    .\]
 \end{proof}
 \begin{thm}{Критерий Коши для равномерной сходимости}
-    Пусть $f_n$ -- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда  
+    Пусть $f_n$ -- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда
     \[
-	\forall  \varepsilon >0 \exists  N \forall  k, j> N \forall x : |f_k(x) - f_j(x)| < \varepsilon 
+	\forall  \varepsilon >0 \exists  N \forall  k, j> N \forall x : |f_k(x) - f_j(x)| < \varepsilon
     .\] \label{usl}
 \end{thm}
 \begin{proof}
-    Необходимость.\\ 
+    Необходимость.\\
     Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x in A$.
     \[
 	\forall k, l > N \quad |(f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon  \forall x \in A
-    .\] 
+    .\]
     Достаточность.\\
     Пусть  \ref{usl} выполнено. $x \in A$ - фиксировано.
-    Тогда $\{f_n(x)\}_{n \in  \N}$ есть последовательность Коши (см \ref{usl}). Следовательно, 
+    Тогда $\{f_n(x)\}_{n \in  \N}$ есть последовательность Коши (см \ref{usl}). Следовательно,
     \[
 	\forall  x \exists \lim_{n \to  \infty} f_n(x) \stackrel{def} = f(x)
-    .\] 
+    .\]
     $ \varepsilon  >0$. Нашли $N: |f_k(x) - f_j(x)| < \varepsilon  \quad \forall  x \in A \forall  k, j > N$
-Зафиксируем $k, x$, перейдем к пределу по $j$ :
-\[
-    |f_n(x) - f(x) | < \varepsilon  
-.\] 
-Что верно для $ \forall  x \in  A, \forall  k > N$.
+    Зафиксируем $k, x$, перейдем к пределу по $j$ :
+    \[
+	|f_n(x) - f(x) | < \varepsilon
+    .\]
+    Что верно для $ \forall  x \in  A, \forall  k > N$.
 \end{proof}
 \begin{ex}
     Функция на $\R$, непрерывная всюду, но не дифференцируемая на в одной точке.
     \[
 	\text{(Вейерштрасс): } f(x) = \slim_{j=1}^{\infty} b^{ j} \cos l^{j} \pi x, \quad |b| < 1
-    .\] 
+    .\]
 \end{ex}
 \begin{thm}[Вейерштрасс]
     Пусть $f_n$ -- функция на множестве $A$.
     \[
 	\forall  x : |f_n(x)| \le a_n, \text{ где ряд } \slim a_n \text{ сходится}
-    .\] 
+    .\]
     Тогда $\slim_0^{\infty} f_n(x) $ сходится равномерно.
 \end{thm}
 \begin{note}
@@ -146,30 +146,30 @@
 \end{note}
 \begin{proof}
     Рассмотрим $ \varepsilon  > 0$. Найдем $N: \slim_{n=k+1}^{l} a_n < \varepsilon  \quad \forall  k, l > N$.
-\[
-    S_j(x) = \slim_{n=0}^{j}f_n(x)
-.\] 
-\[
-    |S_j(x) - S_k(x)| = | f_{k+1} \ldots + f_k(x)| \le  |f_{k+1}(x)| + \ldots  + |f_l(x)| \le a_{k+1} + \ldots a_l < \varepsilon 
-.\] 
+    \[
+	S_j(x) = \slim_{n=0}^{j}f_n(x)
+    .\]
+    \[
+	|S_j(x) - S_k(x)| = | f_{k+1} \ldots + f_k(x)| \le  |f_{k+1}(x)| + \ldots  + |f_l(x)| \le a_{k+1} + \ldots a_l < \varepsilon
+    .\]
 \end{proof}
 \begin{ex}[Ван дер Варден]
-    $f_1(x) = 
-	    |x|,  |x| < \frac{1}{2} $ ; продолжим с периодом $1$.
-\begin{figure}[h]
-    \centering
-    \incfig{vandervarden}
-    \caption{График функции Ван дер Вардена}
-    \label{fig:vandervarden}
-\end{figure}
-$f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- непрерывна, но нигде не дифференцируема, так как:
-\[
-    |f_n(x) | \le \frac{1}{2 \cdot 4^{n-1}}
-.\] 
- \[
-     h \ne 0, ~ h_k = \pm \frac{1}{4^{n-1}}: \quad \frac{g(x + h) - g(x)}{h} = \slim_{j=1}^{\infty} (f_j(x + h_k) - f_j(x))h_k = \slim_{j=1}^{k-1} \frac{f_j(x + h_k) - f_j(x)}{h_k}
-.\] 
-Будем выбирать знак  в $h_k$ ($\pm$), чтобы во всех слагаемых значение лежал в одинаковых частях графика. Тогда при четном и нечетном $j$ значение будет разных знаков.
+    $f_1(x) =
+    |x|,  |x| < \frac{1}{2} $ ; продолжим с периодом $1$.
+    \begin{figure}[h]
+	\centering
+	\incfig{vandervarden}
+	\caption{График функции Ван дер Вардена}
+	\label{fig:vandervarden}
+    \end{figure}
+    $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- непрерывна, но нигде не дифференцируема, так как:
+    \[
+	|f_n(x) | \le \frac{1}{2 \cdot 4^{n-1}}
+    .\]
+    \[
+	h \ne 0, ~ h_k = \pm \frac{1}{4^{n-1}}: \quad \frac{g(x + h) - g(x)}{h} = \slim_{j=1}^{\infty} (f_j(x + h_k) - f_j(x))h_k = \slim_{j=1}^{k-1} \frac{f_j(x + h_k) - f_j(x)}{h_k}
+    .\]
+    Будем выбирать знак  в $h_k$ ($\pm$), чтобы во всех слагаемых значение лежал в одинаковых частях графика. Тогда при четном и нечетном $j$ значение будет разных знаков.
 \end{ex}
 \begin{name}
     Ряд из функций $\slim_{n=1}^{\infty} h_n(x)$ -- сходится обозначает, что функции $S_j(x) = h_1(x) \ldots  h_j(x)$  сходятся в соответствующем смысле.
@@ -178,7 +178,7 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
     $f_n(x) = \sqrt{x^2 + \frac{1}{n}} \to  |x|$
     \[
 	\sqrt{x^2 + \frac{1}{n} }- |x| = \frac{x^2 + \frac{1}{n}  - x^2}{\sqrt{x^2 + \frac{t}{n} + |x|}} = \frac{1}{n }\cdot \frac{1}{\sqrt{x ^2 + \frac{1}{n} + |x|}} \le  \frac{1}{n}, \quad \text{ при } |x \ge  1|
-    .\] 
+    .\]
 \end{ex}
 \begin{thm}
     $f_n, f, g_n : \langle a, b \rangle  \to  \R$ Предположим, что $f_n \to  f$ поточечно.
@@ -187,44 +187,44 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
 \begin{proof}
     Запишем определение равномерной сходимости:
     \[
-	\forall  eps >0 \exists  N : k, l > N \to  \forall  x \in  \langle a, b\rangle : |f_k(x) ' - f_l(x) '| < \varepsilon 
-    .\] 
+	\forall  eps >0 \exists  N : k, l > N \to  \forall  x \in  \langle a, b\rangle : |f_k(x) ' - f_l(x) '| < \varepsilon
+    .\]
     \[
 	u_{k, l} - f_k(x) - f_l(x)
-    .\] 
+    .\]
     Теперь рассмотрим для $x y \in  \langle a, b \rangle:$
     \[
 	\frac{u_{k, l} (x)  - u_{k, l} (y)}{x-1} = u'{k,l}(c), \quad c \text{ между } x, y.
-    .\] 
+    .\]
     \[
 	\begin{array}{r}
-	\forall x, y \in  \langle a, b \rangle : \left | \frac{u_{k, l} (x) - u_{k, l} (y_)}{x - y} \right | < \varepsilon  \Longleftrightarrow \forall  x \in  \langle a, b \rangle , \forall  k, l > N:\\
-	\left | \frac{f_k(x) - f_k(y) }{x-y} - \frac{f_l(x) - f_l(y)}{x-y} \rangle | < \varepsilon 
-	\right |
-    \end{array}
-    .\] 
-    Фиксируем $k$, $l \to  \infty$. 
-\[
-    \left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle 
-.\] 
-Оценим разность. Зафикируем $ x$.
-\[
-    \exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  |\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)|  < \varepsilon 
-.\] 
-Объединяем неравенства: 
-для данных $ k, x$:
-\[
-    |y - x| < \delta  , y \ne x \to  |f'_k(x) - \frac{f(x) - f(y)}{x-y}| \le  2 \varepsilon 
-.\] 
-Следовательно,
-\[
-    |x - y| < \delta \to  |g(x) - \frac{f(x) - f(y)}{x-y}| \le 3 \varepsilon 
-.\] 
+	    \forall x, y \in  \langle a, b \rangle : \left | \frac{u_{k, l} (x) - u_{k, l} (y_)}{x - y} \right | < \varepsilon  \Longleftrightarrow \forall  x \in  \langle a, b \rangle , \forall  k, l > N:\\
+	    \left | \frac{f_k(x) - f_k(y) }{x-y} - \frac{f_l(x) - f_l(y)}{x-y} \rangle | < \varepsilon
+	    \right |
+	\end{array}
+    .\]
+    Фиксируем $k$, $l \to  \infty$.
+    \[
+	\left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle
+    .\]
+    Оценим разность. Зафикируем $ x$.
+    \[
+	\exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  |\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)|  < \varepsilon
+    .\]
+    Объединяем неравенства:
+    для данных $ k, x$:
+    \[
+	|y - x| < \delta  , y \ne x \to  |f'_k(x) - \frac{f(x) - f(y)}{x-y}| \le  2 \varepsilon
+    .\]
+    Следовательно,
+    \[
+	|x - y| < \delta \to  |g(x) - \frac{f(x) - f(y)}{x-y}| \le 3 \varepsilon
+    .\]
 \end{proof}
 \section{Первообразные}
 Пусть все происходит на $ \langle a, b \rangle$. $ g : \langle a, b \rangle \to  \R$
 \begin{defn}
-    Говорят, что $ f$ есть первообразная для $ g$, если $ f$ дифференцируема на $ \langle a, b \rangle y$ и $ f' = g$ всюду. 
+    Говорят, что $ f$ есть первообразная для $ g$, если $ f$ дифференцируема на $ \langle a, b \rangle y$ и $ f' = g$ всюду.
 \end{defn}
 \begin{thm}[Ньютон, Лейбниц]
     Если $ g$ -- непрерывна, то у нее есть первообразная.
@@ -253,13 +253,13 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
     \hline
     $ \frac{1}{x^2+1}$ & $ \arctan x + c$\\
     \hline
-     $ e^{x}$ & $ e^{x} + c$ \\
-     \hline
+    $ e^{x}$ & $ e^{x} + c$ \\
+    \hline
 \end{tabular}
 \begin{name}
     Пишут: \[
 	f = \int g \text{ или } f(x) = \int g(x) dx
-    .\] 
+    .\]
 \end{name}
 \begin{st}
     $ \int f'(x) \cdot g' = f \circ g \pm C$
@@ -267,19 +267,19 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
 \begin{defn}
     Линейная функция -- это функция вида $ \varphi  (h) = ch$.
 
-    Линейная форма: 
+    Линейная форма:
     $\langle a, b \rangle; \quad \Phi $ -- отображение отрезка $ \langle a, b \rangle$ в множество линейных функций.
 
     $ x \in  \langle a, b \rangle$, $ \Phi(x) $ -- линейная функция.
     \[
 	\Phi(x)(h) = c (x) h
-    .\] 
+    .\]
 \end{defn}
 \begin{defn}[дифференциал]
-    $ f $ -- дифференцируема на $ \langle a, b \rangle$ 
+    $ f $ -- дифференцируема на $ \langle a, b \rangle$
     \[
 	df(u, h) = f'(u) h = df
-    .\] 
+    .\]
 \end{defn}
 \begin{ex}
     $ x: \langle a, b \rangle \to  \langle a, b \rangle$ -- тождественная. $ dx (u, h)= h$
@@ -288,18 +288,18 @@ $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- неп
     $ \Phi = c \cdot dx$, где  $ c$ - некая функция на $ \langle a, b \rangle$
 \end{st}
 $ f' = g \\
-df = f' dx = g dx$ 
+df = f' dx = g dx$
 
 Задача первообразной: дана линейная форма $ \varphi = g dx$ ; найти функцию $ f: df = \varphi $
 \begin{st}
     \[
 	d(f \circ g) = (f' \circ g) \cdot g: dx = f' \circ g dg
-    .\] 
+    .\]
 \end{st}
 \begin{ex}
     \[
 	\int \sqrt{1 - x^2} dx, \quad x \in  (-1, 1)
-    .\] 
+    .\]
     Сделаем замену $ x = \sin t$, пусть $ t \in  [- \pi , \pi]$
     $$
     \begin{array}{c}
@@ -315,36 +315,36 @@ df = f' dx = g dx$
 
     $ (fg)' = f'g + fg'$
     Перепишем:
-     \[
-	 d(fg) = g df + f dg
-    .\] 
+    \[
+	d(fg) = g df + f dg
+    .\]
     \[
 	g df = -f dy + d(fg)
-    .\] 
+    .\]
     \[
-    \int g df = fg - \int f dg
-    .\] 
+	\int g df = fg - \int f dg
+    .\]
 \end{st}
 \begin{ex}
     \[
-    \int \log x dx = x \log x - \int x d \log x = x \log x - \int 1 dx = x \log x -x + C
-    .\] 
+	\int \log x dx = x \log x - \int x d \log x = x \log x - \int 1 dx = x \log x -x + C
+    .\]
 \end{ex}
 \begin{ex}
     \[
-    \int e^{x} \sin x dx = \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx
-    .\] 
+	\int e^{x} \sin x dx = \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx
+    .\]
     \[
-     = \sin x e^{x} - \int xos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
-    .\] 
+	= \sin x e^{x} - \int xos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
+    .\]
     Теперь решим уравнение и получим:
     \[
 	\int e^{x} \sin x dx = \frac{e^{x} \sin x - e^{x} \cos x}{2} + c
-    .\] 
+    .\]
 \end{ex}
 \section{Интеграл}
 \begin{defn}
-    $ A$ -- множество произвольной природы. $ \Phi: A \to  \R$. $ \Phi$ -- функционал на $ A$. 
+    $ A$ -- множество произвольной природы. $ \Phi: A \to  \R$. $ \Phi$ -- функционал на $ A$.
 \end{defn}
 \begin{defn}
     Интеграл -- функционал на множестве функций, заданных на отрезке $ [a, b]$.
@@ -352,16 +352,16 @@ df = f' dx = g dx$
     $ f \mapsto \Phi (f)$
     \[
 	\Phi(f+g) = \Phi(f) + \Phi(g)
-    .\] 
+    .\]
     \[
 	\Phi( \alpha  f) = \alpha \Phi
-    .\] 
+    .\]
     \[
-	 f \ge  0 \Longrightarrow \Phi(f) \ge 0
-    .\] 
+	f \ge  0 \Longrightarrow \Phi(f) \ge 0
+    .\]
     \[
 	\langle c, d \rangle \subset \langle a, b \rangle, f= \Phi(\chi)  \langle c, d \rangle = d - c
-    .\] 
+    .\]
 \end{defn}
 \begin{st}
     Каким должен быть интеграл?
@@ -376,7 +376,7 @@ df = f' dx = g dx$
     Разбиение -- ступенчатая функция на отрезке $ \langle a, b \rangle, ~ a, b \in  \R:$
     \[
 	\langle a, b \rangle = \bigcup_{i= 1}^{n} \langle \alpha _i, \beta _i \rangle, \quad \langle \alpha_i , \beta _i \rangle\cap \langle \alpha _j, \beta _j \rangle  \ne \varnothing
-    .\] 
+    .\]
 \end{defn}
 \begin{defn}
     $ g $  на $ \langle a, b \rangle$ -- ступенчатая, если при $ i \ne j$ она постоянна  на отрезках какого-то разиения нашего отрезка $ \langle a, b \rangle$
@@ -388,7 +388,7 @@ df = f' dx = g dx$
     $ \bigcup_{k=1}^{{N}} J_k = J_i $. (ДОпускаются одноточечные и пустые множества.)
 
 \end{defn}
-    \begin{defn}
+\begin{defn}
     Длина интервала $ \langle a, b \rangle$ -- это $ b - a$
     Обозначается $ |J| = b-a$, $ |\varnothing| = 0$
 \end{defn}
@@ -396,18 +396,18 @@ df = f' dx = g dx$
     Если $ \{J_k\}_{k= 1}^{N}$ -- разбиение $ J$, то $|J| = \slim_{k=1}^{N}  |J_k|$
 \end{lm}
 \begin{defn}
-    $ e$ -- множетсво, $ f$ -- ограниченная функция на $ у$. 
+    $ e$ -- множетсво, $ f$ -- ограниченная функция на $ у$.
 
     Колебание $ f$ на $  e$ :
     \[
-	esc_e (f) = \sup_{x, y \in  e} |f(x) - f(y)|= 
+	esc_e (f) = \sup_{x, y \in  e} |f(x) - f(y)|=
     \]
     \[
-=	\sup_{y} \left( \sup_x (f(x) - f(y)) \right)  = \sup_x \left( \sup_y (f(x) - f(y))  \right) =
-    \] 
+	=	\sup_{y} \left( \sup_x (f(x) - f(y)) \right)  = \sup_x \left( \sup_y (f(x) - f(y))  \right) =
+    \]
     \[
 	=\sup_{x \in  e}  f(x)  + \sup_{y \in  e}(-f(x) = \sup _{x \in  e} f(x) - \inf_{y \in  e} f(y)
-    .\] 
+    .\]
 \end{defn}
 \begin{figure}[ht]
     \centering
@@ -421,7 +421,7 @@ df = f' dx = g dx$
     \slim_{k= 1}^{N} |J_k|\inf_{x \in  J_k} f(x) \underline{S}
 .\] -- нижняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
 \[
-\slim_{k= 1}^{N} |J_k|\sup_{x \in  J_k} f(x) =\overline{S}
+    \slim_{k= 1}^{N} |J_k|\sup_{x \in  J_k} f(x) =\overline{S}
 .\] -- верхняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
 \begin{name}
     $ A$ -- множество всех нижних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
@@ -429,10 +429,10 @@ df = f' dx = g dx$
     $ B$ -- множество всех верхних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
 \end{name}
 \begin{st}
-    Пусть $ \{A, B\}$ -- щель. Тогда  
+    Пусть $ \{A, B\}$ -- щель. Тогда
     \[
 	\underline{I}(f) = \sup{ A} , \quad \overline{I}(f) = \inf(B)
-    .\] 
+    .\]
     Все числа, лежащие в этой щели -- это $ [ \underline{I} (f) , \overline{I}(f)]$ (верхний и нижний интегралы Римана-Дарбу от $ f$)
 \end{st}
 \begin{st}
@@ -445,18 +445,18 @@ df = f' dx = g dx$
 
     $ \mathcal{E} , \mathcal{F}$ -- разбиение  $ J_i$ : $ \mathcal{F}$ -- измельчение $ \mathcal{E} $, если $ \forall  a \in  \mathcal{F} ~ \exists  b \in  \mathcal{E} : a<b$.
     \begin{lm}
-        Если $ \mathcal{F}$ -- измельчение для $ \mathcal{E} $, то \[
-	    \underline{S} _\mathcal{F} (f) \ge \underline{S}_ \mathcal{E} , \quad \overline{S}_\mathcal{F} \le \overline{S}_ \mathcal{E} 
-        .\] 
+	Если $ \mathcal{F}$ -- измельчение для $ \mathcal{E} $, то \[
+	    \underline{S} _\mathcal{F} (f) \ge \underline{S}_ \mathcal{E} , \quad \overline{S}_\mathcal{F} \le \overline{S}_ \mathcal{E}
+	.\]
     \end{lm}
     \begin{lm}
-    Рассмотрим  $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения отрезка $ J_i$.
-    Тогда у них есть общее измельчение. (Можем взять пересечение всех отрезков из первого и из второго)
+	Рассмотрим  $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения отрезка $ J_i$.
+	Тогда у них есть общее измельчение. (Можем взять пересечение всех отрезков из первого и из второго)
     \end{lm}
     Пусть $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения. $ \mathcal{F}$ -- общее измельчение.
     \[
 	\underline{S}_{\mathcal{E}_1} (f) \le  \underline{S}_{\mathcal{F}} (f) \le \overline{S}_\mathcal{F} \le \overline{S}_{\mathcal{E}_2}
-    .\] 
+    .\]
     Следовательно, $ \{A, B\}$ -- щель.
 \end{proof}
 \begin{note}
@@ -466,23 +466,23 @@ df = f' dx = g dx$
     $ f$ называется интегрируемой по Риману, если $ \overline{I}(f) = \underline{I}(f)$
 \end{defn}
 \begin{ex}
-        \item Все ступенчатые функции интегрируемы по Риману.
-	     $\varphi $-- ступенчатая функция на $ J$, 
-	     Существует разбиение $ \underline{S}$ отрезка на $ J$.
-	     $ \mathcal{E} = \{e_1, \ldots  e_k\} : \varphi  (x) = \slim{i=1}^{k} c_i \chi_{e_i}$
-	     \[
-		 \underline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i 
-		 \overline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i 
-	     \] 
-	     Тогда $ \underline{I} ( \varphi ) - \overline{I} \varphi = I( \varphi ) = \slim_{i=1}^{k} |e_i| c_i$ 
+\item Все ступенчатые функции интегрируемы по Риману.
+    $\varphi $-- ступенчатая функция на $ J$,
+    Существует разбиение $ \underline{S}$ отрезка на $ J$.
+    $ \mathcal{E} = \{e_1, \ldots  e_k\} : \varphi  (x) = \slim{i=1}^{k} c_i \chi_{e_i}$
+    \[
+	\underline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i
+	\overline{S}_{\mathcal{E}}( \varphi ) = \slim_{i=1}^{k} |e_i| c_i
+    \]
+    Тогда $ \underline{I} ( \varphi ) - \overline{I} \varphi = I( \varphi ) = \slim_{i=1}^{k} |e_i| c_i$
 \end{ex}
 \begin{note}
     Пусть $ J$ -- произвольный отрезок, $ f$ -- ограниченная функция на $ J$, $ \mathcal{E}$ -- разбиение отрезка $ J  $ на непустве отрезки $ \{e_1, \ldots  e_n\}$.
     \[
-   % фото 14:28 
-    .\] 
+	% фото 14:28
+    .\]
 \end{note}
- % теорема 14:28
+% теорема 14:28
 % утверждение 14:30
 \begin{thm}{Критерий интегрируемости по Риману}
     $ f$ -- интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 \exists $ разбиение $ e_1, .. e_k$ Отрезка $ J$, такое что $ \slim_{i=1}^{k}|e_k| osc_{e_k} f < \varepsilon $. \label{iff_1}
@@ -493,125 +493,125 @@ df = f' dx = g dx$
 \end{proof}
 \begin{prop}
     \begin{enumerate}
-        \item $ f$ -- непрерывна на $ \langle a, b \rangle \Rightarrow $ $ f$ -- интегрируема. 
+	\item $ f$ -- непрерывна на $ \langle a, b \rangle \Rightarrow $ $ f$ -- интегрируема.
 	\item  $ \Sigma  $ -- разбиение, \[
 		\overline{S}_{ \Omega } (-f) =  -\underline{S}_{ \Omega } (f)
-	.\] 
+	    .\]
 	\item Если $ \alpha >0$, \[
 		\bar{S}_{ \Sigma }(\alpha f) = \alpha \bar{S}_{ \Sigma}(f)
-	.\] 
-	Аналогично с нижней суммой.
-    \item Если $ f$ -- интергируема и $ \alpha  \in  \R$, то $ \alpha  f$ -- интегрируема и $ I( \alpha  f) = \alpha I(f)$
-    \item $ f, g : \langle a, b \rangle \to  \R$ -- ограничены. $ \Sigma $ -- разбиение.
-	\[
-	    \overline{S}_{ \Sigma }(f+g) \le  \overline{iS}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
-	.\] 
-    \item 
-	\[
-	    \underline{S}_{ \Sigma } (f + g)  \ge  \underline{S}_{ \Sigma } (f) + \underline{S}_{ \Sigma }(g)
-	.\] 
-    \item  Если $ f , g$ -- интегрируемы на $ \langle a, b \rangle$, то $ f + g $ -- интегрируема и \[
-	    I(f+g) = I(f) + I(g)
-    .\] 
-    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и прошлым свойством. Для второго утверждения: просто записываем неравенство.
-\item $ f, g$ -- интегрируемы, $ \alpha , \beta \in  \R$.
-    Тогда $ \alpha f + \beta  g$ --интегрируема и 
-    \[
-	I( \alpha f+ \beta g) = \alpha I(f) + \beta  I(g)
-    .\] 
-\item Монотонность. 
-    $ f \ge 0, f$ -- интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
-\item $ f, g$ -- интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$ -- интегрируема.
-    \begin{proof}
-        \[
-        \exists  C, D \in  \R: |f| \le  C, |g| \le D \text{ на } \langle a, b \rangle
-        .\] 
-	Пусть $ J$ -- отрезок. Оценим осцилляцию.
-	\[
-	    \forall  x, y \in  J: | f(x) g(x) - f(y) g(y_| = |f(x) g(x) - f(x) g(y)  | + | f(x) g(y) - f(y) g(x)|=
-	\] 
-	\[
-	    \le  |f(x) g(x) - f(x) g(y)| + |f(x) g(y) - f(y) g(y)| = 
-	\] 
-	\[
-	    =  |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le 
-	\] 
-	\[
-	\le  C \cdot osc_J g + D \cdot osc_J f
-	.\] 
-	$ f, g$ -- интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
+	    .\]
+	    Аналогично с нижней суммой.
+	\item Если $ f$ -- интергируема и $ \alpha  \in  \R$, то $ \alpha  f$ -- интегрируема и $ I( \alpha  f) = \alpha I(f)$
+	\item $ f, g : \langle a, b \rangle \to  \R$ -- ограничены. $ \Sigma $ -- разбиение.
+	    \[
+		\overline{S}_{ \Sigma }(f+g) \le  \overline{iS}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
+	    .\]
+	\item
+	    \[
+		\underline{S}_{ \Sigma } (f + g)  \ge  \underline{S}_{ \Sigma } (f) + \underline{S}_{ \Sigma }(g)
+	    .\]
+	\item  Если $ f , g$ -- интегрируемы на $ \langle a, b \rangle$, то $ f + g $ -- интегрируема и \[
+		I(f+g) = I(f) + I(g)
+	    .\]
+	    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и прошлым свойством. Для второго утверждения: просто записываем неравенство.
+	\item $ f, g$ -- интегрируемы, $ \alpha , \beta \in  \R$.
+	    Тогда $ \alpha f + \beta  g$ --интегрируема и
+	    \[
+		I( \alpha f+ \beta g) = \alpha I(f) + \beta  I(g)
+	    .\]
+	\item Монотонность.
+	    $ f \ge 0, f$ -- интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
+	\item $ f, g$ -- интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$ -- интегрируема.
+	    \begin{proof}
+		\[
+		    \exists  C, D \in  \R: |f| \le  C, |g| \le D \text{ на } \langle a, b \rangle
+		.\]
+		Пусть $ J$ -- отрезок. Оценим осцилляцию.
+		\[
+		    \forall  x, y \in  J: | f(x) g(x) - f(y) g(y_| = |f(x) g(x) - f(x) g(y)  | + | f(x) g(y) - f(y) g(x)|=
+		\]
+		\[
+		    \le  |f(x) g(x) - f(x) g(y)| + |f(x) g(y) - f(y) g(y)| =
+		\]
+		\[
+		    =  |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le
+		\]
+		\[
+		    \le  C \cdot osc_J g + D \cdot osc_J f
+		.\]
+		$ f, g$ -- интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
 
-	Получаем \[
-	    \begin{array}{c}
-		\slim_{J \in  \Sigma} |J| osc_J f \le  \varepsilon \\
-		\slim_{J \in  \Sigma} |J| osc_J g \le  \varepsilon 
-	\end{array}
-	.\] 
-	Тогда $ \forall  J \in  \Sigma: osc_J (f g) \le  C \cdot osc_J g + D \cdot osc_J f$.
+		Получаем \[
+		    \begin{array}{c}
+			\slim_{J \in  \Sigma} |J| osc_J f \le  \varepsilon \\
+			\slim_{J \in  \Sigma} |J| osc_J g \le  \varepsilon
+		    \end{array}
+		.\]
+		Тогда $ \forall  J \in  \Sigma: osc_J (f g) \le  C \cdot osc_J g + D \cdot osc_J f$.
 
-	Следовательно, \[
-	    \slim_{J \in  \Sigma} |J| \cdot osc_J fg \le C \cdot \slim_J |J| \cdot osc_J g + D \cdot \slim_J | J| \cdot osc_J f \le  (C + D ) \varepsilon 
-	.\] 
-    \end{proof}
-    \item
-    $ f$ -- интегрируема на $ \langle a, b \rangle$. $ J \subset  \langle a, b \rangle$.
-    Тогда $ f \cdot \chi_J $ -- интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
+		Следовательно, \[
+		    \slim_{J \in  \Sigma} |J| \cdot osc_J fg \le C \cdot \slim_J |J| \cdot osc_J g + D \cdot \slim_J | J| \cdot osc_J f \le  (C + D ) \varepsilon
+		.\]
+	    \end{proof}
+	\item
+	    $ f$ -- интегрируема на $ \langle a, b \rangle$. $ J \subset  \langle a, b \rangle$.
+	    Тогда $ f \cdot \chi_J $ -- интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
 
-    Если $ J = \{c\}$, то $ I(f \chi_J)  = 0$.
-\item $ J_1, J_2$ -- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда 
-    \[
-	I(f \chi_{J_1 \cup J_2}) = I(f \chi_{J_1}) + I(f \chi _{J_2})
-    .\] 
-\item Основная оценка интеграла.
-    $ f$ -- интегрируема на $ \langle a, b \rangle$.
-    $ |f | \le M$ на $ [c, d] \subset \langle a, b \rangle$
-    \[
-	\left| \int_c ^{ d} f \right| \le  M(d-c)
-    .\] 
+	    Если $ J = \{c\}$, то $ I(f \chi_J)  = 0$.
+	\item $ J_1, J_2$ -- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда
+	    \[
+		I(f \chi_{J_1 \cup J_2}) = I(f \chi_{J_1}) + I(f \chi _{J_2})
+	    .\]
+	\item Основная оценка интеграла.
+	    $ f$ -- интегрируема на $ \langle a, b \rangle$.
+	    $ |f | \le M$ на $ [c, d] \subset \langle a, b \rangle$
+	    \[
+		\left| \int_c ^{ d} f \right| \le  M(d-c)
+	    .\]
     \end{enumerate}
 \end{prop}
 \begin{name}
     $ I(f \chi_J)$ не зависит от того, вклочает ли $ J$ концы.
     \[
 	\int_c^{d} f  =  \int_c^{d} f(x) dx\stackrel{def} =  I(f \chi _ {\langle c, d \rangle})
-    .\] 
+    .\]
 \end{name}
 \begin{name}
     Если $ d < c$ :
     \[
-    \int_c^{d} f = - \int_d ^{c} f
-    .\] 
+	\int_c^{d} f = - \int_d ^{c} f
+    .\]
 \end{name}
 \begin{st}
     $ f$ -- интегрируема на $ \langle a, b \rangle$.
     \[
-    \int_c ^{e} f = \int _c^{ d} f+ \int_d ^{e} f
-    .\] 
+	\int_c ^{e} f = \int _c^{ d} f+ \int_d ^{e} f
+    .\]
 \end{st}
 \subsection{Связь интеграла и производящей}
 $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- первообразная функция $ f$, если $ F$ -- дифференцируема и $ F' = f$.
- \begin{thm}
-     [Ньютон-Лейбниц]
-     Пусть $ f$ интегрируема по Риману на $ \langle a, b \rangle$ и непрерына в точке $ t \in  \langle a, b \rangle$. Пусть $ t_0 \in  \langle a, b \rangle: F(s) = \int_{t_0} ^{s} f$.
-     Тогда $ F$ -- дифференцируема в точке $ t$и $ F'(t) = f(t)$.
+\begin{thm}
+    [Ньютон-Лейбниц]
+    Пусть $ f$ интегрируема по Риману на $ \langle a, b \rangle$ и непрерына в точке $ t \in  \langle a, b \rangle$. Пусть $ t_0 \in  \langle a, b \rangle: F(s) = \int_{t_0} ^{s} f$.
+    Тогда $ F$ -- дифференцируема в точке $ t$и $ F'(t) = f(t)$.
 \end{thm}
 \begin{proof}
     $ x \ne t$.\[
-	\left |	\frac{F(x) - f(t)}{x-t} - f(t) \right | = \left| \frac{\int_{t_0}^{x} f = \int_{t_0} ^{t} f}{x - t} \right| = \left| \frac{\int_t^{x}}{x - t} - f(t) \right|  = 
-    \] 
+	\left |	\frac{F(x) - f(t)}{x-t} - f(t) \right | = \left| \frac{\int_{t_0}^{x} f = \int_{t_0} ^{t} f}{x - t} \right| = \left| \frac{\int_t^{x}}{x - t} - f(t) \right|  =
+    \]
     \[
 	\frac{1}{|x-t|} \left| \int _t ^{ x} f - (x-t)f(x) \right|  = \frac{1}{|x-t|}\left |{\int_t ^{x} f(s) - f(t) ds } \right | \le  \sup_{s \in  [t, x] } |f(s) = f(t)|
-    .\] 
+    .\]
     $ f$ -- непрерывна в $ t$. Тогда $ \forall  \varepsilon  > 0 ~ \exists  \delta  $. Если $| s- t| < \delta$, $ |f(t) - f(s) |< \varepsilon $
     \[
-	|x - t| < \delta  \Longrightarrow \forall s \in  [t, x]: |s - t| < \varepsilon  \to |f(s) - f(t) | < \varepsilon 
-    .\] 
+	|x - t| < \delta  \Longrightarrow \forall s \in  [t, x]: |s - t| < \varepsilon  \to |f(s) - f(t) | < \varepsilon
+    .\]
     Тогда \[
-	\sup{s \in [t, x]} |f(x) - f(t)| \le  \varepsilon 
-    .\] 
+	\sup{s \in [t, x]} |f(x) - f(t)| \le  \varepsilon
+    .\]
     А значит \[
 	\lim_{x \to  t} |\frac{F(x) - f(t)}{x -t}- f(t)| = 0 \Longrightarrow F'(t) = f(t)
-    .\] 
+    .\]
 \end{proof}
 \begin{cor}
     Если $ f$ дифференцируема на $ \langle a, b \rangle$, то $ \forall t_0 \in  [a, b]: F $ --первообразная $ f$.
@@ -619,7 +619,7 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
 \begin{cor}[Формула Ньютона-Лейбница]
     $ f$ -- непрерывна на $ [a, b]$, $ F$ --первообразная $ f$. Тогда \[
 	\int_a^{b} f = F(b) - F(a)
-    .\] 
+    .\]
 \end{cor}
 \begin{defn}
     $ f \in  C^{k} \langle a, b \rangle, \quad k \in \N \cap  \{0,  \infty\}$, если $ f, f', \ldots f^{(k)} $ -- непрерывны.
@@ -627,41 +627,41 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
 \begin{thm}
     Если $ f, g \le  C^{1} (a, b)$ , то
     \[
-    \int _b ^{a} f g' = f \cdot g \mid _a ^{ b} - \int_a ^{ b} f' g
-    ,\] 
+	\int _b ^{a} f g' = f \cdot g \mid _a ^{ b} - \int_a ^{ b} f' g
+    ,\]
     где $ \Phi \mid _a ^{ b} = \Phi(b) - \Phi(a)$
 \end{thm}
 \subsection{Формула интегрирования по частям}
 $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f, g, f', g'$ -- непрерывны.
 Тогда \[
     (fg)' = f' g+g'f
-.\] 
+.\]
 Пусть $ \Phi$ -- первообразная для $ f' g$.
 Запишем первообразную для $ fg'$
 \[
     \Psi (x) = \int_a^{x} f(t) g'(x) dt = f(x) g(x) - \Phi (x) + c
-.\] 
+.\]
 \[
     \Phi (x) = f(x) g(x) \int_a^{x} f(t) g'(t) dt + c
-.\] 
+.\]
 Обозначим $ u |_y^{x} = u(x) - u(y)$.
 \[
     \Phi (x) - \Phi(y) = fg |_y^{x} - \int_y^{x} f(t)g'(t)dt
-.\] 
+.\]
 
 Получаем
 \[
     \int_y^{x} f'(t) g(t) dt = fg |_y^{x} - \int f(t) g'(t) dt
-.\] 
+.\]
 \begin{thm}
     $ f_n, f$ -- Заданы на $ \langle a, b \rangle; n \in \N$
-    Пусть 
+    Пусть
     \begin{enumerate}
 	\item все $ f_n$ интегрируемы по Риману на $ \langle a, b \rangle$
 	\item $ f_n \rightrightarrows f$. Тогда  $ f$ интегрируема по Риману
 	    \[
 		\int_a^{b}f_n(x) dx \to \int_a^{b}f(x) dx
-	    .\] 
+	    .\]
     \end{enumerate}
 \end{thm}
 \begin{proof}
@@ -671,67 +671,67 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     \end{lm}
     \[
 	\varepsilon  >0: \exists  n: |f_n(x) - f(x)| \le \varepsilon ~ \forall x \in  \langle a, b \rangle
-    .\] 
+    .\]
     \[
-	|ose_{\langle a, b \rangle} - ose_{_\langle a, b \rangle(f)}| \le 2 \varepsilon 
-    .\] 
+	|ose_{\langle a, b \rangle} - ose_{_\langle a, b \rangle(f)}| \le 2 \varepsilon
+    .\]
     $\exists  \{I_1, \ldots I_N \} $ -- отрезки $ \langle  a, b \rangle$:
     \[
-	\sum_{j=1}^{N }|I_j| ose_{I_j} < \varepsilon 
-    .\] 
+	\sum_{j=1}^{N }|I_j| ose_{I_j} < \varepsilon
+    .\]
     \[
 	\sum_{j=1}^{N} |I_j| osc_{I_j}(f)  \le  \varepsilon +\sum_{j=1}^{N} |I_j| (2 \varepsilon ) = \varepsilon (2 (b-a) + 1)
-    .\] 
+    .\]
     Следовательно, $ f$ -- интегрируема.
 
     \[
 	\left|\int_a^{b} f_n(x_) dx - \int _a^{b}f(x) dx \right|= \left|\int_a^{b} f_1(x) - f(x) dx\right| \le  \varepsilon (b-a)
-    .\] 
+    .\]
     \[
-	\varepsilon  >0  ~ \exists M : \forall n \ge M ~ \forall  x \in  \langle a, b \rangle: |f_n(x) - f(x) | \le  \varepsilon 
-    .\] 
+	\varepsilon  >0  ~ \exists M : \forall n \ge M ~ \forall  x \in  \langle a, b \rangle: |f_n(x) - f(x) | \le  \varepsilon
+    .\]
     Тем самым получили последнее неравенство в прошлой строке.
 \end{proof}
 \begin{st}
     Если $ f$ интегрируема по Риману на $ \langle  a,b \rangle$, то $ |f|$ тоже интегрируема и \[
 	\left |\int_a ^{b} f(x) dx\right| \le  \int_a^{b} |f(x) |dx
-    .\] 
+    .\]
 \end{st}
 \section{Логарифм и экспонента}
-Пусть функция $ l$ удовлетворяет соотношению 
+Пусть функция $ l$ удовлетворяет соотношению
 \[
     l(xy) = l(x)+l(y)
-,\] 
- и ноль лежит в ее области определения.
+,\]
+и ноль лежит в ее области определения.
 \[
     l(0) = l(0, a) = l(0) + l(a) \Longrightarrow l(0) = 0
-.\] 
+.\]
 Будем искать $ l$, заданную на $ \R_{+}$.
 \[
     l(x^2) = l((-x)^2)
-.\] 
+.\]
 \[
     2l(x) = 2 l(-x)
-.\] 
+.\]
 То есть \[
     l(x) = l(|x|)
-.\] 
+.\]
 \begin{defn}
     Логарифм -- строго монотонная функция, заданная на $ \R_{+}$, такая что \[
 	f(xy) = l(x) + l(y) \quad x, y >0
-    .\] 
+    .\]
 \end{defn}
 \begin{st}
     Для $ n \in  \N$:
     \[
 	l(x^{n}) = n\cdot l(x)
-    ,\] 
+    ,\]
     \[
 	l(x^{\frac{1}{n}}) = \frac{1}{n} l(x)
-    .\] 
+    .\]
     \[
 	l(1) = l(1^2) = 2 l(1) \Longrightarrow l(1) = 0
-    .\] 
+    .\]
 \end{st}
 \begin{st}
     Если $ l$ -- логарифм, $ c\ne 0$, то $ cl$ -- тоже логарифм.
@@ -742,12 +742,12 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \begin{proof}
     Пусть $ l$ -- логарифм. Считаем, что $ f$строго возрастает.
     \[
-	t = \lim_{x \to 1 + 0} f(x) 
-    .\] 
+	t = \lim_{x \to 1 + 0} f(x)
+    .\]
     Покажем, что $ t = l(1) = 0$.
     Пусть  $ t>0$. \[
-	l((1+ x)^{2}) = 1 l(1+ x) 
-    .\] 
+	l((1+ x)^{2}) = 1 l(1+ x)
+    .\]
     При $ x to 1+$ получаем, что $ t=0$.
     Если  $ x \to  1-$, получаем тое самое. Значит $l$ -- непрерывна в 1.
     И равна нулю в этой точке.
@@ -758,15 +758,15 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \begin{proof}
     \[
 	\Phi (x) - \int_1^{x}l(t) dt \quad x \in  (0, + \infty)
-    .\] 
+    .\]
     $ \Phi$  дифференцируема.
     \[
 	\begin{array}{cc}
-	\Phi(2x) = \int_1^{2x} l(t) dt = \int_1^{x}  l(t) dt + \int_x^{2x}l(t) dt = \Phi(x) = \\
-	x \int_x^{2x} l(x \cdot \frac{t}{x}) d(\frac{t}{x}) = \Phi (x) + x \int_1 ^{2} l(x \cdot y) dy = \\
-	\Phi(x) + x l(x) + x \int_1^{2} l(y) dy
+	    \Phi(2x) = \int_1^{2x} l(t) dt = \int_1^{x}  l(t) dt + \int_x^{2x}l(t) dt = \Phi(x) = \\
+	    x \int_x^{2x} l(x \cdot \frac{t}{x}) d(\frac{t}{x}) = \Phi (x) + x \int_1 ^{2} l(x \cdot y) dy = \\
+	    \Phi(x) + x l(x) + x \int_1^{2} l(y) dy
 	\end{array}
-    .\] 
+    .\]
     $ l(x) = \frac{\Phi(2x) -\Phi(x) }{x} - C$.
     А $ \Phi$  дифференцируема, следовательно, $ f$  тоже дифференцируема.
 \end{proof}
@@ -774,22 +774,233 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 
     $ l(xy) = l(x) + l(y)$.
     Зафиксируем $ y$ и возьмем производную:
-\[
-    y l'(xy) = l'(x) \qquad x, y \in  \R_{+}
-.\] 
-\[
-    l'(x) = \frac{C}{x}, \quad C = l'(y)
-.\] 
+    \[
+	y l'(xy) = l'(x) \qquad x, y \in  \R_{+}
+    .\]
+    \[
+	l'(x) = \frac{C}{x}, \quad C = l'(y)
+    .\]
 \end{thm}
 \begin{thm}
     Если $ l$ логарифм, то \[
 	\exists  C \ne 0 : l(x) = C \int_1 ^{x} \frac{dt}{t}
-    .\] 
+    .\]
 \end{thm}
 \begin{proof}
     Только что доказали.
 \end{proof}
 \begin{thm}
-    $ \Phi(x) = \int_1^{x} \frac{dt}{t}$ -- логарифм.
+    $ \Phi(x) = \int_1^{x} \frac{C}{t}dt$ -- логарифм.\\
+    Сама $ l (x) = C \cdot \int_1^{x} \frac{dt}{t}$
 \end{thm}
+\begin{thm}
+    Если $ C \ne 0$, то \[
+	\varphi (x) = C\int_1 ^{x} \frac{dt}{t} \text{ -- есть логарифм}
+    .\]
+\end{thm}
+\begin{proof}
+    Достаточно доказать теорему для $ C=1$.
+    \[
+	\varphi (x) = \int_1^{x} ,\quad x>0
+    .\]
+    Если $ x_1>x$,
+    \[
+	\varphi (x_1) - \varphi (x) = \int_1^{x_1} \frac{dt}{t} \ge  \frac{1}{x_1} (x_1-x) > 0
+    .\]
+    Следовательно, $  \varphi $ строго возрастает.
+
+    Проверим:
+    \[
+	\varphi (xy) = \varphi (x) + \varphi (y)
+    .\]
+    \[
+	\in t_1 ^{x} \frac{dt}{t} +\int_x ^{y} \frac{dt}{t} = \varphi  (x) + \frac{1}{x} \int_x ^{xy} \frac{d(\frac{t}{x}}){\frac{t}{x}}
+    .\]
+    \[
+	\varphi (x) + \int_1 ^{y} \frac{d \mu}{\mu} = \varphi (x) - \varphi (y)
+    .\]
+\end{proof}
+\begin{name}
+    Натуральный логарифм --
+    \[
+	\int_1^{x} \frac{dt}{t} = \log t
+    .\]
+\end{name}
+\begin{prop}
+    $ (\log x)' = \frac{1}{x}$
+    \[
+	\frac{\log (x+1) - \log 1}{x} \stackrel{to} {x \to  0} \log'(1) = 1
+    .\]
+    \[
+	\frac{\log(1+x)}{x} \to 1, \quad x \to  0
+    .\]
+\end{prop}
+\begin{st}
+    Образ функции $ \log$ есть все вещественные числа.
+\end{st}
+\begin{proof}
+    При $ x_1>x, ~ \log(x_1) - \log(x) > \frac{x_1-x}{x_1}$.
+    Рассмотрим $ x_1 = 2^{n+1}, x = 2^{n}$ :
+    \[
+	\log 2 ^{n+1} - \log 2^{n} \ge  \frac{2^{n}}{2^{n+1}} \ge \frac{1}{2}
+    .\]
+    Тогда $ \lim_{x \to  \infty} \log x = + \infty$.
+\end{proof}
+\begin{defn}[Обратная функция к логарифму]
+    У функции $  \log $ есть обратная функция, называющаяся экспонентой:
+    \[
+	\exp: \R \to  \R^{+}
+    .\]
+\end{defn}
+\begin{prop}
+    \begin{enumerate}
+	\item
+	    $ \exp$ строго возрастает
+	\item
+	    \[
+		\lim_{x \to +\infty}  \exp = +\infty
+	    .\]
+	\item
+	    \[
+		\lim_{x \to -\infty}   \exp = 0
+	    .\]
+	\item
+	    \[
+		\log 1 = 0 \Leftrightarrow \exp 0 = 1
+	    .\]
+	\item
+	    \[
+		\exp x \exp y = \exp(x+y)
+	    .\]
+    \end{enumerate}
+\end{prop}
+\begin{st}
+    Экспонента дифференцируема:
+    \[
+	\exp' (x) = \frac{1}{\log'(\exp x)} = \exp x
+    .\]
+\end{st}
+\begin{st}
+    \[
+	f(x) = \sum_{j= 0}^{n} \frac{f^{(j)}{j!}}x ^{j} + \frac{f^{(n+1)}(c)}{(n+1)!} x^{n+1} \quad c \text{ между } 0 \text{ и } x
+    .\]
+    Пусть $ f$ имеет производную любого порядка
+    \[
+	f(x) = \sum_{j=0} ^{n} \frac{f^{(j)} (x_0)}{j!} (x-x_0)^{j} + \frac{f^{(n+1)}(c) }{(n+1)!} (x-x_0) ^{(n+1)}
+    .\]
+    Ряд Тейлора для $ f$ в окрестности точки $ x$ :
+    \[
+	\sum_{j=0}^{\infty} = \frac{f^{(j)} (x_0)}{j!} (x-x_0)^{j}
+    .\]
+\end{st}
+\begin{thm}
+    Ряд Тейлора для экспоненты, $ x_0 = 0$ :
+    \[
+	\exp(x) = \sum_{j=0}^{\infty} \frac{x^{j}}{j!}
+    .\]
+    Для любого $ x$ этот ряд сходится к $ epx(x)$, сходимость равномерна на каждом конечном отрезке.
+\end{thm}
+\begin{proof}
+    \[
+	\left| \exp x - \sum_{j=0}^{n} \frac{x^{j}}{j!}   \right| = \frac{\exp c}{(n+1)!}|x|^{n+1}, \quad c  \text{ между } 0  \text{ и } x
+    .\]
+    Выберем $ R >0$, пусть $ |x| \le R$
+    Применим:
+    \[
+	\le  \exp \frac{R ^{n+1}}{(n+1)!}
+    .\]
+    Проверим, что полученное выражена стремиться к нулю.
+    \begin{lm}
+	Пусть $ a_0, a_1, a_2 \ldots  $ -- положительные числа и $
+	\exists N: a_j < \eta < 1 ~ \forall  j > N
+	$.
+	Тогда $ a_0 a_1 \ldots a_j \to  0 \quad j \to \infty$
+    \end{lm}
+    \begin{cor}
+	Если $ a_j \ge  0, ~ a_j \to  0$, то $ a_0 \ldots a_j \to 0$
+    \end{cor}
+    По лемме $ \frac{R}{1} \cdot \frac{R}{2} \ldots  \frac{R}{n+1}$ стремиться к нулю. Доказали равномерную сходимость.
+\end{proof}
+\begin{note}
+    \[
+	\exp 1 = \sum_{n=0}^{\infty} n! = e
+    .\]
+\end{note}
+\begin{cor}[быстрый рост экспоненты]
+    \[
+	\forall n \in  \N : \lim_{x \to  \infty}  \frac{x^{n}}{\exp x} = 0
+    .\]
+\end{cor}
+\begin{proof}
+    \[
+	\exp x = \sum_{k =0}^{\infty} \frac{x^{k}}{k!}\ge  \frac{x^{n+1}}{(n+1)!}
+    .\]
+    \[
+	\frac{x^{n}}{\exp x} \le  (n+1)! \frac{1}{x} \longrightarrow 0 \qquad x \to  \infty
+    .\]
+\end{proof}
+\begin{note}
+    \[
+	\exp(-x) = \frac{1}{\exp x}
+    .\]
+    \[
+	\lim_{x \to  -\infty}  x^{n} \exp (-x) = 0
+    .\]
+\end{note}
+\begin{cor}
+    \[
+	\frac{\log x}{x^{k}} \stackrel{ x \to  + \infty}{\longrightarrow} 0 \qquad k \in  \N
+    .\]
+\end{cor}
+\begin{ex}[Полезный пример]
+    \[
+	g(x) = \left\{
+	    \begin{array}{ll}
+		0 & x = 0 \\
+		\exp(-\frac{1}{x^2} & x \ne 0
+	\end{array}\right.
+    .\]
+    $ g $ непрерывна на $ \R$.
+
+    Если $ x \ne 0$, \[
+	g'(x) = \exp(-\frac{1}{x^2} )(2 \frac{1}{x^3})
+    .\]
+    \[
+	\lim_{x \to  0}  g'(x) = 0
+    .\]
+    $ g$  дифференцируема а нуле и $ g'(0) = 0$.
+    \[
+	g^{(j)} (x) = \exp(-\frac{1}{x^2}) p_j(\frac{1}{x}), \quad p_j \text{ -- полином}
+    .\]
+    Значит, $ g$ бесконечно дифференцируемая функция и $ g^{(j)} (0) = 0$.
+
+
+    Напишем полином Тейлора:
+    \[
+	T_n(x) =\sum_{j=0}^{n} \frac{g^{(j)} (0)}{j!}x^{j} \cong 0
+    .\]
+    Нулевой, но не сходится к $ g$.
+
+    \[
+	h(x) = \left \{
+	    \begin{array}{ll}
+		g(x) & x \ge  0\\
+		0 & x \le 0
+	    \end{array}
+	\right .
+    .\]
+    $ h$ -- бесконечно дифференцируема.
+    \[
+	u(x) = h(x-a) h(b-x), \quad a<b
+    .\]
+\end{ex}
+\begin{cor}
+    Пусть $ I = (a, b), ~ a< b$. Существует бесконечно дифференцируемая функция $ u:$
+    \[
+	\begin{array}{ll}
+	    u(x) >0 & x \in  (a, b) \\
+	    u(x) = 0 & x \not\in (a,b)
+	\end{array}
+    .\]
+\end{cor}
 \end{document}
