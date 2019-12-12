@@ -2929,4 +2929,143 @@ $ I_j$ -- наибольший из $ \mathcal{A}$
 \begin{thm}
     $ R$ -- нётерово. Тогда любой элемент раскладывается в произведение неприводимых.
 \end{thm}
+\section{Лекция 28}
+\subsubsection{Отступление}
+$ p$ -- неприводим тогда и только тогда, когда $ pR$ -- максимальный среди собственных главных идеалов.
+
+$ R$ -- область целостности.
+\[
+pR \subseteq a R \Longrightarrow p = ar \Longrightarrow 
+\left[
+\begin{array}{ll}
+    a \in  R^{*}\\
+    r \in  R ^{*}
+\end{array}
+\right
+.\] 
+Тогда либо $ aR = R$ или $ aR = pR$.
+
+Если $ R$ не область целостности, из  $ p= ar$ следует, что \[
+\left[ 
+    \begin{array}{ll}
+    aR = pR \\
+    rR = pR
+\end{array}\right 
+.\] 
+Тогда $ r = px \wedge p = apx$, дальше $ p(ax -1)$.
+
+Теперь придумаем контрпример:
+\[
+    R = \Z[a, p, x] \diagup _{(p(ax-1))}
+.\] 
+Хотим доказать, что $ p$ неприводим и $ \overline{p} R \subset \overline{a}R \subset R$%% здесь строгие включения.
+.
+Профакторизуем:
+$ \overline{p}$ -- образ $ p $ в $ R$, 
+\[
+R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
+.\] 
+Это изоморфно
+\[
+    \Z[a, p, x] \diagup_{(p)} \cong \Z[a, x]
+.\] 
+\begin{st}
+    $ I, J \triangleleft R$,
+    $ \pi_I: R \to  R\diagup I$
+    \[
+	R \diagup (I+J) \cong (R \diagup I)\diagup _{\pi_I (J)} \cong (R\diagup J) \diagup _{\pi_J(I)}
+    .\] 
+\end{st}
+Тогда $ \overline{p} R$ -- простой идеал, следовательно, $ p$ -- неприводим.
+В фактор кольце $ R\diagup (\overline{p}): \overline{p}R \to  0 , ~ \overline{a}R \to \text{не }0 \text{ и не все кольцо}$
+\begin{ex}
+    $ \Z[i]\diagup (7) \cong (\Z[x]\diagup(x^2 + 1))\diagup (7) \cong (\Z[x]\diagup (7))\diagup (x^2 +1) \cong (\Z \diagup 7\Z )[x] \diagup (x^2+1)$. 
+
+    $ x^2 +1$ неприводим в $ \Z\diagup 7 \Z$ 
+    Значит, $ \Z[i]\diagup (7) \cong \mathbb{F}_{49}$.
+\end{ex}
+\begin{st}
+    Рассмотрим кольцо $ R$, $ A$ -- $ R$-алгебра.
+    Тогда \[
+	\forall a_1, \ldots a_n \in  A: \exists ! \varphi _{a_1, \ldots a_n} : R[x_1, \ldots x_n] \to  A: \varphi _{a_1, \ldots a_n} (x_{i}) = A
+    .\] 
+    Это гомоморфизм подстановки ("eval").
+\end{st}
+\subsection{Продолжение нёторвых колец}
+\begin{thm}[Теорема Гильберта о базисе]
+    $ R$ -- нётерово (коммутативное кольцо с единицей). Тогда $ R[x]$ -- нётерово.
+\end{thm}
+\begin{note}
+    $ b \mid a \Leftrightarrow aR \subseteq bR$
+\end{note}
+\begin{thm}
+    $ R$ -- неторова область целостности. Любой необратимый элемент раскладывается в произведение неприводимых.
+\end{thm}
+\begin{proof}
+    $ a \in  R \setminus R^{*}$ 
+    \begin{enumerate}
+	\item Докажем, что существует такое $ p$, что $ p \mid a$ для неприводимого $ p$.
+	     Если $ a$ неприводим, все отлично, иначе он предстваляется в виде
+	     $ a = r_1 a_1$.
+	     При этом $ a_1R \ne aR$ и тогда $ aR \subset a_1R \subset  a_2R \subset \ldots \subset a_nR$. Этацепочна точно оборвется, так как $ R$ -- неторов. Причем $ p = a_n$ -- неприводим, иначе он не может быть последним.
+	     Значит $ p \mid a$.
+	 \item $ p = p_1$ -- неприводим.
+	     $ a = p_1 c_1 $
+
+	     Если $ c_1 \in  R^{*}$, то $ p_1c_1 $ -- неприводим.
+	     Иначе $ p_1c_1 = = p_1 p_2с_2 = \ldots  = p_1 p_2 \ldots p_m c_m$.
+
+	     $ c_m \mid c_{m-1} \ldots \mid c_1$ и $ c_1R \subset c_2R \subset  \ldots c_m R$  % здесь и ранее включения строгие \subseteq
+	     % \[
+		%  \Z[c_1, x, p_2] \diagup_{(p_2, c_1 x p_2 -c_1)} \cong \Z[c_1, x, p_2]\diagup_{(p_2, c_1)} = \Z[x]
+	     % .\] 
+	     \[
+	     c_i = p_{i+1} c_{i+1}
+	     .\] 
+	     Так как $ p_i$ необратим, то $ c_i R \ne c_{i+1}R$. Цепочка  обрывается, так как  $ R$ неторово.
+    \end{enumerate}
+\end{proof}
+\subsection{Факториальное кольцо}
+\begin{defn}
+    Кольцо называется факториальным, если любой необратимый элемент единственным образом раскладывается в произведение неприводимых с точностью до ассоциированности.
+\end{defn}
+\begin{lm}
+    Факториальное кольцо -- область целостности.
+\end{lm}
+\begin{proof}
+    Если $ p_1\cdot \ldots \cdot p_m = 0$ , то $ p_1^2 \cdot p_2 \cdot \ldots  \cdot p_m = 0$ -- другое разложение.
+
+    Единственность означает:
+    $ p_1 \cdot \ldots  p_m = q_1 \cdot \ldots q_n $, где $ p_i, q_j$ -- необратимые $ \Longrightarrow m=n \wedge \exists  \sigma \in  S_m: p_i  $ ассоциировано с $ \sigma (i)$.
+\end{proof}
+\begin{thm}
+    В $ R$ любой элемент раскладывается в произведение неприводимых и любой неприводимый элемент является простым. Тогда $ R$ -- факториально.
+\end{thm}
+\begin{note}
+    Верно и обратное
+\end{note}
+\begin{proof}
+    Пусть $ p_1 \cdot p_2 \ldots  \cdot p_m = q_1 \ldots  q_n$.
+
+    Индукция по $ \max(n, m)$.
+
+    База $m=n = 1$.
+
+    Переход:  $ \max(n, m) > 1$
+
+    Пусть $ n > 1$. \[
+	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ -- простое}}\Longrightarrow  p_1\mid q_i \text{  для нетоторго} i  
+    .\] 
+    тогда $q_i \in  p_i R \Longrightarrow  q_i = p_i r_i$. Так как $ q_i$  неприводим, $ r_i$ -- обратим, следовательно, $ q_i$ ассоциирует с $ p_1$.
+\[
+q_1 \ldots g_{i-1} r_1 q_{i+1} \ldots  q_n = p_1 \ldots  p_m
+.\] 
+По предположению индукции $ p_i$ ассоциировано с сомножителями левой части (и $ m-1 = n-1$).
+\end{proof}
+\begin{cor}
+    Область главных идеалов является факториальным кольцом.
+\end{cor}
+\begin{thm}
+    $ R$ -- факториальное кольцо. Тогда $ R[x]$ -- тоже факториально.
+\end{thm}
 \end{document}
