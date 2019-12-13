@@ -2399,7 +2399,7 @@ Arg z =
     $ 
 \end{note}
 \begin{st}
-    Напишем степенные ряды для тригонометричеких функций:
+    Напишем степенные ряды для тригонометрических функций:
     \[
 	\begin{array}{l}
 	    e^{t} = \slim_{n=0}^{\infty} \frac{t ^{n}}{n!}\\
@@ -2493,7 +2493,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     Тогда $ \exists \alpha  \in  \Cm: p( \alpha ) = 0$.
 \end{thm}
 \begin{thm}[Лиувилль]
-    Любая ограниченная дифиринцируемая функция $ \Cm \to  \Cm$ -- константа.
+    Любая ограниченная дифференцируемая функция $ \Cm \to  \Cm$ -- константа.
 \end{thm}
 \subsection{Кольца главных идеалов}
 \subsubsection{Евклидовы кольца}
@@ -2569,7 +2569,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     \vdots \\
     x  \equiv x_m \mod n_m$ 
 
-    Сущействует единстваенное  $ x$по модулю произведения $ n1 .. n_m$, удовлетворяющее данным сравнениям.
+    Существует единственное  $ x$ по модулю произведения $ n_1 .. n_m$, удовлетворяющее данным сравнениям.
 \end{thm}
 \begin{thm}{КТО}
     $ R$ -- коммутативное кольцо с 1.
@@ -2582,7 +2582,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \end{thm}
 \begin{rem}
     $ A, B$ -- кольца. Декартово произведение \[
-    A \oplus B = a \times  B
+    A \oplus B = A \times  B
     .\] 
     с покомпонентными операциями.
     \[
@@ -2609,7 +2609,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \section{Лекция 26}
 $ I, J$ -- идеалы в $ R$ 
 \[
-I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
+I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 .\] 
 \begin{lm}
     $ I + J = R$. Тогда \[
@@ -2661,7 +2661,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
     База для $ k=1$. Очевидно.
     Переход:
 
-    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказть , что $ J + I \cdot I_n = R$.
+    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказать , что $ J + I \cdot I_n = R$.
 
      \[
 	 \begin{array}{l}
@@ -2671,7 +2671,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
      .\] 
 \end{proof}
 \begin{thm}[Китайская теорема об остатках]
-    $ I_1, \ldots  I_n$ -- попарно взаимнопростые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
+    $ I_1, \ldots  I_n$ -- попарно взаимно простые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
     Тогда \[
 	\frac{R}{I_1\cdot \ldots I_n } \cong \frac{R}{I} \oplus \ldots  \oplus \frac{R}{I_n}
     .\] 
@@ -2760,7 +2760,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
     Любой собственный идеал содержится в каком-то максимальном.
 \end{thm}
 \begin{proof}
-    $ J \trianglelefteq R$. % делать отрицание нестрогости!!
+    $ J \triangleleftneq R$. % сделать отрицание нестрогости!!
 
     $ \mathcal{X}$ -- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
 
@@ -2795,7 +2795,7 @@ $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
 
 Пусть $ \bar{\cdot } : R \to  R \diagup P$.
 
-Тогда предыдущее утерждение равносильно
+Тогда предыдущее утверждение равносильно
 \[
 \overline{a} \overline{b} \Leftrightarrow \overline{a} =0 \vee \overline{b}=0
 .\] 
@@ -2897,12 +2897,12 @@ $ R$ -- кольцо с $ 1$.
 \begin{defn}
     $R$ -- нётерово тогда и только тогда, когда любое линейно упорядоченное множество идеалов содержит наибольший элемент.
 
-ACC -- ascending, chain, condition (условие обрыва возрастающих цепей)
+ACC -- ascending chain condition (условие обрыва возрастающих цепей)
 \end{defn}
 \begin{defn}
 Артиново кольцо -- аналогично, но заменить наибольший, на наименьший.
 
-DCC -- descending, chain, condition (условие обрыва убывающих цепей)
+DCC -- descending chain condition (условие обрыва убывающих цепей)
 \end{defn}
 \begin{lm}
     $ R$ -- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
@@ -2958,7 +2958,7 @@ pR \subseteq a R \Longrightarrow p = ar \Longrightarrow
 \[
     R = \Z[a, p, x] \diagup _{(p(ax-1))}
 .\] 
-Хотим доказать, что $ p$ неприводим и $ \overline{p} R \subset \overline{a}R \subset R$%% здесь строгие включения.
+Хотим доказать, что $ p$ неприводим и $ \overline{p} R \subsetneq \overline{a}R \subsetneq R$%% здесь строгие включения.
 .
 Профакторизуем:
 $ \overline{p}$ -- образ $ p $ в $ R$, 
@@ -3007,7 +3007,7 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 	\item Докажем, что существует такое $ p$, что $ p \mid a$ для неприводимого $ p$.
 	     Если $ a$ неприводим, все отлично, иначе он предстваляется в виде
 	     $ a = r_1 a_1$.
-	     При этом $ a_1R \ne aR$ и тогда $ aR \subset a_1R \subset  a_2R \subset \ldots \subset a_nR$. Этацепочна точно оборвется, так как $ R$ -- неторов. Причем $ p = a_n$ -- неприводим, иначе он не может быть последним.
+	     При этом $ a_1R \ne aR$ и тогда $ aR \subsetneq a_1R \subsetneq  a_2R \subsetneq \ldots \subsetneq a_nR$. Эта цепочка точно оборвется, так как $ R$ -- неторово. Причем $ p = a_n$ -- неприводим, иначе он не может быть последним.
 	     Значит $ p \mid a$.
 	 \item $ p = p_1$ -- неприводим.
 	     $ a = p_1 c_1 $
@@ -3015,7 +3015,7 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 	     Если $ c_1 \in  R^{*}$, то $ p_1c_1 $ -- неприводим.
 	     Иначе $ p_1c_1 = = p_1 p_2с_2 = \ldots  = p_1 p_2 \ldots p_m c_m$.
 
-	     $ c_m \mid c_{m-1} \ldots \mid c_1$ и $ c_1R \subset c_2R \subset  \ldots c_m R$  % здесь и ранее включения строгие \subseteq
+	     $ c_m \mid c_{m-1} \ldots \mid c_1$ и $ c_1R \subsetneq c_2R \subsetneq  \ldots c_m R$  % здесь и ранее включения строгие \subseteq
 	     % \[
 		%  \Z[c_1, x, p_2] \diagup_{(p_2, c_1 x p_2 -c_1)} \cong \Z[c_1, x, p_2]\diagup_{(p_2, c_1)} = \Z[x]
 	     % .\] 
@@ -3054,7 +3054,7 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
     Переход:  $ \max(n, m) > 1$
 
     Пусть $ n > 1$. \[
-	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ -- простое}}\Longrightarrow  p_1\mid q_i \text{  для нетоторго} i  
+	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ -- простое}}\Longrightarrow  p_1\mid q_i \text{  для некоторого} i  
     .\] 
     тогда $q_i \in  p_i R \Longrightarrow  q_i = p_i r_i$. Так как $ q_i$  неприводим, $ r_i$ -- обратим, следовательно, $ q_i$ ассоциирует с $ p_1$.
 \[
