@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
@@ -14,7 +14,8 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
-\usepackage{epstopdf}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+% \usepackage{fullpage}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -25,23 +26,13 @@
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
-\usepackage{fancyhdr}
-% \pagestyle{fancy}
-% \fancyhf{}
-% \fancyhead[LE,RO]{Overleaf}
-% \fancyhead[RE,LO]{Guides and tutorials}
-% \fancyfoot[CE,CO]{\leftmark}
-% \fancyfoot[LE,RO]{\thepage}
 
-\renewcommand{\headrulewidth}{2pt}
-\renewcommand{\footrulewidth}{1pt}
-
-\pagestyle{myheadings}
-
-\usepackage{fullpage}
-% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[R]{\thepage}
 
 \begin{document}
+\pagestyle{fancy}
+
 \renewcommand{\proofname}{Proof.}
 
 \theoremstyle{plain}
@@ -70,12 +61,9 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\Pm}{\mathbb{P}}
-% \newcommand{\Zero}{\mathbb{O}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
-\renewcommand{\@oddhead}{\hfil \thepage} 
-\renewcommand{\@evenhead}{\hfil \thepage} 
 
 \title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
 \author{Тамарин Вячеслав}
