@@ -95,18 +95,18 @@
     Очевидно
 \end{proof}
 \begin{thm}
-    $f_n \rightrightarrows  f, g_n \to  \to  g$ на $A$.
-    Пусть $\exists M: \forall x \in A \forall  n |f_n)x) | \le  M$. Тогда  $f_n g_n \rightrightarrows fg$
+    $f_n \rightrightarrows  f, g_n \rightrightarrows  g$ на $A$.
+    Пусть $\exists M: \forall x \in A ~\forall  n |f_n(x) | \le  M$. Тогда  $f_n g_n \rightrightarrows fg$
 \end{thm}
 \begin{proof}
     \[
 	|f(x) g(x) - f_n(x) g_n(x)| \le  |f(x) ||g(x) - g_n(x) | + | g_n(x)| |f(x) - f_n(x)| \le  M | g(x) - f_n(x)  |+ | f(x) - f_n(x)|
     .\]  
 \end{proof}
-\begin{thm}{Критерий Коши для равномерной сходимости}
+\begin{thm}[Критерий Коши для равномерной сходимости]
     Пусть $f_n$ -- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда  
     \[
-	\forall  \varepsilon >0 \exists  N \forall  k, j> N \forall x : |f_k(x) - f_j(x)| < \varepsilon 
+	\forall  \varepsilon >0~ \exists  N ~ \forall  k, j> N~ \forall x : |f_k(x) - f_j(x)| < \varepsilon 
     .\] \label{usl}
 \end{thm}
 \begin{proof}
