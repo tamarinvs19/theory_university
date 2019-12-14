@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
@@ -25,17 +25,16 @@
     \import{./figures/}{#1.pdf_tex}
 }
 
-
-\pagestyle{plain}
-
-\usepackage{fullpage}
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[R]{\thepage}
 
 \title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}
+\author{Тамарин Вячеслав}
+
 \begin{document}
-\maketitle
-\clearpage
-\tableofcontents
-\clearpage
+\pagestyle{fancy}
 
 \renewcommand{\proofname}{Proof}
 
@@ -51,12 +50,13 @@
 \newtheorem*{ex}{Example}
 \newtheorem*{exs}{Examples}
 \newtheorem*{cor}{Corollary}
-\newtheorem*{name}{Name}
+\newtheorem*{name}{Designation}
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Remain}
 \newtheorem*{note}{Note}
 \newtheorem*{probl}{Exercise}
+\newtheorem*{prac}{Practice}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -65,10 +65,14 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\Pm}{\mathbb{P}}
-% \newcommand{\Zero}{\mathbb{O}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 \newcommand{\pivi}{\stackrel \circ }
+
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
 
 \chapter{Непрерывные функции}
 \section{Определения, свойства}

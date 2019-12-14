@@ -14,8 +14,11 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+
+% разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
-% \usepackage{fullpage}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[R]{\thepage}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -26,9 +29,6 @@
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
-
-\usepackage{fancybox,fancyhdr}
-\fancyhead[R]{\thepage}
 
 \begin{document}
 \pagestyle{fancy}
