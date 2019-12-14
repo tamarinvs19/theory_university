@@ -1,6 +1,7 @@
 \documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
+% \usepackage[english, russian]{babel}
 \usepackage {amsfonts}
 % \usepackage{eufrak}
 \usepackage{amssymb, amsthm}
@@ -18,7 +19,13 @@
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
-\fancyhead[R]{\thepage}
+\fancyhead[RO,LE]{\thepage}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{}
+% \fancyhead[L]{\section}
+\fancyfoot[C]{Лекция \thesection}
+
+\pagestyle{fancy}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -30,19 +37,39 @@
     \import{./figures/}{#1.pdf_tex}
 }
 
-\begin{document}
-\pagestyle{fancy}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+\newcommand{\im}{\mathop{\text{Im}}}
+\newcommand{\re}{\mathop{\text{Re}}}
+\newcommand{\ke}{\mathop{\text{Ker}}}
 
-\renewcommand{\proofname}{Proof.}
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+
+\renewcommand{\proofname}{Proof}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{defn}{Def}
+\theoremstyle{plain}
+\newmdtheoremenv[nobreak=true]{thm}{Theorem}
 
 \theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
+% \newtheorem{thm}{Theorem}[section]
 \newtheorem*{lm}{Lemma}
 \newtheorem*{st}{Statement}
 \newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
-\newtheorem{defn}{Def}
+% \newtheorem{defn}{Def}
 \newtheorem*{ex}{Ex}
 \newtheorem*{exs}{Exs}
 \newtheorem*{cor}{Corollary}
@@ -54,31 +81,17 @@
 \newtheorem*{note}{Note}
 \newtheorem*{prac}{Practice}
 
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\Cm}{\mathbb{C}}
-\newcommand{\Pm}{\mathbb{P}}
-\newcommand{\ilim}{\int\limits}
-\newcommand{\slim}{\sum\limits}
 
-
-\title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
+\title{Конспект по алгебре \\ I семестр \\
+СПбГУ, факультет математики и компьютерных наук \\
+(лекции Степанова Алексея Владимировича)}                      
 \author{Тамарин Вячеслав}
-% \usepackage{fancyhdr}
-%  
-% \pagestyle{fancy}
-% \fancyhf{}
-% \rhead{Overleaf}
-% \lhead{Guides and tutorials}
-% \rfoot{Page \thepage}
+
+\begin{document}
 
 \maketitle
-\clearpage
 \tableofcontents
-\clearpage
+
 \chapter{Линейная алгебра. Векторные пространства}
 \section{Лекция 1}
 Х - множество\\
@@ -316,27 +329,27 @@ u_1+u_2 \in U, u_1 \alpha \in U$
 
 \begin{defn}
 $v = \{v_i | i \in I\}$, где $v_i \in V \: \forall i \in I$\\
-$<v>$ - наименьшее подпространство, содержащее все $v_i$
+$\langle v \rangle$ - наименьшее подпространство, содержащее все $v_i$
 \end{defn}
 
 \begin{lm}
-$<v> = \{va | a - \mbox{ столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$
+$\langle v \rangle = \{va | a - \mbox{ столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$
 \end{lm}
 \begin{proof}
-$v_i \in <v> \Rightarrow v_i a_i \in <v>\\
-\Rightarrow v_{i_1} a_{i_1}a+ ... + v_{i_k} a_{i_k} \in <v>\\
-\Rightarrow <v> $ содержит все варианты комбинаций.
+$v_i \in \langle v \rangle \Rightarrow v_i a_i \in \langle v \rangle\\
+\Rightarrow v_{i_1} a_{i_1}a+ ... + v_{i_k} a_{i_k} \in \langle v \rangle\\
+\Rightarrow \langle v \rangle $ содержит все варианты комбинаций.
 $va + vb = v(a+b) \in U \\
 (va)\alpha = v(a\alpha )\in U\\
 \Rightarrow$ множество линейных комбинаций  -- подпространство 
 $U$ - подпространство, содержащее $v_i \forall i \in I$\\
-$<v> $a -- наименьшее подпространство, содержащее $v_i$\\
-$\Rightarrow <v> \subseteq U$
-тогда $<v> = U$
+$\langle v \rangle $a -- наименьшее подпространство, содержащее $v_i$\\
+$\Rightarrow \langle v \rangle \subseteq U$
+тогда $\langle v \rangle = U$
 \end{proof}
 
 \begin{defn}
-Если $<v> = V$, то $v$ -- система образующих пространство $V$\\
+Если $\langle v \rangle = V$, то $v$ -- система образующих пространство $V$\\
 Базис -- система образующих.
 \end{defn}
 
@@ -348,20 +361,21 @@ $ ^I V $--  множество строк длины $I$
 \end{name}
 
 \begin{defn}
-$v \in ^IV$\\
+$v \in \;^I  V$\\
 $v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
 \end{defn}
 
 \begin{thm}
-$v \subseteq V $(можно считать, что $v$ - строка длины $v$\\
+    $v \subseteq V $ \\
 Следующие утверждения эквивалентны:
 \begin{enumerate}
-    \item $v$ - линейно независимая система образующих
-    \item $v$ - максимальная линейно-независимая система
-    \item $v$ - минимальная система образующих
+    \item $v$ --- линейно независимая система образующих
+    \item $v$ --- максимальная линейно-независимая система
+    \item $v$ --- j минимальная система образующих
     \item $\forall x \in V \exists! a \in F^v : x = v a = \sum\limits_{t \in v} t \cdot a_t  \;$ (почти все элементы равны 0)
 \end{enumerate}
 \end{thm}
+
 \begin{proof}
 $(1) \Rightarrow (4) $ -- доказали ранее
 $(1) \Rightarrow (2) $\\
@@ -378,13 +392,13 @@ $va + x a_x = 0 \\ a \ne 0$\\
 $x = v \cdot \frac{a}{-a_x} \Rightarrow v$ --система образующих.\\
 \end{proof}
 
-\begin{lm}(Цорн)
-Пусть $\mathbb A $ -- набор подмножеств (не всех) множества $X$. \\
-Если объединение любой цепи из $\mathbb A$ , принадлежащей $\mathbb A$, то в $\mathbb A$ существует максимальный элемент.\\
-$M \in \mathbb C$ - максимальная, если $M \subseteq M' \subseteq \mathbb A \Rightarrow M =M'$\\
+\begin{lm}[Цорн]
+Пусть $\mathcal A $ -- набор подмножеств (не всех) множества $X$. \\
+Если объединение любой цепи из $\mathcal A$ , принадлежащей $\mathcal A$, то в $\mathcal A$ существует максимальный элемент.\\
+$M \in \mathcal C$ - максимальная, если $M \subseteq M' \subseteq \mathcal A \Rightarrow M =M'$\\
 \end{lm}
 
-\begin{thm}(о существовании базиса)
+\begin{thm}[о существовании базиса]
 $V $ -- векторное пространства \\
 $X$  -- линейное независимое подмножество $V$\\
 $Y$ -- система образующих $V$\\
@@ -392,10 +406,10 @@ $X \le Y$\\
 Тогда существует базис $Z$ пространства $V: X \le Z \le Y$
 \end{thm}
 \begin{proof}
-$\mathbb A - $множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathbb A$\\
-$\mathbb C \le \mathbb A $\\
-$X \le \cup {C \in \mathbb C} \le Y$\\
-Пусть $\cup {C \in \mathbb C}$ --  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
+$\mathcal A - $множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathcal A$\\
+$\mathcal C \le \mathcal A $\\
+$X \le \cup {C \in \mathcal C} \le Y$\\
+Пусть $\cup {C \in \mathcal C}$ --  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
 
 $\ldots$
 
@@ -415,7 +429,7 @@ $$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
    $$U \le W \quad \exists V \le W : W=U\oplus V$$ 
 \end{st}
 \begin{proof}
-    Выберем базис $u$ в $U$. Дополним до базиса $u \cup v$ пространства $W$ и положим $V = <v>$. $$<u> = U \\ <v>=V \\ <u \cup v> = <u> + <v> = U \oplus V = W$$
+    Выберем базис $u$ в $U$. Дополним до базиса $u \cup v$ пространства $W$ и положим $V = \langle v \rangle$. $$\langle u \rangle = U \\ \langle v \rangle=V \\ \langle u \cup v \rangle = \langle u \rangle + \langle v \rangle = U \oplus V = W$$
     $$ x \in U \cap V \Rightarrow x = ua = vb \Leftrightarrow ua-vb = 0 \Rightarrow a = 0, b = 0 (u \cup v - \mbox{линейно независимый}$$
 \end{proof}
 \begin{cor}
@@ -433,13 +447,13 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
 \begin{lm}
     $$ v \in n^V , A \in GL_n(F)$$
     $$ v - \mbox{ линейно независимый } \Leftrightarrow vA - \mbox{ линейно независимый }$$
-    $$ <v> = <vA> $$
+    $$ \langle v \rangle = \langle vA \rangle $$
 \end{lm}
 \begin{proof}
     $(vA)A^{-1} = v(AA^{-1}) = vE = v$, поэтому можно доказывать только в одну строну.\\
     $v$ - линейно независимый.\\
     $vAb = 0 \Rightarrow A^{-1} Ab = 0 \Rightarrow b = 0$, т.е $vA$ - линейно независимый. \\
-    $(vA)b = v(Ab) \in <v>$, $<vA> \le <v>$
+    $(vA)b = v(Ab) \in \langle v \rangle$, $\langle vA \rangle \le \langle v \rangle$
 \end{proof}
 \begin{st}
     $u, v$ - два разных базиса пространства $V$.\\
@@ -1837,7 +1851,7 @@ $$
     x \sim_c y \Leftrightarrow \exists z: x = y^z
     .\] 
     $x=y^z \wedge y=ab \Rightarrow x = (a^b)^z - a^{bz}$.\\
-    Класс эквивалентности "$\sim _c$" -- класс сопряженных элементов.
+    Класс эквивалентности ,,$\sim_{c}$'' -- класс сопряженных элементов.
 \end{defn}
 \begin{thm}
     Класс сопряженных элементов в $S_n$ состоит из всех перестановок  фиксированного циклического типа.
