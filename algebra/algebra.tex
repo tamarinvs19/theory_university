@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
@@ -14,7 +14,11 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
-\usepackage{epstopdf}
+
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[R]{\thepage}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -25,23 +29,10 @@
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
-\usepackage{fancyhdr}
-% \pagestyle{fancy}
-% \fancyhf{}
-% \fancyhead[LE,RO]{Overleaf}
-% \fancyhead[RE,LO]{Guides and tutorials}
-% \fancyfoot[CE,CO]{\leftmark}
-% \fancyfoot[LE,RO]{\thepage}
-
-\renewcommand{\headrulewidth}{2pt}
-\renewcommand{\footrulewidth}{1pt}
-
-\pagestyle{myheadings}
-
-\usepackage{fullpage}
-% \usepackage[left=15mm,top=15mm,left=15mm,bottom=30mm,nohead,nofoot]{geometry}
 
 \begin{document}
+\pagestyle{fancy}
+
 \renewcommand{\proofname}{Proof.}
 
 \theoremstyle{plain}
@@ -70,12 +61,9 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\Pm}{\mathbb{P}}
-% \newcommand{\Zero}{\mathbb{O}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
-\renewcommand{\@oddhead}{\hfil \thepage} 
-\renewcommand{\@evenhead}{\hfil \thepage} 
 
 \title{Конспект по алгебре за I семестр бакалавриата Чебышёва СПбГУ (лекции Степанова Алексея Владимировича)}                      
 \author{Тамарин Вячеслав}
@@ -2399,7 +2387,7 @@ Arg z =
     $ 
 \end{note}
 \begin{st}
-    Напишем степенные ряды для тригонометричеких функций:
+    Напишем степенные ряды для тригонометрических функций:
     \[
 	\begin{array}{l}
 	    e^{t} = \slim_{n=0}^{\infty} \frac{t ^{n}}{n!}\\
@@ -2493,7 +2481,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     Тогда $ \exists \alpha  \in  \Cm: p( \alpha ) = 0$.
 \end{thm}
 \begin{thm}[Лиувилль]
-    Любая ограниченная дифиринцируемая функция $ \Cm \to  \Cm$ -- константа.
+    Любая ограниченная дифференцируемая функция $ \Cm \to  \Cm$ -- константа.
 \end{thm}
 \subsection{Кольца главных идеалов}
 \subsubsection{Евклидовы кольца}
@@ -2569,7 +2557,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     \vdots \\
     x  \equiv x_m \mod n_m$ 
 
-    Сущействует единстваенное  $ x$по модулю произведения $ n1 .. n_m$, удовлетворяющее данным сравнениям.
+    Существует единственное  $ x$ по модулю произведения $ n_1 .. n_m$, удовлетворяющее данным сравнениям.
 \end{thm}
 \begin{thm}{КТО}
     $ R$ -- коммутативное кольцо с 1.
@@ -2582,7 +2570,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \end{thm}
 \begin{rem}
     $ A, B$ -- кольца. Декартово произведение \[
-    A \oplus B = a \times  B
+    A \oplus B = A \times  B
     .\] 
     с покомпонентными операциями.
     \[
@@ -2609,7 +2597,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \section{Лекция 26}
 $ I, J$ -- идеалы в $ R$ 
 \[
-I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
+I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 .\] 
 \begin{lm}
     $ I + J = R$. Тогда \[
@@ -2661,7 +2649,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
     База для $ k=1$. Очевидно.
     Переход:
 
-    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказть , что $ J + I \cdot I_n = R$.
+    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказать , что $ J + I \cdot I_n = R$.
 
      \[
 	 \begin{array}{l}
@@ -2671,7 +2659,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
      .\] 
 \end{proof}
 \begin{thm}[Китайская теорема об остатках]
-    $ I_1, \ldots  I_n$ -- попарно взаимнопростые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
+    $ I_1, \ldots  I_n$ -- попарно взаимно простые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
     Тогда \[
 	\frac{R}{I_1\cdot \ldots I_n } \cong \frac{R}{I} \oplus \ldots  \oplus \frac{R}{I_n}
     .\] 
@@ -2760,7 +2748,7 @@ I + J = R \Leftrightarrow  I, J \text{ взыаимно простые}
     Любой собственный идеал содержится в каком-то максимальном.
 \end{thm}
 \begin{proof}
-    $ J \trianglelefteq R$. % делать отрицание нестрогости!!
+    $ J \trianglelefteq R$. % сделать отрицание нестрогости!!
 
     $ \mathcal{X}$ -- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
 
@@ -2795,7 +2783,7 @@ $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
 
 Пусть $ \bar{\cdot } : R \to  R \diagup P$.
 
-Тогда предыдущее утерждение равносильно
+Тогда предыдущее утверждение равносильно
 \[
 \overline{a} \overline{b} \Leftrightarrow \overline{a} =0 \vee \overline{b}=0
 .\] 
@@ -2897,12 +2885,12 @@ $ R$ -- кольцо с $ 1$.
 \begin{defn}
     $R$ -- нётерово тогда и только тогда, когда любое линейно упорядоченное множество идеалов содержит наибольший элемент.
 
-ACC -- ascending, chain, condition (условие обрыва возрастающих цепей)
+ACC -- ascending chain condition (условие обрыва возрастающих цепей)
 \end{defn}
 \begin{defn}
 Артиново кольцо -- аналогично, но заменить наибольший, на наименьший.
 
-DCC -- descending, chain, condition (условие обрыва убывающих цепей)
+DCC -- descending chain condition (условие обрыва убывающих цепей)
 \end{defn}
 \begin{lm}
     $ R$ -- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
@@ -2929,4 +2917,272 @@ $ I_j$ -- наибольший из $ \mathcal{A}$
 \begin{thm}
     $ R$ -- нётерово. Тогда любой элемент раскладывается в произведение неприводимых.
 \end{thm}
+\section{Лекция 28}
+\subsubsection{Отступление}
+$ p$ -- неприводим тогда и только тогда, когда $ pR$ -- максимальный среди собственных главных идеалов.
+
+$ R$ -- область целостности.
+\[
+pR \subseteq a R \Longrightarrow p = ar \Longrightarrow 
+\left[
+\begin{array}{ll}
+    a \in  R^{*}\\
+    r \in  R ^{*}
+\end{array}
+\right
+.\] 
+Тогда либо $ aR = R$ или $ aR = pR$.
+
+Если $ R$ не область целостности, из  $ p= ar$ следует, что \[
+\left[ 
+    \begin{array}{ll}
+    aR = pR \\
+    rR = pR
+\end{array}\right 
+.\] 
+Тогда $ r = px \wedge p = apx$, дальше $ p(ax -1)$.
+
+Теперь придумаем контрпример:
+\[
+    R = \Z[a, p, x] \diagup _{(p(ax-1))}
+.\] 
+Хотим доказать, что $ p$ неприводим и $ \overline{p} R \subsetneq \overline{a}R \subsetneq R$%% здесь строгие включения.
+.
+Профакторизуем:
+$ \overline{p}$ -- образ $ p $ в $ R$, 
+\[
+R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
+.\] 
+Это изоморфно
+\[
+    \Z[a, p, x] \diagup_{(p)} \cong \Z[a, x]
+.\] 
+\begin{st}
+    $ I, J \triangleleft R$,
+    $ \pi_I: R \to  R\diagup I$
+    \[
+	R \diagup (I+J) \cong (R \diagup I)\diagup _{\pi_I (J)} \cong (R\diagup J) \diagup _{\pi_J(I)}
+    .\] 
+\end{st}
+Тогда $ \overline{p} R$ -- простой идеал, следовательно, $ p$ -- неприводим.
+В фактор кольце $ R\diagup (\overline{p}): \overline{p}R \to  0 , ~ \overline{a}R \to \text{не }0 \text{ и не все кольцо}$
+\begin{ex}
+    $ \Z[i]\diagup (7) \cong (\Z[x]\diagup(x^2 + 1))\diagup (7) \cong (\Z[x]\diagup (7))\diagup (x^2 +1) \cong (\Z \diagup 7\Z )[x] \diagup (x^2+1)$. 
+
+    $ x^2 +1$ неприводим в $ \Z\diagup 7 \Z$ 
+    Значит, $ \Z[i]\diagup (7) \cong \mathbb{F}_{49}$.
+\end{ex}
+\begin{st}
+    Рассмотрим кольцо $ R$, $ A$ -- $ R$-алгебра.
+    Тогда \[
+	\forall a_1, \ldots a_n \in  A: \exists ! \varphi _{a_1, \ldots a_n} : R[x_1, \ldots x_n] \to  A: \varphi _{a_1, \ldots a_n} (x_{i}) = A
+    .\] 
+    Это гомоморфизм подстановки ("eval").
+\end{st}
+\subsection{Продолжение нёторвых колец}
+\begin{thm}[Теорема Гильберта о базисе]
+    $ R$ -- нётерово (коммутативное кольцо с единицей). Тогда $ R[x]$ -- нётерово.
+\end{thm}
+\begin{note}
+    $ b \mid a \Leftrightarrow aR \subseteq bR$
+\end{note}
+\begin{thm}
+    $ R$ -- неторова область целостности. Любой необратимый элемент раскладывается в произведение неприводимых.
+\end{thm}
+\begin{proof}
+    $ a \in  R \setminus R^{*}$ 
+    \begin{enumerate}
+	\item Докажем, что существует такое $ p$, что $ p \mid a$ для неприводимого $ p$.
+	     Если $ a$ неприводим, все отлично, иначе он предстваляется в виде
+	     $ a = r_1 a_1$.
+	     При этом $ a_1R \ne aR$ и тогда $ aR \subsetneq a_1R \subsetneq  a_2R \subsetneq \ldots \subsetneq a_nR$. Эта цепочка точно оборвется, так как $ R$ -- неторово. Причем $ p = a_n$ -- неприводим, иначе он не может быть последним.
+	     Значит $ p \mid a$.
+	 \item $ p = p_1$ -- неприводим.
+	     $ a = p_1 c_1 $
+
+	     Если $ c_1 \in  R^{*}$, то $ p_1c_1 $ -- неприводим.
+	     Иначе $ p_1c_1 = = p_1 p_2с_2 = \ldots  = p_1 p_2 \ldots p_m c_m$.
+
+	     $ c_m \mid c_{m-1} \ldots \mid c_1$ и $ c_1R \subsetneq c_2R \subsetneq  \ldots c_m R$  % здесь и ранее включения строгие \subseteq
+	     % \[
+		%  \Z[c_1, x, p_2] \diagup_{(p_2, c_1 x p_2 -c_1)} \cong \Z[c_1, x, p_2]\diagup_{(p_2, c_1)} = \Z[x]
+	     % .\] 
+	     \[
+	     c_i = p_{i+1} c_{i+1}
+	     .\] 
+	     Так как $ p_i$ необратим, то $ c_i R \ne c_{i+1}R$. Цепочка  обрывается, так как  $ R$ неторово.
+    \end{enumerate}
+\end{proof}
+\subsection{Факториальное кольцо}
+\begin{defn}
+    Кольцо называется факториальным, если любой необратимый элемент единственным образом раскладывается в произведение неприводимых с точностью до ассоциированности.
+\end{defn}
+\begin{lm}
+    Факториальное кольцо -- область целостности.
+\end{lm}
+\begin{proof}
+    Если $ p_1\cdot \ldots \cdot p_m = 0$ , то $ p_1^2 \cdot p_2 \cdot \ldots  \cdot p_m = 0$ -- другое разложение.
+
+    Единственность означает:
+    $ p_1 \cdot \ldots  p_m = q_1 \cdot \ldots q_n $, где $ p_i, q_j$ -- необратимые $ \Longrightarrow m=n \wedge \exists  \sigma \in  S_m: p_i  $ ассоциировано с $ \sigma (i)$.
+\end{proof}
+\begin{thm}
+    В $ R$ любой элемент раскладывается в произведение неприводимых и любой неприводимый элемент является простым. Тогда $ R$ -- факториально.
+\end{thm}
+\begin{note}
+    Верно и обратное
+\end{note}
+\begin{proof}
+    Пусть $ p_1 \cdot p_2 \ldots  \cdot p_m = q_1 \ldots  q_n$.
+
+    Индукция по $ \max(n, m)$.
+
+    База $m=n = 1$.
+
+    Переход:  $ \max(n, m) > 1$
+
+    Пусть $ n > 1$. \[
+	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ -- простое}}\Longrightarrow  p_1\mid q_i \text{  для некоторого} i  
+    .\] 
+    тогда $q_i \in  p_i R \Longrightarrow  q_i = p_i r_i$. Так как $ q_i$  неприводим, $ r_i$ -- обратим, следовательно, $ q_i$ ассоциирует с $ p_1$.
+\[
+q_1 \ldots g_{i-1} r_1 q_{i+1} \ldots  q_n = p_1 \ldots  p_m
+.\] 
+По предположению индукции $ p_i$ ассоциировано с сомножителями левой части (и $ m-1 = n-1$).
+\end{proof}
+\begin{cor}
+    Область главных идеалов является факториальным кольцом.
+\end{cor}
+\begin{thm}
+    $ R$ -- факториальное кольцо. Тогда $ R[x]$ -- тоже факториально.
+\end{thm}
+\section{Лекция 29}
+\subsection{Локализация кольца}
+$ s \in  R \stackrel{ \varphi } \longrightarrow A$, $ \varphi (s) ^{e}$ -- обратный.
+
+Если $ r \cdot s = 0$, то $ \varphi (r) = 0$.
+\begin{defn}
+    $ S \subseteq R$, $ S$ -- мультипликативное подмножество, если:
+    \begin{itemize}
+	\item $ 1 \in  S$ 
+	    \item  $\forall s_1, \ldots  s_2 \in  S: s_1 s_2 \in S$
+    \end{itemize}
+\end{defn}
+\begin{defn}
+    Локализация кольца $ R$ в мультипликативном подмножестве $ S$ -- кольцо $ S^{-1}R$ вместе с гоморфизмом $ \lambda_S: R  \to S^{-1}R $, такое что:
+    \begin{itemize}
+	\item  $ \lambda_S(s)$ -- обратимо в $ S^{-1}R \quad \forall s \in S$ 
+	\item $ \forall \varphi : R \to  A: \varphi (s) $ обратимо в $ A ~ \forall s \in  S ~ \exists ! $ гомоморфизм $ \psi : S^{-1 R \to  A} $ такое что: $ \varphi  = \psi \circ \lambda_S$
+	    $$
+	    \begin{array}{ccc} % ДОРИСОВАТЬ ДИАГРАММУ!
+		R & \stackrel{\lambda _S}  \longrightarrow&  S^{-1}R\\  
+			\\
+
+	    \end{array}
+	    $$
+    \end{itemize}
+\end{defn}
+Построение:
+
+$ R \times S$, введем отношение эквивалентности: $ (r_1, s_1) (r_2, s_2) \Leftrightarrow \exists s \in  S: s r_1 s_2 = s r_2 s_1 $
+
+Докажем, что это отношение эквивалентности.
+\begin{itemize}
+    \item Рефлексивность: очевидно
+    \item Симметричность: очевидно
+    \item Транзитивность:
+	$ (r_1, s_1) \sim (r_2, s_2) \sim (r_3, s_3) \Longrightarrow \exists  s, s' in S:
+	sr_1s_2 = s r_2 s_1 \wedge s' r 2 s_3 = s' r_3 s_2$ 
+	Домножим на $ s$, потом на $ s_3$ первое равенство, второе на $ s_1$.
+	\[
+	s_3s' s r_1 r_2 = s' s r_2 s1 s 3 = s_1 s s' r_2 s_3 = s s' r_3 s_2 s_1
+	.\] 
+	\[
+	    (s's s_2) r_1 s_3= (s' s s_2 )r_3 r_1
+	.\]  
+	Тогда $ (r_1, s_1) \sim (r_3, s_3)$.
+\end{itemize}
+$ S ^{-1 }R := R \times  S \diagup _ \sim $
+Класс пары $ (r, s)$ обозначим $ \frac{r}{s}$.
+\[
+    \lambda_S : R \to  S^{-1} R: \quad \lambda_S (r) = \frac{r}{1}
+.\] 
+Сложение и умножение:
+\begin{itemize}
+    \item $ \frac{r_1}{s_1} \cdot \frac{r_2}{s_2} = \frac{r_1 r_2}{s_1 s_2}$ 
+
+	Несложно доказать, что это определение не зависит от выбора представителей классов.
+    \item $ \frac{r_1}{s_1} + \frac{r_2}{s_2} = \frac{r_1 s_2 + r_2 s_1}{s_1 s_2}$ 
+
+ Известно: $ \frac{r_1'}{s_1'} = \frac{r_1}{s_1} \Leftrightarrow r_1' s_1 s = r_1 s_1' s \quad (\exists  s \in  S)$. Также 
+	\[
+	    \frac{r_1'}{s_1' }  + \frac{r_2}{s_2} = \frac{r_1' s_2 + r_1 s_1'}{s_1's_2} \Longleftrightarrow 
+\frac{r_1}{s_1} + \frac{r_2}{s_2} = \frac{r_1 s_2 + r_2 s_1}{s_1 s_2} 	.\] 
+Тогда $ (r_1 s_2 + r_2 + s_1) s_1' s_2 = (r_1' s_2 + r_2 s_1') s_1 s_2 s$.
+Сокращаем, получаем, что не зависит от выбора элемента класса.
+\end{itemize}
+
+$ \lambda _S(x_1) + \lambda_S(r_1) = \frac{r_1}{1} + \frac{s_2}{1} = \frac{r_1 + r_2}{1}= \lambda_S(r_1 + r_2)$
+
+$    \lambda_s(s) = \frac{s}{1} $ обратим: $ \frac{s}{1} \frac{1}{s} = \frac{s}{s}=1$
+
+Таким образом, $ S^{-1}R$ -- кольцо.
+
+$ \varphi  : R ro A , ~ \exists  \varphi (s)^{-1} \quad \forall  s \in  S$
+
+$ \psi: S^{-1} R \to  A$ 
+
+$ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
+Если $ \frac{r'}{s'} = \frac{r}{s} $, то есть $ \exists  s'' \in  S: s'' r' s = s'' r s'$.
+\[
+    \varphi (s') \varphi (s) \varphi (r:) = \varphi (s'') \varphi (s') \varphi (r)
+.\] 
+\[
+    \varphi (s) \varphi (r') ^{-1} = \varphi (r) \varphi (s)^{-1} 
+.\] 
+\[
+    \psi(\frac{r'}{s'}) = \psi(\frac{r}{s})
+.\] 
+ Построенное $ R \times  S \diagup _{  \sim } $ вместе с $ \lambda _S$  удовлетворяет второму из определения локализации.
+ \begin{note}
+     $ \psi$ задается единственным образом.
+ \end{note}
+ \begin{lm}
+     $ \lambda_S $ -- инъекция тогда и только тогда, когда  в $ S$ нет делителей нуля.
+ \end{lm}
+ \begin{proof}
+     $ \frac{r_1}{1} \frac{r_2}{ 1} \Leftrightarrow  \exists  s \in  S : s (r_1 - r_2) = 0 \Leftrightarrow r_1 = r_2  \Leftrightarrow \text{ в }S \text{ нет делителей нуля}$
+ \end{proof}
+ \begin{ex}
+     $ R$ -- область целостности.
+     $ S = R \setminus \{0\}$
+     
+     Тогда $ S^{-1}R$ -- поле частных.
+
+     \begin{st}
+         Любая область целостности вкладывается в поле.
+     \end{st}
+ \end{ex}
+ \begin{ex}
+     $ S $ -- множество всех неделителей нуля.
+
+     $ S^{-1} R$ -- полное кольцо частных.
+ \end{ex}
+ \begin{ex}
+     $ P$ -- простой идеал. $ S = R \setminus P$ -- мультипликативное подмножество. 
+     $
+	 R_{P}:=(R \setminus P) ^{-1} R 
+	 $ --  локализация в простом идеале.
+
+	 \begin{ex}
+	     $ P = 2 \Z, R = \Z$
+
+	     $ \Z_{(2) }:= R _{p} = \{\frac{m}{n} \mid n \in  \Z, ~ 2 \not| m\}$
+	 \end{ex}
+ \end{ex}
+ \begin{defn}
+     Главная локализация -- $ R_S l= \langle s \rangle ^{-1 }R$
+
+      $ \langle s \rangle:= \{1, s, s^2 \ldots \},  ~ s \in  R$
+ \end{defn}
 \end{document}

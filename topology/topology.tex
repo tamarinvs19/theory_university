@@ -1,4 +1,4 @@
-\documentclass[12pt]{report}
+\documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
@@ -25,12 +25,17 @@
     \import{./figures/}{#1.pdf_tex}
 }
 
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[R]{\thepage}
 
-\pagestyle{plain}
-
-\usepackage{fullpage}
+\title{Конспект по топологии за I семестр бакалавриата Чебышёва СПбГУ (лекции Иванова Сергея Владимировича)}                      
+\author{Тамарин Вячеслав}
 
 \begin{document}
+\pagestyle{fancy}
+
 \renewcommand{\proofname}{Proof}
 
 \theoremstyle{plain}
@@ -46,7 +51,7 @@
 \newtheorem*{tasks}{Tasks}
 \newtheorem*{task}{Task}
 \newtheorem*{cor}{Corollary}
-\newtheorem*{name}{Name}
+\newtheorem*{name}{Designation}
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Remark}
@@ -61,16 +66,14 @@
 \newcommand{\K}{\mathbb{K}}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\Pm}{\mathbb{P}}
-% \newcommand{\Zero}{\mathbb{O}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
 
-
-\title{Конспект по топологии за I семестр бакалавриата Чебышёва СПбГУ (лекции Иванова Сергея Владимировича)}                      
 \maketitle
 \clearpage
 \tableofcontents
 \clearpage
+
 \chapter{Общая топология}
 \section{Метрические пространства}
 \section{Топологические пространства}
