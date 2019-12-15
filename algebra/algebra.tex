@@ -46,9 +46,14 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
-\newcommand{\im}{\mathop{\text{Im}}}
-\newcommand{\re}{\mathop{\text{Re}}}
-\newcommand{\ke}{\mathop{\text{Ker}}}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}~}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}~}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
+\newcommand{\arcctg}{{\mathop{\text{\rm arcctg}}}~}
+\newcommand{\arctg}{{\mathop{\text{\rm arctg}}}~}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
@@ -701,31 +706,31 @@ $L$ - изоморфизм тогда и тоько тогда, когда $v$ -
 $f: X \to Y \\
 Im f = \{f(x) \mid x \in X\}$\\
 $L: U \to V $ - линейное отображение \\
-$ Im L = \{L(x) \mid x\in U\}$\\
-$Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
+$ \im L = \{L(x) \mid x\in U\}$\\
+$\ke  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{defn}
 \begin{lm}$ $\\
-    $ Im L \le V$\\
-    $ Ker  L \le U$\\
+    $ \im L \le V$\\
+    $ \ke  L \le U$\\
     Пусть $L(x) = y$\\
-    $$ \forall y \in V : L^{-1} = x + Ker  L$$
+    $$ \forall y \in V : L^{-1} = x + \ke  L$$
 	$$ L^{-1} (y) = \{z \in U \mid L(z) = y\}$$
-	$$ x + Ker  L = \{x+z \mid z \in Ker  L\}$$
+	$$ x + \ke  L = \{x+z \mid z \in \ke  L\}$$
 \end{lm}
 
 \section{Лекция 10}
 \begin{thm}
     $L: U \to V$ \[
-	\dim U = \dim Ker L + \dim Im L
+	\dim U = \dim \ke L + \dim \im L
     .\] 
 \end{thm}
 \begin{proof}
-    $u = (u_1, \ldots u_k) - \mbox{ базис } Ker L \\
+    $u = (u_1, \ldots u_k) - \mbox{ базис } \ke L \\
     v = (v_1, \ldots U_m)$ 
     Дополним базис ядра до базиса $U$:
     $u \cup v $ - базис $U$ \\
     $L(v) = (L(v_1), L(v_2), \ldots L(v_m))$ - базис образа.
-    $\sphericalangle \; x \in Im L \quad \exists y \in U: L(y) = x$. $y = ua + vb , \qquad a \in F^k, b \in F^m $ \\
+    $\sphericalangle \; x \in \im L \quad \exists y \in U: L(y) = x$. $y = ua + vb , \qquad a \in F^k, b \in F^m $ \\
    \[
        x = L(y) = {\underbrace{L(u)}_{(L(u_1), \ldots L(u_k)) = (0, \ldots 0)}} + L(v) 
    .\]  
@@ -734,7 +739,7 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 	L(v) c = 0, \qquad c \in F^m
    .\] 
    \[
-       L(vc) = 0 \Rightarrow vc \in Ker L \Rightarrow vc = ud \qquad \mbox{ для некоторого } d \in F^k
+       L(vc) = 0 \Rightarrow vc \in \ke L \Rightarrow vc = ud \qquad \mbox{ для некоторого } d \in F^k
    .\] 
    Тогда $vc - ud = 0$, но $v$ и $u$ - два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ - линейно незвисимый.
 \end{proof}
@@ -748,9 +753,9 @@ $Ker  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{thm}
 \begin{proof}
     $\sphericalangle$ внешнюю сумму $U \oplus V$, $L(u, v) = u+v$\\
-    Тогда $Im L = U+V$. $(u, v) \in Ker L \Leftrightarrow u + v = 0 \Leftrightarrow u = -v \subset U\cap V$\\
-    $Ker L = {(u, -u) \mid u \in U \cap V} \cong U\cap V$ \\
-    $\dim (U \oplus V = \dim Ker L + \dim Im L = \dim U \cap V + \dim U+V $
+    Тогда $Im L = U+V$. $(u, v) \in \ke L \Leftrightarrow u + v = 0 \Leftrightarrow u = -v \subset U\cap V$\\
+    $\ke L = {(u, -u) \mid u \in U \cap V} \cong U\cap V$ \\
+    $\dim (U \oplus V = \dim \ke L + \dim \im L = \dim U \cap V + \dim U+V $
 \end{proof}
 
 08.10.2019
@@ -841,7 +846,7 @@ $\theta _v = L_v$
 
 \begin{thm}
     $U \le V$ \\
-    $\forall L: V \to V, \quad U \le Ker L, \exists ! \tilde L : V \textbackslash U \to W $
+    $\forall L: V \to V, \quad U \le \ke L, \exists ! \tilde L : V \textbackslash U \to W $
     \[
     \tau : 
     \begin{array}{ccc}
@@ -852,25 +857,25 @@ $\theta _v = L_v$
     .\] 
     $\tau \circ \pi _U = L$\\
     $L   \mbox{ - эпиморфизм } \Rightarrow \tau  \mbox{ - эпиморфизм }$ \\
-    $Ker L = U \Rightarrow  \tau  \mbox{ - мономорфизм }$
+    $\ke L = U \Rightarrow  \tau  \mbox{ - мономорфизм }$
 \end{thm}
 \begin{proof}
     Диаграмма коммутативна, следовательно, $\tilde L$ строится однозначно. Пусть $\tilde L(x + U) : = L(x)$.% ??
-    $y \in U \in Ker L: \; L(x + y) = L(x) + L(y) = L(x)$
+    $y \in U \in \ke L: \; L(x + y) = L(x) + L(y) = L(x)$
     $\tilde L$ задано корректно (легко проверить, что оно линейно, единственность следует из коммутативности диаграммы.
     $\tilde L(x + U) = L(x) $ - необходимо и достаточно коммутативности диаграммы.\\
-    $\tilde L(x +U)=0_W \Leftrightarrow L(x) = 0 \Leftrightarrow x \in Ker L = U \Leftrightarrow x + U = 0 +U = O_{V \textbackslash U}$
+    $\tilde L(x +U)=0_W \Leftrightarrow L(x) = 0 \Leftrightarrow x \in \ke L = U \Leftrightarrow x + U = 0 +U = O_{V \textbackslash U}$
     \\
-    Для инъективности : $ Ker \tilde{L} = 0_{V \textbackslash U}$
+    Для инъективности : $ \ke \tilde{L} = 0_{V \textbackslash U}$
 \end{proof}
 \begin{thm}[О гомоморфизме]
     $L : V \to W$
      \[
-    V по Ker L \cong Im L
+    V по \ke L \cong \im L
     .\] 
 \end{thm}
 \begin{proof}
-    Возьмем $U = Ker L$ и заменим $W$ на $Im L$
+    Возьмем $U = \ke L$ и заменим $W$ на $Im L$
     $n = \dim \langle a_{*1} , \ldots a_{*n} \rangle \le \dim F^m = m$. Из линейной независимости строк следует, что $m \le n$ Таким образом $m = n$.\\
     $n$ линейно независимых столбцов (строк) в $n$-мерном пространстве - базис и матрица $A$ - матрица перехода $C_{e \to a}$, где $a=(a_{*1}, \ldots a_{*n})$ - набор столбцов $A$ .
     Следовательно, $A \in GL_n(F)$ -- множество обратных матриц.
@@ -878,7 +883,7 @@ $\theta _v = L_v$
 
 \begin{defn}Ранг:\\
     $rk (v_1, v_2 , \ldots , v_n) = \dim \langle v_1, \ldots v_n \rangle $, \\
-    $rk L = \dim Im L$\\
+    $rk L = \dim \im L$\\
     $u_1, \ldots u_n $ - базис $U$, $L: U \to V$ \\
     $rk L = rk ((L(u)) = \dim \langle L(u_1), \ldots L(u_n) \rangle $\\
     $A \in M _ {m \times n} (f)$\\
@@ -923,7 +928,7 @@ $\theta _v = L_v$
 	Im A = \{A x \mid x \in  F^m\} = \{a_{*1} x_1 + \ldots a_{*n}x_n \mid x_i \in  F\} = \langle a_{*1} , \ldots a_{*n} \rangle
     .\] 
     $rk A = c. rk A$ - ранг оператора умножения на А.
-    Из диаграммы $Im L \cong Im L_U ^V \Rightarrow rk L = c.rk L_U ^V $
+    Из диаграммы $Im L \cong \im L_U ^V \Rightarrow rk L = c.rk L_U ^V $
 \end{proof}
 \begin{lm}
     $A \in M_{m \times n} (F)$\\
@@ -969,7 +974,7 @@ $\left ( \begin{array}{cc}
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    $(f_1, \ldots f_k) $ - базис $Ker L$. Дополним до базиса на пространства $U: g \cup f = u $. Тогда (см. Теорему о ядре и о,разе).  $L(g)$ - базис Im L. Дополним его до базиса  $v$ пространства $V$.
+    $(f_1, \ldots f_k) $ - базис $\ke L$. Дополним до базиса на пространства $U: g \cup f = u $. Тогда (см. Теорему о ядре и о,разе).  $L(g)$ - базис $\im L$. Дополним его до базиса  $v$ пространства $V$.
     \[
 	v = (L(g_1), \ldots , L(g_l), v_{l+1}, \ldots, v_n)
     .\]
@@ -1316,21 +1321,21 @@ $
 	Im \varphi = \{\varphi(g) \mid g \in  G\} 
     .\] 
     \[
-	Ker \varphi = \varphi{-1} = \{g \in  G \mid \varphi (g) = 1\}
+	\ke \varphi = \varphi{-1} = \{g \in  G \mid \varphi (g) = 1\}
     .\] 
 \end{defn}
 \begin{lm}
-    $Im \varphi$ и $Ker \varphi$ - подгруппы.
+    $Im \varphi$ и $\ke \varphi$ - подгруппы.
 \end{lm}
 \begin{proof}
     \[
-    a, b \in  Ker \varphi
+    a, b \in  \ke \varphi
     .\] 
     \[
-	\varphi(a b) = \varphi(a) \varphi(b) = 1 \Leftrightarrow ab \in  Ker \varphi
+	\varphi(a b) = \varphi(a) \varphi(b) = 1 \Leftrightarrow ab \in  \ke \varphi
     .\] 
     \[
-	\varphi(a^{-1}) = \varphi(a)^{-1} = 1 \Rightarrow a^{-1} \in  Ker \varphi
+	\varphi(a^{-1}) = \varphi(a)^{-1} = 1 \Rightarrow a^{-1} \in  \ke \varphi
     .\] 
 \end{proof}
 \begin{lm}
@@ -1338,12 +1343,12 @@ $
 	\varphi (g) = h, \quad \varphi : G \to H - \mbox{ гомоморфизм} 
     .\] 
     \[
-	\varphi^{-1} = \underbrace{g Ker \varphi}_{\mbox{левый смежный класс по ядру} \varphi} = \underbrace{Ker \varphi g}_{\mbox{правый}}
+	\varphi^{-1} = \underbrace{g \ke \varphi}_{\mbox{левый смежный класс по ядру} \varphi} = \underbrace{\ke \varphi g}_{\mbox{правый}}
     .\] 
 \end{lm}
 \begin{proof}
     $
-    \varphi(x) = h = \varphi (g))  \Leftrightarrow \varphi \varphi^{-1} = 1 \Leftrightarrow \varphi(x y^{-1}) = 1\Leftrightarrow xg^{-1} \in  Ker \varphi \Leftrightarrow x \in  Ker \varphi g
+    \varphi(x) = h = \varphi (g))  \Leftrightarrow \varphi \varphi^{-1} = 1 \Leftrightarrow \varphi(x y^{-1}) = 1\Leftrightarrow xg^{-1} \in  \ke \varphi \Leftrightarrow x \in  \ke \varphi g
 	$
 \end{proof}
 \begin{defn}
@@ -1424,16 +1429,16 @@ $
 	     .\] 
 	     $g^m = 1 \Leftrightarrow g^{nk + r} = 1  \Leftrightarrow g ^r = 1 \Rightarrow r = 0$
 	     \[
-		 Ker \varphi  = \{m \mid g^m = 1\} = n\Z
+		 \ke \varphi  = \{m \mid g^m = 1\} = n\Z
 	     .\] 
     \end{enumerate}
 \end{proof}
 \begin{defn}
-    Порядок $g \in  G$ - наименьшее натуральное число, такое что $g^n = 1$.  $ord(g) = | \langle g \rangle|$
+    Порядок $g \in  G$ - наименьшее натуральное число, такое что $g^n = 1$.  $\ord(g) = | \langle g \rangle|$
 \end{defn}
 \begin{st}[из теоремы Силова]
     $|G| = p^m , \: p \nmid m$. Тогда $\exists H \le G: |H| = p^k \: \forall h \in  H \textbackslash {1}$.\\
-    $ord (h \mid p^k)$, следовательно,  $h^{p{l}} = 1 \Rightarrow (h^{p^{l-1}})^p =1$
+    $\ord (h \mid p^k)$, следовательно,  $h^{p{l}} = 1 \Rightarrow (h^{p^{l-1}})^p =1$
 \end{st}
 
 \section{Лекция 17}
@@ -1482,7 +1487,7 @@ $G$ - группа.
 \begin{st}
     $\varphi  : G \to A$ - гомоморфизм в абелеву группу.\\
     $\varphi([g, h]) = 1$ \\
-    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq Ker \varphi $ - коммутант $G$. \\
+    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq \ke \varphi $ - коммутант $G$. \\
     $[g, h] ^f = [g^f , h^f]$
 \end{st}
 \begin{st}
@@ -1512,11 +1517,11 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \end{proof}
 \begin{defn}
     $\pi_{\mbox{н}} : G \to G \diagup H, \: g \mapsto gH$\\
-    $\pi_{\mbox{н}} $ - эпиморфизм, $Ker \pi_{\mbox{н}} = H $
+    $\pi_{\mbox{н}} $ - эпиморфизм, $\ke \pi_{\mbox{н}} = H $
 \end{defn}
 \begin{thm}[универсальное свойство факторгруппы]
     $H \trianglelefteq G$ \\
-    Для любого гомоморфизма $\varphi : G \to F$, такого что $H \le Ker \varphi \exists! \bar \varphi : G \diagup H \to  F$коммутативна для диаграммы 
+    Для любого гомоморфизма $\varphi : G \to F$, такого что $H \le \ke \varphi \exists! \bar \varphi : G \diagup H \to  F$коммутативна для диаграммы 
     $$\begin{array}{ccc}
 	G & \stackrel {\pi_{n}} \to & G \diagup H \\
 	\downarrow F && \downarrow \exists ! \hat{\varphi } \\
@@ -1527,29 +1532,29 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \begin{thm}
     $\varphi  G \to F$ 
     \[
-	G\diagup {Ker \varphi } \cong Im \varphi 
+	G\diagup {\ke \varphi } \cong \im \varphi 
     .\] 
 \end{thm}
 \begin{proof}
     Заменим $F$ на $Im \varphi $.
     \[
-    \varphi ' \to Im \varphi \quad Ker \varphi  ' = Ker \varphi 
+    \varphi ' \to \im \varphi \quad \ke \varphi  ' = \ke \varphi 
     .\] 
     По прошлой теореме существует единственное:
     \[
 	\hat{\varphi }:
 	\begin{array}{ccc}
-	    G\diagup Ker \varphi & \to  & Im \varphi \\
+	    G\diagup \ke \varphi & \to  & \im \varphi \\
 	    \uparrow \pi && \uparrow \varphi ' \\
 	    G &  &G
     \end{array}
     .\] 
     $\varphi $ -сюрьективно. Следовательно, $\varphi  '$ - сюрьективно.\\
 \end{proof}
-$g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi ) = 1 \Leftrightarrow \varphi (g) = 1 \Leftrightarrow g Ker \varphi  = Ker \varphi  = 1_{G \diagup Ker \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
+$g \ke \varphi  \in  \ke \hat{\varphi } \Leftrightarrow \hat{phi}(g \ke \varphi ) = 1 \Leftrightarrow \varphi (g) = 1 \Leftrightarrow g \ke \varphi  = \ke \varphi  = 1_{G \diagup \ke \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
 \begin{ex}
-    $\Z \to \Z_n, \quad \varphi (x) = x \mod n$.\\
-    $Ker \varphi  = n \Z$\\
+    $\Z \to \Z_n, \quad \varphi (x) \equiv x \mod n$.\\
+    $\ke \varphi  = n \Z$\\
     $\Z \cong \Z \diagup n\Z$
 \end{ex}
 \section{Лекция 18}
@@ -1616,16 +1621,16 @@ $g Ker \varphi  \in  Ker \hat{\varphi } \Leftrightarrow \hat{phi}(g Ker \varphi 
 \end{st}
 \begin{st}
     $\varphi : G \to  A$ - гомоморфизм. \\
-    $A$ - абелева $\Longrightarrow [G, G] \subseteq Ker \varphi $.
+    $A$ - абелева $\Longrightarrow [G, G] \subseteq \ke \varphi $.
 \end{st}
 \begin{proof}
     \[
 	\varphi ([g, h]) = [\varphi (g), \varphi (h)] = 1 
     .\] 
     Тогда \[
-	[g, h] \in  Ker \varphi , \quad \forall g, h \in  G
+	[g, h] \in  \ke \varphi , \quad \forall g, h \in  G
     .\] 
-    Из этого следует, что $[G, G] \subseteq  Ker \varphi $.
+    Из этого следует, что $[G, G] \subseteq  \ke \varphi $.
 \end{proof}
 \begin{cor}
     $[U_n^{(k)}, U_n^{(k}] \le U^{(k+1)}_n $
@@ -1843,7 +1848,7 @@ $$
 \end{lm}
 \begin{proof}
     $\sigma (i_1 \ldots i_k) \sigma ^{-1} (\sigma (t_j))=  \sigma \circ (i_1 \ldots i_k) \sigma  (i_{l+1 \mod' m})$
-    , где $\mod ' m$ - почти модуль (вместо 0 будет $m$ ).
+    , где $\mod' m$ - почти модуль (вместо 0 будет $m$ ).
 \end{proof}
 \begin{defn}
     Отношение на группе $G$ :
@@ -1879,7 +1884,7 @@ $$
     Найти $S_4 \diagup K_4$.  Там 6 элементов.
 \end{prac}
 \begin{st}
-    $ord(ab) \mid \mbox{НОК} (ord(a), ord(b))$. \\
+    $\ord(ab) \mid \mbox{НОК} (\ord(a), \ord(b))$. \\
     Порядок перестановки равен НОКу порядков независимых циклов.
 \end{st}
 \section{Лекция 21}
@@ -1939,7 +1944,7 @@ $$
 \end{lm}
 \begin{lm}
     Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ - транспозиция соседних индексов}$, то \[
-	\varepsilon (\sigma ) = k \mod 2
+	\varepsilon (\sigma ) \equiv k \mod 2
     .\] 
 \end{lm}
 \begin{thm}
@@ -1954,10 +1959,10 @@ $$
     \end{array} \quad \forall i: \tau_i = (j~j+1)
     .\] 
     Проверим требуемые свойства: \\
-    $\varepsilon = k \mod 2, \quad \varepsilon (\rho) = n-k\mod 2$\\
-    $\varepsilon (\sigma \rho) = m \mod 2 = \varepsilon (\sigma ) + \varepsilon (\rho) \mod 2$ \\
-    $\varepsilon (\rho^{-1} \sigma \rho) = - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
-    $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) = k-1 \mod 2$
+    $\varepsilon \equiv k \mod 2, \quad \varepsilon (\rho) \equiv n-k\mod 2$\\
+    $\varepsilon (\sigma \rho) \equiv m \mod 2 \equiv \varepsilon (\sigma ) + \varepsilon (\rho) \mod 2$ \\
+    $\varepsilon (\rho^{-1} \sigma \rho) \equiv - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
+    $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) \equiv k-1 \mod 2$
 \end{proof}
 Рассмотрим кольцо $(\Z_n, +_n, \cdot_n)$. $\Z_n^* $ - множество обратимых элементов.
 
@@ -1966,18 +1971,18 @@ $x \in  \Z_n$ - обратимо тогда и только тогда, когд
 $\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ взаимно простых с $n$.
 Из теоремы Лагранжа очевидно следует, что:
 \[
-    x^{\varphi(n)} \mod n= 1
+    x^{\varphi(n)} \equiv 1 \mod n
 .\] 
 \begin{st}
     $A$ -- абелева группа.
-    $a, b \in  A, \quad ord(a) = m, ~ord(b) = n, ~h= lcm(m, n)$
+    $$a, b \in  A, \quad \ord(a) = m, ~\ord(b) = n, ~h = \lcm(m, n)$$
     \[
 	(ab)^k = a^k b^k = (a^m)^x (b^n)^y = 1
     .\] 
-    Тогда $ord(ab) \mid k$.
+    Тогда $\ord(ab) \mid k$.
 \end{st}
 \begin{lm}
-    $\langle a \rangle \cap \langle b \rangle =\{1\} \Rightarrow ord(ab) = lcm(ord (a) , ord(b))$
+    $\langle a \rangle \cap \langle b \rangle =\{1\} \Rightarrow \ord(ab) = \lcm(\ord (a) , \ord(b))$
 \end{lm}
 \begin{proof}
     \[
@@ -1986,28 +1991,28 @@ $\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ вза�
     Тогда \[
     \left . 
     \begin{array}{ll}
-	ord(a) \mid l \\
-	ord(b) \mid l
+	\ord(a) \mid l \\
+	\ord(b) \mid l
     \end{array}
-\right \} \Rightarrow  lcm(ord(s), ord(b)) \mid l
+\right \} \Rightarrow  \lcm(\ord(s), \ord(b)) \mid l
     .\] 
 \end{proof}
 \begin{cor}
     \[
     a \in  A, b \in  B, \quad  A,B \le A\times B 
     .\] 
-    Тогда $ord(ab) = lcm(ord(a), ord(b))$
+    Тогда $\ord(ab) = \lcm(\ord(a), \ord(b))$
 \end{cor}
 \begin{cor}
     \[
-	lcd(ord(a) ,ord(b)) = 1 
+	\lcm(\ord(a) ,\ord(b)) = 1 
     .\] 
-    Тогда $ord(ab) = lcm(ord(a), ord(b))$
+    Тогда $\ord(ab) = \lcm(\ord(a), \ord(b))$
 \end{cor}
 \begin{proof}
     $ | \langle a \rangle \cap \langle b \rangle | = h$
     \[
-	h \mid |\langle a \rangle| \wedge h \mid |\langle b \rangle| \Rightarrow h \mid gcd(ord(a), ord(b)) = 1 \Rightarrow  h =1
+	h \mid |\langle a \rangle| \wedge h \mid |\langle b \rangle| \Rightarrow h \mid \gcd(\ord(a), \ord(b)) = 1 \Rightarrow  h =1
     .\] 
     Следовательно, $\langle a \rangle \cap \langle b \rangle =\{1\}$.
 \end{proof}
@@ -2018,36 +2023,36 @@ $\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ вза�
     $\exp(A)$ -- наименьшее натуральное число, такое что $a^n = 1 \quad \forall a \in  A$.
 \end{defn}
 \begin{lm}
-    $\exp(A) = lcm_{a \in A} (ord(a))$
+    $\exp(A) = \lcm _{a \in A} (\ord(a))$
 \end{lm}
 \begin{thm}
     $A$ - абелева группа. $\exp(A) < \infty$.\\
-    Тогда  $\exists a \in  A: ord(a) = \exp(A)$
+    Тогда  $\exists a \in  A: \ord(a) = \exp(A)$
 \end{thm}
 \begin{proof}
     Разложим экспоненту на простые множители: 
     \[
 	\exp A = p_1^{k_1} \cdot \ldots p_m^{k_m}, \quad \forall i \in [1, m] : p_i \in  \Pm, k_i \in  \N \N
     .\] 
-    Так как $\exp(A) = lcm_{x \in  A}(ord x)$, существует $\forall i \in [1, m] x_i : p_i^{k_i} \mid ord(x_i) $.
+    Так как $\exp(A) = \lcm_{x \in  A}(\ord x)$, существует $\forall i \in [1, m] x_i : p_i^{k_i} \mid \ord(x_i) $.
     \[
-	ord x_i - p_i^{k_i} \cdot n_i = ord(x_i^{n_i}) = p_i{k_i}
+	\ord x_i - p_i^{k_i} \cdot n_i = \ord(x_i^{n_i}) = p_i{k_i}
     .\] 
     Так как порядки всех $x_i^{n_i}$ взаимно просты, то \[
-	ord(\prod\limits_{i=1}^{m} x_i^{n_i}) = \prod\limits_{i=1}^m = \prod p_i^{k_i} = \exp(A)
+	\ord\left(\prod\limits_{i=1}^{m} x_i^{n_i}\right) = \prod\limits_{i=1}^m = \prod p_i^{k_i} = \exp(A)
     .\]  
 \end{proof}
 \section{Лекция 22}
 \begin{st}
 $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
-Тогда $ord(\varphi(g)) \mid ord g $.
+Тогда $\ord(\varphi(g)) \mid \ord g $.
 \end{st}
 \begin{proof}
     Рассмотрим  сужение $\tilde \varphi: \langle g \rangle \to  \varphi (\langle g \rangle) = \langle \varphi(g) \rangle$. \[
-	\langle \varphi(g) \rangle \cong \langle g \rangle \diagup Ker \tilde \varphi
+	\langle \varphi(g) \rangle \cong \langle g \rangle \diagup \ke \tilde \varphi
     .\] 
     \[
-	ord \varphi (g) = |\langle \varphi (g) \rangle| = \frac{|\langle g \rangle|}{| Ker \tilde \varphi|}
+	\ord \varphi (g) = |\langle \varphi (g) \rangle| = \frac{|\langle g \rangle|}{| \ke \tilde \varphi|}
     .\] 
     \begin{note}
         Можно использовать одну из доказанных лемм, тогда решение будет проще.
@@ -2090,11 +2095,11 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
 	|H| = p^{k-1}, |G \diagup H| = p-1 \mbox{- циклическая (докажем позже)}
     .\] \label{proof_late_1}
     \[
-	\exists b \in  G: ord (bH) = p-1, \quad \pi(b) = bH, \pi: G \to  G \diagup H
+	\exists b \in  G: \ord (bH) = p-1, \quad \pi(b) = bH, \pi: G \to  G \diagup H
     .\] 
-    То есть $p-1 \mid ord {b}$. Получаем  $\exists l \in  \N : ord {b^{l}} = p-1$. (или можно сказать, $p-1 \mid \exp(G)$).
+    То есть $p-1 \mid \ord {b}$. Получаем  $\exists l \in  \N : \ord {b^{l}} = p-1$. (или можно сказать, $p-1 \mid \exp(G)$).
 
-    По следствию из теорема Лагранжа $ |H| \cdot p\cdot p^{k-1} \wedge 1 + p \in H \Rightarrow  (1 + p) ^{p^{k-1}} \equiv 1 \mod p^{k}$. Тогда $ord (1 + p) \mid p^{k-1}$.
+    По следствию из теорема Лагранжа $ |H| \cdot p\cdot p^{k-1} \wedge 1 + p \in H \Rightarrow  (1 + p) ^{p^{k-1}} \equiv 1 \mod p^{k}$. Тогда $\ord (1 + p) \mid p^{k-1}$.
 
     Осталось доказать, что \[
 	(1+p)^{p^{k-2}} \not\equiv 1 \mod p^k
@@ -2149,7 +2154,7 @@ $n+1 < k \Rightarrow p^k \nmid (1 + p)^{p^{k-2}}-1$
 .\] 
 Доказано.
 
-\item $ord_G 5 = 2^{k-2}$, то есть   \[
+\item $\ord_G 5 = 2^{k-2}$, то есть   \[
 5^{2^{k-3}}\not\equiv 1 \mod 2^k
 .\] 
 Индукция по $k$. База $k = 3$. \[
@@ -2184,10 +2189,10 @@ $\varphi: R \to  R'$ -- гомоморфизм, если
     \end{array}
 .\] 
 \[
-    Im \varphi = \{\varphi(r) \mid r \in  R\} \text{ -- подкольцо в } R'
+    \im \varphi = \{\varphi(r) \mid r \in  R\} \text{ -- подкольцо в } R'
 .\] 
 \[
-    Ker \varphi = \{r \mid \varphi(r) = 0\} \text{ -- аддитивная подгруппа в }R
+    \ke \varphi = \{r \mid \varphi(r) = 0\} \text{ -- аддитивная подгруппа в }R
 .\] 
 \end{note}
 \begin{defn}
@@ -2197,7 +2202,7 @@ $\varphi: R \to  R'$ -- гомоморфизм, если
     .\] 
 \end{defn}
 \begin{lm}
-    $Ker \varphi $ -- двусторонний идеал.
+    $\ke \varphi $ -- двусторонний идеал.
 \end{lm}
 \begin{defn}
     $I$ -- двусторонний идеал, $R$ -- кольцо.
@@ -2216,7 +2221,7 @@ $\varphi: R \to  R'$ -- гомоморфизм, если
 $\pi: R \to  R\diagup I \quad \pi(r ) = r+I$
 \end{name}
 \begin{thm}{Универсальное свойство}
-    $I$ -- идеал в $R$. $\varphi R \to R', \quad I \subseteq Ker \varphi $
+    $I$ -- идеал в $R$. $\varphi R \to R', \quad I \subseteq \ke \varphi $
     $\exists ! \psi: R \diagup I \to  R':$
     \[
 	\begin{array}{ccc}
@@ -2225,7 +2230,7 @@ $\pi: R \to  R\diagup I \quad \pi(r ) = r+I$
 	    R\diagup I &&
     \end{array}
     \]  -- коммутативна.
-   $Ker \varphi = I \Rightarrow \psi $ -- инъективна. 
+   $\ke \varphi = I \Rightarrow \psi $ -- инъективна. 
    $\varphi$ -- сюрьективна $ \Rightarrow $ $\phi$ -- сюрьективна. 
 \end{thm}
  \begin{note}
@@ -2302,7 +2307,7 @@ $xR = (x)$ -- главный идеал, порожденный $x$.
 
    $\overline{\circ} :\Cm \to  \Cm$  - автоморфизм.
 
-   $a = Re z, \quad b = Im z$
+   $a = \re z, \quad b = \im z$
    
    $\Cm$ -- векторное пространство над $\R$ с базисом $\{1, i\}$
 
@@ -2355,9 +2360,9 @@ Arg z:= \alpha \in  \R\diagup 2\pi\Z
 Arg z = 
 \left \{
 \begin{array}{ll}
-    arctg \frac{b}{a} + 2\pi \Z, & a >0 \\
-    \pi + arcctg \frac{b}{a} + 2\pi \Z, & a<0\\
-    \frac{\pi}{2}\cdot sign (b) , & a = 0
+    \arctg \frac{b}{a} + 2\pi \Z, & a >0 \\
+    \pi + \arcctg \frac{b}{a} + 2\pi \Z, & a<0\\
+    \frac{\pi}{2}\cdot \sign (b) , & a = 0
 \end{array}
 \right .
 .\] 
@@ -2369,7 +2374,7 @@ Arg z =
 \begin{st}
     $ \varepsilon : \R\diagup 2\pi\Z \to  \Cm^* , \quad \varepsilon ( \alpha ) = \cos \alpha  + i \sin \alpha )$ -- это гомоморфизм.
     \[
-    Im \varepsilon = S^{1} : = \{z \in  \Cm \mid |z| = 1\}
+    \im \varepsilon = S^{1} : = \{z \in  \Cm \mid |z| = 1\}
     .\] 
     Так же:
     \[
@@ -2441,15 +2446,15 @@ Arg z =
     \[
     Ln: \Cm^{*} \to  \Cm\diagup 3\pi\Z
     .\] 
-    $Ln: (r, e^{i\alpha + 2\pi\Z} = \ln r + i (\alpha + 2\pi\Z)= \ln r + i \alpha  + 2\pi\Z$.
+    $Ln: (r, e^{i\alpha + 2\pi\Z}) = \ln r + i (\alpha + 2\pi\Z)= \ln r + i \alpha  + 2\pi\Z$.
 \end{note}
 \begin{st}[вычисление корня $n$-й степени]
     Вычисление корня в аддитивной  группе $\Cm\diagup 2\pi\Z$  -- решение уравнения:
     \[
 	\begin{array}{l}
-	xn = 0 \mod 2\pi i \Z\\
+	xn \equiv 0 \mod 2\pi i \Z\\
 	xn = 2\pi i n, k \in  \Z \\
-	x = \frac{2\pi i k}{n} \mod 2\pi i \Z, ~ k \in  \Z\diagup n\Z
+	x \equiv \frac{2\pi i k}{n} \mod 2\pi i \Z, ~ k \in  \Z\diagup n\Z
 	\end{array}
     .\] 
     $z ^{n} = 1, \quad z = Ln z$,  далее
@@ -2468,7 +2473,7 @@ Arg z =
     \Theta_n (Z) = z^{k} \text{ -- гомеоморфизм }  \Cm \to  \Cm^{*}
 .\] 
 \[
-    \mu_n = Ker \Theta_n = \{e ^{ \frac{2\pi i k}{n}} \mid k \in  \Z\diagup n\Z\}
+    \mu_n = \ke \Theta_n = \{e ^{ \frac{2\pi i k}{n}} \mid k \in  \Z\diagup n\Z\}
 .\] 
 Эти числа делят окружность на $ n$ равных частей.
 
@@ -2478,7 +2483,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     Образующие элементы $ \mu_n$ называются превообразными корнями из 1.
 \end{defn}
 \begin{cor}
-    $ e^{\frac{2\pi i k}{n}}$ -- превообразный корень тогда и только тогда, когда $ gcd(k, n) = 1$.
+    $ e^{\frac{2\pi i k}{n}}$ -- превообразный корень тогда и только тогда, когда $ \gcd(k, n) = 1$.
 \end{cor}
 \begin{st}
     $ z^{n} = w = r e^{i \varphi }$.
@@ -2597,7 +2602,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 \begin{proof}
     $ I \cap  J $ -- идеал.
     $ I + J = \{a + b \mid a \in I, b \in J\}$ -- идеал.
-    $ I \cdot J = \{\slim _{i=1} ^{m} a_i b_i \mid m \in  \N, a_i in I, b_i \in  J\}$
+    $ I \cdot J = \{\slim _{i=1} ^{m} a_i b_i \mid m \in  \N, a_i \in I, b_i \in  J\}$
 \end{proof}
 \begin{lm}
    $I \cdot J \subseteq I \cap J$  верно всегда.
@@ -2625,7 +2630,7 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
     \[
 	r \mapsto (r + I, r + J)
     .\] 
-    $ Ker \varphi  \ni r \Leftrightarrow 
+    $ \ke \varphi  \ni r \Leftrightarrow 
     \left \{ 
 	\begin{array}{l}
 	    r + I = I \\
@@ -2635,7 +2640,7 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 	 \Leftrightarrow r \in  I \cap  J
 	$
 	\[
-	Ker \varphi  = I \cdot J
+	\ke \varphi  = I \cdot J
 	.\] 
 	\[
 	\exists  a \in I, b \in J: a + b = 1
@@ -2840,7 +2845,7 @@ $ R$ -- кольцо с $ 1$.
     $ a, b \in  R$ ассоциированные тогда и только тогда, когда $ aR = bR$
 \end{defn}
 \begin{lm}
-    $ R $-- область целостности. $ a, b$ -- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon  in \R^{*}$
+    $ R $-- область целостности. $ a, b$ -- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon \in \R^{*}$
 \end{lm}
 \begin{proof}
     $ aR = bR \Rightarrow a = b \cdot \varepsilon , b = a \delta  \Rightarrow a = a \delta  \varepsilon  \Leftrightarrow a (1- \delta  \varepsilon ) = 0 \Rightarrow \varepsilon  \text{ обратим }$
@@ -3105,7 +3110,7 @@ $ R \times S$, введем отношение эквивалентности: $
     \item Рефлексивность: очевидно
     \item Симметричность: очевидно
     \item Транзитивность:
-	$ (r_1, s_1) \sim (r_2, s_2) \sim (r_3, s_3) \Longrightarrow \exists  s, s' in S:
+	$ (r_1, s_1) \sim (r_2, s_2) \sim (r_3, s_3) \Longrightarrow \exists  s, s' \in S:
 	sr_1s_2 = s r_2 s_1 \wedge s' r 2 s_3 = s' r_3 s_2$ 
 	Домножим на $ s$, потом на $ s_3$ первое равенство, второе на $ s_1$.
 	\[
