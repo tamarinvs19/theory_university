@@ -1,6 +1,7 @@
 \documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
 \usepackage {amsfonts}
 % \usepackage{eufrak}
 \usepackage{amssymb, amsthm}
@@ -12,8 +13,19 @@
 \usepackage{comment}
 \usepackage{cmap}
 \usepackage[pdftex]{graphicx}
-% \usepackage{hyperref}
+\usepackage{hyperref}
 \usepackage{epstopdf}
+
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[RO,LE]{\thepage}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{}
+% \fancyhead[L]{\section}
+\fancyfoot[C]{}
+
+\pagestyle{fancy}
 
 \usepackage{import}
 \usepackage{xifthen}
@@ -25,43 +37,6 @@
     \import{./figures/}{#1.pdf_tex}
 }
 
-% разметка страницы и колонтитул
-\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
-\usepackage{fancybox,fancyhdr}
-\fancyhead[R]{\thepage}
-
-\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}
-\author{Тамарин Вячеслав}
-
-\begin{document}
-\pagestyle{fancy}
-\maketitle
-\clearpage
-\tableofcontents
-\clearpage
-
-\renewcommand{\proofname}{Proof}
-
-\theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
-\newtheorem*{aks}{Аксиома}[section]
-\newtheorem*{lm}{Lemma}
-\newtheorem*{st}{Statement}
-\newtheorem*{prop}{Property}
-
-\theoremstyle{definition}
-\newtheorem{defn}{Def}
-\newtheorem*{ex}{Example}
-\newtheorem*{exs}{Examples}
-\newtheorem*{cor}{Corollary}
-\newtheorem*{name}{Designation}
-
-\theoremstyle{remark}
-\newtheorem*{rem}{Remain}
-\newtheorem*{note}{Note}
-\newtheorem*{probl}{Exercise}
-\newtheorem*{prac}{Practice}
-
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -71,7 +46,51 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}~}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}~}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 \newcommand{\pivi}{\stackrel \circ }
+
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+
+\renewcommand{\proofname}{Proof}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{defn}{Def}
+\theoremstyle{plain}
+\newmdtheoremenv[nobreak=true]{thm}{Theorem}
+
+\theoremstyle{plain}
+% \newtheorem{thm}{Theorem}[section]
+\newtheorem*{lm}{Lemma}
+\newtheorem*{st}{Statement}
+\newtheorem*{prop}{Property}
+
+\theoremstyle{definition}
+% \newtheorem{defn}{Def}
+\newtheorem*{ex}{Ex}
+\newtheorem*{exs}{Exs}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Designation}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{com}{Comment}
+\newtheorem*{note}{Note}
+\newtheorem*{prac}{Practice}
+
+\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}
+\author{Тамарин Вячеслав}
+
+\begin{document}
+\maketitle
+\tableofcontents
 
 
 \chapter{Непрерывные функции}
