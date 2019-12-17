@@ -3202,4 +3202,181 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
 
       $ \langle s \rangle:= \{1, s, s^2 \ldots \},  ~ s \in  R$
  \end{defn}
+ \begin{ex}
+     Кольцо многочленов над кольцом $ R[x]$.
+
+     $ S$ -- множество унитарных многочленов.
+     $ S^{-1}R[x]$ 
+
+     \[
+	 F[x_1, \ldots, x_n] = F[x_1, \ldots , x_{n-1}][x_n] 
+     .\] 
+ \end{ex}
+ \section{Лекция 30}
+ \subsection{НОК и НОД}
+ \begin{defn}
+     $ R$ -- ОГИ, $ a, b \in  R$.\[
+     aR + bR = dR
+     .\] 
+     $ d = \gcd (a, b)$ --- наибольший общий делитель.
+ \end{defn}
+ \begin{thm}
+     $ \forall a, b \in  R ~\exists  x, y \in  R: ~ ax + by = \gcd(a, b)$
+ \end{thm}
+ \begin{defn}
+     $ R$ -- ОГИ, $ a, b \in  R$.
+ $$ aR \cap  bR = cR.$$
+ $ x = \lcm (a, b)$ --- наименьшее общее кратное.
+ \end{defn}
+ \begin{prac}
+     $ \lcm(a, b) = \frac{a \cdot b}{\gcd(a, b)}$
+ \end{prac}
+ \begin{st}
+     $ F$ -- поле частных $ R$. $ a, b, b_i \in  R$.
+     Разложим $ \frac{a}{b} = \frac{a}{b_1 b_2}$, где $ \gcd(b_1, b_2)$.
+     Тогда \[
+     \exists  x_1, x_2 \in  R: a = b_1x_1 a + b_2x_2a
+     .\] 
+     Из чего следует, что $ \frac{a}{b} = \frac{ax_1}{b_2} + \frac{ax_2}{b_1}$. 
+ \end{st}
+ \begin{st}
+     \[
+     b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m} \quad  p_i \text{ -- неприводимы}
+     .\] 
+     $ p_i^{k_i} $ взаимно просто с $ \prod_{j \ne i} p_j ^{k_j}$.
+ \end{st}
+ \begin{st}
+     $ R$ -- ОГИ, $ F$ -- поле частных.
+     \[
+	 \forall a \in  R ~ \exists  a_i \in  R: \frac{a}{b} = \sum_{i=1}^{m} \frac{a_i}{p_i^{k_i}}, \quad b = \prod p_i^{k_i}
+     .\] 
+ \end{st}
+ \begin{defn}
+     $ R$ -- евклидово кольцо с евклдовой нормой $ f$.
+
+     $ \frac{c}{p^{k}}$  называется простейшей дробью, если $ p$ -- простой в $ R$, $ k \in \N, c \in  R, ~ f(c) < f(p)$.
+ \end{defn}
+ \begin{thm}
+     Любой жлемент поля частных $ F$ евклодова кольца $ R$ ракладывается в сумму элемента из $ R$ и простейших дробей. 
+ \end{thm}
+ \begin{proof}
+     $ p $ -- неприводим, $ k \in  \N, a \in  R $. Разложим $ \frac{a}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
+      
+     Индукция по $ k$.
+
+     База $ k = 1$:
+      \[
+     a = pb + x \Longrightarrow \frac{a}{p } = b + \frac{c}{p}
+     .\] 
+     Переход $ k -1 \to  k$:
+     \[
+     \frac{a}{p^{k}} = \frac{b}{p^{k-1}} + \frac{c}{p^{k}}
+     .\] 
+     По предположению индукции $ \frac{b}{p^{k-1}}$ раскладывается, а $ \frac{c}{p^{k}}$ -- простейшая.
+ \end{proof}
+ \subsection{Кольца многочленов}
+     $ R$ -- коммутативное кольцо с единицей.
+ \begin{defn}
+     Многочлен от $ t$ над $ R$ --- кортеж $ ( \alpha _0, \ldots  \alpha _n)$, записанный в виде $ \alpha _0 + \alpha _1 t + \ldots + \alpha _n t^{n}$
+ \end{defn}
+ \begin{defn}
+     Сумма, произведение и степень ($ +, \cdot , \deg$ ) многочленов определены стандартным образом.
+ \end{defn}
+ \begin{defn}
+     \[
+	 \alpha _0 + \ldots + \alpha _n t ^{n}
+     .\] 
+     $ \alpha _n$ -- старший коэффициент, 
+     $ \alpha _0$ -- свободный член.
+
+     $ R[t]$ -- множество всех многочленов от переменной $ t$ в поле $ R$. 
+ \end{defn}
+ \begin{note}
+     $ R[t]$ -- коммутативное кольцо с единицей.
+     $ R  \hookrightarrow  R[t] \to  R, \quad \alpha _0 + \ldots + \alpha _n t ^{n} \mapsto \alpha _0$
+ \end{note}
+ \subsubsection{$ R$ - алгебра.}
+ \begin{defn}
+     $ A $-- алгебра над $ R$ , если $ A$ -- кольцо и  $ R$  -- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
+
+     По другому:
+     $ 
+     \begin{array}{l}
+\varphi : R \to  A \\
+\varphi (r) = r \cdot 1_A
+     \end{array}
+     $
+
+     Обратно:
+     Если задана $ \varphi : R \to  A$ (гомоморфизм колец с единицей) \[
+	 ra := \varphi (r) \cdot a
+     \] 
+     задает на $ A$ структуру $ R$- модуля.
+ \end{defn}
+ \begin{note}
+     В определении $ A$ не обязательно является коммутативным.
+ \end{note}
+ \begin{defn}
+     $ A, B$ алгебры над $ R$.\[
+     \Theta : A \to  B
+     \]  -- гомоморфизм $ R$ -алгебр, если 
+     \begin{enumerate}
+	 \item $ \Theta(a_1a_2) =\Theta (a_1) \Theta(a_2) $
+	 \item $ \Theta(a_1+a_2) = \Theta(a_1) + \Theta(a_2)$
+	 \item $ \Theta (1) = 1 $ (если все с 1)
+	 \item  $ \Theta(ra) = r \Theta(a)$
+     \end{enumerate}
+ \end{defn}
+ \begin{defn}
+     $ A$ --- $ R$-алгебра, $ a \in  A, p \in  R[t], \quad p(t) = \alpha _0 \cdot  1 + \ldots + \alpha _n \cdot  t ^{n}$.
+ \[
+     \varepsilon _a(p) = p(a) := \alpha _0 + \ldots + \alpha _n a^{n}
+ .\] 
+ $ \varepsilon _a: R[t] \to  A$ -- гомоморфизм подстановки.
+ \end{defn}
+ \begin{st}[Универсальное свойство кольца многочленов]
+     $
+     \forall  a \in  A \exists ! 
+     $ гомоморфизм $ R $-алгебры  $ \varepsilon : R[t] \to A: t \mapsto a$.
+ \end{st}
+ \begin{proof}
+     $ \forall  r \in  R: \varepsilon (r) = \varepsilon (r \cdot 1) = r \cdot  \varepsilon (1) = r \cdot  1$
+     \[
+	 \varepsilon ( \alpha _0 + \ldots  + \alpha _n t ^{n}) = \varepsilon ( \alpha _0) + \ldots  \alpha _n \varepsilon ( t ^{n}) =  \alpha _0 \cdot  1 + \ldots \alpha _n \cdot  a^{_n}
+     .\] 
+ \end{proof}
+ \subsection{Пара слов о многочленах от нескольких переменных}
+ \[
+     R[t_1, \ldots t_n] := R[t_1, \ldots , t_{n-1}] [t_n]
+ .\] 
+ \[
+     R[t_1, \ldots t_n] = \{ \sum_{i_1, \ldots i_n = 0}^{m} \alpha _{i_1, \ldots , i_n} t_1^{i_1} \cdot  \ldots  \cdot  t_n ^{i_n} \mid m \in  \N_0, \alpha _{ i_1 } , \ldots \alpha _{ i_n}  \in { \R}\}
+ .\] 
+ \begin{st}
+     $
+     \forall a_1, \ldots a_n \in  A ~ \exists  
+     \exists !$ гомоморфизм $ R$ -- алгебры  :
+     \[
+	 R[t_1, \ldots t_n] \to  A: ~ \forall i ~ t_i \mapsto a_i
+     .\] 
+ \end{st}
+ \subsection{Вернемся к многочленам от одной переменой}
+ $ F$ -- поле. $ F[t]$ -- евклидово с евклидовой нормой $ \deg$.
+ \begin{thm}[Безу]
+     Остаток от деления $ p \in  F[t]$ на $ t - \alpha $ равен $ p(\alpha)$.
+ \end{thm}
+ \begin{cor}
+     $ p$ делится на $ t- \alpha $ тогда и только тогда, когда $ p[ \alpha ] = 0$.
+ \end{cor}
+ \begin{cor}
+     Многочлен степени $ n$ имеет на более $ n$ корней.
+ \end{cor}
+  \begin{thm}
+     $ F$ -- поле, $ G \le F^{*}$.
+     $ |G|< \infty $. Тогда $ G$ -- циклическая.
+ \end{thm}
+ \begin{proof}
+     $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ скорни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней. 
+     $ k$ делит  $ |G| \Longrightarrow  \exp G - |G|$. Следовательно, $ G$ -- циклическая. 
+ \end{proof}
 \end{document}
