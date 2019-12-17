@@ -57,7 +57,6 @@
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
 
-\renewcommand{\proofname}{Proof}
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
@@ -85,7 +84,9 @@
 \newtheorem*{note}{Note}
 \newtheorem*{prac}{Practice}
 
-\title{Конспект по матанализу I семестр\\ (лекции Кислякова Сергея Витальевича)}
+\renewcommand{\proofname}{Proof}
+
+\title{Конспект по матанализу\\I семестр, часть 2\\ (лекции Кислякова Сергея Витальевича)}
 \author{Тамарин Вячеслав}
 
 \begin{document}
@@ -1026,4 +1027,180 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 	\end{array}
     .\]
 \end{cor}
+
+\begin{name}
+    $ l $-- логарифм.
+    \[
+	\exists ! a \in  (0, +\infty): l(a) = 1
+    .\]  тТакое число называется основанием логарифма $ l$.
+\end{name}
+\begin{note}
+    $ l = \log$. Тогда основание равно $ e$.
+\end{note}
+\begin{name}[общий случай]
+    \[
+	\exists C \ne 0 : l(x) = C \log x
+    .\] 
+    $ a$ -- ан для $ l$.
+    \[
+	1 = l(x) = C \log a ~ \Longrightarrow  ~ C= \frac{1}{\log a}
+    .\] 
+    Обозначим логарифм с основанием $ a$ так \[
+	\log_a x = \frac{\log x}{\log a}
+    .\] 
+\end{name}
+\begin{name}
+    Степень с произвольным показателем: 
+    \[
+	u>0 \wedge v \in  \R: ~ u^{v} \mydef \exp(v \log u)
+    .\] 
+\end{name}
+\begin{note}
+    Натуральная степень:
+    $ \exp( n \log u) = \exp(\underbrace{\log u \ldots \log u}_{n}) = u ^{ n}$
+    
+    Целая отрицательная степень: $ \exp( - k \log u) = \frac{1}{\exp(k \log u)} = \frac{1}{u^{k}}$ 
+
+    Рациональная степень: $ v = \frac{a}{p}, \quad a \in  \Z, p \in  \N$
+    \[
+	u ^{ v} = \exp\frac{a \log u}{p} = \sqrt[p]{\exp a \log u} = \sqrt[p]{u^{a}}
+    .\] 
+\end{note}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+	\item $ u^{v_1 + v_2} = \exp ((v_1+v_2) \log u) = \exp v_1 \exp u \cdot  \exp v_2 \log u = u ^{v_1} u ^{v_2}$
+	\item $ (u_1 u_2)^{v} = u_1^{v} u_2^{v} $
+	\item $ {(u^{v_1})}^{v_2} = \exp v_2 \log u ^{ v_1} = \exp (v_2 v_2 \log u) = u ^{ v_1 v_2}$
+    \end{enumerate}
+\end{prop}
+\subsection{Показательная функция}
+\begin{defn}
+    Показательная функция $ f(x) = a^{x}$.
+\end{defn}
+\begin{prop}
+    $ f'(x) = (\exp (x \log a))' = \exp(x \log a) = \log a \cdot  a^{x}$
+\end{prop}
+\begin{prop}
+    $ \exp x = e^{ x} = \exp(x \log e) = \exp x$
+\end{prop}
+\begin{defn}
+    Пусть $  \ne 1$.  \[
+	a^{x} = y: \exp x \log a \Leftrightarrow  x = \frac{\log y}{\log a} = \log_a y 
+    .\] 
+\end{defn}
+\subsection{Степенная функция}
+\begin{defn}
+    Степенная функция $ g(x) = x^{b}, \quad x \in  (0, +\infty), ~b \in  \R$ .
+\end{defn}
+\begin{st}
+    \[
+	g'(x) = (\exp b \log x) ' = (\exp b \log x)  \cdot  \frac{b}{x} = x^{b} \frac{1}{x} b = b \cdot { x ^{ b-1}}
+    .\] 
+\end{st}
+\begin{st}
+    Если $ a > 1$, то $ \forall  b \in  \R : x^{ b} = o(a ^{ x}, \quad x \to  \infty$
+\end{st}
+\begin{proof}
+    \[
+	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b log x - x log a}
+    .\]  
+    А логарифм растет медленнее линейной функции, тогда полученное выражение стремится к нолю при $ x \to  \infty$.
+\end{proof}
+\begin{prac}
+$ $
+
+    $ \forall  \beta :\log u = o(x ^{ \beta }) $
+
+$ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
+\end{prac}
+\begin{st}
+    Ранее доказали % ссылка
+    , что  \[
+	e ^{ x} = 1 + \frac{x}{1!} + \frac{x^2}{2! } + \ldots + \frac{x^{n}}{n!} + \ldots 
+    \]  сходится при любых $ x$. Экспонента равномерна на любом конечном отрезка.
+
+    Ряд для $ e^{ x}$ по степеням $ ( x - x_0):$
+    % \begin{equation}
+	% \exp x - \exp x_0 = \exp x_0 \cdot  (\exp (x - x_0) -1) = 
+    % \end{equation}
+    \begin{equation}
+    e ^{ x} = e^{ x_0} \cdot e ^{x- x_0} = e ^{ x_0} \sum_{n=0}^{\infty} \frac{(x-x_0)^{n}}{n!} = \sum_{n=1} ^{\infty} \frac{e^{x_0}}{n!} (x - x_0)
+\end{equation}
+Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется ,,аналитичность''
+\end{st}
+\begin{ex}
+    $ f(x) = \sum_{n=1}^{\infty} 2^{n} \cos n^2 x $ -- непрерывная, ряд сходится равномерно по теореме Вейерштрасса)
+    \[
+    |2^{n} \cos n^2x | \le  2 ^{ n}
+    .\] 
+    Возьмем производную:
+    $
+    f'(x) = \sum_{n=1}^{\infty} 2^{-n} n^2 (- \sin n ^2 x)
+	$ -- сходится равномерно.
+	Дальше будет происходить тоже самое при взятии производной. Значит, она дифференцируема бесконечное число раз. $ f \in  C^{\infty} (\R)$
+
+	Тогда можем записать ряд Тейлора в нуле:
+	\begin{equation}\label{kontr}
+	    f(x) =  \sum_{k=0}^{\infty} \frac{f^{(2k)}}{(2k)!} x^{2k}
+	\end{equation}
+	Этот ряд вообще не сходится! Докажем это:
+\[
+    f^{(2k)} (0) = \sum_{n=1}^{\infty} 2 ^{-n} n^{4k} (-1)^{k}
+.\] 
+\begin{st}
+В \ref{kontr} общий член стремиться к нулю, если $ |x| > 0$.
+\end{st}
+\begin{proof}
+    \[
+	\frac{|f^{(2k)} (0)|}{(2k)!} x^{2k} \ge \frac{2^{-n} n^{4k}}{(2k)!} x ^{ 2k} \ge \frac{2^{-n} n^{4k}}{(2k)^{2k}} x ^{ 2k}
+    .\] 
+    Подставим $ n = 2k$ :
+    \[
+	\left( \frac{|x| n^2}{2k} \right) ^{2k} 2^{-n} = (2kx)^{2k} 2 ^{-2k} = (k |x|)^{ 2k}
+    .\] 
+    А это стремиться к нулю.
+\end{proof}
+\end{ex}
+\subsection{Разложение Тейлора для логарифма}
+\begin{thm}[разложение Тейлора для $ \log(1+x) $  центром в $ 0$]
+    $ $
+
+    $ f(x) = \log(1+x)$, $ f'(x) = (1+x) ^{-1}$, $ f^{(2)} = -(1+x)^{-2}$, $ f^{(3)} = 2 (1+x) ^{ -3}$ \ldots 
+    \[
+	f^{(n)} = (-1)^{n+1} 1 \cdot  2\cdot  \ldots \cdot (n-1) (1+x) ^{-n}
+    .\] 
+    Запишем локальную формулу Тейлора:
+    \[
+	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{k+1} (1 + c)}{(k+1)!} x ^{ k+1}
+    .\] 
+    \[
+	\log(1+x) = \sum_{n=1} ^{k}  (-1)^{n+1} \frac{x^{n}}{n} + \frac{(-1)^{ k+1}}{k+1}\cdot  \frac{1}{(1+c)^{k+1}}x ^{ k+1}
+    .\] 
+    Тогда 
+\[
+    \log(1+x) \sim x, \quad \log(1+x) = x - \frac{x^2}{2} + O(x^3)
+.\] 
+\end{thm}
+\begin{st}
+    $ e^{x} = \lim_{n \to 0}  (1 + ux) ^{ \frac{1}{n}}$
+\end{st}
+\begin{proof}
+    $ (1+ux)^{\frac{1}{n}} = e ^{ \frac{1}{n}\log(1+ux)}$
+    \[
+	\frac{1}{n} \log (1+ux) = x + O(u) \longleftarrow  x, \quad b \to  0
+    .\] 
+    \[
+	\log(1+ux) = ux + O(n^2)
+    .\] 
+    \[
+	e = \lim_{n \to  0} (1+x) ^{\frac{1}{n}}  
+    .\] 
+\end{proof}
+\begin{st}
+    Ракскладывается ли логарифм  ряд Тейлора:
+    \begin{equation}
+	\sum_{n=1} ^{\infty} (-1)^{ n} \frac{x^{n}}{n}
+    \end{equation}
+\end{st}
 \end{document}
