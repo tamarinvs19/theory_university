@@ -1199,8 +1199,152 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
 \end{proof}
 \begin{st}
     Ракскладывается ли логарифм  ряд Тейлора:
-    \begin{equation}
+    \begin{equation}\label{log_te}
 	\sum_{n=1} ^{\infty} (-1)^{ n} \frac{x^{n}}{n}
     \end{equation}
+    Посмотрим на модуль:
+    \[
+    \frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
+    .\] 
+    Тогда имеет смысл рассматривать только $ x in (-1, 1]$.
 \end{st}
+\begin{thm}
+    $ x \in (-1, 1]$. Тогда ряд \ref{log_te} равномерно сходится равномерно  на любом $ (r , 1], \quad r>-1$.
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+	\item $ x \in  [0, 1]$. 
+	    \begin{equation}
+		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} x^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
+		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in lra
+	    \end{equation}
+	    В частности, $ \log 2 = 1 -\frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots $.
+	    \item $ -1 < x \le 0$
+		\begin{equation}\label{sl_2}
+		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
+		\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
+		\end{equation}
+		Удачным случаем \ref{sl_2} будет $ \frac{|x|}{1 - |x|} < 1 ~ \Leftrightarrow  ~ |x| \le \frac{1}{2}, ~ x \in  (-\frac{1}{2}, 0]$.
+		Чтобы разобраться с оставшимися вариантами, воспользуемся формулой: $ (1-x) (1 + x + \ldots + x^{n}) = 1 - x^{n+1}$.
+	Подставим $ x = -x$:  \[
+	    1 -x + x^2 - x^3 + \ldots  (-1)^{n} x^{n} = \frac{1}{1+x} + (-1)^{n} \frac{x^{n+1}}{1 + x}
+	.\] 
+	Проинтегрируем:
+	\[
+	    \int_0^{t} \sum_{k=0}^{n-1}(-1)^{k}x^{k} dt = \int_0^{t} \frac{1}{1+x} - (-1)^{n} \frac{x^{n}}{1+x}
+	.\] 
+	\[
+	    \log(1+t) = \sum_{k=0}^{n}\frac{(-1)^{k-1}}{k} t ^{k} + (-1) ^{n+1} \int _0 ^{ t} \frac{x^{n}}{1+x} dx \qquad -1 <t \le 0, t <  x \le 0
+	.\] 
+	\[
+	    \int _0 ^{ t} \frac{x^{n}}{1+x} dx \le  \int_{0}^{t} (\frac{|x|^{n}}{1-|x|} dx \le \frac{1}{1 - |t|} \int_t ^{0} |x|^{n} dx = \frac{1}{1-|t|} \frac{1}{n+1}|t|^{n+1}
+	.\] 
+	Это выражение стремится к нулю при $n \to \infty, ~ t> -1$, если $ t in (-1, 0], |t| \le r <1$, равномерно сходится.
+	Удачный случай: $ \le \frac{1}{1+|t|} \frac{1}{n+1} |t|^{n} \le \frac{1}{1-r}\frac{1}{n}r^{n}$.
+    \end{enumerate}
+\end{proof}
+\begin{note}
+    Логарифм -- аналитическая функция.
+\end{note}
+\begin{proof}
+    Выберем $ |1 = \frac{x}{x_0}| < 1$.
+    \[
+	\log x - \log x_0 = \log \frac{x}{x_0} = \log(1 - (1- \frac{x}{x_0}))  = \sum_{n+1}^{\infty} \frac{1}{n} (-1)^{n+1} (\frac{x}{x_0} - 1)^{n}
+    .\] 
+    \[
+	\log x= \log x_0 + \sum_{n=1}^{ooo}\frac{1}{n} (-1)^{n}\frac{1}{x_0} (x - x_0)^{n}
+    .\] 
+    А это ряд Тейлора.
+\end{proof}
+\subsection{Формула Ньютона-Лейбница для большей производной. Еще один подход к формуле Тейлора}
+$ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a \in I$.
+\[
+    f(t) - f(a) = \int_a^{t} f'(x)d(x-t) = f'(x) (x-t) \mid_{x=a}^{x=t} - \int_a^{t} f''(x)(x-t) dx =  
+\] 
+\[
+    =f'(a) (t-a) +\int_a^{t}f''(x) (t-x) dx
+.\] 
+То есть:
+\[
+    f(t) = f(a) + f'(a)(t-a) + \int_a^{t} f''(x) (t-x) dx 
+.\] 
+И так далее
+\begin{thm}
+$ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a \in I$.
+    \[
+	f(t) = \sum_{j=0}^{n} \frac{1}{j!} f^{(j)} (a) (t-a)^{j}+ \frac{1}{n!} \int_{a}^{t} f^{(n+1)} (z) (t -x)^{n+1} dx
+    .\] 
+\end{thm}
+\begin{ex}
+    $ x \leadsto  u$, $ x = a(1-u) +tu$
+
+    $ u \in  [0, 1], ~ dx = (t-a) du$ 
+
+    \begin{equation}
+	t-x = t -a(1-u) -tu =
+	t-a + au - tu =
+	t-a + u(t-a) =
+	(t-a)(1-u)
+    \end{equation}
+    \[
+	r_n(a, t) = \frac{1}{n!} \int_{0}^{1} f^{(n+1)} (a(1-u) + tu)(t-a)^{n}(1-u)^{n}(t-a)^{n}du 
+    .\] 
+    Если $ a = 0$:
+     \[
+	 % r_n(0, t) = (\text{d}
+    .\] 
+\end{ex}
+    $ f(x) = (1+x)^{m}, \qquad m \in \R $ 
+
+    $ f'(x) = m(1+x)^{m-1} \\
+    f''(x) = m(m-1)(1+x)^{m-1} \\
+    \vdots \\
+    f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k} 
+    $ 
+    \begin{name}
+        \[
+	    { m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
+        .\] 
+    \end{name}
+
+    $ |x| < 1$ 
+    \[
+	(1+t)^{m} = 1 + {m \choose 1} t + {m \choose 2} t^2 + \ldots  + {m \choose n} t ^{n} + \frac{t ^{n+1}}{n!} \int_0^{1} m (m-1) \ldots  (m-n) (1 + tu) ^{m-n+1} (1-u)^{n} du
+    .\] 
+\begin{thm}[Ряд Ньютона]
+    Ряд 
+    \[
+    1 + \sum_{k=1}^{\infty} {m \choose k} t ^{k}
+    \]  
+    сходится к $ (1+t)^{m}$, при $ |t|<1$
+\end{thm}
+\begin{proof}
+    $ R_n(t) = \frac{t ^{n+1}}{n!} \int_0^{1} m (m-1) \ldots  (m-n) (1 + tu) ^{m-n+1} (1-u)^{n} du$.  $ 0 \le  t< 1$.
+    \[
+	|R_n(t) | \le  |t|^{n+1} \left| {m-1 \choose n} \right| |m| \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| 
+    .\] 
+    ПУсть $ \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| = I$
+    \begin{enumerate}
+    \item Сначала $ 0 \le t  0$:
+    \[
+	I \le \int_0^{1} (1-u)^{n} du = \frac{1}{n+1} \longleftarrow 0
+    .\] 
+    \[
+	|R_n(t)| \le  t ^{n+1} \left| {m-1 \choose n} \right| \frac{m}{n+1} =a_n(t)
+    .\] 
+    Тогда \[
+	\frac{a_{n+1}(t)}{a_n(t)} = \frac{n+1}{n+2} \frac{|m-n-1|}{n+2} t
+    .\] 
+    $ t <1, ~ t+ \varepsilon  <1 $, следовательно, рано или поздно  $ \frac{a_{n+1}(t)}{a_n(t) (t)} < t+ \varepsilon $
+
+\item Следующий случай $ -1 < t< 0$
+    \[
+     1 + |t| \ge |1 + tu| \ge  1 - |t| |u|
+    .\] 
+    \[
+	\left| \frac{1-u}{1+tu} \right| \le  \frac{1-u}{1 - |t| u} = \frac{1-|t|u + u(|t| -1)}{1 - |t| u} = 1 - (n\frac{1-|t|}{1-|t|u} 
+    .\] 
+    Это не превосходи $ 1 - n(1 - |t|)$.
+    \end{enumerate}
+\end{proof}
 \end{document}
