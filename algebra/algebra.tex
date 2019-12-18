@@ -1386,7 +1386,7 @@ $
      Обратная $y \mapsto g_1 g_2^{-1} y$
 \end{proof}
 \begin{thm}[Лагранж]
-    $G$ - конечна группа. Тогда $|G| = |H| |G:H|$, где $|G:H|$ - количество левых смежных классов $G$ по $H$. $|G:H|$ - индекс $H$в $G$.
+    $G$ - конечна группа. Тогда $|G| = |H|\cdot  |G:H|$, где $|G:H|$ - количество левых смежных классов $G$ по $H$. $|G:H|$ - индекс $H$в $G$.
 \end{thm}
 \begin{proof}
     Из прошлой леммы и следствия
@@ -1518,14 +1518,14 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
     $\pi_{\mbox{н}} $ - эпиморфизм, $\ke \pi_{\mbox{н}} = H $
 \end{defn}
 \begin{thm}[универсальное свойство факторгруппы]
-    $H \trianglelefteq G$ \\
-    Для любого гомоморфизма $\varphi : G \to F$, такого что $H \le \ke \varphi \exists! \bar \varphi : G \diagup H \to  F$коммутативна для диаграммы 
-    $$\begin{array}{ccc}
-	G & \stackrel {\pi_{n}} \to & G \diagup H \\
-	\downarrow F && \downarrow \exists ! \hat{\varphi } \\
-	F &&F
-    \end{array}
-    $$
+    $N\trianglelefteq G$,
+    $\varphi : G \to H$ -- гомоморфизм. Если $ \ke f \ge N$, то существует единственный гомоморфизм $ \varphi: G\diagup N \to  H$, такой что $ f = g \circ \pi_\text{н}$. Если $ f$ -- эпиморфизм, то $ g$ -- эпиморфизм. Если $ \ke F = N$, то $ g$  -- мономорфизм. 
+    % $$\begin{array}{ccc}
+	% G & \stackrel {\pi_{n}} \longrightarrow & G \diagup H \\
+	% \downarrow \lefteqn{F} &\nearrow \lefteqn{\exists ! \hat{\varphi }}& \\
+	% F &&
+    % \end{array}
+    % $$
 \end{thm}
 \begin{thm}
     $\varphi  G \to F$ 
@@ -1534,7 +1534,7 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
     .\] 
 \end{thm}
 \begin{proof}
-    Заменим $F$ на $Im \varphi $.
+    Заменим $N$ на $Im \varphi $.
     \[
     \varphi ' \to \im \varphi \quad \ke \varphi  ' = \ke \varphi 
     .\] 
@@ -2097,7 +2097,7 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
     .\] 
     То есть $p-1 \mid \ord {b}$. Получаем  $\exists l \in  \N : \ord {b^{l}} = p-1$. (или можно сказать, $p-1 \mid \exp(G)$).
 
-    По следствию из теорема Лагранжа $ |H| \cdot p\cdot p^{k-1} \wedge 1 + p \in H \Rightarrow  (1 + p) ^{p^{k-1}} \equiv 1 \mod p^{k}$. Тогда $\ord (1 + p) \mid p^{k-1}$.
+    По следствию из теоремы Лагранжа $ |H| \cdot p\cdot p^{k-1} \wedge 1 + p \in H \Rightarrow  (1 + p) ^{p^{k-1}} \equiv 1 \mod p^{k}$. Тогда $\ord (1 + p) \mid p^{k-1}$.
 
     Осталось доказать, что \[
 	(1+p)^{p^{k-2}} \not\equiv 1 \mod p^k
@@ -2173,7 +2173,7 @@ $5^{2^{k-1}} = 1 + 2^{n}z, \quad 1 < n < k-1, ~ 2 \nmid z$.
     \end{array}
 .\] 
 \end{proof}
-\part{Кольца}
+\chapter{Коммутативные кольца}
 \section{Лекция 23}
 \subsection{Теорема о гомоморфизме для колец}
 \begin{note}{Воспоминания} $ $
