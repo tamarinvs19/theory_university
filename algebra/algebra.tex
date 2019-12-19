@@ -3380,4 +3380,123 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ скорни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней. 
      $ k$ делит  $ |G| \Longrightarrow  \exp G - |G|$. Следовательно, $ G$ -- циклическая. 
  \end{proof}
-\end{document}
+ \section{Лекция 31}
+ % здесь не хватает части лекции
+ \begin{thm}[Карнайкера]
+     Если $ 8 \not\mid 8$,
+     \[
+	 \exp (\Z \diagup n \Z)^{*}= \lcm _i (p_i^{k_i} - p_i^{k^{i}-1}
+     ,\] 
+     если $ 8 \mid n$,
+      \[
+	  \lcm_{i, p_i \ne 2}(2^{k-2}, p_i^{k_i} - p_i^{k_i-1}
+     .\] 
+ \end{thm}
+ \begin{defn}
+     $ n: \forall  a \in  (\Z \diagup n \Z)^{*}$
+     Псевдопростое число Ферма --- такое число $ a$, что $ a^{n+1} \equiv 1 \mod n$.
+ \end{defn}
+ \begin{prac}
+     Для любых $ p, q \in  \Pm$ 
+     \begin{enumerate}
+         \item 
+     $ p \cdot  q$ не псевдопростое
+     \item  $ p^{k}$  тоже не псевдопростое
+	 \item Найти самое маленькое псевдопростое число
+	     \item  Может ли $ p^{k}q^{l}$ быть псевдопростым?
+     \end{enumerate}
+ \end{prac}
+ \subsection{Кратность корня и формальная производная}
+ \begin{defn}
+     $ \alpha $ -- корень $ p \in F[t]$, $ F$ -- поле.\[
+	 p = (t - \alpha ) p_1  = \ldots = (t- \alpha )^{k} g, \quad g( \alpha ) \ne 0
+     .\] 
+     $ k $ -- кратность корня $ \alpha $ в $ p$.
+ \end{defn}
+ \begin{note}
+     Если кратность корня равна нулю, это не корень.
+ \end{note}
+\begin{thm}
+    $ F = \R, p( \alpha ) = 0$. Кратность  $ \alpha $ в $ p'$ На один меньшее кратности $ \alpha $ в $ p$.
+\end{thm}
+\begin{proof}
+    Взяли $ (t- \alpha ) ^{ k} g)' = k ( (t - \alpha )^{k-1} g + (t- \alpha ) ^{k} g' = (t - \alpha ) ^{k-1} (kg + (t - \alpha )$.
+    Второй сомножитель в точке $ \alpha $ не равен нулю, следовательно, кратность $ \alpha $ уменьшилась на один.
+\end{proof}
+\begin{defn}
+    $ A$ -- $ F$-алгебра. $ \delta : A \to  A$ называется дифференцированием, если она $ F$-линейна и  \[
+	\partial (u \cdot v) = \partial u \cdot  v = \partial v \cdot  u \qquad u, v \in A
+    .\] 
+\end{defn}
+\begin{defn}
+$ F$ -- -коммутативное кольцо с единицей.
+Определим формальную производную на $ F[t]$:
+ \[
+     \begin{array}{l}
+	 (\alpha )' = 0 \quad \forall  a \in F\\
+     (t ^{n})' = n t ^{n-1} \\
+     \left( \sum_{k=1}^{n} \alpha _k t ^{k} \right) ' = \sum_{k=1} ^{n} \alpha _k \cdot  k t ^{k-1}
+     \end{array}
+.\] 
+\end{defn}
+\begin{prop}
+    $ $
+
+    \begin{enumerate}
+	\item  $ (\alpha v)' = \alpha  v' $
+	\item $
+		    (uv)' = u' v + v' u
+		    $
+	\item  $ \left( f(g(t)) \right) ' = f'(g(t)) \cdot g'(t)$
+    \end{enumerate}
+\end{prop}
+Пусть $ \alpha _1, \ldots  \alpha _n \in  \R$, $ R$ -- кольцо.
+$ P(R)$ --- некоторое утверждение про кольцо $ R$
+Предположим, что $ P$ наследуется подкольцами и факторкольцами, то есть 
+ \[
+     \forall  \tilde R \subseteq R, I \triangleleft : ~ P(R) \Longrightarrow  
+     \left[
+     \begin{array}{l}
+	 P(\tilde R) \\
+	 P(R \diagup I)
+     \end{array}
+ \right.
+.\] 
+
+$ P$ формулируется:
+\begin{equation}\label{form}
+\forall  \alpha _1, \ldots \alpha _n \in  \R
+\end{equation}
+Тогда $ P(\R) \Longrightarrow P(R) \quad \forall  \text{ кольца } R$.
+
+\begin{lm}
+    \[
+	\forall n: \Z[t_1, \ldots , t_n] \rightarrowtail \R
+    .\] 
+\end{lm}
+\begin{thm}
+\ref{form} равносильно тому, что $ P(R)$ следует из любого конечнопорожденного подкольца $ \tilde R: P(\tilde R)$
+\end{thm}
+\begin{proof}
+    $ P(\R) \Longrightarrow (P(\Z[t_1, \ldots t_n])) \Longrightarrow P( \text{ для любого конечнопророжденного кольца)}$
+
+    $\tilde R $ порождено элементами $ \alpha _1, \ldots , \alpha _k $
+\end{proof}
+ % Здесь тоже что-то пропущено!!
+\begin{thm}
+    Если $ k \ne 0 $ в $ F$, то при дифференцировании кратность падает на один.
+\end{thm}
+\begin{note}
+    В общем случае: $ \alpha $ -- корень $ g$  кратности $ k \ge  1 \Longrightarrow  \alpha  $ -- корень $ g$ кратности  $ k-1$. 
+\end{note}
+\begin{ex}
+    в $ {\mathbb F} _p = \Z \diagup p\Z$ :
+\[
+    t ^{p} -1= (t-1)^{p}
+.\]  
+$ 1$ -- корень кратности  $ p$. 
+\[
+    (t ^{p} - 1)' = 0 \text{ -- кратность } \infty
+.\] 
+\end{ex}
+ \end{document}
