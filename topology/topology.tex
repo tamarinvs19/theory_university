@@ -1,6 +1,7 @@
 \documentclass[11pt]{book}
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
 \usepackage {amsfonts}
 % \usepackage{eufrak}
 \usepackage{amssymb, amsthm}
@@ -15,6 +16,17 @@
 \usepackage{hyperref}
 \usepackage{epstopdf}
 
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhead[RO,LE]{\thepage}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{}
+% \fancyhead[L]{\section}
+% \fancyfoot[C]{Лекция \thesection}
+
+\pagestyle{fancy}
+
 \usepackage{import}
 \usepackage{xifthen}
 \usepackage{pdfpages}
@@ -25,40 +37,6 @@
     \import{./figures/}{#1.pdf_tex}
 }
 
-% разметка страницы и колонтитул
-\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
-\usepackage{fancybox,fancyhdr}
-\fancyhead[R]{\thepage}
-
-\title{Конспект по топологии за I семестр бакалавриата Чебышёва СПбГУ (лекции Иванова Сергея Владимировича)}                      
-\author{Тамарин Вячеслав}
-
-\begin{document}
-\pagestyle{fancy}
-
-\renewcommand{\proofname}{Proof}
-
-\theoremstyle{plain}
-\newtheorem{thm}{Theorem}[section]
-\newtheorem*{lm}{Lemma}
-\newtheorem*{st}{St}
-\newtheorem*{prop}{Prop}
-
-\theoremstyle{definition}
-\newtheorem{defn}{Def}
-\newtheorem*{ex}{Ex}
-\newtheorem*{exs}{Exs}
-\newtheorem*{tasks}{Tasks}
-\newtheorem*{task}{Task}
-\newtheorem*{cor}{Corollary}
-\newtheorem*{name}{Designation}
-
-\theoremstyle{remark}
-\newtheorem*{rem}{Remark}
-\newtheorem*{note}{Note}
-\newtheorem*{probl}{Practice}
-\newtheorem*{prac}{Practice}
-
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -68,6 +46,53 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}~}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}~}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+
+\renewcommand{\proofname}{Proof}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+\theoremstyle{definition}
+\newmdtheoremenv[nobreak=true]{defn}{Def}
+\theoremstyle{plain}
+\newmdtheoremenv[nobreak=true]{thm}{Theorem}
+
+\theoremstyle{plain}
+% \newtheorem{thm}{Theorem}[section]
+\newtheorem*{lm}{Lemma}
+\newtheorem*{st}{Statement}
+\newtheorem*{prop}{Property}
+
+\theoremstyle{definition}
+% \newtheorem{defn}{Def}
+\newtheorem*{ex}{Ex}
+\newtheorem*{exs}{Exs}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Designation}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{com}{Comment}
+\newtheorem*{note}{Note}
+\newtheorem*{prac}{Practice}
+\newtheorem*{tasks}{Tasks}
+\newtheorem*{task}{Task}
+
+
+\title{Конспект по топологии \\
+I семестр \\
+(лекции Иванова Сергея Владимировича)}                      
+\author{Тамарин Вячеслав}
+
+\begin{document}
 
 \maketitle
 \clearpage
@@ -120,14 +145,14 @@
     .\] 
 $Y \setminus B$ открыто в $Y$, а $X \setminus A$ открыто в $X$. Тогда объединение произведений с $X$ и $Y$ есть объединение открытых в $X \times Y$.
 \end{proof}
-\begin{probl}
+\begin{prac}
     Для любых $A \subset X, ~ B \subset Y$ :
     \begin{enumerate}
 	\item $Int (A \times B) = Int(A) \times Int(B)$
 	\item  $Cl (A \times B) = Cl(A) \times Cl(B)$
 	\item  $A \times B$  как произведение подпространств равно $A \times B$ как подпространство произведения.
     \end{enumerate}
-\end{probl}
+\end{prac}
 \subsection{Произведение параметризуемых метрических пространств}
 Здесь все также, только топология задается метрикой.
 $d_X, d_Y$ - метрики.
@@ -381,9 +406,9 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{cor}
     $ \R^{n}$ имеет счетную базу.
 \end{cor}
-\begin{probl}
+\begin{prac}
     1AC тоже наследуется подпространствами и произведениями.
-\end{probl}
+\end{prac}
 \begin{defn}
     Топологические свойство -- наследственное, если оно сохраняется при замене пространства на любое подпространство.
 \end{defn}
@@ -459,11 +484,11 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{st}
     $ T_4 \Rightarrow T_3 \Rightarrow  T_2 \Rightarrow T_1$
 \end{st}
-\begin{probl}
+\begin{prac}
     Свойства $ T_1 - T_3$ наследуются подпространствами и произведениям.
 
     Нормальность не наследственная.
-\end{probl}
+\end{prac}
 \begin{defn}
     Все метрические пространства нормальны.
 \end{defn}
@@ -480,4 +505,175 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
     
 \end{lm}
+\subsection{Факторизация}
+\begin{ex}
+    Склеим в квадрате $ ABCD$ стороны  $ \vec{AB}$ и $ \vec{DC}$ по аффинной биекции между ними, сохраняющей отученное направление. Получим цилиндр $ S^{1} \times [0, 1]$.
+\end{ex}
+\begin{ex}
+    Если склеить $ \vec{AB}$ и $ \vec{CD}$, получи  { \bf лента Мебиуса}.
+\end{ex}
+\begin{defn}
+    ПУсть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ Homeo(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
+
+    Введем отношение эквивалентности $ \sim $ на $ X$ :
+    \[
+	a \sim b \Longleftrightarrow \exists  g \in  \Gamma : g(a) = b
+    .\] 
+    Фактор пространство $ X \diagup \sim $  обозначается $ X / F$ или $ X \backslash F$
+\end{defn}
+\begin{thm}
+    Пусть $ p : X \to  X / \sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
+    \[
+	\forall  x, y \in  X: ~ x \sim y \Longrightarrow f(x) = f(y)
+    .\] 
+    Тогда
+    \begin{enumerate}
+        \item $ \exists  \overline{f}: X / \sim  \to  Y: f = \overline{f} \circ p$.
+	    \item  $ \overline{f}$ непрерывно тогда и только тогда, когда  $ f$ непрерывно.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+	\item Определим $ \overline{f([x])} = f(x)$ для всех $ x \in X$
+	    \item По непрерывности композиции, если $ \overline{f}$ непрерывна, то $ f$ тоже.
+	    \item В обратную сторону -- по определению фактортопологии. (провеим определение непрерывности)
+    \end{enumerate}
+\end{proof}
+\begin{thm}
+    $ [0, 1] / \{1, 0\} \cong S^{1}$
+\begin{figure}[ht]
+    \centering
+    \incfig{th-circ}
+    \caption{th-circ}
+    \label{fig:th-circ}
+\end{figure}
+\end{thm}
+\begin{thm}\label{th_nx}
+    $ X$ -- замкнуто, $ Y$ -- хаусдорфово.
+    $ f : X \to  Y $ -- непрерывно и сюрьективно.
+    Тогда \[
+    X /\sim  \cong  Y 
+    .\] 
+    Где $ \sim $ -- эквивалентность .%??
+\end{thm}
+\begin{thm}
+    $ D^{n} / S^{n-1} \cong S^{n}$
+\end{thm}
+\begin{proof}
+    Вместо $ D^{n}$ возьмем $ B$ -- замкнутый шар радиуса $ \pi$ cс цетром в $ 0 \in \R^{n} $.
+    По прошлой теореме \ref{th_nx} достаточно построить сюрьективный гомеоморфизм $ f: B \to  S ^{n}$, отображающий край шара в одну точку, а в остальном инъективен.
+    Сойдет такое 
+    \[
+	f(x) = \left( \frac{1}{|x|} \sin(|x|) \cos (|x|) \right) , f(0) = (0_{\R_{n-1}}, 1)
+    .\] 
+\end{proof}
+
+\section{Многообразия}
+\begin{name}
+    Здесь и далее $ n \in \N \cup 0$
+\end{name}
+\begin{defn}
+    $ n$-мерное многообразие -- хаусдорфово топологическое пространство со счетной базой, обладающее свойством локальной евклидовости: у любой точки $ x in M$ есть окрестность, гомеоморфная  $ \R^{n}$.
+
+    Число $ n$ -- размерность многообразия.
+\end{defn}
+\begin{thm}
+    При $ m \ne n$ никакие непустые открытые подмножества $ \R^{n}$ и $ \R^{m}$ не гомеоморфны.
+\end{thm}
+\begin{cor}
+    Многообразие размерности $ n$ Не гомеоморфно многообразию размерности $ m$.
+\end{cor}
+\begin{ex}
+    $ 0$-мерные многообразия -- не более чем счетные дискретные пространства.
+\end{ex}
+\begin{ex}
+    Любое открытое подмножество $ \R^{n}$ или любого многообразия -- многообразие той же размерности.
+\end{ex}
+\begin{ex}
+    Сфера $ S^{n}$ -- $ n$-мерное многообразие
+\end{ex}
+\begin{ex}
+Проективное пространство $ \R P^{n} = S^{n}/\{id, -id\}$ -- моногообразие
+\end{ex}
+\begin{prac}
+    В диске $ D^{n}$ склеим противоположные точки границы. Полученное пространство гомеоморфно $ \R P^{n}$.
+\end{prac}
+\begin{defn}
+    $ n$-мерное многообразие с краем -- хаусдорфово пространство $ M$ со счетной базой и такое, что у каждой точки есть окрестность, гомеоморфная либо  $ \R^{n}$, либо $ \R^{n}_+$.
+
+    Множество точек, у которых нет окрестностей первого вида, называются краем $ M$ и обозначаются $\partial M$.
+\end{defn}
+\begin{defn}
+    Поверхность -- двумерное многообразие.
+\end{defn}
+\begin{thm}
+    $ $
+    \begin{itemize}
+	\item  Пусть дан правильный $ 2n$ угольник  $ D^{2}$ с границей разбитой на части), стороны которого разбиты на пары и ориентированы.
+	   Склеим кажу пару сторон по естественному отображению с учетом ориентации.
+	   Тогда получится двумерное многообразие.
+       \item Пусть дан $ m$-угольник некоторые $ 2n $ сторон ($ 2n < m$) которого разбиты на пары, ориентированы и склеены аналогично. 
+	   Тогда получается двумерное многообразие.
+    \end{itemize}
+\end{thm}
+\begin{note}
+    Можно брать и несколько многоугольников и склеивать из между собой.
+\end{note}
+\subsection{Классификация многообразий}
+\begin{note}
+    Любое многообразие локально линейно связно. Следовательно, компоненты линейной связности совпадают с комнопнентами связности и открыты. Будем исследовать только связные многообразия.
+\end{note}
+\begin{thm}
+    Псть $ M $ -- непустое связное 1-мерное многообразие. Тогда 
+    \begin{enumerate}
+	\item  $ M$ -- компактно, без края $\Longrightarrow   M \cong S^{1}$
+	\item $ M$ -- некомпактно, без края $\Longrightarrow   M \cong \R$
+	\item  $ M $ -- 
+    \end{enumerate}
+\end{thm}
+\begin{defn}
+    Пусть $ p \in  \N$. Сфера с $ p$  ручками строится так:
+    берем сфер  $ S^{2}$, вырезаем $ p$ непересекающихся дырок  $ D^{2}$. Далее берем $ p$ торов с такими же дырками и приклеиваем по дыркам торы к сфере.
+\end{defn}
+\begin{defn}
+    Сфера с пленками -- аналогично, только приклеиваем ленты Мебиуса.
+\end{defn}
+\begin{prac}
+    Cathf c jlyjq пленкой -- $ \R P^{3}$, сфера с двумя пленками -- бутылка Клейна.
+\end{prac}
+\begin{st}
+    Поверхность -- связное двумерное многообразие.
+\end{st}
+\begin{thm}
+    \begin{itemize}
+        Компактная поверхность без края гомеоморфна сфере или сфере с ручками или сфере с пленками.
+    \item Поверхности разного типа, сферы с разным числом ручек, сферы с разным числом пленок попарно не гомеоморфны.
+    \item Компактная поверхность с краем гомеоморфна одному из этих цилиндров с несколькими дырками.
+    \end{itemize}
+	Поверхности с разным числом дырок негомеоморфны.
+\end{thm}
+\subsection{Эйлерова характеристика}
+\begin{defn}
+    ПУсть $ M$ -- компактная  поверхность, разбитая вложенныам связным графом на области-диски (замыкание области гомеоморфно диску, граница -- цикл в графе).
+    Эйлерова характеристика  $ M$ -- целое число:
+     \[
+	 \chi (M) = V - E + F
+    .\] 
+\end{defn}
+\begin{thm}
+    Эйлерова характеристика -- топологический инвариант.
+\end{thm}
+\begin{exs}
+    $ $
+    \begin{itemize}
+	\item $ \chi(S^{2}) = 2$
+	\item $ \chi(T^{2}) = 0$
+	\item $ \chi(\text{бутылки Клейна}) = 0$
+	\item При вырезании дырки $ \chi$ уменьшается на 1
+	\item $ \chi(\text{сферы с $ n$ дырками}) = 2 -n, \chi(\text{тора с дыркой} ) = -1$
+	\item $ \chi(A \cap B) = \chi(A) + \chi(B) - \chi(A \cup B) $
+	\item $ \chi (\text{ сферы с p ручками) }=2-2p$
+	\item $ \chi (\text{ сферы с q пленками) }=2-q$
+    \end{itemize}
+\end{exs}
 \end{document}
