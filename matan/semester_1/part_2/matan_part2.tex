@@ -19,11 +19,12 @@
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
-\fancyhead[RO,LE]{\thepage}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
 % \fancyfoot[RO,LE]{\thesection}
-\fancyfoot[C]{}
-% \fancyhead[L]{\section}
-\fancyfoot[C]{}
+\fancyfoot[C]{\leftmark}
+\addtolength{\headheight}{13pt}
 
 \pagestyle{fancy}
 
@@ -53,6 +54,9 @@
 \newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 \newcommand{\pivi}{\stackrel \circ }
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
@@ -135,7 +139,7 @@
 \end{thm}
 \begin{proof}
     Необходимость.\\
-    Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x in A$.
+    Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x\in A$.
     \[
 	\forall k, l > N \quad |(f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon  \forall x \in A
     .\]
@@ -1206,7 +1210,7 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
     \[
     \frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
     .\] 
-    Тогда имеет смысл рассматривать только $ x in (-1, 1]$.
+    Тогда имеет смысл рассматривать только $ x\in (-1, 1]$.
 \end{st}
 \begin{thm}
     $ x \in (-1, 1]$. Тогда ряд \ref{log_te} равномерно сходится равномерно  на любом $ (r , 1], \quad r>-1$.
@@ -1239,7 +1243,7 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
 	\[
 	    \int _0 ^{ t} \frac{x^{n}}{1+x} dx \le  \int_{0}^{t} (\frac{|x|^{n}}{1-|x|} dx \le \frac{1}{1 - |t|} \int_t ^{0} |x|^{n} dx = \frac{1}{1-|t|} \frac{1}{n+1}|t|^{n+1}
 	.\] 
-	Это выражение стремится к нулю при $n \to \infty, ~ t> -1$, если $ t in (-1, 0], |t| \le r <1$, равномерно сходится.
+	Это выражение стремится к нулю при $n \to \infty, ~ t> -1$, если $ t\in (-1, 0], |t| \le r <1$, равномерно сходится.
 	Удачный случай: $ \le \frac{1}{1+|t|} \frac{1}{n+1} |t|^{n} \le \frac{1}{1-r}\frac{1}{n}r^{n}$.
     \end{enumerate}
 \end{proof}
@@ -1323,9 +1327,14 @@ $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a
     \[
 	|R_n(t) | \le  |t|^{n+1} \left| {m-1 \choose n} \right| |m| \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| 
     .\] 
-    ПУсть $ \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| = I$
+\end{proof}
+\begin{thm}
+    $ R_n (t) \to 0$  при $ |t|<1$, и  сходится равномерно при $ |t| < \phi < 1$.
+\end{thm}
+\begin{proof}
+    Пусть $ \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| = I$
     \begin{enumerate}
-    \item Сначала $ 0 \le t  0$:
+    \item Сначала $ 0 \le t_0$:
     \[
 	I \le \int_0^{1} (1-u)^{n} du = \frac{1}{n+1} \longleftarrow 0
     .\] 
@@ -1338,13 +1347,135 @@ $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a
     $ t <1, ~ t+ \varepsilon  <1 $, следовательно, рано или поздно  $ \frac{a_{n+1}(t)}{a_n(t) (t)} < t+ \varepsilon $
 
 \item Следующий случай $ -1 < t< 0$
+    Подынтегральное выражение:
+    \[
+	\left| \frac{1-u}{1 + tu} \right| ^{n } \left| \frac{1}{1+tu} \right|  ^{m-1} 
+    .\] 
     \[
      1 + |t| \ge |1 + tu| \ge  1 - |t| |u|
     .\] 
+    Первый множитель:
     \[
-	\left| \frac{1-u}{1+tu} \right| \le  \frac{1-u}{1 - |t| u} = \frac{1-|t|u + u(|t| -1)}{1 - |t| u} = 1 - (n\frac{1-|t|}{1-|t|u} 
+    \left| \frac{1-u}{1+tu} \right| \le  \frac{1-u}{1 - |t| u} = \frac{1-|t|u + u(|t| -1)}{1 - |t| u} = 1 - \left(n\frac{1-|t|}{1-|t|u} \right)
     .\] 
-    Это не превосходи $ 1 - n(1 - |t|)$.
+    Это не превосходит $ 1 - n(1 - |t|)$.
+
+    Второй множитель:
+    \begin{enumerate}
+        \item $ m \le  1$
+	    \[
+		\left| \frac{1}{1+tu} \right|^{-m+1} \le  \left(\frac{1}{1-|t| u}\right)^{-m+1} \le \left(\frac{1}{1-|t|} \right) ^{-m+1}
+	    .\] 
+	\item $ m > 1$
+	     \[
+		 |1 + tu|^{m-1} \le  (1  + |t|)
+	    .\] 
     \end{enumerate}
+    Обозначим полученную оценку $ C_m(t)$.
+    \[
+	I \le C_m(t) \int_0^{1} (1-n(1-|t|))^{} du = C_m(t) \left( - \frac{1}{1 - |t|} \right) \frac{1}{n+1} (1-n(1-|t|))^{n+1}\mid _{n=0}^{n=1}
+    =\] 
+    \[
+	= C_m(t) \frac{1}{1-|t|}\frac{1}{n+1} (1- |t|^{n+1}) \le C_m(t) \frac{1}{n+1}
+    .\] 
+    Получили \[
+	R_n(t) \le |t|^{n+1} \left|{ m-1\choose n}\right| |m|\frac{1}{n+1} \bar{C}_m(t) = \sigma_n(t) 
+    .\] 
+    Хотим доказать, что это стремиться к нулю.
+    \[
+	\frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} = \frac{n+1}{n+2} |t| \left| \frac{m-n+1}{n+2} \right|  \longleftarrow |t|, \qquad n \to \infty
+    .\] 
+    \[
+	\exists k_0 : n > k_0 \quad \frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} \le \rho \quad \sigma_n(t) \le A \rho^{n-1}, \quad |t| \le \rho < 1
+    .\] 
+    Доказали сходимость.
+    \end{enumerate}
+\end{proof}
+$ x, x_0 > 0$ 
+\[
+    x ^{m} = x_0^{m} \left(\frac{x}{x_0})\right)^{m} = x_0 ^{m} (1 - (1 - \frac{x}{x_0}))^{m} = 
+\] 
+\[
+    = x-^{n} (1 + \sum_{n=1}^{\infty} {m \choose n} (-1) ^{n} \left( 1 _ \frac{x}{x_0} \right) ^{m} = x_0^{m}+ \sum_{n=1}^{\infty} {m \choose n} (x- x_0)^{m}
+.\] 
+Значит ряд Тейлора аналитичен.
+
+\begin{thm}[Формула Тейлора с остатком в интегральной форме]
+    Если $ f$ дифференцируема $ n+1$ раз на отрезке с концами $ a, t$:
+    \begin{equation}\label{tey_1}
+	f(x) = f(a) + \frac{f'(a)}{1!} (t-a) + \ldots + \frac{f^{(n)}(a)}{n!} + \underbrace{\frac{1}{n!} \int_0^{t} f^{(n+1)} (x) (t-a)^{n} dx}_{R_n(t, a)}
+    \end{equation}
+\end{thm}
+\begin{st}
+    Если $ f$ дифференцируема $ n+1$ раз:
+    \begin{equation}\label{tey_2}
+	\exists  c \text{ между $ a$ и $ t$ }: R_n(t, a) = \frac{(t-a)^{n+1}}{(n+1)!} f^{(n+1)}(c)
+    \end{equation}
+\end{st}
+    
+\begin{note}
+    Если $ f \in  C^{(n+1)}$, то \ref{tey_2} можно вывести из \ref{tey_1}.
+\end{note}
+
+\begin{thm}[о среднем]
+    $ \varphi , \psi$ -- функции на $ [c, d]$, $\varphi$  непрерывна,  $ \psi $  - интегрируема по Риману и не меняет знака. Тогда \[
+	\exists  \psi \in  [c, d]: \int_c^{d} \varphi (x) \psi(x) dx = \varphi (\psi) \int_c^{d} \varphi (x) dx
+    .\] 
+\end{thm}
+\begin{proof}
+    Можно считать, что $ \psi \ge 0$. Пусть $ m = \min_{x\in [c, d] } \varphi (x), \quad M = \max_{x\in [c, d]}$.
+    \[
+	m \int_c^{d} \varphi  (x) dx \le  \int_c ^{d} \varphi (x) \psi (x) x \le  M \int_x ^{ d} \varphi (x) dx
+    .\] 
+    \[
+	m \psi(x) \le \varphi (x) \psi(x) \le M \psi(x)
+    .\] 
+    Если 
+    $
+	 \int_c^{d} \psi(x) dx = 0
+	 $,
+	 теорема верна. Предположим, что этот интеграл не равен нулю.
+    \[
+	m \le  \frac{\int_c^{d} \varphi (x) \psi(x) dx}{\int_c^{d} \psi(x) dx} \le  M
+    .\] 
+    Следовательно,
+    \[
+	\exists ~\zeta  \in  [c, d] : \psi( \zeta) = \frac{\int_c^{d} \varphi (x) \psi(x) dx}{\int_c^{d} \psi(x) dx}
+    .\] 
+\end{proof}
+\begin{st}[оценка остатка]
+    \[
+	\varphi (x) = f^{(n+1)} (x) , \psi(x) = (t-x)^{n}
+    .\] 
+    \[
+	\exists  \zeta: R_n(t, a)= \frac{1}{n!} f(^{(n+1)} (\zeta) \int_{a}^{t}(t-x)^{n}dx
+    .\] 
+    \[
+	f^{(n+1)}(\zeta) \frac{1}{(n+1)!} \biggl[ -(t-x)^{n+1} \Bigm|_{x=a}^{x=t}\biggr] = f^{(n+1)} (\zeta) \frac{1}{(n+1)!}(t-a)^{n+1}
+    .\] 
+\end{st}
+\section{Дифференциальные уравнения}
+\[
+    \Phi \left(f'(t) , f(t) , t \right) = 0
+.\] 
+\begin{thm}
+    Пусть $ f$ -- непрерывная дифференцируемая функция на $ (a, b)$.
+    Следующие условия эквивалентны:
+     \begin{enumerate}
+	 \item $ f'(t) = c f(t) \quad \forall t \in  (a, b)$ 
+	 \item $ \exists A: ~ f(t) = A e ^{ct}$
+     \end{enumerate}
+\end{thm}
+\begin{proof}
+    $2 \Longrightarrow  1$ -- очевидно \\
+    $1 \Longrightarrow  2$
+    \[
+	g(t) = f'(t) e ^{-ct}
+    .\] 
+    \[
+	g'(t) = f'(t) e^{-ct} + f(t) (-c e^{-ct}) = c f(t) e^{-ct} - c f(t) e^{-ct} = 0
+    .\] 
+    Тогда $ g(t) \equiv A \in  R$.
+
 \end{proof}
 \end{document}
