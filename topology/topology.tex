@@ -17,13 +17,14 @@
 \usepackage{epstopdf}
 
 % разметка страницы и колонтитул
-\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
-\fancyhead[RO,LE]{\thepage}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+\addtolength{\headheight}{13pt}
 % \fancyfoot[RO,LE]{\thesection}
-\fancyfoot[C]{}
-% \fancyhead[L]{\section}
-% \fancyfoot[C]{Лекция \thesection}
+\fancyfoot[C]{\leftmark}
 
 \pagestyle{fancy}
 
@@ -52,6 +53,7 @@
 \newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
 \newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\dist}{{\mathop{\text{\rm dist}}}}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
@@ -88,12 +90,11 @@
 
 
 \title{Конспект по топологии \\
-I семестр \\
-(лекции Иванова Сергея Владимировича)}                      
+    I семестр \\
+(лекции Иванова Сергея Владимировича)}
 \author{Тамарин Вячеслав}
 
 \begin{document}
-
 \maketitle
 \clearpage
 \tableofcontents
@@ -110,10 +111,10 @@ I семестр \\
 \begin{defn}\label{def_ptp}
     $X, Y$ - топологические пространства.
 
-    Топология произведения на $X \times Y$ -- топология, база которой равна 
+    Топология произведения на $X \times Y$ -- топология, база которой равна
     \[
-    \{A \times B \mid A \subset X, B \subset Y \mbox{ - открыты.}\}
-    .\] 
+	\{A \times B \mid A \subset X, B \subset Y \mbox{ - открыты.}\}
+    .\]
     $X \times Y$ с такой топологией -- произведение $X$ и $Y$.
 \end{defn}
 \begin{thm}
@@ -121,18 +122,18 @@ I семестр \\
 \end{thm}
 \begin{proof}
     \begin{enumerate}
-        \item Все пространство открыто
+	\item Все пространство открыто
 	\item Пересечение двух множеств из базы = объединение множеств базы.
-\begin{figure}[ht]
-    \centering
-    \incfig{cap}
-    \caption{Пересечение}
-    \label{fig:cap}
-\end{figure}
-\[
-    (A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)
-.\] 
-Получили объединение открытого в $X$ и в $Y$, а значит принадлежит базе.
+	    \begin{figure}[ht]
+		\centering
+		\incfig{cap}
+		\caption{Пересечение}
+		\label{fig:cap}
+	    \end{figure}
+	    \[
+		(A \times B) \cap (C \times D) = (A \cap C) \times (B \cap D)
+	    .\]
+	    Получили объединение открытого в $X$ и в $Y$, а значит принадлежит базе.
     \end{enumerate}
 \end{proof}
 \begin{thm}
@@ -142,8 +143,8 @@ I семестр \\
     Докажем, что дополнение открыто.
     \[
 	(X \times Y) \setminus(A \times B) = X \times (Y \setminus B) \cup (X \setminus A) \times Y
-    .\] 
-$Y \setminus B$ открыто в $Y$, а $X \setminus A$ открыто в $X$. Тогда объединение произведений с $X$ и $Y$ есть объединение открытых в $X \times Y$.
+    .\]
+    $Y \setminus B$ открыто в $Y$, а $X \setminus A$ открыто в $X$. Тогда объединение произведений с $X$ и $Y$ есть объединение открытых в $X \times Y$.
 \end{proof}
 \begin{prac}
     Для любых $A \subset X, ~ B \subset Y$ :
@@ -159,57 +160,57 @@ $d_X, d_Y$ - метрики.
 \begin{thm}
     \[
 	d((x, y) , (x', y')) = max \{d_X(x, x'), d_Y(y, y')\}
-    .\] 
+    .\]
     $d$ - метрика на $X \times Y$.
-   Произведение метризуемых пространств метризуемо. 
+    Произведение метризуемых пространств метризуемо.
 \end{thm}
 \begin{proof}
     \begin{enumerate}
 	\item
-    Проверим, что $d$ - метрика.
-    Очевидно, что $d((x, y), (x', y')) = 0 \Longleftrightarrow d_X(x, x') = d_Y(y, y') = 0 \Longleftrightarrow x = y \wedge x' = y'$. Также значение не зависит от порядка. Осталось проверить неравенство треугольника.
-    \[
-	d(p, p') + d(p', p'') \stackrel{?}\ge  d(p, p'') \stackrel{\text{НУО}} = d_X(x, x'')
-    .\] 
-    \[
-	d_X(x, x') + d_X(x', x'') \ge d_X(x, x'')
-    .\] 
-\item $\Omega_d \subset \Omega _{X \times Y} $
-    \[
-	B_r((x, y)) = B_r^X(x) \times B_r^Y(y) 
-    .\] 
-    А  это базовое множество, которое мы представили через базовые множества $X$ и $Y$.
+	    Проверим, что $d$ - метрика.
+	    Очевидно, что $d((x, y), (x', y')) = 0 \Longleftrightarrow d_X(x, x') = d_Y(y, y') = 0 \Longleftrightarrow x = y \wedge x' = y'$. Также значение не зависит от порядка. Осталось проверить неравенство треугольника.
+	    \[
+		d(p, p') + d(p', p'') \stackrel{?}\ge  d(p, p'') \stackrel{\text{НУО}} = d_X(x, x'')
+	    .\]
+	    \[
+		d_X(x, x') + d_X(x', x'') \ge d_X(x, x'')
+	    .\]
+	\item $\Omega_d \subset \Omega _{X \times Y} $
+	    \[
+		B_r((x, y)) = B_r^X(x) \times B_r^Y(y)
+	    .\]
+	    А  это базовое множество, которое мы представили через базовые множества $X$ и $Y$.
 
-\item $\Omega _{X \times Y} \subset \Omega_d$
-    Рассмотрим  $W \in \Omega _{X \times Y}$.
-\begin{figure}[ht]
-    \centering
-    \incfig{img}
-    \caption{Произведение метрических пространств}
-    \label{fig:img}
-\end{figure}
-    \[
-	\exists A \subset X, ~ B \subset Y \mbox{- открытые}, (x, y) \in  A\times B \subset W 
-    .\] 
-    \[
-	\exists r_1 > 0: B_{r_1}^X(x) \subset A
-    .\] 
-    \[
-	\exists r_2 > 0: B_{r_2}^Y(y) \subset B
-    .\] 
-    Теперь возьмем $r = \min (r_1, r_2)$
-    \[
-	B_r^{X \times Y} ((x, y)) = B_r^X(x) \times B_r^Y(y) \subset A \times B \subset W
-    .\] 
+	\item $\Omega _{X \times Y} \subset \Omega_d$
+	    Рассмотрим  $W \in \Omega _{X \times Y}$.
+	    \begin{figure}[ht]
+		\centering
+		\incfig{img}
+		\caption{Произведение метрических пространств}
+		\label{fig:img}
+	    \end{figure}
+	    \[
+		\exists A \subset X, ~ B \subset Y \mbox{- открытые}, (x, y) \in  A\times B \subset W
+	    .\]
+	    \[
+		\exists r_1 > 0: B_{r_1}^X(x) \subset A
+	    .\]
+	    \[
+		\exists r_2 > 0: B_{r_2}^Y(y) \subset B
+	    .\]
+	    Теперь возьмем $r = \min (r_1, r_2)$
+	    \[
+		B_r^{X \times Y} ((x, y)) = B_r^X(x) \times B_r^Y(y) \subset A \times B \subset W
+	    .\]
     \end{enumerate}
 \end{proof}
 \begin{st}[Согласование метрик]
     \[
 	d_1 ((x, y), (x', y')) = d_X(x, x') + d_Y(y, y')
-    .\] 
+    .\]
     \[
 	d_2((x, y), (x', y')) = \sqrt{d_X(x, x')^2 + d_Y (y, y')^2}
-    .\] 
+    .\]
 \end{st}
 \begin{proof}
     Проверим неравенство треугольника для второй метрики (для первого - очевидно).
@@ -219,13 +220,13 @@ $d_X, d_Y$ - метрики.
 	    \shortparallel & & \shortparallel \\
 	    \sqrt{(a + b)^2 + (c+d)^2} & \le & \sqrt {a^2+c^2} + \sqrt {b^2+d^2}
 	\end{array}
-    .\] 
-\begin{figure}[ht]
-    \centering
-    \incfig{img2}
-    \caption{Неравенство треугольника}
-    \label{fig:img2}
-\end{figure}
+    .\]
+    \begin{figure}[ht]
+	\centering
+	\incfig{img2}
+	\caption{Неравенство треугольника}
+	\label{fig:img2}
+    \end{figure}
 \end{proof}
 \begin{defn}
     Бесконечное произведение пространств
@@ -235,17 +236,17 @@ $d_X, d_Y$ - метрики.
     Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, x_i \in  X_i \}$.
 
     Тогда рассмотрим отображение $p_i: X \mapsto X_i$ - проекция.
-    
+
     Тихоновская топология на $X$ -- топология с предбазой
     \[
 	\left \{ p^{-1}_i (U) \right \}_{i \in  I, ~ U \in  \Omega}
-    .\] 
-\begin{figure}[ht]
-    \centering
-    \incfig{tikhon_topology}
-    \caption{Тихоновская топология}
-    \label{fig:tikhon_topology}
-\end{figure}
+    .\]
+    \begin{figure}[ht]
+	\centering
+	\incfig{tikhon_topology}
+	\caption{Тихоновская топология}
+	\label{fig:tikhon_topology}
+    \end{figure}
 \end{defn}
 \begin{tasks}
     \begin{enumerate}
@@ -262,7 +263,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{note}
     \[
 	f^{-1} (A \cap B) = f^{-1}(A) \cap f^{-1}(B)
-    .\] 
+    .\]
 \end{note}
 \begin{exs}
     \begin{enumerate}
@@ -276,43 +277,43 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $f: X \to  Y, ~ x_0 \in Y$
     $f$ непрерывна в точке $ x_0$, если \[
 	\forall \mbox{ окрестности } U \ni y_0 = f(x_0) \exists \mbox{ окрестность } V \ni x_0: f(U) \subset V
-    .\] 
+    .\]
 \end{defn}
 \begin{thm}
     $f$ - непрерывна тогда и только тогда, когда $\forall x_0 \in  X: f$ - непрерывна в точке $x_0$.
 \end{thm}
 \begin{proof}
     $\Rightarrow )$\\
-	$y_0 \in  U$.
-	\[
-	\left \{ 
+    $y_0 \in  U$.
+    \[
+	\left \{
 	    \begin{array}{ll}
 		f^{-1}(U) \mbox{ открыт} & V:=f^{-1}(U)\\
 		x_0 \in f^{-1}(U) & f(V) \subset U
-	        
+
 	    \end{array}
-	    \right .
-	.\] 
-	$\Leftarrow )$\\
-	$U \subset Y$ - открыто, хотим доказать, что $f^{-1}(U)$ - открыто.
-	Достаточно доказать, что $\forall x \in  f^{-1}(x) $- внутренняя.
-	\[
-	    \exists V \ni x: f(V)\subset U \Leftrightarrow x \in  V \subset f^{-1}(U)
-	.\] 
-	Тогда $x$ - внутренняя точка $f^{-1}(U)$.
+	\right .
+    .\]
+    $\Leftarrow )$\\
+    $U \subset Y$ - открыто, хотим доказать, что $f^{-1}(U)$ - открыто.
+    Достаточно доказать, что $\forall x \in  f^{-1}(x) $- внутренняя.
+    \[
+	\exists V \ni x: f(V)\subset U \Leftrightarrow x \in  V \subset f^{-1}(U)
+    .\]
+    Тогда $x$ - внутренняя точка $f^{-1}(U)$.
 \end{proof}
 \subsection{Непрерывность в метрических пространствах}
 \begin{thm}
     $X, Y$ -- метрические пространства.  $f: X \to  Y, ~ x_0 \in  X$.
 
-    Тогда $f$ -- непрерывна в точка $x_0$ тогда и только тогда, когда 
+    Тогда $f$ -- непрерывна в точка $x_0$ тогда и только тогда, когда
     \[
 	\forall  \varepsilon > \exists  \delta  >0: f(B_{ \delta }) \subset B_{ \varepsilon } (f(x))
-    .\] 
+    .\]
     Или можем записать альтернативную формулировку непрерывности:
     \[
-	\forall  \varepsilon  \exists \delta : \forall x' \in  X \wedge d(x, x') < d \Rightarrow  d(f(x) , f(x')) < \varepsilon 
-    .\] 
+	\forall  \varepsilon  \exists \delta : \forall x' \in  X \wedge d(x, x') < d \Rightarrow  d(f(x) , f(x')) < \varepsilon
+    .\]
 \end{thm}
 \begin{proof}
     $ \Rightarrow )$ Так как $f$ -- непрерывна в точке $x$, существует окрестность $V \ni x: f(v) \subset  B_{ \varepsilon }(f(x))$. Так как $V$ открыто, $\exists  \delta >0 : B_{ \delta } \subset  V$.
@@ -332,24 +333,24 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     Все липшицевы отображения непрерывны.
 \end{cor}
 \begin{proof}
-    Рассмотрим $ \delta = \frac{\varepsilon}{c}$. 
+    Рассмотрим $ \delta = \frac{\varepsilon}{c}$.
     \[
-	d_X(x, x') < \delta  \Rightarrow d_Y(f(x), f(x')) \le C \delta = \varepsilon 
-    .\] 
+	d_X(x, x') < \delta  \Rightarrow d_Y(f(x), f(x')) \le C \delta = \varepsilon
+    .\]
 \end{proof}
 \begin{ex}
     $X $ -- метрика, $x0 \in  X$.
     $f: X \to  \R, \quad f(x) = d(x, x_0)$
     \[
 	|f(x) = f(y)| = f(y) - f(x) = d(y, x_0) - d(x, x_0) \le d(x, y)
-    .\] 
+    .\]
     Получили, что липшицево с константой $1$.
 \end{ex}
 \begin{task}
-    $A \subset  X$ 
+    $A \subset  X$
     \[
-	f(x) = dist(x, A) := \inf \{d(x, y) \mid y \in  A\}
-    .\] 
+	f(x) = \dist(x, A) := \inf \{d(x, y) \mid y \in  A\}
+    .\]
     Доказать, что $X$ тоже липшицево с константой $1$.
 \end{task}
 \begin{ex}
@@ -358,23 +359,23 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \subsection{Композиция непрерывных отображений}
 \begin{thm}
     Композиция непрерывных отображений непрерывна.
-\begin{figure}[ht]
-    \centering
-    \incfig{compose}
-    \caption{compose}
-    \label{fig:compose}
-\end{figure}
+    \begin{figure}[ht]
+	\centering
+	\incfig{compose}
+	\caption{compose}
+	\label{fig:compose}
+    \end{figure}
 \end{thm}
 \section{Аксиомы}
 \subsection{Аксиомы счетности}
 \begin{defn}
-    $ X = (X , \Omega )$  
+    $ X = (X , \Omega )$
     База в точке $ x \in  X$ -- такое множество $ \Sigma _x \subset \Omega $, что:
     \begin{enumerate}
-        \item $ \forall V \in  \Sigma _x: x \in  V$
+	\item $ \forall V \in  \Sigma _x: x \in  V$
 	\item $ \forall U \not\ni x \exists V \in  \Sigma _x: V \subset U$
     \end{enumerate}
-    
+
 \end{defn}
 \begin{name}
     Счетное множество -- не более, чем счетное.
@@ -389,7 +390,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     2AC  $ \Rightarrow $ 1АС
 \end{thm}
 \begin{proof}
-    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть \ldots 
+    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть \ldots
 \end{proof}
 \begin{thm}
     Все метрические пространства удовлетворяют второй аксиоме счетности.
@@ -439,16 +440,16 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     Топологическое пространство сепарабельно, если в нем есть счетное всюду плотное множество.
 \end{defn}
 \begin{prop}
-        $ X, Y$ -- сепарабельны $ \Longrightarrow  X \times Y$  тоже.
+    $ X, Y$ -- сепарабельны $ \Longrightarrow  X \times Y$  тоже.
 \end{prop}
 \begin{note}
     Сепарабельность -- не наследственное свойство.
 \end{note}
 \begin{thm}$ $
     \begin{itemize}
-        \item Счетная база $ \Longrightarrow  $ сепарабельность.
+	\item Счетная база $ \Longrightarrow  $ сепарабельность.
 	\item Для метризуемых пространств сеперабельность $\Longrightarrow$ счетная база
-	\end{itemize}
+    \end{itemize}
 \end{thm}
 \section{Аксиомы отделимости}
 \begin{defn}
@@ -464,7 +465,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ X$ хаусдорфово $ \Longleftrightarrow $ Диагональ $ \Delta := \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
 \end{defn}
 \begin{defn}
-    $ X$ -- регулярно, если 
+    $ X$ -- регулярно, если
     \begin{itemize}
 	\item обладает $ T_1$
 	\item $ \forall  \text{ замкнутого }A \subset X~ \forall x \in  X \setminus A~ \exists \text{ открытые } U, V : A \subset  U \wedge x \in V \wedge U \cap  V = \varnothing $
@@ -473,13 +474,13 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     \end{itemize}
 \end{defn}
 \begin{defn}
-    $ X$ -- нормально, если 
+    $ X$ -- нормально, если
     \begin{itemize}
-        \item обладает $ T_1$ 
+	\item обладает $ T_1$
 	\item $ \forall  A, B \in  X (A \cap  B = \varnothing) ~ \exists  \text{ открытые } U, V: A \subset U,  B  \subset V  \wedge U \cap  V= \varnothing$
-	\end{itemize}
+    \end{itemize}
 
-	    Другое название $ T_4$-пространство
+    Другое название $ T_4$-пространство
 \end{defn}
 \begin{st}
     $ T_4 \Rightarrow T_3 \Rightarrow  T_2 \Rightarrow T_1$
@@ -498,12 +499,12 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ f: X \to  Y$
     \[
 	f(x) = \frac{d(x, A)}{d(x, A) + d(x, B)}
-    .\] 
+    .\]
     Она корректна, непрерывна, и принимает значение ноль на $ A$  и  единице $ B$.
 \end{proof}
 \begin{lm}[Урысон]
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
-    
+
 \end{lm}
 \subsection{Факторизация}
 \begin{ex}
@@ -513,67 +514,67 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     Если склеить $ \vec{AB}$ и $ \vec{CD}$, получи  { \bf лента Мебиуса}.
 \end{ex}
 \begin{defn}
-    ПУсть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ Homeo(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
+    Пусть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ Homeo(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
 
     Введем отношение эквивалентности $ \sim $ на $ X$ :
     \[
 	a \sim b \Longleftrightarrow \exists  g \in  \Gamma : g(a) = b
-    .\] 
+    .\]
     Фактор пространство $ X \diagup \sim $  обозначается $ X / F$ или $ X \backslash F$
 \end{defn}
 \begin{thm}
-    Пусть $ p : X \to  X / \sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
+    Пусть $ p : X \to  X /\sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
     \[
 	\forall  x, y \in  X: ~ x \sim y \Longrightarrow f(x) = f(y)
-    .\] 
+    .\]
     Тогда
     \begin{enumerate}
-        \item $ \exists  \overline{f}: X / \sim  \to  Y: f = \overline{f} \circ p$.
-	    \item  $ \overline{f}$ непрерывно тогда и только тогда, когда  $ f$ непрерывно.
+	\item $ \exists  \overline{f}: X / \sim  \to  Y: f = \overline{f} \circ p$.
+	\item  $ \overline{f}$ непрерывно тогда и только тогда, когда  $ f$ непрерывно.
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    \begin{enumerate}
-	\item Определим $ \overline{f([x])} = f(x)$ для всех $ x \in X$
-	    \item По непрерывности композиции, если $ \overline{f}$ непрерывна, то $ f$ тоже.
-	    \item В обратную сторону -- по определению фактортопологии. (провеим определение непрерывности)
-    \end{enumerate}
+    $ $
+    \begin{itemize}
+	\item Определим $ \overline{f}([x]) = f(x)$ для всех $ x \in X$
+	\item По непрерывности композиции, если $ \overline{f}$ непрерывна, то $ f$ тоже.
+	\item В обратную сторону -- по определению фактортопологии. (проверим определение непрерывности)
+	\end{itemize}
 \end{proof}
 \begin{thm}
     $ [0, 1] / \{1, 0\} \cong S^{1}$
-\begin{figure}[ht]
-    \centering
-    \incfig{th-circ}
-    \caption{th-circ}
-    \label{fig:th-circ}
-\end{figure}
+    % \begin{figure}[ht]
+	% \centering
+	% \infcig{th-circ}
+	% \caption{th-circ}
+	% \label{fig:th-circ}
+    % \end{figure}
 \end{thm}
 \begin{thm}\label{th_nx}
     $ X$ -- замкнуто, $ Y$ -- хаусдорфово.
     $ f : X \to  Y $ -- непрерывно и сюрьективно.
-    Тогда \[
-    X /\sim  \cong  Y 
-    .\] 
+    Тогда $X /_{ \sim}  \cong  Y
+    .$
     Где $ \sim $ -- эквивалентность .%??
 \end{thm}
 \begin{thm}
     $ D^{n} / S^{n-1} \cong S^{n}$
 \end{thm}
 \begin{proof}
-    Вместо $ D^{n}$ возьмем $ B$ -- замкнутый шар радиуса $ \pi$ cс цетром в $ 0 \in \R^{n} $.
+    Вместо $ D^{n}$ возьмем $ B$ -- замкнутый шар радиуса $ \pi$ c  центром в $ 0 \in \R^{n} $.
     По прошлой теореме \ref{th_nx} достаточно построить сюрьективный гомеоморфизм $ f: B \to  S ^{n}$, отображающий край шара в одну точку, а в остальном инъективен.
-    Сойдет такое 
+    Сойдет такое
     \[
 	f(x) = \left( \frac{1}{|x|} \sin(|x|) \cos (|x|) \right) , f(0) = (0_{\R_{n-1}}, 1)
-    .\] 
+    .\]
 \end{proof}
 
 \section{Многообразия}
 \begin{name}
-    Здесь и далее $ n \in \N \cup 0$
+    Здесь и далее $ n \in \N \cup \{0\}$
 \end{name}
 \begin{defn}
-    $ n$-мерное многообразие -- хаусдорфово топологическое пространство со счетной базой, обладающее свойством локальной евклидовости: у любой точки $ x in M$ есть окрестность, гомеоморфная  $ \R^{n}$.
+    $ n$-мерное многообразие -- хаусдорфово топологическое пространство со счетной базой, обладающее свойством локальной евклидовости: у любой точки $ x \in M$ есть окрестность, гомеоморфная  $ \R^{n}$.
 
     Число $ n$ -- размерность многообразия.
 \end{defn}
@@ -581,7 +582,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     При $ m \ne n$ никакие непустые открытые подмножества $ \R^{n}$ и $ \R^{m}$ не гомеоморфны.
 \end{thm}
 \begin{cor}
-    Многообразие размерности $ n$ Не гомеоморфно многообразию размерности $ m$.
+    Многообразие размерности $ n$ не гомеоморфно многообразию размерности $ m$.
 \end{cor}
 \begin{ex}
     $ 0$-мерные многообразия -- не более чем счетные дискретные пространства.
@@ -593,7 +594,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     Сфера $ S^{n}$ -- $ n$-мерное многообразие
 \end{ex}
 \begin{ex}
-Проективное пространство $ \R P^{n} = S^{n}/\{id, -id\}$ -- моногообразие
+    Проективное пространство $ \R P^{n} = S^{n}/\{id, -id\}$ -- многообразие
 \end{ex}
 \begin{prac}
     В диске $ D^{n}$ склеим противоположные точки границы. Полученное пространство гомеоморфно $ \R P^{n}$.
@@ -610,10 +611,10 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ $
     \begin{itemize}
 	\item  Пусть дан правильный $ 2n$ угольник  $ D^{2}$ с границей разбитой на части), стороны которого разбиты на пары и ориентированы.
-	   Склеим кажу пару сторон по естественному отображению с учетом ориентации.
-	   Тогда получится двумерное многообразие.
-       \item Пусть дан $ m$-угольник некоторые $ 2n $ сторон ($ 2n < m$) которого разбиты на пары, ориентированы и склеены аналогично. 
-	   Тогда получается двумерное многообразие.
+	    Склеим кажу пару сторон по естественному отображению с учетом ориентации.
+	    Тогда получится двумерное многообразие.
+	\item Пусть дан $ m$-угольник некоторые $ 2n $ сторон ($ 2n < m$) которого разбиты на пары, ориентированы и склеены аналогично.
+	    Тогда получается двумерное многообразие.
     \end{itemize}
 \end{thm}
 \begin{note}
@@ -624,41 +625,42 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     Любое многообразие локально линейно связно. Следовательно, компоненты линейной связности совпадают с комнопнентами связности и открыты. Будем исследовать только связные многообразия.
 \end{note}
 \begin{thm}
-    Псть $ M $ -- непустое связное 1-мерное многообразие. Тогда 
+    Пусть $ M $ -- непустое связное 1-мерное многообразие. Тогда
     \begin{enumerate}
 	\item  $ M$ -- компактно, без края $\Longrightarrow   M \cong S^{1}$
 	\item $ M$ -- некомпактно, без края $\Longrightarrow   M \cong \R$
-	\item  $ M $ -- 
+	\item  $ M $ --
     \end{enumerate}
 \end{thm}
 \begin{defn}
     Пусть $ p \in  \N$. Сфера с $ p$  ручками строится так:
-    берем сфер  $ S^{2}$, вырезаем $ p$ непересекающихся дырок  $ D^{2}$. Далее берем $ p$ торов с такими же дырками и приклеиваем по дыркам торы к сфере.
+    берем сфер  $ S^{2}$, вырезаем $ p$ не пересекающихся дырок  $ D^{2}$. Далее берем $ p$ торов с такими же дырками и приклеиваем по дыркам торы к сфере.
 \end{defn}
 \begin{defn}
     Сфера с пленками -- аналогично, только приклеиваем ленты Мебиуса.
 \end{defn}
 \begin{prac}
-    Cathf c jlyjq пленкой -- $ \R P^{3}$, сфера с двумя пленками -- бутылка Клейна.
+    Сфера с одной пленкой -- $ \R P^{3}$, сфера с двумя пленками -- бутылка Клейна.
 \end{prac}
 \begin{st}
     Поверхность -- связное двумерное многообразие.
 \end{st}
 \begin{thm}
+    $ $
     \begin{itemize}
-        Компактная поверхность без края гомеоморфна сфере или сфере с ручками или сфере с пленками.
-    \item Поверхности разного типа, сферы с разным числом ручек, сферы с разным числом пленок попарно не гомеоморфны.
-    \item Компактная поверхность с краем гомеоморфна одному из этих цилиндров с несколькими дырками.
+	\item Компактная поверхность без края гомеоморфна сфере или сфере с ручками или сфере с пленками.
+	\item Поверхности разного типа, сферы с разным числом ручек, сферы с разным числом пленок попарно не гомеоморфны.
+	\item Компактная поверхность с краем гомеоморфна одному из этих цилиндров с несколькими дырками.
     \end{itemize}
-	Поверхности с разным числом дырок негомеоморфны.
+    Поверхности с разным числом дырок негомеоморфны.
 \end{thm}
 \subsection{Эйлерова характеристика}
 \begin{defn}
-    ПУсть $ M$ -- компактная  поверхность, разбитая вложенныам связным графом на области-диски (замыкание области гомеоморфно диску, граница -- цикл в графе).
+    Пусть $ M$ -- компактная  поверхность, разбитая вложенныам связным графом на области-диски (замыкание области гомеоморфно диску, граница -- цикл в графе).
     Эйлерова характеристика  $ M$ -- целое число:
-     \[
-	 \chi (M) = V - E + F
-    .\] 
+    \[
+	\chi (M) = V - E + F
+    .\]
 \end{defn}
 \begin{thm}
     Эйлерова характеристика -- топологический инвариант.
@@ -672,8 +674,8 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	\item При вырезании дырки $ \chi$ уменьшается на 1
 	\item $ \chi(\text{сферы с $ n$ дырками}) = 2 -n, \chi(\text{тора с дыркой} ) = -1$
 	\item $ \chi(A \cap B) = \chi(A) + \chi(B) - \chi(A \cup B) $
-	\item $ \chi (\text{ сферы с p ручками) }=2-2p$
-	\item $ \chi (\text{ сферы с q пленками) }=2-q$
+	\item $ \chi (\text{сферы с p ручками) }=2-2p$
+	\item $ \chi (\text{сферы с q пленками) }=2-q$
     \end{itemize}
 \end{exs}
 \end{document}
