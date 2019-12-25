@@ -1,4 +1,4 @@
-%% Creator: Inkscape inkscape 0.92.1, www.inkscape.org
+%% Creator: Inkscape inkscape 0.92.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'compose.pdf' (pdf, eps, ps)
 %%
@@ -35,6 +35,8 @@
     \renewcommand\transparent[1]{}%
   }%
   \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
     \setlength{\unitlength}{680.31496063bp}%
     \ifx\svgscale\undefined%
@@ -49,15 +51,18 @@
   \global\let\svgscale\undefined%
   \makeatother%
   \begin{picture}(1,0.5)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{compose.pdf}}%
-    \put(0.33333333,0.08333333){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$f$}}}%
-    \put(0.66666667,0.08333333){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g$}}}%
-    \put(0.5,0.45833333){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g \circ f$}}}%
-    \put(0.83333333,0.25){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$A$}}}%
-    \put(0.9166666,0.39201399){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$Z$}}}%
-    \put(0.625,0.375){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$Y$}}}%
-    \put(0.29166667,0.375){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$X$}}}%
-    \put(0.4869963,0.24779517){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g^{-1}(A)$}}}%
-    \put(0.12477427,0.25){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$f^{-1}(g^{-1}(A))$}}}%
+    \put(0.33333333,0.08333333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f$\end{tabular}}}}%
+    \put(0.66666667,0.08333333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$g$\end{tabular}}}}%
+    \put(0.5,0.45833333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$g \circ f$\end{tabular}}}}%
+    \put(0.83333333,0.25){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A$\end{tabular}}}}%
+    \put(0.9166666,0.39201399){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Z$\end{tabular}}}}%
+    \put(0.625,0.375){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Y$\end{tabular}}}}%
+    \put(0.29166667,0.375){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
+    \put(0.4869963,0.24779517){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$g^{-1}(A)$\end{tabular}}}}%
+    \put(0.12477427,0.25){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f^{-1}(g^{-1}(A))$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{compose.pdf}}%
   \end{picture}%
 \endgroup%

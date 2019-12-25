@@ -57,9 +57,6 @@
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
-
-\renewcommand{\proofname}{Proof}
-
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
 \theoremstyle{definition}
@@ -88,6 +85,8 @@
 \newtheorem*{tasks}{Tasks}
 \newtheorem*{task}{Task}
 
+% \theoremstyle{definition}
+% \theoremstyle{plain}
 
 \title{Конспект по топологии \\
     I семестр \\
@@ -204,7 +203,8 @@ $d_X, d_Y$ - метрики.
 	    .\]
     \end{enumerate}
 \end{proof}
-\begin{st}[Согласование метрик]
+\begin{st}
+    Согласование метрик:
     \[
 	d_1 ((x, y), (x', y')) = d_X(x, x') + d_Y(y, y')
     .\]
@@ -228,12 +228,12 @@ $d_X, d_Y$ - метрики.
 	\label{fig:img2}
     \end{figure}
 \end{proof}
-\begin{defn}
-    Бесконечное произведение пространств
+\begin{defn}[Бесконечное произведение пространств]
+    $ $
 
-    $\left \{ X_i \right \}_{i \in  I}$ - семейство топологических пространств. $\Omega_i$ - топология.
+    $\left \{ X_i \right \}_{i \in  I}$ -- семейство топологических пространств. $\Omega_i$ -- топология.
 
-    Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, x_i \in  X_i \}$.
+    Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, ~ x_i \in  X_i \}$.
 
     Тогда рассмотрим отображение $p_i: X \mapsto X_i$ - проекция.
 
@@ -241,14 +241,16 @@ $d_X, d_Y$ - метрики.
     \[
 	\left \{ p^{-1}_i (U) \right \}_{i \in  I, ~ U \in  \Omega}
     .\]
+    // здесь мог бы быть рисунок, но его нет
+\end{defn}
     \begin{figure}[ht]
 	\centering
 	\incfig{tikhon_topology}
 	\caption{Тихоновская топология}
 	\label{fig:tikhon_topology}
     \end{figure}
-\end{defn}
 \begin{tasks}
+    $ $
     \begin{enumerate}
 	\item Счетное произведение метризуемых -- метризуемо. Сначала можно разобраться с отрезком $[0, 1]^\N = \prod_{i \in  \N} [0, 1]$.
 	\item Канторовское множество $\approx \{0, 1\}^\N$
@@ -357,14 +359,14 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $d : X \times X \to  \R$ -- непрерывна.
 \end{ex}
 \subsection{Композиция непрерывных отображений}
-\begin{thm}
-    Композиция непрерывных отображений непрерывна.
     \begin{figure}[ht]
 	\centering
 	\incfig{compose}
-	\caption{compose}
+	\caption{Композиция отображений}
 	\label{fig:compose}
     \end{figure}
+\begin{thm}
+    Композиция непрерывных отображений непрерывна.
 \end{thm}
 \section{Аксиомы}
 \subsection{Аксиомы счетности}
@@ -375,7 +377,6 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	\item $ \forall V \in  \Sigma _x: x \in  V$
 	\item $ \forall U \not\ni x \exists V \in  \Sigma _x: V \subset U$
     \end{enumerate}
-
 \end{defn}
 \begin{name}
     Счетное множество -- не более, чем счетное.
@@ -451,7 +452,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	\item Для метризуемых пространств сеперабельность $\Longrightarrow$ счетная база
     \end{itemize}
 \end{thm}
-\section{Аксиомы отделимости}
+\subsection{Аксиомы отделимости}
 \begin{defn}
     $ X$ обладает свойтсвом $ T_1$, если для любой различных точек $ x, y \in X$ существует такое открытое $ U$, что $ x \not\in U \wedge y \not\in U$ .
 \end{defn}
@@ -506,12 +507,12 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
 
 \end{lm}
-\subsection{Факторизация}
+\section{Факторизация}
 \begin{ex}
-    Склеим в квадрате $ ABCD$ стороны  $ \vec{AB}$ и $ \vec{DC}$ по аффинной биекции между ними, сохраняющей отученное направление. Получим цилиндр $ S^{1} \times [0, 1]$.
+    Склеим в квадрате $ ABCD$ стороны  $\overrightarrow{AB}$ и $ \overrightarrow{DC}$ по аффинной биекции между ними, сохраняющей отученное направление. Получим цилиндр $ S^{1} \times [0, 1]$.
 \end{ex}
 \begin{ex}
-    Если склеить $ \vec{AB}$ и $ \vec{CD}$, получи  { \bf лента Мебиуса}.
+    Если склеить $ \overrightarrow{AB}$ и $ \overrightarrow{CD}$, получи  { \bf лента Мебиуса}.
 \end{ex}
 \begin{defn}
     Пусть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ Homeo(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
@@ -520,7 +521,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     \[
 	a \sim b \Longleftrightarrow \exists  g \in  \Gamma : g(a) = b
     .\]
-    Фактор пространство $ X \diagup \sim $  обозначается $ X / F$ или $ X \backslash F$
+    Фактор пространство $ X /\sim $  обозначается $ X / F$ или $ X \backslash F$
 \end{defn}
 \begin{thm}
     Пусть $ p : X \to  X /\sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
