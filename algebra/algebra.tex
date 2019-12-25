@@ -17,13 +17,14 @@
 \usepackage{epstopdf}
 
 % разметка страницы и колонтитул
-\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+\usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
-\fancyhead[RO,LE]{\thepage}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+\addtolength{\headheight}{13pt}
 % \fancyfoot[RO,LE]{\thesection}
-\fancyfoot[C]{}
-% \fancyhead[L]{\section}
-\fancyfoot[C]{Лекция \thesection}
+\fancyfoot[C]{\leftmark}
 
 \pagestyle{fancy}
 
