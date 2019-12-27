@@ -14,7 +14,7 @@
    viewBox="0 0 240 120"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
    sodipodi:docname="tikhon_topology.svg">
   <defs
      id="defs2">
@@ -114,9 +114,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99437388"
-     inkscape:cx="377.67786"
-     inkscape:cy="180.70923"
+     inkscape:zoom="0.49718694"
+     inkscape:cx="141.5854"
+     inkscape:cy="26.821503"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -124,10 +124,10 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1916"
-     inkscape:window-height="1039"
+     inkscape:window-width="1436"
+     inkscape:window-height="271"
      inkscape:window-x="0"
-     inkscape:window-y="39"
+     inkscape:window-y="627"
      inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
@@ -207,7 +207,7 @@
          id="tspan3211"
          x="140"
          y="287"
-         style="stroke-width:0.26458332">$U$</tspan></text>
+         style="stroke-width:0.26458332">$U \in \Omega_i$</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722195px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -215,9 +215,53 @@
        y="287"
        id="text3217"><tspan
          sodipodi:role="line"
-         id="tspan3215"
          x="200"
          y="287"
-         style="stroke-width:0.26458332">$x_i$</tspan></text>
+         style="stroke-width:0.26458332"
+         id="tspan872">$X_i$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="20"
+       y="227"
+       id="text897"><tspan
+         sodipodi:role="line"
+         x="20"
+         y="236.36377"
+         style="stroke-width:0.26458332"
+         id="tspan899" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="20"
+       y="237"
+       id="text905"><tspan
+         sodipodi:role="line"
+         id="tspan903"
+         x="20"
+         y="246.36377"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722195px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="20.73333"
+       y="234.66667"
+       id="text3213-3"><tspan
+         sodipodi:role="line"
+         x="20.73333"
+         y="234.66667"
+         style="stroke-width:0.26458332"
+         id="tspan931">$U \in \Omega_j$</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722195px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="20.937487"
+       y="277"
+       id="text3217-7"><tspan
+         sodipodi:role="line"
+         x="20.937487"
+         y="277"
+         style="stroke-width:0.26458332"
+         id="tspan872-5">$X_j$</tspan></text>
   </g>
 </svg>

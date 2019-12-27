@@ -228,27 +228,29 @@ $d_X, d_Y$ - метрики.
 	\label{fig:img2}
     \end{figure}
 \end{proof}
-\begin{defn}[Бесконечное произведение пространств]
+\subsection{Тихоновская топология}
+\begin{name}
     $ $
+    \begin{itemize}
+	\item $ X = \prod_{i \in  I} X_i $ --- произведение множеств или пространств.
+	\item $ p_i: X \to  X_i$ --- координатная проекция.
+	\item $ \Omega_i$ --- топология на $ X_i$.
+    \end{itemize}
+\end{name}
+\begin{defn}[Тихоновская топология]
 
-    $\left \{ X_i \right \}_{i \in  I}$ -- семейство топологических пространств. $\Omega_i$ -- топология.
-
-    Множество $\prod_{i \in  I} X_i = \{\{x_i\}_{i \in  I}\mid \forall i, ~ x_i \in  X_i \}$.
-
-    Тогда рассмотрим отображение $p_i: X \mapsto X_i$ - проекция.
-
-    Тихоновская топология на $X$ -- топология с предбазой
+    Пусть $\left \{ X_i, \Omega_i \right \}_{i \in  I}$ -- семейство топологических пространств.
+    Тихоновская топология на $X = \prod X_i$ -- топология с предбазой
     \[
-	\left \{ p^{-1}_i (U) \right \}_{i \in  I, ~ U \in  \Omega}
+	\left \{ p^{-1}_i (U)  \mid i \in  I, ~ U \in  \Omega_i \right \}
     .\]
-    // здесь мог бы быть рисунок, но его нет
 \end{defn}
-    \begin{figure}[ht]
-	\centering
-	\incfig{tikhon_topology}
-	\caption{Тихоновская топология}
-	\label{fig:tikhon_topology}
-    \end{figure}
+\begin{figure}[ht]
+    \centering
+    \incfig{tikhon_topology}
+    \caption{Тихоновская топология}
+    \label{fig:tikhon_topology}
+\end{figure}
 \begin{tasks}
     $ $
     \begin{enumerate}
@@ -268,6 +270,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     .\]
 \end{note}
 \begin{exs}
+    $ $
     \begin{enumerate}
 	\item Тождественное отображение непрерывно. $id_X : X \to  X$
 	\item Константа тоже непрерывна. $Const_{y_0}:X \to Y, ~ \forall x \in  X \quad x\mapsto y_0 $
@@ -359,15 +362,93 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $d : X \times X \to  \R$ -- непрерывна.
 \end{ex}
 \subsection{Композиция непрерывных отображений}
-    \begin{figure}[ht]
-	\centering
-	\incfig{compose}
-	\caption{Композиция отображений}
-	\label{fig:compose}
-    \end{figure}
+\begin{figure}[ht]
+    \centering
+    \incfig{compose}
+    \caption{Композиция отображений}
+    \label{fig:compose}
+\end{figure}
 \begin{thm}
     Композиция непрерывных отображений непрерывна.
 \end{thm}
+% вроде не дописано
+\section{Гомеоморфизм}
+\begin{name}
+    $ X, Y$ --- топологические пространства.
+\end{name}
+\begin{defn}
+    Гомеоморфизм между  $ X$ и $ Y$  --- непрерывное биективное отображение $ f: X \to  Y$ такое, что $ f^{-1} : Y \to  X$ тоже непрерывно.
+\end{defn}
+\begin{defn}
+    $ X$ и $ Y$ гомеоморфны, если существует гомеоморфизм между ними.
+\end{defn}
+\begin{name}
+    $ X$ и $ Y$ гомеоморфны: $ X \cong Y$ или $ X \simeq Y$.
+\end{name}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+	\item Тождественное отображение --- гомеоморфизм.
+	\item Если $ f$ --- гомеоморфизм, то $ f^{-1}$ --- гомеоморфизм.
+	\item Композиция  гомеоморфизмов --- гомеоморфизм.
+    \end{enumerate}
+\end{prop}
+\begin{thm}
+    Гомеоморфность --- отношение эквивалентности.
+\end{thm}
+\begin{note}
+    $ $
+    \begin{enumerate}
+	\item Гомеоморфизм задает биекцию между открытыми множествами в $ X$ и $ Y$.
+	\item С топологической точки зрения гомеоморфные пространства неотличимы.
+    \end{enumerate}
+\end{note}
+\begin{note}
+    Топологическая эквивалентность --- гомеоморфность.
+\end{note}
+\begin{note}
+    Про гомеоморфные пространства говорят, что у них одинаковый тип.
+\end{note}
+\paragraph{Пример непрерывной биекции, не являющейся гомеоморфизмом}
+$ $
+
+Пусть $ f: [0, 2\pi) \to  S^{1}$ такое что:
+\[
+    f(t) = (\cos t , \sin t)
+.\]
+$ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрерывно, но $ f^{-1} $ разрывно в точке (1, 0).
+\paragraph{Примеры гомеоморфных пространств}
+\begin{st}
+    $ $
+    \begin{itemize}
+	\item $ \forall a , b, c, d: ~ [a, b] \cong [c, d]$
+	\item $ \forall a, b, c, d:~ (a, b) \cong (c, d)$
+	\item $ \forall a, b, c, d:~ [a, b) \cong [c, d) \cong (c, d]$
+	\item $ \forall a, b: ~ (a, +\infty) \cong (b, +\infty) \cong (-\infty, a)$
+	\item $ \forall a, b: ~ [a, +\infty) \cong [b, +\infty) \cong (-\infty, a]$
+	\item $ (0, 1) \cong \R$
+	\item $ [0, 1) \cong [0, +\infty)$
+    \end{itemize}
+\end{st}
+\begin{thm}
+    Открытый шар в $ \R^{n}$ гомеоморфен  $ \R^{n}$
+\end{thm}
+\begin{name}
+    $ D^{n} $ --- замкнутый единичный шар в  $ \R^{n}$
+\end{name}
+\begin{name}
+    $ S^{n} $ --- единичная сфера в $ \R^{n+1}$
+\end{name}
+\begin{thm}
+    $ S^{n} \setminus \{\text{точка}\} \cong \R^{n}$
+\end{thm}
+\begin{prac}
+    $ $
+    \begin{enumerate}
+	\item Квадрат с границей гомеоморфен $ D^2$
+	\item $ D^{m} \times D^{n} \cong D ^{n+m}$
+    \end{enumerate}
+\end{prac}
 \section{Аксиомы}
 \subsection{Аксиомы счетности}
 \begin{defn}
@@ -507,30 +588,40 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
 
 \end{lm}
+\section{Связность}
+\section{Линейная связность}
+\section{Компактность}
+\section{Полные метрические пространства}
+\subsection{Компактность полных метрических пространств}
 \section{Факторизация}
 \begin{ex}
     Склеим в квадрате $ ABCD$ стороны  $\overrightarrow{AB}$ и $ \overrightarrow{DC}$ по аффинной биекции между ними, сохраняющей отученное направление. Получим цилиндр $ S^{1} \times [0, 1]$.
 \end{ex}
 \begin{ex}
-    Если склеить $ \overrightarrow{AB}$ и $ \overrightarrow{CD}$, получи  { \bf лента Мебиуса}.
+    Если склеить $ \overrightarrow{AB}$ и $ \overrightarrow{CD}$, получилась  { \bf лента Мебиуса}.
 \end{ex}
 \begin{defn}
-    Пусть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ Homeo(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
+    Пусть $ X $ -- топологическое пространство. $ \Gamma$ -- подгруппа группы $ {\rm Homeo}(X)$ -- группы всех гомеоморфизмов из $ X$ в себя.
 
     Введем отношение эквивалентности $ \sim $ на $ X$ :
     \[
 	a \sim b \Longleftrightarrow \exists  g \in  \Gamma : g(a) = b
     .\]
-    Фактор пространство $ X /\sim $  обозначается $ X / F$ или $ X \backslash F$
+    \begin{name}
+	Факторпространство $ X /\sim $  обозначается $ X / \Gamma$ или $ \Gamma \backslash X$
+    \end{name}
 \end{defn}
-\begin{thm}
-    Пусть $ p : X \to  X /\sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
+\begin{ex}
+    $ \R / \Z \cong S^{1}$, где $ \Z$ действует на $ \R$  параллельными переносами.
+\end{ex}
+\begin{thm}\label{th_gomeo}
+    Пусть $ p : X \to  X/ \!\sim $ -- каноническая проекция. $ f: X \to  Y$ переводит эквивалентные точки в равные:
     \[
 	\forall  x, y \in  X: ~ x \sim y \Longrightarrow f(x) = f(y)
     .\]
     Тогда
     \begin{enumerate}
-	\item $ \exists  \overline{f}: X / \sim  \to  Y: f = \overline{f} \circ p$.
+	\item $ \exists  \overline{f}: X /\!\sim~ \to  Y: f = \overline{f} \circ p$.
 	\item  $ \overline{f}$ непрерывно тогда и только тогда, когда  $ f$ непрерывно.
     \end{enumerate}
 \end{thm}
@@ -538,25 +629,30 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $ $
     \begin{itemize}
 	\item Определим $ \overline{f}([x]) = f(x)$ для всех $ x \in X$
-	\item По непрерывности композиции, если $ \overline{f}$ непрерывна, то $ f$ тоже.
-	\item В обратную сторону -- по определению фактортопологии. (проверим определение непрерывности)
-	\end{itemize}
+	\item $ \boxed{ \Longrightarrow }$ По непрерывности композиции, если $ \overline{f}$ непрерывна, то $ f$ тоже.
+	\item \boxed{ \Longleftarrow } В обратную сторону -- по определению фактортопологии. (проверим определение непрерывности)
+    \end{itemize}
 \end{proof}
-\begin{thm}
+\begin{thm}[Склеивание концов отрезка]
     $ [0, 1] / \{1, 0\} \cong S^{1}$
-    % \begin{figure}[ht]
-	% \centering
-	% \infcig{th-circ}
-	% \caption{th-circ}
-	% \label{fig:th-circ}
-    % \end{figure}
 \end{thm}
+\begin{proof}
+    Рассмотрим $ f: [\,0,1] \to  S^{1}$.
+    \[
+	f(x) = (\cos 2\pi x, \sin 2 \pi x)
+    .\]
+    Это отображение пропускается через факторпространство $ [0, 1]/\{0, 1\} \to  S^{1}$.
+    Соответствующее $ \overline{f}: [\,0, 1] /\{0, 1\} \to  S^{1}$ --- биекция. По теореме \ref{th_gomeo} $ \overline{f}$ непрерывно.
+    $ [\,0, 1]/\{0, 1\}$ --- компактно, $ S^{t}$ --- хаусдорфово, следовательно, $ \overline{f}$ --- гомеоморфизм.
+\end{proof}
 \begin{thm}\label{th_nx}
     $ X$ -- замкнуто, $ Y$ -- хаусдорфово.
     $ f : X \to  Y $ -- непрерывно и сюрьективно.
-    Тогда $X /_{ \sim}  \cong  Y
-    .$
-    Где $ \sim $ -- эквивалентность .%??
+    Тогда $$X /\! \sim  \cong  Y
+    ,$$
+    где $ \sim $ определяется условием \[
+	x \sim y \Longleftrightarrow f(x) = f(y)
+    .\]
 \end{thm}
 \begin{thm}
     $ D^{n} / S^{n-1} \cong S^{n}$
@@ -564,10 +660,14 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{proof}
     Вместо $ D^{n}$ возьмем $ B$ -- замкнутый шар радиуса $ \pi$ c  центром в $ 0 \in \R^{n} $.
     По прошлой теореме \ref{th_nx} достаточно построить сюрьективный гомеоморфизм $ f: B \to  S ^{n}$, отображающий край шара в одну точку, а в остальном инъективен.
-    Сойдет такое
+    Сойдет такое:
     \[
-	f(x) = \left( \frac{1}{|x|} \sin(|x|) \cos (|x|) \right) , f(0) = (0_{\R_{n-1}}, 1)
-    .\]
+	f(x) =
+	\begin{cases}
+	    \left( \frac{x}{|x|} \sin|x|, \cos |x| \right) & x \ne  0_{\R^{n}} \\
+	    (0_{\R_{n-1}}, 1) & x = 0_{\R^{n}}
+	\end{cases}
+    \]
 \end{proof}
 
 \section{Многообразия}
