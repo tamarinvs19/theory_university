@@ -59,6 +59,9 @@
 \newcommand{\dist}{{\mathop{\text{\rm dist}}}}
 \newcommand{\diam}{{\mathop{\text{\rm diam}}}}
 
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
 \usepackage{mdframed}
@@ -963,7 +966,7 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     $ $
     \begin{description}
 	\item $ \boxed{ \Longrightarrow }$ По прошлому следствию \ref{cor_comp_zo}.
-	\item $ \boxed{ \Longleftarrow }$  Множество $ A \subset \R^{n} $ ограничено тогда и только тогда, когда $ A$ содержится в некотором кубе  $ [-a, a]^{n}$. Куб компактен, так как является произведением компактов. Тогда $ A$ замкнуто и ограничено, из этого следует, что  $ A$ --- замкнутое подмножество компакта. Значит оно компактно.
+	\item $ \boxed{ \Longleftarrow }$  Множество $ A \subset \R^{n} $ ограничено тогда и только тогда, когда $ A$ содержится в некотором кубе  $ [-a, a]^{n}$. Куб компактен, так как является произведением компактов. $ A$ замкнуто и ограничено, из этого следует, что  $ A$ --- замкнутое подмножество компакта. Значит оно компактно.
     \end{description}
 \end{proof}
 \subsection{Центрированные семейства}
@@ -1034,6 +1037,96 @@ $ $
 \begin{cor}
     Пусть $ X$ компактно,  $ Y$ хаусдорфово,  $ f: X \to  Y$ --- непрерывная  инъекция. Тогда $ f$ --- вложение.
 \end{cor}
+\subsection{Лемма Лебега}
+\begin{thm}[Лемма Лебега]
+    $ X$ --- компактное метрическое пространство.  $ \{U_i\}$ --- его открытое покрытие. 
+    Тогда существует такое $ r>0$, что любой шар радиуса $ r$ целиком содержится в одном из  $ U_i$. 
+    \begin{defn}
+        Число $ r$ называется числом Лебега данного покрытия.
+    \end{defn}
+\end{thm}
+\begin{proof}
+    \[
+	\forall x \in X ~ \exists r_x >0, ~ U_i \in  \{U_i\}: ~ B_{r_x}(x) \subset U_i
+    .\] 
+    Заметим, что $ \left\{B_{\frac{r_x}{2}}\right\}_{x \in X}$ --- тоже покрытие. Выберем конечное покрытие. 
+
+    Проверим, что подойдет минимальный из радиусов этих шаров в качестве числа Лебега.
+    \[
+	\forall y \in X ~\exists x \in X: y \in B_{\frac{r_x}{2}}(x)
+    .\] 
+\begin{figure}[ht]
+    \centering
+    \incfig{lemma-lebega}
+    \caption{Лемма Лебега}
+    \label{fig:lemma-lebega}
+\end{figure}
+\[
+    r \le  \frac{r_x}{2}, \quad \overline{xy} + \overline{yz} < r + \frac{r_x}{2} <  r_x
+.\] 
+Следовательно, $ B_r (y) \subset B_{\frac{r_x}{2}}(y) \subset B_{r_x}(x) \subset U_i$.
+\end{proof}
+\begin{cor}\label{cor_ll}
+    Пусть $ X$ --- компактное метрическое пространство,  $ Y$ ---  топологическое пространство, $ f: X \to  Y$ непрерывно, $ \{U_i\}$ --- открытое покрытие $ Y$.
+    Тогда  $ \exists r >0: ~ \forall x \in  X ~ f(B_r(x)) \text{ содержится в одном из } U_i$.
+\end{cor}
+\begin{proof}
+    Применим лемму Лебега к покрытию $ \{f^{-1}(U_i)\}$.
+\end{proof}
+\subsection{Равномерная непрерывность}
+\begin{defn}
+    Отображение $ f: X \to  Y$ равномерно непрерывно, если
+    \[
+	\forall  \varepsilon >0 ~ \exists  \delta > 0: ~ \forall a, x' \in  X ~ (d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon 
+    .\] 
+\end{defn}
+\begin{thm}
+    Если $ X$ компактно, то любое непрерывное  $ f: X \to  Y$ равномерно непрерывно.
+\end{thm}
+\begin{proof}
+    Применим следствие \ref{cor_ll} из леммы Лебега к $ f$ и покрытию  $ Y$ шарами радиуса $ \frac{\delta}{2}$
+\end{proof}
+\subsection{Теорема Тихонова}
+\begin{thm}[Тихонов, без доказательства]
+    Пусть $ \{X_i\}$ --- произвольное семейство компактных топологических пространств. Тогда тихоновское произведение $ \prod_{i \in I} X_i$  тоже компактно.
+\end{thm}
+\subsection{Локальная компактность}
+\begin{name}
+    $ X$ --- топологическое пространство.
+\end{name}
+\begin{defn}
+    $ X$ локально компактно, если  $ \forall x \in X~ \exists \text{ окрестность } U \ni x: ~\Cl U \text{ компактно}$.
+\end{defn}
+\begin{ex}
+    $ \R^{n} $ локально компактно.
+\end{ex}
+\begin{prac}
+    Если $ X$ локально компактно и хаусдорфово, то $ X$ регулярно.
+\end{prac}
+\subsection{Одноточечная компактификация}
+\begin{name}
+    $ X$ ---  хаусдорфово  топологическое пространство. 
+\end{name}
+\begin{defn}\label{def_one_point_compact}
+    Одноточечная компактификация $ X$ ---  топологическое пространство $ \widehat{X}$:
+    \begin{itemize}
+	\item $ \widehat{X} = X \cup \{\infty\}, \qquad \infty \not\in  X$
+	\item $ U \subset \widehat{X} \wedge \infty \not\in U$ открыто в $ \widehat{X}$ тогда и только тогда, когда $ U$ открыто в  $ X$
+	\item  $ U \subset \widehat{X} \wedge \infty \in  U$ открыто в $ \widehat{X}$ тогда и только тогда, когда $ X \setminus U$ компактно
+    \end{itemize}
+\end{defn}
+\begin{st}
+    Определение \ref{def_one_point_compact} корректно, то есть указанные открытые множества образуют топологию на $ X \cup \{\infty\}$.
+\end{st}
+\begin{prac}
+    $ $
+    \begin{enumerate}
+	\item $ \widehat{X}$ компактно
+	\item $ \widehat{X}$ хаусдорфово тогда и только тогда, когда $ X$ локально компактно
+	\item $ \widehat{\R} \cong S^{1}$
+	\item $ \widehat{\R^{n} } \cong S^{n}$
+    \end{enumerate}
+\end{prac}
 
 \section{Полные метрические пространства}
 \subsection{Компактность полных метрических пространств}
