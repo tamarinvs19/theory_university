@@ -1129,7 +1129,166 @@ $ $
 \end{prac}
 
 \section{Полные метрические пространства}
-\subsection{Компактность полных метрических пространств}
+\section{Предел последовательности}
+\begin{name}
+    $ X$ ---  топологическое пространство.
+\end{name}
+\begin{defn}
+    Точка $ x \in  X$ --- предел последовательности $ \{x_n\} \subset X$, если$$ \forall \text{ окрестности } U \ni x ~ \exists N \in \N: ~ x_n \in  U \quad \forall n > N.$$
+    Синонимы:
+        $ x_n$ стремится к  $ x$ или  $ x_{n}$ сходится к $ x$ 
+    \begin{name}
+	$ x_{n} \to  x$ и $ x = \lim x_{n} $
+    \end{name}
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item $ x_{n} = x$ сходится к $ x$
+        \item $ x_{n} \to  x \Longrightarrow $ любая подпоследовательность тоже сходится к $ x$
+	\item Если  $ X$ хаусдорфово, то предел единственный
+	\item  В метрическом пространстве $ X = (X, d)$,
+	     \[
+		 x_{n} \to  x \Longleftrightarrow d(x, x_n) \to  0
+	    .\] 
+	\item Замкнутое множество содержит все пределы содержащихся в нем последовательностей.
+	    \[
+		\forall  \text{ замкнутого } A \subset X: ~ (\{x_{n}\} \subset A, ~ x_{n} \to  x \Longrightarrow x \in  A)
+	    .\] 
+	\item В метрическом пространстве $ X$ (или в пространстве со счетной базой) верно обратное:
+	    если $ A \subset X$ содержит все пределы содержащихся в нем последовательностей, то $ A$ замкнуто.
+    \end{enumerate}
+\end{prop}
+\section{Полные пространства}
+\begin{name}
+    $ X = (X, d)$ --- метрическое пространство.
+\end{name}
+\begin{defn}
+    $ \{x_n\}$ --- фундаментальная последовательность, если \[
+	\forall \varepsilon >0 ~ \exists N \in  \N: ~ \forall n, k > N ~ d(x_{n}, x_k) < \varepsilon 
+    \] 
+    или 
+    \[
+	d(x_{n}, x_k ) \to  0, \quad n, k \to  \infty
+    .\] 
+    Синонимы: $ \{x_{n}\}$ --- последовательность Коши, $ \{x_{n}\}$ сходится в себе.
+\end{defn}
+\begin{defn}
+    $ X$ полно, если любая фундаментальная последовательность имеет предел.
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item Если последовательность сходится, то она фундаментальна.
+	\item Фундаментальная последовательность ограничена.
+	\item Если последовательность фундаментальна и имеет сходящуюся подпоследовательность, то она сходится.
+    \end{enumerate}
+\end{prop}
+\begin{note}
+    Полнота --- не топологическое свойство!
+\end{note}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+	\item $ \R $ полно (критерий сходимости Коши)
+	\item $ \R \setminus \{0\}$ не полно (если $ x_{n} \to  0, ~ x_{n}\ne 0$, она фундаментальна, но не имеет предела в $ \R \setminus \{0\}$)
+	\item $ [\,0, 1]$ полно
+	\item $ (0, 1)$  неполно
+    \end{enumerate}
+\end{exs}
+\begin{thm}
+    $ \R^{n} $ полно.
+\end{thm}
+\begin{proof}
+    Пусть $ \{x_{л}\}$ --- последовательность в $ \R^{n} $, $ x_k = (x_k^{1}, \ldots , x_k^{n})$.
+    Предположим, что $ \{x_{k}\}$  фундаментальна в $ \R^{n} $. Тогда $ \forall  i \in [1, n]: ~ \{x_k^{i}\}$ --- тоже фундаментальна. Значит координатные последовательности имеют пределы $ x^{1}, \ldots , x^{n}$. Следовательно, $ x_k \to x \coloneqq (x^{1}, \ldots , x^{n})$.
+\end{proof}
+\begin{thm}
+    Если $ X$ полно и  $ Y \subset X$ замкнуто, то $ Y$ полно.
+\end{thm}
+\begin{prac}
+    Если множество в метрическом пространстве полно, то оно замкнуто.
+\end{prac}
+\begin{prac}
+    Множество в $ \R^{n} $ полно тогда и только тогда, когда оно замкнуто.
+\end{prac}
+\subsection{Теорема о вложенных шарах}
+\begin{thm}[''о вложенных шарах``]\label{th_vlo_shar}
+    Пусть 
+    \begin{itemize}
+	\item $ X$ --- полное метрическое пространство
+	\item $ A_1, A_2, \ldots $ --- непустые замкнутые множества в $ X$
+	\item  $ A_1 \supset A_2 \supset \ldots $ 
+	\item $ \diam(A_n) \to  0$
+    \end{itemize}
+    Тогда $ \bigcap A_i \ne \varnothing $.
+\end{thm}
+\begin{proof}
+    Для всех $ A_n$ выберем точку  $ x_0$. Так как $ \diam(A_n) \to  0$, $ \{x_{n}\}$ фундаментальна, следовательно, имеет предел $ x$, который принадлежит $ X$, так как  $ X$ полно.
+     \[
+    \forall n \ge k: ~ x_{n} \in A_k \Longrightarrow x \in  A_k
+    .\] 
+    Тогда $ x \in  \bigcap A_i  \Longrightarrow \bigcup A_i \ne \varnothing$.
+\end{proof}
+\subsection{Теорема Бэра}
+\begin{defn}
+    $ X$ ---  топологическое пространство. Множество $ A \subset X$ нигде не плотно, если:
+    \begin{description}
+	\item $ \Int \Cl A = \varnothing$
+    \end{description}
+    или
+    \begin{description}
+	\item $X \setminus A$ содержит всюду плотное множество
+    \end{description}
+    или
+    \begin{description}
+	\item любое открытое $ U \subset X$ содержит  открытое $ V \subset U$ такое, что $ V \cap A = \varnothing$.
+    \end{description}
+\end{defn}
+\begin{ex}
+    $ f = f(x_1, \ldots x_n)$ --- ненулевой многочлен степени $ n$ над  $ \R$. Тогда  $ f^{-1}(0)$ нигде не плотно в $ \R^{n} $.
+\end{ex}
+\begin{ex}
+    Канторово множество нигде не плотно в $ \R$.
+\end{ex}
+\begin{thm}[Бэр]
+    Полное метрическое пространство нельзя покрыть счетным набором нигде не плотных множеств.
+\end{thm}
+\begin{proof}
+    Пусть $ A_1, A_2, \ldots $ --- нигде не плотные множества.
+    Пусть $ B_0 = \overline{B}_{r_0}(x_0)$.
+
+    $ A_1$ нигде не плотно, следовательно, открытый шар $ B_{r_0}(x_0)$ содержит открытое множество $ U_1: ~ U_1 \cap A_1 = \varnothing$.
+
+    $ U_1$ содержит открытый шар, который содержит $ B_1 = \overline{B}_{r_1}(x_1), ~ r_1 \le  1$. 
+
+    Построили замкнутый шар $ B_1 \subset B_0, ~ B_1 \cap A_1 = \varnothing$.
+    Аналогично построим последовательность $ B_0 \supset B_1 \supset B_2 \supset \ldots $, где радиус $  r_i \le \frac{1}{i}$ и $ B_i \cap A_i = \varnothing$.
+
+    По теореме \ref{th_vlo_shar} о вложенных шарах существует точка $ x \in  \bigcap B_i $. Тогда $ x \not\in \bigcup A_i  \Longrightarrow  \bigcup A_i \ne X$.
+\end{proof}
+\begin{cor}
+    Полное метрическое пространство без изолированных точек несчетно.
+\end{cor}
+\begin{thm}[усиление теоремы Бэра]
+    Пусть $ X$ --- полное метрическое пространство,  $ A$ --- объединение счетного набора нигде не плотных множеств. Тогда  $ \Int A = \varnothing$.
+\end{thm}
+\subsection{Пополнение}
+\begin{defn}
+    Пусть $ X$ --- метрическое пространство. Пополнение  $ X$ --- такое метрическое пространство  $ \overline{X}$, что 
+    \begin{itemize}
+	\item $ \overline{X}$ полно
+	\item $ X \subset \overline{X}$ как подпространство, то есть $ d_X = d_{\overline{X}}$ 
+	\item $ X$ всюду плотно в  $ \overline{X}$
+    \end{itemize}
+\end{defn}
+\begin{thm}[без доказательства]
+    У любого метрического пространства есть пополнение.
+\end{thm}
+\section{Компактность метрических пространств}
+\subsection{Секвенциальная компактность}
+\subsection{Вполне ограниченные множества}
+\subsection{Компактность и счетная база}
 \section{Факторизация}
 \begin{defn}
     Пусть $ X$ --- топологическое пространство, $ \sim $ --- отношение эквивалентности на нем как множестве точек.
