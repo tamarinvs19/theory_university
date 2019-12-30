@@ -72,13 +72,11 @@
 \newmdtheoremenv[nobreak=true]{thm}{Theorem}
 
 \theoremstyle{plain}
-% \newtheorem{thm}{Theorem}[section]
 \newtheorem*{lm}{Lemma}
 \newtheorem*{st}{Statement}
 \newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
-% \newtheorem{defn}{Def}
 \newtheorem*{ex}{Ex}
 \newtheorem*{exs}{Exs}
 \newtheorem*{cor}{Corollary}
@@ -92,11 +90,9 @@
 \newtheorem*{tasks}{Tasks}
 \newtheorem*{task}{Task}
 
-% \theoremstyle{definition}
-% \theoremstyle{plain}
-
 \title{Конспект по топологии \\
     I семестр \\
+    СПбГУ, Факультет математики и компьютерных наук\\
 (лекции Иванова Сергея Владимировича)}
 \author{Тамарин Вячеслав}
 
@@ -479,7 +475,11 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     2AC  $ \Rightarrow $ 1АС
 \end{thm}
 \begin{proof}
-    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть \ldots
+    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть 
+    \[
+\Sigma_x = \{U \in  \Sigma \mid x \in  U\}
+    .\] 
+    Тогда $ \Sigma_x$ ---  база в точке. 
 \end{proof}
 \begin{thm}
     Все метрические пространства удовлетворяют второй аксиоме счетности.
@@ -500,7 +500,7 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     1AC тоже наследуется подпространствами и произведениями.
 \end{prac}
 \begin{defn}
-    Топологические свойство -- наследственное, если оно сохраняется при замене пространства на любое подпространство.
+    Топологические свойство --- наследственное, если оно сохраняется при замене пространства на любое подпространство.
 \end{defn}
 \begin{ex}
     Дискретность, антидискретность, 1АС, 2АС -- наследственные свойства.
@@ -543,25 +543,40 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \subsection{Аксиомы отделимости}
 \begin{defn}
     $ X$ обладает свойтсвом $ T_1$, если для любой различных точек $ x, y \in X$ существует такое открытое $ U$, что $ x \not\in U \wedge y \not\in U$ .
+
+    Другое название: $ T_1$-пространство.
 \end{defn}
 \begin{thm}
     $ T_1 \Longleftrightarrow $  любая точка является замкнутым множеством.
 \end{thm}
 \begin{defn}
     $ X$ -- хаусдорфово, если для любых $ x, y \in  X$ существуют окрестности $ U \ni x \wedge V \ni y: ~ U \cap V = \varnothing$.
+
+    Другое название: $ T_2$-пространство.
 \end{defn}
-\begin{defn}
-    $ X$ хаусдорфово $ \Longleftrightarrow $ Диагональ $ \Delta := \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
-\end{defn}
+\begin{name}
+    про такие окрестности $ U, V$ говорят, что они отделяют  $ x$ и  $ y$ друг от друга.
+\end{name}
+\begin{note}
+    Все метрические пространства хаусдорфовы.
+\end{note}
+\begin{thm}
+    $ X$ хаусдорфово $ \Longleftrightarrow $ ''диагональ`` $ \Delta \coloneqq \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
+\end{thm}
 \begin{defn}
     $ X$ -- регулярно, если
     \begin{itemize}
 	\item обладает $ T_1$
 	\item $ \forall  \text{ замкнутого }A \subset X~ \forall x \in  X \setminus A~ \exists \text{ открытые } U, V : A \subset  U \wedge x \in V \wedge U \cap  V = \varnothing $
 
-	    Другое название $ T_3$-пространство
+	    Другое название $ T_3$-пространство.
     \end{itemize}
 \end{defn}
+\begin{note}[Переформулировка определения $ T_3$] 
+    $ X$ регулярно  тогда и только тогда, когда обладает свойством $ T_1$ и \[
+	\forall x \in X, ~ \forall \text{ окрестности } U \ni x ~ \exists \text{ окрестность } V \ni x: ~ \Cl(V) \subset U
+    .\] 
+\end{note}
 \begin{defn}
     $ X$ -- нормально, если
     \begin{itemize}
@@ -569,13 +584,18 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 	\item $ \forall  A, B \in  X (A \cap  B = \varnothing) ~ \exists  \text{ открытые } U, V: A \subset U,  B  \subset V  \wedge U \cap  V= \varnothing$
     \end{itemize}
 
-    Другое название $ T_4$-пространство
+    Другое название $ T_4$-пространство.
 \end{defn}
+\begin{note}[Переформулировка определения $ T_4$] 
+    $ X$ нормально тогда и только тогда, когда обладает свойством $ T_1$ и \[
+	\forall x \in X, ~ \forall \text{ замкнутого } A \subset X \text{ и } \forall  \text{ открытого } U \supset A~ \exists \text{ открытое } V : ~A \subset V \wedge \Cl(V) \subset U
+    .\] 
+\end{note}
 \begin{st}
     $ T_4 \Rightarrow T_3 \Rightarrow  T_2 \Rightarrow T_1$
 \end{st}
 \begin{prac}
-    Свойства $ T_1 - T_3$ наследуются подпространствами и произведениям.
+    Свойства $ T_1 -- T_3$ наследуются подпространствами и произведениям.
 
     Нормальность не наследственная.
 \end{prac}
@@ -593,7 +613,6 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \end{proof}
 \begin{lm}[Урысон]
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывна функция $ f: X \to  [0, 1]: ~ f\upharpoonright_A = 0 \wedge f\upharpoonright_B = 1$
-
 \end{lm}
 \section{Связность}
 \begin{name}
@@ -1287,8 +1306,171 @@ $ $
 \end{thm}
 \section{Компактность метрических пространств}
 \subsection{Секвенциальная компактность}
+\begin{defn}
+    $ X$ секвенциально  компактно, если у любой последовательности существует сходящаяся подпоследовательность.
+\end{defn}
+\begin{thm}\label{th_inf_set_comp}
+    $ X$ компактно,  $ S \subset X$ --- бесконечное множество. Тогда существует такая точка $ x \in X$, что любая окрестность $ U \ni x$  содержит бесконечно много точек  $ S$.
+\end{thm}
+\begin{proof}
+    От противного. Пусть $ \forall x \in  X ~ \exists \text{ окрестность } U_x: |U_x \cap S| < \infty$.
+    Выберем из $ \{U_x\}$ конечное подпокрытие $ U_{x_1}, U_{x_2}, \ldots , U_{x_{n}}$.
+    \[
+	S = (S \cap U_{x_1}) \cup \ldots \cup (S \cap U_{x_{n}}
+    .\] 
+    Каждое из $ S \cap U_{x_{i}}$ конечно, следовательно, $ S$ конечно.  Противоречие. 
+\end{proof}
+\begin{thm}\label{th_comp_to_sec_comp} 
+    Если $ X$ --- компактное метрическое пространство, то $ X$ секвенциально компактно.
+\end{thm}
+\begin{proof}
+    Пусть $ \{x_{n}\}$ --- последовательность в $ X$. Докажем, что есть сходящаяся подпоследовательность.
+    \begin{enumerate}
+        \item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
+	\item В $ \{x_{n}\}$ бесконечное число различных точек. По теореме \ref{th_inf_set_comp} существует точка $ x \in X$, в любой окрестности которой бесконечно много членов последовательности.
+	    Построим подпоследовательность $ y_k = x_{n_k}: ~ n_k > n_{k-1} \wedge y_k \in B_{\frac{1}{k}}(x) \quad k = 1, 2, \ldots $.
+
+	    Она сходится к $ x$.
+    \end{enumerate}
+\end{proof}
+\begin{thm}
+    $ X$ ---  топологическое пространство. Если $ X$ удовлетворяет первой аксиоме счетности,  то $ X$ секвенциально компактно.
+\end{thm}
+\begin{proof}
+    Пусть $ \{x_{n}\}$ --- последовательность в $ X$. Докажем, что есть сходящаяся подпоследовательность.
+    \begin{enumerate}
+        \item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
+	\item В $ \{x_{n}\}$ бесконечное число различных точек. По теореме \ref{th_inf_set_comp} существует точка $ x \in X$, в любой окрестности которой бесконечно много членов последовательности.
+	    
+	    Пусть $ U_1, U_2, \ldots $ --- счетная база в точке $ x$. Рассмотрим такие вложенные окрестности
+	     $ V_1 \supset V_2 \supset \ldots $ :
+	     \[
+	     V_k = U_1 \cap U_2 \cap  \ldots \cap U_k
+	     .\] 
+	    Построим подпоследовательность $ y_k = x_{n_k}: ~ n_k > n_{k-1} \wedge y_k \in V_k \quad k = 1, 2, \ldots $.
+	    
+	    Она сходится к $ x$.
+    \end{enumerate}
+\end{proof}
 \subsection{Вполне ограниченные множества}
+\begin{name}
+    $ X = (X, d)$ --- метрическое пространство.
+\end{name}
+\begin{defn}
+    Пусть $ \varepsilon >0$. Множество $ S \subset X$ --- $ \varepsilon $-сеть в $ X$, если
+    \[
+	\forall x \in X~ \exists s \in S: d(x, s)< \varepsilon 
+    .\] 
+\end{defn}
+\begin{defn}
+    $ X$ вполне ограничено, если для любого  $ \varepsilon $ существует конечная $ \varepsilon $-сеть.
+\end{defn}
+\begin{prac}
+    Множество $ X \subset \R^{n} $ вполне ограничено тогда и только тогда, когда оно ограничено.
+\end{prac}
+\begin{thm}\label{th_comp_to_vpolne_ogran}
+    Если метрическое пространство  $ X$ компактно, то оно вполне ограничено.
+\end{thm}
+\begin{thm}\label{th_sec_ogr}
+    Если метрическое пространство $ X$ секвенциально компактно, то оно вполне ограничено.
+\end{thm}
+\begin{proof}
+    Пусть для $ \varepsilon > 0$ нет конечной $\varepsilon$-сети.
+    Построим последовательность $ x_1, x_2, \ldots $:
+    \begin{description}
+	\item $ x_1$ ---  любая точка
+    \item $ x_2$ ---  такая точка, что  $ d(x_1, x_2) \ge \varepsilon $ 
+    \item \ldots 
+    \item $ x_n$ --- такая точка, что  $ d(x_i, x_{n}) \ge \varepsilon \qquad \forall i \in [1, \ldots , n-1]$
+   \item \ldots 
+\end{description}
+Такая $ \{x_{n}\}$ не может быть иметь сходящейся подпоследовательности, так как все попарные расстояния не менее $ \varepsilon $. Противоречие. 
+\end{proof}
+\begin{thm}\label{th_sec_poln}
+    Если метрическое пространство $ X$ секвенциально компактно, то оно полно.
+\end{thm}
+\begin{proof}
+    Пусть $ \{x_{n}\}$ --- фундаментальная последовательность. По секвенциальности у нее есть сходящаяся подпоследовательность. Так как $ \{x_{n}\}$ фундаментальна, она тоже сходится к тому же пределу.
+\end{proof}
+\begin{thm}\label{th_poln_to_comp}
+    Если $ X$ полно и вполне ограничено, то  $ X$ компактно.
+\end{thm}
+\begin{proof}
+    Пусть существует открытое покрытие $ \{U_i\}$, у которого нет конечного подпокрытия.
+    Пусть $ S_1$ --- конечная 1-сеть. Все пространство покрыто конечным числом шаров радиуса $ 1$ (пусть замкнутых) с центрами в $ S_1$. Значит, хотя бы один из них не покрывается конечным числом $ U_i$.
+
+    Пусть это $ A_1$. 
+
+Теперь рассмотрим конечную  $ \frac{1}{2}$-сеть $ S_2$ и пересечения
+\[
+A_1 \cap \overline{B}_{\frac{1}{2}}, \quad s \in S_2
+.\] 
+Они покрывают $ A_1$, следовательно, одно из них не покрывается конечным набором  $ U_i$. Обозначим его  $ A_2$.
+
+Аналогично строим последовательность замкнутых множеств $ A_1 \supset A_2 \supset \ldots $, где $ A_n$ не покрывается конечным набором $ \{U_i\}$.
+\[
+    A_n = A_{n-1} \cap \overline{B}_{\frac{1}{n}} (s), \text{ где } s \in S_n \text{ --- конечная $ \frac{1}{n}$-сеть}
+.\] 
+Тогда $ \diam A_n \le \frac{2}{n} \to 0$.
+По теореме о вложенных шарах $ \exists  x \in  \bigcap A_n $. 
+\[
+    \exists U_i: ~x \in U_i \Longrightarrow \exists \varepsilon >0: B_{ \varepsilon }(x) \subset U_i
+.\] 
+Далее
+\[
+    \exists N \in \N ~ \forall n > N: A_n \subset B_{ \varepsilon }(x) \subset U_i
+.\]
+То есть $ A_n$ покрывается одним  $ U_i$.  Противоречие. 
+\end{proof}
+\begin{thm}[Три определения компактности]
+     $ X$ --- метрическое пространство. Следующие свойства равносильны:
+     \begin{enumerate}
+         \item $ X$ компактно
+	 \item  $ X$ секвенциально компактно
+	 \item  $ X$ --- полное и вполне ограниченное
+     \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{1 \Longrightarrow 2}$ Уже доказано (см. теорему \ref{th_comp_to_sec_comp})
+	\item $ \boxed{2 \Longrightarrow 3}$ Уже доказано (см. теоремы \ref{th_sec_ogr} и \ref{th_sec_poln})
+	\item $ \boxed{3 \Longrightarrow 1}$ Уже доказано (см. теорему \ref{th_poln_to_comp})
+    \end{description}
+\end{proof}
 \subsection{Компактность и счетная база}
+\begin{thm}
+    Если $ X$ вполне ограничено, то оно имеет счетную базу топологии.
+\end{thm}
+\begin{proof}
+    Объединим конечные $ \varepsilon $-сети для  $ \varepsilon = 1, \frac{1}{2}, \frac{1}{3}, \ldots $
+    Получим счетное всюду плотное множество. Тогда  $ X$ сепарабельно, значит  $ X$ имеет счетную базу (так как  $ X$ --- метрическое пространство).
+\end{proof}
+\begin{thm}
+    Если $ X$ метризуемо и компактно, то  $ X$ имеет счетную базу топологии.
+\end{thm}
+\subsection{Обобщение}
+\begin{thm}
+    $ X$ имеет счетную базу топологии. Тогда   $ X$ компактно  тогда и только тогда, когда $ X$ секвенциально компактно.
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $\boxed{ \Longrightarrow }$  Уже доказано (см. \ref{th_comp_to_sec_comp})
+	\item \boxed{ \Longleftarrow } Рассмотрим открытое покрытие. По теореме Линеделёфа, из него можно выбрать счетное подпокрытие: $ U_1, U_2, U_3, \ldots $. 
+
+	    Пусть нет конечного подпокрытия.
+	    Рассмотрим конечные поднаборы $ U_1, U_2, U_3, \ldots , U_n$. Никто из них не покрывает $ X$, следовательно, 
+	     \[
+		 \forall n \in N~ \exists x_n \in X \setminus (U_1 \cup \ldots \cup U_n)
+	    .\] 
+	    По секвенциальной компактности можем выбрать из $ \{x_{n}\}$ сходящуюся подпоследовательность $ \{y_k\}$. Пусть $ y_k \to  y$.
+
+	    Так как $ \{U_i\}$ --- покрытие, $ \exists j: ~ y \in U_j $. Но с некоторого момента $ y \not\in U_j$, так как в каждом $ U_n$ только конечное число членов последовательности.
+	     
+	    Значит это не предел!
+    \end{description}
+\end{proof}
 \section{Факторизация}
 \begin{defn}
     Пусть $ X$ --- топологическое пространство, $ \sim $ --- отношение эквивалентности на нем как множестве точек.
