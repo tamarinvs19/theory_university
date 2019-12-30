@@ -15,6 +15,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+\usepackage{array,graphicx,caption}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
@@ -23,7 +24,6 @@
 \fancyhead[R]{\thepage}
 \fancyhead[L]{\rightmark}
 \addtolength{\headheight}{13pt}
-% \fancyfoot[RO,LE]{\thesection}
 \fancyfoot[C]{\leftmark}
 
 \pagestyle{fancy}
@@ -47,9 +47,9 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
-\newcommand{\Cl}{{\mathop{\text{\rm Cl}}}~}
-\newcommand{\Int}{{\mathop{\text{\rm Int}}}~}
-\newcommand{\fr}{{\mathop{\text{\rm fr}}}~}
+\newcommand{\Cl}{{\mathop{\text{\rm Cl}}}}
+\newcommand{\Int}{{\mathop{\text{\rm Int}}}}
+\newcommand{\Fr}{{\mathop{\text{\rm Fr}}}}
 \newcommand{\im}{{\mathop{\text{\rm Im}}}~}
 \newcommand{\re}{{\mathop{\text{\rm Re}}}~}
 \newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
@@ -63,6 +63,7 @@
 \renewcommand{\ge}{\geqslant}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
+\def\mycheck{\mathrel{\stackrel{\rm ?}=}}
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=1em,skipbelow=0em}
@@ -92,22 +93,369 @@
 
 \title{Конспект по топологии \\
     I семестр \\
-    СПбГУ, Факультет математики и компьютерных наук\\
+    Факультет математики и компьютерных наук, СПбГУ\\
 (лекции Иванова Сергея Владимировича)}
 \author{Тамарин Вячеслав}
 
 \begin{document}
 \maketitle
-\clearpage
 \tableofcontents
-\clearpage
 
 \chapter{Общая топология}
 \section{Метрические пространства}
+\begin{defn}
+    Метрическое пространство --- пара $ (X, d)$, где  $ X$ --- множество (точек),  а $ d: X \times X \to  \R_{+}$ --- расстояние, такая что $ \forall x, y, z \in X$:
+    \begin{enumerate}
+	\item $ d(x, y) = 0$  тогда и только тогда, когда $ x = y$
+	\item  $ d(x, y) = d(y, x)$
+	\item  $ d(x, y) + d(y, z) \ge d(x, z)$
+    \end{enumerate}
+\end{defn}
+\begin{note}
+    Вместо буквы $ d$ используют  $ \rho(x, y)$ или  $ |xy|$.
+\end{note}
+\begin{prop}[Неравенство многоугольника]
+    \[
+	\forall x_1, \ldots x_n \in X: ~ \sum_{i=1}^{n-1} d(x_{i}, x_{i+1}) \ge  d(x_1, x_{n})
+    .\]
+\end{prop}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+	\item Прямая $ \R$,  $$ d(x, y) = |x -y|$$
+	\item Плоскость $ \R^2 = \R \times \R = \{(x, y) \mid x, y \in \R\}$,  $$ d \bigl((x, y), (u, v)\bigr) = \sqrt{(x-u)^2+(y-v)^2}$$
+	\item $ \R^n = \underbrace{\R \times \ldots \times  \R}_n = \{(x_1, \ldots , x_n) \mid x_i\in \R\}$,  $$ d (x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
+	\item Подпространство.
+
+	    Пусть  $ X = (X, d)$ ---  метрическое пространство. $ Y \subset X, ~ (Y, d\!\upharpoonright_{Y \times Y}$ --- подпространство.
+	\item Единичная метрика.
+
+	    $ X$ любое множество,  $ d (x, y)=
+	    \begin{cases}
+		1 & x  \ne y \\
+		0 & x = y
+	    \end{cases}$
+
+	\item Нестандартные метрики на плоскости:
+	    \begin{description}
+		\item $ d_1 \bigl( (x, y), (u, v)\bigr) = |x - u| + |y - v|$
+		\item $ d_{\infty} \bigl( (x, y), (u, v)\bigr) = \max \{|x-u|, |y-v|\}$
+	    \end{description}
+	\item Расстояние в графе
+    \end{enumerate}
+\end{exs}
+\begin{defn}
+    $ X$ ---  метрическое пространство, $ x \in X, r > 0$.
+
+    Открытый шар с центром в  $ x$ и радиусом  $ r$
+    \[
+	B_r(x) = B(x, r) = \{y \in  X\mid d(x, y) < r\}
+    .\]
+
+    Замкнутый шар с центром в точке $ x$ и радиусом  $ r$
+    \[
+	\overline{B}_r(x) =  B[x, r] = \{y \in X \mid d(x, y) \le r\}
+    .\]
+
+    Сфера с центром в точке $ x$ и радиусом  $ r$
+    \[
+	S_r(x) = \{y \in  X\mid d(x, y) = r\}
+    .\]
+\end{defn}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+	\item$ X = \R, ~ B_r(x) = (x-r, x+r)$
+	\item$ X = \R^2$
+	\item$ X = (\R^2, d_1)$
+	\item$ X = (\R^2, d_{\infty})$
+    \end{enumerate}
+\end{exs}
+\begin{figure}[ht]
+    \centering
+    \incfig{shar}
+    \caption{Второй, третий и четвертый примеры}
+    \label{fig:shar}
+\end{figure}
+\begin{defn}
+    Множество  $ A \subset X$ открыто, если $ \forall x \in A ~ \exists  r>0: ~ B_r(x) \subset A$.
+\end{defn}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+        \item Квадрат без границы на плоскости открыт, а квадрат с границей --- нет.
+	\item Интервалы в $ \R$:  $ \R, ~(a, b), ~(a, +\infty), ~ (-\infty, b)$ --- открыты, остальные --- нет.
+	\item $ X$ с единичной метрикой --- все множества открыты.
+	\item  $ \varnothing$  всегда открыто
+	\item Все пространство тоже всегда открыто
+    \end{enumerate}
+\end{exs}
+\begin{note}
+    Открытость --- относительное свойство, зависит от пространства.
+    \begin{ex}
+	$ [\,0, 1)$ не открыто на прямой, но открыто на  $ [\,0, +\infty)$
+    \end{ex}
+\end{note}
+\begin{thm}
+    Открытые шары открыты.
+\end{thm}
+\begin{thm}
+    Объединение любого набора открытых множеств открыто.
+\end{thm}
+\begin{proof}
+    $ \{A_i\}_{i \in I}$ --- семейство открытых множеств. Рассмотрим 
+    \[
+    A = \bigcup_{i \in  I} A_i
+    .\] 
+    Пусть $ x \in A$. Тогда $ \exists  i \in I: ~ x \in A_i$. Так как $ A_i$ открыто,  $ \exists r >0: ~ B_r(x) \subset A_i \Longrightarrow B_r(x) \subset A$. Следовательно, $ A$ открыто.
+\end{proof}
+\begin{thm}
+    Пересечение любого конечного набора открытых множеств открыто.
+\end{thm}
+\begin{proof}
+    Докажем для двух. Пусть $ A, B$ открыты. 
+    Рассмотрим  $ x \in A\cap B$.
+    \[
+    \left.
+	\begin{aligned}
+	    \exists r_1>0 &: B_{r_1} \subset A \\
+	    \exists r_2>0 &: B_{r_2} \subset B
+	\end{aligned}
+    \right \} \Longrightarrow B_{\min(r_1, r_2)} \subset  A\cap B
+    .\] 
+\end{proof}
+\begin{prac}
+    Открытые множества на прямой представимы в виде дизъюнктного объединения открытых интервалов, причем не более чем счетного числа.
+\end{prac}
+\clearpage
 \section{Топологические пространства}
+\begin{defn}
+$ X$ --- любое множество. \\
+{\bf Топологическая структура (топология)} на множестве $ X$ --- множество  $ \Omega \subset 2^{X}$ такая, что:
+    \begin{enumerate}
+        \item $ \varnothing, X \in \Omega $
+	\item Объединение любого набора множеств из $ \Omega $ принадлежит $ \Omega $
+	    $$ \forall \{A_i\}_{i \in I} \in  \Omega : ~ \bigcup_{i \in  I}\{A_i\} \in \Omega  $$.
+	\item Пересечение конечного числа принадлежащих $ \Omega $ множеств тоже принадлежит $ \Omega $:
+	    \[
+		\forall A_1, \ldots A_n \in \Omega : ~ \bigcap_{i \in [1, n]} \in \Omega 
+	    .\] 
+    \end{enumerate}
+    Топологическое пространство --- $ (X, \Omega )$,
+    $ X $ --- множество,  $ \Omega $ --- топологическая структура, элементы $ \Omega $ --- открытые множества данного топологического пространства.
+\end{defn}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+	\item Метрические пространства (топология задана метрикой)
+	\item Дискретная топология  $ \Omega = 2^{X}$ 
+	\item Антидискретная  топология $ \Omega = \{\varnothing, X\}$
+    \end{enumerate}
+\end{exs}
+\begin{defn}
+    Топологическое пространство $ (X, \Omega )$ метризуемо, если существует метрика на $ X$, задающая топологию $ \Omega $.
+\end{defn}
+\begin{defn}
+    $ X$ ---  топологическое пространство.\\
+    Множество $ A \subset X$ называется замкнутым, если $ X \setminus A \in \Omega $.
+\end{defn}
+\begin{exs}
+    $ $
+    \begin{enumerate}
+	\item $ X = \R$.  $ [a, b], ~[a, +\infty), ~ (-\infty, b], ~\R$ --- замкнуты.
+	\item Дискретное пространство --- все множества замкнуты.
+	\item Антидискретное пространство --- замкнуты только  $ \varnothing$ и $ X$.
+    \end{enumerate}
+\end{exs}
+\begin{prac}
+    Замкнутые шары замкнуты.
+\end{prac}
+\begin{thm}
+    $ $
+    \begin{enumerate}
+        \item $ \varnothing, ~ X$ замкнуты
+	\item Пересечение любых наборов замкнутых множеств замкнуто
+	\item Конечное объединение замкнутых множеств замкнуто
+    \end{enumerate}
+\end{thm}
+\begin{prop}
+    $ (X, \Omega ) $ --- топологическое пространство, $ A$ открыто,  $ B$ замкнуто.
+    \begin{enumerate}
+        \item $ A \setminus B$ открыто
+	\item $ B \setminus A$ замкнуто
+    \end{enumerate}
+\end{prop}
 \section{Внутренность, замыкание, граница}
+\begin{name}
+    $ (X, \Omega )$ --- топологическое пространство, $ A \subset X$.
+\end{name}
+\begin{defn}
+    Внутренность множества $ A$ ( $ \Int A, A^{\circ}$ ) --- объединение всех открытых множеств, содержащихся в $ A$. 
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+	\item $ \Int A$ --- наибольшее по включению открытое множество, содержащее  $ A$.
+	\item  $ A$ открыто  тогда и только тогда, когда $ A = \Int A$.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    Окрестность точки $ x \in X$ --- любое  открытое множество, содержащее $ x$.
+\end{defn}
+\begin{defn}
+    Точка $ x \in A$ называется внутренней точкой множества $ A$, если существует окрестность  $ U \ni x$ такая, что  $ U \subset A$.
+\end{defn}
+\begin{thm}
+    Внутренность множества --- множество внутренних точек.
+\end{thm}
+\begin{cor}
+    $ A$ открыто  тогда и только тогда, когда все его точки внутренние.
+\end{cor}
+\begin{defn}
+    Замыкание множества $ A$  ($ \Cl A, \overline{A}$ ) --- пересечение всех замкнутых множеств, содержащих $ A$.
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item $ \Cl A$ --- наименьшее по включению замкнутое множество, содержащее  $ A$.
+	\item  $ A$ замкнуто  тогда и только тогда, когда $ \Cl A = A$.
+	\item   $
+	    \begin{aligned}
+	    &\Cl (X \setminus A) = \Int A \\
+	    &\Int(X \setminus A) = X \setminus \Cl A
+	    \end{aligned}
+	    $
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    Точка $ x \in X$ называется точкой прикосновения, если для любой окрестности $ U \ni x: ~ U \cap A \ne \varnothing$. 
+\end{defn}
+\begin{thm}
+    Замыкание множества $ A$ --- множество всех точек прикосновения.
+\end{thm}
+\begin{proof}
+    Перейдем к дополнениям. 
+    \[
+    X \setminus \Cl A \mycheck \{x \in X \mid x\text{ ---  не точка прикосновения}\}
+    .\] 
+    \[
+	\Int (X\setminus A) \mycheck \{x \in X \mid \exists \text{ окрестность } U \ni x, ~ U \cap A = \varnothing\}
+    .\] 
+    $ U \cap A = \varnothing \Longleftrightarrow U \subset X \setminus A \Longleftrightarrow x \text{ --- внутренняя точка } X \setminus A$.
+\end{proof}
+\begin{defn}
+     Точка $ x \in X$ называется внешней точкой множества $ A$, если  $ x$ --- внутренняя точка  $ X \setminus A$.
+
+    Внешность $ A$ --- внутренность $ X \setminus A$.
+\end{defn}
+\begin{defn}
+    $ x \in X$ --- изолированная точка множества  $ A$, если  для существует окрестность $ U \ni x : A \cap U = \{x\}$. 
+\end{defn}
+\begin{defn}
+    $ x \in X$ --- предельная точка множества  $ A$, если  для любой окрестности $ U \ni x: (A\cap U) \setminus \{x\} \ne \varnothing$. 
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item $ \Cl A = \{\text{изолированные точки}\} \sqcup \{\text{предельные точки}\}$
+        \item  $ A$ замкнуто  тогда и только тогда, когда  $ A$ содержит все свои предельные точки.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    Граница множества $ A = \Cl A \setminus \Int A$.
+
+     Обозначения: $ \Fr A, ~ \partial A$.
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item $ \Fr A$  замкнуто.
+	\item  $ \Fr A = \Fr (X \setminus A)$
+	\item $ A$ замкнуто  тогда и только тогда, когда $ \Fr A \subset A$.
+	\item $ A $ открыто  тогда и только тогда, когда $ A \cap \Fr A = \varnothing$.
+	\item $ \Cl A = \Int A \sqcup \Fr A$
+    \end{enumerate}
+\end{prop}
+\begin{st}
+    $ X = \Int A \sqcup \Cl A \sqcup \Fr A$
+\end{st}
+\begin{prac}
+    $ $
+    \begin{enumerate}
+	\item $ \Int(A \cap B) = \Int (A) \cap \Int(B)$
+	\item $ \Int(A \cup B) \text{ не всегда равно } \Int (A) \cup \Int(B)$
+	\item $ \Cl(A \cap B) = \Cl (A) \cup \Cl(B)$
+	\item $ \Cl(A \cup B) \text{ не всегда равно } \Cl (A) \cap \Cl(B)$
+    \end{enumerate}
+\end{prac}
 \section{Подпространства}
+\begin{name}
+    $ X = (X, \Omega )$ --- топологическое пространство, $ Y, Z \subset X$.
+\end{name}
+\begin{defn}
+    Индуцирванная (относительная) топология на $ Y$ ---  $ \Omega _Y = \{Y \cap U\mid U \in \Omega \}$. 
+
+    $ Y$ с такой топологией называется подпространством $ X$:  $ (Y, \Omega _Y)$ --- подпространство $ X$. 
+\end{defn}
+\begin{thm}
+    $ \Omega _Y$ --- топология на $ Y$.
+\end{thm}
+\begin{proof}
+    Просто проверяем определение.
+\end{proof}
+\begin{thm}
+    Определение согласовано с метрическим. Если $ X = (X, d)$ ---  метрическое пространство, $ \Omega $ --- топология, заданная метрикой $ d$, то  $ \Omega _Y$ --- топология, заданная $ d\!\upharpoonright_{Y\times Y}$.
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{\subset }$ $ A \in \Omega _Y \Longrightarrow A = Y \cap U, ~ U \in  \Omega \Longrightarrow \forall x \in A ~\exists r >0 : B_r^{X}(x) \subset U$. 
+	    
+	    $ B_r^{Y}(x) = B_r^{X}(x) \cap Y$ 
+
+	    Тогда $ \forall x \in A ~ \exists r >0 : B_r^{Y}(x) \subset  A \Longrightarrow A \text{ открыто относительно } d\!\upharpoonright_{Y\times Y}$.
+	\item $\boxed{\supset}$  $ A \text{ открыто относительно } d\!\upharpoonright_{Y\times Y} \Longrightarrow \forall x \in A ~ \exists r >0 : B_r^{Y}(x) \subset A$.
+	    \[
+		U \coloneqq \bigcup_{x \in A}  B_r^{X}(x) \in \Omega 
+	    .\] 
+	    $$
+	    Y \cap U = \bigcup_{x \in A} (Y \cap B_r^{X}(x)) = \bigcup_{x \in A} B_r^{Y}(x) = A \Longrightarrow A \in \Omega _Y 
+	    $$
+    \end{description}
+\end{proof}
+\begin{thm}
+    $ \{B \mid B  \text{ замкнуто относительно }  \Omega _Y\} = \{A \cap Y \mid A  \text{ замкнуто относительно } \Omega \}$ 
+\end{thm}
+\begin{proof}
+    $ B \subset Y$ замкнуто в $ Y \Longleftrightarrow  Y \setminus B \in \Omega _Y \Longleftrightarrow \exists U \in \Omega : Y \setminus B = Y \cap U \Longleftrightarrow \exists U \in \Omega : B= Y \cap (X \setminus U) \text{ --- замкнуто в } X$.
+\end{proof}
+\begin{prop}
+    $A \subset Y $
+    \begin{enumerate}
+        \item Если $ A $ открыто в  $ X$, то $ A$ открыто в  $ Y$.  
+	\item  Если $ Y$ открыто в  $ X$, то 
+	    \[
+	    A \in \Omega _Y \Longrightarrow A \in \Omega 
+	    .\] 
+	\item Если $ A$ замкнуто в  $ X$, то $ A$ замкнуто в $ Y$. 
+	\item Если $ Y $ замкнуто в  $ X$, то
+	     \[
+	    A \text{ замкнуто в } Y \Longrightarrow A  \text{ замкнуто в } X
+	    .\] 
+    \end{enumerate}
+\end{prop}
+\begin{prac}
+    $A \subset Y $
+    \begin{enumerate}
+        \item $ \Cl_Y A = \Cl A \cap Y$
+	\item $ \Int_Y A$ не всегда равно  $ \Int A \cap Y$
+    \end{enumerate}
+\end{prac}
 \section{Сравнение топологий}
+\begin{name}
+    $ X$ --- множество,  $ \Omega _1, \Omega _2 \subset 2^{X}$ --- топологические структуры.
+\end{name}
+
 \section{База топологии}
 \section{Произведение топологических пространств}
 \begin{defn}\label{def_ptp}
@@ -475,11 +823,11 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     2AC  $ \Rightarrow $ 1АС
 \end{thm}
 \begin{proof}
-    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть 
+    Пусть $  \Sigma  $ -- база топологии, $ x \in X$. Пусть
     \[
-\Sigma_x = \{U \in  \Sigma \mid x \in  U\}
-    .\] 
-    Тогда $ \Sigma_x$ ---  база в точке. 
+	\Sigma_x = \{U \in  \Sigma \mid x \in  U\}
+    .\]
+    Тогда $ \Sigma_x$ ---  база в точке.
 \end{proof}
 \begin{thm}
     Все метрические пространства удовлетворяют второй аксиоме счетности.
@@ -572,10 +920,10 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 	    Другое название $ T_3$-пространство.
     \end{itemize}
 \end{defn}
-\begin{note}[Переформулировка определения $ T_3$] 
+\begin{note}[Переформулировка определения $ T_3$]
     $ X$ регулярно  тогда и только тогда, когда обладает свойством $ T_1$ и \[
 	\forall x \in X, ~ \forall \text{ окрестности } U \ni x ~ \exists \text{ окрестность } V \ni x: ~ \Cl(V) \subset U
-    .\] 
+    .\]
 \end{note}
 \begin{defn}
     $ X$ -- нормально, если
@@ -586,10 +934,10 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 
     Другое название $ T_4$-пространство.
 \end{defn}
-\begin{note}[Переформулировка определения $ T_4$] 
+\begin{note}[Переформулировка определения $ T_4$]
     $ X$ нормально тогда и только тогда, когда обладает свойством $ T_1$ и \[
 	\forall x \in X, ~ \forall \text{ замкнутого } A \subset X \text{ и } \forall  \text{ открытого } U \supset A~ \exists \text{ открытое } V : ~A \subset V \wedge \Cl(V) \subset U
-    .\] 
+    .\]
 \end{note}
 \begin{st}
     $ T_4 \Rightarrow T_3 \Rightarrow  T_2 \Rightarrow T_1$
@@ -961,10 +1309,10 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \end{defn}
 \begin{defn}
     Диаметр множества $ A$:
-     \[
-	 \diam(A) = 
-	 \sup \{d(x, y) \mid x, y \in  A\}
-    .\] 
+    \[
+	\diam(A) =
+	\sup \{d(x, y) \mid x, y \in  A\}
+    .\]
 \end{defn}
 \begin{prop}
     $ A$ ограничено  тогда и только тогда, когда  $ \diam(A) < \infty$.
@@ -973,7 +1321,7 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     Свойство ограниченности не зависит от объемлющего пространства.
 \end{cor}
 \begin{thm}
-    Компактное метрическое пространство ограничено. 
+    Компактное метрическое пространство ограничено.
 \end{thm}
 \begin{cor}\label{cor_comp_zo}
     Компактное множество в метрическом пространстве замкнуто и ограничено.
@@ -999,30 +1347,30 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     $ X$ компактно тогда и только тогда, когда любой центрированный набор замкнутых множеств имеет непустое пересечение.
 \end{thm}
 \begin{proof}
-$ $
-\begin{description}
-    \item $ \boxed{ \Longrightarrow }$ От противного. Пусть $ \{A_i\}$ --- центрированный набор замкнутых множеств в $ X$ и  $ \bigcap A_i= \varnothing $. Тогда дополнения $ X \setminus A_i$ образуют открытое покрытие. Выберем из него конечное подпокрытие.
+    $ $
+    \begin{description}
+	\item $ \boxed{ \Longrightarrow }$ От противного. Пусть $ \{A_i\}$ --- центрированный набор замкнутых множеств в $ X$ и  $ \bigcap A_i= \varnothing $. Тогда дополнения $ X \setminus A_i$ образуют открытое покрытие. Выберем из него конечное подпокрытие.
 
-	Соответствующие $ A_i$ имеют пустое пересечение.  Противоречие. 
-    \item \boxed {\Longrightarrow} Рассмотрим покрытие $ \{A_i\}_{i \in I}$. Выберем в нем конечный набор множеств $ A_1, \ldots A_n$. Если нет точки, которая не принадлежит ни одному из $ A_{1 \ldots  n}$, это конечное подпокрытие. Иначе пересечение дополнений $ \bigcup_{i=1}^{n} A_i \ne \varnothing$. Значит $ \{X \setminus A_i\}_{i \in I}$ --- центрированный набор. По условию теоремы он имеет непустое пересечение. Значит $ \{A_i\}_{i \in I} $ не покрытие. Противоречие.  
-\end{description}
+	    Соответствующие $ A_i$ имеют пустое пересечение.  Противоречие.
+	\item \boxed {\Longrightarrow} Рассмотрим покрытие $ \{A_i\}_{i \in I}$. Выберем в нем конечный набор множеств $ A_1, \ldots A_n$. Если нет точки, которая не принадлежит ни одному из $ A_{1 \ldots  n}$, это конечное подпокрытие. Иначе пересечение дополнений $ \bigcup_{i=1}^{n} A_i \ne \varnothing$. Значит $ \{X \setminus A_i\}_{i \in I}$ --- центрированный набор. По условию теоремы он имеет непустое пересечение. Значит $ \{A_i\}_{i \in I} $ не покрытие. Противоречие.
+    \end{description}
 \end{proof}
 \begin{cor}
-    Пусть $ X$ --- произвольное  топологическое пространство, $ \{A_i\}_{i \in I}$ --- центрированный набор замкнутых множеств в $ X$, хотя бы одно из которых компактно. 
+    Пусть $ X$ --- произвольное  топологическое пространство, $ \{A_i\}_{i \in I}$ --- центрированный набор замкнутых множеств в $ X$, хотя бы одно из которых компактно.
     Тогда  $ \bigcap_{i \in  I} A_i \ne \varnothing$.
 \end{cor}
 \begin{proof}
     Не умоляя общности $ A_0$ компактно. По теореме \ref{th_comp_z} (возьмем $ X=A_0$)  $ \{A_i \cap A_0\}_{i \in  I}$ имеет непустое пересечение.
 \end{proof}
 \begin{thm}\label{th_vl_comp}
-    Пусть $ \{A_i\}_{i \in  I}$ --- набор непустых замкнутых множеств, линейно упорядоченный по включению, и хотя бы одно из них компактно. 
+    Пусть $ \{A_i\}_{i \in  I}$ --- набор непустых замкнутых множеств, линейно упорядоченный по включению, и хотя бы одно из них компактно.
     Тогда $ \bigcap_{i \in  I} A_i \ne \varnothing $.
 \end{thm}
 \begin{note}
     Теорема \ref{th_vl_comp} обычно применяется к последовательностям вложенных компактов:
     \[
-    A_1 \supset A_2 \supset \ldots 
-    .\] 
+	A_1 \supset A_2 \supset \ldots
+    .\]
 \end{note}
 \subsection{Непрерывные отображения компактов}
 \begin{thm}
@@ -1030,8 +1378,8 @@ $ $
     Тогда множество  $ f(X)$ компактно.
 \end{thm}
 \begin{proof}
-Пусть  $ \{U_i\}$ --- открытое покрытие $ f(X)$. Тогда  $ \{V_i \mid V_i = f^{-1}(U_i)$\} ---  открытое покрытие $ X$.
-Выберем в нем конечное подпокрытие  $ V_{i_1}, \ldots , V_{i_n}$. Тогда $ U_{i_1}, \ldots, U_{i_n}$ --- конечное подпокрытие $ f(X)$. Следовательно,  $ X$ компактно.
+    Пусть  $ \{U_i\}$ --- открытое покрытие $ f(X)$. Тогда  $ \{V_i \mid V_i = f^{-1}(U_i)$\} ---  открытое покрытие $ X$.
+    Выберем в нем конечное подпокрытие  $ V_{i_1}, \ldots , V_{i_n}$. Тогда $ U_{i_1}, \ldots, U_{i_n}$ --- конечное подпокрытие $ f(X)$. Следовательно,  $ X$ компактно.
 \end{proof}
 \begin{thm}
     Пусть $ X$ компактно,  $ f: X \to  \R$ непрерывно. Тогда $ f(X)$ имеет максимум и минимум.
@@ -1040,14 +1388,14 @@ $ $
     $ f(X)$ компактно, следовательно,  $ f(x)$ замкнуто и ограничено, а тогда  $ f(X)$ содержит свои супремум и инфимум.
 \end{proof}
 \begin{thm}
-     Пусть $ X$ компактно,  $ Y$  хаусдорфово, $ f: X \to  Y$ --- непрерывная бикеция. Тогда $ f$ --- гомеоморфизм.
+    Пусть $ X$ компактно,  $ Y$  хаусдорфово, $ f: X \to  Y$ --- непрерывная бикеция. Тогда $ f$ --- гомеоморфизм.
 \end{thm}
 \begin{proof}
     $ f$ непрерывно  $ \Longleftrightarrow $ прообразы замкнутых множеств замкнуты.
     $ f^{-1}$ непрерывно $ \Longleftrightarrow $ $ f$-образы замкнутых множеств замкнуты.
-     
-    Если  $ A \subset X$ замкнуто, 
-    $ A$ компактно, так как является  замкнутым подмножеством компакта.  Тогда $ f(A)$ компактно, потому что это непрерывный образ компакта. А компакт в хаусдорфовом пространстве замкнут. 
+
+    Если  $ A \subset X$ замкнуто,
+    $ A$ компактно, так как является  замкнутым подмножеством компакта.  Тогда $ f(A)$ компактно, потому что это непрерывный образ компакта. А компакт в хаусдорфовом пространстве замкнут.
 \end{proof}
 \subsection{Вложения компактов}
 \begin{defn}
@@ -1058,32 +1406,32 @@ $ $
 \end{cor}
 \subsection{Лемма Лебега}
 \begin{thm}[Лемма Лебега]
-    $ X$ --- компактное метрическое пространство.  $ \{U_i\}$ --- его открытое покрытие. 
-    Тогда существует такое $ r>0$, что любой шар радиуса $ r$ целиком содержится в одном из  $ U_i$. 
+    $ X$ --- компактное метрическое пространство.  $ \{U_i\}$ --- его открытое покрытие.
+    Тогда существует такое $ r>0$, что любой шар радиуса $ r$ целиком содержится в одном из  $ U_i$.
     \begin{defn}
-        Число $ r$ называется числом Лебега данного покрытия.
+	Число $ r$ называется числом Лебега данного покрытия.
     \end{defn}
 \end{thm}
 \begin{proof}
     \[
 	\forall x \in X ~ \exists r_x >0, ~ U_i \in  \{U_i\}: ~ B_{r_x}(x) \subset U_i
-    .\] 
-    Заметим, что $ \left\{B_{\frac{r_x}{2}}\right\}_{x \in X}$ --- тоже покрытие. Выберем конечное покрытие. 
+    .\]
+    Заметим, что $ \left\{B_{\frac{r_x}{2}}\right\}_{x \in X}$ --- тоже покрытие. Выберем конечное покрытие.
 
     Проверим, что подойдет минимальный из радиусов этих шаров в качестве числа Лебега.
     \[
 	\forall y \in X ~\exists x \in X: y \in B_{\frac{r_x}{2}}(x)
-    .\] 
-\begin{figure}[ht]
-    \centering
-    \incfig{lemma-lebega}
-    \caption{Лемма Лебега}
-    \label{fig:lemma-lebega}
-\end{figure}
-\[
-    r \le  \frac{r_x}{2}, \quad \overline{xy} + \overline{yz} < r + \frac{r_x}{2} <  r_x
-.\] 
-Следовательно, $ B_r (y) \subset B_{\frac{r_x}{2}}(y) \subset B_{r_x}(x) \subset U_i$.
+    .\]
+    \begin{figure}[ht]
+	\centering
+	\incfig{lemma-lebega}
+	\caption{Лемма Лебега}
+	\label{fig:lemma-lebega}
+    \end{figure}
+    \[
+	r \le  \frac{r_x}{2}, \quad \overline{xy} + \overline{yz} < r + \frac{r_x}{2} <  r_x
+    .\]
+    Следовательно, $ B_r (y) \subset B_{\frac{r_x}{2}}(y) \subset B_{r_x}(x) \subset U_i$.
 \end{proof}
 \begin{cor}\label{cor_ll}
     Пусть $ X$ --- компактное метрическое пространство,  $ Y$ ---  топологическое пространство, $ f: X \to  Y$ непрерывно, $ \{U_i\}$ --- открытое покрытие $ Y$.
@@ -1096,8 +1444,8 @@ $ $
 \begin{defn}
     Отображение $ f: X \to  Y$ равномерно непрерывно, если
     \[
-	\forall  \varepsilon >0 ~ \exists  \delta > 0: ~ \forall a, x' \in  X ~ (d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon 
-    .\] 
+	\forall  \varepsilon >0 ~ \exists  \delta > 0: ~ \forall a, x' \in  X ~ (d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon
+    .\]
 \end{defn}
 \begin{thm}
     Если $ X$ компактно, то любое непрерывное  $ f: X \to  Y$ равномерно непрерывно.
@@ -1124,7 +1472,7 @@ $ $
 \end{prac}
 \subsection{Одноточечная компактификация}
 \begin{name}
-    $ X$ ---  хаусдорфово  топологическое пространство. 
+    $ X$ ---  хаусдорфово  топологическое пространство.
 \end{name}
 \begin{defn}\label{def_one_point_compact}
     Одноточечная компактификация $ X$ ---  топологическое пространство $ \widehat{X}$:
@@ -1155,7 +1503,7 @@ $ $
 \begin{defn}
     Точка $ x \in  X$ --- предел последовательности $ \{x_n\} \subset X$, если$$ \forall \text{ окрестности } U \ni x ~ \exists N \in \N: ~ x_n \in  U \quad \forall n > N.$$
     Синонимы:
-        $ x_n$ стремится к  $ x$ или  $ x_{n}$ сходится к $ x$ 
+    $ x_n$ стремится к  $ x$ или  $ x_{n}$ сходится к $ x$
     \begin{name}
 	$ x_{n} \to  x$ и $ x = \lim x_{n} $
     \end{name}
@@ -1163,17 +1511,17 @@ $ $
 \begin{prop}
     $ $
     \begin{enumerate}
-        \item $ x_{n} = x$ сходится к $ x$
-        \item $ x_{n} \to  x \Longrightarrow $ любая подпоследовательность тоже сходится к $ x$
+	\item $ x_{n} = x$ сходится к $ x$
+	\item $ x_{n} \to  x \Longrightarrow $ любая подпоследовательность тоже сходится к $ x$
 	\item Если  $ X$ хаусдорфово, то предел единственный
 	\item  В метрическом пространстве $ X = (X, d)$,
-	     \[
-		 x_{n} \to  x \Longleftrightarrow d(x, x_n) \to  0
-	    .\] 
+	    \[
+		x_{n} \to  x \Longleftrightarrow d(x, x_n) \to  0
+	    .\]
 	\item Замкнутое множество содержит все пределы содержащихся в нем последовательностей.
 	    \[
 		\forall  \text{ замкнутого } A \subset X: ~ (\{x_{n}\} \subset A, ~ x_{n} \to  x \Longrightarrow x \in  A)
-	    .\] 
+	    .\]
 	\item В метрическом пространстве $ X$ (или в пространстве со счетной базой) верно обратное:
 	    если $ A \subset X$ содержит все пределы содержащихся в нем последовательностей, то $ A$ замкнуто.
     \end{enumerate}
@@ -1184,12 +1532,12 @@ $ $
 \end{name}
 \begin{defn}
     $ \{x_n\}$ --- фундаментальная последовательность, если \[
-	\forall \varepsilon >0 ~ \exists N \in  \N: ~ \forall n, k > N ~ d(x_{n}, x_k) < \varepsilon 
-    \] 
-    или 
+	\forall \varepsilon >0 ~ \exists N \in  \N: ~ \forall n, k > N ~ d(x_{n}, x_k) < \varepsilon
+    \]
+    или
     \[
 	d(x_{n}, x_k ) \to  0, \quad n, k \to  \infty
-    .\] 
+    .\]
     Синонимы: $ \{x_{n}\}$ --- последовательность Коши, $ \{x_{n}\}$ сходится в себе.
 \end{defn}
 \begin{defn}
@@ -1198,7 +1546,7 @@ $ $
 \begin{prop}
     $ $
     \begin{enumerate}
-        \item Если последовательность сходится, то она фундаментальна.
+	\item Если последовательность сходится, то она фундаментальна.
 	\item Фундаментальная последовательность ограничена.
 	\item Если последовательность фундаментальна и имеет сходящуюся подпоследовательность, то она сходится.
     \end{enumerate}
@@ -1233,20 +1581,20 @@ $ $
 \end{prac}
 \subsection{Теорема о вложенных шарах}
 \begin{thm}[''о вложенных шарах``]\label{th_vlo_shar}
-    Пусть 
+    Пусть
     \begin{itemize}
 	\item $ X$ --- полное метрическое пространство
 	\item $ A_1, A_2, \ldots $ --- непустые замкнутые множества в $ X$
-	\item  $ A_1 \supset A_2 \supset \ldots $ 
+	\item  $ A_1 \supset A_2 \supset \ldots $
 	\item $ \diam(A_n) \to  0$
     \end{itemize}
     Тогда $ \bigcap A_i \ne \varnothing $.
 \end{thm}
 \begin{proof}
     Для всех $ A_n$ выберем точку  $ x_0$. Так как $ \diam(A_n) \to  0$, $ \{x_{n}\}$ фундаментальна, следовательно, имеет предел $ x$, который принадлежит $ X$, так как  $ X$ полно.
-     \[
-    \forall n \ge k: ~ x_{n} \in A_k \Longrightarrow x \in  A_k
-    .\] 
+    \[
+	\forall n \ge k: ~ x_{n} \in A_k \Longrightarrow x \in  A_k
+    .\]
     Тогда $ x \in  \bigcap A_i  \Longrightarrow \bigcup A_i \ne \varnothing$.
 \end{proof}
 \subsection{Теорема Бэра}
@@ -1279,7 +1627,7 @@ $ $
 
     $ A_1$ нигде не плотно, следовательно, открытый шар $ B_{r_0}(x_0)$ содержит открытое множество $ U_1: ~ U_1 \cap A_1 = \varnothing$.
 
-    $ U_1$ содержит открытый шар, который содержит $ B_1 = \overline{B}_{r_1}(x_1), ~ r_1 \le  1$. 
+    $ U_1$ содержит открытый шар, который содержит $ B_1 = \overline{B}_{r_1}(x_1), ~ r_1 \le  1$.
 
     Построили замкнутый шар $ B_1 \subset B_0, ~ B_1 \cap A_1 = \varnothing$.
     Аналогично построим последовательность $ B_0 \supset B_1 \supset B_2 \supset \ldots $, где радиус $  r_i \le \frac{1}{i}$ и $ B_i \cap A_i = \varnothing$.
@@ -1294,10 +1642,10 @@ $ $
 \end{thm}
 \subsection{Пополнение}
 \begin{defn}
-    Пусть $ X$ --- метрическое пространство. Пополнение  $ X$ --- такое метрическое пространство  $ \overline{X}$, что 
+    Пусть $ X$ --- метрическое пространство. Пополнение  $ X$ --- такое метрическое пространство  $ \overline{X}$, что
     \begin{itemize}
 	\item $ \overline{X}$ полно
-	\item $ X \subset \overline{X}$ как подпространство, то есть $ d_X = d_{\overline{X}}$ 
+	\item $ X \subset \overline{X}$ как подпространство, то есть $ d_X = d_{\overline{X}}$
 	\item $ X$ всюду плотно в  $ \overline{X}$
     \end{itemize}
 \end{defn}
@@ -1317,16 +1665,16 @@ $ $
     Выберем из $ \{U_x\}$ конечное подпокрытие $ U_{x_1}, U_{x_2}, \ldots , U_{x_{n}}$.
     \[
 	S = (S \cap U_{x_1}) \cup \ldots \cup (S \cap U_{x_{n}}
-    .\] 
-    Каждое из $ S \cap U_{x_{i}}$ конечно, следовательно, $ S$ конечно.  Противоречие. 
+    .\]
+    Каждое из $ S \cap U_{x_{i}}$ конечно, следовательно, $ S$ конечно.  Противоречие.
 \end{proof}
-\begin{thm}\label{th_comp_to_sec_comp} 
+\begin{thm}\label{th_comp_to_sec_comp}
     Если $ X$ --- компактное метрическое пространство, то $ X$ секвенциально компактно.
 \end{thm}
 \begin{proof}
     Пусть $ \{x_{n}\}$ --- последовательность в $ X$. Докажем, что есть сходящаяся подпоследовательность.
     \begin{enumerate}
-        \item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
+	\item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
 	\item В $ \{x_{n}\}$ бесконечное число различных точек. По теореме \ref{th_inf_set_comp} существует точка $ x \in X$, в любой окрестности которой бесконечно много членов последовательности.
 	    Построим подпоследовательность $ y_k = x_{n_k}: ~ n_k > n_{k-1} \wedge y_k \in B_{\frac{1}{k}}(x) \quad k = 1, 2, \ldots $.
 
@@ -1339,16 +1687,16 @@ $ $
 \begin{proof}
     Пусть $ \{x_{n}\}$ --- последовательность в $ X$. Докажем, что есть сходящаяся подпоследовательность.
     \begin{enumerate}
-        \item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
+	\item В $ \{x_n\}$ конечное число различных точек. Выберем постоянную подпоследовательность.
 	\item В $ \{x_{n}\}$ бесконечное число различных точек. По теореме \ref{th_inf_set_comp} существует точка $ x \in X$, в любой окрестности которой бесконечно много членов последовательности.
-	    
+
 	    Пусть $ U_1, U_2, \ldots $ --- счетная база в точке $ x$. Рассмотрим такие вложенные окрестности
-	     $ V_1 \supset V_2 \supset \ldots $ :
-	     \[
-	     V_k = U_1 \cap U_2 \cap  \ldots \cap U_k
-	     .\] 
+	    $ V_1 \supset V_2 \supset \ldots $ :
+	    \[
+		V_k = U_1 \cap U_2 \cap  \ldots \cap U_k
+	    .\]
 	    Построим подпоследовательность $ y_k = x_{n_k}: ~ n_k > n_{k-1} \wedge y_k \in V_k \quad k = 1, 2, \ldots $.
-	    
+
 	    Она сходится к $ x$.
     \end{enumerate}
 \end{proof}
@@ -1359,8 +1707,8 @@ $ $
 \begin{defn}
     Пусть $ \varepsilon >0$. Множество $ S \subset X$ --- $ \varepsilon $-сеть в $ X$, если
     \[
-	\forall x \in X~ \exists s \in S: d(x, s)< \varepsilon 
-    .\] 
+	\forall x \in X~ \exists s \in S: d(x, s)< \varepsilon
+    .\]
 \end{defn}
 \begin{defn}
     $ X$ вполне ограничено, если для любого  $ \varepsilon $ существует конечная $ \varepsilon $-сеть.
@@ -1379,12 +1727,12 @@ $ $
     Построим последовательность $ x_1, x_2, \ldots $:
     \begin{description}
 	\item $ x_1$ ---  любая точка
-    \item $ x_2$ ---  такая точка, что  $ d(x_1, x_2) \ge \varepsilon $ 
-    \item \ldots 
-    \item $ x_n$ --- такая точка, что  $ d(x_i, x_{n}) \ge \varepsilon \qquad \forall i \in [1, \ldots , n-1]$
-   \item \ldots 
-\end{description}
-Такая $ \{x_{n}\}$ не может быть иметь сходящейся подпоследовательности, так как все попарные расстояния не менее $ \varepsilon $. Противоречие. 
+	\item $ x_2$ ---  такая точка, что  $ d(x_1, x_2) \ge \varepsilon $
+	\item \ldots
+	\item $ x_n$ --- такая точка, что  $ d(x_i, x_{n}) \ge \varepsilon \qquad \forall i \in [1, \ldots , n-1]$
+	\item \ldots
+    \end{description}
+    Такая $ \{x_{n}\}$ не может быть иметь сходящейся подпоследовательности, так как все попарные расстояния не менее $ \varepsilon $. Противоречие.
 \end{proof}
 \begin{thm}\label{th_sec_poln}
     Если метрическое пространство $ X$ секвенциально компактно, то оно полно.
@@ -1399,36 +1747,36 @@ $ $
     Пусть существует открытое покрытие $ \{U_i\}$, у которого нет конечного подпокрытия.
     Пусть $ S_1$ --- конечная 1-сеть. Все пространство покрыто конечным числом шаров радиуса $ 1$ (пусть замкнутых) с центрами в $ S_1$. Значит, хотя бы один из них не покрывается конечным числом $ U_i$.
 
-    Пусть это $ A_1$. 
+    Пусть это $ A_1$.
 
-Теперь рассмотрим конечную  $ \frac{1}{2}$-сеть $ S_2$ и пересечения
-\[
-A_1 \cap \overline{B}_{\frac{1}{2}}, \quad s \in S_2
-.\] 
-Они покрывают $ A_1$, следовательно, одно из них не покрывается конечным набором  $ U_i$. Обозначим его  $ A_2$.
+    Теперь рассмотрим конечную  $ \frac{1}{2}$-сеть $ S_2$ и пересечения
+    \[
+	A_1 \cap \overline{B}_{\frac{1}{2}}, \quad s \in S_2
+    .\]
+    Они покрывают $ A_1$, следовательно, одно из них не покрывается конечным набором  $ U_i$. Обозначим его  $ A_2$.
 
-Аналогично строим последовательность замкнутых множеств $ A_1 \supset A_2 \supset \ldots $, где $ A_n$ не покрывается конечным набором $ \{U_i\}$.
-\[
-    A_n = A_{n-1} \cap \overline{B}_{\frac{1}{n}} (s), \text{ где } s \in S_n \text{ --- конечная $ \frac{1}{n}$-сеть}
-.\] 
-Тогда $ \diam A_n \le \frac{2}{n} \to 0$.
-По теореме о вложенных шарах $ \exists  x \in  \bigcap A_n $. 
-\[
-    \exists U_i: ~x \in U_i \Longrightarrow \exists \varepsilon >0: B_{ \varepsilon }(x) \subset U_i
-.\] 
-Далее
-\[
-    \exists N \in \N ~ \forall n > N: A_n \subset B_{ \varepsilon }(x) \subset U_i
-.\]
-То есть $ A_n$ покрывается одним  $ U_i$.  Противоречие. 
+    Аналогично строим последовательность замкнутых множеств $ A_1 \supset A_2 \supset \ldots $, где $ A_n$ не покрывается конечным набором $ \{U_i\}$.
+    \[
+	A_n = A_{n-1} \cap \overline{B}_{\frac{1}{n}} (s), \text{ где } s \in S_n \text{ --- конечная $ \frac{1}{n}$-сеть}
+    .\]
+    Тогда $ \diam A_n \le \frac{2}{n} \to 0$.
+    По теореме о вложенных шарах $ \exists  x \in  \bigcap A_n $.
+    \[
+	\exists U_i: ~x \in U_i \Longrightarrow \exists \varepsilon >0: B_{ \varepsilon }(x) \subset U_i
+    .\]
+    Далее
+    \[
+	\exists N \in \N ~ \forall n > N: A_n \subset B_{ \varepsilon }(x) \subset U_i
+    .\]
+    То есть $ A_n$ покрывается одним  $ U_i$.  Противоречие.
 \end{proof}
 \begin{thm}[Три определения компактности]
-     $ X$ --- метрическое пространство. Следующие свойства равносильны:
-     \begin{enumerate}
-         \item $ X$ компактно
-	 \item  $ X$ секвенциально компактно
-	 \item  $ X$ --- полное и вполне ограниченное
-     \end{enumerate}
+    $ X$ --- метрическое пространство. Следующие свойства равносильны:
+    \begin{enumerate}
+	\item $ X$ компактно
+	\item  $ X$ секвенциально компактно
+	\item  $ X$ --- полное и вполне ограниченное
+    \end{enumerate}
 \end{thm}
 \begin{proof}
     $ $
@@ -1457,17 +1805,17 @@ A_1 \cap \overline{B}_{\frac{1}{2}}, \quad s \in S_2
     $ $
     \begin{description}
 	\item $\boxed{ \Longrightarrow }$  Уже доказано (см. \ref{th_comp_to_sec_comp})
-	\item \boxed{ \Longleftarrow } Рассмотрим открытое покрытие. По теореме Линеделёфа, из него можно выбрать счетное подпокрытие: $ U_1, U_2, U_3, \ldots $. 
+	\item \boxed{ \Longleftarrow } Рассмотрим открытое покрытие. По теореме Линеделёфа, из него можно выбрать счетное подпокрытие: $ U_1, U_2, U_3, \ldots $.
 
 	    Пусть нет конечного подпокрытия.
-	    Рассмотрим конечные поднаборы $ U_1, U_2, U_3, \ldots , U_n$. Никто из них не покрывает $ X$, следовательно, 
-	     \[
-		 \forall n \in N~ \exists x_n \in X \setminus (U_1 \cup \ldots \cup U_n)
-	    .\] 
+	    Рассмотрим конечные поднаборы $ U_1, U_2, U_3, \ldots , U_n$. Никто из них не покрывает $ X$, следовательно,
+	    \[
+		\forall n \in N~ \exists x_n \in X \setminus (U_1 \cup \ldots \cup U_n)
+	    .\]
 	    По секвенциальной компактности можем выбрать из $ \{x_{n}\}$ сходящуюся подпоследовательность $ \{y_k\}$. Пусть $ y_k \to  y$.
 
 	    Так как $ \{U_i\}$ --- покрытие, $ \exists j: ~ y \in U_j $. Но с некоторого момента $ y \not\in U_j$, так как в каждом $ U_n$ только конечное число членов последовательности.
-	     
+
 	    Значит это не предел!
     \end{description}
 \end{proof}
