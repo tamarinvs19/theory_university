@@ -53,6 +53,7 @@
 \newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
 \newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\osc}{{\mathop{\text{\rm osc}}}}
 \newcommand{\pivi}{\stackrel \circ }
 
 \renewcommand{\le}{\leqslant}
@@ -70,13 +71,11 @@
 \newmdtheoremenv[nobreak=true]{thm}{Theorem}
 
 \theoremstyle{plain}
-% \newtheorem{thm}{Theorem}[section]
 \newtheorem*{lm}{Lemma}
 \newtheorem*{st}{Statement}
 \newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
-% \newtheorem{defn}{Def}
 \newtheorem*{ex}{Ex}
 \newtheorem*{exs}{Exs}
 \newtheorem*{cor}{Corollary}
@@ -90,7 +89,9 @@
 
 \renewcommand{\proofname}{Proof}
 
-\title{Конспект по матанализу\\I семестр, часть 2\\ (лекции Кислякова Сергея Витальевича)}
+\title{Конспект по матанализу\\I семестр, часть 2\\
+    Факультет математики и компьютерных наук, СПбГУ\\
+(лекции Кислякова Сергея Витальевича)}
 \author{Тамарин Вячеслав}
 
 \begin{document}
@@ -106,6 +107,7 @@
 \section{Степени с рациональным показателем}
 \section{Равномерная непрерывность}
 \subsection{Теорема Кантора}
+% Добавить \label{th_rantor}
 \chapter{Дифференцирование}
 \section{Определения}
 \section{Правила дифференцирования}
@@ -115,7 +117,7 @@
     Следующие условия эквивалентны:
     \begin{enumerate}
 	\item $\exists M : |f_n(x)| \le  M \quad \forall  n, x \longrightarrow |f(x)| \le  M$
-	\item $f$ -- ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
+	\item $f$ ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
 	    |f_n(x)| \le A \quad \forall  n \le  N \forall  x$
     \end{enumerate}
 \end{thm}
@@ -132,9 +134,9 @@
     .\]
 \end{proof}
 \begin{thm}[Критерий Коши для равномерной сходимости]
-    Пусть $f_n$ -- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда  
+    Пусть $f_n$ --- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда
     \[
-	\forall  \varepsilon >0~ \exists  N ~ \forall  k, j> N~ \forall x : |f_k(x) - f_j(x)| < \varepsilon 
+	\forall  \varepsilon >0~ \exists  N ~ \forall  k, j> N~ \forall x : |f_k(x) - f_j(x)| < \varepsilon
     .\] \label{usl}
 \end{thm}
 \begin{proof}
@@ -163,7 +165,7 @@
     .\]
 \end{ex}
 \begin{thm}[Вейерштрасс]
-    Пусть $f_n$ -- функция на множестве $A$.
+    Пусть $f_n$ --- функция на множестве $A$.
     \[
 	\forall  x : |f_n(x)| \le a_n, \text{ где ряд } \slim a_n \text{ сходится}
     .\]
@@ -190,7 +192,7 @@
 	\caption{График функции Ван дер Вардена}
 	\label{fig:vandervarden}
     \end{figure}
-    $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ -- непрерывна, но нигде не дифференцируема, так как:
+    $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ непрерывна, но нигде не дифференцируема, так как:
     \[
 	|f_n(x) | \le \frac{1}{2 \cdot 4^{n-1}}
     .\]
@@ -200,7 +202,7 @@
     Будем выбирать знак  в $h_k$ ($\pm$), чтобы во всех слагаемых значение лежал в одинаковых частях графика. Тогда при четном и нечетном $j$ значение будет разных знаков.
 \end{ex}
 \begin{name}
-    Ряд из функций $\slim_{n=1}^{\infty} h_n(x)$ -- сходится обозначает, что функции $S_j(x) = h_1(x) \ldots  h_j(x)$  сходятся в соответствующем смысле.
+    Ряд из функций $\slim_{n=1}^{\infty} h_n(x)$ сходится обозначает, что функции $S_j(x) = h_1(x) \ldots  h_j(x)$  сходятся в соответствующем смысле.
 \end{name}
 \begin{ex}
     $f_n(x) = \sqrt{x^2 + \frac{1}{n}} \to  |x|$
@@ -255,7 +257,7 @@
     Говорят, что $ f$ есть первообразная для $ g$, если $ f$ дифференцируема на $ \langle a, b \rangle y$ и $ f' = g$ всюду.
 \end{defn}
 \begin{thm}[Ньютон, Лейбниц]
-    Если $ g$ -- непрерывна, то у нее есть первообразная.
+    Если $ g$   непрерывна, то у нее есть первообразная.
 \end{thm}
 \begin{note}
     К этой теореме мы еще вернемся.
@@ -264,7 +266,7 @@
     Если $ f' = g$, то $ (f + c)' = g$ для любой константы  $ c$.
 \end{st}
 \begin{thm}
-    Если $ f_1, f_2$ -- первообразные для $ g$, то $ f_1 - f_2 = const$
+    Если $ f_1, f_2$ --- первообразные для $ g$, то $ f_1 - f_2 = const$
 \end{thm}
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}[ht]{|l|l|}
@@ -293,24 +295,24 @@
     $ \int f'(x) \cdot g' = f \circ g \pm C$
 \end{st}
 \begin{defn}
-    Линейная функция -- это функция вида $ \varphi  (h) = ch$.
+    Линейная функция --- это функция вида $ \varphi  (h) = ch$.
 
     Линейная форма:
-    $\langle a, b \rangle; \quad \Phi $ -- отображение отрезка $ \langle a, b \rangle$ в множество линейных функций.
+    $\langle a, b \rangle; \quad \Phi $ --- отображение отрезка $ \langle a, b \rangle$ в множество линейных функций.
 
-    $ x \in  \langle a, b \rangle$, $ \Phi(x) $ -- линейная функция.
+    $ x \in  \langle a, b \rangle$, $ \Phi(x) $ --- линейная функция.
     \[
 	\Phi(x)(h) = c (x) h
     .\]
 \end{defn}
 \begin{defn}[дифференциал]
-    $ f $ -- дифференцируема на $ \langle a, b \rangle$
+    $ f $   дифференцируема на $ \langle a, b \rangle$
     \[
 	df(u, h) = f'(u) h = df
     .\]
 \end{defn}
 \begin{ex}
-    $ x: \langle a, b \rangle \to  \langle a, b \rangle$ -- тождественная. $ dx (u, h)= h$
+    $ x: \langle a, b \rangle \to  \langle a, b \rangle$ --- тождественная. $ dx (u, h)= h$
 \end{ex}
 \begin{st}
     $ \Phi = c \cdot dx$, где  $ c$ - некая функция на $ \langle a, b \rangle$
@@ -372,10 +374,10 @@ df = f' dx = g dx$
 \end{ex}
 \section{Интеграл}
 \begin{defn}
-    $ A$ -- множество произвольной природы. $ \Phi: A \to  \R$. $ \Phi$ -- функционал на $ A$.
+    $ A$ --- множество произвольной природы. $ \Phi: A \to  \R$. $ \Phi$ --- функционал на $ A$.
 \end{defn}
 \begin{defn}
-    Интеграл -- функционал на множестве функций, заданных на отрезке $ [a, b]$.
+    Интеграл --- функционал на множестве функций, заданных на отрезке $ [a, b]$.
 
     $ f \mapsto \Phi (f)$
     \[
@@ -401,30 +403,30 @@ df = f' dx = g dx$
     \end{enumerate}
 \end{st}
 \begin{defn}
-    Разбиение -- ступенчатая функция на отрезке $ \langle a, b \rangle, ~ a, b \in  \R:$
+    Разбиение --- ступенчатая функция на отрезке $ \langle a, b \rangle, ~ a, b \in  \R:$
     \[
 	\langle a, b \rangle = \bigcup_{i= 1}^{n} \langle \alpha _i, \beta _i \rangle, \quad \langle \alpha_i , \beta _i \rangle\cap \langle \alpha _j, \beta _j \rangle  \ne \varnothing
     .\]
 \end{defn}
 \begin{defn}
-    $ g $  на $ \langle a, b \rangle$ -- ступенчатая, если при $ i \ne j$ она постоянна  на отрезках какого-то разиения нашего отрезка $ \langle a, b \rangle$
+    $ g $  на $ \langle a, b \rangle$ --- ступенчатая, если при $ i \ne j$ она постоянна  на отрезках какого-то разиения нашего отрезка $ \langle a, b \rangle$
 \end{defn}
 Теперь можно зажать функцию между ступенчатыми. В этом состоит идея Дарбу.
 \subsection{Интеграл Дарбу}
 \begin{defn}
-    $ J$ -- конечный интервал, если его разбиение -- это набор  интервалов $ \{J_k\}^{N}_{k=1}$, такой что $ J_k \\cap  J_s = \varnothing, ~k \ne s $,
+    $ J$ --- конечный интервал, если его разбиение --- это набор  интервалов $ \{J_k\}^{N}_{k=1}$, такой что $ J_k \\cap  J_s = \varnothing, ~k \ne s $,
     $ \bigcup_{k=1}^{{N}} J_k = J_i $. (ДОпускаются одноточечные и пустые множества.)
 
 \end{defn}
 \begin{defn}
-    Длина интервала $ \langle a, b \rangle$ -- это $ b - a$
+    Длина интервала $ \langle a, b \rangle$ --- это $ b - a$
     Обозначается $ |J| = b-a$, $ |\varnothing| = 0$
 \end{defn}
 \begin{lm}
-    Если $ \{J_k\}_{k= 1}^{N}$ -- разбиение $ J$, то $|J| = \slim_{k=1}^{N}  |J_k|$
+    Если $ \{J_k\}_{k= 1}^{N}$ --- разбиение $ J$, то $|J| = \slim_{k=1}^{N}  |J_k|$
 \end{lm}
 \begin{defn}
-    $ e$ -- множетсво, $ f$ -- ограниченная функция на $ у$.
+    $ e$ --- множетсво, $ f$ --- ограниченная функция на $ у$.
 
     Колебание $ f$ на $  e$ :
     \[
@@ -447,45 +449,45 @@ df = f' dx = g dx$
 Просуммируем отрезки $ J_1, \ldots J_N $ из разбиения отрезка $ J$.
 \[
     \slim_{k= 1}^{N} |J_k|\inf_{x \in  J_k} f(x) \underline{S}
-.\] -- нижняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
+.\] --- нижняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
 \[
     \slim_{k= 1}^{N} |J_k|\sup_{x \in  J_k} f(x) =\overline{S}
-.\] -- верхняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
+.\] --- верхняя сумма Дарбу  для $ f$ и разбиения $ J_1 \ldots  J_N$
 \begin{name}
-    $ A$ -- множество всех нижних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
+    $ A$ --- множество всех нижних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
 
-    $ B$ -- множество всех верхних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
+    $ B$ --- множество всех верхних сумм Дарбу для $ f$ по всевозможным разбиениям $ J_i$
 \end{name}
 \begin{st}
-    Пусть $ \{A, B\}$ -- щель. Тогда
+    Пусть $ \{A, B\}$ --- щель. Тогда
     \[
 	\underline{I}(f) = \sup{ A} , \quad \overline{I}(f) = \inf(B)
     .\]
-    Все числа, лежащие в этой щели -- это $ [ \underline{I} (f) , \overline{I}(f)]$ (верхний и нижний интегралы Римана-Дарбу от $ f$)
+    Все числа, лежащие в этой щели --- это $ [ \underline{I} (f) , \overline{I}(f)]$ (верхний и нижний интегралы Римана-Дарбу от $ f$)
 \end{st}
 \begin{st}
-    $\{A, B\}$ -- щель.
+    $\{A, B\}$ --- щель.
 \end{st}
 \begin{proof}
-    $ \varepsilon $ -- разбиение отрезка $ J_i$.
-    $ \underline{S}_{ \mathcal{E} } (f) , ~ \overline{S} _{ \mathcal{E} }(f)$ -- верхняя и нижняя сумма Дарбу.
+    $ \varepsilon $ --- разбиение отрезка $ J_i$.
+    $ \underline{S}_{ \mathcal{E} } (f) , ~ \overline{S} _{ \mathcal{E} }(f)$ --- верхняя и нижняя сумма Дарбу.
     Очевидно, что $ \underline{S} _ \mathcal{E}  (f) \le  \overline{S} (f)$
 
-    $ \mathcal{E} , \mathcal{F}$ -- разбиение  $ J_i$ : $ \mathcal{F}$ -- измельчение $ \mathcal{E} $, если $ \forall  a \in  \mathcal{F} ~ \exists  b \in  \mathcal{E} : a<b$.
+    $ \mathcal{E} , \mathcal{F}$ --- разбиение  $ J_i$ : $ \mathcal{F}$ --- измельчение $ \mathcal{E} $, если $ \forall  a \in  \mathcal{F} ~ \exists  b \in  \mathcal{E} : a<b$.
     \begin{lm}
-	Если $ \mathcal{F}$ -- измельчение для $ \mathcal{E} $, то \[
+	Если $ \mathcal{F}$ --- измельчение для $ \mathcal{E} $, то \[
 	    \underline{S} _\mathcal{F} (f) \ge \underline{S}_ \mathcal{E} , \quad \overline{S}_\mathcal{F} \le \overline{S}_ \mathcal{E}
 	.\]
     \end{lm}
     \begin{lm}
-	Рассмотрим  $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения отрезка $ J_i$.
+	Рассмотрим  $ \mathcal{E}_1, \mathcal{E}_2$ --- разбиения отрезка $ J_i$.
 	Тогда у них есть общее измельчение. (Можем взять пересечение всех отрезков из первого и из второго)
     \end{lm}
-    Пусть $ \mathcal{E}_1, \mathcal{E}_2$ -- разбиения. $ \mathcal{F}$ -- общее измельчение.
+    Пусть $ \mathcal{E}_1, \mathcal{E}_2$ --- разбиения. $ \mathcal{F}$ --- общее измельчение.
     \[
 	\underline{S}_{\mathcal{E}_1} (f) \le  \underline{S}_{\mathcal{F}} (f) \le \overline{S}_\mathcal{F} \le \overline{S}_{\mathcal{E}_2}
     .\]
-    Следовательно, $ \{A, B\}$ -- щель.
+    Следовательно, $ \{A, B\}$ --- щель.
 \end{proof}
 \begin{note}
     Определенные величины $ \overline{I}(f) , \underline{I}(f)$ законны.
@@ -495,7 +497,7 @@ df = f' dx = g dx$
 \end{defn}
 \begin{ex}
 \item Все ступенчатые функции интегрируемы по Риману.
-    $\varphi $-- ступенчатая функция на $ J$,
+    $\varphi $--- ступенчатая функция на $ J$,
     Существует разбиение $ \underline{S}$ отрезка на $ J$.
     $ \mathcal{E} = \{e_1, \ldots  e_k\} : \varphi  (x) = \slim{i=1}^{k} c_i \chi_{e_i}$
     \[
@@ -504,33 +506,55 @@ df = f' dx = g dx$
     \]
     Тогда $ \underline{I} ( \varphi ) - \overline{I} \varphi = I( \varphi ) = \slim_{i=1}^{k} |e_i| c_i$
 \end{ex}
+\begin{thm}
+    Если $ J$ --- замкнутый отрезок ($ J = [a, b]$), $ f$ --- непрерывная функция на $ J$, то $ f$ интегрируема по Риману.
+\end{thm}
 \begin{note}
-    Пусть $ J$ -- произвольный отрезок, $ f$ -- ограниченная функция на $ J$, $ \mathcal{E}$ -- разбиение отрезка $ J  $ на непустве отрезки $ \{e_1, \ldots  e_n\}$.
-    \[
-	% фото 14:28
-    .\]
+    Пусть $ J$ --- произвольный отрезок, $ f$ --- ограниченная функция на $ J$, $ \mathcal{E}$ --- разбиение отрезка $ J  $ на непустое отрезки $ \mathcal{E} =\{e_1, \ldots  e_k\}$.
+    Тогда
+    \begin{align*}
+	\overline{S}_{\mathcal{E}}(f)  - \underline(S)_{\mathcal{E}}(f) &= \sum_{i=1}^{k} |e_i|\sup_{e_i}f  - \sum_{i=1}^{k}|e_i|\inf_{e_i}f = \\
+									&= \sum_{i=1}^{k}|e_i|\Bigl( \sup_{e_i} f - \inf_{e_i}f\Bigr) = \sum_{i=1}^{k} |e_i| \osc_{e_i}f
+    \end{align*}
 \end{note}
-% теорема 14:28
-% утверждение 14:30
-\begin{thm}{Критерий интегрируемости по Риману}
-    $ f$ -- интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 \exists $ разбиение $ e_1, .. e_k$ Отрезка $ J$, такое что $ \slim_{i=1}^{k}|e_k| osc_{e_k} f < \varepsilon $. \label{iff_1}
+\begin{note}
+    $ f$ интегрируема по Риману  $ \Longleftrightarrow $  щель $ (A, B)$ --- узкая $ \Longleftrightarrow $
+    \[
+	\forall \varepsilon >0 ~ \exists  \mathcal{E}_1, \mathcal{E}_2 \text{ --- разбиения отрезка } J: \overline{S}_{\mathcal{E}_2}(f)  - \underline(S)_{\mathcal{E}_1}(f)  < \varepsilon
+    .\]
+    В данный обозначениях измельчения можно считать, что $ \mathcal{E}_1 = \mathcal{E}_2$
+    // возможно, здесь должно быть что-то другое
+\end{note}
+\begin{thm}[Критерий интегрируемости по Риману]
+    $ f$   интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 ~ \exists $ разбиение $ e_1, \ldots,  e_k$ Отрезка $ J$, такое что
+    \begin{align}
+	\slim_{i=1}^{k}|e_k| \osc_{e_k} f < \varepsilon . \label{iff_1}
+    \end{align}
 \end{thm}
 \begin{proof}
     Проверим, что $ f$ удовлетворяет условию  \ref{iff_1}
+    $ f$ равномерно непрерывна по теореме Кантора \ref{th_kantor}:
+    \[
+	\forall 	\varepsilon >0 ~ \exists \delta  >0: \Bigl( x, y \in  [a, b] \wedge  |x-y| < \delta  \Longrightarrow  |f(x) - f(y)| < \varepsilon  \Bigr)
+    .\] 
+    Пусть $ e_1, \ldots e_k$ --- столь мелкое разбиение отрезка $ [a, b]$, что $ \forall i: |e_i| < \delta $. Тогда  $ \forall i: \osc_{e_i}f \le \varepsilon $.
+    \[
+	\sum_{i=1}^{k} |e_i|\osc_{e_i} f \le \varepsilon \sum_{i=1}^{k}|e_i| = \varepsilon (b-a) 
+    .\] 
     % proof 14:36
 \end{proof}
 \begin{prop}
     \begin{enumerate}
-	\item $ f$ -- непрерывна на $ \langle a, b \rangle \Rightarrow $ $ f$ -- интегрируема.
-	\item  $ \Sigma  $ -- разбиение, \[
+	\item $ f$   непрерывна на $ \langle a, b \rangle \Rightarrow $ $ f$   интегрируема.
+	\item  $ \Sigma  $ --- разбиение, \[
 		\overline{S}_{ \Omega } (-f) =  -\underline{S}_{ \Omega } (f)
 	    .\]
 	\item Если $ \alpha >0$, \[
 		\bar{S}_{ \Sigma }(\alpha f) = \alpha \bar{S}_{ \Sigma}(f)
 	    .\]
 	    Аналогично с нижней суммой.
-	\item Если $ f$ -- интергируема и $ \alpha  \in  \R$, то $ \alpha  f$ -- интегрируема и $ I( \alpha  f) = \alpha I(f)$
-	\item $ f, g : \langle a, b \rangle \to  \R$ -- ограничены. $ \Sigma $ -- разбиение.
+	\item Если $ f$   интегрируема и $ \alpha  \in  \R$, то $ \alpha  f$   интегрируема и $ I( \alpha  f) = \alpha I(f)$
+	\item $ f, g : \langle a, b \rangle \to  \R$   ограничены. $ \Sigma $   разбиение.
 	    \[
 		\overline{S}_{ \Sigma }(f+g) \le  \overline{iS}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
 	    .\]
@@ -538,23 +562,23 @@ df = f' dx = g dx$
 	    \[
 		\underline{S}_{ \Sigma } (f + g)  \ge  \underline{S}_{ \Sigma } (f) + \underline{S}_{ \Sigma }(g)
 	    .\]
-	\item  Если $ f , g$ -- интегрируемы на $ \langle a, b \rangle$, то $ f + g $ -- интегрируема и \[
+	\item  Если $ f , g$   интегрируемы на $ \langle a, b \rangle$, то $ f + g $   интегрируема и \[
 		I(f+g) = I(f) + I(g)
 	    .\]
 	    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и прошлым свойством. Для второго утверждения: просто записываем неравенство.
-	\item $ f, g$ -- интегрируемы, $ \alpha , \beta \in  \R$.
-	    Тогда $ \alpha f + \beta  g$ --интегрируема и
+	\item $ f, g$   интегрируемы, $ \alpha , \beta \in  \R$.
+	    Тогда $ \alpha f + \beta  g$  интегрируема и
 	    \[
 		I( \alpha f+ \beta g) = \alpha I(f) + \beta  I(g)
 	    .\]
 	\item Монотонность.
-	    $ f \ge 0, f$ -- интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
-	\item $ f, g$ -- интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$ -- интегрируема.
+	    $ f \ge 0, f$   интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
+	\item $ f, g$   интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$   интегрируема.
 	    \begin{proof}
 		\[
 		    \exists  C, D \in  \R: |f| \le  C, |g| \le D \text{ на } \langle a, b \rangle
 		.\]
-		Пусть $ J$ -- отрезок. Оценим осцилляцию.
+		Пусть $ J$ --- отрезок. Оценим осцилляцию.
 		\[
 		    \forall  x, y \in  J: | f(x) g(x) - f(y) g(y_| = |f(x) g(x) - f(x) g(y)  | + | f(x) g(y) - f(y) g(x)|=
 		\]
@@ -565,33 +589,33 @@ df = f' dx = g dx$
 		    =  |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le
 		\]
 		\[
-		    \le  C \cdot osc_J g + D \cdot osc_J f
+		    \le  C \cdot \osc_J g + D \cdot \osc_J f
 		.\]
-		$ f, g$ -- интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
+		$ f, g$   интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
 
 		Получаем \[
 		    \begin{array}{c}
-			\slim_{J \in  \Sigma} |J| osc_J f \le  \varepsilon \\
-			\slim_{J \in  \Sigma} |J| osc_J g \le  \varepsilon
+			\slim_{J \in  \Sigma} |J| \osc_J f \le  \varepsilon \\
+			\slim_{J \in  \Sigma} |J| \osc_J g \le  \varepsilon
 		    \end{array}
 		.\]
-		Тогда $ \forall  J \in  \Sigma: osc_J (f g) \le  C \cdot osc_J g + D \cdot osc_J f$.
+		Тогда $ \forall  J \in  \Sigma: \osc_J (f g) \le  C \cdot \osc_J g + D \cdot \osc_J f$.
 
 		Следовательно, \[
-		    \slim_{J \in  \Sigma} |J| \cdot osc_J fg \le C \cdot \slim_J |J| \cdot osc_J g + D \cdot \slim_J | J| \cdot osc_J f \le  (C + D ) \varepsilon
+		    \slim_{J \in  \Sigma} |J| \cdot \osc_J fg \le C \cdot \slim_J |J| \cdot \osc_J g + D \cdot \slim_J | J| \cdot \osc_J f \le  (C + D ) \varepsilon
 		.\]
 	    \end{proof}
 	\item
-	    $ f$ -- интегрируема на $ \langle a, b \rangle$. $ J \subset  \langle a, b \rangle$.
-	    Тогда $ f \cdot \chi_J $ -- интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
+	    $ f$   интегрируема на $ \langle a, b \rangle$. $ J \subset  \langle a, b \rangle$.
+	    Тогда $ f \cdot \chi_J $   интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
 
 	    Если $ J = \{c\}$, то $ I(f \chi_J)  = 0$.
-	\item $ J_1, J_2$ -- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда
+	\item $ J_1, J_2$ --- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда
 	    \[
 		I(f \chi_{J_1 \cup J_2}) = I(f \chi_{J_1}) + I(f \chi _{J_2})
 	    .\]
 	\item Основная оценка интеграла.
-	    $ f$ -- интегрируема на $ \langle a, b \rangle$.
+	    $ f$   интегрируема на $ \langle a, b \rangle$.
 	    $ |f | \le M$ на $ [c, d] \subset \langle a, b \rangle$
 	    \[
 		\left| \int_c ^{ d} f \right| \le  M(d-c)
@@ -611,17 +635,17 @@ df = f' dx = g dx$
     .\]
 \end{name}
 \begin{st}
-    $ f$ -- интегрируема на $ \langle a, b \rangle$.
+    $ f$   интегрируема на $ \langle a, b \rangle$.
     \[
 	\int_c ^{e} f = \int _c^{ d} f+ \int_d ^{e} f
     .\]
 \end{st}
 \subsection{Связь интеграла и производящей}
-$ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- первообразная функция $ f$, если $ F$ -- дифференцируема и $ F' = f$.
+$ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ --- первообразная функция $ f$, если $ F$   дифференцируема и $ F' = f$.
 \begin{thm}
     [Ньютон-Лейбниц]
     Пусть $ f$ интегрируема по Риману на $ \langle a, b \rangle$ и непрерына в точке $ t \in  \langle a, b \rangle$. Пусть $ t_0 \in  \langle a, b \rangle: F(s) = \int_{t_0} ^{s} f$.
-    Тогда $ F$ -- дифференцируема в точке $ t$и $ F'(t) = f(t)$.
+    Тогда $ F$   дифференцируема в точке $ t$и $ F'(t) = f(t)$.
 \end{thm}
 \begin{proof}
     $ x \ne t$.\[
@@ -630,7 +654,7 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
     \[
 	\frac{1}{|x-t|} \left| \int _t ^{ x} f - (x-t)f(x) \right|  = \frac{1}{|x-t|}\left |{\int_t ^{x} f(s) - f(t) ds } \right | \le  \sup_{s \in  [t, x] } |f(s) = f(t)|
     .\]
-    $ f$ -- непрерывна в $ t$. Тогда $ \forall  \varepsilon  > 0 ~ \exists  \delta  $. Если $| s- t| < \delta$, $ |f(t) - f(s) |< \varepsilon $
+    $ f$   непрерывна в $ t$. Тогда $ \forall  \varepsilon  > 0 ~ \exists  \delta  $. Если $| s- t| < \delta$, $ |f(t) - f(s) |< \varepsilon $
     \[
 	|x - t| < \delta  \Longrightarrow \forall s \in  [t, x]: |s - t| < \varepsilon  \to |f(s) - f(t) | < \varepsilon
     .\]
@@ -642,15 +666,15 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
     .\]
 \end{proof}
 \begin{cor}
-    Если $ f$ дифференцируема на $ \langle a, b \rangle$, то $ \forall t_0 \in  [a, b]: F $ --первообразная $ f$.
+    Если $ f$ дифференцируема на $ \langle a, b \rangle$, то $ \forall t_0 \in  [a, b]: F $ ---первообразная $ f$.
 \end{cor}
 \begin{cor}[Формула Ньютона-Лейбница]
-    $ f$ -- непрерывна на $ [a, b]$, $ F$ --первообразная $ f$. Тогда \[
+    $ f$   непрерывна на $ [a, b]$, $ F$ ---первообразная $ f$. Тогда \[
 	\int_a^{b} f = F(b) - F(a)
     .\]
 \end{cor}
 \begin{defn}
-    $ f \in  C^{k} \langle a, b \rangle, \quad k \in \N \cap  \{0,  \infty\}$, если $ f, f', \ldots f^{(k)} $ -- непрерывны.
+    $ f \in  C^{k} \langle a, b \rangle, \quad k \in \N \cap  \{0,  \infty\}$, если $ f, f', \ldots f^{(k)} $   непрерывны.
 \end{defn}
 \begin{thm}
     Если $ f, g \le  C^{1} (a, b)$ , то
@@ -660,11 +684,11 @@ $ f : \langle a, b \rangle  \to  \R$, $ F: \langle a, b \rangle \to  \R$ -- пе
     где $ \Phi \mid _a ^{ b} = \Phi(b) - \Phi(a)$
 \end{thm}
 \subsection{Формула интегрирования по частям}
-$ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f, g, f', g'$ -- непрерывны.
+$ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f, g, f', g'$   непрерывны.
 Тогда \[
     (fg)' = f' g+g'f
 .\]
-Пусть $ \Phi$ -- первообразная для $ f' g$.
+Пусть $ \Phi$ --- первообразная для $ f' g$.
 Запишем первообразную для $ fg'$
 \[
     \Psi (x) = \int_a^{x} f(t) g'(x) dt = f(x) g(x) - \Phi (x) + c
@@ -682,7 +706,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     \int_y^{x} f'(t) g(t) dt = fg |_y^{x} - \int f(t) g'(t) dt
 .\]
 \begin{thm}
-    $ f_n, f$ -- Заданы на $ \langle a, b \rangle; n \in \N$
+    $ f_n, f$ --- Заданы на $ \langle a, b \rangle; n \in \N$
     Пусть
     \begin{enumerate}
 	\item все $ f_n$ интегрируемы по Риману на $ \langle a, b \rangle$
@@ -694,7 +718,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \end{thm}
 \begin{proof}
     \begin{lm}
-	$ E$ -- множество, $ u, v $ -- вещественные функции на $ E$. $ |u(x) - v(x) | \le  \lambda ~ \forall  E.$
+	$ E$ --- множество, $ u, v $ --- вещественные функции на $ E$. $ |u(x) - v(x) | \le  \lambda ~ \forall  E.$
 	Тогда $ |ose_E(u) - ose_E(v) | \le  2 \lambda$
     \end{lm}
     \[
@@ -703,14 +727,14 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     \[
 	|ose_{\langle a, b \rangle} - ose_{_\langle a, b \rangle(f)}| \le 2 \varepsilon
     .\]
-    $\exists  \{I_1, \ldots I_N \} $ -- отрезки $ \langle  a, b \rangle$:
+    $\exists  \{I_1, \ldots I_N \} $ --- отрезки $ \langle  a, b \rangle$:
     \[
 	\sum_{j=1}^{N }|I_j| ose_{I_j} < \varepsilon
     .\]
     \[
-	\sum_{j=1}^{N} |I_j| osc_{I_j}(f)  \le  \varepsilon +\sum_{j=1}^{N} |I_j| (2 \varepsilon ) = \varepsilon (2 (b-a) + 1)
+	\sum_{j=1}^{N} |I_j| \osc_{I_j}(f)  \le  \varepsilon +\sum_{j=1}^{N} |I_j| (2 \varepsilon ) = \varepsilon (2 (b-a) + 1)
     .\]
-    Следовательно, $ f$ -- интегрируема.
+    Следовательно, $ f$   интегрируема.
 
     \[
 	\left|\int_a^{b} f_n(x_) dx - \int _a^{b}f(x) dx \right|= \left|\int_a^{b} f_1(x) - f(x) dx\right| \le  \varepsilon (b-a)
@@ -745,7 +769,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     l(x) = l(|x|)
 .\]
 \begin{defn}
-    Логарифм -- строго монотонная функция, заданная на $ \R_{+}$, такая что \[
+    Логарифм --- строго монотонная функция, заданная на $ \R_{+}$, такая что \[
 	f(xy) = l(x) + l(y) \quad x, y >0
     .\]
 \end{defn}
@@ -762,13 +786,13 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     .\]
 \end{st}
 \begin{st}
-    Если $ l$ -- логарифм, $ c\ne 0$, то $ cl$ -- тоже логарифм.
+    Если $ l$ --- логарифм, $ c\ne 0$, то $ cl$ --- тоже логарифм.
 \end{st}
 \begin{lm}
-    Если $ l$ -- логарифм, то $ l$ -- непрерывна на всей области определения.
+    Если $ l$ --- логарифм, то $ l$   непрерывна на всей области определения.
 \end{lm}
 \begin{proof}
-    Пусть $ l$ -- логарифм. Считаем, что $ f$строго возрастает.
+    Пусть $ l$ --- логарифм. Считаем, что $ f$строго возрастает.
     \[
 	t = \lim_{x \to 1 + 0} f(x)
     .\]
@@ -777,11 +801,11 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 	l((1+ x)^{2}) = 1 l(1+ x)
     .\]
     При $ x to 1+$ получаем, что $ t=0$.
-    Если  $ x \to  1-$, получаем тое самое. Значит $l$ -- непрерывна в 1.
+    Если  $ x \to  1-$, получаем тое самое. Значит $l$   непрерывна в 1.
     И равна нулю в этой точке.
 \end{proof}
 \begin{lm}
-    Если $ l$ -- логарифм, то функция $ l$ -- дифференцируема.
+    Если $ l$ --- логарифм, то функция $ l$   дифференцируема.
 \end{lm}
 \begin{proof}
     \[
@@ -818,12 +842,12 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     Только что доказали.
 \end{proof}
 \begin{thm}
-    $ \Phi(x) = \int_1^{x} \frac{C}{t}dt$ -- логарифм.\\
+    $ \Phi(x) = \int_1^{x} \frac{C}{t}dt$ --- логарифм.\\
     Сама $ l (x) = C \cdot \int_1^{x} \frac{dt}{t}$
 \end{thm}
 \begin{thm}
     Если $ C \ne 0$, то \[
-	\varphi (x) = C\int_1 ^{x} \frac{dt}{t} \text{ -- есть логарифм}
+	\varphi (x) = C\int_1 ^{x} \frac{dt}{t} \text{ --- есть логарифм}
     .\]
 \end{thm}
 \begin{proof}
@@ -939,7 +963,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     .\]
     Проверим, что полученное выражена стремиться к нулю.
     \begin{lm}
-	Пусть $ a_0, a_1, a_2 \ldots  $ -- положительные числа и $
+	Пусть $ a_0, a_1, a_2 \ldots  $ --- положительные числа и $
 	\exists N: a_j < \eta < 1 ~ \forall  j > N
 	$.
 	Тогда $ a_0 a_1 \ldots a_j \to  0 \quad j \to \infty$
@@ -998,7 +1022,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
     .\]
     $ g$  дифференцируема а нуле и $ g'(0) = 0$.
     \[
-	g^{(j)} (x) = \exp\left(-\frac{1}{x^2}\right) p_j\left(\frac{1}{x}\right), \quad p_j \text{ -- полином}
+	g^{(j)} (x) = \exp\left(-\frac{1}{x^2}\right) p_j\left(\frac{1}{x}\right), \quad p_j \text{ --- полином}
     .\]
     Значит, $ g$ бесконечно дифференцируемая функция и $ g^{(j)} (0) = 0$.
 
@@ -1017,7 +1041,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 	    \end{array}
 	\right .
     .\]
-    $ h$ -- бесконечно дифференцируема.
+    $ h$ --- бесконечно дифференцируема.
     \[
 	u(x) = h(x-a) h(b-x), \quad a<b
     .\]
@@ -1033,7 +1057,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \end{cor}
 
 \begin{name}
-    $ l $-- логарифм.
+    $ l $--- логарифм.
     \[
 	\exists ! a \in  (0, +\infty): l(a) = 1
     .\]  тТакое число называется основанием логарифма $ l$.
@@ -1044,31 +1068,31 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \begin{name}[общий случай]
     \[
 	\exists C \ne 0 : l(x) = C \log x
-    .\] 
-    $ a$ -- ан для $ l$.
+    .\]
+    $ a$ --- ан для $ l$.
     \[
 	1 = l(x) = C \log a ~ \Longrightarrow  ~ C= \frac{1}{\log a}
-    .\] 
+    .\]
     Обозначим логарифм с основанием $ a$ так \[
 	\log_a x = \frac{\log x}{\log a}
-    .\] 
+    .\]
 \end{name}
 \begin{name}
-    Степень с произвольным показателем: 
+    Степень с произвольным показателем:
     \[
 	u>0 \wedge v \in  \R: ~ u^{v} \mydef \exp(v \log u)
-    .\] 
+    .\]
 \end{name}
 \begin{note}
     Натуральная степень:
     $ \exp( n \log u) = \exp(\underbrace{\log u \ldots \log u}_{n}) = u ^{ n}$
-    
-    Целая отрицательная степень: $ \exp( - k \log u) = \frac{1}{\exp(k \log u)} = \frac{1}{u^{k}}$ 
+
+    Целая отрицательная степень: $ \exp( - k \log u) = \frac{1}{\exp(k \log u)} = \frac{1}{u^{k}}$
 
     Рациональная степень: $ v = \frac{a}{p}, \quad a \in  \Z, p \in  \N$
     \[
 	u ^{ v} = \exp\frac{a \log u}{p} = \sqrt[p]{\exp a \log u} = \sqrt[p]{u^{a}}
-    .\] 
+    .\]
 \end{note}
 \begin{prop}
     $ $
@@ -1090,8 +1114,8 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \end{prop}
 \begin{defn}
     Пусть $  \ne 1$.  \[
-	a^{x} = y: \exp x \log a \Leftrightarrow  x = \frac{\log y}{\log a} = \log_a y 
-    .\] 
+	a^{x} = y: \exp x \log a \Leftrightarrow  x = \frac{\log y}{\log a} = \log_a y
+    .\]
 \end{defn}
 \subsection{Степенная функция}
 \begin{defn}
@@ -1100,7 +1124,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \begin{st}
     \[
 	g'(x) = (\exp b \log x) ' = (\exp b \log x)  \cdot  \frac{b}{x} = x^{b} \frac{1}{x} b = b \cdot { x ^{ b-1}}
-    .\] 
+    .\]
 \end{st}
 \begin{st}
     Если $ a > 1$, то $ \forall  b \in  \R : x^{ b} = o(a ^{ x}, \quad x \to  \infty$
@@ -1108,83 +1132,83 @@ $ f, g : [a, b] \to  \R, $ $ f, g$ -- непрерывны на $ [a, b]$ и $ f
 \begin{proof}
     \[
 	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b log x - x log a}
-    .\]  
+    .\]
     А логарифм растет медленнее линейной функции, тогда полученное выражение стремится к нолю при $ x \to  \infty$.
 \end{proof}
 \begin{prac}
-$ $
+    $ $
 
     $ \forall  \beta :\log u = o(x ^{ \beta }) $
 
-$ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
+    $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
 \end{prac}
 \begin{st}
     Ранее доказали % ссылка
     , что  \[
-	e ^{ x} = 1 + \frac{x}{1!} + \frac{x^2}{2! } + \ldots + \frac{x^{n}}{n!} + \ldots 
+	e ^{ x} = 1 + \frac{x}{1!} + \frac{x^2}{2! } + \ldots + \frac{x^{n}}{n!} + \ldots
     \]  сходится при любых $ x$. Экспонента равномерна на любом конечном отрезка.
 
     Ряд для $ e^{ x}$ по степеням $ ( x - x_0):$
     % \begin{equation}
-	% \exp x - \exp x_0 = \exp x_0 \cdot  (\exp (x - x_0) -1) = 
+    % \exp x - \exp x_0 = \exp x_0 \cdot  (\exp (x - x_0) -1) =
     % \end{equation}
     \begin{equation}
-    e ^{ x} = e^{ x_0} \cdot e ^{x- x_0} = e ^{ x_0} \sum_{n=0}^{\infty} \frac{(x-x_0)^{n}}{n!} = \sum_{n=1} ^{\infty} \frac{e^{x_0}}{n!} (x - x_0)
-\end{equation}
-Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется ,,аналитичность''
+	e ^{ x} = e^{ x_0} \cdot e ^{x- x_0} = e ^{ x_0} \sum_{n=0}^{\infty} \frac{(x-x_0)^{n}}{n!} = \sum_{n=1} ^{\infty} \frac{e^{x_0}}{n!} (x - x_0)
+    \end{equation}
+    Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется ,,аналитичность''
 \end{st}
 \begin{ex}
-    $ f(x) = \sum_{n=1}^{\infty} 2^{n} \cos n^2 x $ -- непрерывная, ряд сходится равномерно по теореме Вейерштрасса)
+    $ f(x) = \sum_{n=1}^{\infty} 2^{n} \cos n^2 x $ --- непрерывная, ряд сходится равномерно по теореме Вейерштрасса)
     \[
-    |2^{n} \cos n^2x | \le  2 ^{ n}
-    .\] 
+	|2^{n} \cos n^2x | \le  2 ^{ n}
+    .\]
     Возьмем производную:
     $
     f'(x) = \sum_{n=1}^{\infty} 2^{-n} n^2 (- \sin n ^2 x)
-	$ -- сходится равномерно.
-	Дальше будет происходить тоже самое при взятии производной. Значит, она дифференцируема бесконечное число раз. $ f \in  C^{\infty} (\R)$
+    $   сходится равномерно.
+    Дальше будет происходить тоже самое при взятии производной. Значит, она дифференцируема бесконечное число раз. $ f \in  C^{\infty} (\R)$
 
-	Тогда можем записать ряд Тейлора в нуле:
-	\begin{equation}\label{kontr}
-	    f(x) =  \sum_{k=0}^{\infty} \frac{f^{(2k)}}{(2k)!} x^{2k}
-	\end{equation}
-	Этот ряд вообще не сходится! Докажем это:
-\[
-    f^{(2k)} (0) = \sum_{n=1}^{\infty} 2 ^{-n} n^{4k} (-1)^{k}
-.\] 
-\begin{st}
-В \ref{kontr} общий член стремиться к нулю, если $ |x| > 0$.
-\end{st}
-\begin{proof}
+    Тогда можем записать ряд Тейлора в нуле:
+    \begin{equation}\label{kontr}
+	f(x) =  \sum_{k=0}^{\infty} \frac{f^{(2k)}}{(2k)!} x^{2k}
+    \end{equation}
+    Этот ряд вообще не сходится! Докажем это:
     \[
-	\frac{|f^{(2k)} (0)|}{(2k)!} x^{2k} \ge \frac{2^{-n} n^{4k}}{(2k)!} x ^{ 2k} \ge \frac{2^{-n} n^{4k}}{(2k)^{2k}} x ^{ 2k}
-    .\] 
-    Подставим $ n = 2k$ :
-    \[
-	\left( \frac{|x| n^2}{2k} \right) ^{2k} 2^{-n} = (2kx)^{2k} 2 ^{-2k} = (k |x|)^{ 2k}
-    .\] 
-    А это стремиться к нулю.
-\end{proof}
+	f^{(2k)} (0) = \sum_{n=1}^{\infty} 2 ^{-n} n^{4k} (-1)^{k}
+    .\]
+    \begin{st}
+	В \ref{kontr} общий член стремиться к нулю, если $ |x| > 0$.
+    \end{st}
+    \begin{proof}
+	\[
+	    \frac{|f^{(2k)} (0)|}{(2k)!} x^{2k} \ge \frac{2^{-n} n^{4k}}{(2k)!} x ^{ 2k} \ge \frac{2^{-n} n^{4k}}{(2k)^{2k}} x ^{ 2k}
+	.\]
+	Подставим $ n = 2k$ :
+	\[
+	    \left( \frac{|x| n^2}{2k} \right) ^{2k} 2^{-n} = (2kx)^{2k} 2 ^{-2k} = (k |x|)^{ 2k}
+	.\]
+	А это стремиться к нулю.
+    \end{proof}
 \end{ex}
 \subsection{Разложение Тейлора для логарифма}
 \begin{thm}[разложение Тейлора для $ \log(1+x) $  центром в $ 0$]
     $ $
 
-    $ f(x) = \log(1+x)$, $ f'(x) = (1+x) ^{-1}$, $ f^{(2)} = -(1+x)^{-2}$, $ f^{(3)} = 2 (1+x) ^{ -3}$ \ldots 
+    $ f(x) = \log(1+x)$, $ f'(x) = (1+x) ^{-1}$, $ f^{(2)} = -(1+x)^{-2}$, $ f^{(3)} = 2 (1+x) ^{ -3}$ \ldots
     \[
 	f^{(n)} = (-1)^{n+1} 1 \cdot  2\cdot  \ldots \cdot (n-1) (1+x) ^{-n}
-    .\] 
+    .\]
     Запишем локальную формулу Тейлора:
     \[
 	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{k+1} (1 + c)}{(k+1)!} x ^{ k+1}
-    .\] 
+    .\]
     \[
 	\log(1+x) = \sum_{n=1} ^{k}  (-1)^{n+1} \frac{x^{n}}{n} + \frac{(-1)^{ k+1}}{k+1}\cdot  \frac{1}{(1+c)^{k+1}}x ^{ k+1}
-    .\] 
-    Тогда 
-\[
-    \log(1+x) \sim x, \quad \log(1+x) = x - \frac{x^2}{2} + O(x^3)
-.\] 
+    .\]
+    Тогда
+    \[
+	\log(1+x) \sim x, \quad \log(1+x) = x - \frac{x^2}{2} + O(x^3)
+    .\]
 \end{thm}
 \begin{st}
     $ e^{x} = \lim_{n \to 0}  (1 + ux) ^{ \frac{1}{n}}$
@@ -1193,13 +1217,13 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
     $ (1+ux)^{\frac{1}{n}} = e ^{ \frac{1}{n}\log(1+ux)}$
     \[
 	\frac{1}{n} \log (1+ux) = x + O(u) \longleftarrow  x, \quad b \to  0
-    .\] 
+    .\]
     \[
 	\log(1+ux) = ux + O(n^2)
-    .\] 
+    .\]
     \[
-	e = \lim_{n \to  0} (1+x) ^{\frac{1}{n}}  
-    .\] 
+	e = \lim_{n \to  0} (1+x) ^{\frac{1}{n}}
+    .\]
 \end{proof}
 \begin{st}
     Ракскладывается ли логарифм  ряд Тейлора:
@@ -1208,8 +1232,8 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
     \end{equation}
     Посмотрим на модуль:
     \[
-    \frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
-    .\] 
+	\frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
+    .\]
     Тогда имеет смысл рассматривать только $ x\in (-1, 1]$.
 \end{st}
 \begin{thm}
@@ -1217,116 +1241,116 @@ $ \forall  \alpha :\lim_{x \to  0}  x^{ \alpha } \log x = 0$
 \end{thm}
 \begin{proof}
     \begin{enumerate}
-	\item $ x \in  [0, 1]$. 
+	\item $ x \in  [0, 1]$.
 	    \begin{equation}
 		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} x^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
 		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in lra
 	    \end{equation}
 	    В частности, $ \log 2 = 1 -\frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots $.
-	    \item $ -1 < x \le 0$
-		\begin{equation}\label{sl_2}
+	\item $ -1 < x \le 0$
+	    \begin{equation}\label{sl_2}
 		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
 		\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
-		\end{equation}
-		Удачным случаем \ref{sl_2} будет $ \frac{|x|}{1 - |x|} < 1 ~ \Leftrightarrow  ~ |x| \le \frac{1}{2}, ~ x \in  (-\frac{1}{2}, 0]$.
-		Чтобы разобраться с оставшимися вариантами, воспользуемся формулой: $ (1-x) (1 + x + \ldots + x^{n}) = 1 - x^{n+1}$.
-	Подставим $ x = -x$:  \[
-	    1 -x + x^2 - x^3 + \ldots  (-1)^{n} x^{n} = \frac{1}{1+x} + (-1)^{n} \frac{x^{n+1}}{1 + x}
-	.\] 
-	Проинтегрируем:
-	\[
-	    \int_0^{t} \sum_{k=0}^{n-1}(-1)^{k}x^{k} dt = \int_0^{t} \frac{1}{1+x} - (-1)^{n} \frac{x^{n}}{1+x}
-	.\] 
-	\[
-	    \log(1+t) = \sum_{k=0}^{n}\frac{(-1)^{k-1}}{k} t ^{k} + (-1) ^{n+1} \int _0 ^{ t} \frac{x^{n}}{1+x} dx \qquad -1 <t \le 0, t <  x \le 0
-	.\] 
-	\[
-	    \int _0 ^{ t} \frac{x^{n}}{1+x} dx \le  \int_{0}^{t} (\frac{|x|^{n}}{1-|x|} dx \le \frac{1}{1 - |t|} \int_t ^{0} |x|^{n} dx = \frac{1}{1-|t|} \frac{1}{n+1}|t|^{n+1}
-	.\] 
-	Это выражение стремится к нулю при $n \to \infty, ~ t> -1$, если $ t\in (-1, 0], |t| \le r <1$, равномерно сходится.
-	Удачный случай: $ \le \frac{1}{1+|t|} \frac{1}{n+1} |t|^{n} \le \frac{1}{1-r}\frac{1}{n}r^{n}$.
+	    \end{equation}
+	    Удачным случаем \ref{sl_2} будет $ \frac{|x|}{1 - |x|} < 1 ~ \Leftrightarrow  ~ |x| \le \frac{1}{2}, ~ x \in  (-\frac{1}{2}, 0]$.
+	    Чтобы разобраться с оставшимися вариантами, воспользуемся формулой: $ (1-x) (1 + x + \ldots + x^{n}) = 1 - x^{n+1}$.
+	    Подставим $ x = -x$:  \[
+		1 -x + x^2 - x^3 + \ldots  (-1)^{n} x^{n} = \frac{1}{1+x} + (-1)^{n} \frac{x^{n+1}}{1 + x}
+	    .\]
+	    Проинтегрируем:
+	    \[
+		\int_0^{t} \sum_{k=0}^{n-1}(-1)^{k}x^{k} dt = \int_0^{t} \frac{1}{1+x} - (-1)^{n} \frac{x^{n}}{1+x}
+	    .\]
+	    \[
+		\log(1+t) = \sum_{k=0}^{n}\frac{(-1)^{k-1}}{k} t ^{k} + (-1) ^{n+1} \int _0 ^{ t} \frac{x^{n}}{1+x} dx \qquad -1 <t \le 0, t <  x \le 0
+	    .\]
+	    \[
+		\int _0 ^{ t} \frac{x^{n}}{1+x} dx \le  \int_{0}^{t} (\frac{|x|^{n}}{1-|x|} dx \le \frac{1}{1 - |t|} \int_t ^{0} |x|^{n} dx = \frac{1}{1-|t|} \frac{1}{n+1}|t|^{n+1}
+	    .\]
+	    Это выражение стремится к нулю при $n \to \infty, ~ t> -1$, если $ t\in (-1, 0], |t| \le r <1$, равномерно сходится.
+	    Удачный случай: $ \le \frac{1}{1+|t|} \frac{1}{n+1} |t|^{n} \le \frac{1}{1-r}\frac{1}{n}r^{n}$.
     \end{enumerate}
 \end{proof}
 \begin{note}
-    Логарифм -- аналитическая функция.
+    Логарифм --- аналитическая функция.
 \end{note}
 \begin{proof}
-    Выберем $ |1 = \frac{x}{x_0}| < 1$.
+    Выберем $ \left|1 - \frac{x}{x_0}\right| < 1$.
     \[
 	\log x - \log x_0 = \log \frac{x}{x_0} = \log(1 - (1- \frac{x}{x_0}))  = \sum_{n+1}^{\infty} \frac{1}{n} (-1)^{n+1} (\frac{x}{x_0} - 1)^{n}
-    .\] 
+    .\]
     \[
-	\log x= \log x_0 + \sum_{n=1}^{ooo}\frac{1}{n} (-1)^{n}\frac{1}{x_0} (x - x_0)^{n}
-    .\] 
+	\log x= \log x_0 + \sum_{n=1}^{\infty}\frac{1}{n} (-1)^{n}\frac{1}{x_0} (x - x_0)^{n}
+    .\]
     А это ряд Тейлора.
 \end{proof}
 \subsection{Формула Ньютона-Лейбница для большей производной. Еще один подход к формуле Тейлора}
 $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a \in I$.
 \[
-    f(t) - f(a) = \int_a^{t} f'(x)d(x-t) = f'(x) (x-t) \mid_{x=a}^{x=t} - \int_a^{t} f''(x)(x-t) dx =  
-\] 
+    f(t) - f(a) = \int_a^{t} f'(x)d(x-t) = f'(x) (x-t) \mid_{x=a}^{x=t} - \int_a^{t} f''(x)(x-t) dx =
+\]
 \[
     =f'(a) (t-a) +\int_a^{t}f''(x) (t-x) dx
-.\] 
+.\]
 То есть:
 \[
-    f(t) = f(a) + f'(a)(t-a) + \int_a^{t} f''(x) (t-x) dx 
-.\] 
+    f(t) = f(a) + f'(a)(t-a) + \int_a^{t} f''(x) (t-x) dx
+.\]
 И так далее
 \begin{thm}
-$ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a \in I$.
+    $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a \in I$.
     \[
 	f(t) = \sum_{j=0}^{n} \frac{1}{j!} f^{(j)} (a) (t-a)^{j}+ \frac{1}{n!} \int_{a}^{t} f^{(n+1)} (z) (t -x)^{n+1} dx
-    .\] 
+    .\]
 \end{thm}
 \begin{ex}
     $ x \leadsto  u$, $ x = a(1-u) +tu$
 
-    $ u \in  [0, 1], ~ dx = (t-a) du$ 
+    $ u \in  [0, 1], ~ dx = (t-a) du$
 
-    \begin{equation}
-	t-x = t -a(1-u) -tu =
-	t-a + au - tu =
-	t-a + u(t-a) =
-	(t-a)(1-u)
-    \end{equation}
+    \begin{align*}
+	t-x &= t -a(1-u) -tu = \\
+	    &=t-a + au - tu =\\
+	    &=t-a + u(t-a) =\\
+	    &=(t-a)(1-u)
+    \end{align*}
     \[
-	r_n(a, t) = \frac{1}{n!} \int_{0}^{1} f^{(n+1)} (a(1-u) + tu)(t-a)^{n}(1-u)^{n}(t-a)^{n}du 
-    .\] 
+	r_n(a, t) = \frac{1}{n!} \int_{0}^{1} f^{(n+1)} (a(1-u) + tu)(t-a)^{n}(1-u)^{n}(t-a)^{n}du
+    .\]
     Если $ a = 0$:
-     \[
-	 % r_n(0, t) = (\text{d}
-    .\] 
+    \[
+	% r_n(0, t) = (\text{d}
+    .\]
 \end{ex}
-    $ f(x) = (1+x)^{m}, \qquad m \in \R $ 
+$ f(x) = (1+x)^{m}, \qquad m \in \R $
 
-    $ f'(x) = m(1+x)^{m-1} \\
-    f''(x) = m(m-1)(1+x)^{m-1} \\
-    \vdots \\
-    f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k} 
-    $ 
-    \begin{name}
-        \[
-	    { m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
-        .\] 
-    \end{name}
-
-    $ |x| < 1$ 
+$ f'(x) = m(1+x)^{m-1} \\
+f''(x) = m(m-1)(1+x)^{m-1} \\
+\vdots \\
+f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k}
+$
+\begin{name}
     \[
-	(1+t)^{m} = 1 + {m \choose 1} t + {m \choose 2} t^2 + \ldots  + {m \choose n} t ^{n} + \frac{t ^{n+1}}{n!} \int_0^{1} m (m-1) \ldots  (m-n) (1 + tu) ^{m-n+1} (1-u)^{n} du
-    .\] 
+	{ m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
+    .\]
+\end{name}
+
+$ |x| < 1$
+\[
+    (1+t)^{m} = 1 + {m \choose 1} t + {m \choose 2} t^2 + \ldots  + {m \choose n} t ^{n} + \frac{t ^{n+1}}{n!} \int_0^{1} m (m-1) \ldots  (m-n) (1 + tu) ^{m-n+1} (1-u)^{n} du
+.\]
 \begin{thm}[Ряд Ньютона]
-    Ряд 
+    Ряд
     \[
-    1 + \sum_{k=1}^{\infty} {m \choose k} t ^{k}
-    \]  
+	1 + \sum_{k=1}^{\infty} {m \choose k} t ^{k}
+    \]
     сходится к $ (1+t)^{m}$, при $ |t|<1$
 \end{thm}
 \begin{proof}
     $ R_n(t) = \frac{t ^{n+1}}{n!} \int_0^{1} m (m-1) \ldots  (m-n) (1 + tu) ^{m-n+1} (1-u)^{n} du$.  $ 0 \le  t< 1$.
     \[
-	|R_n(t) | \le  |t|^{n+1} \left| {m-1 \choose n} \right| |m| \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| 
-    .\] 
+	|R_n(t) | \le  |t|^{n+1} \left| {m-1 \choose n} \right| |m| \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right|
+    .\]
 \end{proof}
 \begin{thm}
     $ R_n (t) \to 0$  при $ |t|<1$, и  сходится равномерно при $ |t| < \phi < 1$.
@@ -1334,70 +1358,70 @@ $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a
 \begin{proof}
     Пусть $ \int_0 ^{1} \left|\frac{(1-u)^{n}}{(1+tu)^{n-m+1}} du \right| = I$
     \begin{enumerate}
-    \item Сначала $ 0 \le t_0$:
-    \[
-	I \le \int_0^{1} (1-u)^{n} du = \frac{1}{n+1} \longleftarrow 0
-    .\] 
-    \[
-	|R_n(t)| \le  t ^{n+1} \left| {m-1 \choose n} \right| \frac{m}{n+1} =a_n(t)
-    .\] 
-    Тогда \[
-	\frac{a_{n+1}(t)}{a_n(t)} = \frac{n+1}{n+2} \frac{|m-n-1|}{n+2} t
-    .\] 
-    $ t <1, ~ t+ \varepsilon  <1 $, следовательно, рано или поздно  $ \frac{a_{n+1}(t)}{a_n(t) (t)} < t+ \varepsilon $
-
-\item Следующий случай $ -1 < t< 0$
-    Подынтегральное выражение:
-    \[
-	\left| \frac{1-u}{1 + tu} \right| ^{n } \left| \frac{1}{1+tu} \right|  ^{m-1} 
-    .\] 
-    \[
-     1 + |t| \ge |1 + tu| \ge  1 - |t| |u|
-    .\] 
-    Первый множитель:
-    \[
-    \left| \frac{1-u}{1+tu} \right| \le  \frac{1-u}{1 - |t| u} = \frac{1-|t|u + u(|t| -1)}{1 - |t| u} = 1 - \left(n\frac{1-|t|}{1-|t|u} \right)
-    .\] 
-    Это не превосходит $ 1 - n(1 - |t|)$.
-
-    Второй множитель:
-    \begin{enumerate}
-        \item $ m \le  1$
+	\item Сначала $ 0 \le t_0$:
 	    \[
-		\left| \frac{1}{1+tu} \right|^{-m+1} \le  \left(\frac{1}{1-|t| u}\right)^{-m+1} \le \left(\frac{1}{1-|t|} \right) ^{-m+1}
-	    .\] 
-	\item $ m > 1$
-	     \[
-		 |1 + tu|^{m-1} \le  (1  + |t|)
-	    .\] 
-    \end{enumerate}
-    Обозначим полученную оценку $ C_m(t)$.
-    \[
-	I \le C_m(t) \int_0^{1} (1-n(1-|t|))^{} du = C_m(t) \left( - \frac{1}{1 - |t|} \right) \frac{1}{n+1} (1-n(1-|t|))^{n+1}\mid _{n=0}^{n=1}
-    =\] 
-    \[
-	= C_m(t) \frac{1}{1-|t|}\frac{1}{n+1} (1- |t|^{n+1}) \le C_m(t) \frac{1}{n+1}
-    .\] 
-    Получили \[
-	R_n(t) \le |t|^{n+1} \left|{ m-1\choose n}\right| |m|\frac{1}{n+1} \bar{C}_m(t) = \sigma_n(t) 
-    .\] 
-    Хотим доказать, что это стремиться к нулю.
-    \[
-	\frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} = \frac{n+1}{n+2} |t| \left| \frac{m-n+1}{n+2} \right|  \longleftarrow |t|, \qquad n \to \infty
-    .\] 
-    \[
-	\exists k_0 : n > k_0 \quad \frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} \le \rho \quad \sigma_n(t) \le A \rho^{n-1}, \quad |t| \le \rho < 1
-    .\] 
-    Доказали сходимость.
+		I \le \int_0^{1} (1-u)^{n} du = \frac{1}{n+1} \longleftarrow 0
+	    .\]
+	    \[
+		|R_n(t)| \le  t ^{n+1} \left| {m-1 \choose n} \right| \frac{m}{n+1} =a_n(t)
+	    .\]
+	    Тогда \[
+		\frac{a_{n+1}(t)}{a_n(t)} = \frac{n+1}{n+2} \frac{|m-n-1|}{n+2} t
+	    .\]
+	    $ t <1, ~ t+ \varepsilon  <1 $, следовательно, рано или поздно  $ \frac{a_{n+1}(t)}{a_n(t) (t)} < t+ \varepsilon $
+
+	\item Следующий случай $ -1 < t< 0$
+	    Подынтегральное выражение:
+	    \[
+		\left| \frac{1-u}{1 + tu} \right| ^{n } \left| \frac{1}{1+tu} \right|  ^{m-1}
+	    .\]
+	    \[
+		1 + |t| \ge |1 + tu| \ge  1 - |t| |u|
+	    .\]
+	    Первый множитель:
+	    \[
+		\left| \frac{1-u}{1+tu} \right| \le  \frac{1-u}{1 - |t| u} = \frac{1-|t|u + u(|t| -1)}{1 - |t| u} = 1 - \left(n\frac{1-|t|}{1-|t|u} \right)
+	    .\]
+	    Это не превосходит $ 1 - n(1 - |t|)$.
+
+	    Второй множитель:
+	    \begin{enumerate}
+		\item $ m \le  1$
+		    \[
+			\left| \frac{1}{1+tu} \right|^{-m+1} \le  \left(\frac{1}{1-|t| u}\right)^{-m+1} \le \left(\frac{1}{1-|t|} \right) ^{-m+1}
+		    .\]
+		\item $ m > 1$
+		    \[
+			|1 + tu|^{m-1} \le  (1  + |t|)
+		    .\]
+	    \end{enumerate}
+	    Обозначим полученную оценку $ C_m(t)$.
+	    \[
+		I \le C_m(t) \int_0^{1} (1-n(1-|t|))^{} du = C_m(t) \left( - \frac{1}{1 - |t|} \right) \frac{1}{n+1} (1-n(1-|t|))^{n+1}\mid _{n=0}^{n=1}
+	    =\]
+	    \[
+		= C_m(t) \frac{1}{1-|t|}\frac{1}{n+1} (1- |t|^{n+1}) \le C_m(t) \frac{1}{n+1}
+	    .\]
+	    Получили \[
+		R_n(t) \le |t|^{n+1} \left|{ m-1\choose n}\right| |m|\frac{1}{n+1} \bar{C}_m(t) = \sigma_n(t)
+	    .\]
+	    Хотим доказать, что это стремиться к нулю.
+	    \[
+		\frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} = \frac{n+1}{n+2} |t| \left| \frac{m-n+1}{n+2} \right|  \longleftarrow |t|, \qquad n \to \infty
+	    .\]
+	    \[
+		\exists k_0 : n > k_0 \quad \frac{\sigma_{n+1}(t)}{\sigma_{n}(t)} \le \rho \quad \sigma_n(t) \le A \rho^{n-1}, \quad |t| \le \rho < 1
+	    .\]
+	    Доказали сходимость.
     \end{enumerate}
 \end{proof}
-$ x, x_0 > 0$ 
+$ x, x_0 > 0$
 \[
-    x ^{m} = x_0^{m} \left(\frac{x}{x_0})\right)^{m} = x_0 ^{m} (1 - (1 - \frac{x}{x_0}))^{m} = 
-\] 
+    x ^{m} = x_0^{m} \left(\frac{x}{x_0})\right)^{m} = x_0 ^{m} (1 - (1 - \frac{x}{x_0}))^{m} =
+\]
 \[
     = x-^{n} (1 + \sum_{n=1}^{\infty} {m \choose n} (-1) ^{n} \left( 1 _ \frac{x}{x_0} \right) ^{m} = x_0^{m}+ \sum_{n=1}^{\infty} {m \choose n} (x- x_0)^{m}
-.\] 
+.\]
 Значит ряд Тейлора аналитичен.
 
 \begin{thm}[Формула Тейлора с остатком в интегральной форме]
@@ -1412,69 +1436,69 @@ $ x, x_0 > 0$
 	\exists  c \text{ между $ a$ и $ t$ }: R_n(t, a) = \frac{(t-a)^{n+1}}{(n+1)!} f^{(n+1)}(c)
     \end{equation}
 \end{st}
-    
+
 \begin{note}
     Если $ f \in  C^{(n+1)}$, то \ref{tey_2} можно вывести из \ref{tey_1}.
 \end{note}
 
 \begin{thm}[о среднем]
-    $ \varphi , \psi$ -- функции на $ [c, d]$, $\varphi$  непрерывна,  $ \psi $  - интегрируема по Риману и не меняет знака. Тогда \[
+    $ \varphi , \psi$ --- функции на $ [c, d]$, $\varphi$  непрерывна,  $ \psi $  - интегрируема по Риману и не меняет знака. Тогда \[
 	\exists  \psi \in  [c, d]: \int_c^{d} \varphi (x) \psi(x) dx = \varphi (\psi) \int_c^{d} \varphi (x) dx
-    .\] 
+    .\]
 \end{thm}
 \begin{proof}
     Можно считать, что $ \psi \ge 0$. Пусть $ m = \min_{x\in [c, d] } \varphi (x), \quad M = \max_{x\in [c, d]}$.
     \[
 	m \int_c^{d} \varphi  (x) dx \le  \int_c ^{d} \varphi (x) \psi (x) x \le  M \int_x ^{ d} \varphi (x) dx
-    .\] 
+    .\]
     \[
 	m \psi(x) \le \varphi (x) \psi(x) \le M \psi(x)
-    .\] 
-    Если 
+    .\]
+    Если
     $
-	 \int_c^{d} \psi(x) dx = 0
-	 $,
-	 теорема верна. Предположим, что этот интеграл не равен нулю.
+    \int_c^{d} \psi(x) dx = 0
+    $,
+    теорема верна. Предположим, что этот интеграл не равен нулю.
     \[
 	m \le  \frac{\int_c^{d} \varphi (x) \psi(x) dx}{\int_c^{d} \psi(x) dx} \le  M
-    .\] 
+    .\]
     Следовательно,
     \[
 	\exists ~\zeta  \in  [c, d] : \psi( \zeta) = \frac{\int_c^{d} \varphi (x) \psi(x) dx}{\int_c^{d} \psi(x) dx}
-    .\] 
+    .\]
 \end{proof}
 \begin{st}[оценка остатка]
     \[
 	\varphi (x) = f^{(n+1)} (x) , \psi(x) = (t-x)^{n}
-    .\] 
+    .\]
     \[
 	\exists  \zeta: R_n(t, a)= \frac{1}{n!} f(^{(n+1)} (\zeta) \int_{a}^{t}(t-x)^{n}dx
-    .\] 
+    .\]
     \[
 	f^{(n+1)}(\zeta) \frac{1}{(n+1)!} \biggl[ -(t-x)^{n+1} \Bigm|_{x=a}^{x=t}\biggr] = f^{(n+1)} (\zeta) \frac{1}{(n+1)!}(t-a)^{n+1}
-    .\] 
+    .\]
 \end{st}
 \section{Дифференциальные уравнения}
 \[
     \Phi \left(f'(t) , f(t) , t \right) = 0
-.\] 
+.\]
 \begin{thm}
-    Пусть $ f$ -- непрерывная дифференцируемая функция на $ (a, b)$.
+    Пусть $ f$ --- непрерывная дифференцируемая функция на $ (a, b)$.
     Следующие условия эквивалентны:
-     \begin{enumerate}
-	 \item $ f'(t) = c f(t) \quad \forall t \in  (a, b)$ 
-	 \item $ \exists A: ~ f(t) = A e ^{ct}$
-     \end{enumerate}
+    \begin{enumerate}
+	\item $ f'(t) = c f(t) \quad \forall t \in  (a, b)$
+	\item $ \exists A: ~ f(t) = A e ^{ct}$
+    \end{enumerate}
 \end{thm}
 \begin{proof}
-    $2 \Longrightarrow  1$ -- очевидно \\
+    $2 \Longrightarrow  1$ --- очевидно \\
     $1 \Longrightarrow  2$
     \[
 	g(t) = f'(t) e ^{-ct}
-    .\] 
+    .\]
     \[
 	g'(t) = f'(t) e^{-ct} + f(t) (-c e^{-ct}) = c f(t) e^{-ct} - c f(t) e^{-ct} = 0
-    .\] 
+    .\]
     Тогда $ g(t) \equiv A \in  R$.
 
 \end{proof}
