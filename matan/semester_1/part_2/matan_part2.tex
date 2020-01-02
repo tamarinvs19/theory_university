@@ -195,7 +195,7 @@
 \begin{defn}
     Говорят, что функция $ f$, заданная на множестве $ A$,  {\bf непрерывна на некотором подмножестве} $ A_1 \subset A$, если она непрерывна в каждой точке множества $ A_1$.
 \end{defn}
-\subsection{Теоремы Вейерштрасса}
+\subsection{Теоремы Вейерштрасса}\label{th_ve_1}
 \begin{thm}[Первая теорема Вейершрасса]
     Пусть $ f$ задана и непрерывна на замкнутом и ограниченном множестве  $ A$. Тогда функция  $ f$ ограничена на  $ A$.
 \end{thm}
@@ -206,7 +206,7 @@
     .\]
     $ \{x_{n}\}$ --- ограниченная последовательность. По теореме о компактности существует подпоследовательность $ x_{n_{j}} \to x$. Так как $ A$ замкнуто, $ x \in A$. Следовательно, $ f(x_{n}) \to  f(x)$. Противоречие.
 \end{proof}
-\begin{thm}[Вторая теорема Вейерштрасса]
+\begin{thm}[Вторая теорема Вейерштрасса]\label{th_ve_2}
     $ f: A \to \R$ --- непрерывная на замкнутом и ограниченном множестве $ A$ функция. Если существуют конечные
     $$
     M = \sup_{x \in A}f(x), \quad m = \inf_{x \in A} f(x)
@@ -233,10 +233,10 @@
 \end{proof}
 \subsection{Теорема о промежуточном значении}
 \begin{name}
-    <<\text{$u$ между $r$ и  $s$}>> $\coloneqq  
-     \begin{cases}
-	 u \in [r, s] &  r \le s \\
-	 u \in [s, r] & r > s
+    <<\text{$u$ между $r$ и  $s$}>> $\coloneqq
+    \begin{cases}
+	u \in [r, s] &  r \le s \\
+	u \in [s, r] & r > s
     \end{cases}
     $
 \end{name}
@@ -245,8 +245,8 @@
 \end{thm}
 \begin{proof}
     Если $ a = b$, утверждение очевидно.
-    Не умаляя общности, предположим, что  $ a < b$. Будем считать, что  $ v \ne f(a) \wedge v \ne f(b)$. 
-    
+    Не умаляя общности, предположим, что  $ a < b$. Будем считать, что  $ v \ne f(a) \wedge v \ne f(b)$.
+
     Пусть нет точки  $ x_0: f(x_0) = v$.
     Обозначим $ I = [a, b]$.
     Пусть $
@@ -257,12 +257,12 @@
     $. %
     Докажем, что $ X$ и  $ Y$ замкнуты.
     \begin{enumerate}
-        \item $ X$ замкнуто:\\
+	\item $ X$ замкнуто:\\
 	    $ x_0$ --- предельная точка. Следовательно, $ \exists x_{n} \in X: x_{n} \to  x_0, ~ (x_{n} \ne  x_0)$.
-	    Тогда $ f(x_{n}) \to  f(x_0)$. 
-	     \[
-		 f(x_{n}) \le  v \Longrightarrow f(x) \le  v
-	    .\] 
+	    Тогда $ f(x_{n}) \to  f(x_0)$.
+	    \[
+		f(x_{n}) \le  v \Longrightarrow f(x) \le  v
+	    .\]
 	\item Аналогично  $ Y$ замкнуто.
     \end{enumerate}
     Следовательно,  $ X \cap Y \ne \varnothing$.
@@ -280,14 +280,14 @@
 	\item $ \boxed{ 2 \Longrightarrow 1}$ Очевидно.
 	\item $ \boxed{1 \Longrightarrow 2}$  Пусть  $ f$ не строго монотонна. Тогда $ \exists x_1 <x_2<x_3 \in \langle \alpha, \beta \rangle$:
 	    \[
-	    \left[
-	    \begin{aligned}
+		\left[
+		    \begin{aligned}
 		& f(x_1) < f(x_2) \wedge f(x_2) > f(x_3)\\
 		& f(x_1) > f(x_3) \wedge f(x_2) < f(x_3)
-	    \end{aligned}
-	    \right.
-	.\]
-	Тогда $ \exists x'_1 \ne  x'_2$, но $ f(x'_1) = f(x'_2)$. Противоречие. 
+		    \end{aligned}
+		\right.
+	    .\]
+	    Тогда $ \exists x'_1 \ne  x'_2$, но $ f(x'_1) = f(x'_2)$. Противоречие.
     \end{description}
 \end{proof}
 \begin{thm}
@@ -323,8 +323,8 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{prop}
     $ $
     \begin{enumerate}
-        \item $ x^{r_1} \cdot x^{r_2} = x^{r_1+r_2}$
-	\item $ \bigl(x^{r_1}\bigr)^{r_2}  = x^{r_1r_2}$ 
+	\item $ x^{r_1} \cdot x^{r_2} = x^{r_1+r_2}$
+	\item $ \bigl(x^{r_1}\bigr)^{r_2}  = x^{r_1r_2}$
 	\item $ x^{r} \cdot y^{r} = (xy)^{r}$
     \end{enumerate}
 \end{prop}
@@ -332,29 +332,29 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{defn}
     $ A \subset \R, ~ f: A \to  \R$.
     Говорят, что $ f$  {\bf равномерно непрерывна} на $ A$, если
-	$$ \bigl(|x-x_0|< \delta \wedge x \in A\bigr) \Longrightarrow |f(x_0) -f(x_0)| < \varepsilon $$
+    $$ \bigl(|x-x_0|< \delta \wedge x \in A\bigr) \Longrightarrow |f(x_0) -f(x_0)| < \varepsilon $$
 
-	 или \[
-	     \forall \varepsilon >0 ~ \exists \delta  >0 ~ \forall x, y \in A: \bigl( |x-y|< \delta |f(x) -f(y)|< \varepsilon \bigr)
-	.\] 
+    или \[
+	\forall \varepsilon >0 ~ \exists \delta  >0 ~ \forall x, y \in A: \bigl( |x-y|< \delta |f(x) -f(y)|< \varepsilon \bigr)
+    .\]
 \end{defn}
 \begin{ex}
     $ f(x) = x, ~ A = \R$.
     \[
 	\forall  \varepsilon >0 ~ |x -y| < \varepsilon  \Longrightarrow  |f(x)-f(y)| \Longrightarrow f \text{ равномерно непрерывна}
-    .\] 
+    .\]
 \end{ex}
 \begin{ex}
     $ f(x) = x^2, ~ A \subset \R$
     \[
-    |x^2 - y^2| < \varepsilon  \Longleftrightarrow  |x-y||x+y| C \varepsilon \Longrightarrow f \text{ не равномерно непрерывно}
-    .\] 
+	|x^2 - y^2| < \varepsilon  \Longleftrightarrow  |x-y||x+y| C \varepsilon \Longrightarrow f \text{ не равномерно непрерывно}
+    .\]
 \end{ex}
 \begin{ex}
     $ h(x) = \sqrt {x}$ --- равномерно   непрерывна.
-     \[
-	 \left| \sqrt{x} - \sqrt{y} \right| = \frac{|x-y|}{\sqrt{x} + \sqrt{y}}
-    .\] 
+    \[
+	\left| \sqrt{x} - \sqrt{y} \right| = \frac{|x-y|}{\sqrt{x} + \sqrt{y}}
+    .\]
 \end{ex}
 \subsection{Теорема Кантора}
 \begin{thm}[Кантор]\label{th_kantor}
@@ -362,22 +362,22 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \end{thm}
 \begin{proof}
     От противного. Пусть $ f$ не является равномерно непрерывной, то есть \[
-	\exists \varepsilon >0 ~ \delta >0 ~ \exists x_1', x_2'' \in A: |x_1'-x_2''| < \delta \wedge |f(x_1')-f(x_2'')| \ge \varepsilon 
-    .\] 
+	\exists \varepsilon >0 ~ \delta >0 ~ \exists x_1', x_2'' \in A: |x_1'-x_2''| < \delta \wedge |f(x_1')-f(x_2'')| \ge \varepsilon
+    .\]
     Рассмотрим $ \delta = \frac{1}{n}$.
     \[
-	\exists x_{n}', x_{n}'' \in A: |x_{n}' - x_{n}''|<\delta  \wedge |f(x_{n}')-f(x_{n}'')| \ge \varepsilon 
-    .\] 
+	\exists x_{n}', x_{n}'' \in A: |x_{n}' - x_{n}''|<\delta  \wedge |f(x_{n}')-f(x_{n}'')| \ge \varepsilon
+    .\]
     Получили две последовательности $ \{x_{n}'\}$ и $ \{x_{n}''\}$.
     Обе замкнуты и ограничены, тогда по теореме о компактности $ \exists x_{n_j}' \to  x_0 \in A$.
     \[
 	x_{n_j}'' = x_{n_j}' + (x_{n_j}'' - x_{n_j}') \to  x_0 + 0
-    .\] 
+    .\]
     Посмотрим на значения в точках последовательностей:
     \[
-	|f(x_{n}') - f(x_{n}'')| \ge \varepsilon 
-    .\] 
-    Но каждое  из значений стремится к  $ f(x_0)$, значит разность должна стремиться к нулю. Противоречие. 
+	|f(x_{n}') - f(x_{n}'')| \ge \varepsilon
+    .\]
+    Но каждое  из значений стремится к  $ f(x_0)$, значит разность должна стремиться к нулю. Противоречие.
 \end{proof}
 \chapter{Дифференцирование}
 \section{Определения}
@@ -385,125 +385,125 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     $ f: \langle a, b \rangle \to \R, ~ x_0, x \in \langle a,b \rangle$
 \end{name}
 \begin{defn}
-    Функция $ f$ называется {\bf  дифференцируемой} в точке $ x_0$, если 
+    Функция $ f$ называется {\bf  дифференцируемой} в точке $ x_0$, если
     \[
 	f(x) -f(x_0) = l(x-x_0) + o_{x \to  x_0}(x -x_0)
-    ,\] 
+    ,\]
     где $ l(t) = kt, ~ k \in \R$ --- дифференциал $ f$ в точке  $ x_0$ (также обозначается $ d_{f_{x_0}}(t)$ или $ df(x_0, t)$).
 
     Другая запись:
     \[
 	f(x) = f(x_0) + k(x-x_0) + o_{x \to  x_0}(x-x_0)
-    .\] 
+    .\]
 \end{defn}
 \begin{defn}
-    Если $ f$ дифференцируема в точке $ x_0$, {\bf производная} $ f$ в  точке $ x_0$ определяется так: 
+    Если $ f$ дифференцируема в точке $ x_0$, {\bf производная} $ f$ в  точке $ x_0$ определяется так:
     \[
 	f'(x_0) \mydef \lim_{x \to  x_0} \frac{f(x)-f(x_0)}{x-x_0}
-    .\] 
+    .\]
 \end{defn}
 \begin{prop}
     $ $
     \begin{enumerate}
-        \item Если $ f$ дифференцируема в точке $ x_0$, то $ k$ единственное. 
+	\item Если $ f$ дифференцируема в точке $ x_0$, то $ k$ единственное.
 	\item Если $ f$ дифференцируема в точке $ x_0$, то $ f$ непрерывна в точке $ x_0$.
 	\item $ f$ дифференцируема в точке $ x_0$ тогда и только тогда, когда  \[
 		\exists  \lim_{x \to  x_0} \frac{f(x) -f(x_0)}{x-x_0} = k, ~ df _{x_0} (t) = kt
-	.\] 
-	\begin{proof}
-	     $ $
-	    \begin{description}
-		\item \boxed{  \Longrightarrow } $ f(x) - f(x_0) = k(x-x_0) + f(x_0) + o_{x \to  x_0}(x-x_0)$
-		    \[
-			\frac{f(x) -f(x_0)}{x - x_0}= k + \frac{o_{x \to  x_0}(x-x_0)}{x - x_0} \to  k
-		    .\] 
-	        \item \boxed{  \Longleftarrow } \[
-			\lim_{x \to  x_0} \frac{f(x) = f(x_0)}{x-x_0} = k \Longrightarrow \frac{f(x) - f(x_0)}{x-x_0} = k + O(1), ~ x \to  x_0
-	        .\] 
-		\begin{align*}
-		    f(x) - f(x_0) &= k(x-x_0) + o_{x \to  x_0}(1)(x-x_0) =\\
-				  &=  k (x - x_0) + o_{x \to  x_0}(x-x_0)
-		\end{align*}
-	    \end{description} 
-	\end{proof}
-    \item $ f$ дифференцируема в точке $ x_0$ тогда и только тогда, когда существует $ \beta$, заданная в окрестности $ V \ni x$:
-	\begin{enumerate}
-	    \item $ \beta$ непрерывна в точке $ x_0$ 
-	    \item $ f(x) - f(x_0) = \beta(x) \cdot (x-x_0) \qquad \forall  x \in V$
-	\end{enumerate}
-	\begin{proof}
-	    \begin{description}
-		\item \boxed{  \Longrightarrow } 
-		    \[
-			\beta(x)=
-			\left[
-			    \begin{array}{ll}
-				\frac{f(x) - f(x_0)}{x-x_0} & x \ne x_0\\
-				\lim_{y \to x_0}\frac{f(y)-f(x_0)}{y-x_0} & x = x_0 
-			\end{array}
-\right .
-		    \] 
-		\item \boxed{  \Longleftarrow } $ \beta(x) = \beta(x_0) + o_{x \to  x_0}(1)$
-		    Подставим \[
-			f(x) - \underbrace{\beta(x_0)}_{k}(x-x_0) + o_{x \to  x_0}(1)(x-x_0)
-		    .\] 
-		    Получили определение.
-	    \end{description} 
-	\end{proof}
+	    .\]
+	    \begin{proof}
+		$ $
+		\begin{description}
+		    \item \boxed{  \Longrightarrow } $ f(x) - f(x_0) = k(x-x_0) + f(x_0) + o_{x \to  x_0}(x-x_0)$
+			\[
+			    \frac{f(x) -f(x_0)}{x - x_0}= k + \frac{o_{x \to  x_0}(x-x_0)}{x - x_0} \to  k
+			.\]
+		    \item \boxed{  \Longleftarrow } \[
+			    \lim_{x \to  x_0} \frac{f(x) = f(x_0)}{x-x_0} = k \Longrightarrow \frac{f(x) - f(x_0)}{x-x_0} = k + O(1), ~ x \to  x_0
+			.\]
+			\begin{align*}
+			    f(x) - f(x_0) &= k(x-x_0) + o_{x \to  x_0}(1)(x-x_0) =\\
+					  &=  k (x - x_0) + o_{x \to  x_0}(x-x_0)
+			\end{align*}
+		\end{description}
+	    \end{proof}
+	\item $ f$ дифференцируема в точке $ x_0$ тогда и только тогда, когда существует $ \beta$, заданная в окрестности $ V \ni x$:
+	    \begin{enumerate}
+		\item $ \beta$ непрерывна в точке $ x_0$
+		\item $ f(x) - f(x_0) = \beta(x) \cdot (x-x_0) \qquad \forall  x \in V$
+	    \end{enumerate}
+	    \begin{proof}
+		\begin{description}
+		    \item \boxed{  \Longrightarrow }
+			\[
+			    \beta(x)=
+			    \left[
+				\begin{array}{ll}
+				    \frac{f(x) - f(x_0)}{x-x_0} & x \ne x_0\\
+				    \lim_{y \to x_0}\frac{f(y)-f(x_0)}{y-x_0} & x = x_0
+				\end{array}
+			    \right .
+			\]
+		    \item \boxed{  \Longleftarrow } $ \beta(x) = \beta(x_0) + o_{x \to  x_0}(1)$
+			Подставим \[
+			    f(x) - \underbrace{\beta(x_0)}_{k}(x-x_0) + o_{x \to  x_0}(1)(x-x_0)
+			.\]
+			Получили определение.
+		\end{description}
+	    \end{proof}
     \end{enumerate}
 \end{prop}
 \section{Правила дифференцирования}
 \begin{enumerate}[start=0]
     \item Никогда не дифференцируй при людях!
     \item $ f(x) = ax + b$ дифференцируема и $ \forall x_0: f'(x_0) = a$
-    \item 
+    \item
 	Если $ f, g$ дифференцируемы в точке $ x_0$, $ f\cdot g$ тоже дифференцируема в точке  $ x_0$ и $ (fg)'(x_0) =f'(x_0)g(x_0) + f(x_0)g'(x_0)$
     \item Если $ f$ дифференцируема в точке $ x_0$ и $ f(x_0) \ne 0$, то $ 1 / f$ дифференцируема в точке $ x_0$ и
 	\[
 	    \left( \frac{1}{f} \right)' (x_0) = - \frac{f'(x_0)}{f^2(x_0)}
-	.\] 
+	.\]
     \item Если $ f, g$ дифференцируемы в $ x_0$ и $ g(x_0) \ne 0$, то $ \frac{f}{g}$ дифференцируема в $ x_0$ и \[
 	    \left( \frac{f}{g} \right) '(x_0) = \frac{f'(x_0) g(x_0)-f(x_0)g'(x_0)}{g^2(x_0)}
-    .\] 
-\item Если $ f: \langle a, b \rangle \to \R, ~ g: \langle c, d \rangle , ~ x_0 \in \langle c, d \rangle, ~ g(x_0) \in \langle a, b \rangle$ и $ f$ дифференцируема в точке  $ g(x_0)$, $ g$ дифференцируема в точке $ x_0$, то $ f \circ g$ дифференцируема в точке $ x_0$ и
-    \[
-	(f \circ g)'(x_0) = f'(g(x_0)) \cdot g'(x_0)
-    .\] 
-\item Производная обратной функции. $ f: (a, b) \to  \R$ непрерывна и инъективна. Пусть $ x_0 \in (a, b), ~ \exists f'(x_0) \ne 0$, обозначим $ g = f^{-1}$ --- обратное отображение, $ y_0 = f(x_0)$.
-    Тогда $ g$ дифференцируема в точке $ y_0$ и 
-    \[
-	g'(y_0) = \frac{1}{f'(g(y_0))} = \frac{1}{f'(x_0)}  
-    .\] 
-\item $ m \in \N, ~ g(x) = x ^{\frac{1}{m}}$. Если $ x_0 >0$, то $ g$ дифференцируема в точке $ x_0$ и
-    \[
-	g'(x_0) = \frac{1}{f'\left(x ^{\frac{1}{m}}\right)} = \frac{1}{m \left( x ^{\frac{1}{m}} \right) ^{m-1}} = \frac{1}{m}\cdot x^{\frac{1}{m}-1}
-    .\] 
-\item $ x_0>0, ~ \alpha = \frac{l}{k} >0$. $ \varphi (x) = x^{\alpha} = \left( x^{\frac{1}{k}} \right)^{l}$.
-    Тогда $ \varphi $ дифференцируема в точке $ x_0$ и \[
-	\varphi '(x) = l\left(x^{\frac{1}{k}}\right) \cdot \frac{1}{k} x ^{\frac{1}{k}-1}  =  \frac{l}{k} x^{\frac{l}{k}-1}
-    .\] 
-    Аналогично для $ \alpha <0$.
-\item Тайная таблице еще не пройденных функций:
+	.\]
+    \item Если $ f: \langle a, b \rangle \to \R, ~ g: \langle c, d \rangle , ~ x_0 \in \langle c, d \rangle, ~ g(x_0) \in \langle a, b \rangle$ и $ f$ дифференцируема в точке  $ g(x_0)$, $ g$ дифференцируема в точке $ x_0$, то $ f \circ g$ дифференцируема в точке $ x_0$ и
+	\[
+	    (f \circ g)'(x_0) = f'(g(x_0)) \cdot g'(x_0)
+	.\]
+    \item Производная обратной функции. $ f: (a, b) \to  \R$ непрерывна и инъективна. Пусть $ x_0 \in (a, b), ~ \exists f'(x_0) \ne 0$, обозначим $ g = f^{-1}$ --- обратное отображение, $ y_0 = f(x_0)$.
+	Тогда $ g$ дифференцируема в точке $ y_0$ и
+	\[
+	    g'(y_0) = \frac{1}{f'(g(y_0))} = \frac{1}{f'(x_0)}
+	.\]
+    \item $ m \in \N, ~ g(x) = x ^{\frac{1}{m}}$. Если $ x_0 >0$, то $ g$ дифференцируема в точке $ x_0$ и
+	\[
+	    g'(x_0) = \frac{1}{f'\left(x ^{\frac{1}{m}}\right)} = \frac{1}{m \left( x ^{\frac{1}{m}} \right) ^{m-1}} = \frac{1}{m}\cdot x^{\frac{1}{m}-1}
+	.\]
+    \item $ x_0>0, ~ \alpha = \frac{l}{k} >0$. $ \varphi (x) = x^{\alpha} = \left( x^{\frac{1}{k}} \right)^{l}$.
+	Тогда $ \varphi $ дифференцируема в точке $ x_0$ и \[
+	    \varphi '(x) = l\left(x^{\frac{1}{k}}\right) \cdot \frac{1}{k} x ^{\frac{1}{k}-1}  =  \frac{l}{k} x^{\frac{l}{k}-1}
+	.\]
+	Аналогично для $ \alpha <0$.
+    \item Тайная таблице еще не пройденных функций:
 
-\renewcommand{\arraystretch}{1.5}
-    \begin{tabular}[ht]{c|c}
-	Функция & Производная \\
-	\hline
-	$ \sin x $ & $ \cos x$\\
-	\hline
-	$ \cos x $ & $ -\sin x$\\
-	\hline
-	$ \tg x $ & $ \frac{1}{\cos x} $\\
-	\hline
-	$ \exp x $ & $ \exp x$\\
-	\hline
-	$ \ln x $ & $ \ln x$\\
-    \end{tabular}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}[ht]{c|c}
+	    Функция & Производная \\
+	    \hline
+	    $ \sin x $ & $ \cos x$\\
+	    \hline
+	    $ \cos x $ & $ -\sin x$\\
+	    \hline
+	    $ \tg x $ & $ \frac{1}{\cos x} $\\
+	    \hline
+	    $ \exp x $ & $ \exp x$\\
+	    \hline
+	    $ \ln x $ & $ \ln x$\\
+	\end{tabular}
 \end{enumerate}
 \section{Производная возрастающей функции}
 \begin{defn}
     Пусть $ f: I = \langle a, b \rangle \to  \R, ~ \in \langle a, b \rangle $.
-    Говорят, что $ f$ {\bf возрастает в точке} $ x_0$, если $ \exists \text{ окрестность }U\ni x_0$: 
+    Говорят, что $ f$ {\bf возрастает в точке} $ x_0$, если $ \exists \text{ окрестность }U\ni x_0$:
     $$
     \begin{cases}
 	f(y) \le f(x_0) & y \in U\cap I \wedge  y \le x_0 \\
@@ -524,39 +524,39 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{proof}
     $ $
     \begin{enumerate}
-        \item \[
+	\item \[
 		\underbrace{\frac{f(x)-f(x_0)}{x-x_0}}_{ \ge 0 ~\forall x \ge x_0 } \to f'(x_0) \Longrightarrow f'(x_0) \ge 0
-        .\] 
-    \item $ f(x) -f(x_0) = f'(x_0) (x-x_0) + \underbrace{o(x-x_0)}_{\gamma(x)}$
-	\[
+	    .\]
+	\item $ f(x) -f(x_0) = f'(x_0) (x-x_0) + \underbrace{o(x-x_0)}_{\gamma(x)}$
+	    \[
 	    \forall \varepsilon >0 ~ \exists \delta >0: \bigl(|x -x_0| < \delta \Longrightarrow |\gamma(x)| \le \varepsilon |x-x_0|
-	.\] 
-	$ 0 < \varepsilon < f(x_0)$.
-	Разберем пару случаев:
-	\begin{enumerate}
-	    \item $ x>x_0$. 
-		\[
-		    f(x) - f(x_0) = f'(x_0)(x-x_0) + \gamma(x) \ge (f(x) - \varepsilon )(x-x_0) >0
-		.\] 
-	    \item $ x < x_0$.
-		\[
-		    f(x) -f(x_0) \le f'(x_0)(x-x_0) + \varepsilon (x-x_0) = (f'(x_0) - \varepsilon )(x-x_0) > 0
-		.\] 
-	\end{enumerate}
+	    .\]
+	    $ 0 < \varepsilon < f(x_0)$.
+	    Разберем пару случаев:
+	    \begin{enumerate}
+		\item $ x>x_0$.
+		    \[
+			f(x) - f(x_0) = f'(x_0)(x-x_0) + \gamma(x) \ge (f(x) - \varepsilon )(x-x_0) >0
+		    .\]
+		\item $ x < x_0$.
+		    \[
+			f(x) -f(x_0) \le f'(x_0)(x-x_0) + \varepsilon (x-x_0) = (f'(x_0) - \varepsilon )(x-x_0) > 0
+		    .\]
+	    \end{enumerate}
     \end{enumerate}
 \end{proof}
 \begin{defn}
     $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf монотонный максимум}, если  \[
-	\exists \delta >0 : f(x_0) \ge f(y) \quad \forall  y \in I \wedge  |x_0 - y| < \delta 
-    .\] 
+	\exists \delta >0 : f(x_0) \ge f(y) \quad \forall  y \in I \wedge  |x_0 - y| < \delta
+    .\]
 \end{defn}
 \begin{note}
-    Аналогично можно определить локальный минимум и строгие формы, заменив нестрогий знак на строгий. 
+    Аналогично можно определить локальный минимум и строгие формы, заменив нестрогий знак на строгий.
 \end{note}
 \begin{note}
     Локальный максимум и минимум  --- локальные экстремумы.
 \end{note}
-\begin{thm}
+\begin{thm}\label{th_loc_extr}
     $ x_0 \in (\alpha, \beta)$ --- точка локального экстремума для $ f: (\alpha, \beta) \to  \R$. Если $ \exists f'(x_0)$, то $ f'(x_0) = 0$.
 \end{thm}
 \begin{proof}
@@ -565,7 +565,145 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     Для других случаев полностью аналогично.
 \end{proof}
 \section{Формулы Коши и Лагранжа}
+\begin{thm}[Ролль]
+    $ I = [a, b], ~ a \ne b, ~ f: I \to \R $ непрерывна,  дифференцируема на $ (a, b)$.
+
+    Пусть $ f(a) = f(b)$. Тогда  $ \exists c \in (a, b): f'(c) = 0$.
+\end{thm}
+\begin{proof}
+    По теореме Вейерштрасса №2 \ref{th_ve_2} $ \exists x, y \in [a, b]:
+    \begin{cases}
+	f(x) = \min_{t \in [a, b]}f(t)\\
+	f(y) = \max_{t \in [a, b]}g(t)
+    \end{cases}$
+    \begin{figure}[ht]
+	\centering
+	\incfig{roll}
+	\caption{Теорема Ролля}
+	\label{fig:roll}
+    \end{figure}
+    Если $ x, y \in {a, b}$, то $ f \equiv const$ и $ f'(a) = 0$.
+    Иначе либо  $ x \in (a, b)$,  либо  $ y \in (a, b)$. Тогда в ней производная и равна нулю по прошлой теореме \ref{th_loc_extr}.
+\end{proof}
+\begin{cor}[Формула Коши]
+    Пусть $ f, g$ непрерывны на  $ [a, b]$ и дифференцируемы на $ (a, b)$,  $ g'(x) \ne 0 \quad \forall x \in (a, b)$.
+    Тогда $ \exists c \in (a, b)$:
+    \[
+	\frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(c)}{g'(c)}
+    .\]
+\end{cor}
+\begin{cor}[Формула Лагранжа]
+    Если $ f$ непрерывна на $ [a, b]$ и дифференцируема на $ (a, b)$, то $ \exists c \in (a, b)$:
+    \[
+	f(b) - f(a) = f'(c) (b-a)
+    .\]
+\end{cor}
+\begin{note}
+    Если $ h$ дифференцируема на $ (a, b)$ непрерывна на $ [a, b]$, при этом $ h'(x) \ne 0 \quad \forall x \in (a, b)$, то $ f$ инъективна на  $ [a. b]$.
+\end{note}
+\begin{cor}
+    В условии замечания производная $ h'$ сохраняет знак.
+\end{cor}
+\subsubsection{Следствия из формулы Лагранжа}
+\begin{name}
+    $ f: [a, b] \to \R$ непрерывна и дифференцируема на $ (a, b)$
+\end{name}
+\begin{enumerate}
+    \item $ f \equiv const $ тогда и только тогда, когда  $ f'(x) = 0 \quad \forall x \in (a, b)$.
+    \item Связь знака производной и монотонности.
+	\begin{thm}
+	    $ $
+	    \begin{enumerate}
+		\item Если $ f$ возрастает (убывает) на $ [a, b]$, то $ f'(x) \ge 0~ (f'(x) \le 0) \quad \forall x \in (a, b) $.
+		\item  Если $ f'(x) \ge  0 ~(f'(x) \le  0) \quad \forall x \in (a, b)$, то $ f$ возрастает (убывает).
+		\item  Если $ f'(x) > 0 ~(f'(x) < 0) \quad \forall x \in (a, b)$, то $ f$ строго возрастает (убывает).
+	    \end{enumerate}
+	\end{thm}
+	\begin{st}
+	    Если $ f'(x) \ne 0 \quad \forall x \in (a, b)$, то $ f$ строго монотонна.
+	\end{st}
+    \item $ f'(x_1) = u, ~ f'(x_2) = v$, $ w$ лежит между  $ u$ и $ v$. Тогда  $ \exists y$ между $ x_1, x_2: f'(y) = w$.
+\end{enumerate}
+\begin{thm}
+    Если  $ f$  дифференцируема на $ (a, b)$, непрерывна в точке $ a$  и $ \exists \lim_{y \to  a} f'(y) = d $, то $ f$ дифференцируема в точке $ a$ и $ f'(a) = d$.
+\end{thm}
+\begin{proof}
+    \[
+	\forall \varepsilon >0 ~ \exists \delta >0: \bigl( 0< |y-a|<\delta \Longrightarrow |f'(y) - d| < \varepsilon\bigr)
+    .\] 
+    Если $ x >a$, по формуле Лагранжа  \[
+	\frac{f(x)-f(a)}{x-a} = f'(c), \qquad c \in (a, x)
+    .\] 
+    Пусть $ |x - a|<\delta$,  тогда $ |c-a| < \delta$, следовательно, \[
+	\left| \frac{f(x) - f(a)}{x-a} -d\right| < \varepsilon  
+    .\] 
+\end{proof}
 \section{Правило Лопиталя}
+\begin{thm}[Привило Лопиталя]
+    $ f, g$ заданы и непрерывны на $ [a, b]$, $ f(a) = g(a) = 0$,  $f, g $ дифференцируемы на  $ (a, b)$,   $ g'(y) \ne 0 \quad \forall  y \in (a, b)$, $ \exists \lim_{y \to a+0} \frac{f'(y)}{g'(y)} = d $.
+    Тогда 
+    \[
+	\lim_{x \to a +0}\frac{f(x)}{g(x)} = d 
+    .\] 
+\end{thm}
+\begin{proof}
+    Рассмотрим $ x > u > a$.
+     \[
+	 \frac{f(a) - f(b)}{g(a)-g(b)} = \frac{f'(y)}{g'(y)} \qquad y \in (a, x)
+    .\] 
+    \[
+	\forall \varepsilon ~\exists \delta: \Bigl(|y -a| < \delta \Longrightarrow \left| \frac{f'(y)}{g'(y)} - d \right| < \varepsilon \Bigr)
+    .\] 
+    Если $ |x-a| < \delta $, то $ |y -a|<\delta$. 
+    \[
+	\left| \frac{f(u)-f(x)}{g(a) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
+    .\] 
+\end{proof}
+\begin{thm}[Вариант правила Лопиталя]
+    $ \lim_{x \to  a}f(x)  = \lim_{x \to a}g(x) = \infty $. Если $ \exists \lim_{x \to  a} \frac{f'(x)}{g'(x)} = d $, то 
+     \[
+	 \lim_{x \to  a} \frac{f(x)}{g(x)} = d
+    .\] 
+\end{thm}
+\begin{proof}
+    $ x, u \in (a, a + \delta ), ~ x \ne  u$. $ \exists y$ между $ x$ и $ u$:
+    \[
+	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{f'(y)}{g'(y)}
+    .\] 
+    \begin{equation}\label{eq_lop}
+	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}
+    \end{equation}
+    Зафиксируем $ u$ вблизи $ x: \left| \frac{g(u)}{g(x)} \right| < 1$.
+    Тогда модуль правой части в уравнении  \ref{eq_lop} не более  $ \varepsilon $.
+    Воспользуемся тем, что $ \lim_{x \to a} \frac{f'(x)}{g'(x)} = d $:
+    \[
+    d - \varepsilon  \le \left|
+	\frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}\right|
+    .\] 
+    Домножим на знаменатель:
+    \[
+	(d- \varepsilon ) (1- \frac{g(u)}{g(x)}) \le \frac{f(x)}{g(x)} - \frac{f(u)}{g(u)} \le (d+ \varepsilon ) \left(1 - \frac{g(u)}{g(u)}\right)
+    .\] 
+    $ x$ близок к $ a$:
+    \begin{align*}
+	\varlimsup_{x \to  a+} \frac{f(x)}{g(x)} &\le d + \varepsilon \\
+	\varliminf_{x \to a + } \frac{f(x)}{g(x)} &\ge d - \varepsilon  
+    \end{align*}
+    \begin{st}
+	Если $ v(x) < w(x)$, то  $ \varlimsup_{x \to a+}v(x) \ge \varliminf_{x \to  a + } w(x)$ и $ \varliminf_{x \to  a+} v(x) \le \varlimsup_{x \to  a +}w(x)$.
+    \end{st}
+    Применим утверждение. 
+    \[
+	\varlimsup_{x \to  a} v(x) = \inf_{\delta>0}\sup_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
+    .\] 
+    \[
+	\varliminf{x \to  a} v(x) = \sup_{\delta>0}\inf_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
+    .\] 
+    Значит
+     \[
+	 d + \varepsilon  \ge \frac{f(x)}{g(x)} \ge d - \varepsilon 
+    .\] 
+\end{proof}
 \section{Формула Тейлора}
 \section{Достаточное условие экстремума}
 \section{Сходимость последовательностей}
