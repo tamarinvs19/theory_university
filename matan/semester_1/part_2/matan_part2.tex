@@ -56,8 +56,6 @@
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 \newcommand{\osc}{{\mathop{\text{\rm osc}}}}
 \newcommand{\pivi}{\stackrel \circ }
-\newcommand{\oo}{{\mathop{\text{\rm o}}}}
-\newcommand{\OO}{{\mathop{\text{\rm O}}}}
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -389,13 +387,13 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{defn}
     Функция $ f$ называется {\bf  дифференцируемой} в точке $ x_0$, если 
     \[
-	f(x) -f(x_0) = l(x-x_0) + \oo_{x \to  x_0}(x -x_0)
+	f(x) -f(x_0) = l(x-x_0) + o_{x \to  x_0}(x -x_0)
     ,\] 
     где $ l(t) = kt, ~ k \in \R$ --- дифференциал $ f$ в точке  $ x_0$ (также обозначается $ d_{f_{x_0}}(t)$ или $ df(x_0, t)$).
 
     Другая запись:
     \[
-	f(x) = f(x_0) + k(x-x_0) + \OO_{x \to  x_0}(x-x_0)
+	f(x) = f(x_0) + k(x-x_0) + o_{x \to  x_0}(x-x_0)
     .\] 
 \end{defn}
 \begin{defn}
@@ -415,16 +413,16 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 	\begin{proof}
 	     $ $
 	    \begin{description}
-		\item \boxed{  \Longrightarrow } $ f(x) - f(x_0) = k(x-x_0) + f(x_0) + \OO_{x \to  x_0}(x-x_0)$
+		\item \boxed{  \Longrightarrow } $ f(x) - f(x_0) = k(x-x_0) + f(x_0) + o_{x \to  x_0}(x-x_0)$
 		    \[
-			\frac{f(x) -f(x_0)}{x - x_0}= k + \frac{\OO_{x \to  x_0}(x-x_0)}{x - x_0} \to  k
+			\frac{f(x) -f(x_0)}{x - x_0}= k + \frac{o_{x \to  x_0}(x-x_0)}{x - x_0} \to  k
 		    .\] 
 	        \item \boxed{  \Longleftarrow } \[
-			\lim_{x \to  x_0} \frac{f(x) = f(x_0)}{x-x_0} = k \Longrightarrow \frac{f(x) - f(x_0)}{x-x_0} = k + \OO(1), ~ x \to  x_0
+			\lim_{x \to  x_0} \frac{f(x) = f(x_0)}{x-x_0} = k \Longrightarrow \frac{f(x) - f(x_0)}{x-x_0} = k + O(1), ~ x \to  x_0
 	        .\] 
 		\begin{align*}
-		    f(x) - f(x_0) &= k(x-x_0) + \OO_{x \to  x_0}(1)(x-x_0) =\\
-				  &=  k (x - x_0) + \OO_{x \to  x_0}(x-x_0)
+		    f(x) - f(x_0) &= k(x-x_0) + o_{x \to  x_0}(1)(x-x_0) =\\
+				  &=  k (x - x_0) + o_{x \to  x_0}(x-x_0)
 		\end{align*}
 	    \end{description} 
 	\end{proof}
@@ -445,9 +443,9 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 			\end{array}
 \right .
 		    \] 
-		\item \boxed{  \Longleftarrow } $ \beta(x) = \beta(x_0) + \OO_{x \to  x_0}(1)$
+		\item \boxed{  \Longleftarrow } $ \beta(x) = \beta(x_0) + o_{x \to  x_0}(1)$
 		    Подставим \[
-			f(x) - \underbrace{\beta(x_0)}_{k}(x-x_0) + \OO_{x \to  x_0}(1)(x-x_0)
+			f(x) - \underbrace{\beta(x_0)}_{k}(x-x_0) + o_{x \to  x_0}(1)(x-x_0)
 		    .\] 
 		    Получили определение.
 	    \end{description} 
@@ -491,17 +489,81 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     \begin{tabular}[ht]{c|c}
 	Функция & Производная \\
 	\hline
-	$ \sin'x $ & $ \cos x$\\
+	$ \sin x $ & $ \cos x$\\
 	\hline
-	$ \cos'x $ & $ -\sin x$\\
+	$ \cos x $ & $ -\sin x$\\
 	\hline
-	$ \tg'x $ & $ \frac{1}{\cos x} $\\
+	$ \tg x $ & $ \frac{1}{\cos x} $\\
 	\hline
-	$ \exp'x $ & $ \exp x$\\
+	$ \exp x $ & $ \exp x$\\
 	\hline
-	$ \ln'x $ & $ \ln x$\\
+	$ \ln x $ & $ \ln x$\\
     \end{tabular}
 \end{enumerate}
+\section{Производная возрастающей функции}
+\begin{defn}
+    Пусть $ f: I = \langle a, b \rangle \to  \R, ~ \in \langle a, b \rangle $.
+    Говорят, что $ f$ {\bf возрастает в точке} $ x_0$, если $ \exists \text{ окрестность }U\ni x_0$: 
+    $$
+    \begin{cases}
+	f(y) \le f(x_0) & y \in U\cap I \wedge  y \le x_0 \\
+	f(y) \ge f(x_0) & y \in U\cap I \wedge  y \ge x_0
+    \end{cases}
+    $$
+\end{defn}
+\begin{note}
+    Аналогично можно дать определение убывания в точке и строгие формы, заменив знаки на строгие.
+\end{note}
+\begin{thm}
+    Пусть в условии определения $ f$ возрастает в точке $ x_0$.
+    \begin{enumerate}
+	\item Если $ \exists f'(x)$, $ f'(x_0) \ge 0$
+	\item Пусть $ \exists f'(x_0) >0$, тогда $ f$ строго возрастает в точке $ x_0$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{enumerate}
+        \item \[
+		\underbrace{\frac{f(x)-f(x_0)}{x-x_0}}_{ \ge 0 ~\forall x \ge x_0 } \to f'(x_0) \Longrightarrow f'(x_0) \ge 0
+        .\] 
+    \item $ f(x) -f(x_0) = f'(x_0) (x-x_0) + \underbrace{o(x-x_0)}_{\gamma(x)}$
+	\[
+	    \forall \varepsilon >0 ~ \exists \delta >0: \bigl(|x -x_0| < \delta \Longrightarrow |\gamma(x)| \le \varepsilon |x-x_0|
+	.\] 
+	$ 0 < \varepsilon < f(x_0)$.
+	Разберем пару случаев:
+	\begin{enumerate}
+	    \item $ x>x_0$. 
+		\[
+		    f(x) - f(x_0) = f'(x_0)(x-x_0) + \gamma(x) \ge (f(x) - \varepsilon )(x-x_0) >0
+		.\] 
+	    \item $ x < x_0$.
+		\[
+		    f(x) -f(x_0) \le f'(x_0)(x-x_0) + \varepsilon (x-x_0) = (f'(x_0) - \varepsilon )(x-x_0) > 0
+		.\] 
+	\end{enumerate}
+    \end{enumerate}
+\end{proof}
+\begin{defn}
+    $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf монотонный максимум}, если  \[
+	\exists \delta >0 : f(x_0) \ge f(y) \quad \forall  y \in I \wedge  |x_0 - y| < \delta 
+    .\] 
+\end{defn}
+\begin{note}
+    Аналогично можно определить локальный минимум и строгие формы, заменив нестрогий знак на строгий. 
+\end{note}
+\begin{note}
+    Локальный максимум и минимум  --- локальные экстремумы.
+\end{note}
+\begin{thm}
+    $ x_0 \in (\alpha, \beta)$ --- точка локального экстремума для $ f: (\alpha, \beta) \to  \R$. Если $ \exists f'(x_0)$, то $ f'(x_0) = 0$.
+\end{thm}
+\begin{proof}
+    Пусть $ x_0$ локальный  максимум. Тогда $ f\!\upharpoonright_{(\alpha, x_0]}$ --- возрастает в точке $ x_0 \Longrightarrow f'(x_0) \ge 0$. Также $ f\!\upharpoonright_{[x_0, \beta)}$ --- убывает в точке $ x_0 \Longrightarrow f'(x_0) \le 0$.
+
+    Для других случаев полностью аналогично.
+\end{proof}
 \section{Формулы Коши и Лагранжа}
 \section{Правило Лопиталя}
 \section{Формула Тейлора}
@@ -1114,17 +1176,17 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \begin{proof}
     \begin{lm}
 	$ E$ --- множество, $ u, v $ --- вещественные функции на $ E$. $ |u(x) - v(x) | \le  \lambda ~ \forall  E.$
-	Тогда $ |ose_E(u) - ose_E(v) | \le  2 \lambda$
+	Тогда $ |\osc_E(u) - \osc_E(v) | \le  2 \lambda$
     \end{lm}
     \[
 	\varepsilon  >0: \exists  n: |f_n(x) - f(x)| \le \varepsilon ~ \forall x \in  \langle a, b \rangle
     .\]
     \[
-	|ose_{\langle a, b \rangle} - ose_{_\langle a, b \rangle(f)}| \le 2 \varepsilon
+	|\osc_{\langle a, b \rangle} - \osc_{_\langle a, b \rangle(f)}| \le 2 \varepsilon
     .\]
     $\exists  \{I_1, \ldots I_N \} $ --- отрезки $ \langle  a, b \rangle$:
     \[
-	\sum_{j=1}^{N }|I_j| ose_{I_j} < \varepsilon
+	\sum_{j=1}^{N }|I_j| \osc_{I_j} < \varepsilon
     .\]
     \[
 	\sum_{j=1}^{N} |I_j| \osc_{I_j}(f)  \le  \varepsilon +\sum_{j=1}^{N} |I_j| (2 \varepsilon ) = \varepsilon (2 (b-a) + 1)
