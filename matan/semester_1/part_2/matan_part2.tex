@@ -15,6 +15,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+\usepackage{enumitem}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
@@ -55,6 +56,8 @@
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 \newcommand{\osc}{{\mathop{\text{\rm osc}}}}
 \newcommand{\pivi}{\stackrel \circ }
+\newcommand{\oo}{{\mathop{\text{\rm o}}}}
+\newcommand{\OO}{{\mathop{\text{\rm O}}}}
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -100,17 +103,409 @@
 
 
 \chapter{Непрерывные функции}
-\section{Определения, свойства}
-\section{Теоремы}
+\section{Непрерывность в точке}
+\begin{name}
+    $ f: A \to  \R, ~ x_0 \in  A$
+\end{name}
+\begin{defn}
+    Функция $ f$ называется {\bf непрерывной в точке} $ x_0$, если
+    \begin{description}
+	\item
+	    для любой окрестности $ U$ точки  $ f(x_0)$ существует окрестность точки $ x_0$ такая, что $ f(V \cap A) \subset U$.
+	\item или
+	    \begin{equation}\label{eq_def_nepr}
+		\forall \varepsilon >0 ~ \exists \delta >0: ~ \bigl( |x-x_0| < \delta \quad x \in A \Longrightarrow  |f(x) - f(x_0)| < \varepsilon \bigr).
+	    \end{equation}
+    \end{description}
+\end{defn}
+\begin{note}
+    Если  $ x_0 \in A'$, то условие \ref{eq_def_nepr} эквивалентно тому, что \[
+	\exists \lim_{x \to  x_0} f(x) = f(x_0)
+    .\]
+\end{note}
+\begin{note}
+    Если точка $ x_0$ является изолированной для $ A$, то  $ f$ непрерывна в $ x_0$.
+\end{note}
+\section{Свойства непрерывных функций}
+\subsection{Теорема об алгебраических операциях}
+\begin{thm}[об алгебраических операциях с непрерывными функциями]
+    Пусть $ f: A \to  \R, ~ g : A \to \R, ~ x_0 \in A, ~ \alpha , \beta \in \R$.
+    \begin{itemize}
+	\item Если $ f$ и  $ g$ непрерывны в точке  $ x_0$, то $ \alpha g + \beta f$ непрерывна в точке $ x_0$.
+	\item     Если $ f$ и  $ g$ непрерывны в точке  $ x_0$ и $ g(x_0) \ne 0$, то $\frac{g}{f}$ непрерывна в точке $ x_0$.
+    \end{itemize}
+\end{thm}
+\begin{proof}
+    Если $ x_0$ --- изолированная, утверждение верно, иначе повторяем доказательства свойств пределов в точке.
+\end{proof}
+\subsection{Теорема о композиции}
+\begin{thm}[о композиции]
+    $ f: A \to  \R, ~ g: B \to  \R, ~ f(A) \subseteq, ~ x_0 \in A$. Пусть $ f$ непрерывна в точке $ x_0$, $ g$ непрерывна в точке  $ f(x_0) = y_0$.
+    Тогда $ g\circ f$ непрерывна в точке $ x_0$.
+\end{thm}
+\begin{proof}
+    Обозначим $ z_0 = g(y_0) = (g \circ f)(x_0)$.
+    Пусть $ U$ --- окрестность точки $ z_0$. Тогда
+    \[
+	\exists \text{ окрестность }   V \ni y_0: g(V \cap B) \subset U
+    .\]
+    Так как $ f$ непрерывна в точке  $ x_0$:
+    \[
+	\exists  \text{ окрестность }  W \ni x_0: f(W \cap A) \subset  V
+    .\]
+    Тогда \[
+	(g \circ f)(W \cap A) \subset g(U \cap B)
+    .\]
+\end{proof}
+\subsection{Теорема о пределе последовательности}
+\begin{thm}
+    $ f: A \to \R, ~ A\subset \R, ~ x_0 \in A$.
+    Следующие условия эквивалентны:
+    \begin{enumerate}
+	\item $ f$ непрерывна в точке  $ x_0$
+	\item $ \forall \text{ последовательности }\{x_{n}\} \in A, ~ x_{n} \to  x_0: f(x_{n}) \to  f(x_0)$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{1 \Longrightarrow 2}$ \\
+	    Пусть  $ W$ --- окрестность точки  $ f(x_0)$.  Так как $ f$ непрерывна,
+	    \[
+		\exists \text{ окрестность } V \ni  x_0: f(x) \in W \quad \forall x \in V \cap A
+	    .\]
+	    Так как $x_{n} \to  x_0$:
+	    \[
+		\exists N \in \N ~ \forall n > N: x_{n} \in V \Longrightarrow f(x_{n}) \in W
+	    .\]
+	\item $ \boxed{2 \Longrightarrow 1}$ \\
+	    Пусть $ f$ не непрерывна в точке  $ x_0$, есть
+	    \[
+		\exists  \varepsilon >0 ~ \forall \delta >0~ \exists x \in A: |x - x_0| < \delta \wedge |f(x) - f(x_0)| \ge \varepsilon
+	    .\]
+	    Рассмотрим $ \delta_n = \frac{1}{n}$.
+	    \[
+		\exists x_{n} \in A: |x_{n}-x_0|<\frac{1}{n} \wedge |f(x_{n}) - f(x_0)  |\ge \varepsilon
+	    .\]
+	    Тогда  \[
+		0 < |x_{n}-x_0| < \frac{1}{n} \Longrightarrow  x_{n} \to  x_0
+	    .\]
+	    Из этого следует, что $ f(x_{n}) \to  f(x_0)$. Противоречие.
+    \end{description}
+\end{proof}
+\section{Непрерывность на множестве}
+\begin{defn}
+    Говорят, что функция $ f$, заданная на множестве $ A$,  {\bf непрерывна на некотором подмножестве} $ A_1 \subset A$, если она непрерывна в каждой точке множества $ A_1$.
+\end{defn}
 \subsection{Теоремы Вейерштрасса}
+\begin{thm}[Первая теорема Вейершрасса]
+    Пусть $ f$ задана и непрерывна на замкнутом и ограниченном множестве  $ A$. Тогда функция  $ f$ ограничена на  $ A$.
+\end{thm}
+\begin{proof}
+    От противного. Пусть $ f$ не ограничена на $ A$. Тогда
+    \[
+	\forall n \in \N ~ \exists x_{n} \in A: |f(x_{n})|>n
+    .\]
+    $ \{x_{n}\}$ --- ограниченная последовательность. По теореме о компактности существует подпоследовательность $ x_{n_{j}} \to x$. Так как $ A$ замкнуто, $ x \in A$. Следовательно, $ f(x_{n}) \to  f(x)$. Противоречие.
+\end{proof}
+\begin{thm}[Вторая теорема Вейерштрасса]
+    $ f: A \to \R$ --- непрерывная на замкнутом и ограниченном множестве $ A$ функция. Если существуют конечные
+    $$
+    M = \sup_{x \in A}f(x), \quad m = \inf_{x \in A} f(x)
+    ,
+    $$
+    то \[
+	\exists y, z \in A: f(y) = M, \quad f(z) = m
+    .\]
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{itemize}
+	\item Для $ M$:
+	    \[
+		\forall n \in \N ~ \exists x_{n} \in A: M \ge f(x_{n}) > M -\frac{1}{n}
+	    .\]
+	    По теореме о компактности существует подпоследовательность $ x_{n_{j}} \to x$. Так как $ A$ замкнуто, $ x \in A$.
+	    \[
+		f(x_{n_j}) \to  f(x) \wedge f(x_{n_{j}}) \to  M \Longrightarrow M = f(x)
+	    .\]
+	    Значит, $ M$ достигается.
+	\item Для $ m$: совершенно аналогично.
+    \end{itemize}
+\end{proof}
 \subsection{Теорема о промежуточном значении}
+\begin{name}
+    <<\text{$u$ между $r$ и  $s$}>> $\coloneqq  
+     \begin{cases}
+	 u \in [r, s] &  r \le s \\
+	 u \in [s, r] & r > s
+    \end{cases}
+    $
+\end{name}
+\begin{thm}[о промежуточном значении]
+    Пусть $ f$ задана и непрерывна на отрезке  $ \langle \alpha , \beta \rangle$.  Пусть $ a, b \in  \langle \alpha , \beta  \rangle$, $ v$ находится между $ f(a) $ и $ f(b)$. Тогда существует $ x$ между  $ a$ и  $ b$ такой, что  $ f(x) = v$.
+\end{thm}
+\begin{proof}
+    Если $ a = b$, утверждение очевидно.
+    Не умаляя общности, предположим, что  $ a < b$. Будем считать, что  $ v \ne f(a) \wedge v \ne f(b)$. 
+    
+    Пусть нет точки  $ x_0: f(x_0) = v$.
+    Обозначим $ I = [a, b]$.
+    Пусть $
+    \begin{array}{l}
+	X = \{x \in I\mid f(x) \le v\}\\
+	Y = \{x \in I\mid f(x) \ge  v\}
+    \end{array}
+    $. %
+    Докажем, что $ X$ и  $ Y$ замкнуты.
+    \begin{enumerate}
+        \item $ X$ замкнуто:\\
+	    $ x_0$ --- предельная точка. Следовательно, $ \exists x_{n} \in X: x_{n} \to  x_0, ~ (x_{n} \ne  x_0)$.
+	    Тогда $ f(x_{n}) \to  f(x_0)$. 
+	     \[
+		 f(x_{n}) \le  v \Longrightarrow f(x) \le  v
+	    .\] 
+	\item Аналогично  $ Y$ замкнуто.
+    \end{enumerate}
+    Следовательно,  $ X \cap Y \ne \varnothing$.
+\end{proof}
+\begin{thm}
+    Пусть $ f$ задана и непрерывна на отрезке $ \langle a, b \rangle$. Следующие условия эквивалентны:
+    \begin{enumerate}
+	\item $ f$ --- инъекция (то есть  $ x_1 \ne x_2 \Longrightarrow f(x_1) \ne f(x_2)$ )
+	\item $ f$ --- строго монотонная
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{ 2 \Longrightarrow 1}$ Очевидно.
+	\item $ \boxed{1 \Longrightarrow 2}$  Пусть  $ f$ не строго монотонна. Тогда $ \exists x_1 <x_2<x_3 \in \langle \alpha, \beta \rangle$:
+	    \[
+	    \left[
+	    \begin{aligned}
+		& f(x_1) < f(x_2) \wedge f(x_2) > f(x_3)\\
+		& f(x_1) > f(x_3) \wedge f(x_2) < f(x_3)
+	    \end{aligned}
+	    \right.
+	.\]
+	Тогда $ \exists x'_1 \ne  x'_2$, но $ f(x'_1) = f(x'_2)$. Противоречие. 
+    \end{description}
+\end{proof}
+\begin{thm}
+    Пусть $ g$ задана на отрезке и возрастает (убывает). Тогда  $ g$ непрерывна тогда и только тогда, когда образ функции есть отрезок (возможно бесконечный).
+\end{thm}
+\begin{st}
+    Если  $ f$ непрерывна, задана на отрезке и инъективна, то $ f^{-1}$ тоже задана на отрезке и непрерывна.
+\end{st}
 \section{Степени с рациональным показателем}
+$ m \in \Z, ~ f(x) = x^{m}, ~ x >0$.
+
+$ x^{0} \equiv  1, \quad x >0$.
+
+$ x^{m}$ строго возрастает, если $ m >0$
+
+$ x^{m}$ строго убывает, если $ m <0$
+
+$ x^{m} \mathrel{\stackrel{\rm def}\equiv }  = \frac{1}{x^{-m}}$
+
+$ f(x) = x^{m}$ --- непрерывная функция.
+Обратная функция $ g(y) = f^{-1}(y) $ --- корень $ m$-й степени из $ y>0$.
+\begin{defn}
+    $ x >0, ~ r \in \Q, ~ r = \frac{p}{q}$
+
+    $ x^{r} = \sqrt[q]{x ^{p}}$ --- $ x$ в рациональной степени.
+\end{defn}
+\begin{note}
+    $ x \mapsto x^{r}$ --- непрерывное отображение.
+\end{note}
+\begin{lm}
+    Результат не зависит от представления $ r$ в виде дроби.
+\end{lm}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item $ x^{r_1} \cdot x^{r_2} = x^{r_1+r_2}$
+	\item $ \bigl(x^{r_1}\bigr)^{r_2}  = x^{r_1r_2}$ 
+	\item $ x^{r} \cdot y^{r} = (xy)^{r}$
+    \end{enumerate}
+\end{prop}
 \section{Равномерная непрерывность}
+\begin{defn}
+    $ A \subset \R, ~ f: A \to  \R$.
+    Говорят, что $ f$  {\bf равномерно непрерывна} на $ A$, если
+	$$ \bigl(|x-x_0|< \delta \wedge x \in A\bigr) \Longrightarrow |f(x_0) -f(x_0)| < \varepsilon $$
+
+	 или \[
+	     \forall \varepsilon >0 ~ \exists \delta  >0 ~ \forall x, y \in A: \bigl( |x-y|< \delta |f(x) -f(y)|< \varepsilon \bigr)
+	.\] 
+\end{defn}
+\begin{ex}
+    $ f(x) = x, ~ A = \R$.
+    \[
+	\forall  \varepsilon >0 ~ |x -y| < \varepsilon  \Longrightarrow  |f(x)-f(y)| \Longrightarrow f \text{ равномерно непрерывна}
+    .\] 
+\end{ex}
+\begin{ex}
+    $ f(x) = x^2, ~ A \subset \R$
+    \[
+    |x^2 - y^2| < \varepsilon  \Longleftrightarrow  |x-y||x+y| C \varepsilon \Longrightarrow f \text{ не равномерно непрерывно}
+    .\] 
+\end{ex}
+\begin{ex}
+    $ h(x) = \sqrt {x}$ --- равномерно   непрерывна.
+     \[
+	 \left| \sqrt{x} - \sqrt{y} \right| = \frac{|x-y|}{\sqrt{x} + \sqrt{y}}
+    .\] 
+\end{ex}
 \subsection{Теорема Кантора}
-% Добавить \label{th_rantor}
+\begin{thm}[Кантор]\label{th_kantor}
+    Пусть $ A$ замкнутое ограниченное множество.  $ f: A \to  \R$ --- непрерывная функция. Тогда $ f$ равномерно непрерывна.
+\end{thm}
+\begin{proof}
+    От противного. Пусть $ f$ не является равномерно непрерывной, то есть \[
+	\exists \varepsilon >0 ~ \delta >0 ~ \exists x_1', x_2'' \in A: |x_1'-x_2''| < \delta \wedge |f(x_1')-f(x_2'')| \ge \varepsilon 
+    .\] 
+    Рассмотрим $ \delta = \frac{1}{n}$.
+    \[
+	\exists x_{n}', x_{n}'' \in A: |x_{n}' - x_{n}''|<\delta  \wedge |f(x_{n}')-f(x_{n}'')| \ge \varepsilon 
+    .\] 
+    Получили две последовательности $ \{x_{n}'\}$ и $ \{x_{n}''\}$.
+    Обе замкнуты и ограничены, тогда по теореме о компактности $ \exists x_{n_j}' \to  x_0 \in A$.
+    \[
+	x_{n_j}'' = x_{n_j}' + (x_{n_j}'' - x_{n_j}') \to  x_0 + 0
+    .\] 
+    Посмотрим на значения в точках последовательностей:
+    \[
+	|f(x_{n}') - f(x_{n}'')| \ge \varepsilon 
+    .\] 
+    Но каждое  из значений стремится к  $ f(x_0)$, значит разность должна стремиться к нулю. Противоречие. 
+\end{proof}
 \chapter{Дифференцирование}
 \section{Определения}
+\begin{name}
+    $ f: \langle a, b \rangle \to \R, ~ x_0, x \in \langle a,b \rangle$
+\end{name}
+\begin{defn}
+    Функция $ f$ называется {\bf  дифференцируемой} в точке $ x_0$, если 
+    \[
+	f(x) -f(x_0) = l(x-x_0) + \oo_{x \to  x_0}(x -x_0)
+    ,\] 
+    где $ l(t) = kt, ~ k \in \R$ --- дифференциал $ f$ в точке  $ x_0$ (также обозначается $ d_{f_{x_0}}(t)$ или $ df(x_0, t)$).
+
+    Другая запись:
+    \[
+	f(x) = f(x_0) + k(x-x_0) + \OO_{x \to  x_0}(x-x_0)
+    .\] 
+\end{defn}
+\begin{defn}
+    Если $ f$ дифференцируема в точке $ x_0$, {\bf производная} $ f$ в  точке $ x_0$ определяется так: 
+    \[
+	f'(x_0) \mydef \lim_{x \to  x_0} \frac{f(x)-f(x_0)}{x-x_0}
+    .\] 
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+        \item Если $ f$ дифференцируема в точке $ x_0$, то $ k$ единственное. 
+	\item Если $ f$ дифференцируема в точке $ x_0$, то $ f$ непрерывна в точке $ x_0$.
+	\item $ f$ дифференцируема в точке $ x_0$ тогда и только тогда, когда  \[
+		\exists  \lim_{x \to  x_0} \frac{f(x) -f(x_0)}{x-x_0} = k, ~ df _{x_0} (t) = kt
+	.\] 
+	\begin{proof}
+	     $ $
+	    \begin{description}
+		\item \boxed{  \Longrightarrow } $ f(x) - f(x_0) = k(x-x_0) + f(x_0) + \OO_{x \to  x_0}(x-x_0)$
+		    \[
+			\frac{f(x) -f(x_0)}{x - x_0}= k + \frac{\OO_{x \to  x_0}(x-x_0)}{x - x_0} \to  k
+		    .\] 
+	        \item \boxed{  \Longleftarrow } \[
+			\lim_{x \to  x_0} \frac{f(x) = f(x_0)}{x-x_0} = k \Longrightarrow \frac{f(x) - f(x_0)}{x-x_0} = k + \OO(1), ~ x \to  x_0
+	        .\] 
+		\begin{align*}
+		    f(x) - f(x_0) &= k(x-x_0) + \OO_{x \to  x_0}(1)(x-x_0) =\\
+				  &=  k (x - x_0) + \OO_{x \to  x_0}(x-x_0)
+		\end{align*}
+	    \end{description} 
+	\end{proof}
+    \item $ f$ дифференцируема в точке $ x_0$ тогда и только тогда, когда существует $ \beta$, заданная в окрестности $ V \ni x$:
+	\begin{enumerate}
+	    \item $ \beta$ непрерывна в точке $ x_0$ 
+	    \item $ f(x) - f(x_0) = \beta(x) \cdot (x-x_0) \qquad \forall  x \in V$
+	\end{enumerate}
+	\begin{proof}
+	    \begin{description}
+		\item \boxed{  \Longrightarrow } 
+		    \[
+			\beta(x)=
+			\left[
+			    \begin{array}{ll}
+				\frac{f(x) - f(x_0)}{x-x_0} & x \ne x_0\\
+				\lim_{y \to x_0}\frac{f(y)-f(x_0)}{y-x_0} & x = x_0 
+			\end{array}
+\right .
+		    \] 
+		\item \boxed{  \Longleftarrow } $ \beta(x) = \beta(x_0) + \OO_{x \to  x_0}(1)$
+		    Подставим \[
+			f(x) - \underbrace{\beta(x_0)}_{k}(x-x_0) + \OO_{x \to  x_0}(1)(x-x_0)
+		    .\] 
+		    Получили определение.
+	    \end{description} 
+	\end{proof}
+    \end{enumerate}
+\end{prop}
 \section{Правила дифференцирования}
+\begin{enumerate}[start=0]
+    \item Никогда не дифференцируй при людях!
+    \item $ f(x) = ax + b$ дифференцируема и $ \forall x_0: f'(x_0) = a$
+    \item 
+	Если $ f, g$ дифференцируемы в точке $ x_0$, $ f\cdot g$ тоже дифференцируема в точке  $ x_0$ и $ (fg)'(x_0) =f'(x_0)g(x_0) + f(x_0)g'(x_0)$
+    \item Если $ f$ дифференцируема в точке $ x_0$ и $ f(x_0) \ne 0$, то $ 1 / f$ дифференцируема в точке $ x_0$ и
+	\[
+	    \left( \frac{1}{f} \right)' (x_0) = - \frac{f'(x_0)}{f^2(x_0)}
+	.\] 
+    \item Если $ f, g$ дифференцируемы в $ x_0$ и $ g(x_0) \ne 0$, то $ \frac{f}{g}$ дифференцируема в $ x_0$ и \[
+	    \left( \frac{f}{g} \right) '(x_0) = \frac{f'(x_0) g(x_0)-f(x_0)g'(x_0)}{g^2(x_0)}
+    .\] 
+\item Если $ f: \langle a, b \rangle \to \R, ~ g: \langle c, d \rangle , ~ x_0 \in \langle c, d \rangle, ~ g(x_0) \in \langle a, b \rangle$ и $ f$ дифференцируема в точке  $ g(x_0)$, $ g$ дифференцируема в точке $ x_0$, то $ f \circ g$ дифференцируема в точке $ x_0$ и
+    \[
+	(f \circ g)'(x_0) = f'(g(x_0)) \cdot g'(x_0)
+    .\] 
+\item Производная обратной функции. $ f: (a, b) \to  \R$ непрерывна и инъективна. Пусть $ x_0 \in (a, b), ~ \exists f'(x_0) \ne 0$, обозначим $ g = f^{-1}$ --- обратное отображение, $ y_0 = f(x_0)$.
+    Тогда $ g$ дифференцируема в точке $ y_0$ и 
+    \[
+	g'(y_0) = \frac{1}{f'(g(y_0))} = \frac{1}{f'(x_0)}  
+    .\] 
+\item $ m \in \N, ~ g(x) = x ^{\frac{1}{m}}$. Если $ x_0 >0$, то $ g$ дифференцируема в точке $ x_0$ и
+    \[
+	g'(x_0) = \frac{1}{f'\left(x ^{\frac{1}{m}}\right)} = \frac{1}{m \left( x ^{\frac{1}{m}} \right) ^{m-1}} = \frac{1}{m}\cdot x^{\frac{1}{m}-1}
+    .\] 
+\item $ x_0>0, ~ \alpha = \frac{l}{k} >0$. $ \varphi (x) = x^{\alpha} = \left( x^{\frac{1}{k}} \right)^{l}$.
+    Тогда $ \varphi $ дифференцируема в точке $ x_0$ и \[
+	\varphi '(x) = l\left(x^{\frac{1}{k}}\right) \cdot \frac{1}{k} x ^{\frac{1}{k}-1}  =  \frac{l}{k} x^{\frac{l}{k}-1}
+    .\] 
+    Аналогично для $ \alpha <0$.
+\item Тайная таблице еще не пройденных функций:
+
+\renewcommand{\arraystretch}{1.5}
+    \begin{tabular}[ht]{c|c}
+	Функция & Производная \\
+	\hline
+	$ \sin'x $ & $ \cos x$\\
+	\hline
+	$ \cos'x $ & $ -\sin x$\\
+	\hline
+	$ \tg'x $ & $ \frac{1}{\cos x} $\\
+	\hline
+	$ \exp'x $ & $ \exp x$\\
+	\hline
+	$ \ln'x $ & $ \ln x$\\
+    \end{tabular}
+\end{enumerate}
+\section{Формулы Коши и Лагранжа}
+\section{Правило Лопиталя}
+\section{Формула Тейлора}
+\section{Достаточное условие экстремума}
 \section{Сходимость последовательностей}
 \begin{thm}
     $f_n, f : A \to  \R$, $f_n \to  f$
@@ -535,12 +930,12 @@ df = f' dx = g dx$
     Проверим, что $ f$ удовлетворяет условию  \ref{iff_1}
     $ f$ равномерно непрерывна по теореме Кантора \ref{th_kantor}:
     \[
-	\forall 	\varepsilon >0 ~ \exists \delta  >0: \Bigl( x, y \in  [a, b] \wedge  |x-y| < \delta  \Longrightarrow  |f(x) - f(y)| < \varepsilon  \Bigr)
-    .\] 
+	\forall		\varepsilon >0 ~ \exists \delta  >0: \Bigl( x, y \in  [a, b] \wedge  |x-y| < \delta  \Longrightarrow  |f(x) - f(y)| < \varepsilon  \Bigr)
+    .\]
     Пусть $ e_1, \ldots e_k$ --- столь мелкое разбиение отрезка $ [a, b]$, что $ \forall i: |e_i| < \delta $. Тогда  $ \forall i: \osc_{e_i}f \le \varepsilon $.
     \[
-	\sum_{i=1}^{k} |e_i|\osc_{e_i} f \le \varepsilon \sum_{i=1}^{k}|e_i| = \varepsilon (b-a) 
-    .\] 
+	\sum_{i=1}^{k} |e_i|\osc_{e_i} f \le \varepsilon \sum_{i=1}^{k}|e_i| = \varepsilon (b-a)
+    .\]
     % proof 14:36
 \end{proof}
 \begin{prop}
