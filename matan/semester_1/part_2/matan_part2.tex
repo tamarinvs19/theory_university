@@ -801,20 +801,184 @@ $ q (x) = (x-a)^{n}$
     Противоречие. Значит все коэффициенты равны нулю.
 \end{proof}
 \section{Формула Тейлора}
+\subsection{Формула Тейлора с остатком в форме Пеано}
+\begin{thm}[Формула Тейлора с остатком в форме Пеано]
+    $ f: (a, b) \to  \R$ имеет $ n-1$ производную и $ x_0 \in (a, b), ~ \exists f^{(n)}(x_0)$.
+    Тогда 
+    \[
+	\sum_{j=0}^{n} \frac{f^{(j)}(x_0)}{j!} (x-x_0)^{j} 
+    .\] 
+    является полиномом Тейлора функции $ f$ в точке $ x_0$.
+    \[
+	f(x) = 	\sum_{j=0}^{n} \frac{f^{(j)}(x_0)}{j!} (x-x_0)^{j}  + o_{x \to  x_0} (x-x_0)^{n}
+    .\] 
+\end{thm}
+\begin{proof}
+    \begin{lm}
+	Пусть $ g$ --- дифференцируемая $ n-1$ раз на $(a, b)$ и $ n$ раз в точке $ x_0 \in (a, b)$ функция. \[
+	    g(x_0) = g'(x_0) = \ldots = g^{(n)}(x_0) = 0
+	.\]  
+	Тогда \[
+	    g(x) = o_{x \to  x_0}(x-x_0)^{n}
+	.\] 
+    \end{lm}
+    \begin{proof}
+	Индукция. База $ n = 1$. Действительно, $ g(x_0) = 0 \Longrightarrow  g(x) = o(1)$.
+
+	Переход ($ n \to n+1$). По теореме Лагранжа \[
+	    g(x) = g(x) - g(x_0) = g'(\xi)(x-x_0), \quad \xi \in (x, x_0)
+	.\] 
+	По предположению индукции $ g'(y) = o_{y \to  x_0}(y-x_0)^{n}$. Это равносильно тому, что
+	\[
+	    \forall \varepsilon >0 ~ \exists \delta >0 : \bigl(|y-x_0|<\delta \Longrightarrow |g'(y)| \le \varepsilon |y-x_0|^{n}\bigr)
+	.\] 
+	Выберем $ x$:  $ |x - x_0| < \delta$. Тогда
+	\[
+	    |\xi - x_0| < \varepsilon  \Longrightarrow g'(\xi) < \varepsilon |\xi - x_0|^{n} \le \varepsilon |x-x_0|^{n}
+	.\] 
+	\[
+	    |g(x)| \le |x-x_0|\cdot \varepsilon |x - x_0|^{n} = \varepsilon |x -x_0|^{n+1}, \qquad |x - x_0| < \delta
+	.\] 
+    \end{proof}
+    Доказав лемму, мы доказали и теорему.
+\end{proof}
+\subsection{Формула Тейлора с остатком в форме Лагранжа} 
+\begin{thm}[Формула Тейлора с остатком в форме Лагранжа]
+    $ f: (a, b) \to  \R$ имеет $ n$ производных на $ (a,b)$ и $f, f', f'', \ldots, f^{(n)}$  непрерывны на $ (a, b)$.
+    Пусть $ x, x_0 \in (a, b)$ и $ f^{(n+1)}(y)$ существует на открытом интервале между $ x$ и $ x_0$.
+    Тогда 
+    \[
+	\sum _{j=0}^{n}\frac{f^{(i)} (x_0)}{n!}(x-x_0)^{j} + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}, \qquad \xi \text{ между } x  \text{ и } x_0
+    .\] 
+\end{thm}
+\begin{proof}
+    \begin{lm}
+	Пусть $ g$ --- дифференцируемая $ n-1$ раз на $(a, b)$ и $ n$ раз в точке $ x_0 \in (a, b)$ функция. \[
+	    g(x_0) = g'(x_0) = \ldots = g^{(n)}(x_0) = 0
+	.\]  
+	Тогда $ \exists \xi$ между $ x$ и $ x_0$: \[
+	    g(x) = \frac{g^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}
+	.\] 
+    \end{lm}
+    \begin{proof}
+        Индукция. База: $ n = 0$. По формуле Лагранжа
+	\[
+	    \exists \xi \in (a, b): g(x) - \underbrace{g(x_0)}_{=0} = g'(\xi)(x-x_0)
+	.\] 
+	Переход: $ n-1 \to  n$.
+	Рассмотрим $ h(t) = (t - x_0)^{n+1}, \quad t \in (a, b)$.
+	\[
+	    \begin{aligned}
+		\frac{g(x) - g(x_0)}{h(x) - h(x_0)} &=\frac{g'(\xi)}{h'(\xi)}, \quad \text{ при некотором } \xi \text{ между } x, x_0\\
+		\frac{g(x)}{(x-x_0)^{n+1}} &= \frac{g'(\xi)}{(n+1)({\xi - x_0})^{n}}
+	    \end{aligned}
+	.\] 
+	$ g'$ удовлетворяет условию леммы для  $ n-1$. Тогда по предположению индукции 
+	 \[
+	     g'(\xi) = \frac{(g')^{(n)}(\eta)(\xi - x_0)^{n}}{n!}, \quad \eta \text{ между } \xi, x_0
+	.\] 
+	Тогда 
+	\[
+	    \frac{g(x)}{(x-x_0)^{n+1}}	=    \frac{g'(\xi)}{(n+1)({\xi - x_0})^{n}} = \frac{g^{(n+1)}(\eta)}{(n+1)!}
+	.\] 
+    \end{proof}
+    \[
+	g(x) = f(x) - \sum_{j=0}^{n}\frac{f^{(j)}(x_0)}{j!} (x-x_0)^{j}
+    .\] 
+    По лемме $ \exists \xi$ между $ x$ и $ x_0$:
+    \[
+	    g(x) = \frac{g^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}
+	.\] 
+	Тогда 
+	\[
+	    f(x) = 
+	    \sum_{j=0}^{n}\frac{f^{(j)}(x_0)}{j!} (x-x_0)^{j}  +  \underbrace{\frac{g^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}}_{g(x)}
+	.\] 
+
+\end{proof}
 \section{Достаточное условие экстремума}
+\begin{thm}
+    $ f: (a, b) \to  \R$ дифференцируема на $ (a, b)$,  $ x_0 \in (a, b), ~ f'(x_0) = 0, ~ \exists f''(x_0)$. Тогда
+    \begin{itemize}
+	\item если $ f''(x_0) >0$, то $ f$ имеет локальный минимум в точке $ x_0$
+	\item если $ f''(x_0) <0$, то $ f$ имеет локальный максимум в точке $ x_0$.
+    \end{itemize}
+    \begin{note}
+	Если $ f$ дифференцируема в точке $ x_0$ и $ f'(x_0) = 0$, можно сказать, что $ f$ имеет локальный экстремум в точке $ x_0$.
+    \end{note}
+\end{thm}
+\begin{proof}
+    Запишем формулу Тейлора.
+    \[
+	f(x) = f(x_0) + \underbrace{f'(x)(x-x_0)}_{\text{нет нулевых}} + \frac{1}{2}f''(x_0)(x-x_0)^2 + \underbrace{o_{x \to  x_0}(x-x_0)^2}_{\alpha(x)}
+    .\] 
+    Пусть $ f''(x_0) <0$.
+    \[
+	\forall \varepsilon >0 ~ \exists \delta >0: \left(|x - x_0| < \delta \Longrightarrow |\alpha(x)| \le \varepsilon |x-x_0|^2\right)
+    .\] 
+    \[
+	\begin{aligned}
+	    f(x) & \le f(x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 + \varepsilon (x-x_0)^2 = \\
+		 &= f(x_0) + \underbrace{\left( \frac{1}{2}f''(x_0) + \varepsilon  \right)}_{t} (x-x_0)^2
+	\end{aligned}
+    \] 
+    Если взять $ \varepsilon = \left| \frac{1}{4} f''(x_0) \right| $, то $ t$ все еще менее нуля.
+    Тогда во всех точках кроме $ x_0: f(x) < f(x_0)$. Следовательно, $ f(x_0)$ --- максимум.
+
+    Аналогичные рассуждения для $ f''(x_0) > 0$.
+\end{proof}
 \section{Сходимость последовательностей}
+\begin{name}
+    $ A$ --- множество произвольной природы.  $ f_n: A \to  \R, ~ n \in \N$
+    $ \{f_n\}_{n=1}^{\infty}$ --- последовательность функций.
+\end{name}
+\begin{defn}
+    Говорят, что $ f_n$ {\bf поточечно сходится к функции}  $ f: A \to  \R$, если \[
+	\forall x \in A: \lim_{n \to \infty} f_n(x) = f(x)
+    .\] 
+    Пишут <<$ f_n \to  f$>>.
+\end{defn}
+\begin{defn}
+    Говорят, что последовательность функций $ f_n$ {\bf  сходится равномерно к функции} $ f$, если 
+    \[
+	\forall \varepsilon >0 ~ \exists N \in \N ~ \forall x \in A: \bigl( n> N \Longrightarrow |f_n(x) - f(x)| < \varepsilon \bigr)
+    .\] 
+    \begin{name}
+        Обозначается: $ f_n \rightrightarrows f$.
+    \end{name}
+\end{defn}
+\begin{thm}[Стокс-Зайдель]
+    $ A \subset \R, ~ f_n: A \to  \R$, $ f_n$ равномерно сходится к $ f: A \to \R$. Если все $ f_n$ непрерывны в  $ x_0 \in A$, то $ f$ непрерывна в точке $ x_0$.
+\end{thm}
+\begin{proof}
+    Используем условие равномерной сходимости:
+    \[
+	\forall  \varepsilon >0 ~ \exists \delta>0 ~ \forall x \in A: \bigl( n > N \Longrightarrow |f_n(x) - f(x) | < \varepsilon \bigr)
+    .\] 
+    Зафиксируем $ n_0 > N$.
+    Тогда 
+    \[
+	\exists \delta: \bigl(|x-x_0| < \delta \Longrightarrow |f_{n_0}(x_0) - f(x)|< \varepsilon 
+    .\] 
+    $ |x-x_0| < \delta$, следовательно, 
+    \[
+	\begin{aligned}
+	    |f(x) - f(x_0)| &\le |f_{n_0}(x) - f(x)| + \\
+	    &+ | f_{n_0} (x)- f_{n_0}(x_0)| + \\
+	    &+ |f_{n_0}(x_0) - f(x_0)| < \\
+	    < \varepsilon + \varepsilon + \varepsilon &<  3 \varepsilon 
+	\end{aligned}
+    .\] 
+    Получили, что $ f$ непрерывна в точке $ x_0$.
+\end{proof}
 \begin{thm}
     $f_n, f : A \to  \R$, $f_n \to  f$
     Следующие условия эквивалентны:
     \begin{enumerate}
-	\item $\exists M : |f_n(x)| \le  M \quad \forall  n, x \longrightarrow |f(x)| \le  M$
-	\item $f$ ограничена: $|f(n)| \le  M \forall  x \to \exists  N \exists  A: \\
-	    |f_n(x)| \le A \quad \forall  n \le  N \forall  x$
+	\item $\exists M : \bigl(|f_n(x)| \le  M \quad \forall  n, x \Longrightarrow  |f(x)| \le  M\bigr)$
+	\item $f$ ограничена: $|f(n)| \le  M \quad \forall  x \Longrightarrow   \exists  N ~\exists  A: |f_n(x)| \le A \quad \forall  n \ge  N \quad \forall  x$
     \end{enumerate}
 \end{thm}
-\begin{proof}
-    Очевидно
-\end{proof}
 \begin{thm}
     $f_n \rightrightarrows  f, g_n \rightrightarrows  g$ на $A$.
     Пусть $\exists M: \forall x \in A ~\forall  n |f_n(x) | \le  M$. Тогда  $f_n g_n \rightrightarrows fg$
@@ -826,21 +990,24 @@ $ q (x) = (x-a)^{n}$
 \end{proof}
 \begin{thm}[Критерий Коши для равномерной сходимости]
     Пусть $f_n$ --- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда
-    \[
+    \begin{equation}
+	\label{usl}
 	\forall  \varepsilon >0~ \exists  N ~ \forall  k, j> N~ \forall x : |f_k(x) - f_j(x)| < \varepsilon
-    .\] \label{usl}
+    \end{equation}
 \end{thm}
 \begin{proof}
-    Необходимость.\\
+    $ $
+    \begin{description}
+	\item Необходимость.\\
     Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x\in A$.
     \[
 	\forall k, l > N \quad |(f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon  \forall x \in A
     .\]
-    Достаточность.\\
+\item Достаточность.\\
     Пусть  \ref{usl} выполнено. $x \in A$ - фиксировано.
     Тогда $\{f_n(x)\}_{n \in  \N}$ есть последовательность Коши (см \ref{usl}). Следовательно,
     \[
-	\forall  x \exists \lim_{n \to  \infty} f_n(x) \stackrel{def} = f(x)
+	\forall  x~ \exists \lim_{n \to  \infty} f_n(x) \mydef  f(x)
     .\]
     $ \varepsilon  >0$. Нашли $N: |f_k(x) - f_j(x)| < \varepsilon  \quad \forall  x \in A \forall  k, j > N$
     Зафиксируем $k, x$, перейдем к пределу по $j$ :
@@ -848,6 +1015,7 @@ $ q (x) = (x-a)^{n}$
 	|f_n(x) - f(x) | < \varepsilon
     .\]
     Что верно для $ \forall  x \in  A, \forall  k > N$.
+    \end{description}
 \end{proof}
 \begin{ex}
     Функция на $\R$, непрерывная всюду, но не дифференцируемая на в одной точке.
@@ -928,18 +1096,18 @@ $ q (x) = (x-a)^{n}$
     \[
 	\left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle
     .\]
-    Оценим разность. Зафикируем $ x$.
+    Оценим разность. Зафиксируем $ x$.
     \[
-	\exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  |\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)|  < \varepsilon
+	\exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  \left|\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)\right|  < \varepsilon
     .\]
     Объединяем неравенства:
     для данных $ k, x$:
     \[
-	|y - x| < \delta  , y \ne x \to  |f'_k(x) - \frac{f(x) - f(y)}{x-y}| \le  2 \varepsilon
+	|y - x| < \delta  , y \ne x \to  \left|f'_k(x) - \frac{f(x) - f(y)}{x-y}\right| \le  2 \varepsilon
     .\]
     Следовательно,
     \[
-	|x - y| < \delta \to  |g(x) - \frac{f(x) - f(y)}{x-y}| \le 3 \varepsilon
+	|x - y| < \delta \to  \left|g(x) - \frac{f(x) - f(y)}{x-y}\right| \le 3 \varepsilon
     .\]
 \end{proof}
 \section{Первообразные}
