@@ -54,7 +54,11 @@
 \newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
 
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
+\def\mycheck{\mathrel{\stackrel{\rm ?}=}}
 
 
 \renewcommand{\proofname}{Proof}
@@ -98,7 +102,7 @@
 
 \chapter{Линейная алгебра. Векторные пространства}
 \section{Лекция 1}
-Х - множество\\
+Х --- множество\\
 $ *: X \times X \to X$\\
 $ (x, y) \mapsto x * y$\\
 {\bf Аксиомы:}
@@ -127,31 +131,31 @@ $ (x, y) \mapsto x * y$\\
 
 \begin{exs}$ $
 \begin{enumerate}
-    \item $(\mathbb{Z}, + )$ -- группа
-    \item $(\mathbb{N}, + )$ -- полугруппа
-    \item $(\mathbb N_0 , +)$ -- моноид
-    \item $(\mathbb R \backslash \{0\}, \cdot)$ -- группа
-    \item Пусть $A$ - множество\\
+    \item $(\mathbb{Z}, + )$ --- группа
+    \item $(\mathbb{N}, + )$ --- полугруппа
+    \item $(\mathbb N_0 , +)$ --- моноид
+    \item $(\mathbb R \backslash \{0\}, \cdot)$ --- группа
+    \item Пусть $A$ --- множество\\
 	$X$ := множество биективныx отображений $A \to A$\\
 	$id_A $-- нейтральный элемент\\
-	Если $f(x) = y$, то $\tilde f (y) = x$ -- обратная функция ($f \circ \tilde f = \tilde f \circ f = id_A$).\\
+	Если $f(x) = y$, то $\tilde f (y) = x$ --- обратная функция ($f \circ \tilde f = \tilde f \circ f = id_A$).\\
 	$f(x) = x+1,\; g(x) - 2x,\;id_A(x)=x$\\
 	$f \circ g(x) = f(g(x)) = f(2x) = 2x + 1$\\
 	$g \circ f(x) = g(f(x)) = g(x+1) = 2x + 2 \ne 2x+1$\\
-	Следовательно, $(X, \circ)$ -- не коммутативная группа
+	Следовательно, $(X, \circ)$ --- не коммутативная группа
 \end{enumerate}
 \end{exs}
 
 \begin{name}$ $
 \begin{itemize}
-    \item $\cdot$ -- мультипликативность, $1$, $x^{-1}$
-    \item $+$ -- аддитивность, $0$, $-x$
-    \item $\circ$ -- относительно композиции, $id$, $x^{-1}$
-    \item $*$ -- абстрактная операция, $e$, $x^{-1}$
+    \item $\cdot$ --- мультипликативность, $1$, $x^{-1}$
+    \item $+$ --- аддитивность, $0$, $-x$
+    \item $\circ$ --- относительно композиции, $id$, $x^{-1}$
+    \item $*$ --- абстрактная операция, $e$, $x^{-1}$
 \end{itemize}
 \end{name}
 
- Пусть $(R, +)$ -- абелева группа\\
+ Пусть $(R, +)$ --- абелева группа\\
 Определим отображение
 $$\cdot: R \times R \to R$$
 $$  (a,b) \mapsto a \cdot b$$\\
@@ -186,21 +190,21 @@ $(R, +, \cdot)$, удовлетворяющее аксиомам 5-8, назыв
 \begin{exs}$ $
 \begin{enumerate}
     \item $\mathbb Z$ --коммутативное кольцо
-    \item $\mathbb {Q, R, C}$ -- поля
+    \item $\mathbb {Q, R, C}$ --- поля
     \item Рассмотрим $\mathbb Z_n = {0, \ldots, n-1}$ с операциями $+_n, \cdot_n$ :\\
 	$a +_n b = (a + b) \% n \\
 	a \cdot_n b = (a \cdot b) \% n$\\
 	Обратимые элементы:\\
 	$ax = 1 + ny \\
 	ax - ny = 1$\\
-	Если $(a, n) = 1$, есть решение, иначе -- нет.
+	Если $(a, n) = 1$, есть решение, иначе --- нет.
 	$\mathbb Z_p $-- поле $\Leftrightarrow$ $ p \in \mathbb P$
 \end{enumerate}
 \end{exs}
 
   \section{Лекция 2} 
 \begin{defn}
-$V$ -- векторное пространство над полем $F$ , если $(V, +)$ -- абелева группа, задано отображение $V\times F \to V \\ (x, \alpha) \mapsto x \cdot \alpha $ , удовлетворяющее аксиомам $\forall x, y \in V, \forall a, b \in F$:
+$V$ --- векторное пространство над полем $F$ , если $(V, +)$ --- абелева группа, задано отображение $V\times F \to V \\ (x, \alpha) \mapsto x \cdot \alpha $ , удовлетворяющее аксиомам $\forall x, y \in V, \forall a, b \in F$:
 \begin{enumerate}
     \setcounter{enumi}{+4}
     \item $x \cdot (\alpha \cdot \beta) = (x \cdot \alpha) \cdot \beta$
@@ -225,119 +229,174 @@ $A \in M_n(F), \alpha \in F \\ (A, \alpha)_{ij} = a_{ij} \cdot \alpha \\ (AB)\al
 	\left( \begin{array}{c}
 		a_1 + b_1 \\ \vdots \\ a_n + b_n
 	\end{array} \right)$
-    \item $X$ - множество, $F^X = \{f \mid f:X \to F\}$ \\
+    \item $X$ --- множество, $F^X = \{f \mid f:X \to F\}$ \\
 	$f, g: X \to F$\\
 	$(f+g)(x) = f(x) + g(x)\\ (f \alpha) (x) = f(x)\alpha$
-    \item $F[t]$ - многочлены от одной переменной $t$
-    \item $V$ - абелева группа, в которой $\forall a \in V: \underbrace{a + a +\ldots + a}_{p \in \mathbb P} = 0$
-	Тогда $V$ - векторное пространство над $\Z_p$
+    \item $F[t]$ --- многочлены от одной переменной $t$
+    \item $V$ --- абелева группа, в которой $\forall a \in V: \underbrace{a + a +\ldots + a}_{p \in \mathbb P} = 0$
+	Тогда $V$ --- векторное пространство над $\Z_p$
 	$k \cdot a = \underbrace{a+ \ldots +a}_{k}$
 \end{enumerate}
 \end{exs}
 
 \section{Лекция 3}
 \begin{defn}
-    Алгебра $A$ над полем $F$ -- кольцо, являющееся векторным пространством над $F$ ("+" - операция в кольце и в векторном пространстве), такое что $(ab)\alpha = a(b\alpha) \qquad a, b \in A, \alpha \in F$
+    Алгебра $A$ над полем $F$ --- кольцо, являющееся векторным пространством над $F$ (<<+>> --- операция в кольце и в векторном пространстве), такое что $(ab)\alpha = a(b\alpha) \qquad a, b \in A, \alpha \in F$
 \end{defn}
 \begin{ex}
-    $(\R^3, +, \times)$ - не ассоциативная алгебра на $\R$
+    $(\R^3, +, \times)$ --- не ассоциативная алгебра на $\R$
 \end{ex}
 \begin{defn}
-    Матрица размера $I\times J$ ($I, J$ - множества индексов) над множеством $X$ - это функция \[
+    Матрица размера $I\times J$ ($I, J$ --- множества индексов) над множеством $X$ --- это функция \[
 	A: I\times J \to X ,\qquad (i,j) \to a_{ij}
     .\] 
-    Пусть определено умножение $X \times Y \to Z, \qquad  (x, y) \to xy$ \\($Z$ - коммутативный моноид относительно "+")
+    Пусть определено умножение $X \times Y \to Z, \qquad  (x, y) \to xy$ \\($Z$ --- коммутативный моноид относительно <<+>>)
 \end{defn}
 \begin{defn}
-    Строка - матрица размера $\{1\}\times J$\\
-    Столбец - матрица размера $J \times \{1\}$
+    Строка --- матрица размера $\{1\}\times J$\\
+    Столбец --- матрица размера $J \times \{1\}$
 \end{defn}
-\noindent$A$ - строка длины $J$ над $X$\\
-$B$ - строка длины $J$ над $Y$\\
+\noindent$A$ --- строка длины $J$ над $X$\\
+$B$ --- строка длины $J$ над $Y$\\
 Тогда произведение $AB = \sum\limits_{j \in J} a_{1j} b_{j1} \in Z$\\
-$x \to x_e$ - координаты вектора $x$\\
+$x \to x_e$ --- координаты вектора $x$\\
 $\underbrace{x\cdot y}_{\mbox{скалярное произведение}} = x_e^T \cdot y_e$
 \begin{defn}
     Транспонирование матрицы.\\
-    $D$ - матрица $I \times J$ над $X$\\
-    $D^T$ - матрица $J \times I$ над $X: (D^T)_{ij} = (D)_{ji}$
+    $D$ --- матрица $I \times J$ над $X$\\
+    $D^T$ --- матрица $J \times I$ над $X: (D^T)_{ij} = (D)_{ji}$
 \end{defn}
 \begin{note}
     Пусть в $X$ есть элемент $0 : 0\cdot y = 0 \quad \forall y \in Y$. Все кроме конечного числа $a_j = 0$. Тогда $AB$ имеет смысл, даже когда $|J| = \infty$.\\
-    "почти все" = кроме конечного количества\\
+    <<почти все>> = кроме конечного количества\\
 \end{note}
 \begin{name}
-    $$a_{i*} \mbox{ - $i$-я строка матрицы }A$$
-    $$a_{*j} \mbox{ - $j$-й столбец матрицы }A$$
+    $$a_{i*} \mbox{ --- $i$-я строка матрицы }A$$
+    $$a_{*j} \mbox{ --- $j$-й столбец матрицы }A$$
 \end{name}
 \subsection{Произведение матриц}
 \[
-    A \mbox{ - матрица } I\times J \mbox{ над } X
+    A \mbox{ --- матрица } I\times J \mbox{ над } X
 .\] 
 \[
-    B \mbox{ - матрица } J\times K \mbox{ над } Y
+    B \mbox{ --- матрица } J\times K \mbox{ над } Y
 .\] 
 \[
-    AB \mbox{ - матрица } I\times K \mbox{ над } Z = X \cdot Y, \qquad (AB)_{ik} = a_{i*} \cdot b_{*k} = \sum\limits_{j\in J} a_{ij} \cdot b_{jk}
+    AB \mbox{ --- матрица } I\times K \mbox{ над } Z = X \cdot Y, \qquad (AB)_{ik} = a_{i*} \cdot b_{*k} = \sum_{j\in J} a_{ij} \cdot b_{jk}
 .\] 
 \[
 (x_1, \ldots x_n) \cdot \left ( \begin{array}{c}a_1\\ \vdots\\ a_n \end{array}\right )=va, \qquad v \in V, a \in F
 .\] 
-%fccjwbfnbdyjcnm ghbjptltybz
+\begin{thm}
+    Произведение матриц ассоциативно. 
+    \begin{description}
+	\item $ A $ --- матрица  $ I \times J$ над $ X$
+	\item $ B $ --- матрица  $ J \times K$ над $ Y$
+	\item $ C $ --- матрица  $ K \times L$ над $ Z$
+    \end{description}
+    $ U, V, W$ --- коммутативные моноиды по сложению.
+    \begin{description}
+	\item $ X \times Y \to  U$, $ U \times Z \to  W$
+	\item $ Y \times Z \to  V, ~ x \times V \to  W$
+	    \item $ \forall x \in X, y \in Y, z \in Z:  ~(xy)z = x(yz)$
+	    \item $ \forall x \in X, y \in Y, ~ u_1, u_2 \in U, v_1, v_2 \in V$:
+		\begin{itemize}
+		    \item $ (u_1+u_2) z = u_1z + u_2z$
+		    \item $ x(v_1+v_2) = xv_1 + xv_2$
+		\end{itemize}
+    \end{description}
+    Тогда $ (AB) C = A(BC)$
+\end{thm}
+\begin{proof}
+    \[
+    \begin{aligned}
+	\left( (AB) C \right)_{il} &= \sum _{k \in K} (AB)_{ik} c_{kl)} = \sum_{k \in K}\left( \sum_{j \in J} a_{ij}b_{jk} \right)  c_{kl}  = \\
+			      &= \sum_{k \in K} \left( \sum _{j \in J} a_{ij} b_{jk} c_{kl}\right) = \\
+			      &= \sum _{j \in J} \left( \sum _{k \in K} a_{ij} b_{jk} c_{kl} \right) = \\
+			      &= \sum _{j \in J} a_{ij} \left( \sum _{k \in K}b_{jk} c_{kl} \right) = \sum _{j \in J} a_{ij} (BC) _{jl} = \left( A(BC) \right)_{il} 
+    \end{aligned}
+    .\] 
+\end{proof}
+\begin{defn}
+    $ V$ --- векторное пространство, $ F$ --- поле.
+    Единичная матрица:
+    \[
+    E = E_n = 
+    \begin{pmatrix}
+	1 & 0 & 0 & \ldots & 0 \\
+	0 & 1 & 0 & \ldots & 0 \\
+	0 & 0 & 1 & \ldots & 0 \\
+	\vdots & \vdots & \vdots & \ddots & \vdots \\
+	0 & 0 & 0 & \ldots & 1
+    \end{pmatrix}
+    , \qquad  e_{ij} = 
+    \begin{cases}
+	1 & i =j \\
+	0 & i \ne j
+    \end{cases}
+\] 
+\end{defn}
+\begin{st}
+    $ E_{I \times I} M_{I \times I} =  M_{I \times I} = M_{I \times I} E_{I \times I}$
+\end{st}
+\begin{st}
+    $ R$ --- асссоциативное кольцо с единицей. $ $
+    $ M_n(R)$ --- множество матриц размера $ n \times n$ над $ R$ --- тоже ассоциативное кольцо с 1.
+\end{st}
 \section{Лекция 4}
 \begin{defn}
-$(G, *), (H, \#) $-- группа \\
-$\varphi: G \to H $- гомоморфизм, если: 
+$(G, *), ~ (H, \#) $ --- группы.
+$\varphi: G \to H $ --- гомоморфизм, если: 
 $$\varphi (g_1 * g_2) = \varphi(g_1) \# \varphi(g_2)$$
 \end{defn}
 
 \begin{defn}
-$R, S$ -кольца\\
-$\varphi: R\to S$ - гомоморфизм, если:
+$R, S$ --- кольца.
+$\varphi: R\to S$ --- гомоморфизм, если:
 $$\varphi(r_1 + r_2) = \varphi(r_1) + \varphi(r_2)$$ 
 $$\varphi(r_1 \cdot r_2) = \varphi(r_1) \cdot \varphi(r_2)$$
-Для колец с 1:$\varphi(1) = 1$
+Для колец с 1: $\varphi(1) = 1$
 \end{defn}
 
 \begin{defn}
-$U, V$ - векторные пространства над $F$\\
-$\varphi: U \to V$ - линейное отображение, если:
+$U, V$ --- векторные пространства над $F$.
+$\varphi: U \to V$ --- линейное отображение, если:
 $$\varphi(u_1 + u_2) = \varphi(u_1) + \varphi(u_2)$$
 $$\varphi(u \alpha) = \varphi(u) \alpha$$
 \end{defn}
 
 \begin{note}
-Изоморфизм -- биективный гомоморфизм.
+Изоморфизм --- биективный гомоморфизм.
 \end{note}
 
 \begin{defn}
-$V$ - векторное пространство над полем $F$\\
-$v$ - строка элементов "длины" $I$ над $V$\\
-$a$ - столбец "высоты" $I$, почти все элементы которого равны 0.\\
-Тогда $va$ - линейная комбинация набора $v$ с коэффициентами $а$.\\
+$V$ --- векторное пространство над полем $F$\\
+$v$ --- строка элементов <<длины>> $I$ над $V$\\
+$a$ --- столбец <<высоты>> $I$, почти все элементы которого равны 0.\\
+Тогда $va$ --- линейная комбинация набора $v$ с коэффициентами $а$.\\
 \end{defn}
 
 \begin{note}
 $U \subset V$\\
 $U$ является векторным пространством относительно тех же операций, которые заданы в $V$.
-Тогда $U$ - подпространство $V$\\
+Тогда $U$ --- подпространство $V$\\
 \end{note}
 
 \begin{lm}
-$U \subseteq V$\\
-$\forall u_1, u_2 \in U, \alpha \in F:\\
-u_1+u_2 \in U, u_1 \alpha \in U$
-Тогда $U$ - подпространство.
-Если $U$ - подпространство в $V$, то пишут $U \subseteq V$.\\
+$U \subseteq V$, 
+$\forall u_1, u_2 \in U, \alpha \in F:~
+u_1+u_2 \in U, u_1 \alpha \in U$.
+Тогда $U$ --- подпространство.
+Если $U$ --- подпространство в $V$, то пишут $U \le  V$.\\
 \end{lm}
 
 \begin{defn}
 $v = \{v_i | i \in I\}$, где $v_i \in V \: \forall i \in I$\\
-$\langle v \rangle$ - наименьшее подпространство, содержащее все $v_i$
+$\langle v \rangle$ --- наименьшее подпространство, содержащее все $v_i$
 \end{defn}
 
 \begin{lm}
-$\langle v \rangle = \{va | a - \mbox{ столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$
+$\langle v \rangle = \{va \mid a \mbox{ --- столбец высоты } I \mbox{ над } F \mbox{, где почти всюду элементы равны нулю }\} = U$
 \end{lm}
 \begin{proof}
 $v_i \in \langle v \rangle \Rightarrow v_i a_i \in \langle v \rangle\\
@@ -345,28 +404,27 @@ $v_i \in \langle v \rangle \Rightarrow v_i a_i \in \langle v \rangle\\
 \Rightarrow \langle v \rangle $ содержит все варианты комбинаций.
 $va + vb = v(a+b) \in U \\
 (va)\alpha = v(a\alpha )\in U\\
-\Rightarrow$ множество линейных комбинаций  -- подпространство 
-$U$ - подпространство, содержащее $v_i \forall i \in I$\\
-$\langle v \rangle $a -- наименьшее подпространство, содержащее $v_i$\\
+\Rightarrow$ множество линейных комбинаций  --- подпространство 
+$U$ --- подпространство, содержащее $v_i \forall i \in I$\\
+$\langle v \rangle $a --- наименьшее подпространство, содержащее $v_i$\\
 $\Rightarrow \langle v \rangle \subseteq U$
 тогда $\langle v \rangle = U$
 \end{proof}
 
 \begin{defn}
-Если $\langle v \rangle = V$, то $v$ -- система образующих пространство $V$\\
-Базис -- система образующих.
+Если $\langle v \rangle = V$, то $v$ --- система образующих пространство $V$. Базис --- система образующих.
 \end{defn}
 
 \begin{name}
-$F^I$ -- множество функций из $I$ в $F$ = множество столбцов высоты $I$\\
-$ ^I V $--  множество строк длины $I$
+$F^I$ --- множество функций из $I$ в $F$ = множество столбцов высоты $I$\\
+$ ^I\!F $ ---  множество строк длины $I$
 
-Набор элементов из $V$ ,  заиндексирванных множеством $I$ -- это функция $f: I \to V \\ i \mapsto f_c$
+Набор элементов из $V$ ,  заиндексирванных множеством $I$ --- это функция $f: I \to V \\ i \mapsto f_c$
 \end{name}
 
 \begin{defn}
-$v \in \;^I  V$\\
-$v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
+$v \in \;^I\!F$\\
+$v$ --- {\bf линейно независим}, если $\forall a \in F^I, a \neq 0 \Rightarrow v a  \neq  0$\\
 \end{defn}
 
 \begin{thm}
@@ -381,11 +439,11 @@ $v$ -- {\bf линейно независим}, если $\forall a \in F^I, a \
 \end{thm}
 
 \begin{proof}
-$(1) \Rightarrow (4) $ -- доказали ранее
+$(1) \Rightarrow (4) $ --- доказали ранее
 $(1) \Rightarrow (2) $\\
 $x \in V \setminus  v \\ x = v a (a \in F^v)$\\
-$v a = x \cdot 1 = 0$ -- линейная зависимость набора $v \cup {x}$\\
-Т.о. любой набор , строго содержащий $v$, линейно зависим $\Rightarrow v$ -- максимальный.
+$v a = x \cdot 1 = 0$ --- линейная зависимость набора $v \cup {x}$\\
+Т.о. любой набор , строго содержащий $v$, линейно зависим $\Rightarrow v$ --- максимальный.
 \\
 $(1)\Rightarrow(2) $\\
 $x \in V \setminus $\\
@@ -397,27 +455,27 @@ $x = v \cdot \frac{a}{-a_x} \Rightarrow v$ --система образующих
 \end{proof}
 
 \begin{lm}[Цорн]
-Пусть $\mathcal A $ -- набор подмножеств (не всех) множества $X$. \\
+Пусть $\mathcal A $ --- набор подмножеств (не всех) множества $X$. \\
 Если объединение любой цепи из $\mathcal A$ , принадлежащей $\mathcal A$, то в $\mathcal A$ существует максимальный элемент.\\
-$M \in \mathcal C$ - максимальная, если $M \subseteq M' \subseteq \mathcal A \Rightarrow M =M'$\\
+$M \in \mathcal C$ --- максимальная, если $M \subseteq M' \subseteq \mathcal A \Rightarrow M =M'$\\
 \end{lm}
 
 \begin{thm}[о существовании базиса]
-$V $ -- векторное пространства \\
-$X$  -- линейное независимое подмножество $V$\\
-$Y$ -- система образующих $V$\\
+$V $ --- векторное пространства \\
+$X$  --- линейное независимое подмножество $V$\\
+$Y$ --- система образующих $V$\\
 $X \le Y$\\
 Тогда существует базис $Z$ пространства $V: X \le Z \le Y$
 \end{thm}
 \begin{proof}
-$\mathcal A - $множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathcal A$\\
+$\mathcal A $ --- множество всех линейно независимых подмножеств, лежащих между $X$ и $Y$. $X \in \mathcal A$\\
 $\mathcal C \le \mathcal A $\\
 $X \le \cup {C \in \mathcal C} \le Y$\\
-Пусть $\cup {C \in \mathcal C}$ --  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
+Пусть $\cup {C \in \mathcal C}$ ---  линейно зависимый. То есть$ \exists u_1, ...,  u_2 \in /...$
 
 $\ldots$
 
-Пусть $v$ - базис $V$.\\
+Пусть $v$ --- базис $V$.\\
 $$\forall x \in V \: \exists! x_v \in F^v : x = v \cdot x_v$$
 $$v = (v_1, \ldots , v_n), \; x_v = \mbox{ матрица столцов альфа} и;$$\\
 $$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
@@ -425,6 +483,31 @@ $$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
 
 \section{Лекция 5}
 % теорема о замене, размерность, изоморфизм, финитная функция, теорема о классификации векторных пространств
+\begin{thm}[о замене]
+    $ u = \{u_1, \ldots u_n\} , ~ u_i\in V$ --- линейно независимый набор. $ v \subseteq V $ --- система образующих.
+    Тогда:
+    \begin{enumerate}
+    \item $ \exists v_1, \ldots v_n \in v: v \smallsetminus  \{v_1, \ldots v_n\} \cup u  = w$ --- тоже система образующих.
+    \item Причем, если $ u$ --- базис, то $ w$ --- базис.
+    \end{enumerate}
+\end{thm}
+\begin{cor}
+    Любые два базиса пространства $ V$ равномощны.
+\end{cor}
+\begin{defn}
+    $ \dim V$ --- размерность векторного пространства $ V$, равная мощности базиса  $ V$.
+\end{defn}
+\begin{defn}
+    $ U, V$ --- векторные пространства над $ F$.  $ L: U \to  V$ --- линейное отображение, если 
+    \begin{itemize}
+	\item $ L(u_1+u_2) = L(u_1) + L(u_2)$
+	\item $ L(u \alpha) = L(u) \alpha $
+    \end{itemize}
+    Если $ L$ биективно, то это изоморфизм.
+    \begin{name}
+      $ U \cong V \mydef \exists $ изоморфизм $ U \to  V$.  
+    \end{name}
+\end{defn}
 \section{Лекция 6}
 %внешняя прямая суммаб внутренняя, диаграммы 
 
@@ -434,33 +517,33 @@ $$x = v_1 \alpha_1 + \ldots = v\cdot x_v$$
 \end{st}
 \begin{proof}
     Выберем базис $u$ в $U$. Дополним до базиса $u \cup v$ пространства $W$ и положим $V = \langle v \rangle$. $$\langle u \rangle = U \\ \langle v \rangle=V \\ \langle u \cup v \rangle = \langle u \rangle + \langle v \rangle = U \oplus V = W$$
-    $$ x \in U \cap V \Rightarrow x = ua = vb \Leftrightarrow ua-vb = 0 \Rightarrow a = 0, b = 0 (u \cup v - \mbox{линейно независимый}$$
+    $$ x \in U \cap V \Rightarrow x = ua = vb \Leftrightarrow ua-vb = 0 \Rightarrow a = 0, b = 0 (u \cup v \mbox{ линейно независимый}$$
 \end{proof}
 \begin{cor}
-    $$ u - \mbox{ базис } U, v - \mbox{ базис } V, U, V \le W$$
-    $$u \cup v - \mbox{ базис } W \Leftrightarrow U \oplus V$$
+    $$ u \mbox{ --- базис } U, v \mbox{ --- базис } V, U, V \le W$$
+    $$u \cup v \mbox{ --- базис } W \Leftrightarrow U \oplus V$$
 \end{cor}
 
 
 25.09.2019
 \section{Лекция 8}
-$$v - (v_1, v_2 , \ldots v_n) \in n^V$$% change!!
-$$M_n(F) - \mbox{ алгебра матриц размера $n \times n$ над $F$ }$$
-$$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа степени $n$ над $F$}$$
+$$v = (v_1, v_2 , \ldots v_n) \in n^V$$% change!!
+$$M_n(F)  \mbox{ --- алгебра матриц размера $n \times n$ над $F$ }$$
+$$ GL_n(F) = M_n(F)^*  \mbox{ --- полная линейная группа степени $n$ над $F$}$$
 
 \begin{lm}
     $$ v \in n^V , A \in GL_n(F)$$
-    $$ v - \mbox{ линейно независимый } \Leftrightarrow vA - \mbox{ линейно независимый }$$
+    $$ v \mbox{  --- линейно независимый } \Leftrightarrow vA  \mbox{  --- линейно независимый }$$
     $$ \langle v \rangle = \langle vA \rangle $$
 \end{lm}
 \begin{proof}
     $(vA)A^{-1} = v(AA^{-1}) = vE = v$, поэтому можно доказывать только в одну строну.\\
-    $v$ - линейно независимый.\\
-    $vAb = 0 \Rightarrow A^{-1} Ab = 0 \Rightarrow b = 0$, т.е $vA$ - линейно независимый. \\
+    $v$ --- линейно независимый.\\
+    $vAb = 0 \Rightarrow A^{-1} Ab = 0 \Rightarrow b = 0$, т.е $vA$ --- линейно независимый. \\
     $(vA)b = v(Ab) \in \langle v \rangle$, $\langle vA \rangle \le \langle v \rangle$
 \end{proof}
 \begin{st}
-    $u, v$ - два разных базиса пространства $V$.\\
+    $u, v$ --- два разных базиса пространства $V$.\\
     Тогда $\exists ! $ матрица $A \in GL_n(F) : u = vA$\\
     При этом $a_{*k} =(u_k)_v \qquad \forall k = {1, \ldots n}$. Такая матрица обозначается $C_{v\to u}$ и называется матрицей перехода от $v$ к $u$.
     $$ C_{v\to u} C_{u\to v} = C_{v\to u} C_{u\to v} = E$$
@@ -468,7 +551,7 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
 
 \begin{proof}
     Положим $a_{*k} = (a_k)_v \Rightarrow u_k = v a_{*k} \Rightarrow u = vA$. \\
-    $vA=vB \Leftrightarrow A = B$ то есть $A$ - единственно.\\
+    $vA=vB \Leftrightarrow A = B$ то есть $A$ единственно.\\
     Далее:\\
     $$ \left. 
 	    \begin{array}{rcl}
@@ -481,21 +564,21 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
     $$ E = C_{u \to v} C_{v \to u}$$
 \end{proof}
 \begin{cor}
-    $v$ - базис $V$\\
+    $v$ --- базис $V$\\
     $f: GL_n(F) \to$ множество базисов пространства $V$\\
-    $f(A) = vA$ - биекция.
+    $f(A) = vA$ --- биекция.
 \end{cor}
 \begin{proof}
     $$|F| = q \qquad \dim V = u$$
-    $$(q^n -1)(q^n - q) \ldots (q^{n} - q^{n-1}) - \mbox{количество базисов}$$
-    $ \mathbb F $ - поле из $q$ элементов.
+    $$(q^n -1)(q^n - q) \ldots (q^{n} - q^{n-1})  \mbox{ --- количество базисов}$$
+    $ \mathbb F $ --- поле из $q$ элементов.
 \end{proof}
 \begin{st}
     Если матрица двусторонне обратима, то она квадратная.
 \end{st}
 
 \begin{cor}
-    $u, v$ - базисы $V$
+    $u, v$ --- базисы $V$
     $$x  \underset{u}= C_{u \to v} x_v$$
 \end{cor}
 \begin{proof}
@@ -505,7 +588,7 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
 \end{proof}
 \begin{cor}
     (Матричные линейные отображения)\\
-    $$ L: U \to V, \quad u - \mbox{ базис } U, v - \mbox{базис } V$$
+    $$ L: U \to V, \quad u  \mbox{ --- базис } U, v \mbox{ --- базис } V$$
     Тогда $\exists ! $ матрица $L_{v,u} (L_u^v: \forall x \in U L(x)_v = L_u^v x_u$\\
     При этом $(L_u^v)_{*k} = L(u_k)_v$
 \end{cor}
@@ -517,7 +600,7 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
 
     $$\varphi_v : V \to F^n$$
     $$\varphi _v(g) = y_v \qquad \forall q \in V$$
-    $\varphi_v$ - линейно $\Rightarrow (L(u) a) _v = L(u)_v a$
+    $\varphi_v$ --- линейно $\Rightarrow (L(u) a) _v = L(u)_v a$
     $$ L(u)_v := (L(u_1)_v, \ldots L(u_n))v)$$
 \end{note}
 \begin{proof}
@@ -536,7 +619,7 @@ $$ GL_n(F) = M_n(F)^* - \mbox{ полная линейная группа сте
 \section{Лекция 9}
 \begin{exs}$ $
     \begin{enumerate}
-	\item $V = \R[t]_3$ - многочлены степени не более 3\\
+	\item $V = \R[t]_3$ --- многочлены степени не более 3\\
 	$$D(p) = p' \qquad V \to V$$
 	\[
 	    v =(1, t, t^2, t^3)
@@ -646,7 +729,7 @@ $a_e = \left ( \begin{array}{c}
 \end{exs}
 
 \begin{st}
-$L: U \to V \\ u, u' -\mbox{базис } U\\ v, v' - \mbox{ базис } V$\\
+$L: U \to V \\ u, u' \mbox{ --- базис } U\\ v, v' \mbox{ --- базис } V$\\
 Тогда $L_{u'}^{v'} = C_{v' \to v} \quad L_u^v C_{u \to u'}$
 \end{st}
 \begin{proof}
@@ -682,14 +765,14 @@ $L: U \to V \\ u, u' -\mbox{базис } U\\ v, v' - \mbox{ базис } V$\\
     $$L(ua) := va$$
     $$ \forall  L \mbox{*}: L(ua) = L(u) a = va$$
 \end{proof}
-При этом $L$ - инъективно тогда и только тогда, когда $v$ - линейно независимый\\
-$L$ - сюрьективно тогда и только тогда, когда $v$ - система образующих\\
-$L$ - изоморфизм тогда и тоько тогда, когда $v$ - базис.
+При этом $L$ инъективно тогда и только тогда, когда $v$ --- линейно независимый\\
+$L$ сюрьективно тогда и только тогда, когда $v$ --- система образующих\\
+$L$ --- изоморфизм тогда и тоько тогда, когда $v$ --- базис.
 
 \begin{st}
     %7
-    $V, \quad v, v' - \mbox{ базис } V$\\
-    $L: V \to V - \mbox{линейно}$\\
+    $V, \quad v, v' \mbox{ --- базис } V$\\
+    $L: V \to V \mbox{ линейно}$\\
     $L(v_k) = v'_k \qquad \forall k$
     $$ (L_v)_k = L(v_k)_v = (v'_k)_v$$
 
@@ -704,7 +787,7 @@ $L$ - изоморфизм тогда и тоько тогда, когда $v$ -
 \begin{defn}
 $f: X \to Y \\
 Im f = \{f(x) \mid x \in X\}$\\
-$L: U \to V $ - линейное отображение \\
+$L: U \to V $ --- линейное отображение \\
 $ \im L = \{L(x) \mid x\in U\}$\\
 $\ke  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
 \end{defn}
@@ -724,23 +807,23 @@ $\ke  L = L^{-1}(0) = \{x \in U \mid L(x) = 0\}$
     .\] 
 \end{thm}
 \begin{proof}
-    $u = (u_1, \ldots u_k) - \mbox{ базис } \ke L \\
+    $u = (u_1, \ldots u_k)  \mbox{ --- базис } \ke L \\
     v = (v_1, \ldots U_m)$ 
     Дополним базис ядра до базиса $U$:
-    $u \cup v $ - базис $U$ \\
-    $L(v) = (L(v_1), L(v_2), \ldots L(v_m))$ - базис образа.
+    $u \cup v $ --- базис $U$ \\
+    $L(v) = (L(v_1), L(v_2), \ldots L(v_m))$ --- базис образа.
     $\sphericalangle \; x \in \im L \quad \exists y \in U: L(y) = x$. $y = ua + vb , \qquad a \in F^k, b \in F^m $ \\
    \[
        x = L(y) = {\underbrace{L(u)}_{(L(u_1), \ldots L(u_k)) = (0, \ldots 0)}} + L(v) 
    .\]  
-   Следовательно, $L(v)$ - система образующих.\\
+   Следовательно, $L(v)$ --- система образующих.\\
     \[
 	L(v) c = 0, \qquad c \in F^m
    .\] 
    \[
        L(vc) = 0 \Rightarrow vc \in \ke L \Rightarrow vc = ud \qquad \mbox{ для некоторого } d \in F^k
    .\] 
-   Тогда $vc - ud = 0$, но $v$ и $u$ - два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ - линейно незвисимый.
+   Тогда $vc - ud = 0$, но $v$ и $u$ --- два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ --- линейно незвисимый.
 \end{proof}
 \begin{thm}
     (формула Грассмана о размерности суммы и пересечения)
@@ -806,29 +889,29 @@ e_1 =
 .\] 
 $x = v x_v, \quad x = e x_e = E x_e$\\
  \[
-     e C_{e \to v} = v - \mbox{ из столбцов } v
+     e C_{e \to v} = v \mbox{ --- из столбцов } v
 .\] 
 \[
-    C_{e \to v} = v - \mbox{ матрица из столбцов } (v_1, \ldots v_n)
+    C_{e \to v} = v  \mbox{ --- матрица из столбцов } (v_1, \ldots v_n)
 .\] 
 $L: F^m \to F^n , \qquad A \in M_{n \times m}(F)$
 $L(x) = A x$\\
  \[
      L(x)_e = L_0^e x_e , L(x)_e = L(x) = Ax = L_e ^e x_e
 .\] 
-$Hom (F^n , F^m ) \cong M_{m\times n} (F)$ - изоморфизм векторных пространств.
+$Hom (F^n , F^m ) \cong M_{m\times n} (F)$ --- изоморфизм векторных пространств.
 В дальнейшем $A$ отождествляется с $L$ , пишем $A_u ^v $ вместо $L_u ^v$ ($A$ в базисе $u-v$). 
 \begin{defn}
 Линейный оператор  из $V $ в  $V$ называется эндоморфизмом $V$ .
-Множество эндоморфизмов $V = End(V)$ - ассоциативная алгебра над $f$\\
-$+, *\alpha$ - поточечные операции, $*$ - композиция.\\
-$L, M, N \in End(V): \quad L\circ (M + N) = L \circ M + L \circ N$ - следует из линейности  $L$
+Множество эндоморфизмов $V = End(V)$ --- ассоциативная алгебра над $f$\\
+$+, *\alpha$ --- поточечные операции, $*$ --- композиция.\\
+$L, M, N \in End(V): \quad L\circ (M + N) = L \circ M + L \circ N$ --- следует из линейности  $L$
 \end{defn}
-$v$  - базис $V$, $u = \dim V$ \\
+$v$  --- базис $V$, $u = \dim V$ \\
 $\theta _v : End(V) \to M_n (F)$ \\
 $\theta _v = L_v$
 \begin{st}
-    $\theta_v$ -  биективно.
+    $\theta_v$   биективно.
 \end{st}
 \begin{prac}
     Построить обратное $\theta_v$
@@ -838,7 +921,7 @@ $\theta _v = L_v$
     $(M \circ L)_v = M_v \circ L_v$
 \end{lm}
  \begin{st}
-     $\theta _v$ - изоморфизм \\ $F$ - алгебра \\ $End V \cong M_n(F)$
+     $\theta _v$ --- изоморфизм \\ $F$ --- алгебра \\ $End V \cong M_n(F)$
 \end{st}
 
 --
@@ -855,14 +938,14 @@ $\theta _v = L_v$
     \end{array}
     .\] 
     $\tau \circ \pi _U = L$\\
-    $L   \mbox{ - эпиморфизм } \Rightarrow \tau  \mbox{ - эпиморфизм }$ \\
-    $\ke L = U \Rightarrow  \tau  \mbox{ - мономорфизм }$
+    $L   \mbox{ --- эпиморфизм } \Rightarrow \tau  \mbox{ --- эпиморфизм }$ \\
+    $\ke L = U \Rightarrow  \tau  \mbox{ --- мономорфизм }$
 \end{thm}
 \begin{proof}
     Диаграмма коммутативна, следовательно, $\tilde L$ строится однозначно. Пусть $\tilde L(x + U) : = L(x)$.% ??
     $y \in U \in \ke L: \; L(x + y) = L(x) + L(y) = L(x)$
     $\tilde L$ задано корректно (легко проверить, что оно линейно, единственность следует из коммутативности диаграммы.
-    $\tilde L(x + U) = L(x) $ - необходимо и достаточно коммутативности диаграммы.\\
+    $\tilde L(x + U) = L(x) $ --- необходимо и достаточно коммутативности диаграммы.\\
     $\tilde L(x +U)=0_W \Leftrightarrow L(x) = 0 \Leftrightarrow x \in \ke L = U \Leftrightarrow x + U = 0 +U = O_{V \textbackslash U}$
     \\
     Для инъективности : $ \ke \tilde{L} = 0_{V \textbackslash U}$
@@ -876,14 +959,14 @@ $\theta _v = L_v$
 \begin{proof}
     Возьмем $U = \ke L$ и заменим $W$ на $Im L$
     $n = \dim \langle a_{*1} , \ldots a_{*n} \rangle \le \dim F^m = m$. Из линейной независимости строк следует, что $m \le n$ Таким образом $m = n$.\\
-    $n$ линейно независимых столбцов (строк) в $n$-мерном пространстве - базис и матрица $A$ - матрица перехода $C_{e \to a}$, где $a=(a_{*1}, \ldots a_{*n})$ - набор столбцов $A$ .
-    Следовательно, $A \in GL_n(F)$ -- множество обратных матриц.
+    $n$ линейно независимых столбцов (строк) в $n$-мерном пространстве --- базис и матрица $A$ --- матрица перехода $C_{e \to a}$, где $a=(a_{*1}, \ldots a_{*n})$ --- набор столбцов $A$ .
+    Следовательно, $A \in GL_n(F)$ --- множество обратных матриц.
 \end{proof}
 
 \begin{defn}Ранг:\\
     $rk (v_1, v_2 , \ldots , v_n) = \dim \langle v_1, \ldots v_n \rangle $, \\
     $rk L = \dim \im L$\\
-    $u_1, \ldots u_n $ - базис $U$, $L: U \to V$ \\
+    $u_1, \ldots u_n $ --- базис $U$, $L: U \to V$ \\
     $rk L = rk ((L(u)) = \dim \langle L(u_1), \ldots L(u_n) \rangle $\\
     $A \in M _ {m \times n} (f)$\\
     Столбцовый ранг  $A$ : $rk A - rk(a_{*1}, \ldots a_{*m})$\\
@@ -894,11 +977,11 @@ $\theta _v = L_v$
     $A \in M_{m \times n}$
      \begin{enumerate}
 	 \item столбцы $A$ линейно независимы $\Leftrightarrow$   столбцовый $rk A = n$ 
-	 \item столбцы $A$  - система образующих в $F^m$ $\Leftrightarrow$  столбцовый $rk A = m$
+	 \item столбцы $A$  --- система образующих в $F^m$ $\Leftrightarrow$  столбцовый $rk A = m$
 	 \item строки $A$ линейно независимы $\Leftrightarrow$ строчной $rk A = m$ 
-	 \item строки $A$  - система образующих в $^m F \Leftrightarrow$ строчной $ rk A = n$ 
+	 \item строки $A$  --- система образующих в $^m F \Leftrightarrow$ строчной $ rk A = n$ 
 	 \item столбцы являются базисом $F^n$ $\Leftrightarrow$ $m = n =  \mbox{строчной }rk A$
-	 \item если столбцы и строки  $A$ линейно независимы $\Leftrightarrow$ $n = m $, строки и столбцы - базисы, $A$ - обратима.
+	 \item если столбцы и строки  $A$ линейно независимы $\Leftrightarrow$ $n = m $, строки и столбцы --- базисы, $A$  обратима.
     \end{enumerate}
 \end{lm}
 \begin{proof}
@@ -910,7 +993,7 @@ $\theta _v = L_v$
 10.10.2019
 \section{Лекция 12}
 \begin{lm}
-    $L: U \to V$ - линейное отображение.\\
+    $L: U \to V$ --- линейное отображение.\\
     $rk L = \mbox{ c.} L_U ^V$ \\
     Для любых базисов $u, v$ пространств $U, V$.
 \end{lm}
@@ -926,17 +1009,17 @@ $\theta _v = L_v$
     \[
 	Im A = \{A x \mid x \in  F^m\} = \{a_{*1} x_1 + \ldots a_{*n}x_n \mid x_i \in  F\} = \langle a_{*1} , \ldots a_{*n} \rangle
     .\] 
-    $rk A = c. rk A$ - ранг оператора умножения на А.
+    $rk A = c. rk A$ --- ранг оператора умножения на А.
     Из диаграммы $Im L \cong \im L_U ^V \Rightarrow rk L = c.rk L_U ^V $
 \end{proof}
 \begin{lm}
     $A \in M_{m \times n} (F)$\\
     $B \in GL_m(F), C \in GL_n (F)$ \\
-    $rk A = rk B A C$ - строчной или столбцовый.
+    $rk A = rk B A C$ --- строчной или столбцовый.
 \end{lm}
 \begin{proof}
     $L : F^n \to F^m $- оператор умножения на $A$. $A = L_e ^e$.\\
-    $B = C_{e \to v}, C = C_{e \to u}$, где $u, v$ - базисы пространств $F^m , F^n$.\\
+    $B = C_{e \to v}, C = C_{e \to u}$, где $u, v$ --- базисы пространств $F^m , F^n$.\\
     $BAC = L_v ^ u$
     Тогда  $c. rk A = c.rk BAC = rk L$.
     Со столбцами все хорошо.
@@ -945,14 +1028,14 @@ $\theta _v = L_v$
     $r. rk (BAC)^T = r. rk (A^T B^T C^T)$
     $r. rk (BAC)^T = c. rk BAC$ \\
     Тогда $r. rk A^T = r. rk C^T A^T B^T$. (Заметим, что   $(B^T)^{-1} = ((B^{-1})^T)$
-    Следовательно, $B^T, C^T$ - произвольные обратимые матрицы.
+    Следовательно, $B^T, C^T$ --- произвольные обратимые матрицы.
 \end{proof}
 \begin{prac}
     $(AB)^T = B^T A^T$
 \end{prac}
 \begin{thm}[PDQ - разложение, равенство базисов]
     \begin{enumerate}
-    $L: U \to V \mbox{ - линейное отображений}, \qquad U, V \mbox{ - конечномерные}$
+    $L: U \to V \mbox{ --- линейное отображений}, \qquad U, V \mbox{ --- конечномерные}$
 \item Существуют базисы $u, v$ пространств $U, V$ такие что \[
    L_u ^v = 
 \left ( 
@@ -973,7 +1056,7 @@ $\left ( \begin{array}{cc}
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    $(f_1, \ldots f_k) $ - базис $\ke L$. Дополним до базиса на пространства $U: g \cup f = u $. Тогда (см. Теорему о ядре и о,разе).  $L(g)$ - базис $\im L$. Дополним его до базиса  $v$ пространства $V$.
+    $(f_1, \ldots f_k) $ --- базис $\ke L$. Дополним до базиса на пространства $U: g \cup f = u $. Тогда (см. Теорему о ядре и о,разе).  $L(g)$ --- базис $\im L$. Дополним его до базиса  $v$ пространства $V$.
     \[
 	v = (L(g_1), \ldots , L(g_l), v_{l+1}, \ldots, v_n)
     .\]
@@ -1007,20 +1090,20 @@ $\left ( \begin{array}{cc}
 \end{proof}
 
 \begin{defn}
-    $W$ - множество матриц-перестановок (группа Вейля).
+    $W$ --- множество матриц-перестановок (группа Вейля).
     \[
 	a_{*i} = e_{\sigma(k)}, \qquad \mbox{ где } \sigma : \{1, \ldots n \} \to \{1, \ldots n\} \mbox{ -биекция}
     .\] 
     %4
     $B = $
-    - множество обратимых верхнетреугольных матриц.(борелевская подгруппа)
-    $B^{-}$ - множество обратимых нижнетругольных матриц.
+    --- множество обратимых верхнетреугольных матриц.(борелевская подгруппа)
+    $B^{-}$ --- множество обратимых нижнетругольных матриц.
 \end{defn}
 \begin{thm}[разложение Брюа]
 \[
     GL_n(F) = BWB = \{b_1 w b_2 \mid b_1, b_2 \in B, w \in W\}
 .\] 
-$ w  \in W: B w B$ - клетка Брюа.
+$ w  \in W: B w B$ --- клетка Брюа.
 \end{thm}
 \begin{proof}
     $a \in GL_n (F)$ 
@@ -1045,7 +1128,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     \end{array}
     \right )
     $$
-    Пусть $a'$ - матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ - обратима. Тогда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
+    Пусть $a'$ --- матрица, полученная из $ uav$ вычеркиванием $i$-ого столбца и $j$-строки. Легко видеть, что ее столбцы линейно независимы. Следовательно, $a'$ обратима. Тогда по ПИ $\exists b', c' : b' a' c' \in W_{n-1}$. Все получилось!
 
 \end{proof}
 \begin{proof}
@@ -1057,13 +1140,13 @@ $ w  \in W: B w B$ - клетка Брюа.
     \[
 	GL_n(F) = W B^{-} B
     .\] 
-    $w \in W: w B^{-} B $ - клетка Гаусса.
+    $w \in W: w B^{-} B $ --- клетка Гаусса.
 \end{thm}
 \begin{proof}
     Докажем, что $\forall w \in  W: BwB \subset w B^- B$ \\
     $B W B = \bigcup _{w \in  W} B w B \subset ...$%1
     \begin{lm}[1]
-	$D = D_n (F)$ - множество обратимых диагональных матриц. $U = U_n(F)$ - множество унитреугольных матриц. Тогда $B = D U = U D$.
+	$D = D_n (F)$ --- множество обратимых диагональных матриц. $U = U_n(F)$ --- множество унитреугольных матриц. Тогда $B = D U = U D$.
     \end{lm}
     \begin{prac}
         $a = \left ( 
@@ -1093,7 +1176,7 @@ $ w  \in W: B w B$ - клетка Брюа.
         Будет в теории групп
     \end{proof}
     \begin{name}
-	$w \in  W : U_w := \prod_{i < j, \sigma (i) >\sigma(J)} X_{ij}$, где $\sigma$ - перестановка соответствующая $w$.
+	$w \in  W : U_w := \prod_{i < j, \sigma (i) >\sigma(J)} X_{ij}$, где $\sigma$ --- перестановка соответствующая $w$.
 	То есть $w^{-1} X _{ij} w = X_{\sigma(i) \sigma(j)}$.
     \end{name}
     \begin{thm}[Приведенной разложение Брюа]
@@ -1133,7 +1216,7 @@ $ w  \in W: B w B$ - клетка Брюа.
         Обратимость любой главной подматрицы не зависит от умножения на  $U^-$ слева и на  $U$ справа.
     \end{lm}
     \begin{proof}
-	$a^{(k)}$ - главная подматрица $k \times k$ в $a$.
+	$a^{(k)}$ --- главная подматрица $k \times k$ в $a$.
 	 \[
 	\left ( 
 	\begin{array}{cc}
@@ -1155,7 +1238,7 @@ $ w  \in W: B w B$ - клетка Брюа.
 	\right )
 	.\] 
 	$\mbox{Где } b \in  U^- F$ 
-	Обратимость $a^{(k)} $ равносильно обратимости $ba^{(k)}$, так как $b$ - обратима.
+	Обратимость $a^{(k)} $ равносильно обратимости $ba^{(k)}$, так как $b$ обратима.
     \end{proof}
 
     \begin{lm}
@@ -1164,7 +1247,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     \begin{proof}
 	Доказываем следствие влево.
         Индукция по $n$.
-	База: $n=1$ - очевидно\\
+	База: $n=1$ --- очевидно\\
 	Переход: \\
 	\[
 	a = 
@@ -1230,11 +1313,11 @@ $ w  \in W: B w B$ - клетка Брюа.
 	    a_{n 1}& \cdots a_{n k+1}
 	\end{array}
 	\right ) = k+1$
-	$k+1$ - мерное подпространство $U$  в $^{k+1} F$. А первые $k$ строк этой матрицы линейно независимы. 
+	$k+1$-мерное подпространство $U$  в $^{k+1} F$. А первые $k$ строк этой матрицы линейно независимы. 
 	$X = {b_1, \ldots b_k}, Y={b_1, \ldots b_n}, \quad b_i = (a_{i 1} , \ldots a_{i k+1})$. \\
-	$X$ - линейно независимый, $\langle y \rangle = U, \dim U = k+1$.\\
+	$X$ --- линейно независимый, $\langle y \rangle = U, \dim U = k+1$.\\
 	\[
-	\exists Z : X \ge X \ge Y, \mbox{ где }Z - \mbox{ базис} U.
+	\exists Z : X \ge X \ge Y, \mbox{ где }Z  \mbox{ --- базис} U.
 	.\] 
 	\[
 	    |Z| = k+1 \Rightarrow Z = {b_1, \ldots b_k, b_i}, i>k.
@@ -1244,7 +1327,7 @@ $ w  \in W: B w B$ - клетка Брюа.
     $wa \in  B^- B$. Домножая на $B, B^-$, получим, что хотели.
 \end{proof}
 \begin{thm}[Кронокера-Капелли]
-    Система линейных уравнений $Ax = b$ Имеет хотя бы одно решение тогда и только тогда, когда $rk A = rk (A b)$, где $(A b)$ - расширенная матрица.
+    Система линейных уравнений $Ax = b$ Имеет хотя бы одно решение тогда и только тогда, когда $rk A = rk (A b)$, где $(A b)$ --- расширенная матрица.
 \end{thm}
 \begin{proof}
     \[
@@ -1255,17 +1338,17 @@ $ w  \in W: B w B$ - клетка Брюа.
 \chapter{Начала теории групп}
 \section{Лекция 15}
 \begin{defn}
-    Подмножество $H \subset G$ называется подгруппой, если $H$ -- группа относительно операции, заданной в $G$.
+    Подмножество $H \subset G$ называется подгруппой, если $H$ --- группа относительно операции, заданной в $G$.
     \[
     H \le G
     .\] 
 \end{defn}
 \begin{lm}
     $H \subset B$
-    $H$ - подгруппа $\Leftrightarrow \forall h, g \in H: gh, g^{-1} \in  H$.
+    $H$ --- подгруппа $\Leftrightarrow \forall h, g \in H: gh, g^{-1} \in  H$.
 \end{lm}
 \begin{st}
-    $G, H$ - группы. 
+    $G, H$ --- группы. 
     \[
 	G \times H = \{(g, h) \mid g \in  G, h \in  H \}
     .\] 
@@ -1274,12 +1357,12 @@ $ w  \in W: B w B$ - клетка Брюа.
     .\] 
 \end{st}
 \begin{defn}
-    $\varphi  X \to  Y , (X, *), (Y, \cdots) - группы.$\\
-    $\varphi$ - гомоморфизм групп, если:
+    $\varphi  X \to  Y , (X, *), (Y, \cdots) \text{ --- группы.}$\\
+    $\varphi$ --- гомоморфизм групп, если:
     \[
 	\varphi(x_1 * x_2) = \varphi (x_1) \cdot \varphi(x_2) , \qquad \forall x_1, x_2 \in  X
     .\] 
-    Изоморфизм - биективный гомоморфизм.
+    Изоморфизм --- биективный гомоморфизм.
 \end{defn}
 \begin{lm}
     $G, H \le F$
@@ -1300,7 +1383,7 @@ $
 	\varphi (g, h) \cdot \varphi (g', h') = gh g'h'
     .\] 
 
-    (1) $\Leftrightarrow \varphi$ - сюрьективно.
+    (1) $\Leftrightarrow \varphi$  сюрьективно.
     \[
 	\varphi (g, h) = \varphi(g', h') \Leftrightarrow gh = g'h' \Leftrightarrow g'^{-1} g = h' h^{-1} = 1 \Rightarrow g' = g, h' = h
     .\] 
@@ -1310,11 +1393,11 @@ $
 22.10.2019
 \begin{ex}
     $\ln : \R_{>0}^{*} \to (\R, +)$ \\
-    $\ln ab = \ln a + \ln b$ - гомоморфизм.
+    $\ln ab = \ln a + \ln b$ --- гомоморфизм.
 \end{ex}
 \begin{defn}
     \[
-    \varphi G \to H - \mbox{ гомоморфизм}
+    \varphi G \to H  \mbox{ --- гомоморфизм}
     .\] 
     \[
 	Im \varphi = \{\varphi(g) \mid g \in  G\} 
@@ -1324,7 +1407,7 @@ $
     .\] 
 \end{defn}
 \begin{lm}
-    $Im \varphi$ и $\ke \varphi$ - подгруппы.
+    $Im \varphi$ и $\ke \varphi$ --- подгруппы.
 \end{lm}
 \begin{proof}
     \[
@@ -1339,7 +1422,7 @@ $
 \end{proof}
 \begin{lm}
     \[
-	\varphi (g) = h, \quad \varphi : G \to H - \mbox{ гомоморфизм} 
+	\varphi (g) = h, \quad \varphi : G \to H  \mbox{ --- гомоморфизм} 
     .\] 
     \[
 	\varphi^{-1} = \underbrace{g \ke \varphi}_{\mbox{левый смежный класс по ядру} \varphi} = \underbrace{\ke \varphi g}_{\mbox{правый}}
@@ -1367,7 +1450,7 @@ $
     $x \in  g_1H \cap g_2H \Rightarrow x = g_1h_1 = g_2h_2, \quad h_1, h_2 \in H$. Тогда $g_1 = g_2 (h_2 h_1^{-1}) \Rightarrow g_1H = g_2 (h_2 h{-1}) H$.
 \end{proof}
 \begin{cor}
-    $G =\bigsqcup\limits_{g \in X} g H $, где $X$ - множество представителей левых смежных классов по $h$. \\
+    $G =\bigsqcup\limits_{g \in X} g H $, где $X$ --- множество представителей левых смежных классов по $h$. \\
     $g_1 \stackrel{H}\sim g_2 \Leftrightarrow g_1^{-1} g_2 \in H$
 \end{cor}
 \begin{lm}
@@ -1387,7 +1470,7 @@ $
      Обратная $y \mapsto g_1 g_2^{-1} y$
 \end{proof}
 \begin{thm}[Лагранж]
-    $G$ - конечна группа. Тогда $|G| = |H|\cdot  |G:H|$, где $|G:H|$ - количество левых смежных классов $G$ по $H$. $|G:H|$ - индекс $H$в $G$.
+    $G$ --- конечная группа. Тогда $|G| = |H|\cdot  |G:H|$, где $|G:H|$ --- количество левых смежных классов $G$ по $H$. $|G:H|$ --- индекс $H$в $G$.
 \end{thm}
 \begin{proof}
     Из прошлой леммы и следствия
@@ -1422,7 +1505,7 @@ $
 	     \[
 		 \varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
 	     .\] 
-	 \item Пусть $n$ - наименьшее натуральное число, такоe что $g^n = 1$. 
+	 \item Пусть $n$ --- наименьшее натуральное число, такоe что $g^n = 1$. 
 	     \[
 		 \varphi : \Z \to G, \quad \varphi (m) = g^m \mbox{ сюрьективно }.
 	     .\] 
@@ -1433,7 +1516,7 @@ $
     \end{enumerate}
 \end{proof}
 \begin{defn}
-    Порядок $g \in  G$ - наименьшее натуральное число, такое что $g^n = 1$.  $\ord(g) = | \langle g \rangle|$
+    Порядок $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.  $\ord(g) = | \langle g \rangle|$
 \end{defn}
 \begin{st}[из теоремы Силова]
     $|G| = p^m , \: p \nmid m$. Тогда $\exists H \le G: |H| = p^k \: \forall h \in  H \textbackslash {1}$.\\
@@ -1443,10 +1526,10 @@ $
 \section{Лекция 17}
 24.10.2019
 
-$G$ - группа.
+$G$ --- группа.
 \begin{defn}
     $S \subseteq G$ \\
-    $\langle S \rangle$ - наименьшая подгруппа содержащая $S$. 
+    $\langle S \rangle$ --- наименьшая подгруппа содержащая $S$. 
 \end{defn}
 \begin{st}
     $\langle S \rangle = \{S_1 ^{n_1}\cdot \ldots  S_k^{n_k}\mid k \in  \N , S_i \in  S, n_i \in  \Z\}$, для абелевой :$s_i \ne s_j$ при $j \ne j$.
@@ -1462,19 +1545,19 @@ $G$ - группа.
     \begin{enumerate}
 	\item $(s_1 s_2)^g = s_1 ^g s_2 ^g$ 
 	\item $(s^g)^{-1} = (s^{-1})^g$\\
-	    $s \mapsto s^g$ - автоморфизм $G $.
+	    $s \mapsto s^g$ --- автоморфизм $G $.
     \end{enumerate}
 \end{prop}
 \begin{defn}
     $H \le G$ 
     \[
-	H^G = \langle h^g \mid h \in  H, g \in  G \rangle  \mbox{ -- нормальное замыкание} H \mbox{ в } G
+	H^G = \langle h^g \mid h \in  H, g \in  G \rangle  \mbox{ --- нормальное замыкание} H \mbox{ в } G
     .\]  
     Нормальное замыкание равно наименьшей нормальной подгруппе в $G$, содержащей $H$.\\
-    $\langle S \rangle ^G$ - наименьшая нормальная подгруппа, содержащая $S$.\\
-    $s^g= g^{-1} s g$  - сопряженный с $s$ при помощи $g$.\\
+    $\langle S \rangle ^G$ --- наименьшая нормальная подгруппа, содержащая $S$.\\
+    $s^g= g^{-1} s g$  --- сопряженный с $s$ при помощи $g$.\\
     \[
-	H^g=\langle h^g \mid h \in  H\rangle \mbox{ -- подгруппа, сопряженная с $H$ при помощи $g$}
+	H^g=\langle h^g \mid h \in  H\rangle \mbox{ --- подгруппа, сопряженная с $H$ при помощи $g$}
     .\] 
 \end{defn}
 \begin{defn}
@@ -1484,9 +1567,9 @@ $G$ - группа.
     $ab = ba \Leftrightarrow aba^{-1}b^{-1} = 1$\\
 \end{note}
 \begin{st}
-    $\varphi  : G \to A$ - гомоморфизм в абелеву группу.\\
+    $\varphi  : G \to A$ --- гомоморфизм в абелеву группу.\\
     $\varphi([g, h]) = 1$ \\
-    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq \ke \varphi $ - коммутант $G$. \\
+    Тогда $[G, G] = \langle [g, h]\mid h, g \in  G \rangle \subseteq \ke \varphi $ --- коммутант $G$. \\
     $[g, h] ^f = [g^f , h^f]$
 \end{st}
 \begin{st}
@@ -1496,8 +1579,8 @@ $G$ - группа.
     Центр группы --- $Center(G) = Z(G) := \{ c \in  G \mid cg = gc\quad \forall g  \in  G\}$
 \end{defn}
 \begin{name}$ $\\
-    $G \diagup H = \{gH \mid g \in G\} $ -- множество левых смежных классов.\\
-    $H \diagdown G = \{Hg \mid g \in G\} $ -- множество левых смежных классов.
+    $G \diagup H = \{gH \mid g \in G\} $ --- множество левых смежных классов.\\
+    $H \diagdown G = \{Hg \mid g \in G\} $ --- множество левых смежных классов.
 \end{name}
 $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \begin{defn}
@@ -1520,7 +1603,7 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 \end{defn}
 \begin{thm}[универсальное свойство факторгруппы]
     $N\trianglelefteq G$,
-    $\varphi : G \to H$ -- гомоморфизм. Если $ \ke f \ge N$, то существует единственный гомоморфизм $ \varphi: G\diagup N \to  H$, такой что $ f = g \circ \pi_\text{н}$. Если $ f$ -- эпиморфизм, то $ g$ -- эпиморфизм. Если $ \ke F = N$, то $ g$  -- мономорфизм. 
+    $\varphi : G \to H$ --- гомоморфизм. Если $ \ke f \ge N$, то существует единственный гомоморфизм $ \varphi: G\diagup N \to  H$, такой что $ f = g \circ \pi_\text{н}$. Если $ f$ --- эпиморфизм, то $ g$ --- эпиморфизм. Если $ \ke F = N$, то $ g$  --- мономорфизм. 
     % $$\begin{array}{ccc}
 	% G & \stackrel {\pi_{n}} \longrightarrow & G \diagup H \\
 	% \downarrow \lefteqn{F} &\nearrow \lefteqn{\exists ! \hat{\varphi }}& \\
@@ -1548,9 +1631,9 @@ $H \trianglelefteq G \quad ( H^g = H \forall g \in  G)$
 	    G &  &G
     \end{array}
     .\] 
-    $\varphi $ -сюрьективно. Следовательно, $\varphi  '$ - сюрьективно.\\
+    $\varphi $ -сюрьективно. Следовательно, $\varphi  '$ сюрьективно.\\
 \end{proof}
-$g \ke \varphi  \in  \ke \hat{ \varphi } \Leftrightarrow \hat{ \varphi}(g \ke \varphi ) = 1 \Leftrightarrow \varphi (g) = 1 \Leftrightarrow g \ke \varphi  = \ke \varphi  = 1_{G \diagup \ke \varphi }$.Следовательно, $\hat{\varphi }$ - инъективно .
+$g \ke \varphi  \in  \ke \hat{ \varphi } \Leftrightarrow \hat{ \varphi}(g \ke \varphi ) = 1 \Leftrightarrow \varphi (g) = 1 \Leftrightarrow g \ke \varphi  = \ke \varphi  = 1_{G \diagup \ke \varphi }$. Следовательно, $\hat{\varphi }$ инъективно .
 \begin{ex}
     $\Z \to \Z_n, \quad \varphi (x) \equiv x \mod n$.\\
     $\ke \varphi  = n \Z$\\
@@ -1596,7 +1679,7 @@ $g \ke \varphi  \in  \ke \hat{ \varphi } \Leftrightarrow \hat{ \varphi}(g \ke \v
     \end{array}
     \right )
 .\] 
-Тогда $U^{(k)} _ n(F) = U _n^{(k)} = \langle t_{ij} (\alpha ) \mid j -i \ge  k, \alpha  \in  F \rangle$ - группа.
+Тогда $U^{(k)} _ n(F) = U _n^{(k)} = \langle t_{ij} (\alpha ) \mid j -i \ge  k, \alpha  \in  F \rangle$ --- группа.
 \begin{lm}
     $U_n^{(k)} \setminus U_n ^{(k-1)} \cong \underbrace {F \times \ldots \times F}_{n-k}, \quad F= (F, +)$. Проверим, что есть гомоморфизм, и применим теорему о гомоморфизме.
 \end{lm}
@@ -1604,23 +1687,23 @@ $g \ke \varphi  \in  \ke \hat{ \varphi } \Leftrightarrow \hat{ \varphi}(g \ke \v
 \[
     \varphi : U_n ^k \to F^{n-k}, \quad \varphi (a) = (a_{i~ k+1}, \ldots , a_{n-k~ n})^T
 .\] 
-Заметим, что $\varphi$ - сюрьективна, $\varphi ^{-1} (e) = U^{k+1} _n$. 
+Заметим, что $\varphi$  сюрьективна, $\varphi ^{-1} (e) = U^{k+1} _n$. 
 \[
     a, b \in  U_n^{(k)} , \qquad (a, b) _{i~ i+k} = \slim _{j=1} ^n a_{ij} \cdot b_{i~ j+k} = b_{j~ i+k} + a_{i~ i+k}
 .\] 
-Тогда $\varphi (a \cdot b) = \varphi(a) + \varphi(b) $. Следовательно, $\varphi $ - гомоморфизм.
+Тогда $\varphi (a \cdot b) = \varphi(a) + \varphi(b) $. Следовательно, $\varphi $ --- гомоморфизм.
 \end{proof}
 \end{ex}
 \begin{defn}
-    $[a, b] = aba^{-1}b^{-1}$ -- коммутатор.\\
-    $H, K \le G, \quad [H, K]:= \langle [h, k] \mid h \in  H, k \in  K \rangle$ -- коммутант.
+    $[a, b] = aba^{-1}b^{-1}$ --- коммутатор.\\
+    $H, K \le G, \quad [H, K]:= \langle [h, k] \mid h \in  H, k \in  K \rangle$ --- коммутант.
 \end{defn}
 \begin{st}
     $[h, k]^g = [h^g, k^g] \Rightarrow [G, G] \trianglelefteq G$.
 \end{st}
 \begin{st}
-    $\varphi : G \to  A$ - гомоморфизм. \\
-    $A$ - абелева $\Longrightarrow [G, G] \subseteq \ke \varphi $.
+    $\varphi : G \to  A$ --- гомоморфизм. \\
+    $A$ --- абелева $\Longrightarrow [G, G] \subseteq \ke \varphi $.
 \end{st}
 \begin{proof}
     \[
@@ -1639,7 +1722,7 @@ $g \ke \varphi  \in  \ke \hat{ \varphi } \Leftrightarrow \hat{ \varphi}(g \ke \v
 \end{lm}
 \begin{proof}
 \[
-    [t_{ij}(\alpha ), t_{jh} (\beta )] = t_{ih} (\alpha \beta), \quad i, j, h \mbox{ - различны} 
+    [t_{ij}(\alpha ), t_{jh} (\beta )] = t_{ih} (\alpha \beta), \quad i, j, h \mbox{ различны} 
 .\]     
 $\forall i, h : h - i \ge  m:$
 \[
@@ -1664,7 +1747,7 @@ $$
 \[
     \underbrace{[t_{ij}(\alpha ), t_{li}(\beta )] }_{\quad j \ne l } = [t_{li} (\beta), t_{ij} (\alpha ) ]^{-1} = t_{lj} (\beta \alpha )^{-1} = t_lj (-\beta \alpha ) 
 .\] 
-Так как $U_n^{(k+m)}$ - нормальная подгруппа, то есть трансвекцию во включении \ref{subseteq_1} можно заменить на произведение трансвекций, то есть на любые элементы $U_n^{(k)}, U_n^{(m)}$. Доказали обратное утверждение.
+Так как $U_n^{(k+m)}$ --- нормальная подгруппа, то есть трансвекцию во включении \ref{subseteq_1} можно заменить на произведение трансвекций, то есть на любые элементы $U_n^{(k)}, U_n^{(m)}$. Доказали обратное утверждение.
 \end{proof}
 
 \section{Лекция 19}
@@ -1694,7 +1777,7 @@ $$
 \begin{note}
     В определении нормальной подгруппы вместо $h^g$ такде можно написать $[g, h]$, так так для $h \in H, g \in  G$
      \[
-	 [g, h] - ghg^{-1}h^{-1} = h^{g^{-1}} h \in  H \Longleftrightarrow h^{g^{-1}} \in  H 
+	 [g, h] = ghg^{-1}h^{-1} = h^{g^{-1}} h \in  H \Longleftrightarrow h^{g^{-1}} \in  H 
     .\] 
     $g^{-1} $ можно заменить на $g$.\\
     Аналогично в лемме можно заменить $x^y$ на $[x, y]$. 
@@ -1730,7 +1813,7 @@ $$
     Третий случай $j \ne h, i=l: \quad a = [t_{h~j}(\beta ), t_{i~j}(\alpha )]^{-1} = t_{h~j}(\beta  \alpha )^{-1} = t_{h~j}(-\beta \alpha )$. $j -h \ge k+1 \Rightarrow  t_{h~j}(-\beta \alpha ) \in  U_n^{(k+1)}$.
 \end{proof}
 \begin{lm}
-    Пусть  $\preccurlyeq$ - отношение линейного порядка на $P = \{(i, j) \mid 1 \le  i < j \le  n\}$.
+    Пусть  $\preccurlyeq$ --- отношение линейного порядка на $P = \{(i, j) \mid 1 \le  i < j \le  n\}$.
     \[
 	U_n(F) = \left\{\prod\limits_{(i, j)) \in  P} t_{ij} (\alpha _{ij})\Biggm| \alpha _{ij} \in F\right\}
     .\] 
@@ -1763,7 +1846,7 @@ $$
 
 \end{proof}
 Введем обозначения:
-    $w$ - матрица перестановки.
+    $w$ --- матрица перестановки.
     \[
     \left ( 
     \begin{array}{ccc}
@@ -1831,7 +1914,7 @@ $$
     Любая перестановка равна произведению независимых (композиции) циклов.
 \end{lm}
 \begin{defn}
-    Циклический (цикленный) тип перестановки -- набор из длин независимых циклов,в произведение которых раскладывается перестановка.
+    Циклический (цикленный) тип перестановки --- набор из длин независимых циклов,в произведение которых раскладывается перестановка.
 \end{defn}
 \begin{note}
     В определении слово "набор" подразумевает мультимножество, то есть порядок не важен, но элементы повторятся.
@@ -1847,7 +1930,7 @@ $$
 \end{lm}
 \begin{proof}
     $\sigma (i_1 \ldots i_k) \sigma ^{-1} (\sigma (t_j))=  \sigma \circ (i_1 \ldots i_k) \sigma  (i_{l+1 \mod' m})$
-    , где $\mod' m$ - почти модуль (вместо 0 будет $m$ ).
+    , где $\mod' m$ --- почти модуль (вместо 0 будет $m$ ).
 \end{proof}
 \begin{defn}
     Отношение на группе $G$ :
@@ -1855,7 +1938,7 @@ $$
     x \sim_c y \Leftrightarrow \exists z: x = y^z
     .\] 
     $x=y^z \wedge y=ab \Rightarrow x = (a^b)^z - a^{bz}$.\\
-    Класс эквивалентности ,,$\sim_{c}$'' -- класс сопряженных элементов.
+    Класс эквивалентности ,,$\sim_{c}$'' --- класс сопряженных элементов.
 \end{defn}
 \begin{thm}
     Класс сопряженных элементов в $S_n$ состоит из всех перестановок  фиксированного циклического типа.
@@ -1877,7 +1960,7 @@ $$
    Двумерная группа Клейна
    \[
       K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
-   .\]  - единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
+   .\]  --- единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
 \end{ex}
 \begin{prac}
     Найти $S_4 \diagup K_4$.  Там 6 элементов.
@@ -1890,7 +1973,7 @@ $$
 \subsection{Продолжаем возиться с перестановками. Четность.}
 \begin{defn}[Инверсия]
     $\sigma \in  S_n  $. \\
-    Инверсия в $\sigma $ -- пара $(i, j): i < j \wedge \sigma  (i) > \sigma (j)$.
+    Инверсия в $\sigma $ --- пара $(i, j): i < j \wedge \sigma  (i) > \sigma (j)$.
 \end{defn}
 \begin{ex}
     Четыре инверсии:
@@ -1912,7 +1995,7 @@ $$
     .\] 
 \end{defn}
 \begin{defn}
-    Транспозиция -- цикл длины 2.
+    Транспозиция --- цикл длины 2.
     \[
 	\tau(i)= \tau(j), ~\tau(j) = \tau(i), ~ \tau(k)=k
     .\] 
@@ -1942,12 +2025,12 @@ $$
     $\tau = \sigma (i ~ i+1) \Rightarrow |I(\tau) - I(\sigma )| =1$
 \end{lm}
 \begin{lm}
-    Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ - транспозиция соседних индексов}$, то \[
+    Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ --- транспозиция соседних индексов}$, то \[
 	\varepsilon (\sigma ) \equiv k \mod 2
     .\] 
 \end{lm}
 \begin{thm}
-    $\varepsilon  :S_n \to \Z \diagup  2\Z$ - гомоморфизм группы.
+    $\varepsilon  :S_n \to \Z \diagup  2\Z$ --- гомоморфизм группы.
 \end{thm}
 \begin{proof}
     \[
@@ -1963,17 +2046,17 @@ $$
     $\varepsilon (\rho^{-1} \sigma \rho) \equiv - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
     $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) \equiv k-1 \mod 2$
 \end{proof}
-Рассмотрим кольцо $(\Z_n, +_n, \cdot_n)$. $\Z_n^* $ - множество обратимых элементов.
+Рассмотрим кольцо $(\Z_n, +_n, \cdot_n)$. $\Z_n^* $ --- множество обратимых элементов.
 
-$x \in  \Z_n$ - обратимо тогда и только тогда, когда $\gcd(x, n) = 1$.
+$x \in  \Z_n$  обратимо тогда и только тогда, когда $\gcd(x, n) = 1$.
 
-$\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ взаимно простых с $n$.
+$\varphi |\Z_n^*|$ --- количество чисел от $1$ до $n-1$ взаимно простых с $n$.
 Из теоремы Лагранжа очевидно следует, что:
 \[
     x^{\varphi(n)} \equiv 1 \mod n
 .\] 
 \begin{st}
-    $A$ -- абелева группа.
+    $A$ --- абелева группа.
     $$a, b \in  A, \quad \ord(a) = m, ~\ord(b) = n, ~h = \lcm(m, n)$$
     \[
 	(ab)^k = a^k b^k = (a^m)^x (b^n)^y = 1
@@ -2019,13 +2102,13 @@ $\varphi |\Z_n^*|$ - количество чисел от $1$ до $n-1$ вза�
     Порядок перестановки равен наибольшему общему делителю полядков независимых циклв, в произведение которых она раскладывается.
 \end{cor}
 \begin{defn}[Экспонента (показатель)]
-    $\exp(A)$ -- наименьшее натуральное число, такое что $a^n = 1 \quad \forall a \in  A$.
+    $\exp(A)$ --- наименьшее натуральное число, такое что $a^n = 1 \quad \forall a \in  A$.
 \end{defn}
 \begin{lm}
     $\exp(A) = \lcm _{a \in A} (\ord(a))$
 \end{lm}
 \begin{thm}
-    $A$ - абелева группа. $\exp(A) < \infty$.\\
+    $A$ --- абелева группа. $\exp(A) < \infty$.\\
     Тогда  $\exists a \in  A: \ord(a) = \exp(A)$
 \end{thm}
 \begin{proof}
@@ -2059,7 +2142,7 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
 \end{proof}
 \begin{thm}$p \in  \Pm$
 
-    $(\Z \diagup p^k \Z)^{*}$ - циклическая, если $p \ne 2$ или $k \le  2$. Иначе
+    $(\Z \diagup p^k \Z)^{*}$ --- циклическая, если $p \ne 2$ или $k \le  2$. Иначе
     $(\Z \diagup p^k \Z)^{*} \cong C_2 \times C_{2^{k-2}}$ 
 \end{thm}
 \begin{proof}
@@ -2073,7 +2156,7 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
     H = \{1 + px \mid x \in  \{0, \ldots p^{k-1}-1\}\}
     .\] 
     \begin{st}
-        $H$ - подгруппа.
+        $H$ --- подгруппа.
 	\[
 	    (1 +px)(1 + py) = 1 + pz \in H
 	.\] 
@@ -2103,7 +2186,7 @@ $\varphi: G \to  h $- гомоморфизм. $g \in  G$.
     Осталось доказать, что \[
 	(1+p)^{p^{k-2}} \not\equiv 1 \mod p^k
     .\] 
-    Будем доказывать по индукции. Для $k=2$ - очевидно.
+    Будем доказывать по индукции. Для $k=2$ --- очевидно.
     При $k>2$ :
     \[
 	(1 + p)^{p^{k-3}}= 1+ p^{n}x, \quad p \nmid p
@@ -2178,9 +2261,9 @@ $5^{2^{k-1}} = 1 + 2^{n}z, \quad 1 < n < k-1, ~ 2 \nmid z$.
 \section{Лекция 23}
 \subsection{Теорема о гомоморфизме для колец}
 \begin{note}{Воспоминания} $ $
-$R, R'$ -- кольца с 1 ( не обязательно коммутативные). 
+$R, R'$ --- кольца с 1 ( не обязательно коммутативные). 
 
-$\varphi: R \to  R'$ -- гомоморфизм, если
+$\varphi: R \to  R'$ --- гомоморфизм, если
 \[
     \begin{array}{l}
     \varphi ( r + s) = \varphi(r) + \varphi(s)\\
@@ -2189,23 +2272,23 @@ $\varphi: R \to  R'$ -- гомоморфизм, если
     \end{array}
 .\] 
 \[
-    \im \varphi = \{\varphi(r) \mid r \in  R\} \text{ -- подкольцо в } R'
+    \im \varphi = \{\varphi(r) \mid r \in  R\} \text{ --- подкольцо в } R'
 .\] 
 \[
-    \ke \varphi = \{r \mid \varphi(r) = 0\} \text{ -- аддитивная подгруппа в }R
+    \ke \varphi = \{r \mid \varphi(r) = 0\} \text{ --- аддитивная подгруппа в }R
 .\] 
 \end{note}
 \begin{defn}
-    $I$ -- аддитивная подгруппа в $R$.
+    $I$ --- аддитивная подгруппа в $R$.
     $I$ называется двусторонним (правым, левым) идеалом в $R$ тогда и только тогда, когда \[
 	\forall a \in  R, t \in I: ar, ra \in  I \quad \text{(соответственно для правого и левого $ra \in  I, ar \in  I$)}
     .\] 
 \end{defn}
 \begin{lm}
-    $\ke \varphi $ -- двусторонний идеал.
+    $\ke \varphi $ --- двусторонний идеал.
 \end{lm}
 \begin{defn}
-    $I$ -- двусторонний идеал, $R$ -- кольцо.
+    $I$ --- двусторонний идеал, $R$ --- кольцо.
     Аддитивная факторгруппа $R \diagup I$ является кольцом относительно операции $(r + I) (s + I) = rs + I$
 \end{defn}
 \begin{proof}
@@ -2221,7 +2304,7 @@ $\varphi: R \to  R'$ -- гомоморфизм, если
 $\pi: R \to  R\diagup I \quad \pi(r ) = r+I$
 \end{name}
 \begin{thm}{Универсальное свойство}
-    $I$ -- идеал в $R$. $\varphi R \to R', \quad I \subseteq \ke \varphi $
+    $I$ --- идеал в $R$. $\varphi R \to R', \quad I \subseteq \ke \varphi $
     $\exists ! \psi: R \diagup I \to  R':$
     \[
 	\begin{array}{ccc}
@@ -2229,21 +2312,21 @@ $\pi: R \to  R\diagup I \quad \pi(r ) = r+I$
 	    \downarrow \lefteqn{\pi} & \nearrow \lefteqn{\psi} & \\
 	    R\diagup I &&
     \end{array}
-    \]  -- коммутативна.
-   $\ke \varphi = I \Rightarrow \psi $ -- инъективна. 
-   $\varphi$ -- сюрьективна $ \Rightarrow $ $\phi$ -- сюрьективна. 
+    \]  --- коммутативна.
+   $\ke \varphi = I \Rightarrow \psi $ --- инъективна. 
+   $\varphi$ --- сюрьективна $ \Rightarrow $ $\phi$ --- сюрьективна. 
 \end{thm}
  \begin{note}
     Далее считаем кольца коммутативными.
 \end{note}
 \begin{defn}
-$X \subseteq R$  -- кольцо.
-Идеал, порожденный $X$  -- наименьший идеал, содержащих $X$. Он равен \[
+$X \subseteq R$  --- кольцо.
+Идеал, порожденный $X$  --- наименьший идеал, содержащих $X$. Он равен \[
     \left\{\slim_{i=1}^{n}a_ix_i \mid a_i \in  R, x_i \in  X, n \in \N\right\}
 .\] 
 Обозначается: $\slim_{x \in  X} x R = \langle X \rangle_R$
 
-$xR = (x)$ -- главный идеал, порожденный $x$.
+$xR = (x)$ --- главный идеал, порожденный $x$.
 \end{defn}
 \begin{ex}
     В $\Z$ любой идеал главный.
@@ -2258,7 +2341,7 @@ $xR = (x)$ -- главный идеал, порожденный $x$.
     \[
     y = x - rs \in  I
     .\] 
-    Так как $r$  -- наименьший, то $y=0$.
+    Так как $r$  --- наименьший, то $y=0$.
 \end{ex}
 \begin{ex}
     \[
@@ -2277,7 +2360,7 @@ $xR = (x)$ -- главный идеал, порожденный $x$.
     \[
 	i^2+1 = x^2 + 1 + (x^2+1)\R[x] = 0_\Cm \Longrightarrow i^2 = -1
     .\] 
-    $\R \hookrightarrow \R[x] \to \Cm$ -- инъективное отображение.   
+    $\R \hookrightarrow \R[x] \to \Cm$ --- инъективное отображение.   
     % Напомнить про нулевое кольцо!
     Отождествляем $r \in  R \longleftrightarrow r + (x^2+1) \R[x]$ и считаем, что $\R = \Cm$.
 
@@ -2305,11 +2388,11 @@ $xR = (x)$ -- главный идеал, порожденный $x$.
        \end{array}
    .\] 
 
-   $\overline{\circ} :\Cm \to  \Cm$  - автоморфизм.
+   $\overline{\circ} :\Cm \to  \Cm$  --- автоморфизм.
 
    $a = \re z, \quad b = \im z$
    
-   $\Cm$ -- векторное пространство над $\R$ с базисом $\{1, i\}$
+   $\Cm$ --- векторное пространство над $\R$ с базисом $\{1, i\}$
 
 \section{Лекция 24}
 \subsection{Окончание комплексных чисел}
@@ -2355,7 +2438,7 @@ Arg z:= \alpha \in  \R\diagup 2\pi\Z
     \begin{array}{l}
     a = |z| \cdot \cos \alpha \\
     b = |z| \cdot \sin \alpha  \\
-    z = |z| \cdot (\cos \alpha + i \sin \alpha ) \text{ -- тригонометрическая формула}
+    z = |z| \cdot (\cos \alpha + i \sin \alpha ) \text{ --- тригонометрическая формула}
 \end{array}
 Arg z = 
 \left \{
@@ -2372,7 +2455,7 @@ Arg z =
     .\] 
 \end{st}
 \begin{st}
-    $ \varepsilon : \R\diagup 2\pi\Z \to  \Cm^* , \quad \varepsilon ( \alpha ) = \cos \alpha  + i \sin \alpha )$ -- это гомоморфизм.
+    $ \varepsilon : \R\diagup 2\pi\Z \to  \Cm^* , \quad \varepsilon ( \alpha ) = \cos \alpha  + i \sin \alpha )$ --- это гомоморфизм.
     \[
     \im \varepsilon = S^{1} : = \{z \in  \Cm \mid |z| = 1\}
     .\] 
@@ -2383,7 +2466,7 @@ Arg z =
 	    \varepsilon ( - \alpha ) = \varepsilon ( \alpha )^{-1} \\
 	    \varepsilon  ( \beta  - \alpha ) = \frac{\varepsilon ( \alpha)}{ \varepsilon ( \beta)} \\
 	    \varepsilon (n \alpha ) = \varepsilon ( \alpha ) ^{n}, \quad n \in  \Z\\
-	    (\cos \alpha  + i \sin \alpha )^{n} = \cos n \alpha  + i \sin n \alpha \text{ -- формула Муавра} 
+	    (\cos \alpha  + i \sin \alpha )^{n} = \cos n \alpha  + i \sin n \alpha \text{ --- формула Муавра} 
     \end{array}
     .\] 
 \end{st}
@@ -2392,7 +2475,7 @@ Arg z =
     Дифференциал: \[
 	f(x + \delta  x) = f(x) + df( \delta  x) + \overline{o( \delta  x)}
     .\] 
-    В случае дифференцирования функции от двух переменных, $x$ -- столбец, а $df$ -- матрица $2 \times 2$.
+    В случае дифференцирования функции от двух переменных, $x$ --- столбец, а $df$ --- матрица $2 \times 2$.
 \end{defn}
 \begin{note}
     Для комплексных коэффициентов:
@@ -2428,7 +2511,7 @@ Arg z =
     e^{2\pi i} = \cos 2\pi + i \sin 2\pi = 1
     .\] 
     $2
-    \pi$ -- период для экспоненты.
+    \pi$ --- период для экспоненты.
     \[
     e ^{\alpha + 2\pi i} = e^{ \alpha }
     .\] 
@@ -2439,7 +2522,7 @@ Arg z =
     \[
 	r \in  \R^{*}_{>0} , \alpha  \in  \R\diagup 2 \pi \Z: (r, \alpha ) \mapsto r \cdot e ^{i \alpha} 
     .\] 
-    То есть  $\R^{*}_{>0} \times  \R\diagup 2\pi\Z \to  \Cm ^{*}$ -- изоморфизм.
+    То есть  $\R^{*}_{>0} \times  \R\diagup 2\pi\Z \to  \Cm ^{*}$ --- изоморфизм.
     \[
 	\Cm^{*} \cong \underbrace{\R^{*}_{>0} \times  \R\diagup 2\pi\Z}_{\ln} \cong \R \times  \R\diagup 2\pi \Z \cong \Cm\diagup 2\pi\Z
     .\] 
@@ -2449,7 +2532,7 @@ Arg z =
     $Ln: (r, e^{i\alpha + 2\pi\Z}) = \ln r + i (\alpha + 2\pi\Z)= \ln r + i \alpha  + 2\pi\Z$.
 \end{note}
 \begin{st}[вычисление корня $n$-й степени]
-    Вычисление корня в аддитивной  группе $\Cm\diagup 2\pi\Z$  -- решение уравнения:
+    Вычисление корня в аддитивной  группе $\Cm\diagup 2\pi\Z$  --- решение уравнения:
     \[
 	\begin{array}{l}
 	xn \equiv 0 \mod 2\pi i \Z\\
@@ -2470,7 +2553,7 @@ Arg z =
     z^{n} \Longleftrightarrow z = e^{\frac{2 \pi  i k}{n}}, k \in  \Z \diagup n\Z
 .\] 
 \[
-    \Theta_n (Z) = z^{k} \text{ -- гомоморфизм }  \Cm \to  \Cm^{*}
+    \Theta_n (Z) = z^{k} \text{ --- гомоморфизм }  \Cm \to  \Cm^{*}
 .\] 
 \[
     \mu_n = \ke \Theta_n = \{e ^{ \frac{2\pi i k}{n}} \mid k \in  \Z\diagup n\Z\}
@@ -2478,12 +2561,12 @@ Arg z =
 Эти числа делят окружность на $ n$ равных частей.
 
 $ \Z \diagup  n \Z \to  \mu_n\\
-k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
+k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ --- изоморфизм.
 \begin{defn}
     Образующие элементы $ \mu_n$ называются превообразными корнями из 1.
 \end{defn}
 \begin{cor}
-    $ e^{\frac{2\pi i k}{n}}$ -- превообразный корень тогда и только тогда, когда $ \gcd(k, n) = 1$.
+    $ e^{\frac{2\pi i k}{n}}$ --- превообразный корень тогда и только тогда, когда $ \gcd(k, n) = 1$.
 \end{cor}
 \begin{st}
     $ z^{n} = w = r e^{i \varphi }$.
@@ -2500,15 +2583,15 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     Тогда $ \exists \alpha  \in  \Cm: p( \alpha ) = 0$.
 \end{thm}
 \begin{thm}[Лиувилль]
-    Любая ограниченная дифференцируемая функция $ \Cm \to  \Cm$ -- константа.
+    Любая ограниченная дифференцируемая функция $ \Cm \to  \Cm$ --- константа.
 \end{thm}
 \subsection{Кольца главных идеалов}
 \subsubsection{Евклидовы кольца}
 \begin{defn}
- 	Область целостности -- коммутативное кольцо с единицей без делителей нуля.   
+ 	Область целостности --- коммутативное кольцо с единицей без делителей нуля.   
 \end{defn}
 \begin{name}
-    $ R$ -- коммутативное кольцо с $ 1$ без делителей нуля.
+    $ R$ --- коммутативное кольцо с $ 1$ без делителей нуля.
 \end{name}
 \begin{defn}
     $ f: R \to  \N_0 \cup \{-\infty\}$ 
@@ -2517,7 +2600,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
 	\item $ f(0) < f(r), \quad \forall  r \in  R$
 	\item $ \forall a, b \in  R, b\ne 0 ~ \exists  c, r \in R: a = b c + r \wedge f(r) < f(b)$
     \end{enumerate}
-    Тогда $ R$ -- евклидова кольцо с евклидовой нормой  $ f$.
+    Тогда $ R$ --- евклидова кольцо с евклидовой нормой  $ f$.
 \end{defn}
 \begin{thm}
     Любой идеал евклидова кольца главный.
@@ -2549,7 +2632,7 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     $ a R + b R = r_n R$
 \end{st}
 \begin{st}
-    $ R$ -- область главных идеалов.
+    $ R$ --- область главных идеалов.
     $ a_i \in  R$
     \[
 	\slim_{i=1}^{m} a_i R = d R
@@ -2562,12 +2645,12 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
 	Кольцо & Норма\\
 	\hline
 	$ \Z$ &$ |\cdot|$\\
-	$ F[x], ~ F \text{ -- поле}$ & $  \deg$\\
+	$ F[x], ~ F \text{ --- поле}$ & $  \deg$\\
 	Гауссовы целые числа: $ \Z[i] = \{a + bi \mid a, b \in\Z\}$ & $ |\cdot|$
     \end{tabular}
 \end{exs}
 \begin{ex}[не евклидово число]
-    $ \Z [\sqrt{19}]$ -- не евклидово кольцо главных идеалов. 
+    $ \Z [\sqrt{19}]$ --- не евклидово кольцо главных идеалов. 
 \end{ex}
 \subsection{Китайская теорема об остатках}
 \begin{thm}{КТО для целых чисел} $ $
@@ -2576,11 +2659,11 @@ k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ -- изоморфизм.
     \vdots \\
     x  \equiv x_m \mod n_m$ 
 
-    Существует единственное  $ x$ по модулю произведения $ n_1 .. n_m$, удовлетворяющее данным сравнениям.
+    Существует единственное  $ x$ по модулю произведения $ n_1 \ldots  n_m$, удовлетворяющее данным сравнениям.
 \end{thm}
 \begin{thm}{КТО}
-    $ R$ -- коммутативное кольцо с 1.
-    $ I_1, \ldots I_m$ -- идеалы в $ R$.
+    $ R$ --- коммутативное кольцо с 1.
+    $ I_1, \ldots I_m$ --- идеалы в $ R$.
 
 $ I_i + I_k = R ~ \forall  j \ne k$.
 Тогда \[
@@ -2588,7 +2671,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
 .\] 
 \end{thm}
 \begin{rem}
-    $ A, B$ -- кольца. Декартово произведение \[
+    $ A, B$ --- кольца. Декартово произведение \[
     A \oplus B = A \times  B
     .\] 
     с покомпонентными операциями.
@@ -2600,8 +2683,8 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
     Идеалы $ I, J$ взаимно простые, если $ I + J = R$.
 \end{st}
 \begin{proof}
-    $ I \cap  J $ -- идеал.
-    $ I + J = \{a + b \mid a \in I, b \in J\}$ -- идеал.
+    $ I \cap  J $ --- идеал.
+    $ I + J = \{a + b \mid a \in I, b \in J\}$ --- идеал.
     $ I \cdot J = \{\slim _{i=1} ^{m} a_i b_i \mid m \in  \N, a_i \in I, b_i \in  J\}$
 \end{proof}
 \begin{lm}
@@ -2614,7 +2697,7 @@ $ I_i + I_k = R ~ \forall  j \ne k$.
     $ I \cap  J = (I \cap  J) \cdot R = (I \cap  J) (I + J) = \underbrace{(I \cap  J) \cdot I}_{ \in I \cdot J} + \underbrace{(I \cap J) \cdot J}_{ \in I \cdot J} \subseteq I \cdot J$
 \end{proof}
 \section{Лекция 26}
-$ I, J$ -- идеалы в $ R$ 
+$ I, J$ --- идеалы в $ R$ 
 \[
 I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 .\] 
@@ -2651,14 +2734,14 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 	\[
 	r = br_1+ar_2 \equiv r_2 \mod J
 	.\] 
-	То есть $ \varphi (r) =  (r_1 + I, r_2 + J)$, следовательно, $ \varphi $ -- сюрьективно.
+	То есть $ \varphi (r) =  (r_1 + I, r_2 + J)$, следовательно, $ \varphi $ --- сюрьективно.
 
 	По теореме о гомоморфизме колец \[
 	    R \diagup _{IJ} \cong R\diagup_I \oplus R\diagup_J
 	.\] 
 \end{proof}
 \begin{lm}
-    $ J, I_1, \ldots I_n $ --  идеалы в $ R$. 
+    $ J, I_1, \ldots I_n $ ---  идеалы в $ R$. 
     \[
     J + I_n = R \forall k \Longrightarrow J + I_1 \cdot \ldots I_n = R
     .\] 
@@ -2678,7 +2761,7 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
      .\] 
 \end{proof}
 \begin{thm}[Китайская теорема об остатках]
-    $ I_1, \ldots  I_n$ -- попарно взаимно простые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
+    $ I_1, \ldots  I_n$ --- попарно взаимно простые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
     Тогда \[
 	\frac{R}{I_1\cdot \ldots I_n } \cong \frac{R}{I} \oplus \ldots  \oplus \frac{R}{I_n}
     .\] 
@@ -2731,13 +2814,13 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
     Другими словами $ R \setminus P$ замкнуто относительно умножения
 \end{note}
 \begin{ex}
-    В $ \Z$ идеал $ n\Z$ -- простой тогда и только тогда, когда  $ n $ -- простое.
+    В $ \Z$ идеал $ n\Z$ --- простой тогда и только тогда, когда  $ n $ --- простое.
 \end{ex}
 \begin{ex}
-    В $ F[t]$ идеал $ f \cdot F[t]$ простой тогда и только тогда, когда $ f$ -- неприводимый многочлен.
+    В $ F[t]$ идеал $ f \cdot F[t]$ простой тогда и только тогда, когда $ f$ --- неприводимый многочлен.
 \end{ex}
 \begin{ex}
-    Однако в $ \Z[\sqrt{-3}]=R$  идеал $ 2R$ -- не простой, хотя $ 2$ не приводимо.
+    Однако в $ \Z[\sqrt{-3}]=R$  идеал $ 2R$ --- не простой, хотя $ 2$ не приводимо.
 	\[
 	    (1 + \sqrt{-3})(1-\sqrt{-3}) = 4 \in  2R
 	.\] 
@@ -2754,14 +2837,14 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
     $ F[x, y] = R$
      \[
     I = xR + yR
-    .\] -- простой.
+    .\] --- простой.
 \end{ex}
 \begin{defn}
-    Максимальны идеал -- максимальный собственный идеал. 
+    Максимальны идеал --- максимальный собственный идеал. 
     Что равносильно тому, что это максимальный из идеалов, не содержащих единицу.
 \end{defn}
 \begin{note}
-     Другими словами, $ M$ -- максимальный идеал, если $ M \ne R$ и $ M \subseteq I \subset R \Rightarrow I = M$
+     Другими словами, $ M$ --- максимальный идеал, если $ M \ne R$ и $ M \subseteq I \subset R \Rightarrow I = M$
 \end{note}
 \begin{thm}
     Любой собственный идеал содержится в каком-то максимальном.
@@ -2769,20 +2852,20 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 \begin{proof}
     $ J \trianglelefteq R$. % сделать отрицание нестрогости!!
 
-    $ \mathcal{X}$ -- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
+    $ \mathcal{X}$ --- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
 
-    $\mathcal{Y}$ -- линейно упорядоченное подмножество $ \mathcal{X}$, то $ \bigcup_{I \in \mathcal{Y}} \in \mathcal{X}$
+    $\mathcal{Y}$ --- линейно упорядоченное подмножество $ \mathcal{X}$, то $ \bigcup_{I \in \mathcal{Y}} \in \mathcal{X}$
     \[
 	a, b \in  \bigcup_{I \in \mathcal{Y}} I \Longrightarrow \exists I_1, I 2 \in \mathcal{Y}: a \in  I_1, b \in I_2 \wedge (I_1 \subseteq I_2 \vee I_2 \subseteq I_1) 
     ,\] 
-    так как $\mathcal{Y}$ -- линейно упорядочено.
+    так как $\mathcal{Y}$ --- линейно упорядочено.
     \[
 	a, b \in  I_k ~(k = 1, 2): a+b \in  I_k \subseteq \bigcup_{I \in \mathcal{Y}}  I
     .\] 
     \[
     a \in  \bigcup I \Longrightarrow ra \in  \bigcup I, r \in  R
     .\] 
-    Следовательно, $ \bigcup_{I \in \mathcal{Y}}  $ -- идеал.
+    Следовательно, $ \bigcup_{I \in \mathcal{Y}}  $ --- идеал.
     \[
     \bigcup_{I \in\mathcal{Y}} \subseteq J \wedge \bigcup_{ I \in \mathcal{Y}} \not\ni 1 
     .\] 
@@ -2793,9 +2876,9 @@ I + J = R \Leftrightarrow  I, J \text{ взаимно простые}
 \section{Лекция 27}
 \subsection{Фактор кольцо по максимальному идеалу}
 \begin{st}
-    $ P$ -- простой идеал в $ R$ тогда и только тогда, когда  $ R \diagup P$ -- область целостности.
+    $ P$ --- простой идеал в $ R$ тогда и только тогда, когда  $ R \diagup P$ --- область целостности.
 
-    $ \mathfrak{M}$ -- максимальный тогда и только тогда, когда $ R \diagup M$ -- поле.
+    $ \mathfrak{M}$ --- максимальный тогда и только тогда, когда $ R \diagup M$ --- поле.
 \end{st}
 \begin{proof}
 $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
@@ -2806,14 +2889,14 @@ $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
 \[
 \overline{a} \overline{b} \Leftrightarrow \overline{a} =0 \vee \overline{b}=0
 .\] 
-Обозначим $ L(I, \mathfrak{R})$ -- множество идеалов в $ R$, содержащих  $ I$.
+Обозначим $ L(I, \mathfrak{R})$ --- множество идеалов в $ R$, содержащих  $ I$.
 \[
 \overline{\cdot} : R \to  R \diagup P
 .\] 
 Докажем, что 
  \[
      \overline{\cdot}: L(R \diagup \mathfrak{M}), ~ I \mapsto \overline{I}
- .\] -- Образ этого идеала в $ R \diagup \mathfrak{M}$
+ .\] --- Образ этого идеала в $ R \diagup \mathfrak{M}$
  При эпиморфизме идеал отображается в идеал.
   $ \overline{ a} \in  \overline{I}$ , где $ a \in I$.
   $ \overline{r} \in  R \diagup \mathfrak{M}$, $ \overline{r} \overline{a} \in  \overline{I}$
@@ -2821,9 +2904,9 @@ $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
   Обратное: $ L(0, R\diagup\mathfrak{M}) \to  L(\mathfrak{M}, R)$. 
   Взятие полного прообраза $ \overline{I} \mapsto I + \mathfrak{M} \triangleleft R$.
 
-  $ L(M, R) = \{\mathfrak{M}, R\} \Leftrightarrow L(\{0\}, R \diagup M ) = \{\{0\}, R \diagup M\} \Leftrightarrow R\diagup M$ -- поле.
+  $ L(M, R) = \{\mathfrak{M}, R\} \Leftrightarrow L(\{0\}, R \diagup M ) = \{\{0\}, R \diagup M\} \Leftrightarrow R\diagup M$ --- поле.
 \[
-\overline{ \alpha } \in  R \diagup M \wedge \alpha \ne 0 \Leftarrow  \overline{ \alpha } R \diagup M = R \diagup M \Leftrightarrow \overline{ \alpha } \text{ -- обратим}
+\overline{ \alpha } \in  R \diagup M \wedge \alpha \ne 0 \Leftarrow  \overline{ \alpha } R \diagup M = R \diagup M \Leftrightarrow \overline{ \alpha } \text{ --- обратим}
 .\] 
 \end{proof}
 \begin{cor}
@@ -2837,15 +2920,15 @@ $ ab \in  P \Leftrightarrow  a \in  P \vee b \in  P$.
     Тогда  $ p = mr \Longrightarrow m \in  pR \vee r \in  pR$. В первом случае $ mR = pR$, а втором  $ r = pa$, то есть $ p = map \Longrightarrow  1 = ma \Longrightarrow  mR = R$. Противоречие. 
 \end{proof}
 \subsection{Единственность разложения}
-$ R$ -- кольцо с $ 1$.
+$ R$ --- кольцо с $ 1$.
  \begin{defn}
-    $ p \in R$ -- простой, если $ pR$ -- простой.
+    $ p \in R$ --- простой, если $ pR$ --- простой.
 \end{defn}
 \begin{defn}
     $ a, b \in  R$ ассоциированные тогда и только тогда, когда $ aR = bR$
 \end{defn}
 \begin{lm}
-    $ R $-- область целостности. $ a, b$ -- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon \in \R^{*}$
+    $ R $-- область целостности. $ a, b$ --- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon \in \R^{*}$
 \end{lm}
 \begin{proof}
     $ aR = bR \Rightarrow a = b \cdot \varepsilon , b = a \delta  \Rightarrow a = a \delta  \varepsilon  \Leftrightarrow a (1- \delta  \varepsilon ) = 0 \Rightarrow \varepsilon  \text{ обратим }$
@@ -2857,7 +2940,7 @@ $ R$ -- кольцо с $ 1$.
     Простой элемент неприводим. В ОГИ неприводимый является простым.
 \end{lm}
 \begin{proof}
-    $ pR$ -- простой идеал, следовательно,
+    $ pR$ --- простой идеал, следовательно,
     \[
     ab = p \Rightarrow 
     \left [
@@ -2884,63 +2967,63 @@ $ R$ -- кольцо с $ 1$.
     \end{array}
     \right.
     .\] 
-    Получаем, что $ p$ -- неприводим.
+    Получаем, что $ p$ --- неприводим.
 
     Теперь в обратную сторону.
 
-    $ R$ -- область главных идеалов, $ p $ -- неприводим. $ ab \in  pR$.
+    $ R$ --- область главных идеалов, $ p $ --- неприводим. $ ab \in  pR$.
 
     $ aR + bR = cR \Longrightarrow p = cd \Longrightarrow c, d \in  R^{*}$
 
     Если $ d \in  R^{*} \Longrightarrow cR = pR \Longrightarrow aR \subset pR$, если $ c \in  R^{*} \Longrightarrow  aR +pR = R$, домножим на $ b: \underbrace{abR + pbR }_ { \subset   pR}= bR \Longrightarrow  bR \subset pR$
 \end{proof}
 \begin{defn}
-    Для колец $ \dim R$ --  размерность Крулля кольца или максимальная длина цепочки строго вложенных простых идеалов.
+    Для колец $ \dim R$ ---  размерность Крулля кольца или максимальная длина цепочки строго вложенных простых идеалов.
 \end{defn}
 \begin{ex}
     $ \dim F[x_1, \ldots x_n] = n$
 \end{ex}
 \subsection{Нётеровы кольца}
 \begin{defn}
-    $R$ -- нётерово тогда и только тогда, когда любое линейно упорядоченное множество идеалов содержит наибольший элемент.
+    $R$ --- нётерово тогда и только тогда, когда любое линейно упорядоченное множество идеалов содержит наибольший элемент.
 
-ACC -- ascending chain condition (условие обрыва возрастающих цепей)
+ACC --- ascending chain condition (условие обрыва возрастающих цепей)
 \end{defn}
 \begin{defn}
-Артиново кольцо -- аналогично, но заменить наибольший, на наименьший.
+Артиново кольцо --- аналогично, но заменить наибольший, на наименьший.
 
-DCC -- descending chain condition (условие обрыва убывающих цепей)
+DCC --- descending chain condition (условие обрыва убывающих цепей)
 \end{defn}
 \begin{lm}
-    $ R$ -- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
+    $ R$ --- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
 \end{lm}
 \begin{proof}
-    Пусть $ R$ -- нётерово, $ I \triangleleft R$. Возьмем $ a_1 \in  I$. \[
+    Пусть $ R$ --- нётерово, $ I \triangleleft R$. Возьмем $ a_1 \in  I$. \[
     a_1 R = I_1\ne I \Longrightarrow  \exists  a_2 \in  I \setminus R , I_2 := a_1R + a_2R \ldots  
     .\] 
     Получаем цепочку, которая на может быть бесконечной, значит она где-то оборвется и мы получим, что любой идеал порожден этим набором.
      
     В обратную сторону.
 
-    $ \mathcal{A} $ -- линейно упорядоченное множество идеалов. 
+    $ \mathcal{A} $ --- линейно упорядоченное множество идеалов. 
     \[
 	\bigcup_{I \in  \mathcal A} I = a_1 R + \ldots  +a_n R
     .\] (так как оно конечно порожден)
     $ \exists  I_1, \ldots I_n \in  \mathcal{A}$, такие что $ a_k \in  I_k$.
-    Так как $ \mathcal{A}$ -- линейно упорядочено, существует наибольший из $ I_k$, пусть $ I_j$.
+    Так как $ \mathcal{A}$ --- линейно упорядочено, существует наибольший из $ I_k$, пусть $ I_j$.
      \[
     a_1, \ldots a_n \in  I_j \Longrightarrow a_1R + \ldots + a_n R = I_j
     .\] 
-$ I_j$ -- наибольший из $ \mathcal{A}$
+$ I_j$ --- наибольший из $ \mathcal{A}$
 \end{proof}
 \begin{thm}
-    $ R$ -- нётерово. Тогда любой элемент раскладывается в произведение неприводимых.
+    $ R$ --- нётерово. Тогда любой элемент раскладывается в произведение неприводимых.
 \end{thm}
 \section{Лекция 28}
 \subsubsection{Отступление}
-$ p$ -- неприводим тогда и только тогда, когда $ pR$ -- максимальный среди собственных главных идеалов.
+$ p$ --- неприводим тогда и только тогда, когда $ pR$ --- максимальный среди собственных главных идеалов.
 
-$ R$ -- область целостности.
+$ R$ --- область целостности.
 \[
 pR \subseteq a R \Longrightarrow p = ar \Longrightarrow 
 \left[
@@ -2968,7 +3051,7 @@ pR \subseteq a R \Longrightarrow p = ar \Longrightarrow
 Хотим доказать, что $ p$ неприводим и $ \overline{p} R \subsetneq \overline{a}R \subsetneq R$%% здесь строгие включения.
 .
 Профакторизуем:
-$ \overline{p}$ -- образ $ p $ в $ R$, 
+$ \overline{p}$ --- образ $ p $ в $ R$, 
 \[
 R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 .\] 
@@ -2983,7 +3066,7 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 	R \diagup (I+J) \cong (R \diagup I)\diagup _{\pi_I (J)} \cong (R\diagup J) \diagup _{\pi_J(I)}
     .\] 
 \end{st}
-Тогда $ \overline{p} R$ -- простой идеал, следовательно, $ p$ -- неприводим.
+Тогда $ \overline{p} R$ --- простой идеал, следовательно, $ p$ --- неприводим.
 В фактор кольце $ R\diagup (\overline{p}): \overline{p}R \to  0 , ~ \overline{a}R \to \text{не }0 \text{ и не все кольцо}$
 \begin{ex}
     $ \Z[i]\diagup (7) \cong (\Z[x]\diagup(x^2 + 1))\diagup (7) \cong (\Z[x]\diagup (7))\diagup (x^2 +1) \cong (\Z \diagup 7\Z )[x] \diagup (x^2+1)$. 
@@ -2992,7 +3075,7 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
     Значит, $ \Z[i]\diagup (7) \cong \mathbb{F}_{49}$.
 \end{ex}
 \begin{st}
-    Рассмотрим кольцо $ R$, $ A$ -- $ R$-алгебра.
+    Рассмотрим кольцо $ R$, $ A$ --- $ R$-алгебра.
     Тогда \[
 	\forall a_1, \ldots a_n \in  A: \exists ! \varphi _{a_1, \ldots a_n} : R[x_1, \ldots x_n] \to  A: \varphi _{a_1, \ldots a_n} (x_{i}) = A
     .\] 
@@ -3000,13 +3083,13 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 \end{st}
 \subsection{Продолжение нёторвых колец}
 \begin{thm}[Теорема Гильберта о базисе]
-    $ R$ -- нётерово (коммутативное кольцо с единицей). Тогда $ R[x]$ -- нётерово.
+    $ R$ --- нётерово (коммутативное кольцо с единицей). Тогда $ R[x]$ --- нётерово.
 \end{thm}
 \begin{note}
     $ b \mid a \Leftrightarrow aR \subseteq bR$
 \end{note}
 \begin{thm}
-    $ R$ -- неторова область целостности. Любой необратимый элемент раскладывается в произведение неприводимых.
+    $ R$ --- неторова область целостности. Любой необратимый элемент раскладывается в произведение неприводимых.
 \end{thm}
 \begin{proof}
     $ a \in  R \setminus R^{*}$ 
@@ -3014,12 +3097,12 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
 	\item Докажем, что существует такое $ p$, что $ p \mid a$ для неприводимого $ p$.
 	     Если $ a$ неприводим, все отлично, иначе он предстваляется в виде
 	     $ a = r_1 a_1$.
-	     При этом $ a_1R \ne aR$ и тогда $ aR \subsetneq a_1R \subsetneq  a_2R \subsetneq \ldots \subsetneq a_nR$. Эта цепочка точно оборвется, так как $ R$ -- неторово. Причем $ p = a_n$ -- неприводим, иначе он не может быть последним.
+	     При этом $ a_1R \ne aR$ и тогда $ aR \subsetneq a_1R \subsetneq  a_2R \subsetneq \ldots \subsetneq a_nR$. Эта цепочка точно оборвется, так как $ R$ --- неторово. Причем $ p = a_n$ --- неприводим, иначе он не может быть последним.
 	     Значит $ p \mid a$.
-	 \item $ p = p_1$ -- неприводим.
+	 \item $ p = p_1$ --- неприводим.
 	     $ a = p_1 c_1 $
 
-	     Если $ c_1 \in  R^{*}$, то $ p_1c_1 $ -- неприводим.
+	     Если $ c_1 \in  R^{*}$, то $ p_1c_1 $ --- неприводим.
 	     Иначе $ p_1c_1 = = p_1 p_2с_2 = \ldots  = p_1 p_2 \ldots p_m c_m$.
 
 	     $ c_m \mid c_{m-1} \ldots \mid c_1$ и $ c_1R \subsetneq c_2R \subsetneq  \ldots c_m R$  % здесь и ранее включения строгие \subseteq
@@ -3037,16 +3120,16 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
     Кольцо называется факториальным, если любой необратимый элемент единственным образом раскладывается в произведение неприводимых с точностью до ассоциированности.
 \end{defn}
 \begin{lm}
-    Факториальное кольцо -- область целостности.
+    Факториальное кольцо --- область целостности.
 \end{lm}
 \begin{proof}
-    Если $ p_1\cdot \ldots \cdot p_m = 0$ , то $ p_1^2 \cdot p_2 \cdot \ldots  \cdot p_m = 0$ -- другое разложение.
+    Если $ p_1\cdot \ldots \cdot p_m = 0$ , то $ p_1^2 \cdot p_2 \cdot \ldots  \cdot p_m = 0$ --- другое разложение.
 
     Единственность означает:
-    $ p_1 \cdot \ldots  p_m = q_1 \cdot \ldots q_n $, где $ p_i, q_j$ -- необратимые $ \Longrightarrow m=n \wedge \exists  \sigma \in  S_m: p_i  $ ассоциировано с $ \sigma (i)$.
+    $ p_1 \cdot \ldots  p_m = q_1 \cdot \ldots q_n $, где $ p_i, q_j$ --- необратимые $ \Longrightarrow m=n \wedge \exists  \sigma \in  S_m: p_i  $ ассоциировано с $ \sigma (i)$.
 \end{proof}
 \begin{thm}
-    В $ R$ любой элемент раскладывается в произведение неприводимых и любой неприводимый элемент является простым. Тогда $ R$ -- факториально.
+    В $ R$ любой элемент раскладывается в произведение неприводимых и любой неприводимый элемент является простым. Тогда $ R$ --- факториально.
 \end{thm}
 \begin{note}
     Верно и обратное
@@ -3061,9 +3144,9 @@ R \diagup_{(\overline{p}} \cong \Z[a, p, x] \diagup _{ (p, p(ax-1)) }
     Переход:  $ \max(n, m) > 1$
 
     Пусть $ n > 1$. \[
-	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ -- простое}}\Longrightarrow  p_1\mid q_i \text{  для некоторого} i  
+	q_1 \cdot \ldots q_n \in  p_1 R \stackrel{p_1 R \text{ --- простое}}\Longrightarrow  p_1\mid q_i \text{  для некоторого} i  
     .\] 
-    тогда $q_i \in  p_i R \Longrightarrow  q_i = p_i r_i$. Так как $ q_i$  неприводим, $ r_i$ -- обратим, следовательно, $ q_i$ ассоциирует с $ p_1$.
+    тогда $q_i \in  p_i R \Longrightarrow  q_i = p_i r_i$. Так как $ q_i$  неприводим, $ r_i$ --- обратим, следовательно, $ q_i$ ассоциирует с $ p_1$.
 \[
 q_1 \ldots g_{i-1} r_1 q_{i+1} \ldots  q_n = p_1 \ldots  p_m
 .\] 
@@ -3073,24 +3156,24 @@ q_1 \ldots g_{i-1} r_1 q_{i+1} \ldots  q_n = p_1 \ldots  p_m
     Область главных идеалов является факториальным кольцом.
 \end{cor}
 \begin{thm}
-    $ R$ -- факториальное кольцо. Тогда $ R[x]$ -- тоже факториально.
+    $ R$ --- факториальное кольцо. Тогда $ R[x]$ --- тоже факториально.
 \end{thm}
 \section{Лекция 29}
 \subsection{Локализация кольца}
-$ s \in  R \stackrel{ \varphi } \longrightarrow A$, $ \varphi (s) ^{e}$ -- обратный.
+$ s \in  R \stackrel{ \varphi } \longrightarrow A$, $ \varphi (s) ^{e}$ --- обратный.
 
 Если $ r \cdot s = 0$, то $ \varphi (r) = 0$.
 \begin{defn}
-    $ S \subseteq R$, $ S$ -- мультипликативное подмножество, если:
+    $ S \subseteq R$, $ S$ --- мультипликативное подмножество, если:
     \begin{itemize}
 	\item $ 1 \in  S$ 
 	    \item  $\forall s_1, \ldots  s_2 \in  S: s_1 s_2 \in S$
     \end{itemize}
 \end{defn}
 \begin{defn}
-    Локализация кольца $ R$ в мультипликативном подмножестве $ S$ -- кольцо $ S^{-1}R$ вместе с гоморфизмом $ \lambda_S: R  \to S^{-1}R $, такое что:
+    Локализация кольца $ R$ в мультипликативном подмножестве $ S$ --- кольцо $ S^{-1}R$ вместе с гоморфизмом $ \lambda_S: R  \to S^{-1}R $, такое что:
     \begin{itemize}
-	\item  $ \lambda_S(s)$ -- обратимо в $ S^{-1}R \quad \forall s \in S$ 
+	\item  $ \lambda_S(s)$ --- обратимо в $ S^{-1}R \quad \forall s \in S$ 
 	\item $ \forall \varphi : R \to  A: \varphi (s) $ обратимо в $ A ~ \forall s \in  S ~ \exists ! $ гомоморфизм $ \psi : S^{-1 R \to  A} $ такое что: $ \varphi  = \psi \circ \lambda_S$
 	    $$
 	    \begin{array}{ccc} % ДОРИСОВАТЬ ДИАГРАММУ!
@@ -3145,7 +3228,7 @@ $ \lambda _S(x_1) + \lambda_S(r_1) = \frac{r_1}{1} + \frac{s_2}{1} = \frac{r_1 +
 
 $    \lambda_s(s) = \frac{s}{1} $ обратим: $ \frac{s}{1} \frac{1}{s} = \frac{s}{s}=1$
 
-Таким образом, $ S^{-1}R$ -- кольцо.
+Таким образом, $ S^{-1}R$ --- кольцо.
 
 $ \varphi  : R ro A , ~ \exists  \varphi (s)^{-1} \quad \forall  s \in  S$
 
@@ -3167,31 +3250,31 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      $ \psi$ задается единственным образом.
  \end{note}
  \begin{lm}
-     $ \lambda_S $ -- инъекция тогда и только тогда, когда  в $ S$ нет делителей нуля.
+     $ \lambda_S $ --- инъекция тогда и только тогда, когда  в $ S$ нет делителей нуля.
  \end{lm}
  \begin{proof}
      $ \frac{r_1}{1} \frac{r_2}{ 1} \Leftrightarrow  \exists  s \in  S : s (r_1 - r_2) = 0 \Leftrightarrow r_1 = r_2  \Leftrightarrow \text{ в }S \text{ нет делителей нуля}$
  \end{proof}
  \begin{ex}
-     $ R$ -- область целостности.
+     $ R$ --- область целостности.
      $ S = R \setminus \{0\}$
      
-     Тогда $ S^{-1}R$ -- поле частных.
+     Тогда $ S^{-1}R$ --- поле частных.
 
      \begin{st}
          Любая область целостности вкладывается в поле.
      \end{st}
  \end{ex}
  \begin{ex}
-     $ S $ -- множество всех неделителей нуля.
+     $ S $ --- множество всех неделителей нуля.
 
-     $ S^{-1} R$ -- полное кольцо частных.
+     $ S^{-1} R$ --- полное кольцо частных.
  \end{ex}
  \begin{ex}
-     $ P$ -- простой идеал. $ S = R \setminus P$ -- мультипликативное подмножество. 
+     $ P$ --- простой идеал. $ S = R \setminus P$ --- мультипликативное подмножество. 
      $
 	 R_{P}:=(R \setminus P) ^{-1} R 
-	 $ --  локализация в простом идеале.
+	 $ ---  локализация в простом идеале.
 
 	 \begin{ex}
 	     $ P = 2 \Z, R = \Z$
@@ -3200,14 +3283,14 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
 	 \end{ex}
  \end{ex}
  \begin{defn}
-     Главная локализация -- $ R_S l= \langle s \rangle ^{-1 }R$
+     Главная локализация --- $ R_S l= \langle s \rangle ^{-1 }R$
 
       $ \langle s \rangle:= \{1, s, s^2 \ldots \},  ~ s \in  R$
  \end{defn}
  \begin{ex}
      Кольцо многочленов над кольцом $ R[x]$.
 
-     $ S$ -- множество унитарных многочленов.
+     $ S$ --- множество унитарных многочленов.
      $ S^{-1}R[x]$ 
 
      \[
@@ -3217,7 +3300,7 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \section{Лекция 30}
  \subsection{НОК и НОД}
  \begin{defn}
-     $ R$ -- ОГИ, $ a, b \in  R$.\[
+     $ R$ --- ОГИ, $ a, b \in  R$.\[
      aR + bR = dR
      .\] 
      $ d = \gcd (a, b)$ --- наибольший общий делитель.
@@ -3226,7 +3309,7 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      $ \forall a, b \in  R ~\exists  x, y \in  R: ~ ax + by = \gcd(a, b)$
  \end{thm}
  \begin{defn}
-     $ R$ -- ОГИ, $ a, b \in  R$.
+     $ R$ --- ОГИ, $ a, b \in  R$.
  $$ aR \cap  bR = cR.$$
  $ x = \lcm (a, b)$ --- наименьшее общее кратное.
  \end{defn}
@@ -3234,7 +3317,7 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      $ \lcm(a, b) = \frac{a \cdot b}{\gcd(a, b)}$
  \end{prac}
  \begin{st}
-     $ F$ -- поле частных $ R$. $ a, b, b_i \in  R$.
+     $ F$ --- поле частных $ R$. $ a, b, b_i \in  R$.
      Разложим $ \frac{a}{b} = \frac{a}{b_1 b_2}$, где $ \gcd(b_1, b_2)$.
      Тогда \[
      \exists  x_1, x_2 \in  R: a = b_1x_1 a + b_2x_2a
@@ -3243,26 +3326,26 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \end{st}
  \begin{st}
      \[
-     b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m} \quad  p_i \text{ -- неприводимы}
+     b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m} \quad  p_i \text{ --- неприводимы}
      .\] 
      $ p_i^{k_i} $ взаимно просто с $ \prod_{j \ne i} p_j ^{k_j}$.
  \end{st}
  \begin{st}
-     $ R$ -- ОГИ, $ F$ -- поле частных.
+     $ R$ --- ОГИ, $ F$ --- поле частных.
      \[
 	 \forall a \in  R ~ \exists  a_i \in  R: \frac{a}{b} = \sum_{i=1}^{m} \frac{a_i}{p_i^{k_i}}, \quad b = \prod p_i^{k_i}
      .\] 
  \end{st}
  \begin{defn}
-     $ R$ -- евклидово кольцо с евклидовой нормой $ f$.
+     $ R$ --- евклидово кольцо с евклидовой нормой $ f$.
 
-     $ \frac{c}{p^{k}}$  называется простейшей дробью, если $ p$ -- простой в $ R$, $ k \in \N, c \in  R, ~ f(c) < f(p)$.
+     $ \frac{c}{p^{k}}$  называется простейшей дробью, если $ p$ --- простой в $ R$, $ k \in \N, c \in  R, ~ f(c) < f(p)$.
  \end{defn}
  \begin{thm}
      Любой элемент поля частных $ F$ евклидова кольца $ R$ раскладывается в сумму элемента из $ R$ и простейших дробей. 
  \end{thm}
  \begin{proof}
-     $ p $ -- неприводим, $ k \in  \N, a \in  R $. Разложим $ \frac{a}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
+     $ p $ --- неприводим, $ k \in  \N, a \in  R $. Разложим $ \frac{a}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
       
      Индукция по $ k$.
 
@@ -3274,10 +3357,10 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      \[
      \frac{a}{p^{k}} = \frac{b}{p^{k-1}} + \frac{c}{p^{k}}
      .\] 
-     По предположению индукции $ \frac{b}{p^{k-1}}$ раскладывается, а $ \frac{c}{p^{k}}$ -- простейшая.
+     По предположению индукции $ \frac{b}{p^{k-1}}$ раскладывается, а $ \frac{c}{p^{k}}$ --- простейшая.
  \end{proof}
  \subsection{Кольца многочленов}
-     $ R$ -- коммутативное кольцо с единицей.
+     $ R$ --- коммутативное кольцо с единицей.
  \begin{defn}
      Многочлен от $ t$ над $ R$ --- кортеж $ ( \alpha _0, \ldots  \alpha _n)$, записанный в виде $ \alpha _0 + \alpha _1 t + \ldots + \alpha _n t^{n}$
  \end{defn}
@@ -3288,18 +3371,18 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      \[
 	 \alpha _0 + \ldots + \alpha _n t ^{n}
      .\] 
-     $ \alpha _n$ -- старший коэффициент, 
-     $ \alpha _0$ -- свободный член.
+     $ \alpha _n$ --- старший коэффициент, 
+     $ \alpha _0$ --- свободный член.
 
-     $ R[t]$ -- множество всех многочленов от переменной $ t$ в поле $ R$. 
+     $ R[t]$ --- множество всех многочленов от переменной $ t$ в поле $ R$. 
  \end{defn}
  \begin{note}
-     $ R[t]$ -- коммутативное кольцо с единицей.
+     $ R[t]$ --- коммутативное кольцо с единицей.
      $ R  \hookrightarrow  R[t] \to  R, \quad \alpha _0 + \ldots + \alpha _n t ^{n} \mapsto \alpha _0$
  \end{note}
  \subsubsection{$ R$ - алгебра.}
  \begin{defn}
-     $ A $-- алгебра над $ R$ , если $ A$ -- кольцо и  $ R$  -- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
+     $ A $-- алгебра над $ R$ , если $ A$ --- кольцо и  $ R$  --- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
 
      По другому:
      $ 
@@ -3321,7 +3404,7 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \begin{defn}
      $ A, B$ алгебры над $ R$.\[
      \Theta : A \to  B
-     \]  -- гомоморфизм $ R$ -алгебр, если 
+     \]  --- гомоморфизм $ R$ -алгебр, если 
      \begin{enumerate}
 	 \item $ \Theta(a_1a_2) =\Theta (a_1) \Theta(a_2) $
 	 \item $ \Theta(a_1+a_2) = \Theta(a_1) + \Theta(a_2)$
@@ -3334,7 +3417,7 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \[
      \varepsilon _a(p) = p(a) := \alpha _0 + \ldots + \alpha _n a^{n}
  .\] 
- $ \varepsilon _a: R[t] \to  A$ -- гомоморфизм подстановки.
+ $ \varepsilon _a: R[t] \to  A$ --- гомоморфизм подстановки.
  \end{defn}
  \begin{st}[Универсальное свойство кольца многочленов]
      $
@@ -3357,13 +3440,13 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \begin{st}
      $
      \forall a_1, \ldots a_n \in  A ~ \exists  
-     \exists !$ гомоморфизм $ R$ -- алгебры  :
+     \exists !$ гомоморфизм $ R$ --- алгебры  :
      \[
 	 R[t_1, \ldots t_n] \to  A: ~ \forall i ~ t_i \mapsto a_i
      .\] 
  \end{st}
  \subsection{Вернемся к многочленам от одной переменой}
- $ F$ -- поле. $ F[t]$ -- евклидово с евклидовой нормой $ \deg$.
+ $ F$ --- поле. $ F[t]$ --- евклидово с евклидовой нормой $ \deg$.
  \begin{thm}[Безу]
      Остаток от деления $ p \in  F[t]$ на $ t - \alpha $ равен $ p(\alpha)$.
  \end{thm}
@@ -3374,12 +3457,12 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
      Многочлен степени $ n$ имеет на более $ n$ корней.
  \end{cor}
   \begin{thm}
-     $ F$ -- поле, $ G \le F^{*}$.
-     $ |G|< \infty $. Тогда $ G$ -- циклическая.
+     $ F$ --- поле, $ G \le F^{*}$.
+     $ |G|< \infty $. Тогда $ G$ --- циклическая.
  \end{thm}
  \begin{proof}
      $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ скорни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней. 
-     $ k$ делит  $ |G| \Longrightarrow  \exp G - |G|$. Следовательно, $ G$ -- циклическая. 
+     $ k$ делит  $ |G| \Longrightarrow  \exp G - |G|$. Следовательно, $ G$ --- циклическая. 
  \end{proof}
  \section{Лекция 31}
  % здесь не хватает части лекции
@@ -3409,10 +3492,10 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
  \end{prac}
  \subsection{Кратность корня и формальная производная}
  \begin{defn}
-     $ \alpha $ -- корень $ p \in F[t]$, $ F$ -- поле.\[
+     $ \alpha $ --- корень $ p \in F[t]$, $ F$ --- поле.\[
 	 p = (t - \alpha ) p_1  = \ldots = (t- \alpha )^{k} g, \quad g( \alpha ) \ne 0
      .\] 
-     $ k $ -- кратность корня $ \alpha $ в $ p$.
+     $ k $ --- кратность корня $ \alpha $ в $ p$.
  \end{defn}
  \begin{note}
      Если кратность корня равна нулю, это не корень.
@@ -3425,12 +3508,12 @@ $ \varphi (\frac{r}{s)} ) := \varphi (r) \varphi (s) ^{-1}$
     Второй сомножитель в точке $ \alpha $ не равен нулю, следовательно, кратность $ \alpha $ уменьшилась на один.
 \end{proof}
 \begin{defn}
-    $ A$ -- $ F$-алгебра. $ \delta : A \to  A$ называется дифференцированием, если она $ F$-линейна и  \[
+    $ A$ --- $ F$-алгебра. $ \delta : A \to  A$ называется дифференцированием, если она $ F$-линейна и  \[
 	\partial (u \cdot v) = \partial u \cdot  v = \partial v \cdot  u \qquad u, v \in A
     .\] 
 \end{defn}
 \begin{defn}
-$ F$ -- -коммутативное кольцо с единицей.
+$ F$ --- -коммутативное кольцо с единицей.
 Определим формальную производную на $ F[t]$:
  \[
      \begin{array}{l}
@@ -3451,7 +3534,7 @@ $ F$ -- -коммутативное кольцо с единицей.
 	\item  $ \left( f(g(t)) \right) ' = f'(g(t)) \cdot g'(t)$
     \end{enumerate}
 \end{prop}
-Пусть $ \alpha _1, \ldots  \alpha _n \in  \R$, $ R$ -- кольцо.
+Пусть $ \alpha _1, \ldots  \alpha _n \in  \R$, $ R$ --- кольцо.
 $ P(R)$ --- некоторое утверждение про кольцо $ R$
 Предположим, что $ P$ наследуется подкольцами и факторкольцами, то есть 
  \[
@@ -3488,16 +3571,16 @@ $ P$ формулируется:
     Если $ k \ne 0 $ в $ F$, то при дифференцировании кратность падает на один.
 \end{thm}
 \begin{note}
-    В общем случае: $ \alpha $ -- корень $ g$  кратности $ k \ge  1 \Longrightarrow  \alpha  $ -- корень $ g$ кратности  $ k-1$. 
+    В общем случае: $ \alpha $ --- корень $ g$  кратности $ k \ge  1 \Longrightarrow  \alpha  $ --- корень $ g$ кратности  $ k-1$. 
 \end{note}
 \begin{ex}
     в $ {\mathbb F} _p = \Z \diagup p\Z$ :
 \[
     t ^{p} -1= (t-1)^{p}
 .\]  
-$ 1$ -- корень кратности  $ p$. 
+$ 1$ --- корень кратности  $ p$. 
 \[
-    (t ^{p} - 1)' = 0 \text{ -- кратность } \infty
+    (t ^{p} - 1)' = 0 \text{ --- кратность } \infty
 .\] 
 \end{ex}
  \end{document}
