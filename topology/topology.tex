@@ -832,9 +832,239 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     \label{fig:compose}
 \end{figure}
 \begin{thm}
-    Композиция непрерывных отображений непрерывна.
+    $ X, Y, Z$ --- топологические пространства. $ f: X \to  Y$, $ g: Y \to Z $, $ g \circ f: X \to  Z$.
+    $ f$ непрерывно в $ X$,  $ g$ непрерывно в $ f(X)$. Тогда $ g \circ f $ непрерывно в $ X$.
 \end{thm}
-% вроде не дописано
+\subsection{Еще о непрерывности. Предел отображения}
+\begin{thm}
+    $ f: X \to  Y$ непрерывно тогда и только тогда, когда прообраз замкнутого замкнут.
+\end{thm}
+\begin{ex}
+    $ f: X \to  Y$ непрерывно тогда и только тогда, когда 
+    \[
+	\forall A \subset X: f(\Cl A) \subset \Cl f(A) 
+    ,\] 
+    что равносильно
+    \[
+	\forall A \subset X: f(\Int A) \subset \Int f(A) 
+    .\] 
+\end{ex}
+\begin{defn}
+    Предел отображения $ f: X\setminus {x_0} \to  Y $ в точке $ x_0$ равен $ y_0 \in Y$ при $ x \to  x_0$, если $ \hat{f}: X \to  Y$, определенная равенством \[
+    \begin{cases}
+	f(x) & x \ne x_0 \\
+	y_0 & x = x_0
+    \end{cases}
+    ,\] 
+    непрерывна в точке $ x_0$.
+\end{defn}
+\begin{ex}
+    Непрерывность в $ \pm \infty$: $ \hat{\R} = \R \cup \{+ \infty, -\infty\}$, окрестности $ \pm \infty$ --- лучи, окрестности остальных --- как раньше.
+\end{ex}
+\subsection{Непрерывность и пространства}
+\begin{thm}
+    $ Y \subset X$.
+    Включение  $ in: Y \to  X, ~ in(y) = y \quad \forall  y \in Y$ непрерывно.
+\end{thm}
+\begin{thm}
+    $ f: X \to  Z, ~ Y \subset X$.
+    Если $ f$ непрерывно, то  $ f\!\upharpoonright_Y$ непрерывно.
+\end{thm}
+\begin{proof}
+    $ f\!\upharpoonright_Y = f \circ in$ --- композиция непрерывных непрерывна.
+\end{proof}
+\begin{thm}
+    $ Y \subset  Z, ~ f: X \to  Y$. $ f$ непрерывно  тогда и только тогда, когда  $\hat{f} = in_{Y \to Z} \circ f$ непрерывно.
+\end{thm}
+\begin{proof}
+\begin{figure}[ht]
+    \centering
+    \incfig{nepr-nepr}
+    \label{fig:nepr-nepr}
+\end{figure}
+$ $
+\begin{description}
+    \item \boxed{ 1 \Longrightarrow 2} 
+	Композиция непрерывных непрерывна.
+    \item \boxed{ 2 \Longrightarrow 1} 
+	Рассмотрим  открытое в $ Y$ множество $ A$. 
+	$$ A = Y \cap U, \qquad \text{ где } U  \text{ открыто в } Z$$  
+	\[
+	    f^{-1}(A) = \hat{f}^{-1}(A) = \hat{f}^{-1}(U) 
+	.\] 
+	$ \hat{f}^{-1}(U)$ открыто в $ X$. Следовательно, $ f$ непрерывно.
+\end{description} 
+\end{proof}
+\subsection{Отображения в произведение}
+\begin{defn}[Общий вид отображений в прризведение]
+    Любое отображение $ f: Z \to X \times Y$ имеет вид $ f = (f_1, f_2): f(z) = (f_1(z), f_2(z)) \quad \forall  z \in Z $.
+    $ f_1: Z \to  X$ и $ f_2: Z \to  Y$ --- компоненты.
+
+    В обратную сторону: любая пара $ f_1, f_2$ задаем $ f: Z \to  X \times Y$.
+\end{defn}
+\begin{defn}
+    Пусть $ f: X \to \prod_{i \in I}X_i$. Его компоненты --- композиции с проекциями:
+    \[
+    f_i = p_i \circ f_i, ~ f_i : Z \to  X_i \quad \forall  i \in I
+    .\] 
+\end{defn}
+\begin{thm}\label{th_coord}
+    $ X = \prod X_i$ (тихоновское произведение). $ Z$ --- топологическое пространство, $ f: Z \to  X$, $ f_i = p_i \circ f$ --- компоненты отображения.
+    $ f$ непрерывно тогда и только тогда, когда  $ f_i$ непрерывно для всех $ i$.
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+        \item \boxed{ 1 \Longrightarrow 2} $ f_i = p_i \circ f$ --- композиция непрерывных непрерывна.
+	\item \boxed{ 2 \Longrightarrow 1} 
+		Проверим, что все прообразы предбазы открыты (из этого будет следовать, что и прообразы всех открытых открыты).
+		Пусть $ U$ из предбазы.
+		\[
+		    U = p_i^{-1}(V_i), \quad i \in I \wedge V_i \in \Omega_i
+		.\] 
+		\[
+		    f^{-1}(U) = f^{-1} (p_i^{-1}(V^{i})) = f_i^{-1}(V_i)
+		.\] 
+		А $ f_i^{-1}(V_i)$ открыто, так как $ f_i$ непрерывно.
+    \end{description} 
+\end{proof}
+\subsection{Отображения из произведения}
+\begin{name}
+    $ f: X \times Y \to  Z, ~ f(x, y) \in Z \qquad \forall  x \in X, y \in Y$.
+\end{name}
+\begin{ex}
+    $ f: \R^2 \to  \R$
+\[
+    f(x, y) = 
+    \begin{cases}
+	\frac{2xy}{x^2+y^2} & (x, y) \ne (0, 0)\\
+	0 & x=y=0
+    \end{cases}
+.\] 
+По $ x$, по $ y$ непрерывно. Но при $ x=y\ne 0$,  $ f(a, a) = 1$, при $ x=y=0$,  $ f(0, 0) = 0$, следовательно, непрерывности нет.
+\end{ex}
+\begin{thm}
+    $
+    \left.
+    \begin{array}{l}
+	f(x, y) = x+y \\
+	f(x, y) = x - y \\
+	f(x, y) = xy
+    \end{array}
+\right\}
+    $ непрерывны из $ \R \times \R$ в $ \R$.
+\end{thm}
+\begin{proof}
+    Снабдим $ \R \times \R$ стандартной метрикой.
+    Проверим непрерывность в точке $ (x_0, y_0) \in \R^2$.
+    \begin{enumerate}
+        \item Сумма.
+	    \[
+		\forall \varepsilon >0 ~ \exists \delta = \frac{\varepsilon}{2}: \bigl( (x, y) \in B_{\delta}(x_0, y_0) \Longrightarrow |x-x_0| < \delta \wedge |y-y_0|<\delta \bigr)
+	    .\] 
+	    Тогда 
+	     \[
+		 |f(x, y) - f(x_0, y_0)| = |(x+ y) - x_0 - y_0| \le |x - x_0| + |y - y_0| < 2\delta < \varepsilon 
+	    .\] 
+	\item Разность. Аналогично.
+	\item Произведение.
+	    \[
+	    \forall  \varepsilon >0 ~\exists \delta = \min \left\{ \frac{\varepsilon}{2M + 1}, 1 \right\}, \quad M = \max \{|x_0|, |y_0|\} 
+	    .\] 
+	    Если $ (x, y)$ лежит в шаре  $ B_{\delta}$, то $ x = x_0 + a, ~ y = y_0+b, \qquad |a|, |b| < \delta$.
+	    \[
+		f(x, y) = (x_0+a)(y_0+b) = x_0y_0+ay_0+by_0+ab
+	    .\] 
+	    Тогда  (используем, что $ \delta \le 1$)
+	    \[
+		|f(x, y) - f(x_0, y_0)| = |ay_0+bx_0+ab|<\delta M + \delta M + \delta^2 \le (2M+1) \delta \le \varepsilon 
+	    .\] 
+    \end{enumerate}
+\end{proof}
+\begin{cor}
+    Пусть $ X$ --- топологическое пространство. Если $ f: X \to  \R, ~ g : X \to  \R$ непрерывны, то $ f+g, f-g, fg$ тоже непрерывны.
+\end{cor}
+\begin{proof}
+    Рассмотрим $ F: X \to \R \times \R: F(x) = (f(x), g(x))$. $ F$ непрерывно по теореме \ref{th_coord}.
+    Тогда $ f+g, f-g, fg$ --- композиции  $ F$ и суммы, разности, произведения соответственно.
+\end{proof}
+\begin{cor}
+    $ X$ --- топологическое пространство.  Если $ f: X \to  \R, ~ g: X \to \R$, то $ \frac{f}{g}$ непрерывна на области определения, то есть $ \{x \in X\mid g(x) \ne 0\}$.
+\end{cor}
+\begin{proof}
+    $ g\!\upharpoonright_{\{g \ne  0\}}$ непрерывна.
+    Функция $ \varphi : \R\setminus \{0\} \to  \R, ~ \varphi (t)  = \frac{1}{t}$ непрерывна.
+    Тогда
+    \[
+    \frac{1}{g} = g\!\upharpoonright_{\{g\ne 0\}} \circ \varphi  \text{ тоже непрерывно}
+    .\] 
+    Следовательно,
+    \[
+    \frac{f}{g} = f \cdot \frac{1}{g} \text{ непрерывно}
+    .\] 
+\end{proof}
+\begin{cor}
+    Любая функция от $ n$ переменных, состоящая из элементарных операций, непрерывна на области определения.
+\end{cor}
+\begin{prac}
+    $ X$ --- топологическое пространство. $ f, g: X \to  \R$ --- непрерывные функции. Тогда $ \max \{f, g\}$ и $ \min \{f, g\}$ тоже непрерывны.
+\end{prac}
+\section{Фундаментальные покрытия}
+\begin{defn}
+    $ X$ --- топологическое пространство. {\bf Покрытие}  $ X$ --- Любое семейство подмножеств  $ A_i$:
+    \[
+    \bigcup_{i \in  I} A_i = X
+.\] 
+\begin{description}
+    \item Покрытие $ \{A_i\}$ называется {\bf открытым}, если $ \forall i \in I: A_i $ открыто. 
+    \item Покрытие $ \{A_i\}$ называется {\bf замкнутым}, если $ \forall i \in I: A_i $ замкнуто. 
+    \item Покрытие $ \{A_i\}$ называется {\bf конечным}, если $ I$ конечно. 
+    \item Покрытие $ \{A_i\}$ называется {\bf локально конечным}, если $ \forall a \in X ~ \exists \text{ окрестность } U \ni x: \{i \mid U \cap A_i \ne \varnothing\}$ конечно. 
+\end{description}
+\end{defn}
+\begin{defn}
+    Покрытие  $ \{A_i\}_{i \in I}$ называется {\bf фундаментальным}, если \[
+	\forall  U \subset X : \bigl( \forall i \in I: U \cap A_i \text{ открыто в } A_i \Longrightarrow U \text{ открыто в} X\bigr)
+    .\]  
+\end{defn}
+\begin{thm}
+    $ \{A_i\}_{i \in I}$ --- фундаментальное покрытие. $ f: X \to  Y$. Если $ \forall i \in I: f\!\upharpoonright_{A_i}$ непрерывно, то $ f$ непрерывно.
+\end{thm}
+\begin{proof}
+    Для любого отрытого $ U \subset Y$ и любого $ i \in I$: $ \left( f\!\upharpoonright_{A_i} \right)^{-1}(U)$ открыто в $ A_i$.
+     \[
+	 \left( f\!\upharpoonright_{A_i} \right)^{-1}(U) = f^{-1}(U) \cap A_i
+    .\] 
+    Так как покрытие фундаментальное, из последнего утверждения следует, что $ f^{-1}(U)$ открыто в $ X$.
+\end{proof}
+\begin{thm}
+    Следующие виды покрытий фундаментальны:
+    \begin{enumerate}
+        \item открытые покрытия
+	\item конечные замкнутые покрытия
+	\item локально конечные замкнутые покрытия
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{enumerate}
+        \item Все  $ A_i$ открыты. $ U \subset X$.
+	    \[
+	    \forall  i \in I: U \cap A_i \text{ открыто в} A_i \Longrightarrow U \cap A_i \text{ открыто в } X
+	    .\] 
+	    \[
+		U = \bigcup_{i \in  I} (U \cap A_i) \text{ открыто в }X
+	    .\] 
+	\item $ A_1, \ldots A_n$ замкнуто. $ U \subset X$
+Перейдем к дополнению. Докажем, что $ V = X \setminus U$ замкнуто в $ X$.  $ A_i \cap V $ замкнуто в $ A_i$, следовательно, $ A_i \cap V$ замкнуто в $ X$. 
+\[
+    V = \bigcup_{i=0} ^{n}(V \cap A_i) \text{ замкнуто в } X
+.\] 
+Тогда $ X \setminus V = U $ открыто в $ X$.
+\item Локально конечно  $ \Longrightarrow $ $ V_x$ пересекаются с конечным числом  $ A_i$. Применим второй пункт, получим, что пересечение с  $ U$ открыто в  $ X$.
+    По первому пункту  $ U$ открыто в  $ X$.
+    \end{enumerate}
+\end{proof}
 \section{Гомеоморфизм}
 \begin{name}
     $ X, Y$ --- топологические пространства.
