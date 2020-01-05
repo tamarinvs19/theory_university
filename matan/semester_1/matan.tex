@@ -563,7 +563,7 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \end{defn}
 \begin{note}
     \[
-	\lim \limits_{x \to x_0} f(x) = b \Longleftrightarrow \lim \limits{x \to x_0} |f(x) -b|=0
+	\lim \limits_{x \to x_0} f(x) = b \Longleftrightarrow \lim \limits_{x \to x_0} |f(x) -b|=0
     .\] 
 \end{note}
 \subsection{Единственность предела}\label{ques_15}
@@ -575,7 +575,7 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
     Пусть $a\ne b$. Тогда существуют $U_1 , U_2$ - не пересекающиеся окрестности точек $a, b$. Так как $a, b$ - предельные, \[
 	\begin{array}{c}
 	    \exists \stackrel{\circ} V_1 (x_0): f(\stackrel{\circ} V_1 \cap A) \subset U_1 \\
-	    \exists \stackrel{\circ} V_2 (x_0): f(\stackrel{\circ} V_2 \cap B) \subset U_2 \\
+	    \exists \stackrel{\circ} V_2 (x_0): f(\stackrel{\circ} V_2 \cap A) \subset U_2 \\
     \end{array}
     .\] 
     Рассмотрим $\stackrel{\circ} V(x) = \stackrel{\circ} V_1(x) \cap \stackrel{\circ} V_2(x)$ . $\exists y \in  \stackrel{\circ}V \cap A: f(y) \in  U_1 \wedge f(y) \in  U_2 \Rightarrow U_1 \cap U_2 \ne \varnothing$. Противоречие. 
@@ -586,16 +586,16 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \end{defn}
 \begin{thm}[о пределе сужения]
     $f: A \to \R, x \in A'$, $B \subset A'$\\
-    Пусть $x_1 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\upharpoonright_B)$.
+    Пусть $x_0 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\!\upharpoonright_B)$.
 \end{thm}
 \begin{proof}
     По условию $\forall U(z) \exists \stackrel \circ V: f(\stackrel \circ V \cap A) \subset U $, тем более $f(\stackrel \circ V \cap B) \subset U$.
 \end{proof}
 \begin{thm}[частичное обращение теоремы о пределе сужения]
-    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
+    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \!\upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
 \end{thm}
 \begin{proof}
-    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\upharpoonright_B(\stackrel \circ V \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
+    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\!\upharpoonright_B(\stackrel \circ V) \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
     $\stackrel \circ V \cap \stackrel \circ W_{\delta }$ - тоже окрестность точки $x_0$.
 \end{proof}
 \subsection{Предел постоянной функции и предел тождественного отображения}\label{ques_17}
@@ -605,8 +605,8 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \begin{st}
     $f(x) = c \Longleftrightarrow \lim\limits_{x \to x_0} f(x) = c$
 \end{st}
-\subsection{Предельный переход в неравенстве}\label{ques_18}
-\begin{thm}[Предельный переход в неравенстве]
+\subsection{Неравенства между функциями, имеющими предел}
+\begin{thm}
     $f, g :A \to \R, ~x \in A'$. Предположим, что существуют пределы у $f, g$ в точке $x_0$ равные соответственно $a, b$. Пусть $a<b$. \\
     Тогда существует проколотая окрестность  $\stackrel \circ V (x_0): f(x) < g(x) \quad \forall x \in \stackrel \circ V \cap A$.
 \end{thm}
@@ -619,6 +619,10 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
     .\] 
     Возьмем $\stackrel{\circ} V(x) = \stackrel{\circ} V_1(x) \cap \stackrel{\circ} V_2(x)$ . Тогда $\forall x \in \stackrel \circ V \cap A: f(x) \in  U_1 \wedge g(x) \in  U_2 \Rightarrow f(x) < g(x)$.
 \end{proof}
+\subsection{Предельный переход в неравенстве}\label{ques_18}
+\begin{thm}[Предельный переход в неравенстве]
+    Если  $ g(x) \le f(x)$ на $ A$ и существуют пределы $ a, b$ этих функций в точке  $ x_0$, то $ a \le b$.
+\end{thm}
 \subsection{Принцип двух полицейских}\label{ques_19}
 \begin{thm}[Принцип двух полицейских]
      $f, g, k: A \to \R, x_0 \in A$ \\
@@ -729,6 +733,39 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
     \end{array}
     .\] 
 \end{proof}
+\subsection{Односторонние пределы}
+    \begin{name}
+$f: A \to \R, ~x_0$ - предельная точка $A$, ($x_0 \in \R, \neq \pm \infty $).
+$A_1 = A \cap (- \infty, x_0];~ A_2 = A \cap [x_0, + \infty)$.
+    \end{name}
+\begin{defn} 
+Если $x_0$  --- предельной точка $A_1$, $ \exists ~\lim_{x_0}{f\!\upharpoonright_{A_1}}$, то говорят, что $f$ имеет {\bf   предел слева} от $x_0$.
+Если $x_0$ --- предельная точка $A_2, \exists ~\lim_{x_0}{f\!\upharpoonright_{A_2}}$, то говорят, что $f$ имеет {\bf предел слева} от $x_0$. 
+\begin{name}
+Левый предел обозначают: $\lim_{x \to x_0 - 0}{f(x)}, ~\lim_{x \to      x_0-}{f(x)}$. 
+Правый предел обозначают: $\lim_{x \to x_0 + 0}{f(x)}, ~\lim_{x \to x_0+}{f(x)}$. 
+\end{name}
+\end{defn} 
+ 
+\begin{ex} 
+	 $$A = [0, 2], x_0 = 1, f(x) =  
+\begin{cases} 
+    x& 0 \le x < 1\\ 
+2& x = 1\\ 
+0& 1 < x \le 2 
+\end{cases}
+$$ 
+В точке $1$ у этой функции предел слева - $1$, справа - $0$. 
+\end{ex}
+\begin{ex} 
+$$f(x) =  
+\begin{cases} 
+    \sin{\frac{1}{x}}& x > 0\\ 
+    0& x \le 0 
+\end{cases}
+$$ 
+Слева предел $0$, справа --- нет. 
+\end{ex} 
 \subsection{Сумма геометрической прогрессии}\label{ques_24}
 Рассмотрим функцию $f(n) = \sum\limits_{j=1}^n q^j = \frac{1-q^n}{1-q}, \quad q \in \R$.
 \begin{st}
@@ -769,7 +806,7 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 	Эта функция не имеет предела.
     \item $q < 1$ \\
 	\[
-	    |f(n) | = |\frac{q^n-1}{q-1}| \ge  \frac{1}{|q-1|}(|q|^n -1)
+	    |f(n) | = \left|   \frac{q^n-1}{q-1}\right| \ge  \frac{1}{|q-1|}(|q|^n -1)
 	.\] 
 	Эта функция тоже не имеет предела.
     \end{enumerate}
@@ -803,24 +840,24 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \end{proof}
 \subsection{Предел композиции}\label{ques_37}
 \begin{defn}
-    $f : A \to  \R, g: B \to  \R, f(A) \subset B$. Тогда задана функция композиции $h = g \circ h$.
+    $f : A \to  \R, g: B \to  \R, f(A) \subset B$. Тогда задана функция композиции $h = f \circ g$.
 \end{defn}
 \begin{thm}
     Пусть $b = \lim_{x \to x_0} f(x) \wedge b \in  B' \wedge \lim_{y \to  b} g(y) = d $. Тогда $\lim_{x \to  x_0} f \circ g (x)= d$, если хотя бы одно условие выполнено:
     \begin{enumerate}
-	\item $f(x) \ne b, \quad x \ne x_0$ 
+	\item $f(x) \ne b, \quad \forall x \ne x_0$ 
 	\item $b \in  B, g \mbox{ - непрерывна в точке }b: d = g(b)$
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    Пусть $U$ окрестность точки $d$ ; $\exists V(b)$:
+    Пусть $U$ --- окрестность точки $d$ ; $\exists V(b)$:
     \[
 	y \in  \pivi V \cap B \Rightarrow g(y) \in  U
     .\] 
     \[
-	\exists \pivi W(x_0): x \in  \pivi W \cap A \to f(x) \in  V
+	\exists \pivi W(x_0): x \in  \pivi W \cap A \Rightarrow  f(x) \in  V
     .\] 
-    Пусть выполнено первое условие. Тогда $f(x) \in  \pivi V \Rightarrow  g(f(x)) in U$.
+    Пусть выполнено первое условие. Тогда $f(x) \in  \pivi V \Longrightarrow   g(f(x)) \in U$.
     Пусть выполнено второе условие. Либо $f(x) \ne b$, тогда $g(f(x)) \in  U$, либо $f(x) = b$, тогда $g(f(x)) = d \in  U$
 \end{proof}
 
@@ -917,9 +954,41 @@ $\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0): osc_{\pivi V \cap A}(f - c) \l
 	    a_1+(a_2+a_3) + (a_4+a_5+a_6+a_7) + \ldots +(a_{2^n} + \ldots a_{2^{n+1} -1} \le a_1 + 2 a_2 +4 a_4 + \ldots 2^n a_{2^n} \le a_1 +T
 	.\] 
 \end{proof}
+\subsection{Теорема сравнения для рядов с неотрицательными членами}
+\begin{thm}[Теорема сравнения]
+Пусть $\{a_n\}, \{b_n\}$ - неотрицательные последовательности. Если $a_n \le b_n \forall ~n, \slim_{n = 1}^\infty{b_n}$ сходится, значит и $\slim_{n = 1}^\infty{a_n}$ сходится и $\slim_{n = 1}^\infty{b_n} \ge \slim_{n = 1}^\infty{a_n}$
+\end{thm}
+\begin{proof}
+Пусть $S_n$ (частичные суммы $b$) $\to S$, то есть ограничены сверху. Частичные суммы ряда $a$ тогда ограничены сверху частичными суммами $b$, а значит ограничены $S$ тем более. Значит по предыдущей теореме $\slim_{n = 1}^\infty{a_n}$ сходится, и предел не больше по лемме о предельном переходе в неравенстве.
+\end{proof}
+
 \begin{thm}
     Пусть $s>0$, тогда ряд $\slim_{n=1}^\infty \frac{1}{n^s}$ сходится при $s > 1$ и расходится при $s \le 1$.
 \end{thm}
+\begin{proof}
+$s < 1 \Rightarrow n^s < n \Rightarrow \frac{1}{n^s} > \frac{1}{n} \Rightarrow$ если докажем, что $\slim_{n = 1}^\infty{\frac{1}{n}}$ расходится, то и ряд при $0 < s < 1$ расходится. Проверим, что $S_N = \slim_{n = 1}^N{\frac{1}{n}}$ неограничены. Посмотрим на $S_{2^j}$:
+$$
+\begin{aligned}
+    1 + \left(\frac{1}{2}\right) + \left(\frac{1}{3} + \frac{1}{4}\right) + \left(\frac{1}{5} + \ldots + \frac{1}{8}\right) + \ldots + \left(\frac{1}{2^{j - 1} + 1} + \ldots + \frac{1}{2^j}\right) &\ge 1 + \frac{1}{2} + 2\frac{1}{4} + 4\frac{1}{8} + \dots + 2^{j - 1}\frac{1}{2^j} = \\
+																								     & = 1 + j\frac{1}{2}
+ \end{aligned}
+ $$
+Действительно неограничены. 
+
+Пусть $s > 1$. Хотим доказать, что $1 + \frac{1}{2^s} + \dots + \frac{1}{n^s}$ ограничена сверху. $\exists ~j: 2^j \le n < 2^{j + 1}$.
+$$
+\begin{aligned}
+    1 + \frac{1}{2^s} + \ldots + \frac{1}{n^s} &\le 1 + \frac{1}{2^s} + \ldots + \frac{1}{n^s} + \ldots + \frac{1}{(2^{j + 1} - 1)^s} = \\
+					       &= 1 + \left(\frac{1}{2^s} + \frac{1}{3^s}\right) + \left(\frac{1}{4^s} + \frac{1}{5^s} + \frac{1}{6^s} + \frac{1}{7^s}\right) + \ldots + \left(\frac{1}{2^{js}} + \ldots + \frac{1}{(2^{j + 1} - 1)^s}\right) \le \\
+					       &\le 1 + 2\frac{1}{2^s} + 2^2\frac{1}{2^{2s}} + \dots + 2^j\frac{1}{2^{js}} = 1 + \slim_{k = 1}^j{\frac{1}{2^{k(s - 1)}}} = \frac{\frac{1}{2}^{(s - 1)(j + 1)} - 1}{\frac{1}{2}^{s - 1} - 1} \le \frac{1}{1 - \frac{1}{2}^{s - 1}}
+\end{aligned}
+$$
+Да, ограничена, значит сходится
+\end{proof}
+
+\begin{ex}
+$\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
+\end{ex}
 \section{Верхние и нижние пределы}
 \subsection{Определение и свойства}\label{ques_30}
 \begin{defn}
@@ -1265,6 +1334,21 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
 	\frac{f}{g} = \frac{f_1}{g_1} \underbrace{\frac{f}{f_1} \frac{g_1}{g}}_{\mbox{предел этого равен} 1}
     .\] 
 \end{proof}
+\subsection{Классификация разрывов}
+\begin{enumerate}
+    \item Разрыы превого рода
+	\begin{enumerate}
+	    \item Устранимые разрывы: $ \lim_{x_0} f$ существует, но $ \lim_{x_0} f \ne f(x_0)$.
+	    \item Скачок: $ \exists \lim_{x \to  x_0-} f(x) \wedge \exists \lim_{x \to  x_0+} $, но они не равны.
+		\begin{figure}[ht]
+    \centering
+    \incfig{del-raz}
+    \caption{Разрывы первого рода}
+    \label{fig:del-raz}
+\end{figure}
+	\end{enumerate}
+    \item  Разрывы второго рода --- остальные.
+\end{enumerate}
 \chapter{Непрерывные функции}
 \section{Непрерывность в точке}
 \begin{name}
