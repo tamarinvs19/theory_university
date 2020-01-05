@@ -1295,7 +1295,7 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
     Пусть $ f: A \to  \R, ~ g : A \to \R, ~ x_0 \in A, ~ \alpha , \beta \in \R$.
     \begin{itemize}
 	\item Если $ f$ и  $ g$ непрерывны в точке  $ x_0$, то $ \alpha g + \beta f$ непрерывна в точке $ x_0$.
-	\item     Если $ f$ и  $ g$ непрерывны в точке  $ x_0$ и $ g(x_0) \ne 0$, то $\frac{g}{f}$ непрерывна в точке $ x_0$.
+	\item     Если $ f$ и  $ g$ непрерывны в точке  $ x_0$ и $ g(x_0) \ne 0$, то $\frac{f}{g}$ непрерывна в точке $ x_0$.
     \end{itemize}
 \end{thm}
 \begin{proof}
@@ -1303,7 +1303,7 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
 \end{proof}
 \subsection{Теорема о композиции}
 \begin{thm}[о композиции]
-    $ f: A \to  \R, ~ g: B \to  \R, ~ f(A) \subseteq, ~ x_0 \in A$. Пусть $ f$ непрерывна в точке $ x_0$, $ g$ непрерывна в точке  $ f(x_0) = y_0$.
+    $ f: A \to  \R, ~ g: B \to  \R, ~ f(A) \subseteq B, ~ x_0 \in A$. Пусть $ f$ непрерывна в точке $ x_0$, $ g$ непрерывна в точке  $ f(x_0) = y_0$.
     Тогда $ g\circ f$ непрерывна в точке $ x_0$.
 \end{thm}
 \begin{proof}
@@ -1497,22 +1497,22 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{defn}
     $ A \subset \R, ~ f: A \to  \R$.
     Говорят, что $ f$  {\bf равномерно непрерывна} на $ A$, если
-    $$ \bigl(|x-x_0|< \delta \wedge x \in A\bigr) \Longrightarrow |f(x_0) -f(x_0)| < \varepsilon $$
+    $$ \forall  \varepsilon >0 ~ \forall  \delta>0 ~ x_0 \in A : \bigl(|x-x_0|< \delta \wedge x \in A\bigr) \Longrightarrow |f(x_0) -f(x_0)| < \varepsilon $$
 
     или \[
-	\forall \varepsilon >0 ~ \exists \delta  >0 ~ \forall x, y \in A: \bigl( |x-y|< \delta |f(x) -f(y)|< \varepsilon \bigr)
+	\forall \varepsilon >0 ~ \exists \delta  >0 ~ \forall x, y \in A: \bigl( |x-y|< \delta \Longrightarrow |f(x) -f(y)|< \varepsilon \bigr)
     .\]
 \end{defn}
 \begin{ex}
     $ f(x) = x, ~ A = \R$.
     \[
-	\forall  \varepsilon >0 ~ |x -y| < \varepsilon  \Longrightarrow  |f(x)-f(y)| \Longrightarrow f \text{ равномерно непрерывна}
+	\forall  \varepsilon >0 ~ |x -y| < \varepsilon  \Longrightarrow  |f(x)-f(y)| < \varepsilon  \Longrightarrow f \text{ равномерно непрерывна}
     .\]
 \end{ex}
 \begin{ex}
     $ f(x) = x^2, ~ A \subset \R$
     \[
-	|x^2 - y^2| < \varepsilon  \Longleftrightarrow  |x-y||x+y| C \varepsilon \Longrightarrow f \text{ не равномерно непрерывно}
+	|x^2 - y^2| < \varepsilon  \Longleftrightarrow  |x-y||x+y| < \varepsilon \Longrightarrow f \text{ не равномерно непрерывно}
     .\]
 \end{ex}
 \begin{ex}
@@ -3355,7 +3355,7 @@ f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k}
 $
 \begin{name}
     \[
-	{ m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
+	{m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
     .\]
 \end{name}
 
