@@ -1597,6 +1597,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 		\item $ f(x) - f(x_0) = \beta(x) \cdot (x-x_0) \qquad \forall  x \in V$
 	    \end{enumerate}
 	    \begin{proof}
+		$ $
 		\begin{description}
 		    \item \boxed{  \Longrightarrow }
 			\[
@@ -1804,11 +1805,11 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     .\] 
 \end{proof}
 \section{Правило Лопиталя}
-\begin{thm}[Привило Лопиталя]
-    $ f, g$ заданы и непрерывны на $ [a, b]$, $ f(a) = g(a) = 0$,  $f, g $ дифференцируемы на  $ (a, b)$,   $ g'(y) \ne 0 \quad \forall  y \in (a, b)$, $ \exists \lim_{y \to a+0} \frac{f'(y)}{g'(y)} = d $.
+\begin{thm}[Привило Лопиталя для $ 0/0$]
+    $ f, g$ заданы и непрерывны на $ [a, b]$, $ \lim\limits_{x \to  a+}f(x) = \lim\limits_{x \to a+}g(x) = 0$.  $f, g $ дифференцируемы на  $ (a, b)$,   $ g'(y) \ne 0 \quad \forall  y \in (a, b)$, $ \exists \lim\limits_{x \to a+} \frac{f'(x)}{g'(x)} = d $.
     Тогда 
     \[
-	\lim_{x \to a +0}\frac{f(x)}{g(x)} = d 
+	\lim_{x \to a+}\frac{f(x)}{g(x)} = d 
     .\] 
 \end{thm}
 \begin{proof}
@@ -1824,7 +1825,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 	\left| \frac{f(u)-f(x)}{g(a) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
     .\] 
 \end{proof}
-\begin{thm}[Вариант правила Лопиталя]
+\begin{thm}[Правило Лопиталя для $ \infty/\infty$]
     $ \lim_{x \to  a}f(x)  = \lim_{x \to a}g(x) = \infty $. Если $ \exists \lim_{x \to  a} \frac{f'(x)}{g'(x)} = d $, то 
      \[
 	 \lim_{x \to  a} \frac{f(x)}{g(x)} = d
@@ -1924,13 +1925,13 @@ $ q (x) = (x-a)^{n}$
 \subsection{Полином Тейлора}
 \begin{defn}
     $ f: \langle a, b \rangle \to \R, ~ x_0 \in (a, b)$. Пусть $ p$ --- полином степени не выше  $ n$. Говорят, что он есть  {\bf полином Тейлора} для $ f$ порядка  $ n$ в точке  $ x_0$, если \[
-	f(x) - p(x) \le o_{x \to  x_0}\Bigl((x - x_{n})^{n}\Bigr)
+	f(x) - p(x) \le o_{x \to  x_0}\Bigl((x - x_{0})^{n}\Bigr)
     .\] 
 \end{defn}
 \begin{ex}
     $ n = 0$. 
     \[
-	f(x) -c = o_{x \to  x_0}(1) \Longleftrightarrow f(x) \stackrel{x \to  x_0} \to c
+	f(x) -c = o_{x \to  x_0}(1) \Longleftrightarrow f(x) \stackrel{x \to  x_0} \longrightarrow c
     .\] 
     Существует тогда и только тогда, когда действительно есть предел в точке $ x_0$.
 \end{ex}
@@ -2013,7 +2014,7 @@ $ q (x) = (x-a)^{n}$
     Пусть $ x, x_0 \in (a, b)$ и $ f^{(n+1)}(y)$ существует на открытом интервале между $ x$ и $ x_0$.
     Тогда 
     \[
-	\sum _{j=0}^{n}\frac{f^{(i)} (x_0)}{n!}(x-x_0)^{j} + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}, \qquad \xi \text{ между } x  \text{ и } x_0
+	f(x)=	\sum _{j=0}^{n}\frac{f^{(i)} (x_0)}{n!}(x-x_0)^{j} + \frac{f^{(n+1)}(\xi)}{(n+1)!} (x-x_0)^{n+1}, \qquad \xi \text{ между } x  \text{ и } x_0
     .\] 
 \end{thm}
 \begin{proof}
