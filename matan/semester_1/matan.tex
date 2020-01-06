@@ -2177,7 +2177,7 @@ $ q (x) = (x-a)^{n}$
 
     Аналогичные рассуждения для $ f''(x_0) > 0$.
 \end{proof}
-\section{Сходимость последовательностей}
+\section{Сходимость последовательностей функций}
 \begin{name}
     $ A$ --- множество произвольной природы.  $ f_n: A \to  \R, ~ n \in \N$
     $ \{f_n\}_{n=1}^{\infty}$ --- последовательность функций.
@@ -2197,6 +2197,7 @@ $ q (x) = (x-a)^{n}$
         Обозначается: $ f_n \rightrightarrows f$.
     \end{name}
 \end{defn}
+\subsection{Теорема Стокса-Зейделя}
 \begin{thm}[Стокс-Зайдель]
     $ A \subset \R, ~ f_n: A \to  \R$, $ f_n$ равномерно сходится к $ f: A \to \R$. Если все $ f_n$ непрерывны в  $ x_0 \in A$, то $ f$ непрерывна в точке $ x_0$.
 \end{thm}
@@ -2205,10 +2206,10 @@ $ q (x) = (x-a)^{n}$
     \[
 	\forall  \varepsilon >0 ~ \exists \delta>0 ~ \forall x \in A: \bigl( n > N \Longrightarrow |f_n(x) - f(x) | < \varepsilon \bigr)
     .\] 
-    Зафиксируем $ n_0 > N$.
+    Зафиксируем $ n_0 > N$. $ f_n$ непрерывно.
     Тогда 
     \[
-	\exists \delta: \bigl(|x-x_0| < \delta \Longrightarrow |f_{n_0}(x_0) - f(x)|< \varepsilon 
+	\exists \delta: \bigl(|x-x_0| < \delta \Longrightarrow |f_{n_0}(x) - f_{n_0}(x_0)|< \varepsilon \bigr)
     .\] 
     $ |x-x_0| < \delta$, следовательно, 
     \[
@@ -2221,12 +2222,28 @@ $ q (x) = (x-a)^{n}$
     .\] 
     Получили, что $ f$ непрерывна в точке $ x_0$.
 \end{proof}
+\subsection{Равномерный предел последовательности ограниченных функций}
+\begin{thm}
+$f_n \rightrightarrows f$ , $f_n$ ограничена, то есть $\exists M_n: |f_n| \le M_n$. Тогда $\{f_n\}$ ограничена в совокупности, то есть $\exists M: \forall n ~|f_n| \le M$.
+\end{thm}
+\begin{proof}
+$\forall \varepsilon  > 0 ~\exists N ~\forall k, l > N :|f_k(x) - f_l(x)| < \varepsilon$ --- критерий Коши.
+Пусть $ \varepsilon = 1 $:
+$$
+|f_k(x) - f_l(x)| < 1 \quad \forall k, l > N
+$$
+Тогда
+$$
+|f_k(x)| \le |f_l(x)| + 1 \le M_l + 1 \quad \forall k, l > N
+$$
+Зафиксируем $l = N + 1 \Longrightarrow  |f_s(x)| \le \max\{M_1, \ldots,  M_N, M_{N + 1} + 1\}$ --- равномерная ограниченность.
+\end{proof}
 \begin{thm}
     $f_n, f : A \to  \R$, $f_n \to  f$
     Следующие условия эквивалентны:
     \begin{enumerate}
-	\item $\exists M : \bigl(|f_n(x)| \le  M \quad \forall  n, x \Longrightarrow  |f(x)| \le  M\bigr)$
-	\item $f$ ограничена: $|f(n)| \le  M \quad \forall  x \Longrightarrow   \exists  N ~\exists  A: |f_n(x)| \le A \quad \forall  n \ge  N \quad \forall  x$
+	\item $\exists M : \bigl(|f_n(x)| \le  M ~ \forall  n, x \Longrightarrow  |f(x)| \le  M\bigr)$
+	\item $f$ ограничена $\Longrightarrow   \exists  N ~\exists  K: |f_n(x)| \le K  ~\forall  n \ge  N ~ \forall  x \in A$
     \end{enumerate}
 \end{thm}
 \begin{thm}
@@ -2238,58 +2255,61 @@ $ q (x) = (x-a)^{n}$
 	|f(x) g(x) - f_n(x) g_n(x)| \le  |f(x) ||g(x) - g_n(x) | + | g_n(x)| |f(x) - f_n(x)| \le  M | g(x) - f_n(x)  |+ | f(x) - f_n(x)|
     .\]
 \end{proof}
+\subsection{Критерий Коши для равномерной сходимости}
 \begin{thm}[Критерий Коши для равномерной сходимости]
     Пусть $f_n$ --- последовательность функций на множестве $A$. Она равномерно сходится  тогда и только тогда, когда
     \begin{equation}
 	\label{usl}
-	\forall  \varepsilon >0~ \exists  N ~ \forall  k, j> N~ \forall x : |f_k(x) - f_j(x)| < \varepsilon
+	\forall  \varepsilon >0~ \exists  N \in \N~ \forall  k, j> N~ \forall x \in A : |f_k(x) - f_j(x)| < \varepsilon
     \end{equation}
 \end{thm}
 \begin{proof}
     $ $
     \begin{description}
 	\item Необходимость.\\
-    Пусть $f_n \rightrightarrows  f, \quad \varepsilon  >0$ найдем $N: \forall  n > N \quad |f_n(x) - f(x)| < \varepsilon  \forall x\in A$.
+    Пусть $f_n \rightrightarrows  f$. Для $\varepsilon  >0$ найдем $N: \forall  n > N ~ |f_n(x) - f(x)| < \varepsilon \quad \forall x\in A$.
     \[
-	\forall k, l > N \quad |(f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon  \forall x \in A
+	\forall k, l > N : |f_k(x) - f_l(x)| \le |f_k(x) -f(x)| + |f(x) - f_l(x)| < 2 \varepsilon \quad  \forall x \in A
     .\]
 \item Достаточность.\\
-    Пусть  \ref{usl} выполнено. $x \in A$ - фиксировано.
+    Пусть  условие \ref{usl} выполнено. $x \in A$ - фиксировано.
     Тогда $\{f_n(x)\}_{n \in  \N}$ есть последовательность Коши (см \ref{usl}). Следовательно,
     \[
 	\forall  x~ \exists \lim_{n \to  \infty} f_n(x) \mydef  f(x)
     .\]
-    $ \varepsilon  >0$. Нашли $N: |f_k(x) - f_j(x)| < \varepsilon  \quad \forall  x \in A \forall  k, j > N$
+    $ \varepsilon  >0$. Нашли $N: |f_k(x) - f_j(x)| < \varepsilon  \quad \forall  x \in A ~ \forall  k, j > N$.
     Зафиксируем $k, x$, перейдем к пределу по $j$ :
     \[
-	|f_n(x) - f(x) | < \varepsilon
+	|f_k(x) - f(x) | < \varepsilon
     .\]
     Что верно для $ \forall  x \in  A, \forall  k > N$.
     \end{description}
 \end{proof}
+\subsection{Признак Вейерштрасса}
 \begin{ex}
     Функция на $\R$, непрерывная всюду, но не дифференцируемая на в одной точке.
     \[
-	\text{(Вейерштрасс): } f(x) = \slim_{j=1}^{\infty} b^{ j} \cos l^{j} \pi x, \quad |b| < 1
+	\text{(Вейерштрасс): } f(x) = \slim_{j=1}^{\infty} b^{ j} \cos (a^{j} \pi x), \quad |b| < 1, a \in \N, 2 \not\mid a
     .\]
 \end{ex}
 \begin{thm}[Вейерштрасс]
-    Пусть $f_n$ --- функция на множестве $A$.
+    Пусть $f_n : A \to  \R$. Пусть
     \[
-	\forall  x : |f_n(x)| \le a_n, \text{ где ряд } \slim a_n \text{ сходится}
+	\forall  x \in A: |f_n(x)| \le a_n, \text{ где ряд } \slim a_n \text{ сходится и } a_n \ge 0
     .\]
-    Тогда $\slim_0^{\infty} f_n(x) $ сходится равномерно.
+    Тогда ряд $\slim_0^{\infty} f_n(x) $ сходится равномерно.
+% Пусть имеются функции $u_n: A \to \R, \slim_{n = 1}^\infty{u_n(x)}$. Если $\exists d_n \ge 0: |u_n(x)| \le d_n ~\forall x \in A, \slim_{n = 1}^\infty{d_n} < \infty,$ то наш ряд равномерно сходится.
 \end{thm}
 \begin{note}
     Из этой теоремы следует, что функция из примера непрерывна.
 \end{note}
 \begin{proof}
-    Рассмотрим $ \varepsilon  > 0$. Найдем $N: \slim_{n=k+1}^{l} a_n < \varepsilon  \quad \forall  k, l > N$.
+    Рассмотрим $ \varepsilon  > 0$. Найдем $N: \slim_{n=k+1}^{j} a_n < \varepsilon  \quad \forall  k, j > N$.
     \[
 	S_j(x) = \slim_{n=0}^{j}f_n(x)
     .\]
     \[
-	|S_j(x) - S_k(x)| = | f_{k+1} \ldots + f_k(x)| \le  |f_{k+1}(x)| + \ldots  + |f_l(x)| \le a_{k+1} + \ldots a_l < \varepsilon
+	|S_j(x) - S_k(x)| = | f_{k+1}(x) \ldots + f_j(x)| \le  |f_{k+1}(x)| + \ldots  + |f_j(x)| \le a_{k+1} + \ldots a_j < \varepsilon
     .\]
 \end{proof}
 \begin{ex}[Ван дер Варден]
@@ -2301,7 +2321,7 @@ $ q (x) = (x-a)^{n}$
 	\caption{График функции Ван дер Вардена}
 	\label{fig:vandervarden}
     \end{figure}
-    $f_n = \frac{1}{4^{n-1}}f(4^{n-1}x$, $g(x) = \slim_{n=1}^{\infty} f_n$ непрерывна, но нигде не дифференцируема, так как:
+    $f_n = \frac{1}{4^{n-1}}f(4^{n-1})x$, $g(x) = \slim_{n=1}^{\infty} f_n$ непрерывна, но нигде не дифференцируема, так как:
     \[
 	|f_n(x) | \le \frac{1}{2 \cdot 4^{n-1}}
     .\]
@@ -2319,47 +2339,52 @@ $ q (x) = (x-a)^{n}$
 	\sqrt{x^2 + \frac{1}{n} }- |x| = \frac{x^2 + \frac{1}{n}  - x^2}{\sqrt{x^2 + \frac{t}{n} + |x|}} = \frac{1}{n }\cdot \frac{1}{\sqrt{x ^2 + \frac{1}{n} + |x|}} \le  \frac{1}{n}, \quad \text{ при } |x \ge  1|
     .\]
 \end{ex}
+\subsection{Теорема о дифференцируемости предельной функции}
 \begin{thm}
     $f_n, f, g_n : \langle a, b \rangle  \to  \R$ Предположим, что $f_n \to  f$ поточечно.
-    $f_n$ дифференцируемы и $f_n \rightrightarrows g$ равномерно. Тогда $f$  дифференцируемая на $\langle a, b \rangle$ и $f '= g$.
+    $f_n$ дифференцируемы и $f'_n \rightrightarrows g$. Тогда $f$  дифференцируема на $\langle a, b \rangle$ и $f '= g$.
 \end{thm}
 \begin{proof}
-    Запишем определение равномерной сходимости:
+    Перепишем условие равномерной сходимости:
     \[
-	\forall  eps >0 \exists  N : k, l > N \to  \forall  x \in  \langle a, b\rangle : |f_k(x) ' - f_l(x) '| < \varepsilon
+	\forall  \varepsilon >0 \exists  N ~ \forall  k, l > N~ \forall  x \in  \langle a, b\rangle : |f_k'(x)  - f_l'(x) | < \varepsilon
     .\]
     \[
-	u_{k, l} - f_k(x) - f_l(x)
+	u_{k, l} = f_k(x) - f_l(x)
     .\]
-    Теперь рассмотрим для $x y \in  \langle a, b \rangle:$
+    Теперь рассмотрим для $x, y \in  \langle a, b \rangle$. По теореме Лагранжа:
     \[
-	\frac{u_{k, l} (x)  - u_{k, l} (y)}{x-1} = u'{k,l}(c), \quad c \text{ между } x, y.
+	\frac{u_{k, l} (x)  - u_{k, l} (y)}{x-y} = u'_{k,l}(c), \quad c \text{ между } x, y.
     .\]
     \[
-	\begin{array}{r}
-	    \forall x, y \in  \langle a, b \rangle : \left | \frac{u_{k, l} (x) - u_{k, l} (y_)}{x - y} \right | < \varepsilon  \Longleftrightarrow \forall  x \in  \langle a, b \rangle , \forall  k, l > N:\\
-	    \left | \frac{f_k(x) - f_k(y) }{x-y} - \frac{f_l(x) - f_l(y)}{x-y} \rangle | < \varepsilon
-	    \right |
-	\end{array}
+	\begin{aligned}
+	    \forall x, y \in  \langle a, b \rangle ~ \forall k , l >N: \left| \frac{u_{k, l} (x) - u_{k, l} (y_)}{x - y} \right | < \varepsilon & \Longleftrightarrow \\ 
+															       \Longleftrightarrow & \forall  x, y \in  \langle a, b \rangle , ~\forall  k, l > N:
+	    \left | \frac{f_k(x) - f_k(y) }{x-y} - \frac{f_l(x) - f_l(y)}{x-y} \right | < \varepsilon
+															   \end{aligned}
     .\]
     Фиксируем $k$, $l \to  \infty$.
     \[
-	\left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-1} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle
+	\left | \frac{f_k(x) - f_k(y)}{x - y} - \frac{f(x) - f(y)}{x-y} \right | < \varepsilon  , \quad \forall  x, y \in  \langle a, b \rangle
     .\]
     Оценим разность. Зафиксируем $ x$.
     \[
-	\exists  \delta  >0 : |x-y| < \delta  \wedge x \ne y\to  \left|\frac{f_k(x) - f_k(y)}{x-y} f'_k(x)\right|  < \varepsilon
+		\exists  \delta  >0 : \left(|x-y| < \delta  \wedge x \ne y \Longrightarrow   \left|\frac{f_k(x) - f_k(y)}{x-y} - f'_k(x)\right|  < \varepsilon\right)
     .\]
-    Объединяем неравенства:
-    для данных $ k, x$:
+    Объединяем неравенства для данных $ k$ и $ x$:
     \[
-	|y - x| < \delta  , y \ne x \to  \left|f'_k(x) - \frac{f(x) - f(y)}{x-y}\right| \le  2 \varepsilon
+	|x - y| < \delta  \wedge  y \ne x \Longrightarrow   \left|f'_k(x) - \frac{f(x) - f(y)}{x-y}\right| \le  2 \varepsilon
     .\]
+    Также запишем равномерную сходимость $ f'_k(x) \rightrightarrows g(x)$:
+     \[
+	 |x-y|< \delta \wedge x \ne y \Longrightarrow |g(x) - f'_k(x)| < \varepsilon 
+    .\] 
     Следовательно,
     \[
 	|x - y| < \delta \to  \left|g(x) - \frac{f(x) - f(y)}{x-y}\right| \le 3 \varepsilon
     .\]
 \end{proof}
+\chapter{Интегрирование}
 \section{Первообразные}
 Пусть все происходит на $ \langle a, b \rangle$. $ g : \langle a, b \rangle \to  \R$
 \begin{defn}
@@ -2378,8 +2403,7 @@ $ q (x) = (x-a)^{n}$
     Если $ f_1, f_2$ --- первообразные для $ g$, то $ f_1 - f_2 = const$
 \end{thm}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabular}[ht]{|l|l|}
-    \hline
+\begin{tabular}[ht]{l|l}
     Функция & Первообразная \\
     \hline
     $ x^{ \alpha }$ & $ \frac{x^{ \alpha + 1}}{\alpha + 1}, ~ \alpha \ne -1$\\
@@ -2392,8 +2416,7 @@ $ q (x) = (x-a)^{n}$
     \hline
     $ \frac{1}{x^2+1}$ & $ \arctan x + c$\\
     \hline
-    $ e^{x}$ & $ e^{x} + c$ \\
-    \hline
+    $ e^{x}$ & $ e^{x} + c$ 
 \end{tabular}
 \begin{name}
     Пишут: \[
