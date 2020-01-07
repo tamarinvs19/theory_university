@@ -2458,25 +2458,38 @@ df = f' dx = g dx$
 
 Задача первообразной: дана линейная форма $ \varphi = g dx$ ; найти функцию $ f: df = \varphi $
 \begin{st}
-    \[
-	d(f \circ g) = (f' \circ g) \cdot g: dx = f' \circ g dg
-    .\]
+Любая дифференциальная форма $\psi$ единственным образом представляется в виде $u(x)dx,$ где $u$ --- некоторая функция.
 \end{st}
+
+\begin{cor}
+$$dg(x, h) = g'(x)h \Leftrightarrow dg(x) = g'(x)dx$$
+Формула дифференцирования подстановки ($v(\psi(x))' = v'(\psi(x))\psi'(x)$) переписывается так:
+$$d(v \circ \psi)(x) = (v \circ \psi)'(x)dx = v'(\psi(x))\psi'(x)dx = \left.v' \circ \psi d\psi\right|_x$$
+ --- инвариантность первого дифференциала при подстановке.
+\end{cor}
+\subsection{Первообразная дифференциальной формы}
+\begin{defn}[Первообразная дифференциальной формы]
+    Пусть $\Phi$ --- дифференциальная форма на отрезке $\langle\alpha, \beta\rangle$. Функция $F$ на отрезке называется ее первообразной, если $dF = \Phi \Leftrightarrow F' = a$.
+$$dF(x) = F'(x)dx; \psi(x) = a(x)dx$$
+\end{defn}
+
+Теперь можно переписать формулу подстановки еще и так:
+$$\int{g \circ \phi \phi' dx} = \int{g(\Phi)d\Phi} = \left(\int{g}\right)\circ \phi + C$$
+
 \begin{ex}
-    \[
-	\int \sqrt{1 - x^2} dx, \quad x \in  (-1, 1)
-    .\]
-    Сделаем замену $ x = \sin t$, пусть $ t \in  [- \pi , \pi]$
-    $$
-    \begin{array}{c}
-	\int \sqrt{1-\sin^2(t)} \cos t dt = \int \cos^2(t) dt =\\
-	\int \frac{1 + \cos 2t}{2} dt = \frac{1}{2} \int ((1 + \cos 2t) dt = \\
-	\frac{1}{2}(t + \frac{1}{2} \int \cos t d(2t)) = \frac{1}{2} (t + \frac{\sin
-	2 t}{2})
-    \end{array}
-    $$
-    Тогда $ \int \sqrt{1 - x^2} dx = \frac{1}{2} (\arcsin x + \frac{\sin 2 \arcsin x}{2})$
+$$
+\begin{aligned}
+    \int{\sqrt{1 - x^2}dx} &= \\
+			   &\left(x = \sin{t};~ x \in (-1, 1),~ t \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\right) \\
+			   &= \int{\sqrt{1 - \sin{t}^2}d\sin{t}} = \int{\cos{t}\cos{t}dt} = \\ 
+			   &= \int{\cos{t}^2dt} = \int{\frac{1 + \cos{2t}}{2}dt} = \\
+			   &=\int{\frac{1}{2}dt} + \frac{1}{2}\int{\cos{2t}dt} = \frac{t}{2} + \frac{1}{4}\int{\cos{2t}d(2t)} = \\
+			   &= \frac{t}{2} + \frac{\sin{2t}}{4} + C = \arcsin{\frac{x}{2}} + \frac{1}{2}x\sqrt{1 - x^2} + C
+\end{aligned}
+$$
 \end{ex}
+
+\subsection{Формула интегрирования по частям}
 \begin{st}[Формула интегрирования по частям]
 
     $ (fg)' = f'g + fg'$
@@ -2533,7 +2546,7 @@ df = f' dx = g dx$
     Каким должен быть интеграл?
     \begin{enumerate}
 	\item Функционал, заданный на каких-то функциях сопоставляет число ($ f \mapsto I( \alpha )$)
-	\item $ I( \alpha  f + \beta  g) = \alpha I(f) = I ( \beta ) $ (Линейность)
+	\item $ I( \alpha  f + \beta  g) = \alpha I(f) + \beta I ( f ) $ (Линейность)
 	\item $ f \le  g \Longrightarrow I(f) \le  I(g)$
 	\item $  \langle a, b \rangle: I(\chi _{ \langle a, b \rangle} ) = b - a$
     \end{enumerate}
@@ -2670,7 +2683,7 @@ df = f' dx = g dx$
 \end{note}
 \subsection{Критерий интегрируемости по Риману}
 \begin{thm}[Критерий интегрируемости по Риману]
-    $ f$   интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 ~ \exists $ разбиение $ e_1, \ldots,  e_k$ Отрезка $ J$, такое что
+    $ f$   интегрируема по Риману на $ J$ тогда и только тогда, когда $ \forall  \varepsilon >0 ~ \exists $ разбиение $ e_1, \ldots,  e_k$ отрезка $ J$, такое что
     \begin{align}
 	\slim_{i=1}^{k}|e_k| \osc_{e_k} f < \varepsilon . \label{iff_1}
     \end{align}
@@ -2702,7 +2715,7 @@ df = f' dx = g dx$
 	\item Если $ f$   интегрируема и $ \alpha  \in  \R$, то $ \alpha  f$   интегрируема и $ I( \alpha  f) = \alpha I(f)$
 	\item $ f, g : \langle a, b \rangle \to  \R$   ограничены. $ \Sigma $   разбиение.
 	    \[
-		\overline{S}_{ \Sigma }(f+g) \le  \overline{iS}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
+		\overline{S}_{ \Sigma }(f+g) \le  \overline{S}_{ \Sigma }(f) + \overline{S}_{ \Sigma } (g)
 	    .\]
 	\item
 	    \[
@@ -2711,13 +2724,13 @@ df = f' dx = g dx$
 	\item  Если $ f , g$   интегрируемы на $ \langle a, b \rangle$, то $ f + g $   интегрируема и \[
 		I(f+g) = I(f) + I(g)
 	    .\]
-	    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и прошлым свойством. Для второго утверждения: просто записываем неравенство.
-	\item $ f, g$   интегрируемы, $ \alpha , \beta \in  \R$.
+	    Можно рассмотреть общее подразбиение и применить критерий интегрируемости и воспользоваться прошлым свойством. Для второго утверждения: просто записываем неравенство.
+	\item {\bf Линейность.} $ f, g$   интегрируемы, $ \alpha , \beta \in  \R$.
 	    Тогда $ \alpha f + \beta  g$  интегрируема и
 	    \[
 		I( \alpha f+ \beta g) = \alpha I(f) + \beta  I(g)
 	    .\]
-	\item Монотонность.
+	\item {\bf Монотонность.}
 	    $ f \ge 0, f$   интегрируема по Дарбу. Тогда, $ I(f) \ge  0$.
 	\item $ f, g$   интегрируемы на $ \langle a, b \rangle$. Тогда $ f \cdot g$   интегрируема.
 	    \begin{proof}
@@ -2726,17 +2739,13 @@ df = f' dx = g dx$
 		.\]
 		Пусть $ J$ --- отрезок. Оценим осцилляцию.
 		\[
-		    \forall  x, y \in  J: | f(x) g(x) - f(y) g(y_| = |f(x) g(x) - f(x) g(y)  | + | f(x) g(y) - f(y) g(x)|=
+		    \begin{aligned}
+			\forall  x, y \in  J: | f(x) g(x) - f(y) g(y)| &\le \\ 
+			&\le  |f(x) g(x) - f(x) g(y)| + |f(x) g(y) - f(y) g(y)| \le  \\
+									       & \le   |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le \\
+										    &\le  C \cdot \osc_J g + D \cdot \osc_J f
+		    \end{aligned}
 		\]
-		\[
-		    \le  |f(x) g(x) - f(x) g(y)| + |f(x) g(y) - f(y) g(y)| =
-		\]
-		\[
-		    =  |f(x)| \cdot |g(x) - g(y)| + |g(x) | \cdot |f(x) - f(y)| \le
-		\]
-		\[
-		    \le  C \cdot \osc_J g + D \cdot \osc_J f
-		.\]
 		$ f, g$   интегрируемы, тогда $ \forall  \varepsilon  ~ \exists  \Sigma  : \overline{S}_{ \Sigma } (f) \le  \underline{S} _{ \Sigma } (f) + \varepsilon  \wedge \overline{S}_{ \Sigma}(g) \le \underline{S}_{ \Sigma }(g)  + \varepsilon $.
 
 		Получаем \[
@@ -2745,7 +2754,7 @@ df = f' dx = g dx$
 			\slim_{J \in  \Sigma} |J| \osc_J g \le  \varepsilon
 		    \end{array}
 		.\]
-		Тогда $ \forall  J \in  \Sigma: \osc_J (f g) \le  C \cdot \osc_J g + D \cdot \osc_J f$.
+		Тогда $ \forall  J \in  \Sigma: \osc_J (f g) \le  D \cdot \osc_J g + C \cdot \osc_J f$.
 
 		Следовательно, \[
 		    \slim_{J \in  \Sigma} |J| \cdot \osc_J fg \le C \cdot \slim_J |J| \cdot \osc_J g + D \cdot \slim_J | J| \cdot \osc_J f \le  (C + D ) \varepsilon
@@ -2756,11 +2765,11 @@ df = f' dx = g dx$
 	    Тогда $ f \cdot \chi_J $   интегрируема. ($ \chi_J$ равна единице на  $ J$ и нулю на остальных точках)
 
 	    Если $ J = \{c\}$, то $ I(f \chi_J)  = 0$.
-	\item $ J_1, J_2$ --- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J \cap  J_2 = \varnothing$. Тогда
+	\item $ J_1, J_2$ --- два подотрезка, такие что $ J_1 \cup  J_2 = J \wedge J_1 \cap  J_2 = \varnothing$. Тогда
 	    \[
 		I(f \chi_{J_1 \cup J_2}) = I(f \chi_{J_1}) + I(f \chi _{J_2})
 	    .\]
-	\item Основная оценка интеграла.
+    \item {\bf Основная оценка интеграла.}
 	    $ f$   интегрируема на $ \langle a, b \rangle$.
 	    $ |f | \le M$ на $ [c, d] \subset \langle a, b \rangle$
 	    \[
@@ -2768,12 +2777,12 @@ df = f' dx = g dx$
 	    .\]
     \end{enumerate}
 \end{prop}
-\begin{name}
+\begin{note}
     $ I(f \chi_J)$ не зависит от того, вклочает ли $ J$ концы.
     \[
 	\int_c^{d} f  =  \int_c^{d} f(x) dx\stackrel{def} =  I(f \chi _ {\langle c, d \rangle})
     .\]
-\end{name}
+\end{note}
 \begin{name}
     Если $ d < c$ :
     \[
@@ -2781,9 +2790,9 @@ df = f' dx = g dx$
     .\]
 \end{name}
 \begin{st}
-    $ f$   интегрируема на $ \langle a, b \rangle$.
+    $ f$   интегрируема на $ \langle a, c \rangle$, $ b \in \langle a, c \rangle$.
     \[
-	\int_c ^{e} f = \int _c^{ d} f+ \int_d ^{e} f
+	\int_a ^{c} f = \int _a^{ b} f+ \int_b ^{c} f
     .\]
 \end{st}
 \subsection{Связь интеграла и производящей, теорема Ньютона-Лейбница}
@@ -2849,8 +2858,9 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 
 Получаем
 \[
-    \int_y^{x} f'(t) g(t) dt = fg \Bigm|_y^{x} - \int f(t) g'(t) dt
+    \int_y^{x} f'(t) g(t) dt = fg \Bigm|_y^{x} - \int_y^{x} f(t) g'(t) dt
 .\]
+\subsection{Предельный пеоеход под знаком интеграла}
 \begin{thm}
     $ f_n, f$ --- Заданы на $ \langle a, b \rangle; n \in \N$
     Пусть
