@@ -2860,7 +2860,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \[
     \int_y^{x} f'(t) g(t) dt = fg \Bigm|_y^{x} - \int_y^{x} f(t) g'(t) dt
 .\]
-\subsection{Предельный пеоеход под знаком интеграла}
+\subsection{Предельный переход под знаком интеграла}
 \begin{thm}
     $ f_n, f$ --- Заданы на $ \langle a, b \rangle; n \in \N$
     Пусть
@@ -2913,7 +2913,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 ,\]
 и ноль лежит в ее области определения.
 \[
-    l(0) = l(0, a) = l(0) + l(a) \Longrightarrow l(0) = 0
+    l(a) = l(1 \cdot  a) = l(1) + l(a) \Longrightarrow l(1) = 0
 .\]
 Будем искать $ l$, заданную на $ \R_{+}$.
 \[
@@ -2927,7 +2927,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 .\]
 \begin{defn}
     Логарифм --- строго монотонная функция, заданная на $ \R_{+}$, такая что \[
-	f(xy) = l(x) + l(y) \quad x, y >0
+	l(xy) = l(x) + l(y) \quad x, y >0
     .\]
 \end{defn}
 \begin{st}
@@ -2950,17 +2950,29 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     Если $ l$ --- логарифм, то $ l$   непрерывна на всей области определения.
 \end{lm}
 \begin{proof}
-    Пусть $ l$ --- логарифм. Считаем, что $ f$ строго возрастает.
     \[
-	t = \lim_{x \to 1 + 0} f(x)
+	t = \lim_{x \to 1 + 0} l(x)
     .\]
     Покажем, что $ t = l(1) = 0$.
     Пусть  $ t>0$. \[
-	l((1+ x)^{2}) = 1 l(1+ x)
+	l\bigl((1+ x)^{2}\bigr) = 2 \cdot  l(1+ x)
     .\]
     При $ x \to 1+$ получаем, что $ t=0$.
     Если  $ x \to  1-$, получаем тоже самое. Значит $l$   непрерывна в 1.
     И равна нулю в этой точке.
+\end{proof}
+\begin{proof}
+    Пусть $ l$ --- логарифм. Считаем, что $ l$ строго возрастает.
+\begin{enumerate}
+\item $\lim\limits_{x \to 1 + }{l(x)} = l(1) = 0$
+
+ В силу строгой монотонности $ \forall x > 1: l(x) \ge  l(1) = 0$ и $\exists \lim\limits_{x \to 1 + }{l(x)} = b \ge 0$.
+ Пусть $b > 0$, $t > 0$. Устремим $ t$ к $ 0$: $l((1 + t)^2) = l(1 + 2t + t^2) \to b$.  $$l((1 + t)^2) = 2l(1 + t) \to 2b \Longrightarrow  b = 0$$
+
+\item $\lim\limits_{x \to 1 - }{l(x)} = \lim\limits_{x \to 1 + }-l\left(\frac{1}{x}\right) = 0 = \lim\limits_{x \to  1+}$. То есть логарифм непрерывен в $1$.
+
+\item $l(x) - l(a) = l(x a^{-1})$.  $x \to a \Longleftrightarrow  xa^{-1} \to 1$, то есть из непрерывности в $1$ следует непрерывность  и в любой точке.
+\end{enumerate}
 \end{proof}
 \subsection{Дифференцируемость логарифма}
 \begin{lm}
@@ -2968,19 +2980,20 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \end{lm}
 \begin{proof}
     \[
-	\Phi (x) - \int_1^{x}l(t) dt \quad x \in  (0, + \infty)
+	\Phi (x) = \int_1^{x}l(t) dt \quad x \in  (0, + \infty)
     .\]
-    $ \Phi$  дифференцируема.
+    $ \Phi$  дифференцируема, так как это первообразная $ l$. 
     \[
 	\begin{aligned}
 	    \Phi(2x) = \int_1^{2x} l(t) dt = \int_1^{x}  l(t) dt + \int_x^{2x}l(t) dt &= \Phi(x) = \\
-	=    x \int_x^{2x} l(x \cdot \frac{t}{x}) d(\frac{t}{x}) &= \Phi (x) + x \int_1 ^{2} l(x \cdot y) dy = \\
+	    =    x \int_x^{2x} l\left(x \cdot \frac{t}{x}\right) d\left(\frac{t}{x}\right) &= \Phi (x) + x \int_1 ^{2} l(x \cdot y) dy = \\
 								&= \Phi(x) + x l(x) + x \int_1^{2} l(y) dy
 	\end{aligned}
-    .\]
-    $ l(x) = \frac{\Phi(2x) -\Phi(x) }{x} - C$.
-    А $ \Phi$  дифференцируема, следовательно, $ f$  тоже дифференцируема.
+    \]
+    $ l(x) = \frac{\Phi(2x) -\Phi(x) }{x} - C$,
+    а $ \Phi$  дифференцируема, следовательно, $ f$  тоже дифференцируема.
 \end{proof}
+\subsection{Производная логарифма}
 \begin{thm}[Производная логарифма]$ $
 
     $ l(xy) = l(x) + l(y)$.
@@ -3013,23 +3026,23 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \begin{proof}
     Достаточно доказать теорему для $ C=1$.
     \[
-	\varphi (x) = \int_1^{x} ,\quad x>0
+	\varphi (x) = \int_1^{x} \frac{dt}{t},\quad x>0
     .\]
     Если $ x_1>x$,
     \[
-	\varphi (x_1) - \varphi (x) = \int_1^{x_1} \frac{dt}{t} \ge  \frac{1}{x_1} (x_1-x) > 0
+	\varphi (x_1) - \varphi (x) = \int_x^{x_1} \frac{dt}{t} \ge  \frac{1}{x_1} (x_1-x) > 0
     .\]
     Следовательно, $  \varphi $ строго возрастает.
 
-    Проверим:
+    Проверим необходимое свойство логарифма:
     \[
 	\varphi (xy) = \varphi (x) + \varphi (y)
     .\]
     \[
-	\in t_1 ^{x} \frac{dt}{t} +\int_x ^{y} \frac{dt}{t} = \varphi  (x) + \frac{1}{x} \int_x ^{y} \frac{d(\frac{t}{x})}{\frac{t}{x}}
-    .\]
-    \[
-	\varphi (x) + \int_1 ^{y} \frac{d \mu}{\mu} = \varphi (x) - \varphi (y)
+	\begin{aligned}
+	    \varphi (xy) &= \int_1 ^{x} \frac{dt}{t} +\int_x ^{xy} \frac{dt}{t} = \varphi  (x) +  \int_x ^{xy} \frac{d(\frac{t}{x})}{\frac{t}{x}} = \\
+			 & = \varphi (x) + \int_1 ^{y} \frac{d \mu}{\mu} = \varphi (x) + \varphi (y) 
+	\end{aligned}
     .\]
 \end{proof}
 \subsection{Натуральный логарифм}
