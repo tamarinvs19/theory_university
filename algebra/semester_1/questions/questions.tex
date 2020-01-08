@@ -15,6 +15,7 @@
 \usepackage[pdftex]{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
+\usepackage{enumitem}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
@@ -90,7 +91,7 @@
 \newtheorem*{note}{Note}
 
 
-\title{Билеты по алгебре \\ I семестр}                      
+\title{Билеты по алгебре \\ I семестр}
 \author{Тамарин Вячеслав}
 
 \begin{document}
@@ -107,7 +108,7 @@
 	\item  $ (v+u)\alpha = v\alpha+v\beta$
 	\item  $ v \cdot 1 = v$
     \end{enumerate}
-Тогда $ V$ называется векторным пространством над   $ F$.
+    Тогда $ V$ называется векторным пространством над   $ F$.
 \end{defn}
 \begin{prop}
     $ $
@@ -121,42 +122,42 @@
 \end{prop}
 \begin{exs}
     $ $
-\begin{enumerate}
-    \item Множество векторов в $\R ^3$
-    \item \[
-	 F^{n} = \left\{ 
-	 \begin{pmatrix}
-	     a_1 \\ a_2 \\ \vdots \\ a_{n}
-	 \end{pmatrix}
-    \middle| a_i \in  F 
-     \right\} 
-	 .\] 
-	 \[
-	 \begin{pmatrix}
-	     a_1 \\ \vdots \\ a_n
-	 \end{pmatrix}
-	 \cdot \alpha  = 
-	 \begin{pmatrix}
-	     a_1\alpha \\ \vdots \\ a_n \alpha
-	 \end{pmatrix}
-	 , \quad 
-	     \begin{pmatrix}
-	         a_1 \\ \vdots \\ a_n
-	     \end{pmatrix}
-	     + 
-	     \begin{pmatrix}
-	         b_1 \\ \vdots \\ b_n
-	     \end{pmatrix}
-	      =
-	      \begin{pmatrix}
-	          a_1 + b_1 \\ \vdots \\ a_n + b_n
-	      \end{pmatrix}
-	 .\] 
-    \item $X$ --- множество, $F^X = \{f \mid f:X \to F\}$ \\
-	$f, g: X \to F$\\
-	$(f+g)(x) = f(x) + g(x)\\ (f \alpha) (x) = f(x)\alpha$
-    \item $F[t]$ --- многочлены от одной переменной $t$
-\end{enumerate}
+    \begin{enumerate}
+	\item Множество векторов в $\R ^3$
+	\item \[
+		F^{n} = \left\{
+		    \begin{pmatrix}
+			a_1 \\ a_2 \\ \vdots \\ a_{n}
+		    \end{pmatrix}
+		    \middle| a_i \in  F
+		\right\}
+	    .\]
+	    \[
+		\begin{pmatrix}
+		    a_1 \\ \vdots \\ a_n
+		\end{pmatrix}
+		\cdot \alpha  =
+		\begin{pmatrix}
+		    a_1\alpha \\ \vdots \\ a_n \alpha
+		\end{pmatrix}
+		, \quad
+		\begin{pmatrix}
+		    a_1 \\ \vdots \\ a_n
+		\end{pmatrix}
+		+
+		\begin{pmatrix}
+		    b_1 \\ \vdots \\ b_n
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+		    a_1 + b_1 \\ \vdots \\ a_n + b_n
+		\end{pmatrix}
+	    .\]
+	\item $X$ --- множество, $F^X = \{f \mid f:X \to F\}$ \\
+	    $f, g: X \to F$\\
+	    $(f+g)(x) = f(x) + g(x)\\ (f \alpha) (x) = f(x)\alpha$
+	\item $F[t]$ --- многочлены от одной переменной $t$
+    \end{enumerate}
 \end{exs}
 \section{Подпространство, линейная оболочка}
 \begin{defn}
@@ -168,19 +169,19 @@
 \begin{defn}
     Пусть  $ u_1, \ldots , u_n \in V$, $ \alpha_1, \ldots , \alpha_n \in F$. Сумма
     \[
-    \sum _{k = 1}^{n} u_k \alpha_k
-    \] 
+	\sum _{k = 1}^{n} u_k \alpha_k
+    \]
     называется линейной комбинацией векторов $ u_1, \ldots , u_n$ с коэффициентами $ \alpha_1, \ldots , \alpha _n$.
 
     Линейная комбинация называется {\it тривиальной}, если все ее коэффициенты равны нулю.
 \end{defn}
 \begin{note}
-    Пусть $ S \subseteq V$, и задан набор чисел $ \alpha_s \in F, ~s \in S$. Операция бесконечной суммы будет определена только в случае, когда почти все $ \alpha _s$ равны нулю. 
+    Пусть $ S \subseteq V$, и задан набор чисел $ \alpha_s \in F, ~s \in S$. Операция бесконечной суммы будет определена только в случае, когда почти все $ \alpha _s$ равны нулю.
 \end{note}
 \begin{defn}
     Линейной оболочкой  набора $ S$ называется подпространство, порожденное   $ S$, то есть наименьшее подпространство, содержащее  $ S$.
-     \begin{name}
-        Линейная оболочка  набора $ S$ обозначается   $ \langle S \rangle$.
+    \begin{name}
+	Линейная оболочка  набора $ S$ обозначается   $ \langle S \rangle$.
     \end{name}
 \end{defn}
 \begin{st}
@@ -202,8 +203,8 @@
 \begin{defn}
     Двумерный массив  $ m \times n$ элементов поля $ F$ называется матрицей размера  $ m \times  n$ над $ F$.
     \begin{name}
-	Множество таких матриц  обозначается $ M_{m \times n}(F)$. Если $ m = n$, пишут  $ M_n(f)$.  
-    Элемент матрицы $ A$ в позиции  $ (i, j)$ записывается  $ a_{ij}$.
+	Множество таких матриц  обозначается $ M_{m \times n}(F)$. Если $ m = n$, пишут  $ M_n(f)$.
+	Элемент матрицы $ A$ в позиции  $ (i, j)$ записывается  $ a_{ij}$.
     \end{name}
 \end{defn}
 \begin{prop}
@@ -213,8 +214,8 @@
 	\item Также определено умножение матрицы на число: $ (A\alpha)_{ij } = a_{ij} \alpha$.
 	\item Произведением матрицы $ A \in M_{m \times n}(F)$ на матрицу $ B \in M_{n \times k}$  называется матрица $ C = AB \in M_{m \times  k}(F)$ элементы которой вычисляются по формуле
 	    \[
-	    c_{ij} = \sum _{l=1}^{n}a_{il}b_{lj}
-	    .\] 
+		c_{ij} = \sum _{l=1}^{n}a_{il}b_{lj}
+	    .\]
     \end{itemize}
 \end{prop}
 \begin{thm}\label{prop_multi_matr}
@@ -229,39 +230,39 @@
 	    (B+C)A=BA + CA\\
 	    (AB)\alpha = A(B\alpha) = (A\alpha)B
 	\end{cases}
-    .\] 
+    .\]
     Все кроме первого свойства очевидны. Проверим ассоциативность:
     \[
-    \begin{aligned}
-	\left( (AB) C \right)_{il} &= \sum _{k \in K} (AB)_{ik} c_{kl} = \sum_{k \in K}\left( \sum_{j \in J} a_{ij}b_{jk} \right)  c_{kl}  = \\
-			      &= \sum_{k \in K} \left( \sum _{j \in J} a_{ij} b_{jk} c_{kl}\right) = \\
-			      &= \sum _{j \in J} \left( \sum _{k \in K} a_{ij} b_{jk} c_{kl} \right) = \\
-			      &= \sum _{j \in J} a_{ij} \left( \sum _{k \in K}b_{jk} c_{kl} \right) = \sum _{j \in J} a_{ij} (BC) _{jl} = \left( A(BC) \right)_{il} 
-    \end{aligned}
-    .\] 
-\begin{defn}
-    Квадратная матрица  $ E$ с 1 на главной диагонали и остальными нулями называется единичной. 
-\end{defn}
-\begin{prop}
-    Умножение данной матрицы на единичную справа и слева не ее не изменяет.
-\end{prop}
-Матрица $ E_n$ является нейтральным элементом в $ M_n(F)$.
+	\begin{aligned}
+	    \left( (AB) C \right)_{il} &= \sum _{k \in K} (AB)_{ik} c_{kl} = \sum_{k \in K}\left( \sum_{j \in J} a_{ij}b_{jk} \right)  c_{kl}  = \\
+				       &= \sum_{k \in K} \left( \sum _{j \in J} a_{ij} b_{jk} c_{kl}\right) = \\
+				       &= \sum _{j \in J} \left( \sum _{k \in K} a_{ij} b_{jk} c_{kl} \right) = \\
+				       &= \sum _{j \in J} a_{ij} \left( \sum _{k \in K}b_{jk} c_{kl} \right) = \sum _{j \in J} a_{ij} (BC) _{jl} = \left( A(BC) \right)_{il}
+	\end{aligned}
+    .\]
+    \begin{defn}
+	Квадратная матрица  $ E$ с 1 на главной диагонали и остальными нулями называется единичной.
+    \end{defn}
+    \begin{prop}
+	Умножение данной матрицы на единичную справа и слева не ее не изменяет.
+    \end{prop}
+    Матрица $ E_n$ является нейтральным элементом в $ M_n(F)$.
 \end{proof}
 \subsubsection{Обобщение конечных матриц}
 Пусть даны множества $ X_{ij}, Y_{jh}$, коммутативные моноиды $ (Z_{ih}, +)$, где $ i = 1, \ldots m, ~ j = 1, \ldots n, ~ h= 1, \ldots k$, и функции <<умножения>> $ X_{ij} \times Y_{jh} \to  Z_{ih}, ~ (x, y) \mapsto xy$.  Обозначим через $ X, Y, Z$ наборы множеств  $ X_{ij}, Y_{jh}, Z_{ih}$, соответственно, через $ M(X)$ --- множество матриц  $ A$ с элементами  $ a_{ij} \in X_{ij}$, и аналогично $ M(Y), M(Z)$. Тогда можно определить произведение матриц $ A \in M(X)$ и $ B \in M(Y)$ как матрицу $ C = AB \in M(Z)$, где $ c_{ih} = \sum\limits_{j = 1}^{n}a_{ij}b_{jh}$.
 
 Если все $ X_{ij}, Y_{jh}$ будут коммутативными моноидами, а функция умножения дистрибутивной, умножение матриц тоже будет дистрибутивным и ассоциативным.
 \subsection{Произвольные матрицы}
-Пусть  $ I, J$ --- произвольные множества (возможно бесконечные), элементами которых мы будем индексировать строки и столбцы матриц. Пусть  $ \forall i \in I \wedge j \in J$ задано множество $ X_{ij}$, и обозначим набор всех таких множеств через $ X$. 
+Пусть  $ I, J$ --- произвольные множества (возможно бесконечные), элементами которых мы будем индексировать строки и столбцы матриц. Пусть  $ \forall i \in I \wedge j \in J$ задано множество $ X_{ij}$, и обозначим набор всех таких множеств через $ X$.
 Тогда {\bf матрицей размера $ I \times J$ над $ X$}  называется функция  $ A: I \times J \to \bigcup X_{ij} ~ (i, j) \mapsto a_{ij}$, такая что $ a_{ij} \in X_{ij}$.
 \begin{name}
-Множество матриц размера $ I \times J$ над $ X$ обозначается  $ M_{I \times J}(X)$. 
-Если $ I = \{1\}$, то матрица размера $ I \times J$ будут назваться столбцами длины $ J$, а если  $ J = \{1\}$, то столбцами высоты $ I$. Множества строк обозначим данной длины $ ^J\!X$, множество столбцов --- $ X^{J}$.
+    Множество матриц размера $ I \times J$ над $ X$ обозначается  $ M_{I \times J}(X)$.
+    Если $ I = \{1\}$, то матрица размера $ I \times J$ будут назваться столбцами длины $ J$, а если  $ J = \{1\}$, то столбцами высоты $ I$. Множества строк обозначим данной длины $ ^J\!X$, множество столбцов --- $ X^{J}$.
 \end{name}
 Будем считать, что все $ X_{ij}$ --- абелевы группы в аддитивной записи. Тогда сумма двух матриц одного размера определяется поэлементно: $ (A+B)_{ij} = a_{ij}+b_{ij}$.
 Если все $ X_{ij}$ --- векторные пространства над полем $ F$, также можно определить умножение на число:  $ (A\alpha)_{ij} = a_{ij}\alpha$.
 \subsubsection{Умножение матриц}
-Пусть все операции умножения  $ X_{ij}\times Y_{jh} \to Z_{ih}$ дистрибутивны (для $ a \cdot 0 = 0$), и в каждом столбце матрицы $ Y$ почти все элементы равны 0. 
+Пусть все операции умножения  $ X_{ij}\times Y_{jh} \to Z_{ih}$ дистрибутивны (для $ a \cdot 0 = 0$), и в каждом столбце матрицы $ Y$ почти все элементы равны 0.
 \begin{name}
     Обозначим $ M_{J\times H}^{c.f.}(Y) \subset M_{J\times H}(Y)$, состоящее из всех матриц $ B$, у которых для любого фиксированного  $ h \in H$ почти все элементы $ b_{jh}$ равны 0.
 \end{name}
@@ -269,11 +270,11 @@
     Пусть $ \forall i \in I, j \in J, h \in H$ заданы операции умножения $ X_{ij} \times Y_{jh} \to  Z_{ih}$, причем $ \forall  x, x' \in X_{ij}$ и $ \forall y, y' \in Y_{jh}$ выполнены равенства
     \[
 	(x+x')y = xy + x'y \wedge x(y + y') = xy + xy'
-    .\] 
-    Произведение матриц $ A \in M_{i \times J}(X)$  и $ B \in <_{J\times H}^{c.f.}(Y)$ как матрицу $ AB \in M_{I \times H}(Z)$ с элементами 
+    .\]
+    Произведение матриц $ A \in M_{i \times J}(X)$  и $ B \in <_{J\times H}^{c.f.}(Y)$ как матрицу $ AB \in M_{I \times H}(Z)$ с элементами
     \[
 	(AB)_{ih} = \sum_{j \in J}a_{ij}b_{jh}
-    .\] 
+    .\]
     При этом суммы определены, так как почти все слагаемые равны нулю.
 \end{defn}
 \begin{note}
@@ -304,4 +305,27 @@
 \begin{note}
     Для обозначения столбца часто используется строка $ (a_1, \ldots a_n)^{T}$.
 \end{note}
+\section{Эквивалентные определения базиса}
+\begin{thm}[Эквивалентные определения базиса]
+    Следующие условия на подмножество $ v$ векторного пространства  $ V$ эквивалентны:
+    \begin{enumerate}[label={\rm (\arabic*)},noitemsep]
+	\item $ v$ --- линейно независимая система образующих
+	\item $ v$ --- максимальная линейно независимая система
+	\item $ v$ --- минимальная система образующих
+	\item  любой элемент  $ x \in V$ представляется в виде линейной комбинации набора $ v$, причем единственным образом
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{1 \Longrightarrow 2}$ Пусть $ v$ ---  не максимальная линейно независимая система. Мы знаем, что $ v$ --- система образующих. Тогда любой элемент  $ a \in V$ представляется в виде линейной комбинации $ v$, а значит любой набор, содержащий  $ v$, принадлежит линейной оболочке  $ \langle v \rangle$, следовательно, набор линейно зависимый.
+	\item $ \boxed{2 \Longrightarrow 1}$
+	    Так как $ v$ максимальная линейно независимая система, любой элемент  $ a \in V$ выражается через элементы $ v$. Следовательно,  $ v$ --- система образующих.
+	\item $ \boxed{1 \Longrightarrow 3}$ Пусть из $ v$ можно убрать некоторые элементы так, что полученный набор $ u$ будет минимальной системой образующих. Тогда любой элемент набора  $ v \smallsetminus u$ представим в виде линейной комбинации $ u$. Следовательно,  $ v$ линейно зависим.
+	\item $ \boxed{3 \Longrightarrow 1}$ Если $ v$ линейно зависим, то во всех линейных комбинациях набора  $ v$ можно заменить один элемент на линейную комбинацию других. А тогда  $ v$ не минимален.
+	\item  $ \boxed{1 \Longrightarrow 4}$ Так как $ v$ --- система образующих  $ \langle v \rangle = V$. Теперь докажем, что представление единственно. Пусть $ x = va = \sum_{y \in v} y a_y, \quad a \in F^{v}_{fin}$.
+	    Предположим, что $ \exists b \in F_{fin}^{v}: x = vb$. Тогда  $ 0 = va - vb \Longrightarrow 0 = v(a-b)$. Так как $ v$ линейно независим, можем сократить:  $ 0 = a-b$, значит представление единственно.
+	\item $ \boxed{4 \Longrightarrow 1}$ Так как любой элемент представим в виде линейной комбинации набора $ v$,  $ \langle v \rangle = V$. Так как представление единственно, $ v$ линейно независим.
+    \end{description}
+\end{proof}
 \end{document}
