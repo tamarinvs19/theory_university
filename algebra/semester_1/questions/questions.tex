@@ -17,6 +17,7 @@
 \usepackage{epstopdf}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
+\usepackage{pb-diagram}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=1.2cm,bindingoffset=0cm]{geometry}
@@ -49,9 +50,7 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
-\newcommand{\im}{{\mathop{\text{\rm Im}}}\:}
 \newcommand{\re}{{\mathop{\text{\rm Re}}}\:}
-\newcommand{\ke}{{\mathop{\text{\rm Ker}}}\:}
 \newcommand{\GL}{{\mathop{\text{\rm GL}}}}
 \newcommand{\ord}{{\mathop{\text{\rm ord}}}\:}
 \newcommand{\lcm}{{\mathop{\text{\rm lcm}}}\:}
@@ -59,6 +58,8 @@
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}\:}
+\renewcommand{\ker}{{\mathop{\text{\rm Ker}}}\:}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 \def\mycheck{\mathrel{\stackrel{\rm ?}=}}
@@ -79,17 +80,16 @@
 \newtheorem{lm}{Lemma}
 \newtheorem{st}{Statement}
 \newtheorem*{prop}{Property}
+\newtheorem{cor}{Corollary}
 
 \theoremstyle{definition}
 \newtheorem*{ex}{Ex}
 \newtheorem*{exs}{Exs}
-\newtheorem*{cor}{Corollary}
 \newtheorem*{name}{Designation}
 
 \theoremstyle{remark}
-\newtheorem*{rem}{Remark}
-\newtheorem*{com}{Comment}
-\newtheorem*{note}{Note}
+\newtheorem*{com}{\underline{Comment}}
+\newtheorem*{note}{\underline{Note}}
 
 
 \title{Билеты по алгебре \\ I семестр}
@@ -387,4 +387,387 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 
     Пространство называется конечномерным, если в нем существует конечный базис.
 \end{defn}
+\section{Линейные отображения и их матрицы. Матрица композиции линейных отображений}
+\subsection{Линейные отображения}
+\begin{defn}
+    Пусть $ V$ и  $ U$ --- векторные пространства,  $ L$ --- функция  $ V \to  U$. $ L$ называется {\bf линейным отображением}, если
+    $
+    \forall x, y \in V, ~ \alpha \in F: 
+    $
+    \[
+	\begin{aligned}
+	    & L(x+y) = L(x) + L(y) \\
+	    & L(x\alpha) = L(x) \alpha
+	\end{aligned}
+    \] 
+    Биективное линейное отображение называется {\bf изоморфизмом}.
+    Линейное отображение из пространства в само себя называется {\bf линейным оператором}.
+    Отображение из пространства в основное поле часто называется {\bf функционалом}. 
+\end{defn}
+\begin{prop}
+    Пусть вектор $ v = (v_1, \ldots v_n)$ и  отображение $ L: V \to U$. \[
+	L(v) = (L(v_1), \ldots L(v_n)) \in ^n\!\!U
+    .\] 
+    Тогда 
+    \[
+	L(va) = L(v)a, \text{ где } a \in F^{n}
+    .\] 
+    \begin{note}
+	В случае бесконечного $ v$ можем переписать аналогично, обозначив  $ L(v) \in ^n\!\!U: L(v)_x = L(x) \quad \forall x \in v$:
+	\[
+	    L(va) = L(v)a, \text{ где } a \in F^{v}
+	.\] 
+    \end{note}
+\end{prop}
+\begin{name}
+    Пусть $ v$ --- базис  $ V$. Тогда  $ \forall x \in V ~ \exists ! a \in F_{fin}^{v}: x = va$.
+    Тогда $ a = x_v$ --- столбец координат  $ x$ в базисе  $ v$.
+\end{name}
+\begin{lm}
+    Пусть $ V$ --- векторное пространство над полем  $ F$, а  $ v$ --- базис  $ V$. Отображение  $ \varphi _v: V \to  F^{v}$, заданное равенством $ \varphi _v(x) = x_{v}$, является изоморфизмом векторных пространств.
+\end{lm}
+\begin{proof}
+    Рассмотрим $ x, y \in V$.
+    \[
+    \begin{cases}
+        v x_v = x \\
+	v y_v = y
+    \end{cases}
+    \Longrightarrow v(x_v + y_v) = x+y = v(x+y)_v \Longrightarrow \varphi_v (x+y) = \varphi_v (x) + \varphi_v (y)
+    .\] 
+    \[
+	v(x\alpha)_v = x\alpha = v(x_v \alpha) \Longrightarrow  \varphi_v (x\alpha) = \varphi_v(x)\alpha
+    .\] 
+     Построим обратное отображение:
+     $ \theta_v: F^{v} \to  V, ~ \theta_v(a) = va$.
+     Следовательно, $ \varphi _v$ --- биективное линейное отображение.
+\end{proof}
+\begin{cor}[классификация векторных пространств]
+    Любое векторное пространство изоморфно пространству $ F^{I}$ для некоторого множества $ I$, мощность которого равна размерности пространства.
+
+    Два пространства изоморфны между собой  тогда и только тогда, когда их размерности равны.
+\end{cor}
+\subsection{Матрицы линейных отображений}
+\begin{st}\label{st_m_o}
+    Пусть $ L : U \to  V$ --- линейное отображение, $ u = (u_1, \ldots u_n) $ --- базис $ U$,  $ v=(v_1, \ldots v_m)$ --- базис $ V$. 
+     \[
+	 \exists ! A \in M_{m \times n}(F): \forall x \in U ~ L(x)_v = Ax_u
+    .\] 
+    Столбцы матрицы $ A$ вычисляются по формуле $ a_{*k}=L(u_k)_v$.
+\end{st}
+\begin{proof}
+    По определению столбца координат $ x = ux_u$.   \[
+	\varphi _v \circ L(x) = \varphi _v \circ L(ux_v)
+    .\] 
+    Тогда $ L_(x)_v = \varphi _v\bigl(L(x)\bigr) = \varphi _v\bigl(L(u)\bigr)x_u$.
+    Пусть $ A = \varphi _v\bigl(L(u)\bigr) = \bigl( L(u_1)_v, \ldots L(u_n)_v \bigr)$. 
+
+    Докажем единственность. Предположим, что $ Ax = Bx$ для любого столбца  $ x$. Тогда  $ A = B$.
+\end{proof}
+\begin{defn}
+    Матрица $ A$ из прошлого утверждения \ref{st_m_o} называется {\bf матрицей отображения} $ L$ в базисах  $ u, v$ и обозначается через  $ L_u^{v}$.   
+
+    Если $ U = V$,  $ u = v$, говорят о матрице оператора  $ L$ в базисе  $ u$ и обозначают ее через  $ L_u$.
+    \[
+	L(x)_v = L_u^{v}x_v \text{ или } L(x)_u = L_ux_u \text{ в случае } U=V \wedge u=v
+    .\] 
+\end{defn}
+\begin{thm}
+    Матрица композиции линейных операторов является произведением матриц этих операторов. 
+
+    Если $ U, V, W$ --- конечномерные линейный пространства с базисами  $ u, v, w$, соответственно,  $ L: U \to V, ~ M: V \to W$ --- линейные отображения,  то $ (M \circ L)_u^{w}= M_v^{w}L_u^{v}$. 
+
+    Если $ U = V = W$ и  $ u = v = w$, то  $ (M \circ L)_u=M_uL_u$.
+\end{thm}
+\section{Матрица перехода от одного базиса с другому. Замена координат и изменение матрицы оператора при замене базиса}
+\subsection{Матрица перехода}
+\begin{thm}
+    Пусть $ v$ --- базис  $ n$-мерного пространства  $ V$ над полем  $ F$. Набор  $ u = (u_1, \ldots u_n)$ является базисом тогда и только тогда, когда существует $ A \in \GL _n (F)$ такая, что $ u = vA$.
+    \begin{defn}
+    Если  $ u, v$ --- базисы, то  $ A$ называется {\bf матрицей перехода}  от $ v$ к  $ u$ и обозначается через  $ C_{v \to  u}$
+    \end{defn}
+    При этом:
+    \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
+	\item Столбец матрицы $ C_{v \to u}$ с номером  $ k$ равен столбцу координат вектора $ u_k$ в базисе  $ v$.  $ (C_{v \to  u})_k = (u_k)_v$
+	\item $ C^{-1}_{v \to  u} = C_{u \to  v}$ 
+	\item Если матрица двусторонне обратима, то она квадратная.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item \boxed{  \Longrightarrow }  Положим $ \forall k \in [1, n]: a_{*k} = (u_k)_v$. Тогда $ va_{*k} = u_k \Longrightarrow u = vA$ 
+        \item \boxed{  \Longrightarrow } Если $ u = vA$,  $ \langle u  \rangle = \langle vA \rangle = V$. При этом $ u$ минимален, так как иначе и  $ v$ не минимален, значит  $ u$ --- базис.
+    \end{description} 
+    \begin{enumerate}[noitemsep]
+	\item По построению.
+	\item  $ 
+	    \begin{cases}
+	        u = v C_{v \to  u}\\
+		v = u C_{u \to  v}
+	    \end{cases} \Longrightarrow uE = uC_{u \to  v} C_{v \to  u} \Longrightarrow E = C_{u \to  v} C_{v \to  u}
+	    $ 
+	\item Пусть  $ B \in M_{n \times m}(F)$ двусторонне обратима.  $ B B_1 = E_{n\times n} \wedge B_2 B = E_{m\times m}$. Тогда  $ B_2 = B_2 E_{n} = B_2(B B_1)=(B_2 B) B_1 = E_m B_1 = B_1$. Значит $ B_1 = B_2$. $ B_1B = C_{u \to  v}C_{v \to  u} = B_1B \Longrightarrow B \text{ --- квадратная}$.
+    \end{enumerate}
+\end{proof}
+\begin{note}
+    Если пространство $ V$ бесконечномерно,  почти все элементы каждого столбца должны быть равны нулю.
+\end{note}
+\begin{note}
+    Если $ V = F^{n}$, $ e$ --- стандартный базис, то  $ C_{e \to  u}$ --- матрица, составленная из столбцов базиса $ u$.
+\end{note}
+\subsection{Преобразование координат при замене базиса}
+\begin{thm}
+    Пусть $ u, v$ --- базисы пространства  $ V$. 
+     \[
+    \forall x \in V: x_v = C_{v \to  u}x_u
+    .\] 
+\end{thm}
+\begin{proof}
+    Запишем определение столбца координат $ x = ux_u  = vx_v$.
+    Про базисы мы знаем, что  $ v = u C_{u \to  v}$. Тогда
+    \[
+    ux_u = u C_{u \to  v} x_v \Longrightarrow x_u = C_{u \to  v} x_v
+    .\] 
+\end{proof}
+\subsection{Преобразование матрицы оператора при замене базиса}
+\begin{note}
+    Матрица перехода $ C_{u \to  v}$ совпадает с матрицей тождественного отображения $ 1_{V}$ в базисах $ u$ и  $ v$.
+\end{note}
+\begin{lm}
+    Пусть $ u  = (u_1, \ldots u_n)$ --- базис пространства $ U$,  $ v = (v_1, \ldots v_n) \in ^n\!\!V$ --- набор векторов пространства $ V$. Тогда существует единственное линейное отоббражение
+     \[
+	 L: U \to V: L(u) = v
+    .\] 
+    При этом
+    \begin{description}[noitemsep]
+	\item $ L$ инъективно  тогда и только тогда, когда $ u$ линейно независим
+	\item $ L$ сюрьективно  тогда и только тогда, когда $ u$ --- система образующих
+	\item $ L$ --- изоморфизм  тогда и только тогда, когда  $ u $ --- базис
+    \end{description}
+\end{lm}
+\begin{proof}
+    $ \forall x \in U: x = ux_u$. Тогда $ \forall L: L(x) = L(u)x_u$. Зададим $ L$ так:  $ L(x) = v x_u$. Оно линейно и единственно. 
+\end{proof}
+\begin{note}
+    Пусть $ u, v$ --- базисы пространства  $ V$. Тогда  матрица отображения  $ L$ из леммы в базисе $ u$ совпадает с  матрицей перехода  $ C_{u \to  v}$.
+\end{note}
+\begin{st}
+    Пусть $ u, u'$ --- базисы пространства  $ U$,  $ v, v'$ --- базисы пространства  $ U$,  $ v, v'$ --- базисы пространства  $ V$,  $ L: V \to  U$ --- линейное отображение. Тогда
+    \[
+    L_{u'}^{v'} = C_{v' \to  v}L_{u}^{v}C_{u \to  u'}
+    .\] 
+\end{st}
+\begin{proof}
+    \begin{align*}
+	& L(x)_v = L_u^{v}x_u\\
+	& C_{v' \to  v} L(x)_v = L(x)_{v'} = L_{u'}^{v'}x_{u'}=L_{u'}^{v'}C_{u' \to  u} x_u\\
+	& L(x)_{v} = C_{v \to  v'}L_{u'}^{v'}C_{u' \to u}x_u\\
+	& L_{u}^{v} = C_{v \to v'}L_{u'}^{v'}C_{u' \to u}
+    \end{align*}
+\end{proof}
+\begin{note}
+    Если $ U = V$ и  $ u = v, ~ u' = v'$,
+    \[
+    L_{u'} = C_{u' \to  u} L_u C_{u \to  u'}
+    .\] 
+\end{note}
+\section{Внешняя и внутренняя пряма сумма пространств, естественный изоморфизм между ними}
+\begin{name}
+    $ U, V$ --- подпространства векторного пространства  $ W$ над полем  $ F$.
+\end{name}
+\begin{defn}
+    Сумма $ U + V$ --- совокупность  $ \{x + y \mid x \in U, y \in V\}$. 
+    \begin{note}
+$ U + V \subseteq W \wedge  U \cap V \subseteq W$.
+    \end{note}
+\end{defn}
+\begin{defn}
+    Пространство $ W$ называется {\bf внутренней прямой суммой} подпространств $ U$ и  $ V$, если   $$ \forall z \in W ~ \exists ! x \in U, y \in V: z = x+y.$$ То есть $ W = U + V \wedge V \cap U = \{0\}$.   
+\end{defn}
+\begin{defn}
+    $ U, V$ --- векторные пространства.  Их  {\bf внешней прямой суммой} называется их декартово произведение с покомпонентыми операциями. 
+\end{defn}
+\begin{name}
+    Обе прямые суммы обозначаются $ U \oplus V$.
+\end{name}
+\begin{note}
+    Пространства $ U, V$ естественно вкладываются в из внешнюю прямую сумму:  $ \forall x \in U: x \mapsto (x, 0) \wedge  \forall y \in V: y \mapsto (0, y)$. Если отождествить $ U$ и  $ V$ с их образами, то внешняя сумма превращается в прямую сумму подпространств.
+\end{note}
+\begin{st}
+    $ U, C \le W$, $ U \oplus V$ --- их внешняя прямая сумма. Зададим  $ \varphi : U \oplus V \to W$ так $ \varphi (x, y) = x + y$. $ \varphi $ --- изоморфизм тогда и только тогда, когда $ W $ является внутренней суммой подпространств  $ U$ и  $ V$. 
+\end{st}
+Если $ W = U \oplus V$, то объединение базисов  $ U$ и  $ V$ --- базис  $ W$. Поэтому  $ \dim(U \oplus V) = \dim(U) + \dim(V)$.
+\begin{st}
+    $ \forall U \le W ~ \exists V \le W: W = U \oplus V$.
+\end{st}
+\begin{proof}
+    Выберем базис  $ u$ подпространства  $ U$ и дополним его до базиса пространства  $ W$: $ u \cup v$. Тогда подойдет $ V = \langle v \rangle$.
+\end{proof}
+\begin{thm}
+    Для пространств $ U_1, \ldots U_n \le V$ следующие условия эквивалентны:
+    \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
+	\item  $ U_1 \oplus \ldots U_n \to V, ~ (x_1, \ldots x_n) \mapsto x_1 + \ldots x_n$ --- изоморфизм
+	\item $ \forall x \in V ~ \exists ! \bigl(x_1 \in U_1, \ldots x_n \in U_n\bigr): x =x_1 + \ldots x_n$ 
+	\item $ V = U_1+ \ldots U_n$ и $ U_i \cap \left( \sum_{j\ne i}U_{j} \right)=\{0\} \qquad i \in [1, n]$
+	\item Объединение базисов подпространств $ U_1, \ldots U_n$ --- базис $ V$.
+    \end{enumerate}
+\end{thm}
+\section{Теорема о размерности ядра и образа. Теорема о размерности прямой суммы}
+\begin{defn}
+    Пусть $ L: U \to V$ --- линейное отображение. Тогда
+    \begin{description}[noitemsep]
+	\item {\bf Ядро отображения $ L$ --- }  $ \ker L = L^{-1}(0) \coloneqq \{x \in U \mid L(x) = 0\}$ 
+	\item {\bf Образ отображения $ L$ --- } $ \im L = \{L(x) \mid x \in U\}$ 
+    \end{description}
+\end{defn}
+\begin{st}
+    Пусть $ L: U \to  V$ --- линейное отображение.
+    \[
+    \ker L \le U \wedge  \im  L \le U
+    .\] 
+\end{st}
+\begin{defn}
+    $ L : U \to  V$ --- линейное отображение.
+    {\bf Слой} отображения над точкой $ y \in V$ --- множество $ \{x \in X\mid L(x) = y\} = L^{-1} (y)$
+\end{defn}
+\begin{st}
+    Все слои отображения $ L$ являются сдвигами ядра.  $ L(x) = y, ~ x \in U$:
+    \[
+	L^{-1}(y) = x + \ker L
+    .\] 
+\end{st}
+\begin{thm}[о размерности ядра и образа]
+    $L: U \to V$ --- линейное отображение. Тогда
+    \[
+	\dim U = \dim \ker L + \dim \im L
+    .\] 
+\end{thm}
+\begin{proof}
+    $u = (u_1, \ldots u_k)  \text{ --- базис } \ker L, 	~
+    v = (v_1, \ldots v_m)$.
+    Дополним базис ядра до базиса $U$:
+    $u \cup v $ --- базис $U$.
+    Докажем, что $L(v) = \left(L(v_1), L(v_2), \ldots L(v_m)\right)$ --- базис образа.
+
+     $$ \forall  x \in \im L~  \exists y \in U: L(y) = x.$$ 
+     Разложим $y = ua + vb , \qquad a \in F^k, ~b \in F^m $ \\
+     Тогда
+   \[
+       x = L(y) = {{L(u)}}\cdot a + L(v)\cdot  b
+   .\]  
+   Так как $ u \in \ker: L( u)= \left( L(u_1), \ldots L(u_k) \right) = (0, \ldots 0)$.
+   Следовательно, $L(v)$ --- система образующих. Проверим, что $ L(v)$ линейно независим.
+   Пусть
+    \[
+	L(v)\cdot  c = 0, \quad c \in F^m
+   .\] 
+   \[
+       L(v) c = L(vc) = 0 \Rightarrow vc \in \ker L \Rightarrow vc = ud \mbox{ для некоторого } d \in F^k
+   .\] 
+   Тогда $vc - ud = 0$, но $v$ и $u$ --- два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ --- линейно независимый.
+\end{proof}
+\begin{thm}[формула Грассмана о размерности суммы и пересечения]
+    Пусть $U, V \le W$.
+    \[
+    \dim U\cap V + \dim U+V = \dim U + \dim V
+    .\] 	
+\end{thm}
+\begin{proof}
+    Зададим линейное отображение $ L: U \oplus V \to  W: L(u, v) = u+v$.
+    Тогда $\im L = U+V$. 
+    $$
+    (u, v) \in \ker L \Longleftrightarrow  u + v = 0 \Longleftrightarrow  u = -v \in  U\cap V
+    .$$
+    $$
+    \ker L = \{(u, -u) \mid u \in U \cap V\} \cong U\cap V
+    .$$
+    По теореме о размерности ядра и образа
+    $$
+    \dim U + \dim V = \dim (U \oplus V) = \dim \ker L + \dim \im L = \dim U \cap V + \dim U+V 
+    .$$
+\end{proof}
+\section{Факторпространство и его универсальное свойство}
+\begin{name}
+    $ V$ --- векторное пространство,  $ U \le V$.
+\end{name}
+\begin{defn}
+    $ x + U$ --- аффинное подпространство или смежный класс  $ V$ по  $ U$.
+
+     $ y \sim _{U} x \Longleftrightarrow y - x \in U$ --- эквивалентность.
+\end{defn}
+\begin{defn}
+    Множество смежных классов $ V$ по  $ U$ с операциями
+    \begin{align*}
+       (x + U) + (y + U) &= (x+ y) + U  \\
+       (x + u) \alpha &= x\alpha + U
+    \end{align*}
+    называется {\bf факторпространством} $ V$  по  $ U$ и обозначается  $ V / U$.  
+\end{defn}
+\begin{proof}[Проверка корректности определения]
+    Докажем, что определение операций не зависит от выбора представителей классов.
+    \begin{itemize}
+	\item Сложение \[
+    x' + U = x + U \Longrightarrow x' + 0 \in x + U \Longrightarrow x' \in x + U
+    .\] 
+    \[
+    y' + U = y + U \Longrightarrow y' + 0 \in y + U \Longrightarrow y' \in y + U
+    .\] 
+    Тогда $ \exists z \in U: x' = x + z$ и $ \exists t \in U: y' = y + t$.
+    \begin{align*}
+	(x' + U) + (y' + U) & \coloneqq (x' + y') + U = \\
+			    &= (x+y) + \underbrace{(z+t)}_{ \in U} + U \subseteq \\
+			    &\subseteq (x+y) + U
+    \end{align*}
+    Аналогично доказываем включение в обратную сторону.
+\item  Умножение
+    \begin{align*}
+	(x' + U) \alpha & \coloneqq x'\alpha + U = \\
+			& = (x + z)\alpha + U = x\alpha + \underbrace{z\alpha}_{ \in U} + U \subseteq \\
+			& \subseteq x\alpha + U
+    \end{align*}
+    Аналогично доказываем включение в обратную сторону.
+    \end{itemize}
+\end{proof}
+\begin{name}
+    $ \pi_U: V \to  V / U$ ---  естественная проекция: $ \pi_U(x) = x + U$. 
+    \begin{note}
+        $ \pi_U$ линейно и сюрьективно  $ \ker \pi_U = U$.
+
+	По теореме о размерности ядра и образа
+	$\dim V / U = \dim V - \dim U $.:
+    \end{note}
+\end{name}
+\begin{st}\label{st_l_ker}
+    Пусть $ U \subseteq V$. Для любого линейного отображения $ L: V \to W$, $ U \subseteq \ker L$, существует единственное отображение $ \tilde L: V / U \to  W: L = L \circ \pi_U$.  
+    При этом сюрьективность  $ \tilde L$  равносильна сюрьективности $ L$, а инъективность  $ \tilde L$ --- тому, что  $ \ker L = U$.
+    То есть такая диаграмма коммутативна:
+    $$
+\begin{diagram}
+    \node{V} \arrow[1]{e,t}{L} 
+    \arrow{s,l}{\pi_U}
+    \node[1]{W} \\
+    \node{V / U} \arrow[1]{ne,b}{\tilde L}
+\end{diagram}
+$$
+\end{st}
+\begin{proof}
+    Пусть $ \tilde L(x + U) = L(x)$. Эта формула задает линейное отображение и равносильна $ L = \tilde \pi_U$. Следовательно, $ \tilde L$ существует и единственно.
+
+    $ \pi_U$  инъективно, следовательно, $ L$ сюрьективно  $ \Longleftrightarrow $ $ \tilde L$ сюрьективно.
+
+    Отображение  $ \tilde L$ инъективно  $ \Longleftrightarrow \ker \tilde L = \{0_{V / U} + U\}$.
+    \[
+	x + U \in \ker \tilde L \Longleftrightarrow \tilde L(x + U) = 0 \Longleftrightarrow L(x) = 0 \Longleftrightarrow x \in \ker L
+    .\] 
+\end{proof}
+\begin{thm}[о гомоморфизме]
+    $L : V \to W$ --- линейное отображение.
+     \[
+    V / \ker L \cong \im L
+    .\] 
+\end{thm}
+\begin{proof}
+    Возьмем $U = \ker L$ и заменим $W$ на $\im L$. Далее применим утверждение \ref{st_l_ker}.
+\end{proof}
 \end{document}
