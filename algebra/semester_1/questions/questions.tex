@@ -1312,6 +1312,293 @@ $$
 \begin{lm}
     Образ гомоморфизма групп является подгруппой, а ядро ---  нормальной подгруппой.
 \end{lm}
+\section{Существование эпиморфизма групп с данным ядром, факторгруппа.}
+\begin{st}
+    Для любой нормальной подгруппы $ H$ группы  $ G$ существует группа  $ F$ и эпиморфизм  $\pi : G \to F$, ядро которого равно  $ H$.
+\end{st}
+\begin{proof}
+    Пусть $ F = G \po H$ и зададим отображение  $ \pi: G \to F$ по формуле $ \pi(x) = xH$. Зададим операцию в $ F$ по формуле  $ (xH) \cdot (yH) = xyH$. Так как $ H \trianglelefteq G$, эта операция не зависит от выбора представителей $ x $ и $ y$ смежных классов  $ xH$ и  $ yH$:
+     \[
+	 xhyh' = xy(y^{-1}hy)h' \in xyH
+    .\] 
+    Ассоциативность операции следует из ассоциативности операций в $ G$. Нейтральный элемент --- смежный класс $ eH =H $, обратный для  $ xH$ --- смежный класс  $ x^{-1}H$. Следовательно, $ H$ --- группа. По построению  $ F$ сразу получаем, что  $ \pi$ --- гомоморфизм. При этом $ \pi$ сюрьективно.
+    \[
+	\pi(x) = e_{G \po H} = H \Longleftrightarrow x \in H
+    .\] 
+    Следовательно, $ \ker \pi = H$.
+\end{proof}
+\begin{defn}
+    Группа, построенная в доказательстве, называется {\sf факторгруппой} $ G$ по  $ H$, а отображение $ \pi$ --- {\sf канонической проекцией} или {\sf гомоморфизмом  редукции по модулю} $ H$.
+\end{defn}
+\section{Универсальное свойство факторгруппы и теорема о гомоморфизме}
+\begin{thm}[универсальное свойство факторгруппы]
+     Пусть 
+    $f : G \to H$ --- гомоморфизм, a $N\trianglelefteq G$. Если $ \ker f \ge N$, то существует единственный гомоморфизм $ g: G\diagup N \to  H$, такой что $ f = g \circ \pi$. 
+    
+    Если $ f$ --- эпиморфизм, то $ g$ --- эпиморфизм. Если $ \ker F = N$, то $ g$  --- мономорфизм. 
+\end{thm}
+\begin{proof}
+    Пусть $ x \in G$. $f = g \circ \pi \Longrightarrow $
+    \begin{equation}\label{eq_vin}
+	g(xN) = f(x)
+    \end{equation}
+    Если $ y$ --- другой представитель смежного класса  $ xN$, то  $ y = xn$ для некоторого  $ n \in N$, и $ g(yN) = f(y) = f(x)f(n) = g(x)$, так как $ n \in N \le \ker f$. Следовательно, формула \ref{eq_vin} корректно определяет отображение $ g$. Оно является гомоморфизмом из определения умножения смежный классов. Очевидно, что  $ g$ единственно, так как удовлетворяет  $ f =g \circ \pi$.
 
+    Если композиция сюрьективна, то $ g$ обязан быть сюрьективным,  так как применяется последним.
+
+    Если  $ \ker f = N$, 
+     \[
+    xN \in \ker g \Longleftrightarrow x \in \ker f = N \Longleftrightarrow x N = 1_{G \po N}
+    .\] 
+\end{proof}
+\begin{thm}[о гомоморфизме групп]
+    Пусть $ f: G \to H$ --- гомоморфизм групп. Тогда \[
+    \im f \cong G \po \ker f
+    .\] 
+\end{thm}
+\begin{proof}
+    Отображение $ \overline{f}: G \to \im f$, заданное формулой $ \overline{f}(x) = f(x)$ является эпиморфизмом, причем его ядро равно $ \ker f$. По универсальному свойству факторгруппы существует изоморфизм $ \im f \to  G \po \ker f$.
+\end{proof}
+\section{Сопряженные элементы, коммутаторы, коммутант.}
+\subsection{Сопряженные элементы}
+\begin{defn}
+    Пусть $ x, y \in G$. Элемент $ x^{y} \coloneqq y^{-1} x y$ называется {\sf правым сопряженным} к $ x$ при помощи  $ y$. А  $ ^{y}\!x = x ^{y^{-1}} = y x y^{-1}$ --- {\sf левым сопряженным} к $ x$ при помощи  $ y$.
+\end{defn}
+\begin{lm}
+    Пусть $ x, y, z \in G$. Тогда 
+    \begin{enumerate}
+        \item 
+    $ (xy)^{z} = x^{z}\cdot y^{x}$ и $ ^{z}\!(xy) = {^{z}\!x}\cdot  {^{z}\!y}$, то есть сопряжение при помощи $ z$ --- гомоморфизм.
+\item 
+    $ ^{yz}\!x = {^{z}\!({^{y}\!x})}$, то есть отображение из группы $ G$ в группу автоморфизмов группы  $ G$, переводящее элемент в левое сопряжение при помощи этого элемента, является гомоморфизмом.
+    \end{enumerate}
+\end{lm}
+\begin{note}
+    Отношение <<$ x$ сопряжено с  $ y$>> --- отношение эквивалентности. Классы этой эквивалентности называются {\sf классами сопряженных элементов}.
+\end{note}
+\begin{lm}\label{lm_com}
+    Пусть  $ H = \langle X \rangle$ --- подгруппа в группе $ G = \langle Y \rangle$. Тогда $ H \trianglelefteq $ тогда и только тогда, когда $ \forall x \in X ,~ y \in Y: x^{y} \in H$
+\end{lm}
+\begin{proof}
+    $ $
+    \begin{description}
+	\item $ \boxed{ \Longrightarrow }$ Очевидно.
+	\item $ \boxed{ \Longleftarrow }$ Пусть $ h \in  H$, а $ g = y_1 \cdot \ldots y_m \in G, \quad y_i \in Y$. 
+
+	    Индукция по $ m$.
+	     \begin{description}
+		 \item База: $ m=0$.  $ g = 1$.
+		 \item Переход:  $ m-1 \to  m$.
+		     По предположению индукции $ h^{y_1 \cdot \ldots y_{m-1}} \in H$, следовательно, $ h^{y_1 \cdot \ldots  Y_{m-1}} = x_1 \cdot  \ldots x_n$ для некоторого  $ n \in N$ и $ x_1, \ldots x_n \in X$.
+		     Тогда $ h^{g} = (x_1 \cdot  \ldots x_n)^{y_m} = x_1^{y_m} \cdot  \ldots x_n^{y_{m}}$, а каждый сомножитель лежит в $ H $ по условию.
+	    \end{description}
+    \end{description}
+\end{proof}
+\begin{defn}
+    Наименьшая нормальная подгруппа группы $ G$, содержащая подгруппу $ H$ называется {\sf порождающим замыканием}  $ H $ и $ G$.
+     \begin{name}
+        Обозначается: $ H^{G}$.
+    \end{name}
+    \begin{note}
+        $ H^{G}$ порождается всеми элементами вида $ h^{g}, ~ h \in H, ~ g \in G$.
+    \end{note}
+\end{defn}
+\subsection{Коммутатор}
+\begin{defn}
+    {\sf Коммутатором} называется элемент $ [x, y] = xy x^{-1} y ^{-1}$.
+\end{defn}
+\begin{prop}\label{pc}
+    Выполнены следующие коммутаторные формулы:
+    \begin{enumerate}[noitemsep]
+	\item $ [x, y]^{-1} = [y,x]$
+	\item \label{fc}$ [x, yz] = [x, y] \cdot {^{y}\![x , z]}$
+	\item  $[x, y]^z = [x^z, y^z]$
+    \end{enumerate}
+\end{prop}
+\subsection{Коммутант}
+\begin{defn}
+    Пусть $ X, Y $ --- подгруппы  $ G$. {\sf Взаимным коммутантом} этих подгрупп называется подгруппа, порожденная всеми коммутаторами  $ [x, y], \quad x \in X, ~ y \in Y$.
+    \begin{name}
+	Обозначается:  $ [X, Y]$.
+    \end{name}
+\end{defn}
+\begin{lm}
+    Пусть $ X$ и  $ Y$ --- подгруппы в  $ G$. Тогда  $ [X, Y] \trianglelefteq \langle X \cup Y \rangle$.
+\end{lm}
+\begin{proof}
+    По формуле \ref{fc} из свойств коммутаторов \ref{pc}
+    \[
+	[x, y]^{z } = {^{z^{-1}}\![x, y] } = [x, z ^{-1}]^{-1} \cdot [x , z^{-1}y] \in [X, Y]
+    .\] 
+    Аналогично, для  $ x, z \in X, ~ y \in Y$:
+    \[
+	[x, y]^{z} = \left( [y, z]^{-1} \right) ^{z} = \left( {^{z^{-1}}[y, x]} \right)^{-1} = \left( [y, x^{-1}]^{-1} \cdot [y, z^{-1}x] \right)^{-1} = [z^{-1}z, y] \cdot [z^{-1}, y]^{-1} \in [X, Y]  
+    .\] 
+    По лемме \ref{lm_com} получаем нормальную подгруппу.
+\end{proof}
+\begin{st}
+    $\varphi : G \to  A$ --- гомоморфизм. 
+    $A$ --- абелева $\Longrightarrow [G, G] \subseteq \ker \varphi $.
+\end{st}
+\begin{proof}
+    \[
+	\varphi ([g, h]) = [\varphi (g), \varphi (h)] = 1 
+    .\] 
+    Тогда \[
+	[g, h] \in  \ker \varphi , \quad \forall g, h \in  G
+    .\] 
+    Из этого следует, что $[G, G] \subseteq  \ker \varphi $.
+\end{proof}
+\section{Соотношения между трансвекциями. Взаимные коммутанты верхнетреугольных групп. Порождение верхнетреугольной группы.}
+\section{Приведенное разложение Брюа. Соотношение между клетками Брюа и Гаусса.}
+\section{Симметрическая группа. Циклическая запись перестановки. Классы сопряженных элементов в $ S_n$.}
+\subsection{Симметрическая группа}
+\begin{defn}
+    Пусть $ X$ --- множество. Множество биекций  $ X \to  X$ с операцией композиции называется {симметрической группой} множества $ X$ и обозначается через  $ S_X$.
+\end{defn}
+\begin{defn}[Перестановка]
+    $\sigma \in  S_n \Longleftrightarrow \sigma : \{1, \ldots n \} \stackrel{\sim} \to  \{1, \ldots n\}$
+    \begin{description}
+	\item 
+    Табличная запись перестановки:
+    \[
+    \sigma  = \left ( 
+    \begin{array}{ccc}
+	1 &\ldots& n \\
+	i_1, & \ldots  & i_n 
+    \end{array}
+\right ), i_j \ne i_k (j \ne k)
+    .\] 
+\item Циклическая запись перестановки:
+    \[
+	\tau = (j_1, \ldots j_n) \Longleftrightarrow 
+	\tau(j_1) = j_2, ~ \tau(j_2) = j_3, ~ \ldots , \tau(j_{n-1}) = j_n, ~ \tau(j_n) = j_1, \quad \tau(i) = i, \forall i \ne j_k
+    .\] 
+    \end{description}
+\end{defn}
+\begin{defn}
+    Перестановки     $(j_1 \ldots j_n)$ , $(k_1 \ldots .k_m)$ называются  {\sf независимыми}, если $j_h \ne j_l \quad \forall h, l$.
+\end{defn}
+\begin{lm}
+    Любая перестановка равна произведению независимых (композиции) циклов.
+\end{lm}
+\begin{defn}
+    {\sf Циклический (цикленный) тип перестановки} --- набор из длин независимых циклов,в произведение которых раскладывается перестановка.
+\end{defn}
+\begin{note}
+    В определении слово <<набор>> подразумевает мультимножество, то есть порядок не важен, но элементы повторятся.
+\end{note}
+\begin{ex}
+    $(12) (345) \in  S_6$ записывают $2 + 3$.
+\end{ex}
+\begin{lm}\label{lm_sim_group_1}
+    \[
+	\sigma (i_1, i_2, \ldots i_k) \sigma ^{-1} = ( \sigma (i_1), \ldots \sigma (i_k))
+    .\] 
+    Следовательно, сопряжение не меняет циклический тип.
+\end{lm}
+\begin{proof}
+    $\sigma (i_1 \ldots i_k) \sigma ^{-1} (\sigma (t_j))=  \sigma \circ (i_1 \ldots i_k) \sigma  (i_{l+1 \mod' m})$
+    , где $\mod' m$ --- почти модуль (вместо 0 будет $m$ ).
+\end{proof}
+\begin{defn}
+    Отношение на группе $G$ :
+    \[
+    x \sim_c y \Longleftrightarrow  \exists z: x = y^z
+    .\] 
+    $x=y^z \wedge y=ab \Longrightarrow  x = (a^b)^z - a^{bz}$.\\
+    Класс эквивалентности <<$\sim_{c}$>> --- класс сопряженных элементов.
+\end{defn}
+\begin{thm}
+    Класс сопряженных элементов в $S_n$ состоит из всех перестановок  фиксированного циклического типа.
+\end{thm}
+\begin{proof}
+    Следует из леммы \ref{lm_sim_group_1}
+\end{proof}
+\begin{ex}
+   Рассмотрим группу $S_4$ и перестановки циклического типа $2+2$: 
+    \[
+   \begin{array}{c}
+       (12)(34)\\
+       (13)(24)\\
+       (14)(32)
+   \end{array}
+   \] 
+   $\sigma (12)(34) \sigma ^{-1} = (\sigma (1) \sigma (2))(\sigma (3) \sigma (4))$\\
+   Еще есть нейтральный класс $e$ и $2, 3, 4$.
+   Двумерная группа Клейна
+   \[
+      K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
+   .\]  --- единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
+\end{ex}
+\begin{st}
+    $\ord(ab) \mid \lcm (\ord(a), \ord(b))$.
+    Порядок перестановки равен НОКу порядков независимых циклов.
+\end{st}
+\section{Транспозиции и инверсии. Четность перестановки.}
+\begin{defn}[Инверсия]
+    Пусть $\sigma \in  S_n  $. 
+    {\sf Инверсия} в перестановке $\sigma $ --- пара $(i, j): i < j \wedge \sigma  (i) > \sigma (j)$.
+\end{defn}
+\begin{defn}[Четность перестановки]
+    \[
+    \varepsilon : S_n \to \Z \diagup 2\Z
+    .\] 
+    \[
+    \sigma  \mapsto \mbox{ количество инверсий по модулю 2}
+    .\] 
+\end{defn}
+\begin{defn}
+    {\sf Транспозиция} --- циклическая перестановка длины 2.
+    \[
+	\tau(i)= \tau(j), ~\tau(j) = \tau(i), ~ \tau(k)=k
+    .\] 
+\end{defn}
+\begin{lm}
+    Любая перестановка $\sigma $ раскладывается в произведение транспозиций соседних индексов.
+    \[
+	S_n = \left \langle (12), (23) \ldots (n-1~n) \right \rangle
+    .\] 
+\end{lm}
+\begin{proof}
+    Индукция по количеству инверсий $I$ в $\sigma \in  S_n$.
+
+    База: $I = 0$ Это $\sigma  = id$.
+
+    Переход: $I>0$. Заметим, что \[
+	\exists i: \sigma (i) > \sigma (i+1)
+    .\] 
+    Тогда рассмотрим $\tau = \sigma \circ (i, i-1)$.
+    \[
+	\tau(i) = \sigma (i+1) < \tau(i+1) = \sigma  (i)
+    .\] 
+    Так как $\tau(k) = \sigma (k) \quad \forall k \notin \{i, i+1\}$, количество инверсий стало на одну меньше, чем количество инверсий в $\sigma $.
+    Теперь по предположению индукции полученная перестановка раскладывается, а тогда и $\sigma $ раскладывается.
+\end{proof}
+\begin{lm}
+    $\tau = \sigma (i ~ i+1) \Rightarrow |I(\tau) - I(\sigma )| =1$
+\end{lm}
+\begin{lm}
+    Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ --- транспозиция соседних индексов}$, то \[
+	\varepsilon (\sigma ) \equiv k \mod 2
+    .\] 
+\end{lm}
+\begin{thm}
+    $\varepsilon  :S_n \to \Z \diagup  2\Z$ --- гомоморфизм групп.
+\end{thm}
+\begin{proof}
+    \[
+	\begin{array}{l}
+	\sigma  = \tau_1 \cdot \ldots\tau_k \\
+	\rho = \tau_{k+1} \cdot \ldots \tau_n\\
+    \sigma \cdot \rho = \tau_1 \cdot \ldots \tau_n
+    \end{array} \quad \forall i: \tau_i = (j~j+1)
+    .\] 
+    Проверим требуемые свойства: \\
+    $\varepsilon \equiv k \mod 2, \quad \varepsilon (\rho) \equiv n-k\mod 2$\\
+    $\varepsilon (\sigma \rho) \equiv m \mod 2 \equiv \varepsilon (\sigma ) + \varepsilon (\rho) \mod 2$ \\
+    $\varepsilon (\rho^{-1} \sigma \rho) \equiv - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
+    $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) \equiv k-1 \mod 2$
+\end{proof}
 \end{document}
 
