@@ -52,11 +52,12 @@
 \newcommand{\slim}{\sum\limits}
 \newcommand{\po}{\diagup}
 \newcommand{\op}{\diagdown}
-\newcommand{\re}{{\mathop{\text{\rm Re}}}\:}
+\newcommand{\re}{{\mathop{\text{\rm Re}}\:}}
 \newcommand{\GL}{{\mathop{\text{\rm GL}}}}
-\newcommand{\ord}{{\mathop{\text{\rm ord}}}\:}
-\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}\:}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}\:}}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}\,}}
 \newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\del}{{\:\small \raisebox{-2pt}{\vdots}\:}}
 
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
@@ -1141,12 +1142,6 @@ $$
 	     .\] 
     \end{enumerate}
 \end{proof}
-\begin{defn}
-    {\sf Порядок} $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.  
-    \begin{name}
-        $\ord(g) = | \langle g \rangle|$
-    \end{name}
-\end{defn}
 \section{Смежные классы по подгруппе. Теорема Лагранжа}
 \begin{defn}
     Пусть $ H \le G$. Множества $ gH$ и  $ Hg$ называются {\sf левым и правым смежными классами по подгруппе} $ H$ соответственно.  
@@ -1210,6 +1205,113 @@ $$
 \begin{proof}
     Зададим биекцию $ \varphi : G \po H \to  H \op G, \quad aH \mapsto (aH)^{-1} = Ha^{-1}$.   
 \end{proof}
+\section{Порядок элемента группы.}
+\begin{defn}
+    {\sf Порядок} $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.  
+
+    Второе определение:
+        $\ord(g) = | \langle g \rangle|$. 
+\end{defn}
+\begin{thm}
+    Пусть $ G$ --- группа,  $ g \in G$. Тогда $|G| \del \ord (g)$
+\end{thm}
+\begin{proof}
+    Применим теорему Лагранжа для подгруппы порожденной $ g: |G| \del |\langle g \rangle|, ~ \ord(g) = |\langle g \rangle|$
+\end{proof}
+\begin{thm}
+    Пусть $ \varphi : G \to H $ --- гомоморфизм. $ g \in G, ~ \ord(g) = n$. Тогда $\ord(g) \del \ord(f(g)) $.
+\end{thm}
+\begin{proof}
+    \[
+	1_H = 	f(1_G) = f(g^{n}) = f(g)^{n} \Longrightarrow n \del \ord(f(g))
+    .\] 
+\end{proof}
+\begin{st}
+    Пусть $ G$ --- абелева группа,  $ a, b \in G$. Тогда $\lcm (\ord (a), \ord(b)) \del  \ord(ab) $.
+\end{st}
+\begin{proof}
+    Обозначим $\lcm (\ord (a), \ord(b)) = n, ~ \ord(ab) = m$
+    \[
+	(ab)^{n} = a^{n}b^{n} = 1 \Longrightarrow  n \del m
+    .\] 
+\end{proof}
+\begin{thm}\label{th_ords}
+    Пусть $ G$ --- абелева группа,  $ a, b \in G, ~ \gcd(\ord (a), \ord(b)) = 1 $. Тогда $ \ord (ab) = \ord(a) \ord(b)$.
+\end{thm}
+\begin{proof}
+    Рассмотрим $ \langle a \rangle \cap \langle b \rangle  = H$. Это подгруппа $ \langle a \rangle$ и $ \langle b \rangle$. По теореме Лагранжа $ \ord (a) \del |H|$ и $ \ord (b) \del |H|$.
+    Так как порядки $ a$ и  $ b$ взаимно просты, $ \langle a \rangle \cap \langle  b \rangle = \{e\}$. Тогда 
+    \[
+    a^{s} = b^{t} \Longleftrightarrow a^{s} = b^{t} = e
+    .\] 
+    Это равносильно тому, что 
+    \[
+	s \del \ord(a), ~ t \del \ord(b)
+    .\] 
+    Если $ (ab)^{n} = e$, то $ a^{n} = b^{-n}$, значит $ n \del\ord(a) \wedge n \del \ord(b)$. Порядки взаимно просты, следовательно $ n \del \ord(a)\ord(b)$. С другой стороны, по прошлому утверждению  $ \ord(a)\ord(b) \del \ord(ab)$. Следовательно,  \[
+	\ord(a)\ord(b) = \ord(ab)
+    .\] 
+\end{proof}
+\section{Экспонента группы, критерий цикличности группы}
+\begin{defn}
+    {\sf Экспонентой} или {\sf показателем} группы $ G$ называется натуральное число  $ d: g^{d} = e \quad \forall g \in G$. Если такого $ g$ не существует, то говорят, что экспонента группы равна бесконечности.
+\end{defn}
+\begin{thm}[свойства экспоненты группы]
+    $ $
+    \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
+        \item Экспонента группы равна НОКу всех порядков ее элементов.
+	\item Если группа конечна, то ее экспонента делит ее порядок.
+	\item Экспонента прямого произведения групп $ G_1\times \ldots G_l$ равна НОКу экспонент этих групп.
+	\item \label{p_peg}Если $ G$ --- абелева группа конечной экспоненты, то существует элемент, порядок которого равен ее экспоненте.
+	\item Конечная абелева группа является циклической  тогда и только тогда, когда ее экспонента равна ее порядку.
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    Докажем пункт \ref{p_peg}. Пусть $ d = p_1^{k_1} \cdot  \ldots p_l^{k_l}$ --- экспонента группы $ G$, где  $ p_1, \ldots p_l \in \Pm$. Тогда $ \exists  g_1, \ldots g_l \in G$, порядки которых делятся на $ p_1^{k_1}, \ldots p_l^{k_l}$ соответственно. 
+
+    Если $ \ord(g) = mn$, то  $ \ord (g^{m}) = n$. Возведем $ g_1, \ldots g_l$ в нужные степени и считаем, что $ \ord(g_i) = p_{i}^{k_i} \quad \forall  i \in [1, l]$.
+
+    Воспользуемся теоремой \ref{th_ords}, и по индукции докажем, что $ \ord(g_1\cdot  \ldots g_l) = \ord(g_1) \cdot  \ldots \ord(g_l) = d$.
+\end{proof}
+\section{Нормальные подгруппы. Гомоморфизмы групп. Свойства ядра и образа.}
+\subsection{Нормальные подгруппы}
+\begin{defn}
+    Пусть $H \le G$.
+    $H$ называется {\sf нормальной подгруппой}, если $gH = Hg \quad g \in  G$.
+    \begin{name}
+         Обозначается: $H \trianglelefteq G$.
+    \end{name}
+\end{defn}
+\begin{note}
+    $g^{-1} H g = H \quad \forall g \in  G \Longleftrightarrow  g^{-1} H g \subseteq H \quad \forall g \in  G \Longleftrightarrow H \trianglelefteq G$
+\end{note}
+\subsection{Гомоморфизмы групп}
+\begin{defn}
+    Пусть $ (G, *), ~ (H, \#)$ --- группы. Функция $ f: G \to  H$ называется {\sf гомоморфизмом}, если  $ f(a \cdot b) = f(a)\#f(b) \quad \forall a, b \in G$.  
+
+    Образ гомоморфизма $ \im f = \{f(g) \mid g \in G\}$.
+
+    Ядро гомоморфизма $ \ker f = \{g \in G\mid f(g)=e_H \}$.
+\end{defn}
+\begin{defn}
+    $ $
+    \begin{description}[noitemsep]
+	\item {\sf Мономорфизм} --- инъективный гомоморфизм.
+	\item {\sf Эпиморфизм} --- сюрьективный гомоморфизм.
+	\item {\sf Изоморфизм} --- биективный гомоморфизм.
+    \end{description}
+\end{defn}
+\begin{lm}
+    Если $ f: G \to H$ --- гомоморфизм групп, $ f(e_G) = e_H$ и  $ \forall x \in G: f(x^{-1}) - f(x) ^{-1}$
+\end{lm}
+\begin{lm}
+    Пусть $ f: G \to  H$ --- гомоморфизм групп, $ g \in G, ~ h= g(g)$. Тогда $ f^{-1}(h) - g\ker f$.
+
+    Гомоморфизм инъективен тогда и только тогда, когда его ядро состоит из одного элемента.
+\end{lm}
+\begin{lm}
+    Образ гомоморфизма групп является подгруппой, а ядро ---  нормальной подгруппой.
+\end{lm}
 
 \end{document}
 
