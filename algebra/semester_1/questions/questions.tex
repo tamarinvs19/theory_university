@@ -50,6 +50,8 @@
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\ilim}{\int\limits}
 \newcommand{\slim}{\sum\limits}
+\newcommand{\po}{\diagup}
+\newcommand{\op}{\diagdown}
 \newcommand{\re}{{\mathop{\text{\rm Re}}}\:}
 \newcommand{\GL}{{\mathop{\text{\rm GL}}}}
 \newcommand{\ord}{{\mathop{\text{\rm ord}}}\:}
@@ -1068,5 +1070,146 @@ $$
     Рассмотрим $ a \in \GL_{n}(F)$. Построим перестановку $ w$, чтобы все главные подматрицы были обратимы. Дальше домножим справа и слева на унитреугольные матрицы так, чтобы получить верхнетругольную матрицу: 
     $wa \in  B^- B$. Домножая на $B, B^-$, получим, что хотели.
 \end{proof}
+
+\section{Определение группы, подгруппы, прямое произведение групп}
+\begin{defn}
+Множество $X$ с операцией $*$ , удовлетворяющее 
+\begin{enumerate}
+    \item $\forall x,y,z \: \in X: x*(y*z) = (x*y)*z$  (ассоциативность);
+    \item $\exists e \in X \; \forall a \in X: e*a = a*e = a$ (нейтральный элемент);
+    \item $\forall a \in X \; \exists a' \in X: a*a' = a' * a = e $ (обратный элемент),
+\end{enumerate}
+называется {\sf группой}.
+\end{defn}
+\begin{defn}
+    Непустое подмножество $H \subset G$ называется {\sf подгруппой} $ G$, если $H$ --- группа относительно операции, заданной в $G$.
+    \begin{name}
+    Обозначается: $H \le G$
+    \end{name}
+\end{defn}
+\begin{lm}
+    $H \subset B$.
+    $H$ --- подгруппа тогда и только тогда, когда $ \forall h, g \in H: gh, g^{-1} \in  H$.
+\end{lm}
+\begin{prop}
+    Любая группа имеет две тривиальные подгруппы: сама группа и множество, состоящее из одного нейтрального элемента.
+\end{prop}
+\begin{defn}
+    Пусть  $ G_1, G_2$ --- группы с операциями  $ *_1$ и $ *_2$ соответственно. {\sf Прямое произведение}  $ G = G_1 \times G_2$ --- декартово произведение  $ G_1$ и $ G_2$ c операцией $ *$:
+     \[
+	 (g_1, g_2) * (g_1', g_2') = (g_1 *_1 g_1', g_2*_2 g_2'), \quad g_1, g_1' \in G_1, ~ g_2, g_2' \in G_2
+    .\] 
+
+    Аналогично определяется произведение любого семейства групп.
+\end{defn}
+\section{Подгруппа, порожденная множеством. Классификация циклических подгрупп}
+\begin{defn}
+    Пусть $ X$ --- подмножество группы  $ G$.  {\sf Подгруппой, порожденной множеством}  $ X$, называется наименьшая группа по включению, содержащая  $ X$. 
+    \begin{name}
+        Подгруппа, порожденная  $ X$, обозначается $ \langle X \rangle$. 
+    \end{name}
+\end{defn}
+\begin{defn}
+    Группа, порожденная одним элементом, называется {\sf циклической}.
+\end{defn}
+\begin{lm}
+    $ \langle X \rangle = \{x_1 \ldots x_k \mid k \in \Z_+, ~ x_i \in X \cap X^{-1}\}$. 
+\end{lm}
+\begin{st}
+    Любая циклическая группа изоморфна $\Z$ или $\Z_n$.
+\end{st}
+\begin{proof}
+    $G = \{g^m \mid m \in \Z\}$. Разберем два случая:
+     \begin{enumerate}
+	 \item $g^m \ne 1 \quad  \forall m \in  \Z \Longrightarrow \nexists a, b \in \Z: g^{a} = g^{b}$.
+	     Тогда отображение 
+	     \[
+		 \varphi : \Z \to  G, \quad \varphi (m) = g^m
+	     \text{ --- изоморфизм}.\] 
+	     \[
+		 \varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
+	     .\] 
+	 \item Пусть $n$ --- наименьшее натуральное число, такое, что $g^n = 1$. 
+	     Заметим, что любое целое $ l$ можно с остатком разделить на  $ n: l = ns + r, ~ 0 \le r < n$.
+	     Тогда \[
+	     g^{l} = g^{ns}g^{r} = g^{r}
+	     .\] 
+	     Следовательно, $ \langle g \rangle = \{1, g, g^2, \ldots g^{n-1}\}$.
+	     Тогда отображение 
+	     \[
+	     \varphi : G \to \Z_n, \quad k \to  g^{k} \text{ --- изоморфизм}
+	     .\] 
+    \end{enumerate}
+\end{proof}
+\begin{defn}
+    {\sf Порядок} $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.  
+    \begin{name}
+        $\ord(g) = | \langle g \rangle|$
+    \end{name}
+\end{defn}
+\section{Смежные классы по подгруппе. Теорема Лагранжа}
+\begin{defn}
+    Пусть $ H \le G$. Множества $ gH$ и  $ Hg$ называются {\sf левым и правым смежными классами по подгруппе} $ H$ соответственно.  
+\begin{name}$ $
+    \begin{description}[noitemsep]
+	\item 
+    $G \diagup H = \{gH \mid g \in G\} $ --- множество левых смежных классов.
+\item 
+    $H \diagdown G = \{Hg \mid g \in G\} $ --- множество правых смежных классов.
+    \end{description}
+\end{name}
+\end{defn}
+\begin{defn}
+    Отношение сравнимости по модулю $ H$:
+    \[
+    a \equiv b \mod H  \Longleftrightarrow a \in bH
+    .\] 
+\end{defn}
+\begin{lm} 
+    Сравнимость по модулю $ H$ --- отношение эквивалентности. Два смежных класса либо не пересекаются, либо совпадают.
+\end{lm}
+\begin{proof}
+    $ $
+    \begin{description}[noitemsep]
+	\item Рефлексивность: $ a = ae \in a H$
+	\item Симметричность: $ a \in B \Longrightarrow \exists h \in H: a= bh \Longrightarrow  b=a h^{-1} \in  aH$
+	\item Транзитивность: $ a \in bH, b \in cH \Longrightarrow a = bh, b = ch' \Longrightarrow a = chh' \in c H$
+    \end{description}
+Второе утверждение вытекает из того, что классы сравнимости --- левые смежные классы по подгруппе.
+\end{proof}
+\begin{cor}
+    $$G =\bigsqcup\limits_{g \in X} g H, \text{ где } X \text{ --- множество представителей левых смежных классов по $H$}$$
+\end{cor}
+\begin{lm}
+    \[
+    |g_1H| = |g_2H|, \quad \forall g_1, g_2 \in  G,~ H \le G 
+    .\] 
+\end{lm}
+\begin{proof}
+    Такое отображение будет изоморфизмом:
+     \[
+     \left ( 
+     \begin{array}{c}
+     g_1H \to g_2H \\
+     x \mapsto g_2 g_1^{-1} x
+     \end{array}
+     \right )
+     .\] 
+     Обратное: $y \mapsto g_1 g_2^{-1} y$
+\end{proof}
+\begin{thm}[Лагранж]
+    $G$ --- конечная группа. Тогда $|G| = |H|\cdot  |G:H|$, где $|G:H|$ --- количество левых смежных классов $G$ по $H$.
+    $|G:H|$ --- индекс $H$ в $G$.
+\end{thm}
+\begin{proof}
+    Из прошлой леммы и следствия
+\end{proof}
+\begin{lm}
+    Множества $ G \po H$ и $ H \op G$ равномощны.
+\end{lm}
+\begin{proof}
+    Зададим биекцию $ \varphi : G \po H \to  H \op G, \quad aH \mapsto (aH)^{-1} = Ha^{-1}$.   
+\end{proof}
+
 \end{document}
 
