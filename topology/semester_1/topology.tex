@@ -744,7 +744,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{defn}
     $f: X \to  Y, ~ x_0 \in Y$
     $f$ непрерывна в точке $ x_0$, если \[
-	\forall \mbox{ окрестности } U \ni y_0 = f(x_0) \exists \mbox{ окрестность } V \ni x_0: f(U) \subset V
+	\forall \mbox{ окрестности } U \ni y_0 = f(x_0) ~ \exists \mbox{ окрестность } V \ni x_0: f(V) \subset U
     .\]
 \end{defn}
 \begin{thm}
@@ -756,7 +756,7 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     \[
 	\left \{
 	    \begin{array}{ll}
-		f^{-1}(U) \mbox{ открыт} & V:=f^{-1}(U)\\
+		f^{-1}(U) \mbox{ открыт} & V\coloneqq f^{-1}(U)\\
 		x_0 \in f^{-1}(U) & f(V) \subset U
 
 	    \end{array}
@@ -776,11 +776,11 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 
     Тогда $f$ -- непрерывна в точка $x_0$ тогда и только тогда, когда
     \[
-	\forall  \varepsilon > \exists  \delta  >0: f(B_{ \delta }) \subset B_{ \varepsilon } (f(x))
+	\forall  \varepsilon >0 ~ \exists  \delta  >0: f(B_{ \delta }) \subset B_{ \varepsilon } (f(x))
     .\]
     Или можем записать альтернативную формулировку непрерывности:
     \[
-	\forall  \varepsilon  \exists \delta : \forall x' \in  X \wedge d(x, x') < d \Rightarrow  d(f(x) , f(x')) < \varepsilon
+	\forall  \varepsilon >0 ~\exists \delta >0: \bigl(\forall x' \in  X ,~  d(x, x') < \delta \Longrightarrow   d(f(x) , f(x')) < \varepsilon\bigr)
     .\]
 \end{thm}
 \begin{proof}
