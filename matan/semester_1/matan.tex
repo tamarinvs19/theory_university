@@ -179,7 +179,7 @@ $$ (-\infty, a) =\{x \in \R \mid x < a\}$$
 Ограниченное множество - ограниченное сверху и снизу. 
 \end{defn}
 
-\section{Натуральные числа}
+\section{Числа}
 \subsection{Аксиома Архимеда}\label{ques_1}
 \begin{aks}[Архимед]
     Множество натуральных чисел не ограниченно сверху.
@@ -365,7 +365,7 @@ $$ (-\infty, a) =\{x \in \R \mid x < a\}$$
 \end{defn}
 \begin{defn}[infimum]
     Пусть $A \subset \R$ - ограничено снизу. \\
-    Точная нижняя грань (инфимум) -- наибольшая из всех его верхних границ.
+    Точная нижняя грань (инфимум) -- наибольшая из всех его нижних границ.
 \end{defn}
 \begin{thm}[об описании точной верхней грани]
     Пусть $A \ne \varnothing$ и ограничено сверху. Следующие условия эквивалентны:
@@ -989,6 +989,45 @@ $$
 \begin{ex}
 $\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
 \end{ex}
+\section{Односторонние пределы}
+\begin{defn}
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_1 = A \cap (-\infty, x_0)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_1} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ слева.
+\end{defn}
+\begin{defn}
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_2 = A \cap (x_0, +\infty)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_2} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ справа.
+\end{defn}
+\begin{name}
+    $ $
+    \begin{description}
+	\item Предел слева:  $ \lim\limits_{x \to  x_0 - }f(x) = \lim\limits_{x \to  x_0 - 0}f(x)$ 
+	\item Предел справа: $ \lim\limits_{x \to  x_0 +} f(x) = \lim\limits_{x \to  x_0 + 0}f(x)$
+    \end{description}
+\end{name}
+\begin{thm}
+    В условиях определения пределов слева и справа, $ x_0$ --- предельная точка для $ A_1, A_2$.
+    Тогда $ f$ имеет предел в точке  $ x_0$ тогда и только тогда, когда $ f$ имеет предел справа и слева в этой точке и они равны.
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+        \item \boxed{  \Longrightarrow } 
+	    из теоремы о пределе сужения
+        \item \boxed{  \Longrightarrow } 
+	    Пусть $ \exists \lim_{x \to  x_0-}f(x) = b = \lim_{x \to  x_0 +}f(x) $.
+	    \[
+		\forall \varepsilon >0 ~ \exists \delta_1 >0 : \bigl( |x - x_0| < \delta_1 \wedge  x \in A \wedge  x < x_0 \Longrightarrow |f(x) = b| < \varepsilon \bigr)
+	    .\] 
+	    \[
+		\forall \varepsilon >0 ~ \exists \delta_1 >0 : \bigl( |x - x_0| < \delta_2 \wedge  x \in A \wedge  x > x_0 \Longrightarrow |f(x) = b| < \varepsilon \bigr)
+	    .\] 
+	    Возьмем $ \delta = \min(\delta_1, \delta_2)$.
+	    Тогда 
+	    \[
+		\forall x \in A\setminus \{x_0\}, |x-x_0|<\delta: |f(x) - b|  < \varepsilon 
+	    .\] 
+	    Следовательно, $ b = \lim_{x \to  x_0} f(x)$.
+    \end{description} 
+\end{proof}
 \section{Верхние и нижние пределы}
 \subsection{Определение и свойства}\label{ques_30}
 \begin{defn}
