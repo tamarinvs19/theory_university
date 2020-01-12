@@ -586,16 +586,16 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \end{defn}
 \begin{thm}[о пределе сужения]
     $f: A \to \R, x \in A'$, $B \subset A'$\\
-    Пусть $x_0 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\!\upharpoonright_B)$.
+    Пусть $x_0 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\!\!\upharpoonright_B)$.
 \end{thm}
 \begin{proof}
     По условию $\forall U(z) \exists \stackrel \circ V: f(\stackrel \circ V \cap A) \subset U $, тем более $f(\stackrel \circ V \cap B) \subset U$.
 \end{proof}
 \begin{thm}[частичное обращение теоремы о пределе сужения]
-    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \!\upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
+    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \!\! \upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
 \end{thm}
 \begin{proof}
-    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\!\upharpoonright_B(\stackrel \circ V) \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
+    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\!\! \upharpoonright_B(\stackrel \circ V) \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
     $\stackrel \circ V \cap \stackrel \circ W_{\delta }$ - тоже окрестность точки $x_0$.
 \end{proof}
 \subsection{Предел постоянной функции и предел тождественного отображения}\label{ques_17}
@@ -739,8 +739,8 @@ $f: A \to \R, ~x_0$ - предельная точка $A$, ($x_0 \in \R, \neq \p
 $A_1 = A \cap (- \infty, x_0];~ A_2 = A \cap [x_0, + \infty)$.
     \end{name}
 \begin{defn} 
-Если $x_0$  --- предельной точка $A_1$, $ \exists ~\lim_{x_0}{f\!\upharpoonright_{A_1}}$, то говорят, что $f$ имеет {\bf   предел слева} от $x_0$.
-Если $x_0$ --- предельная точка $A_2, \exists ~\lim_{x_0}{f\!\upharpoonright_{A_2}}$, то говорят, что $f$ имеет {\bf предел слева} от $x_0$. 
+Если $x_0$  --- предельной точка $A_1$, $ \exists ~\lim_{x_0}{f\!\! \upharpoonright_{A_1}}$, то говорят, что $f$ имеет {\bf   предел слева} от $x_0$.
+Если $x_0$ --- предельная точка $A_2, \exists ~\lim_{x_0}{f\!\! \upharpoonright_{A_2}}$, то говорят, что $f$ имеет {\bf предел слева} от $x_0$. 
 \begin{name}
 Левый предел обозначают: $\lim_{x \to x_0 - 0}{f(x)}, ~\lim_{x \to      x_0-}{f(x)}$. 
 Правый предел обозначают: $\lim_{x \to x_0 + 0}{f(x)}, ~\lim_{x \to x_0+}{f(x)}$. 
@@ -991,10 +991,10 @@ $\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
 \end{ex}
 \section{Односторонние пределы}
 \begin{defn}
-    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_1 = A \cap (-\infty, x_0)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_1} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ слева.
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_1 = A \cap (-\infty, x_0)$ и  $ \exists \lim_{x_0} f\!\! \upharpoonright_{A_1} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ слева.
 \end{defn}
 \begin{defn}
-    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_2 = A \cap (x_0, +\infty)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_2} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ справа.
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_2 = A \cap (x_0, +\infty)$ и  $ \exists \lim_{x_0} f\!\! \upharpoonright_{A_2} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ справа.
 \end{defn}
 \begin{name}
     $ $
@@ -1835,7 +1835,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     \end{enumerate}
 \end{proof}
 \begin{defn}
-    $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf монотонный максимум}, если  \[
+    $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf локальный максимум}, если  \[
 	\exists \delta >0 : f(x_0) \ge f(y) \quad \forall  y \in I \wedge  |x_0 - y| < \delta
     .\]
 \end{defn}
@@ -1849,7 +1849,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     $ x_0 \in (\alpha, \beta)$ --- точка локального экстремума для $ f: (\alpha, \beta) \to  \R$. Если $ \exists f'(x_0)$, то $ f'(x_0) = 0$.
 \end{thm}
 \begin{proof}
-    Пусть $ x_0$ локальный  максимум. Тогда $ f\!\upharpoonright_{(\alpha, x_0]}$ --- возрастает в точке $ x_0 \Longrightarrow f'(x_0) \ge 0$. Также $ f\!\upharpoonright_{[x_0, \beta)}$ --- убывает в точке $ x_0 \Longrightarrow f'(x_0) \le 0$.
+    Пусть $ x_0$ локальный  максимум. Тогда $ f\!\!\upharpoonright_{(\alpha, x_0]}$ --- возрастает в точке $ x_0 \Longrightarrow f'(x_0) \ge 0$. Также $ f\!\!\upharpoonright_{[x_0, \beta)}$ --- убывает в точке $ x_0 \Longrightarrow f'(x_0) \le 0$.
 
     Для других случаев полностью аналогично.
 \end{proof}
@@ -1860,7 +1860,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     Пусть $ f(a) = f(b)$. Тогда  $ \exists c \in (a, b): f'(c) = 0$.
 \end{thm}
 \begin{proof}
-    По теореме Вейерштрасса №2 \ref{th_ve_2} $ \exists x, y \in [a, b]:
+    По теореме Вейерштрасса №2 (теорема \ref{th_ve_2}) $ \exists x, y \in [a, b]:
     \begin{cases}
 	f(x) = \min_{t \in [a, b]}f(t)\\
 	f(y) = \max_{t \in [a, b]}g(t)
@@ -1938,14 +1938,14 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{proof}
     Рассмотрим $ x > u > a$.
      \[
-	 \frac{f(a) - f(b)}{g(a)-g(b)} = \frac{f'(y)}{g'(y)} \qquad y \in (a, x)
+	 \frac{f(u) - f(x)}{g(u)-g(x)} = \frac{f'(y)}{g'(y)} \qquad y \in (u, x)
     .\] 
     \[
-	\forall \varepsilon ~\exists \delta: \Bigl(|y -a| < \delta \Longrightarrow \left| \frac{f'(y)}{g'(y)} - d \right| < \varepsilon \Bigr)
+	\forall \varepsilon >0~\exists \delta>0: \Bigl(|y -u| < \delta \Longrightarrow \left| \frac{f'(y)}{g'(y)} - d \right| < \varepsilon \Bigr)
     .\] 
-    Если $ |x-a| < \delta $, то $ |y -a|<\delta$. 
+    Если $ |x-u| < \delta $, то $ |y -u|<\delta$. 
     \[
-	\left| \frac{f(u)-f(x)}{g(a) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
+	\left| \frac{f(u)-f(x)}{g(u) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
     .\] 
 \end{proof}
 \begin{thm}[Правило Лопиталя для $ \infty/\infty$]
@@ -1957,21 +1957,22 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{proof}
     $ x, u \in (a, a + \delta ), ~ x \ne  u$. $ \exists y$ между $ x$ и $ u$:
     \[
-	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{f'(y)}{g'(y)}
+	\frac{f(x) - f(u)}{g(x) - g(u)} = \frac{f'(y)}{g'(y)}
     .\] 
     \begin{equation}\label{eq_lop}
-	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}
+	\frac{f(x) - f(u)}{g(x) - g(u)} = \frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(x)}}{1 - \frac{g(u)}{g(x)}}
     \end{equation}
     Зафиксируем $ u$ вблизи $ x: \left| \frac{g(u)}{g(x)} \right| < 1$.
-    Тогда модуль правой части в уравнении  \ref{eq_lop} не более  $ \varepsilon $.
+    % Тогда модуль правой части в уравнении  \ref{eq_lop} не более  $ \varepsilon $.
+    Тогда знаменатель правой части в уравнении \ref{eq_lop} больше нуля.
     Воспользуемся тем, что $ \lim_{x \to a} \frac{f'(x)}{g'(x)} = d $:
     \[
-    d - \varepsilon  \le \left|
-	\frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}\right|
+     \forall \varepsilon > 0 ~ \exists \delta>0: |x - a| < \delta \Longrightarrow d - \varepsilon  \le 
+	\frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}} \le d + \varepsilon 
     .\] 
     Домножим на знаменатель:
     \[
-	(d- \varepsilon ) (1- \frac{g(u)}{g(x)}) \le \frac{f(x)}{g(x)} - \frac{f(u)}{g(u)} \le (d+ \varepsilon ) \left(1 - \frac{g(u)}{g(u)}\right)
+	(d- \varepsilon ) \left(1- \frac{g(u)}{g(x)}\right) \le \frac{f(x)}{g(x)} - \frac{f(u)}{g(u)} \le (d+ \varepsilon ) \left(1 - \frac{g(u)}{g(x)}\right)
     .\] 
     $ x$ близок к $ a$:
     \begin{align*}
@@ -1983,10 +1984,10 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     \end{st}
     Применим утверждение. 
     \[
-	\varlimsup_{x \to  a} v(x) = \inf_{\delta>0}\sup_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
+	\varlimsup_{x \to  a} v(x) = \inf_{\delta>0}\sup_{|x - a| < \delta } \ge \lim_{x \to  a}  v(x)
     .\] 
     \[
-	\varliminf{x \to  a} v(x) = \sup_{\delta>0}\inf_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
+	\varliminf_{x \to  a} v(x) = \sup_{\delta>0}\inf_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
     .\] 
     Значит
      \[
@@ -1998,7 +1999,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \[
     f(x) = f(a) + f'(a)(x-a) + o_{x \to  a}(x-a)
 .\] 
-Рассмотрим множество $ A = \{x \mid f'(x) \text{ существует}\}$
+Рассмотрим множество $ A = \{x \mid f'(x) \text{ существует}\}$.
 Тогда можно смотреть на  $ f'$ как на функцию, заданную на  $ A$.
 \begin{defn}
     Если $ f'$ определена в точке $ x \in A$, то $ (f')'(x) = f''(x)$ --- вторая производная в точке  $ x$.
