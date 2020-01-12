@@ -2550,12 +2550,10 @@ $$
     .\]
 \end{ex}
 \begin{ex}
-    \[
-	\int e^{x} \sin x dx = \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx
-    .\]
-    \[
-	= \sin x e^{x} - \int xos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
-    .\]
+    \begin{align*}
+	\int e^{x} \sin x dx &= \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx = 
+			     &= \sin x e^{x} - \int \cos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
+    \end{align*}
     Теперь решим уравнение и получим:
     \[
 	\int e^{x} \sin x dx = \frac{e^{x} \sin x - e^{x} \cos x}{2} + c
@@ -3095,7 +3093,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \begin{prop}
     $ (\log x)' = \frac{1}{x}$
     \[
-	\frac{\log (x+1) - \log 1}{x} \stackrel{to} {x \to  0} \log'(1) = 1
+	\frac{\log (x+1) - \log 1}{x} \stackrel{x \to  0}{\longrightarrow} \log'(1) = 1
     .\]
     \[
 	\frac{\log(1+x)}{x} \to 1, \quad x \to  0
@@ -3231,13 +3229,13 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]  Такое число называется основанием логарифма $ l$.
 \end{name}
 \begin{note}
-    $ l = \log$. Тогда основание равно $ e$.
+    Если $ l = \log$, основание равно $ e$.
 \end{note}
 \begin{name}[общий случай]
     \[
 	\exists C \ne 0 : l(x) = C \log x
     .\]
-    $ a$ --- ан для $ l$.
+    $ a$ --- основание для $ l$.
     \[
 	1 = l(x) = C \log a ~ \Longrightarrow  ~ C= \frac{1}{\log a}
     .\]
@@ -3278,11 +3276,11 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     $ f'(x) = (\exp (x \log a))' = \exp(x \log a) = \log a \cdot  a^{x}$
 \end{prop}
 \begin{prop}
-    $ \exp x = e^{ x} = \exp(x \log e) = \exp x$
+    $ \exp' x = \left(e^{ x}\right)' = \exp(x \log e) = \exp x$
 \end{prop}
 \begin{defn}
-    Пусть $  \ne 1$.  \[
-	a^{x} = y: \exp x \log a \Leftrightarrow  x = \frac{\log y}{\log a} = \log_a y
+    Пусть $ a \ne 1$.  \[
+	a^{x} = y: \exp (x \log a) = y \Longleftrightarrow   x = \frac{\log y}{\log a} = \log_a y
     .\]
 \end{defn}
 \subsection{Степенная функция}
@@ -3299,7 +3297,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \end{st}
 \begin{proof}
     \[
-	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b log x - x log a}
+	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b \log x - x \log a}
     .\]
     А логарифм растет медленнее линейной функции, тогда полученное выражение стремится к нолю при $ x \to  \infty$.
 \end{proof}
@@ -3323,7 +3321,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     \begin{equation}
 	e ^{ x} = e^{ x_0} \cdot e ^{x- x_0} = e ^{ x_0} \sum_{n=0}^{\infty} \frac{(x-x_0)^{n}}{n!} = \sum_{n=1} ^{\infty} \frac{e^{x_0}}{n!} (x - x_0)
     \end{equation}
-    Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется ,,аналитичность''
+    Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется {\sf <<аналитичность>>}.
 \end{st}
 \begin{ex}
     $ f(x) = \sum_{n=1}^{\infty} 2^{n} \cos n^2 x $ --- непрерывная, ряд сходится равномерно по теореме Вейерштрасса)
@@ -3422,7 +3420,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]
     Запишем локальную формулу Тейлора:
     \[
-	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{k+1} (1 + c)}{(k+1)!} x ^{ k+1}
+	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{(k+1)} (1 + c)}{(k+1)!} x ^{ k+1}
     .\]
     \[
 	\log(1+x) = \sum_{n=1} ^{k}  (-1)^{n+1} \frac{x^{n}}{n} + \frac{(-1)^{ k+1}}{k+1}\cdot  \frac{1}{(1+c)^{k+1}}x ^{ k+1}
@@ -3448,31 +3446,34 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]
 \end{proof}
 \begin{st}
-    Раскладывается ли логарифм  ряд Тейлора:
+    Раскладывается ли логарифм в ряд Тейлора:
     \begin{equation}\label{log_te}
 	\sum_{n=1} ^{\infty} (-1)^{ n} \frac{x^{n}}{n}
     \end{equation}
     Посмотрим на модуль:
     \[
-	\frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
+	\frac{1}{n} |x|^{n} \longrightarrow +\infty, \quad | x | > 1
     .\]
     Тогда имеет смысл рассматривать только $ x\in (-1, 1]$.
 \end{st}
 \begin{thm}
-    $ x \in (-1, 1]$. Тогда ряд \ref{log_te} равномерно сходится равномерно  на любом $ (r , 1], \quad r>-1$.
+    $ x \in (-1, 1]$. Тогда ряд \ref{log_te}  сходится равномерно  на любом $ (r , 1], \quad r>-1$.
 \end{thm}
 \begin{proof}
+    $ $
     \begin{enumerate}
 	\item $ x \in  [0, 1]$.
 	    \begin{equation}
 		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} x^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
-		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in lra
+		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in (r, 1]
 	    \end{equation}
 	    В частности, $ \log 2 = 1 -\frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots $.
 	\item $ -1 < x \le 0$
 	    \begin{equation}\label{sl_2}
-		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
-		\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
+		\begin{aligned}
+		    \left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| &\le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1} \le \\
+											&	\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
+		\end{aligned}
 	    \end{equation}
 	    Удачным случаем \ref{sl_2} будет $ \frac{|x|}{1 - |x|} < 1 ~ \Leftrightarrow  ~ |x| \le \frac{1}{2}, ~ x \in  (-\frac{1}{2}, 0]$.
 	    Чтобы разобраться с оставшимися вариантами, воспользуемся формулой: $ (1-x) (1 + x + \ldots + x^{n}) = 1 - x^{n+1}$.
@@ -3715,8 +3716,10 @@ $ x, x_0 > 0$
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    $2 \Longrightarrow  1$ --- очевидно \\
-    $1 \Longrightarrow  2$
+    $ $
+    \begin{description}
+	\item $\boxed{2 \Longrightarrow  1}$ --- очевидно \\
+    \item $\boxed{1 \Longrightarrow  2}$
     \[
 	g(t) = f'(t) e ^{-ct}
     .\]
@@ -3724,6 +3727,6 @@ $ x, x_0 > 0$
 	g'(t) = f'(t) e^{-ct} + f(t) (-c e^{-ct}) = c f(t) e^{-ct} - c f(t) e^{-ct} = 0
     .\]
     Тогда $ g(t) \equiv A \in  R$.
-
+    \end{description}
 \end{proof}
 \end{document}
