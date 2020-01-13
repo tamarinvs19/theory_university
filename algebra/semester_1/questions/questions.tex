@@ -1422,7 +1422,7 @@ $$
 	Обозначается:  $ [X, Y]$.
     \end{name}
 \end{defn}
-\begin{lm}
+\begin{lm}\label{lm_tri}
     Пусть $ X$ и  $ Y$ --- подгруппы в  $ G$. Тогда  $ [X, Y] \trianglelefteq \langle X \cup Y \rangle$.
 \end{lm}
 \begin{proof}
@@ -1435,6 +1435,21 @@ $$
 	[x, y]^{z} = \left( [y, z]^{-1} \right) ^{z} = \left( {^{z^{-1}}[y, x]} \right)^{-1} = \left( [y, x^{-1}]^{-1} \cdot [y, z^{-1}x] \right)^{-1} = [z^{-1}z, y] \cdot [z^{-1}, y]^{-1} \in [X, Y]  
     .\] 
     По лемме \ref{lm_com} получаем нормальную подгруппу.
+\end{proof}
+\begin{lm}\ref{lm_sx}
+    Пусть  $ S_{X}$ и $ S_{y}$ --- множества образующих подгрупп $ X$ и  $ Y$ соответственно. Тогда  $ [X, Y] = \langle [s, t] \mid s \in S_X , ~ t \in S_Y \rangle ^{\langle X \cup Y \rangle} = Z$.
+\end{lm}
+\begin{proof}
+    По лемме \ref{lm_tri}  $ Z \subset [X, Y]$. Докажем, что любой образующий элемент $ [X, Y]$ содержится в  $ Z$.
+
+    Пусть  $ s \in S_X, ~ y = t_1 \ldots t_n, \quad t_i \in S_Y$. По индукции докажем, что $ [s, y] \in Z$.
+    \begin{description}[noitemsep]
+	\item База: $ n = 1$. По определению  $ Z$.
+	\item  Переход:  $ n - 1 \to  n$. \[
+		[s, y] = [s, t_1]\cdot {\!\!^{t_1} [s, t_2 \ldots t_n]}
+	.\]  
+	По индукционному предположению $ [s, t_2 \ldots t_n] \in Z$, следовательно, $ [s, y] \in Z \quad \forall s \in S_X, ~ y \in  Y$. Аналогично для $ s \in S_Y, ~ x = t_1, \ldots t_n, \quad t_i \in S_X$.
+    \end{description}
 \end{proof}
 \begin{st}
     $\varphi : G \to  A$ --- гомоморфизм. 
@@ -1450,6 +1465,39 @@ $$
     Из этого следует, что $[G, G] \subseteq  \ker \varphi $.
 \end{proof}
 \section{Соотношения между трансвекциями. Взаимные коммутанты верхнетреугольных групп. Порождение верхнетреугольной группы.}
+\begin{name}
+    Пусть $ F$ --- поле,
+     \[
+	 U_n^{(k)} = U_{n}^{(k)}(F)=\{a \in M_{n}(f) \mid a_{ii} = 1, ~ a_{ij} = 0 ~ \forall i \ne j , ~ j - i < k\}
+    .\] 
+\[
+    U_n = U_{n}F \coloneqq U_{n}^{(1)}(F) \wedge U_n^{(k)} = \{1\} ~ k \ge  n
+.\] 
+\end{name}
+\begin{lm}
+    Группа $ U_{n}^{(k)}$ порождена трансвекциями $ t_{ij}(\alpha) $ по всем $ \alpha \in F \wedge  j - i \ge k$.
+\end{lm}
+\begin{st}
+    Пусть $ i, j, k, h$ --- попарно различные индексы. Тогда
+    \begin{align*}
+	t_{ij}(\alpha)t_{ij}(\beta) &= t_{ij}(\alpha+\beta)\\
+	[t_{ij}(\alpha), t_{jk}(\beta)] &= t_{ik}(\alpha\beta) \\
+	[t_{ij}(\alpha), t_{ki}(\beta)] &= t_{kj}(-\alpha\beta) \\
+	[t_{ij}(\alpha), t_{hk}(\beta)] &= e.
+    \end{align*}
+\end{st}
+\begin{lm}
+    Группа $ U_{n}^{(k)}$ нормальна в $ U_n$. Более того,  $ [U_{n}^{(k)}, U_{n}^{(m)}] = U_{n}^{(k+m)}$.
+\end{lm}
+\begin{proof}
+    Используем лемму \ref{lm_norm} и формулы из прошлого утверждения, чтобы доказать нормальность.
+
+    Из формул прошлого утверждения также следует
+    \[
+[U_{n}^{(k)}, U_{n}^{(m)}] \subset  U_{n}^{(k+m)}
+    .\] 
+    Так как $ U_{n}^{(k+m)}$ нормальна, из леммы \ref{lm_sx} следует, что $ [U_{n}^{(k)}, U_{n}^{(m)}]$ содержится в этой подгруппе. С другой стороны, каждая образующая группы $ U_n^{(k+m)}$ --- коммутатор образующих $ U_{n}^{(k)}$ и $ U_{n}^{(m)}$. А тогда выполнено требуемое равенство.
+\end{proof}
 \section{Приведенное разложение Брюа. Соотношение между клетками Брюа и Гаусса.}
 \section{Симметрическая группа. Циклическая запись перестановки. Классы сопряженных элементов в $ S_n$.}
 \subsection{Симметрическая группа}
@@ -1600,5 +1648,269 @@ $$
     $\varepsilon (\rho^{-1} \sigma \rho) \equiv - \varepsilon (\rho) + \varepsilon (\sigma ) + \varepsilon (\rho)  $\\
     $\varepsilon ((i_1, \ldots i_k)) = \varepsilon ((1, \ldots k)) \equiv k-1 \mod 2$
 \end{proof}
-\end{document}
+\section{Определение кольца, подкольца, идеала, прямое произведение колец}
+\subsection{Кольцо}
+\begin{defn}
+    {\sf Кольцо} --- множество $ R$, на котором заданы операции  $ +, \times $, обладающие следующими свойствами $\forall a, b,c \in R$ :
+    \begin{enumerate}[noitemsep]
+	\item $ a + b = b + a$ (коммутативность  сложения)
+	\item  $ a + (b+c) = (a+b) + c$ (ассоциативность сложения)
+	\item  $ \exists 0 \in R: a+0 = 0 + a = a$ (нейтральный элемент по сложению)
+	\item $ \forall a \in R ~ \exists b \in R: a+b = b+ a= 0$ (обратный элемент по сложению)
+	\item $ (a \times b) \times c = a \times (b \times c)$ (ассоциативность умножения)
+	\item $ 
+	    \begin{cases}
+		a \times (b + c) = a \times  b + a \times c \\
+		(b + c) \times a = b \times a + c \times a
+	    \end{cases}$ (дистрибутивность)
+    \end{enumerate}
+    Кольцо является {\sf кольцом с единицей}, если 
+	$$ \exists  e \in  R ~ \forall  a \in R: a \times e = e \times  a = a.$$
+	Кольцо является {\sf коммутативным кольцом}, если
+	\[
+	\forall a, b \in R: a \times b = b \times a
+	.\] 
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}[noitemsep]
+	\item Нейтральный по сложению единственный.
+	\item Обратный элемент по сложению существует и единственен для любого элемента кольца. 
+	\item Нейтральный по умножению единственен, если существут.
+	\item $ \forall a \in R: a \times 0 = 0$
+	\item $ -b = (-1) \times b$
+	\item $ (-a) \times b = (-ab)$
+	\item $ (-a) \times (-b)= (ab)$
+    \end{enumerate}
+\end{prop}
+\subsection{Подкольцо}
+\begin{defn}
+    Подмножество $ A \subset R$ называется {\sf подкольцом} $ R$, если  $ A$ само является  кольцом относительно операций, определенных в в $ R$.
+    \begin{name}
+       Говорят, что $ R$ --- расширение  кольца $ A$. 
+    \end{name}
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}[noitemsep]
+        \item Ноль и единица кольца являются нулем и единицей в подкольце.
+	\item Подкольцо наследует свойство коммутативности.
+	\item Пересечение любого набора подколец --- подкольцо.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    Пусть $ X$ --- подмножество кольца  $ R$. {\sf Подкольцом,  порожденным множеством}  $ X$, называется наименьшее подкольцо в  $ R$, содержащее $ X$.
+\end{defn}
+\begin{lm}
+    Подкольцо, порожденное $ X$, состоит из всевозможных сумм элементов вида  $ x_1 \times  \ldots  x_k$, где $ k \in \N, ~ x_i \in X \cup \{1\}$ (если имеется ввиду кольцо без 1, то $ x_i \in X$).
+\end{lm}
+\subsection{Идеалы}
+\begin{defn}
+    Аддитивная подгруппа $ I$ кольца  $ R$ называется  {\sf левым (правым) идеалом}, если  $ \forall r \in R, ~ x \in I: rx \in I$ ($ xr \in  I$ ).
 
+    {\sf Двусторонний идеал} --- идеал, являющийся левым и правым.
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}[noitemsep]
+	\item Пересечение любого числа идеалов --- идеал.
+    \end{enumerate}
+\end{prop}
+\begin{defn}
+    (Левым, правым или двусторонним) {\sf идеалом, порожденным подмножеством} $ X$ кольца  $ R$, называется наименьший (левый, правый или двусторонний) идеал, содержащий $ X$.
+
+    Идеал коммутативного кольца, порожденный одним элементом, называется {\sf главным идеалом}.
+\end{defn}
+\begin{name}
+    Левый идеал, порожденный множеством $ X$, обозначается $ \sum\limits_{x \in X} xR$ (правый --- $ \slim_{x \in X} Rx$ ). Если $ R$ --- коммутативное кольцо, то идеал, порожденный  $ X \subseteq R$ обозначают $ (X)$.
+\end{name}
+\begin{lm}
+    (Левый, правый или двусторонний) идеал, порожденный $ X$, состоит из всевозможных сумм элементов вида  ($ rx, xr \text{ или } rxs$), где $ r, s \in R, ~ x \in X \cup \{1\}$ (если имеется ввиду кольцо без 1, то $ x_i \in X$).
+\end{lm}
+\subsection{Прямое произведение колец}
+\begin{defn}
+    {\sf Произведение колец} $ R$ и  $ S$  --- множество пар $ (r, s), ~ r \in R, ~ s \in S$ с покомпонентными  операциями $\forall r_1, r_2 \in R, ~ s_1, s_2 \in S$:
+    \begin{itemize}
+	\item $ (r_1, s_1) + (r_1, s_2)  = (r_1+r_2, s_1 + s_2)$
+	\item $ (r_1, s_1) \cdot  (r_1, s_2)  = (r_1r_2, s_1  s_2)$
+    \end{itemize}
+\end{defn}
+\section{Гомоморфизмы колец, ядро, образ, слои}
+\begin{defn}
+    Пусть $ R, A$ --- кольца. Функция  $ f : R \to  A$ называется {\sf гомоморфизмом колец}, если \[
+	\begin{aligned}
+	    f(a + b) & = f(a)+f(b) \\
+	    f(a \cdot b) &= f(a) \cdot f(b)
+	\end{aligned}
+\quad	\forall a, b \in R
+    .\] 
+    Для гомоморфизмов колец с единицей будем требовать также, чтобы $ f(1_R) = 1_A$. 
+\end{defn}
+\begin{defn}
+    $ f: R \to  A$ --- гомоморфизм.
+    \begin{description}[noitemsep]
+	\item {\sf Образ гомоморфизма} $ f$ --- $\im f = \{f(x) \mid x \in R\} $
+	\item {\sf Ядро гомоморфизма} $ f$ ---  $ \ker f = f^{-1}(0)$
+	\item {\sf Мономорфизм} --- инъективный гомоморфизм.
+	\item {\sf Эпиморфизм} --- сюрьективный гомоморфизм.
+	\item {\sf Изоморфизм} --- биективный гомоморфизм.
+    \end{description}
+    Если между двумя кольцами существует изоморфизм, они называются {\sf изоморфными}. 
+\end{defn}
+\begin{lm}
+    Пусть $ f: R \to  A$ --- гомоморфизм колец. Тогда $ f(0) = 0$, и  $ \forall x \in R: f(-x) = -f(x)$.
+
+    Если $ f$ --- гомоморфизм колец с единицей, и  $ x \in R^{*}$, то $ f(x) \in A^{*}$ и $ f^{(x^{-1})} = f(x)^{-1}$.
+\end{lm}
+\begin{lm}
+    Пусть $ f: R \to  A$ --- гомоморфизм, $ x \in  R$, $ y = f(x)$. Тогда $ f^{-1}(y) = x + \ker f$.
+
+    Гомоморфизм инъективен тогда и только тогда, когда его ядро равно $ \{0\}$.
+\end{lm}
+\begin{lm}
+    Образ гомоморфизма колец является подкольцом, а ядро --- двусторонним идеалом.
+\end{lm}
+\section{Факторкольцо, существование эпиморфизма с данным ядром}
+\begin{thm}
+    Для любого двустороннего идеала $ I$ кольца  $ R$ существует кольцо  $ A$ и эприморфизм  $ \pi: R \to  A$, ядро которого равно $ I$.
+\end{thm}
+\begin{proof}
+    Так как $ I$ --- подгруппа аддитивной группы кольца, то можно рассмотреть факторгруппу  $ R \diagup I$. Зададим умножение: 
+    \[
+	(r + I) \cdot (s + I) = rs + I, \qquad r, s \in R
+    .\] 
+    Если $ r + x \in  r + I$ и $ s + y \in s + I$ --- другие представители классов,
+    \[
+	(r + x) (s + y) = rs + (ry + xs + xy) \in  rs + I 
+    .\] 
+    Следовательно, определение корректно. Операции в $ R \po I $ удовлетворяют свойствам кольца,  так как операции в  $ R$ удовлетворяют.
+
+    Отображение  $ \pi $ зададим аналогично группам: $ \pi(x) = x + I$ --- это гомоморфизм, причем сюрьективный.
+    Найдем его ядро:
+    \[
+	\pi(x) = e_{R \po I} = e + I = I \Longleftrightarrow x \in I
+    .\] 
+    Значит,  $ \ker \pi = I$.
+\end{proof}
+\begin{defn}
+    Кольцо $ R \po I$ называется {\sf фактокольцом}  $ R$ по  $ I$, а отображение  $ \pi = \pi_I$ --- {\sf канонической проекцией} или {\sf гомоморфмзмом редукции по модулю $ I$}.
+\end{defn}
+\section{Универсальное свойство факторкольца и теорема о гомоморфизме}
+\begin{thm}[Универсальное свойство факторкольца]
+    Пусть $ R, R'$ --- кольца,  $ I$ ---  двусторонний идеал в  $ R$,  $ f: A \to  R'$. Если  $ I \subseteq \ker f$, то существует единственный гомоморфизм $ g : R \po I \to  R'$ такой, что $ f = f \circ \pi$. 
+
+    Если $ \ker f = I$, то  $ g$ инъективен. Если $ f$ сюрьективен, то  $ g$ сюрьективен.
+    $$
+\begin{diagram}
+    \node{R} \arrow[1]{e,t}{f} 
+    \arrow{s,l}{\pi}
+    \node[1]{R'} \\
+    \node{R \po I} \arrow[1]{ne,b}{g}
+\end{diagram}
+$$
+\end{thm}
+\begin{proof}
+    Пусть $ x \in R$. $f = g \circ \pi \Longrightarrow $
+    \begin{equation}\label{eq_vin_2}
+	g(x + I) = f(x)
+    \end{equation}
+    Если $ y$ --- другой представитель  $ x + I$, то  $ y = x + a$ для некоторого  $ a \in I$, и $ g(y + I) = f(y) = f(x) + f(a) = g(x)$, так как $ a \in I \subseteq \ker f$. 
+    Проверим $ g(xy + I) = g(x+ I)g(y + I)$:
+     \[
+	 g(xy + I) =  f(xy) = f(x) f(y) = g(x+I)g(y+I)
+    .\] 
+    Также
+    \[
+	g((x+y) + I) = f(x+y) = f(x) + f(y) = g(x+I) +g(y+I)
+    .\] 
+    Следовательно, формула \ref{eq_vin_2} корректно определяет отображение $ g$. 
+    Оно является гомоморфизмом (проверили выше).
+    Очевидно, что  $ g$ единственно, так как удовлетворяет  $ f =g \circ \pi$.
+
+    Если композиция сюрьективна, то $ g$ обязан быть сюрьективным,  так как применяется последним.
+
+    Если  $ \ker f = I$, 
+     \[
+    x + I \in \ker g \Longleftrightarrow x \in \ker f = I \Longleftrightarrow x + I = 1_{R \po I}
+    .\] 
+\end{proof}
+\section{Определение комплексных чисел, арифметические операции, геометрическое представление}
+\subsection{Определение и арифметика}
+\begin{defn}
+    Факторкольцо $ \Cm = \R[t] \po (t^2+1)$ называется {\sf полем комплексных чисел}. 
+\end{defn}
+Композиция отображений $ \R \hookrightarrow \R[t] \twoheadrightarrow \Cm$ является гомоморфизмом колец с единицей.
+Так как $ \R$ --- поле, то она инъективна, ее ядро --- идеал в  $ \R$, который тривиален.  
+Будем отождествлять элементы поля $ \R$ с их образами под действием этого мономорфизма и считать, что  $ \R$ --- подполе  в $ \Cm$:
+\[
+    r \in \R \longleftrightarrow r + (t^2+1) \R[t]
+.\] 
+Обозначим через $ i$ смежный класс  $ t + (t^2+1)\R[t]$. Заметим, что 
+\[
+    i^2+1 = t^2+1 + (t^2+1)\R[t] = 0_{\Cm} \Longrightarrow i^2 = -1
+.\] 
+Рассмотрим элемент поля $ p \in \R[t]$:
+\begin{align*}
+    &p = (t^2+1) \cdot f + (a+bt) \in a + bt + (t^2+1) \R[t] \\
+    &p + (t^2+1) \R[x] = a + bi
+\end{align*}
+Значит, любой элемент поля может быть однозначно записан в виде $ a + bi, \quad a, b \in \R$.
+Сложение определено по правилу:
+$$
+(a+bi)+(c+di) = (a+c) + (b+d) i
+    .$$
+    Так как $ i^2 = -1$:
+    \[
+	(a+bi)(c + di) = (ac -bd)+(ad + bc)i
+    .\] 
+    \begin{defn}
+        Пусть $ x, y \in \R$ и $ z = x + yi$.
+	Тогда  $ x = \re z$ ---  {\sf вещественная часть}, а $ y = \im z$ --- {\sf мнимая часть} числа  $ z$.
+
+	Число $\overline{z}= x - yi $ называется {\sf комплексно сопряженным} к $ z$.
+    \end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}[noitemsep]
+	\item $ (a+bi) (a-bi) = a^2  + b^2$
+	\item $ (a+bi)+(a-bi) = 2a$
+        \item $ z \in \R \Longleftrightarrow  z=\overline{z}$
+        \item $ z \in \R \Longleftrightarrow  z +\overline{z} \in \R$
+        \item $ z \in \R \Longleftrightarrow  z \overline{z} \in \R$
+	\item Мультипликативный обратный:
+	    \[
+		\frac{1}{a + bi} = \frac{a-bi}{(a+bi)(a-bi)} = \frac{a}{a^2+b^2} + \frac{-b}{a^2+b^2}i
+	    .\] 
+    \end{enumerate}
+\end{prop}
+\begin{st}
+    Отображение $ \Cm \to  \Cm, ~ z \mapsto \overline{z}$ --- автоморфизм поля $ \Cm$.
+\end{st}
+\subsection{Геометрическое представление}
+\begin{defn}
+    {\sf Модуль комплексного числа} $ z$ --- $ |z| = \sqrt{a^2+b^2} \sqrt{z \overline{z}}$
+\end{defn}
+\begin{figure}[ht]
+    \centering
+    \incfig{img_cm}
+    \caption{Комплексное число на плоскости}
+    \label{fig:img_cm}
+\end{figure}
+\begin{defn}
+    $ \arg z \coloneqq \alpha \in \R \po 2\pi\Z$
+    \[
+    \arg z = 
+    \begin{cases}
+	\arctg \frac{b}{a} + 2 \pi\Z & a > 0\\
+	\pi+ \arctg \frac{b}{a} + 2\pi\Z & a<0 \\
+	\frac{\pi}{2} \cdot \sign(b) & a = 0
+    \end{cases}
+    \] 
+\end{defn}
+Можем выразить через аргумент:
+\begin{align*}
+    a &= |z| \cdot  \cos \alpha \\
+    b &= |z| \cdot  \sin 
+\end{align*}
+Тогда $ z = |z| \cdot (\cos\alpha + i \sin\alpha)$
+\end{document}
