@@ -338,8 +338,8 @@
 \end{thm}
 \begin{proof}
     Пусть $ \mathscr{A}$ --- набор всех линейно независимых подмножеств $ Y$, содержащих $ X$.  Этот набор не пуст, так как содержит  $ X$.
-    Пусть  $ \mathscr L$ --- линейно упорядоченный поднабор в  $ \mathscr A$. Обозначим через $ S$ объединение всех множеств из  $ \mathscr L$. 
-   Так как $    \forall C \in \mathscr L
+    Пусть  $ \mathscr L$ --- линейно упорядоченный поднабор в  $ \mathscr A$. Обозначим через $ S$ объединение всех множеств из  $ \mathscr L$.
+    Так как $    \forall C \in \mathscr L
     $ лежит между  $ X$ и  $ Y$, $ S$ обладает этим свойством.
     Рассмотрим конечное подмножество $ \{v_1, \ldots v_n\} \subseteq S$. По определению объединения множеств $ \forall i = 1, \ldots n ~ \exists B_i \in \mathscr L$, содержащее $ v_i$. Так как  $ \mathscr L$ --- лум, среди множеств $ B_1, \ldots B_n$ найдется наибольшее $ B_k$. Тогда $ v_1, \ldots v_n \in B_k$. Так как $ B_k$ линейно независимо, то и  $ \{v_1, \ldots v_n\}$ линейно независимо. Следовательно, $ S$ линейно независимо, значит  $ S \in \mathscr A$.
     По лемме Цорна получаем, что $ \mathscr A$ содержит максимальных элемент. Пусть это  $ Z$ --- максимальное из линейно независимых подмножеств $ Y$, содержащих  $ X$.
@@ -348,32 +348,32 @@
 \end{proof}
 \section{Лемма о замене}
 \begin{thm}[лемма о замене]\label{lm_zam}
-Пусть $ u = \{u_1, \ldots u_n\}$ --- линейно  независимый набор из  $ n$ векторов, $ v$ --- система образующих пространства  $ V$.
-Тогда:
-\begin{enumerate}[noitemsep]
-    \item $ \exists v_1, \ldots v_n \in v: v \smallsetminus \{v_1, \ldots v_n\} \cup u = w$ --- система образующих. 
-    \item Причем, если  $ u$ --- базис, то $ w$ --- базис.
-\end{enumerate}
+    Пусть $ u = \{u_1, \ldots u_n\}$ --- линейно  независимый набор из  $ n$ векторов, $ v$ --- система образующих пространства  $ V$.
+    Тогда:
+    \begin{enumerate}[noitemsep]
+	\item $ \exists v_1, \ldots v_n \in v: v \smallsetminus \{v_1, \ldots v_n\} \cup u = w$ --- система образующих.
+	\item Причем, если  $ u$ --- базис, то $ w$ --- базис.
+    \end{enumerate}
 \end{thm}
 \begin{proof}
     Индукция по $ n$.
-     \begin{description}
-	 \item База: $ n = 0$.  Утверждение для нуля верно.
-	 \item Переход:  $ n-1 \to  n$. По предположению индукции $ \exists v_1, \ldots v_{n_i} \in v$ такие, что $ w' = v \smallsetminus \{v_1, \ldots v_{n-1}\} \cup \{u_1, \ldots u_{n-1}\}$ является системой образующих. Причем, если $ v$ был линейно независимым, то  $ w'$ --- базис.
+    \begin{description}
+	\item База: $ n = 0$.  Утверждение для нуля верно.
+	\item Переход:  $ n-1 \to  n$. По предположению индукции $ \exists v_1, \ldots v_{n_i} \in v$ такие, что $ w' = v \smallsetminus \{v_1, \ldots v_{n-1}\} \cup \{u_1, \ldots u_{n-1}\}$ является системой образующих. Причем, если $ v$ был линейно независимым, то  $ w'$ --- базис.
 
-	      $ u_n$ выражается через линейную комбинацию набора  $ w'$:  \[
-u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qquad \alpha_i, \beta_j \in F, w_j \in v \smallsetminus \{v_1, \ldots v_{n-1}\}
-	      .\] 
-	      Заметим, что кто-то из $ \beta_j \ne 0$ (иначе $ u$ линейно зависим).  
-	      Не умоляя общности, считаем, что $ \beta_m \ne 0$.  Пусть $ v_n = w_m$. Тогда  $ v_n$ выражается через линейную комбинацию набора  $ w = w' \smallsetminus \{v_n\} \cup \{u_n\}$. Следовательно, $ w' \subseteq \langle w \rangle$, значит $ w$ --- система образующих.
+	    $ u_n$ выражается через линейную комбинацию набора  $ w'$:  \[
+		u_n =	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qquad \alpha_i, \beta_j \in F, w_j \in v \smallsetminus \{v_1, \ldots v_{n-1}\}
+	    .\]
+	    Заметим, что кто-то из $ \beta_j \ne 0$ (иначе $ u$ линейно зависим).
+	    Не умоляя общности, считаем, что $ \beta_m \ne 0$.  Пусть $ v_n = w_m$. Тогда  $ v_n$ выражается через линейную комбинацию набора  $ w = w' \smallsetminus \{v_n\} \cup \{u_n\}$. Следовательно, $ w' \subseteq \langle w \rangle$, значит $ w$ --- система образующих.
 
-	      Пусть набор  $ v$ (а тогда и  $ w'$) линейно независим. Рассмотрим  $ w'' = w' \smallsetminus \{v_n\}$ и линейную комбинацию $ w'' a + u_n \alpha $ набора  $ w$, где  $ a \in F_{fin}^{w''}$.
-	      \[
-		  0 = w'' a + u_n \alpha = w''a + \sum _{i=1}^{n-1} u_i \alpha_i \alpha + \sum _{j= 1}^{m} w_i \beta_j \alpha = w'' b + v_n \beta_m \alpha, \qquad b \in F_{fin}^{w''}
-	      .\] 
-	      Если $ \alpha \ne 0$, то $ w''b + v_n \beta_m \alpha$ является нетривиальной линейной комбинацией набора  $ w'' \cup \{v_n\} = w''$, равной нулю. Значит,  $ \alpha =0$, тогда $ w''a = 0$. Так как  $ w'' \subseteq w'$, $ w''$ линейно независим, следовательно,  $ a = 0$.
-	      
-	      Получаем, что  $ w$  линейно независим.
+	    Пусть набор  $ v$ (а тогда и  $ w'$) линейно независим. Рассмотрим  $ w'' = w' \smallsetminus \{v_n\}$ и линейную комбинацию $ w'' a + u_n \alpha $ набора  $ w$, где  $ a \in F_{fin}^{w''}$.
+	    \[
+		0 = w'' a + u_n \alpha = w''a + \sum _{i=1}^{n-1} u_i \alpha_i \alpha + \sum _{j= 1}^{m} w_i \beta_j \alpha = w'' b + v_n \beta_m \alpha, \qquad b \in F_{fin}^{w''}
+	    .\]
+	    Если $ \alpha \ne 0$, то $ w''b + v_n \beta_m \alpha$ является нетривиальной линейной комбинацией набора  $ w'' \cup \{v_n\} = w''$, равной нулю. Значит,  $ \alpha =0$, тогда $ w''a = 0$. Так как  $ w'' \subseteq w'$, $ w''$ линейно независим, следовательно,  $ a = 0$.
+
+	    Получаем, что  $ w$  линейно независим.
     \end{description}
 \end{proof}
 \section{Количество элементов в базисе}
@@ -395,31 +395,31 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \begin{defn}
     Пусть $ V$ и  $ U$ --- векторные пространства,  $ L$ --- функция  $ V \to  U$. $ L$ называется {\sf линейным отображением}, если
     $
-    \forall x, y \in V, ~ \alpha \in F: 
+    \forall x, y \in V, ~ \alpha \in F:
     $
     \[
 	\begin{aligned}
 	    & L(x+y) = L(x) + L(y) \\
 	    & L(x\alpha) = L(x) \alpha
 	\end{aligned}
-    \] 
+    \]
     Биективное линейное отображение называется {\sf изоморфизмом}.
     Линейное отображение из пространства в само себя называется {\sf линейным оператором}.
-    Отображение из пространства в основное поле часто называется {\sf функционалом}. 
+    Отображение из пространства в основное поле часто называется {\sf функционалом}.
 \end{defn}
 \begin{prop}
     Пусть вектор $ v = (v_1, \ldots v_n)$ и  отображение $ L: V \to U$. \[
 	L(v) = (L(v_1), \ldots L(v_n)) \in ^n\!\!U
-    .\] 
-    Тогда 
+    .\]
+    Тогда
     \[
 	L(va) = L(v)a, \text{ где } a \in F^{n}
-    .\] 
+    .\]
     \begin{note}
 	В случае бесконечного $ v$ можем переписать аналогично, обозначив  $ L(v) \in ^n\!\!U: L(v)_x = L(x) \quad \forall x \in v$:
 	\[
 	    L(va) = L(v)a, \text{ где } a \in F^{v}
-	.\] 
+	.\]
     \end{note}
 \end{prop}
 \begin{name}
@@ -432,18 +432,18 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \begin{proof}
     Рассмотрим $ x, y \in V$.
     \[
-    \begin{cases}
-        v x_v = x \\
-	v y_v = y
-    \end{cases}
-    \Longrightarrow v(x_v + y_v) = x+y = v(x+y)_v \Longrightarrow \varphi_v (x+y) = \varphi_v (x) + \varphi_v (y)
-    .\] 
+	\begin{cases}
+	    v x_v = x \\
+	    v y_v = y
+	\end{cases}
+	\Longrightarrow v(x_v + y_v) = x+y = v(x+y)_v \Longrightarrow \varphi_v (x+y) = \varphi_v (x) + \varphi_v (y)
+    .\]
     \[
 	v(x\alpha)_v = x\alpha = v(x_v \alpha) \Longrightarrow  \varphi_v (x\alpha) = \varphi_v(x)\alpha
-    .\] 
-     Построим обратное отображение:
-     $ \theta_v: F^{v} \to  V, ~ \theta_v(a) = va$.
-     Следовательно, $ \varphi _v$ --- биективное линейное отображение.
+    .\]
+    Построим обратное отображение:
+    $ \theta_v: F^{v} \to  V, ~ \theta_v(a) = va$.
+    Следовательно, $ \varphi _v$ --- биективное линейное отображение.
 \end{proof}
 \begin{cor}[классификация векторных пространств]
     Любое векторное пространство изоморфно пространству $ F^{I}$ для некоторого множества $ I$, мощность которого равна размерности пространства.
@@ -452,33 +452,33 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \end{cor}
 \subsection{Матрицы линейных отображений}
 \begin{st}\label{st_m_o}
-    Пусть $ L : U \to  V$ --- линейное отображение, $ u = (u_1, \ldots u_n) $ --- базис $ U$,  $ v=(v_1, \ldots v_m)$ --- базис $ V$. 
-     \[
-	 \exists ! A \in M_{m \times n}(F): \forall x \in U ~ L(x)_v = Ax_u
-    .\] 
+    Пусть $ L : U \to  V$ --- линейное отображение, $ u = (u_1, \ldots u_n) $ --- базис $ U$,  $ v=(v_1, \ldots v_m)$ --- базис $ V$.
+    \[
+	\exists ! A \in M_{m \times n}(F): \forall x \in U ~ L(x)_v = Ax_u
+    .\]
     Столбцы матрицы $ A$ вычисляются по формуле $ a_{*k}=L(u_k)_v$.
 \end{st}
 \begin{proof}
     По определению столбца координат $ x = ux_u$.   \[
 	\varphi _v \circ L(x) = \varphi _v \circ L(ux_v)
-    .\] 
+    .\]
     Тогда $ L_(x)_v = \varphi _v\bigl(L(x)\bigr) = \varphi _v\bigl(L(u)\bigr)x_u$.
-    Пусть $ A = \varphi _v\bigl(L(u)\bigr) = \bigl( L(u_1)_v, \ldots L(u_n)_v \bigr)$. 
+    Пусть $ A = \varphi _v\bigl(L(u)\bigr) = \bigl( L(u_1)_v, \ldots L(u_n)_v \bigr)$.
 
     Докажем единственность. Предположим, что $ Ax = Bx$ для любого столбца  $ x$. Тогда  $ A = B$.
 \end{proof}
 \begin{defn}
-    Матрица $ A$ из прошлого утверждения \ref{st_m_o} называется {\sf матрицей отображения} $ L$ в базисах  $ u, v$ и обозначается через  $ L_u^{v}$.   
+    Матрица $ A$ из прошлого утверждения \ref{st_m_o} называется {\sf матрицей отображения} $ L$ в базисах  $ u, v$ и обозначается через  $ L_u^{v}$.
 
     Если $ U = V$,  $ u = v$, говорят о матрице оператора  $ L$ в базисе  $ u$ и обозначают ее через  $ L_u$.
     \[
 	L(x)_v = L_u^{v}x_v \text{ или } L(x)_u = L_ux_u \text{ в случае } U=V \wedge u=v
-    .\] 
+    .\]
 \end{defn}
 \begin{thm}
-    Матрица композиции линейных операторов является произведением матриц этих операторов. 
+    Матрица композиции линейных операторов является произведением матриц этих операторов.
 
-    Если $ U, V, W$ --- конечномерные линейный пространства с базисами  $ u, v, w$, соответственно,  $ L: U \to V, ~ M: V \to W$ --- линейные отображения,  то $ (M \circ L)_u^{w}= M_v^{w}L_u^{v}$. 
+    Если $ U, V, W$ --- конечномерные линейный пространства с базисами  $ u, v, w$, соответственно,  $ L: U \to V, ~ M: V \to W$ --- линейные отображения,  то $ (M \circ L)_u^{w}= M_v^{w}L_u^{v}$.
 
     Если $ U = V = W$ и  $ u = v = w$, то  $ (M \circ L)_u=M_uL_u$.
 \end{thm}
@@ -487,29 +487,29 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \begin{thm}
     Пусть $ v$ --- базис  $ n$-мерного пространства  $ V$ над полем  $ F$. Набор  $ u = (u_1, \ldots u_n)$ является базисом тогда и только тогда, когда существует $ A \in \GL _n (F)$ такая, что $ u = vA$.
     \begin{defn}
-    Если  $ u, v$ --- базисы, то  $ A$ называется {\sf матрицей перехода}  от $ v$ к  $ u$ и обозначается через  $ C_{v \to  u}$
+	Если  $ u, v$ --- базисы, то  $ A$ называется {\sf матрицей перехода}  от $ v$ к  $ u$ и обозначается через  $ C_{v \to  u}$
     \end{defn}
     При этом:
     \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
 	\item Столбец матрицы $ C_{v \to u}$ с номером  $ k$ равен столбцу координат вектора $ u_k$ в базисе  $ v$.  $ (C_{v \to  u})_k = (u_k)_v$
-	\item $ C^{-1}_{v \to  u} = C_{u \to  v}$ 
+	\item $ C^{-1}_{v \to  u} = C_{u \to  v}$
 	\item Если матрица двусторонне обратима, то она квадратная.
     \end{enumerate}
 \end{thm}
 \begin{proof}
     $ $
     \begin{description}
-	\item \boxed{  \Longrightarrow }  Положим $ \forall k \in [1, n]: a_{*k} = (u_k)_v$. Тогда $ va_{*k} = u_k \Longrightarrow u = vA$ 
-        \item \boxed{  \Longrightarrow } Если $ u = vA$,  $ \langle u  \rangle = \langle vA \rangle = V$. При этом $ u$ минимален, так как иначе и  $ v$ не минимален, значит  $ u$ --- базис.
-    \end{description} 
+	\item \boxed{  \Longrightarrow }  Положим $ \forall k \in [1, n]: a_{*k} = (u_k)_v$. Тогда $ va_{*k} = u_k \Longrightarrow u = vA$
+	\item \boxed{  \Longrightarrow } Если $ u = vA$,  $ \langle u  \rangle = \langle vA \rangle = V$. При этом $ u$ минимален, так как иначе и  $ v$ не минимален, значит  $ u$ --- базис.
+    \end{description}
     \begin{enumerate}[noitemsep]
 	\item По построению.
-	\item  $ 
+	\item  $
 	    \begin{cases}
-	        u = v C_{v \to  u}\\
+		u = v C_{v \to  u}\\
 		v = u C_{u \to  v}
 	    \end{cases} \Longrightarrow uE = uC_{u \to  v} C_{v \to  u} \Longrightarrow E = C_{u \to  v} C_{v \to  u}
-	    $ 
+	    $
 	\item Пусть  $ B \in M_{n \times m}(F)$ двусторонне обратима.  $ B B_1 = E_{n\times n} \wedge B_2 B = E_{m\times m}$. Тогда  $ B_2 = B_2 E_{n} = B_2(B B_1)=(B_2 B) B_1 = E_m B_1 = B_1$. Значит $ B_1 = B_2$. $ B_1B = C_{u \to  v}C_{v \to  u} = B_1B \Longrightarrow B \text{ --- квадратная}$.
     \end{enumerate}
 \end{proof}
@@ -521,17 +521,17 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \end{note}
 \subsection{Преобразование координат при замене базиса}
 \begin{thm}
-    Пусть $ u, v$ --- базисы пространства  $ V$. 
-     \[
-    \forall x \in V: x_v = C_{v \to  u}x_u
-    .\] 
+    Пусть $ u, v$ --- базисы пространства  $ V$.
+    \[
+	\forall x \in V: x_v = C_{v \to  u}x_u
+    .\]
 \end{thm}
 \begin{proof}
     Запишем определение столбца координат $ x = ux_u  = vx_v$.
     Про базисы мы знаем, что  $ v = u C_{u \to  v}$. Тогда
     \[
-    ux_u = u C_{u \to  v} x_v \Longrightarrow x_u = C_{u \to  v} x_v
-    .\] 
+	ux_u = u C_{u \to  v} x_v \Longrightarrow x_u = C_{u \to  v} x_v
+    .\]
 \end{proof}
 \subsection{Преобразование матрицы оператора при замене базиса}
 \begin{note}
@@ -539,9 +539,9 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \end{note}
 \begin{lm}
     Пусть $ u  = (u_1, \ldots u_n)$ --- базис пространства $ U$,  $ v = (v_1, \ldots v_n) \in ^n\!\!V$ --- набор векторов пространства $ V$. Тогда существует единственное линейное отоббражение
-     \[
-	 L: U \to V: L(u) = v
-    .\] 
+    \[
+	L: U \to V: L(u) = v
+    .\]
     При этом
     \begin{description}[noitemsep]
 	\item $ L$ инъективно  тогда и только тогда, когда $ u$ линейно независим
@@ -550,7 +550,7 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
     \end{description}
 \end{lm}
 \begin{proof}
-    $ \forall x \in U: x = ux_u$. Тогда $ \forall L: L(x) = L(u)x_u$. Зададим $ L$ так:  $ L(x) = v x_u$. Оно линейно и единственно. 
+    $ \forall x \in U: x = ux_u$. Тогда $ \forall L: L(x) = L(u)x_u$. Зададим $ L$ так:  $ L(x) = v x_u$. Оно линейно и единственно.
 \end{proof}
 \begin{note}
     Пусть $ u, v$ --- базисы пространства  $ V$. Тогда  матрица отображения  $ L$ из леммы в базисе $ u$ совпадает с  матрицей перехода  $ C_{u \to  v}$.
@@ -558,8 +558,8 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \begin{st}
     Пусть $ u, u'$ --- базисы пространства  $ U$,  $ v, v'$ --- базисы пространства  $ U$,  $ v, v'$ --- базисы пространства  $ V$,  $ L: V \to  U$ --- линейное отображение. Тогда
     \[
-    L_{u'}^{v'} = C_{v' \to  v}L_{u}^{v}C_{u \to  u'}
-    .\] 
+	L_{u'}^{v'} = C_{v' \to  v}L_{u}^{v}C_{u \to  u'}
+    .\]
 \end{st}
 \begin{proof}
     \begin{align*}
@@ -572,24 +572,24 @@ u_n = 	      \sum_{i=1}^{n-1} u_i \alpha_i + \sum _{j=1}^{m} w_{j}\beta_j, \qqua
 \begin{note}
     Если $ U = V$ и  $ u = v, ~ u' = v'$,
     \[
-    L_{u'} = C_{u' \to  u} L_u C_{u \to  u'}
-    .\] 
+	L_{u'} = C_{u' \to  u} L_u C_{u \to  u'}
+    .\]
 \end{note}
 \section{Внешняя и внутренняя пряма сумма пространств, естественный изоморфизм между ними}
 \begin{name}
     $ U, V$ --- подпространства векторного пространства  $ W$ над полем  $ F$.
 \end{name}
 \begin{defn}
-    Сумма $ U + V$ --- совокупность  $ \{x + y \mid x \in U, y \in V\}$. 
+    Сумма $ U + V$ --- совокупность  $ \{x + y \mid x \in U, y \in V\}$.
     \begin{note}
-$ U + V \subseteq W \wedge  U \cap V \subseteq W$.
+	$ U + V \subseteq W \wedge  U \cap V \subseteq W$.
     \end{note}
 \end{defn}
 \begin{defn}
-    Пространство $ W$ называется {\sf внутренней прямой суммой} подпространств $ U$ и  $ V$, если   $$ \forall z \in W ~ \exists ! x \in U, y \in V: z = x+y.$$ То есть $ W = U + V \wedge V \cap U = \{0\}$.   
+    Пространство $ W$ называется {\sf внутренней прямой суммой} подпространств $ U$ и  $ V$, если   $$ \forall z \in W ~ \exists ! x \in U, y \in V: z = x+y.$$ То есть $ W = U + V \wedge V \cap U = \{0\}$.
 \end{defn}
 \begin{defn}
-    $ U, V$ --- векторные пространства.  Их  {\sf внешней прямой суммой} называется их декартово произведение с покомпонентыми операциями. 
+    $ U, V$ --- векторные пространства.  Их  {\sf внешней прямой суммой} называется их декартово произведение с покомпонентыми операциями.
 \end{defn}
 \begin{name}
     Обе прямые суммы обозначаются $ U \oplus V$.
@@ -598,7 +598,7 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
     Пространства $ U, V$ естественно вкладываются в из внешнюю прямую сумму:  $ \forall x \in U: x \mapsto (x, 0) \wedge  \forall y \in V: y \mapsto (0, y)$. Если отождествить $ U$ и  $ V$ с их образами, то внешняя сумма превращается в прямую сумму подпространств.
 \end{note}
 \begin{st}
-    $ U, C \le W$, $ U \oplus V$ --- их внешняя прямая сумма. Зададим  $ \varphi : U \oplus V \to W$ так $ \varphi (x, y) = x + y$. $ \varphi $ --- изоморфизм тогда и только тогда, когда $ W $ является внутренней суммой подпространств  $ U$ и  $ V$. 
+    $ U, C \le W$, $ U \oplus V$ --- их внешняя прямая сумма. Зададим  $ \varphi : U \oplus V \to W$ так $ \varphi (x, y) = x + y$. $ \varphi $ --- изоморфизм тогда и только тогда, когда $ W $ является внутренней суммой подпространств  $ U$ и  $ V$.
 \end{st}
 Если $ W = U \oplus V$, то объединение базисов  $ U$ и  $ V$ --- базис  $ W$. Поэтому  $ \dim(U \oplus V) = \dim(U) + \dim(V)$.
 \begin{st}
@@ -611,7 +611,7 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
     Для пространств $ U_1, \ldots U_n \le V$ следующие условия эквивалентны:
     \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
 	\item  $ U_1 \oplus \ldots U_n \to V, ~ (x_1, \ldots x_n) \mapsto x_1 + \ldots x_n$ --- изоморфизм
-	\item $ \forall x \in V ~ \exists ! \bigl(x_1 \in U_1, \ldots x_n \in U_n\bigr): x =x_1 + \ldots x_n$ 
+	\item $ \forall x \in V ~ \exists ! \bigl(x_1 \in U_1, \ldots x_n \in U_n\bigr): x =x_1 + \ldots x_n$
 	\item $ V = U_1+ \ldots U_n$ и $ U_i \cap \left( \sum_{j\ne i}U_{j} \right)=\{0\} \qquad i \in [1, n]$
 	\item Объединение базисов подпространств $ U_1, \ldots U_n$ --- базис $ V$.
     \end{enumerate}
@@ -620,15 +620,15 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
 \begin{defn}
     Пусть $ L: U \to V$ --- линейное отображение. Тогда
     \begin{description}[noitemsep]
-	\item {\sf Ядро отображения $ L$ --- }  $ \ker L = L^{-1}(0) \coloneqq \{x \in U \mid L(x) = 0\}$ 
-	\item {\sf Образ отображения $ L$ --- } $ \im L = \{L(x) \mid x \in U\}$ 
+	\item {\sf Ядро отображения $ L$ --- }  $ \ker L = L^{-1}(0) \coloneqq \{x \in U \mid L(x) = 0\}$
+	\item {\sf Образ отображения $ L$ --- } $ \im L = \{L(x) \mid x \in U\}$
     \end{description}
 \end{defn}
 \begin{st}
     Пусть $ L: U \to  V$ --- линейное отображение.
     \[
-    \ker L \le U \wedge  \im  L \le U
-    .\] 
+	\ker L \le U \wedge  \im  L \le U
+    .\]
 \end{st}
 \begin{defn}
     $ L : U \to  V$ --- линейное отображение.
@@ -638,48 +638,48 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
     Все слои отображения $ L$ являются сдвигами ядра.  $ L(x) = y, ~ x \in U$:
     \[
 	L^{-1}(y) = x + \ker L
-    .\] 
+    .\]
 \end{st}
 \section{Теорема о размерности ядра и образа. Теорема о размерности прямой суммы}
 \begin{thm}[о размерности ядра и образа]
     $L: U \to V$ --- линейное отображение. Тогда
     \[
 	\dim U = \dim \ker L + \dim \im L
-    .\] 
+    .\]
 \end{thm}
 \begin{proof}
-    $u = (u_1, \ldots u_k)  \text{ --- базис } \ker L, 	~
+    $u = (u_1, \ldots u_k)  \text{ --- базис } \ker L,	~
     v = (v_1, \ldots v_m)$.
     Дополним базис ядра до базиса $U$:
     $u \cup v $ --- базис $U$.
     Докажем, что $L(v) = \left(L(v_1), L(v_2), \ldots L(v_m)\right)$ --- базис образа.
 
-     $$ \forall  x \in \im L~  \exists y \in U: L(y) = x.$$ 
-     Разложим $y = ua + vb , \qquad a \in F^k, ~b \in F^m $ \\
-     Тогда
-   \[
-       x = L(y) = {{L(u)}}\cdot a + L(v)\cdot  b
-   .\]  
-   Так как $ u \in \ker: L( u)= \left( L(u_1), \ldots L(u_k) \right) = (0, \ldots 0)$.
-   Следовательно, $L(v)$ --- система образующих. Проверим, что $ L(v)$ линейно независим.
-   Пусть
+    $$ \forall  x \in \im L~  \exists y \in U: L(y) = x.$$
+    Разложим $y = ua + vb , \qquad a \in F^k, ~b \in F^m $ \\
+    Тогда
+    \[
+	x = L(y) = {{L(u)}}\cdot a + L(v)\cdot  b
+    .\]
+    Так как $ u \in \ker: L( u)= \left( L(u_1), \ldots L(u_k) \right) = (0, \ldots 0)$.
+    Следовательно, $L(v)$ --- система образующих. Проверим, что $ L(v)$ линейно независим.
+    Пусть
     \[
 	L(v)\cdot  c = 0, \quad c \in F^m
-   .\] 
-   \[
-       L(v) c = L(vc) = 0 \Rightarrow vc \in \ker L \Rightarrow vc = ud \mbox{ для некоторого } d \in F^k
-   .\] 
-   Тогда $vc - ud = 0$, но $v$ и $u$ --- два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ --- линейно независимый.
+    .\]
+    \[
+	L(v) c = L(vc) = 0 \Rightarrow vc \in \ker L \Rightarrow vc = ud \mbox{ для некоторого } d \in F^k
+    .\]
+    Тогда $vc - ud = 0$, но $v$ и $u$ --- два базисных вектора. Следовательно, $c=d=0$ и $L(v)$ --- линейно независимый.
 \end{proof}
 \begin{thm}[формула Грассмана о размерности суммы и пересечения]
     Пусть $U, V \le W$.
     \[
-    \dim U\cap V + \dim U+V = \dim U + \dim V
-    .\] 	
+	\dim U\cap V + \dim U+V = \dim U + \dim V
+    .\]
 \end{thm}
 \begin{proof}
     Зададим линейное отображение $ L: U \oplus V \to  W: L(u, v) = u+v$.
-    Тогда $\im L = U+V$. 
+    Тогда $\im L = U+V$.
     $$
     (u, v) \in \ker L \Longleftrightarrow  u + v = 0 \Longleftrightarrow  u = -v \in  U\cap V
     .$$
@@ -688,7 +688,7 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
     .$$
     По теореме о размерности ядра и образа
     $$
-    \dim U + \dim V = \dim (U \oplus V) = \dim \ker L + \dim \im L = \dim U \cap V + \dim U+V 
+    \dim U + \dim V = \dim (U \oplus V) = \dim \ker L + \dim \im L = \dim U \cap V + \dim U+V
     .$$
 \end{proof}
 \section{Факторпространство и его универсальное свойство}
@@ -698,62 +698,62 @@ $ U + V \subseteq W \wedge  U \cap V \subseteq W$.
 \begin{defn}
     $ x + U$ --- аффинное подпространство или смежный класс  $ V$ по  $ U$.
 
-     $ y \sim _{U} x \Longleftrightarrow y - x \in U$ --- эквивалентность.
+    $ y \sim _{U} x \Longleftrightarrow y - x \in U$ --- эквивалентность.
 \end{defn}
 \begin{defn}
     Множество смежных классов $ V$ по  $ U$ с операциями
     \begin{align*}
-       (x + U) + (y + U) &= (x+ y) + U  \\
-       (x + u) \alpha &= x\alpha + U
+	(x + U) + (y + U) &= (x+ y) + U  \\
+	(x + u) \alpha &= x\alpha + U
     \end{align*}
-    называется {\sf факторпространством} $ V$  по  $ U$ и обозначается  $ V / U$.  
+    называется {\sf факторпространством} $ V$  по  $ U$ и обозначается  $ V / U$.
 \end{defn}
 \begin{proof}[Проверка корректности определения]
     Докажем, что определение операций не зависит от выбора представителей классов.
     \begin{itemize}
 	\item Сложение \[
-    x' + U = x + U \Longrightarrow x' + 0 \in x + U \Longrightarrow x' \in x + U
-    .\] 
-    \[
-    y' + U = y + U \Longrightarrow y' + 0 \in y + U \Longrightarrow y' \in y + U
-    .\] 
-    Тогда $ \exists z \in U: x' = x + z$ и $ \exists t \in U: y' = y + t$.
-    \begin{align*}
-	(x' + U) + (y' + U) & \coloneqq (x' + y') + U = \\
-			    &= (x+y) + \underbrace{(z+t)}_{ \in U} + U \subseteq \\
-			    &\subseteq (x+y) + U
-    \end{align*}
-    Аналогично доказываем включение в обратную сторону.
-\item  Умножение
-    \begin{align*}
-	(x' + U) \alpha & \coloneqq x'\alpha + U = \\
-			& = (x + z)\alpha + U = x\alpha + \underbrace{z\alpha}_{ \in U} + U \subseteq \\
-			& \subseteq x\alpha + U
-    \end{align*}
-    Аналогично доказываем включение в обратную сторону.
+		x' + U = x + U \Longrightarrow x' + 0 \in x + U \Longrightarrow x' \in x + U
+	    .\]
+	    \[
+		y' + U = y + U \Longrightarrow y' + 0 \in y + U \Longrightarrow y' \in y + U
+	    .\]
+	    Тогда $ \exists z \in U: x' = x + z$ и $ \exists t \in U: y' = y + t$.
+	    \begin{align*}
+		(x' + U) + (y' + U) & \coloneqq (x' + y') + U = \\
+				    &= (x+y) + \underbrace{(z+t)}_{ \in U} + U \subseteq \\
+				    &\subseteq (x+y) + U
+	    \end{align*}
+	    Аналогично доказываем включение в обратную сторону.
+	\item  Умножение
+	    \begin{align*}
+		(x' + U) \alpha & \coloneqq x'\alpha + U = \\
+				& = (x + z)\alpha + U = x\alpha + \underbrace{z\alpha}_{ \in U} + U \subseteq \\
+				& \subseteq x\alpha + U
+	    \end{align*}
+	    Аналогично доказываем включение в обратную сторону.
     \end{itemize}
 \end{proof}
 \begin{name}
-    $ \pi_U: V \to  V / U$ ---  естественная проекция: $ \pi_U(x) = x + U$. 
+    $ \pi_U: V \to  V / U$ ---  естественная проекция: $ \pi_U(x) = x + U$.
     \begin{note}
-        $ \pi_U$ линейно и сюрьективно  $ \ker \pi_U = U$.
+	$ \pi_U$ линейно и сюрьективно  $ \ker \pi_U = U$.
 
 	По теореме о размерности ядра и образа
 	$\dim V / U = \dim V - \dim U $.:
     \end{note}
 \end{name}
 \begin{st}\label{st_l_ker}
-    Пусть $ U \subseteq V$. Для любого линейного отображения $ L: V \to W$, $ U \subseteq \ker L$, существует единственное отображение $ \tilde L: V / U \to  W: L = L \circ \pi_U$.  
+    Пусть $ U \subseteq V$. Для любого линейного отображения $ L: V \to W$, $ U \subseteq \ker L$, существует единственное отображение $ \tilde L: V / U \to  W: L = L \circ \pi_U$.
     При этом сюрьективность  $ \tilde L$  равносильна сюрьективности $ L$, а инъективность  $ \tilde L$ --- тому, что  $ \ker L = U$.
     То есть такая диаграмма коммутативна:
     $$
-\begin{diagram}
-    \node{V} \arrow[1]{e,t}{L} 
-    \arrow{s,l}{\pi_U}
-    \node[1]{W} \\
-    \node{V / U} \arrow[1]{ne,b}{\tilde L}
-\end{diagram}
-$$
+    \begin{diagram}
+	\node{V} \arrow[1]{e,t}{L}
+	\arrow{s,l}{\pi_U}
+	\node[1]{W} \\
+	\node{V / U} \arrow[1]{ne,b}{\tilde L}
+    \end{diagram}
+    $$
 \end{st}
 \begin{proof}
     Пусть $ \tilde L(x + U) = L(x)$. Эта формула задает линейное отображение и равносильна $ L = \tilde \pi_U$. Следовательно, $ \tilde L$ существует и единственно.
@@ -763,13 +763,13 @@ $$
     Отображение  $ \tilde L$ инъективно  $ \Longleftrightarrow \ker \tilde L = \{0_{V / U} + U\}$.
     \[
 	x + U \in \ker \tilde L \Longleftrightarrow \tilde L(x + U) = 0 \Longleftrightarrow L(x) = 0 \Longleftrightarrow x \in \ker L
-    .\] 
+    .\]
 \end{proof}
 \begin{thm}[о гомоморфизме]
     $L : V \to W$ --- линейное отображение.
-     \[
-    V / \ker L \cong \im L
-    .\] 
+    \[
+	V / \ker L \cong \im L
+    .\]
 \end{thm}
 \begin{proof}
     Возьмем $U = \ker L$ и заменим $W$ на $\im L$. Далее применим утверждение \ref{st_l_ker}.
@@ -778,9 +778,9 @@ $$
 \begin{defn}
     $ $
     \begin{description}[noitemsep]
-	\item {\sf Рангом набора векторов} называется размерность линейной оболочки этого набора.  
+	\item {\sf Рангом набора векторов} называется размерность линейной оболочки этого набора.
 	\item {\sf Рангом линейного оператора} называется размерность образа этого оператора.
-	\item {\sf Столбцовым (строчным) рангом матрицы} называется ранг набора ее столбцов (строк). 
+	\item {\sf Столбцовым (строчным) рангом матрицы} называется ранг набора ее столбцов (строк).
     \end{description}
 \end{defn}
 \begin{note}
@@ -790,7 +790,7 @@ $$
     Пусть $ A \in M_{m \times n}(F)$.
     \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
 	\item Набор столбцов матрицы $ A$ линейно независим  тогда и только тогда, когда ее столбцовый ранг равен $ n$.
-	\item Набор столбцов матрицы  $ A$ порождает  $ F^{m}$ тогда и только тогда, когда ее столбцовый ранг равен $ m$. 
+	\item Набор столбцов матрицы  $ A$ порождает  $ F^{m}$ тогда и только тогда, когда ее столбцовый ранг равен $ m$.
 	\item Набор столбцов матрицы $ A$ является базисом в  $ F^{m}$ тогда и только тогда, когда ее столбцовый ранг $ m = n$. В этом случае  $ A$ обратима.
 	\item Если все строки матрицы $ A$ линейно независимы, и все столбцы линейно независимы, то $ m = n$, а  $ A$ обратима.
     \end{enumerate}
@@ -810,7 +810,7 @@ $$
 \end{proof}
 \section{PDQ-разложение. Равенство строчного и столбцового рангов матрицы}
 \begin{thm}[PDQ-разложение]
-    Пусть $ U, V$ --- конечномерные пространства. Для любого линейного отображения $ L: U \to  V$ существуют базисы пространств $ U$ и  $ V$, в которых матрица  отображения $ L$ имеет вид  $ 
+    Пусть $ U, V$ --- конечномерные пространства. Для любого линейного отображения $ L: U \to  V$ существуют базисы пространств $ U$ и  $ V$, в которых матрица  отображения $ L$ имеет вид  $
     \begin{pmatrix}
 	E & 0 \\ 0 & 0
     \end{pmatrix}$.
@@ -826,13 +826,13 @@ $$
 	\item $\boxed{\text{Первое утверждение}}$ Выберем базис $ (f_1, \ldots f_k)$ ядра оператора $ L$ и дополним его до базиса  $ u = (g_1, \ldots g_l, f_1, \ldots f_k)$ пространства $ U$.
 	    Тогда векторы $ L(g_1), \ldots L(g_l)$ линейно независимы и их можно дополнить до базиса $ v$ пространства  $ V$. Получаем нужную матрицу отображения  $ L$ в базисах  $ u, v$.
 	\item  $ \boxed{\text{Второе утверждение}}$ Пусть $ L: F^{n} \to  F^{m}$ --- оператор умножения на матрицу $ A$. Выберем базис  $ u$ пространства  $ F^{n}$ и $ v$ --- пространства $ F^{m}$ так, чтобы $ L_v^{u} = D$.
-	     Тогда 
-	     \[
-	     A = A_{e}^{e} = C_{e \to  u}L_{v}^{u}C_{v \to  e} = PQD
-	     ,\] 
-	     где $ e$ --- стандартный базис пространства столбцов. 
+	    Тогда
+	    \[
+		A = A_{e}^{e} = C_{e \to  u}L_{v}^{u}C_{v \to  e} = PQD
+	    ,\]
+	    где $ e$ --- стандартный базис пространства столбцов.
 
-	     Так как ранги при умножении  обратимую матрицу не меняются, столбцовый и строчной ранги равны рангу единичной матрицы.
+	    Так как ранги при умножении  обратимую матрицу не меняются, столбцовый и строчной ранги равны рангу единичной матрицы.
     \end{description}
 \end{proof}
 \begin{lm}
@@ -843,19 +843,19 @@ $$
 \end{thm}
 \section{Разложение Брюа}
 \begin{defn}
-    Матрица $ A$ называется {\sf верхней (нижней) треугольной}, если $ a_{ij} = 0 \quad \forall i  > j ~(i < j)$. 
+    Матрица $ A$ называется {\sf верхней (нижней) треугольной}, если $ a_{ij} = 0 \quad \forall i  > j ~(i < j)$.
 
     Треугольная матрица с 1 на диагонали называется {\sf унитреугольной}.
-\begin{name}
-    $ $
-    \begin{description}[noitemsep]
-	\item $ B = B_n(F)$ --- множество верхних треугольных матриц.
-	\item $ B^{-} = B_{n}^{-}(F)$ --- множество нижних треугольных матриц.
-	\item $ U = U_{n}(F)$ --- множество верхних унитреугольных матриц.
-	\item $ U^{-} = U^{-}_{n}(F)$ --- множество  нижних унитреугольных матриц.
-	\item $ W = W_n$ --- множество матриц перестановок, то есть матрицы, отличающиеся от единичной перестановкой столбцов.
-    \end{description}
-\end{name}
+    \begin{name}
+	$ $
+	\begin{description}[noitemsep]
+	    \item $ B = B_n(F)$ --- множество верхних треугольных матриц.
+	    \item $ B^{-} = B_{n}^{-}(F)$ --- множество нижних треугольных матриц.
+	    \item $ U = U_{n}(F)$ --- множество верхних унитреугольных матриц.
+	    \item $ U^{-} = U^{-}_{n}(F)$ --- множество  нижних унитреугольных матриц.
+	    \item $ W = W_n$ --- множество матриц перестановок, то есть матрицы, отличающиеся от единичной перестановкой столбцов.
+	\end{description}
+    \end{name}
 \end{defn}
 \begin{lm}
     Множества  $ W, B, B^{-}, U, U^{-}$ являются подгруппами в $ \GL_{n}(F)$.
@@ -864,97 +864,97 @@ $$
     $ \GL_n(F) = BWB$
 \end{thm}
 \begin{proof}
-    Докажем, что $ \forall a \in \GL_n(F) ~ \exists b, c \in D, ~ w \in W: a = bwc$. 
+    Докажем, что $ \forall a \in \GL_n(F) ~ \exists b, c \in D, ~ w \in W: a = bwc$.
     \begin{description}
 	\item По индукции  по $ n$ докажем, что, домножая $ a$  слева и справа на верхнетреугольные матрицы, можно получить матрицу перестановку.
 
 	    Пусть $ i$ ---  наибольший индекс, для которого  $ a_{i 1} \ne 0$. Запишем $ a$ в виде
-	     \[
-	    a = 
+	    \[
+		a =
+		\begin{pmatrix}
+		    x & * \\
+		    a_{i 1} & z \\
+		    0 & *
+		\end{pmatrix}
+		, \quad \text{где } x =
+		\begin{pmatrix}
+		    a_{1 1} \\
+		    \vdots \\
+		    a_{i - 1 1}
+		\end{pmatrix}, ~ \text{ a } z - (a _{i 2}, \ldots a_i n)
+	    .\]
+	    Домножая $ a$ слева на верхнетреугольныую матрицу, получим матрицу, у которой первый столбец совпадает с  $ i$-м столбцом единичной матрицы.
+	    После этого, домножая справа на подходящую верхнереугольныю матрицу можем сделать $ i$-ю строку равной первой строке единичной матрицы:
+	    \[
+		\begin{pmatrix}
+		    E& -\frac{x}{a_{i 1}}& 0 \\
+		    0 & \frac{1}{a_{ i 1}} & 0 \\
+		    0 & 0 & E
+		\end{pmatrix}
+		\begin{pmatrix}
+		    x & * \\
+		    a_{i 1} & z \\
+		    0 & *
+		\end{pmatrix}
+		\begin{pmatrix}
+		    1 & -\frac{z}{a_{i 1}}\\
+		    0 & E
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+		    0 & f\\
+		    1 & 0 \\
+		    0 & g
+		\end{pmatrix}
+		\quad \text{ для некоторых матриц } f, g
+	    .\]
+	    Заметим, что так как строки полученной матрицы линейно независимы, то и строки матрицы $
 	    \begin{pmatrix}
-		x & * \\
-		a_{i 1} & z \\
-		0 & *
+		f \\ g
+	    \end{pmatrix}$
+	    тоже линейно независимы. Поэтому последняя матрица обратима и к ней можно применить индукционное предположение. Следовательно, существуют матрицы $ u, v \in B_{n-1}(F): u
+	    \begin{pmatrix}
+		f \\ g
 	    \end{pmatrix}
-	    , \quad \text{где } x = 
-	    \begin{pmatrix}
-	        a_{1 1} \\
-		\vdots \\
-		a_{i - 1 1}
-	    \end{pmatrix}, ~ \text{ a } z - (a _{i 2}, \ldots a_i n)
-	.\] 
-	Домножая $ a$ слева на верхнетреугольныую матрицу, получим матрицу, у которой первый столбец совпадает с  $ i$-м столбцом единичной матрицы.
-	После этого, домножая справа на подходящую верхнереугольныю матрицу можем сделать $ i$-ю строку равной первой строке единичной матрицы:
-	\[
-	\begin{pmatrix}
-	    E& -\frac{x}{a_{i 1}}& 0 \\
-	    0 & \frac{1}{a_{ i 1}} & 0 \\
-	    0 & 0 & E
-	\end{pmatrix}
-	    \begin{pmatrix}
-		x & * \\
-		a_{i 1} & z \\
-		0 & *
-	    \end{pmatrix}
-	\begin{pmatrix}
-	    1 & -\frac{z}{a_{i 1}}\\
-	    0 & E
-	\end{pmatrix}
-	= 
-	\begin{pmatrix}
-	    0 & f\\
-	    1 & 0 \\
-	    0 & g
-	\end{pmatrix}
-	\quad \text{ для некоторых матриц } f, g
-	.\] 
-	Заметим, что так как строки полученной матрицы линейно независимы, то и строки матрицы $ 
-	\begin{pmatrix}
-	    f \\ g
-	\end{pmatrix}$
-	тоже линейно независимы. Поэтому последняя матрица обратима и к ней можно применить индукционное предположение. Следовательно, существуют матрицы $ u, v \in B_{n-1}(F): u
-	\begin{pmatrix}
-	    f \\ g
-	\end{pmatrix} 
-	v \in W_{n-1}$.
-	Пусть
-	\[
-	u = 
-	\begin{pmatrix}
-	    u^{(1)} & u^{(2)} \\
-	    0 & u^{(3)}
-	\end{pmatrix}
-, ~\text{ где } u^{(1)} \in B_{i-1}(F), ~ u^{(3) }\in B_{n-i}(F).\] 
-    Тогда
-    \[
-    \begin{pmatrix}
-	u^{(1)} & u^{(2)} \\
-	0 &u^{(3)} 
-    \end{pmatrix}
-    \begin{pmatrix}
-        f \\ g
-    \end{pmatrix}
-    \cdot  v
-    \] 
-    является матрицей-перестановкой, следовательно, 
-    \[
-	\begin{pmatrix}
-	    u^{(1)} & 0 & u^{(2)} \\
-	    0 & 1 & 0 \\
-	    0 & 0 & u^{(3)}
-	\end{pmatrix}
-	\begin{pmatrix}
-	    0 & f \\
-	    1 & 0 \\
-	    0 & g
-	\end{pmatrix}
-	\begin{pmatrix}
-	    1 & 0 \\
-	    0 & v
-	\end{pmatrix}
-    \] 
-    --- тоже матрица-перестановка.
-\item Так как обратная к верхнетреугольной --- верхнетругольная, получаем нужное утверждение.
+	    v \in W_{n-1}$.
+	    Пусть
+	    \[
+		u =
+		\begin{pmatrix}
+		    u^{(1)} & u^{(2)} \\
+		    0 & u^{(3)}
+		\end{pmatrix}
+	    , ~\text{ где } u^{(1)} \in B_{i-1}(F), ~ u^{(3) }\in B_{n-i}(F).\]
+	    Тогда
+	    \[
+		\begin{pmatrix}
+		    u^{(1)} & u^{(2)} \\
+		    0 &u^{(3)}
+		\end{pmatrix}
+		\begin{pmatrix}
+		    f \\ g
+		\end{pmatrix}
+		\cdot  v
+	    \]
+	    является матрицей-перестановкой, следовательно,
+	    \[
+		\begin{pmatrix}
+		    u^{(1)} & 0 & u^{(2)} \\
+		    0 & 1 & 0 \\
+		    0 & 0 & u^{(3)}
+		\end{pmatrix}
+		\begin{pmatrix}
+		    0 & f \\
+		    1 & 0 \\
+		    0 & g
+		\end{pmatrix}
+		\begin{pmatrix}
+		    1 & 0 \\
+		    0 & v
+		\end{pmatrix}
+	    \]
+	    --- тоже матрица-перестановка.
+	\item Так как обратная к верхнетреугольной --- верхнетругольная, получаем нужное утверждение.
     \end{description}
 \end{proof}
 \begin{defn}
@@ -970,122 +970,122 @@ $$
 \begin{lm}
     Умножение матрицы на нижнюю унитреугольную слева и на верхнюю унитреугольную справа не меняет обратимости главных подматриц.
 \end{lm}
-    \begin{proof}
-	$a^{(k)}$ --- главная подматрица $k \times k$ в $a$.
-	Умножим на нижнюю унитреугольную матрицу слева:
-	 \[
-	\left ( 
-	\begin{array}{cc}
-	    b&0\\
-	    c&1
-	\end{array}
+\begin{proof}
+    $a^{(k)}$ --- главная подматрица $k \times k$ в $a$.
+    Умножим на нижнюю унитреугольную матрицу слева:
+    \[
+	\left (
+	    \begin{array}{cc}
+		b&0\\
+		c&1
+	    \end{array}
 	\right )
-	\left ( 
-	\begin{array}{cc}
-	    a^{(k)}&* \\
-	    *& *
-	\end{array}
+	\left (
+	    \begin{array}{cc}
+		a^{(k)}&* \\
+		*& *
+	    \end{array}
 	\right )=
-	\left ( 
-	\begin{array}{cc}
-	    ba^{(k)}&*\\
-	    *&*
-	\end{array}
-	\right )
-	.\] 
-	$\mbox{Где } b \in  U^-(F)$.
-	Обратимость $a^{(k)} $ равносильна обратимости $ba^{(k)}$, так как $b$ обратима.
-    \end{proof}
-    \begin{lm}
-        Все главные подматрицы обратимы тогда и только тогда, когда матрица раскладывается в произведение обратимых унитреугольных верхнетреугольной и нижнетреугольной.
-    \end{lm}
-    \begin{proof}
-	Доказываем следствие влево.
-        Индукция по $n$.
-	\begin{description}
-	    \item База: $n=1$ --- очевидно\\
-	    \item Переход: \\
-	\[
-	    a^{(n)} = 
-	\left ( 
-	\begin{array}{cc}
-	    a^{(n-1)} & * \\
-	    * & a_{nn}
-	\end{array}
-	\right )
-	.\] 
-	\[
-	     \left ( 
+	\left (
 	    \begin{array}{cc}
-		1&0\\-xa^{(n-1)}&1
+		ba^{(k)}&*\\
+		*&*
 	    \end{array}
-	    \right )
-	    \left ( 
-	    \begin{array}{cc}
-		a^{(n-1)} & *\\
-		x&a_{nn}
-	    \end{array}
-	    \right )=
-	    \left ( 
-	    \begin{array}{cc}
-		a^{(n-1)}&*\\0&*
-	    \end{array}
-	    \right )
-	.\] 
-	Дальше применим предположение индукции к $a^{(n-1)}$. Она раскладывается в произведение верхне- и нижнетреугольной.
-	\end{description}
-	В обратную сторону следует из прошлой леммы.
-	Действительно, у обратимой верхнетреугольной матрицы все главные подматрицы обратимы, а умножение слева на обратимые 	нижнетреугольные не меняет их обратимость.
-    \end{proof}
-    \begin{lm}
-	$\forall a \in  \GL_n(F) ~ \exists w \in  W : $ все подматрицы в $wa$ обратимы.
-    \end{lm}
-    \begin{proof}
-	Индукция по $k$.
-	Докажем, что существует перестановка $a \in  \GL_n(F)$ такая, что главные подматрицы размера не более $k \times k$ обратимы.
-	\begin{description}
-	    \item База: $k=1$ \[
-	    a_{*1} = 0 \Rightarrow \exists i: a_{ij} \ne 0
-	.\] Меняем $i$-ю строку с первой.
-    \item Переход: $ k \to  k+1$
-	Все столбцы обратимой матрицы линейно независимы, следовательно, ранг матрицы, составленной из первых $ k$ столбцов, равен  $ k$
-Тогда существует $ k$ линейно независимых строк  этой матрицы.
-Переставим эти строки на первые $ k$ мест.
-	\[
-	a = 
-	\left ( 
-	\begin{array}{cc}
-	    a^{(k)}& *\\
-	    * & *
-	\end{array}
 	\right )
-	.\] 
-	У полученной матрицы $ a^{(k)}$ главная подматрица порядка $ k$ обратима.
-	По индукционному предположению все меньшие главные подматрицы в $a^{(k)}$ обратимы.
-	\end{description}
-    \end{proof}
+    .\]
+    $\mbox{Где } b \in  U^-(F)$.
+    Обратимость $a^{(k)} $ равносильна обратимости $ba^{(k)}$, так как $b$ обратима.
+\end{proof}
+\begin{lm}
+    Все главные подматрицы обратимы тогда и только тогда, когда матрица раскладывается в произведение обратимых унитреугольных верхнетреугольной и нижнетреугольной.
+\end{lm}
+\begin{proof}
+    Доказываем следствие влево.
+    Индукция по $n$.
+    \begin{description}
+	\item База: $n=1$ --- очевидно\\
+	\item Переход: \\
+	    \[
+		a^{(n)} =
+		\left (
+		    \begin{array}{cc}
+			a^{(n-1)} & * \\
+			* & a_{nn}
+		    \end{array}
+		\right )
+	    .\]
+	    \[
+		\left (
+		    \begin{array}{cc}
+			1&0\\-xa^{(n-1)}&1
+		    \end{array}
+		\right )
+		\left (
+		    \begin{array}{cc}
+			a^{(n-1)} & *\\
+			x&a_{nn}
+		    \end{array}
+		\right )=
+		\left (
+		    \begin{array}{cc}
+			a^{(n-1)}&*\\0&*
+		    \end{array}
+		\right )
+	    .\]
+	    Дальше применим предположение индукции к $a^{(n-1)}$. Она раскладывается в произведение верхне- и нижнетреугольной.
+    \end{description}
+    В обратную сторону следует из прошлой леммы.
+    Действительно, у обратимой верхнетреугольной матрицы все главные подматрицы обратимы, а умножение слева на обратимые	нижнетреугольные не меняет их обратимость.
+\end{proof}
+\begin{lm}
+    $\forall a \in  \GL_n(F) ~ \exists w \in  W : $ все подматрицы в $wa$ обратимы.
+\end{lm}
+\begin{proof}
+    Индукция по $k$.
+    Докажем, что существует перестановка $a \in  \GL_n(F)$ такая, что главные подматрицы размера не более $k \times k$ обратимы.
+    \begin{description}
+	\item База: $k=1$ \[
+		a_{*1} = 0 \Rightarrow \exists i: a_{ij} \ne 0
+	    .\] Меняем $i$-ю строку с первой.
+	\item Переход: $ k \to  k+1$
+	    Все столбцы обратимой матрицы линейно независимы, следовательно, ранг матрицы, составленной из первых $ k$ столбцов, равен  $ k$
+	    Тогда существует $ k$ линейно независимых строк  этой матрицы.
+	    Переставим эти строки на первые $ k$ мест.
+	    \[
+		a =
+		\left (
+		    \begin{array}{cc}
+			a^{(k)}& *\\
+			* & *
+		    \end{array}
+		\right )
+	    .\]
+	    У полученной матрицы $ a^{(k)}$ главная подматрица порядка $ k$ обратима.
+	    По индукционному предположению все меньшие главные подматрицы в $a^{(k)}$ обратимы.
+    \end{description}
+\end{proof}
 \begin{thm}[Разложение Гаусса]
     $ \GL_{n}(F) = WB^{-}B$
 \end{thm}
 \begin{proof}
-    Рассмотрим $ a \in \GL_{n}(F)$. Построим перестановку $ w$, чтобы все главные подматрицы были обратимы. Дальше домножим справа и слева на унитреугольные матрицы так, чтобы получить верхнетругольную матрицу: 
+    Рассмотрим $ a \in \GL_{n}(F)$. Построим перестановку $ w$, чтобы все главные подматрицы были обратимы. Дальше домножим справа и слева на унитреугольные матрицы так, чтобы получить верхнетругольную матрицу:
     $wa \in  B^- B$. Домножая на $B, B^-$, получим, что хотели.
 \end{proof}
 
 \section{Определение группы, подгруппы, прямое произведение групп}
 \begin{defn}
-Множество $X$ с операцией $*$ , удовлетворяющее 
-\begin{enumerate}
-    \item $\forall x,y,z \: \in X: x*(y*z) = (x*y)*z$  (ассоциативность);
-    \item $\exists e \in X \; \forall a \in X: e*a = a*e = a$ (нейтральный элемент);
-    \item $\forall a \in X \; \exists a' \in X: a*a' = a' * a = e $ (обратный элемент),
-\end{enumerate}
-называется {\sf группой}.
+    Множество $X$ с операцией $*$ , удовлетворяющее
+    \begin{enumerate}
+	\item $\forall x,y,z \: \in X: x*(y*z) = (x*y)*z$  (ассоциативность);
+	\item $\exists e \in X \; \forall a \in X: e*a = a*e = a$ (нейтральный элемент);
+	\item $\forall a \in X \; \exists a' \in X: a*a' = a' * a = e $ (обратный элемент),
+    \end{enumerate}
+    называется {\sf группой}.
 \end{defn}
 \begin{defn}
     Непустое подмножество $H \subset G$ называется {\sf подгруппой} $ G$, если $H$ --- группа относительно операции, заданной в $G$.
     \begin{name}
-    Обозначается: $H \le G$
+	Обозначается: $H \le G$
     \end{name}
 \end{defn}
 \begin{lm}
@@ -1097,70 +1097,70 @@ $$
 \end{prop}
 \begin{defn}
     Пусть  $ G_1, G_2$ --- группы с операциями  $ *_1$ и $ *_2$ соответственно. {\sf Прямое произведение}  $ G = G_1 \times G_2$ --- декартово произведение  $ G_1$ и $ G_2$ c операцией $ *$:
-     \[
-	 (g_1, g_2) * (g_1', g_2') = (g_1 *_1 g_1', g_2*_2 g_2'), \quad g_1, g_1' \in G_1, ~ g_2, g_2' \in G_2
-    .\] 
+    \[
+	(g_1, g_2) * (g_1', g_2') = (g_1 *_1 g_1', g_2*_2 g_2'), \quad g_1, g_1' \in G_1, ~ g_2, g_2' \in G_2
+    .\]
 
     Аналогично определяется произведение любого семейства групп.
 \end{defn}
 \section{Подгруппа, порожденная множеством. Классификация циклических подгрупп}
 \begin{defn}
-    Пусть $ X$ --- подмножество группы  $ G$.  {\sf Подгруппой, порожденной множеством}  $ X$, называется наименьшая группа по включению, содержащая  $ X$. 
+    Пусть $ X$ --- подмножество группы  $ G$.  {\sf Подгруппой, порожденной множеством}  $ X$, называется наименьшая группа по включению, содержащая  $ X$.
     \begin{name}
-        Подгруппа, порожденная  $ X$, обозначается $ \langle X \rangle$. 
+	Подгруппа, порожденная  $ X$, обозначается $ \langle X \rangle$.
     \end{name}
 \end{defn}
 \begin{defn}
     Группа, порожденная одним элементом, называется {\sf циклической}.
 \end{defn}
 \begin{lm}
-    $ \langle X \rangle = \{x_1 \ldots x_k \mid k \in \Z_+, ~ x_i \in X \cap X^{-1}\}$. 
+    $ \langle X \rangle = \{x_1 \ldots x_k \mid k \in \Z_+, ~ x_i \in X \cap X^{-1}\}$.
 \end{lm}
 \begin{st}
     Любая циклическая группа изоморфна $\Z$ или $\Z_n$.
 \end{st}
 \begin{proof}
     $G = \{g^m \mid m \in \Z\}$. Разберем два случая:
-     \begin{enumerate}
-	 \item $g^m \ne 1 \quad  \forall m \in  \Z \Longrightarrow \nexists a, b \in \Z: g^{a} = g^{b}$.
-	     Тогда отображение 
-	     \[
-		 \varphi : \Z \to  G, \quad \varphi (m) = g^m
-	     \text{ --- изоморфизм}.\] 
-	     \[
-		 \varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
-	     .\] 
-	 \item Пусть $n$ --- наименьшее натуральное число, такое, что $g^n = 1$. 
-	     Заметим, что любое целое $ l$ можно с остатком разделить на  $ n: l = ns + r, ~ 0 \le r < n$.
-	     Тогда \[
-	     g^{l} = g^{ns}g^{r} = g^{r}
-	     .\] 
-	     Следовательно, $ \langle g \rangle = \{1, g, g^2, \ldots g^{n-1}\}$.
-	     Тогда отображение 
-	     \[
-	     \varphi : G \to \Z_n, \quad k \to  g^{k} \text{ --- изоморфизм}
-	     .\] 
+    \begin{enumerate}
+	\item $g^m \ne 1 \quad  \forall m \in  \Z \Longrightarrow \nexists a, b \in \Z: g^{a} = g^{b}$.
+	    Тогда отображение
+	    \[
+		\varphi : \Z \to  G, \quad \varphi (m) = g^m
+	    \text{ --- изоморфизм}.\]
+	    \[
+		\varphi (m+k) = g^{m+k} = g^m g^k = \varphi (m) \varphi (k)
+	    .\]
+	\item Пусть $n$ --- наименьшее натуральное число, такое, что $g^n = 1$.
+	    Заметим, что любое целое $ l$ можно с остатком разделить на  $ n: l = ns + r, ~ 0 \le r < n$.
+	    Тогда \[
+		g^{l} = g^{ns}g^{r} = g^{r}
+	    .\]
+	    Следовательно, $ \langle g \rangle = \{1, g, g^2, \ldots g^{n-1}\}$.
+	    Тогда отображение
+	    \[
+		\varphi : G \to \Z_n, \quad k \to  g^{k} \text{ --- изоморфизм}
+	    .\]
     \end{enumerate}
 \end{proof}
 \section{Смежные классы по подгруппе. Теорема Лагранжа}
 \begin{defn}
-    Пусть $ H \le G$. Множества $ gH$ и  $ Hg$ называются {\sf левым и правым смежными классами по подгруппе} $ H$ соответственно.  
-\begin{name}$ $
-    \begin{description}[noitemsep]
-	\item 
-    $G \diagup H = \{gH \mid g \in G\} $ --- множество левых смежных классов.
-\item 
-    $H \diagdown G = \{Hg \mid g \in G\} $ --- множество правых смежных классов.
-    \end{description}
-\end{name}
+    Пусть $ H \le G$. Множества $ gH$ и  $ Hg$ называются {\sf левым и правым смежными классами по подгруппе} $ H$ соответственно.
+    \begin{name}$ $
+	\begin{description}[noitemsep]
+	    \item
+		$G \diagup H = \{gH \mid g \in G\} $ --- множество левых смежных классов.
+	    \item
+		$H \diagdown G = \{Hg \mid g \in G\} $ --- множество правых смежных классов.
+	\end{description}
+    \end{name}
 \end{defn}
 \begin{defn}
     Отношение сравнимости по модулю $ H$:
     \[
-    a \equiv b \mod H  \Longleftrightarrow a \in bH
-    .\] 
+	a \equiv b \mod H  \Longleftrightarrow a \in bH
+    .\]
 \end{defn}
-\begin{lm} 
+\begin{lm}
     Сравнимость по модулю $ H$ --- отношение эквивалентности. Два смежных класса либо не пересекаются, либо совпадают.
 \end{lm}
 \begin{proof}
@@ -1170,27 +1170,27 @@ $$
 	\item Симметричность: $ a \in B \Longrightarrow \exists h \in H: a= bh \Longrightarrow  b=a h^{-1} \in  aH$
 	\item Транзитивность: $ a \in bH, b \in cH \Longrightarrow a = bh, b = ch' \Longrightarrow a = chh' \in c H$
     \end{description}
-Второе утверждение вытекает из того, что классы сравнимости --- левые смежные классы по подгруппе.
+    Второе утверждение вытекает из того, что классы сравнимости --- левые смежные классы по подгруппе.
 \end{proof}
 \begin{cor}
     $$G =\bigsqcup\limits_{g \in X} g H, \text{ где } X \text{ --- множество представителей левых смежных классов по $H$}$$
 \end{cor}
 \begin{lm}
     \[
-    |g_1H| = |g_2H|, \quad \forall g_1, g_2 \in  G,~ H \le G 
-    .\] 
+	|g_1H| = |g_2H|, \quad \forall g_1, g_2 \in  G,~ H \le G
+    .\]
 \end{lm}
 \begin{proof}
     Такое отображение будет изоморфизмом:
-     \[
-     \left ( 
-     \begin{array}{c}
-     g_1H \to g_2H \\
-     x \mapsto g_2 g_1^{-1} x
-     \end{array}
-     \right )
-     .\] 
-     Обратное: $y \mapsto g_1 g_2^{-1} y$
+    \[
+	\left (
+	    \begin{array}{c}
+		g_1H \to g_2H \\
+		x \mapsto g_2 g_1^{-1} x
+	    \end{array}
+	\right )
+    .\]
+    Обратное: $y \mapsto g_1 g_2^{-1} y$
 \end{proof}
 \begin{thm}[Лагранж]
     $G$ --- конечная группа. Тогда $|G| = |H|\cdot  |G:H|$, где $|G:H|$ --- количество левых смежных классов $G$ по $H$.
@@ -1203,14 +1203,14 @@ $$
     Множества $ G \po H$ и $ H \op G$ равномощны.
 \end{lm}
 \begin{proof}
-    Зададим биекцию $ \varphi : G \po H \to  H \op G, \quad aH \mapsto (aH)^{-1} = Ha^{-1}$.   
+    Зададим биекцию $ \varphi : G \po H \to  H \op G, \quad aH \mapsto (aH)^{-1} = Ha^{-1}$.
 \end{proof}
 \section{Порядок элемента группы.}
 \begin{defn}
-    {\sf Порядок} $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.  
+    {\sf Порядок} $g \in  G$ --- наименьшее натуральное число, такое что $g^n = 1$.
 
     Второе определение:
-        $\ord(g) = | \langle g \rangle|$. 
+    $\ord(g) = | \langle g \rangle|$.
 \end{defn}
 \begin{thm}
     Пусть $ G$ --- группа,  $ g \in G$. Тогда $|G| \del \ord (g)$
@@ -1223,8 +1223,8 @@ $$
 \end{thm}
 \begin{proof}
     \[
-	1_H = 	f(1_G) = f(g^{n}) = f(g)^{n} \Longrightarrow n \del \ord(f(g))
-    .\] 
+	1_H =	f(1_G) = f(g^{n}) = f(g)^{n} \Longrightarrow n \del \ord(f(g))
+    .\]
 \end{proof}
 \begin{st}
     Пусть $ G$ --- абелева группа,  $ a, b \in G$. Тогда $\lcm (\ord (a), \ord(b)) \del  \ord(ab) $.
@@ -1233,24 +1233,24 @@ $$
     Обозначим $\lcm (\ord (a), \ord(b)) = n, ~ \ord(ab) = m$
     \[
 	(ab)^{n} = a^{n}b^{n} = 1 \Longrightarrow  n \del m
-    .\] 
+    .\]
 \end{proof}
 \begin{thm}\label{th_ords}
     Пусть $ G$ --- абелева группа,  $ a, b \in G, ~ \gcd(\ord (a), \ord(b)) = 1 $. Тогда $ \ord (ab) = \ord(a) \ord(b)$.
 \end{thm}
 \begin{proof}
     Рассмотрим $ \langle a \rangle \cap \langle b \rangle  = H$. Это подгруппа $ \langle a \rangle$ и $ \langle b \rangle$. По теореме Лагранжа $ \ord (a) \del |H|$ и $ \ord (b) \del |H|$.
-    Так как порядки $ a$ и  $ b$ взаимно просты, $ \langle a \rangle \cap \langle  b \rangle = \{e\}$. Тогда 
+    Так как порядки $ a$ и  $ b$ взаимно просты, $ \langle a \rangle \cap \langle  b \rangle = \{e\}$. Тогда
     \[
-    a^{s} = b^{t} \Longleftrightarrow a^{s} = b^{t} = e
-    .\] 
-    Это равносильно тому, что 
+	a^{s} = b^{t} \Longleftrightarrow a^{s} = b^{t} = e
+    .\]
+    Это равносильно тому, что
     \[
 	s \del \ord(a), ~ t \del \ord(b)
-    .\] 
+    .\]
     Если $ (ab)^{n} = e$, то $ a^{n} = b^{-n}$, значит $ n \del\ord(a) \wedge n \del \ord(b)$. Порядки взаимно просты, следовательно $ n \del \ord(a)\ord(b)$. С другой стороны, по прошлому утверждению  $ \ord(a)\ord(b) \del \ord(ab)$. Следовательно,  \[
 	\ord(a)\ord(b) = \ord(ab)
-    .\] 
+    .\]
 \end{proof}
 \section{Экспонента группы, критерий цикличности группы}
 \begin{defn}
@@ -1259,7 +1259,7 @@ $$
 \begin{thm}[свойства экспоненты группы]
     $ $
     \begin{enumerate}[noitemsep,label={\rm (\arabic*)}]
-        \item Экспонента группы равна НОКу всех порядков ее элементов.
+	\item Экспонента группы равна НОКу всех порядков ее элементов.
 	\item Если группа конечна, то ее экспонента делит ее порядок.
 	\item Экспонента прямого произведения групп $ G_1\times \ldots G_l$ равна НОКу экспонент этих групп.
 	\item \label{p_peg}Если $ G$ --- абелева группа конечной экспоненты, то существует элемент, порядок которого равен ее экспоненте.
@@ -1267,7 +1267,7 @@ $$
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    Докажем пункт \ref{p_peg}. Пусть $ d = p_1^{k_1} \cdot  \ldots p_l^{k_l}$ --- экспонента группы $ G$, где  $ p_1, \ldots p_l \in \Pm$. Тогда $ \exists  g_1, \ldots g_l \in G$, порядки которых делятся на $ p_1^{k_1}, \ldots p_l^{k_l}$ соответственно. 
+    Докажем пункт \ref{p_peg}. Пусть $ d = p_1^{k_1} \cdot  \ldots p_l^{k_l}$ --- экспонента группы $ G$, где  $ p_1, \ldots p_l \in \Pm$. Тогда $ \exists  g_1, \ldots g_l \in G$, порядки которых делятся на $ p_1^{k_1}, \ldots p_l^{k_l}$ соответственно.
 
     Если $ \ord(g) = mn$, то  $ \ord (g^{m}) = n$. Возведем $ g_1, \ldots g_l$ в нужные степени и считаем, что $ \ord(g_i) = p_{i}^{k_i} \quad \forall  i \in [1, l]$.
 
@@ -1279,7 +1279,7 @@ $$
     Пусть $H \le G$.
     $H$ называется {\sf нормальной подгруппой}, если $gH = Hg \quad g \in  G$.
     \begin{name}
-         Обозначается: $H \trianglelefteq G$.
+	Обозначается: $H \trianglelefteq G$.
     \end{name}
 \end{defn}
 \begin{note}
@@ -1287,7 +1287,7 @@ $$
 \end{note}
 \subsection{Гомоморфизмы групп}
 \begin{defn}
-    Пусть $ (G, *), ~ (H, \#)$ --- группы. Функция $ f: G \to  H$ называется {\sf гомоморфизмом}, если  $ f(a \cdot b) = f(a)\#f(b) \quad \forall a, b \in G$.  
+    Пусть $ (G, *), ~ (H, \#)$ --- группы. Функция $ f: G \to  H$ называется {\sf гомоморфизмом}, если  $ f(a \cdot b) = f(a)\#f(b) \quad \forall a, b \in G$.
 
     Образ гомоморфизма $ \im f = \{f(g) \mid g \in G\}$.
 
@@ -1318,13 +1318,13 @@ $$
 \end{st}
 \begin{proof}
     Пусть $ F = G \po H$ и зададим отображение  $ \pi: G \to F$ по формуле $ \pi(x) = xH$. Зададим операцию в $ F$ по формуле  $ (xH) \cdot (yH) = xyH$. Так как $ H \trianglelefteq G$, эта операция не зависит от выбора представителей $ x $ и $ y$ смежных классов  $ xH$ и  $ yH$:
-     \[
-	 xhyh' = xy(y^{-1}hy)h' \in xyH
-    .\] 
+    \[
+	xhyh' = xy(y^{-1}hy)h' \in xyH
+    .\]
     Ассоциативность операции следует из ассоциативности операций в $ G$. Нейтральный элемент --- смежный класс $ eH =H $, обратный для  $ xH$ --- смежный класс  $ x^{-1}H$. Следовательно, $ H$ --- группа. По построению  $ F$ сразу получаем, что  $ \pi$ --- гомоморфизм. При этом $ \pi$ сюрьективно.
     \[
 	\pi(x) = e_{G \po H} = H \Longleftrightarrow x \in H
-    .\] 
+    .\]
     Следовательно, $ \ker \pi = H$.
 \end{proof}
 \begin{defn}
@@ -1332,10 +1332,10 @@ $$
 \end{defn}
 \section{Универсальное свойство факторгруппы и теорема о гомоморфизме}
 \begin{thm}[универсальное свойство факторгруппы]
-     Пусть 
-    $f : G \to H$ --- гомоморфизм, a $N\trianglelefteq G$. Если $ \ker f \ge N$, то существует единственный гомоморфизм $ g: G\diagup N \to  H$, такой что $ f = g \circ \pi$. 
-    
-    Если $ f$ --- эпиморфизм, то $ g$ --- эпиморфизм. Если $ \ker F = N$, то $ g$  --- мономорфизм. 
+    Пусть
+    $f : G \to H$ --- гомоморфизм, a $N\trianglelefteq G$. Если $ \ker f \ge N$, то существует единственный гомоморфизм $ g: G\diagup N \to  H$, такой что $ f = g \circ \pi$.
+
+    Если $ f$ --- эпиморфизм, то $ g$ --- эпиморфизм. Если $ \ker F = N$, то $ g$  --- мономорфизм.
 \end{thm}
 \begin{proof}
     Пусть $ x \in G$. $f = g \circ \pi \Longrightarrow $
@@ -1346,15 +1346,15 @@ $$
 
     Если композиция сюрьективна, то $ g$ обязан быть сюрьективным,  так как применяется последним.
 
-    Если  $ \ker f = N$, 
-     \[
-    xN \in \ker g \Longleftrightarrow x \in \ker f = N \Longleftrightarrow x N = 1_{G \po N}
-    .\] 
+    Если  $ \ker f = N$,
+    \[
+	xN \in \ker g \Longleftrightarrow x \in \ker f = N \Longleftrightarrow x N = 1_{G \po N}
+    .\]
 \end{proof}
 \begin{thm}[о гомоморфизме групп]
     Пусть $ f: G \to H$ --- гомоморфизм групп. Тогда \[
-    \im f \cong G \po \ker f
-    .\] 
+	\im f \cong G \po \ker f
+    .\]
 \end{thm}
 \begin{proof}
     Отображение $ \overline{f}: G \to \im f$, заданное формулой $ \overline{f}(x) = f(x)$ является эпиморфизмом, причем его ядро равно $ \ker f$. По универсальному свойству факторгруппы существует изоморфизм $ \im f \to  G \po \ker f$.
@@ -1365,12 +1365,12 @@ $$
     Пусть $ x, y \in G$. Элемент $ x^{y} \coloneqq y^{-1} x y$ называется {\sf правым сопряженным} к $ x$ при помощи  $ y$. А  $ ^{y}\!x = x ^{y^{-1}} = y x y^{-1}$ --- {\sf левым сопряженным} к $ x$ при помощи  $ y$.
 \end{defn}
 \begin{lm}
-    Пусть $ x, y, z \in G$. Тогда 
+    Пусть $ x, y, z \in G$. Тогда
     \begin{enumerate}
-        \item 
-    $ (xy)^{z} = x^{z}\cdot y^{x}$ и $ ^{z}\!(xy) = {^{z}\!x}\cdot  {^{z}\!y}$, то есть сопряжение при помощи $ z$ --- гомоморфизм.
-\item 
-    $ ^{yz}\!x = {^{z}\!({^{y}\!x})}$, то есть отображение из группы $ G$ в группу автоморфизмов группы  $ G$, переводящее элемент в левое сопряжение при помощи этого элемента, является гомоморфизмом.
+	\item
+	    $ (xy)^{z} = x^{z}\cdot y^{x}$ и $ ^{z}\!(xy) = {^{z}\!x}\cdot  {^{z}\!y}$, то есть сопряжение при помощи $ z$ --- гомоморфизм.
+	\item
+	    $ ^{yz}\!x = {^{z}\!({^{y}\!x})}$, то есть отображение из группы $ G$ в группу автоморфизмов группы  $ G$, переводящее элемент в левое сопряжение при помощи этого элемента, является гомоморфизмом.
     \end{enumerate}
 \end{lm}
 \begin{note}
@@ -1383,24 +1383,24 @@ $$
     $ $
     \begin{description}
 	\item $ \boxed{ \Longrightarrow }$ Очевидно.
-	\item $ \boxed{ \Longleftarrow }$ Пусть $ h \in  H$, а $ g = y_1 \cdot \ldots y_m \in G, \quad y_i \in Y$. 
+	\item $ \boxed{ \Longleftarrow }$ Пусть $ h \in  H$, а $ g = y_1 \cdot \ldots y_m \in G, \quad y_i \in Y$.
 
 	    Индукция по $ m$.
-	     \begin{description}
-		 \item База: $ m=0$.  $ g = 1$.
-		 \item Переход:  $ m-1 \to  m$.
-		     По предположению индукции $ h^{y_1 \cdot \ldots y_{m-1}} \in H$, следовательно, $ h^{y_1 \cdot \ldots  Y_{m-1}} = x_1 \cdot  \ldots x_n$ для некоторого  $ n \in N$ и $ x_1, \ldots x_n \in X$.
-		     Тогда $ h^{g} = (x_1 \cdot  \ldots x_n)^{y_m} = x_1^{y_m} \cdot  \ldots x_n^{y_{m}}$, а каждый сомножитель лежит в $ H $ по условию.
+	    \begin{description}
+		\item База: $ m=0$.  $ g = 1$.
+		\item Переход:  $ m-1 \to  m$.
+		    По предположению индукции $ h^{y_1 \cdot \ldots y_{m-1}} \in H$, следовательно, $ h^{y_1 \cdot \ldots  Y_{m-1}} = x_1 \cdot  \ldots x_n$ для некоторого  $ n \in N$ и $ x_1, \ldots x_n \in X$.
+		    Тогда $ h^{g} = (x_1 \cdot  \ldots x_n)^{y_m} = x_1^{y_m} \cdot  \ldots x_n^{y_{m}}$, а каждый сомножитель лежит в $ H $ по условию.
 	    \end{description}
     \end{description}
 \end{proof}
 \begin{defn}
     Наименьшая нормальная подгруппа группы $ G$, содержащая подгруппу $ H$ называется {\sf порождающим замыканием}  $ H $ и $ G$.
-     \begin{name}
-        Обозначается: $ H^{G}$.
+    \begin{name}
+	Обозначается: $ H^{G}$.
     \end{name}
     \begin{note}
-        $ H^{G}$ порождается всеми элементами вида $ h^{g}, ~ h \in H, ~ g \in G$.
+	$ H^{G}$ порождается всеми элементами вида $ h^{g}, ~ h \in H, ~ g \in G$.
     \end{note}
 \end{defn}
 \subsection{Коммутатор}
@@ -1429,11 +1429,11 @@ $$
     По формуле \ref{fc} из свойств коммутаторов \ref{pc}
     \[
 	[x, y]^{z } = {^{z^{-1}}\![x, y] } = [x, z ^{-1}]^{-1} \cdot [x , z^{-1}y] \in [X, Y]
-    .\] 
+    .\]
     Аналогично, для  $ x, z \in X, ~ y \in Y$:
     \[
-	[x, y]^{z} = \left( [y, z]^{-1} \right) ^{z} = \left( {^{z^{-1}}[y, x]} \right)^{-1} = \left( [y, x^{-1}]^{-1} \cdot [y, z^{-1}x] \right)^{-1} = [z^{-1}z, y] \cdot [z^{-1}, y]^{-1} \in [X, Y]  
-    .\] 
+	[x, y]^{z} = \left( [y, z]^{-1} \right) ^{z} = \left( {^{z^{-1}}[y, x]} \right)^{-1} = \left( [y, x^{-1}]^{-1} \cdot [y, z^{-1}x] \right)^{-1} = [z^{-1}z, y] \cdot [z^{-1}, y]^{-1} \in [X, Y]
+    .\]
     По лемме \ref{lm_com} получаем нормальную подгруппу.
 \end{proof}
 \begin{lm}\ref{lm_sx}
@@ -1447,32 +1447,32 @@ $$
 	\item База: $ n = 1$. По определению  $ Z$.
 	\item  Переход:  $ n - 1 \to  n$. \[
 		[s, y] = [s, t_1]\cdot {\!\!^{t_1} [s, t_2 \ldots t_n]}
-	.\]  
-	По индукционному предположению $ [s, t_2 \ldots t_n] \in Z$, следовательно, $ [s, y] \in Z \quad \forall s \in S_X, ~ y \in  Y$. Аналогично для $ s \in S_Y, ~ x = t_1, \ldots t_n, \quad t_i \in S_X$.
+	    .\]
+	    По индукционному предположению $ [s, t_2 \ldots t_n] \in Z$, следовательно, $ [s, y] \in Z \quad \forall s \in S_X, ~ y \in  Y$. Аналогично для $ s \in S_Y, ~ x = t_1, \ldots t_n, \quad t_i \in S_X$.
     \end{description}
 \end{proof}
 \begin{st}
-    $\varphi : G \to  A$ --- гомоморфизм. 
+    $\varphi : G \to  A$ --- гомоморфизм.
     $A$ --- абелева $\Longrightarrow [G, G] \subseteq \ker \varphi $.
 \end{st}
 \begin{proof}
     \[
-	\varphi ([g, h]) = [\varphi (g), \varphi (h)] = 1 
-    .\] 
+	\varphi ([g, h]) = [\varphi (g), \varphi (h)] = 1
+    .\]
     Тогда \[
 	[g, h] \in  \ker \varphi , \quad \forall g, h \in  G
-    .\] 
+    .\]
     Из этого следует, что $[G, G] \subseteq  \ker \varphi $.
 \end{proof}
 \section{Соотношения между трансвекциями. Взаимные коммутанты верхнетреугольных групп. Порождение верхнетреугольной группы.}
 \begin{name}
     Пусть $ F$ --- поле,
-     \[
-	 U_n^{(k)} = U_{n}^{(k)}(F)=\{a \in M_{n}(f) \mid a_{ii} = 1, ~ a_{ij} = 0 ~ \forall i \ne j , ~ j - i < k\}
-    .\] 
-\[
-    U_n = U_{n}F \coloneqq U_{n}^{(1)}(F) \wedge U_n^{(k)} = \{1\} ~ k \ge  n
-.\] 
+    \[
+	U_n^{(k)} = U_{n}^{(k)}(F)=\{a \in M_{n}(f) \mid a_{ii} = 1, ~ a_{ij} = 0 ~ \forall i \ne j , ~ j - i < k\}
+    .\]
+    \[
+	U_n = U_{n}F \coloneqq U_{n}^{(1)}(F) \wedge U_n^{(k)} = \{1\} ~ k \ge  n
+    .\]
 \end{name}
 \begin{lm}
     Группа $ U_{n}^{(k)}$ порождена трансвекциями $ t_{ij}(\alpha) $ по всем $ \alpha \in F \wedge  j - i \ge k$.
@@ -1494,8 +1494,8 @@ $$
 
     Из формул прошлого утверждения также следует
     \[
-[U_{n}^{(k)}, U_{n}^{(m)}] \subset  U_{n}^{(k+m)}
-    .\] 
+	[U_{n}^{(k)}, U_{n}^{(m)}] \subset  U_{n}^{(k+m)}
+    .\]
     Так как $ U_{n}^{(k+m)}$ нормальна, из леммы \ref{lm_sx} следует, что $ [U_{n}^{(k)}, U_{n}^{(m)}]$ содержится в этой подгруппе. С другой стороны, каждая образующая группы $ U_n^{(k+m)}$ --- коммутатор образующих $ U_{n}^{(k)}$ и $ U_{n}^{(m)}$. А тогда выполнено требуемое равенство.
 \end{proof}
 \section{Приведенное разложение Брюа. Соотношение между клетками Брюа и Гаусса.}
@@ -1507,21 +1507,21 @@ $$
 \begin{defn}[Перестановка]
     $\sigma \in  S_n \Longleftrightarrow \sigma : \{1, \ldots n \} \stackrel{\sim} \to  \{1, \ldots n\}$
     \begin{description}
-	\item 
-    Табличная запись перестановки:
-    \[
-    \sigma  = \left ( 
-    \begin{array}{ccc}
-	1 &\ldots& n \\
-	i_1, & \ldots  & i_n 
-    \end{array}
-\right ), i_j \ne i_k (j \ne k)
-    .\] 
-\item Циклическая запись перестановки:
-    \[
-	\tau = (j_1, \ldots j_n) \Longleftrightarrow 
-	\tau(j_1) = j_2, ~ \tau(j_2) = j_3, ~ \ldots , \tau(j_{n-1}) = j_n, ~ \tau(j_n) = j_1, \quad \tau(i) = i, \forall i \ne j_k
-    .\] 
+	\item
+	    Табличная запись перестановки:
+	    \[
+		\sigma  = \left (
+		    \begin{array}{ccc}
+			1 &\ldots& n \\
+			i_1, & \ldots  & i_n
+		    \end{array}
+		\right ), i_j \ne i_k (j \ne k)
+	    .\]
+	\item Циклическая запись перестановки:
+	    \[
+		\tau = (j_1, \ldots j_n) \Longleftrightarrow
+		\tau(j_1) = j_2, ~ \tau(j_2) = j_3, ~ \ldots , \tau(j_{n-1}) = j_n, ~ \tau(j_n) = j_1, \quad \tau(i) = i, \forall i \ne j_k
+	    .\]
     \end{description}
 \end{defn}
 \begin{defn}
@@ -1542,7 +1542,7 @@ $$
 \begin{lm}\label{lm_sim_group_1}
     \[
 	\sigma (i_1, i_2, \ldots i_k) \sigma ^{-1} = ( \sigma (i_1), \ldots \sigma (i_k))
-    .\] 
+    .\]
     Следовательно, сопряжение не меняет циклический тип.
 \end{lm}
 \begin{proof}
@@ -1552,8 +1552,8 @@ $$
 \begin{defn}
     Отношение на группе $G$ :
     \[
-    x \sim_c y \Longleftrightarrow  \exists z: x = y^z
-    .\] 
+	x \sim_c y \Longleftrightarrow  \exists z: x = y^z
+    .\]
     $x=y^z \wedge y=ab \Longrightarrow  x = (a^b)^z - a^{bz}$.\\
     Класс эквивалентности <<$\sim_{c}$>> --- класс сопряженных элементов.
 \end{defn}
@@ -1564,20 +1564,20 @@ $$
     Следует из леммы \ref{lm_sim_group_1}
 \end{proof}
 \begin{ex}
-   Рассмотрим группу $S_4$ и перестановки циклического типа $2+2$: 
+    Рассмотрим группу $S_4$ и перестановки циклического типа $2+2$:
     \[
-   \begin{array}{c}
-       (12)(34)\\
-       (13)(24)\\
-       (14)(32)
-   \end{array}
-   \] 
-   $\sigma (12)(34) \sigma ^{-1} = (\sigma (1) \sigma (2))(\sigma (3) \sigma (4))$\\
-   Еще есть нейтральный класс $e$ и $2, 3, 4$.
-   Двумерная группа Клейна
-   \[
-      K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
-   .\]  --- единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
+	\begin{array}{c}
+	    (12)(34)\\
+	    (13)(24)\\
+	    (14)(32)
+	\end{array}
+    \]
+    $\sigma (12)(34) \sigma ^{-1} = (\sigma (1) \sigma (2))(\sigma (3) \sigma (4))$\\
+    Еще есть нейтральный класс $e$ и $2, 3, 4$.
+    Двумерная группа Клейна
+    \[
+	K_4 =  \{e, (12)(34), (13)(24), (14)(23)\}
+    .\]  --- единственная нормальная подгруппа в $S_n$ для любого $n$, индекс которой более $2$.
 \end{ex}
 \begin{st}
     $\ord(ab) \mid \lcm (\ord(a), \ord(b))$.
@@ -1585,28 +1585,28 @@ $$
 \end{st}
 \section{Транспозиции и инверсии. Четность перестановки.}
 \begin{defn}[Инверсия]
-    Пусть $\sigma \in  S_n  $. 
+    Пусть $\sigma \in  S_n  $.
     {\sf Инверсия} в перестановке $\sigma $ --- пара $(i, j): i < j \wedge \sigma  (i) > \sigma (j)$.
 \end{defn}
 \begin{defn}[Четность перестановки]
     \[
-    \varepsilon : S_n \to \Z \diagup 2\Z
-    .\] 
+	\varepsilon : S_n \to \Z \diagup 2\Z
+    .\]
     \[
-    \sigma  \mapsto \mbox{ количество инверсий по модулю 2}
-    .\] 
+	\sigma  \mapsto \mbox{ количество инверсий по модулю 2}
+    .\]
 \end{defn}
 \begin{defn}
     {\sf Транспозиция} --- циклическая перестановка длины 2.
     \[
 	\tau(i)= \tau(j), ~\tau(j) = \tau(i), ~ \tau(k)=k
-    .\] 
+    .\]
 \end{defn}
 \begin{lm}
     Любая перестановка $\sigma $ раскладывается в произведение транспозиций соседних индексов.
     \[
 	S_n = \left \langle (12), (23) \ldots (n-1~n) \right \rangle
-    .\] 
+    .\]
 \end{lm}
 \begin{proof}
     Индукция по количеству инверсий $I$ в $\sigma \in  S_n$.
@@ -1615,11 +1615,11 @@ $$
 
     Переход: $I>0$. Заметим, что \[
 	\exists i: \sigma (i) > \sigma (i+1)
-    .\] 
+    .\]
     Тогда рассмотрим $\tau = \sigma \circ (i, i-1)$.
     \[
 	\tau(i) = \sigma (i+1) < \tau(i+1) = \sigma  (i)
-    .\] 
+    .\]
     Так как $\tau(k) = \sigma (k) \quad \forall k \notin \{i, i+1\}$, количество инверсий стало на одну меньше, чем количество инверсий в $\sigma $.
     Теперь по предположению индукции полученная перестановка раскладывается, а тогда и $\sigma $ раскладывается.
 \end{proof}
@@ -1629,7 +1629,7 @@ $$
 \begin{lm}
     Если $\sigma  = \tau_1\cdot \tau_2 \ldots\cdot \tau_k, \quad \forall i: \tau_i \mbox{ --- транспозиция соседних индексов}$, то \[
 	\varepsilon (\sigma ) \equiv k \mod 2
-    .\] 
+    .\]
 \end{lm}
 \begin{thm}
     $\varepsilon  :S_n \to \Z \diagup  2\Z$ --- гомоморфизм групп.
@@ -1637,11 +1637,11 @@ $$
 \begin{proof}
     \[
 	\begin{array}{l}
-	\sigma  = \tau_1 \cdot \ldots\tau_k \\
-	\rho = \tau_{k+1} \cdot \ldots \tau_n\\
-    \sigma \cdot \rho = \tau_1 \cdot \ldots \tau_n
-    \end{array} \quad \forall i: \tau_i = (j~j+1)
-    .\] 
+	    \sigma  = \tau_1 \cdot \ldots\tau_k \\
+	    \rho = \tau_{k+1} \cdot \ldots \tau_n\\
+	    \sigma \cdot \rho = \tau_1 \cdot \ldots \tau_n
+	\end{array} \quad \forall i: \tau_i = (j~j+1)
+    .\]
     Проверим требуемые свойства: \\
     $\varepsilon \equiv k \mod 2, \quad \varepsilon (\rho) \equiv n-k\mod 2$\\
     $\varepsilon (\sigma \rho) \equiv m \mod 2 \equiv \varepsilon (\sigma ) + \varepsilon (\rho) \mod 2$ \\
@@ -1658,24 +1658,24 @@ $$
 	\item  $ \exists 0 \in R: a+0 = 0 + a = a$ (нейтральный элемент по сложению)
 	\item $ \forall a \in R ~ \exists b \in R: a+b = b+ a= 0$ (обратный элемент по сложению)
 	\item $ (a \times b) \times c = a \times (b \times c)$ (ассоциативность умножения)
-	\item $ 
+	\item $
 	    \begin{cases}
 		a \times (b + c) = a \times  b + a \times c \\
 		(b + c) \times a = b \times a + c \times a
 	    \end{cases}$ (дистрибутивность)
     \end{enumerate}
-    Кольцо является {\sf кольцом с единицей}, если 
-	$$ \exists  e \in  R ~ \forall  a \in R: a \times e = e \times  a = a.$$
-	Кольцо является {\sf коммутативным кольцом}, если
-	\[
+    Кольцо является {\sf кольцом с единицей}, если
+    $$ \exists  e \in  R ~ \forall  a \in R: a \times e = e \times  a = a.$$
+    Кольцо является {\sf коммутативным кольцом}, если
+    \[
 	\forall a, b \in R: a \times b = b \times a
-	.\] 
+    .\]
 \end{defn}
 \begin{prop}
     $ $
     \begin{enumerate}[noitemsep]
 	\item Нейтральный по сложению единственный.
-	\item Обратный элемент по сложению существует и единственен для любого элемента кольца. 
+	\item Обратный элемент по сложению существует и единственен для любого элемента кольца.
 	\item Нейтральный по умножению единственен, если существут.
 	\item $ \forall a \in R: a \times 0 = 0$
 	\item $ -b = (-1) \times b$
@@ -1687,13 +1687,13 @@ $$
 \begin{defn}
     Подмножество $ A \subset R$ называется {\sf подкольцом} $ R$, если  $ A$ само является  кольцом относительно операций, определенных в в $ R$.
     \begin{name}
-       Говорят, что $ R$ --- расширение  кольца $ A$. 
+	Говорят, что $ R$ --- расширение  кольца $ A$.
     \end{name}
 \end{defn}
 \begin{prop}
     $ $
     \begin{enumerate}[noitemsep]
-        \item Ноль и единица кольца являются нулем и единицей в подкольце.
+	\item Ноль и единица кольца являются нулем и единицей в подкольце.
 	\item Подкольцо наследует свойство коммутативности.
 	\item Пересечение любого набора подколец --- подкольцо.
     \end{enumerate}
@@ -1742,9 +1742,9 @@ $$
 	    f(a + b) & = f(a)+f(b) \\
 	    f(a \cdot b) &= f(a) \cdot f(b)
 	\end{aligned}
-\quad	\forall a, b \in R
-    .\] 
-    Для гомоморфизмов колец с единицей будем требовать также, чтобы $ f(1_R) = 1_A$. 
+	\quad	\forall a, b \in R
+    .\]
+    Для гомоморфизмов колец с единицей будем требовать также, чтобы $ f(1_R) = 1_A$.
 \end{defn}
 \begin{defn}
     $ f: R \to  A$ --- гомоморфизм.
@@ -1755,7 +1755,7 @@ $$
 	\item {\sf Эпиморфизм} --- сюрьективный гомоморфизм.
 	\item {\sf Изоморфизм} --- биективный гомоморфизм.
     \end{description}
-    Если между двумя кольцами существует изоморфизм, они называются {\sf изоморфными}. 
+    Если между двумя кольцами существует изоморфизм, они называются {\sf изоморфными}.
 \end{defn}
 \begin{lm}
     Пусть $ f: R \to  A$ --- гомоморфизм колец. Тогда $ f(0) = 0$, и  $ \forall x \in R: f(-x) = -f(x)$.
@@ -1775,21 +1775,21 @@ $$
     Для любого двустороннего идеала $ I$ кольца  $ R$ существует кольцо  $ A$ и эприморфизм  $ \pi: R \to  A$, ядро которого равно $ I$.
 \end{thm}
 \begin{proof}
-    Так как $ I$ --- подгруппа аддитивной группы кольца, то можно рассмотреть факторгруппу  $ R \diagup I$. Зададим умножение: 
+    Так как $ I$ --- подгруппа аддитивной группы кольца, то можно рассмотреть факторгруппу  $ R \diagup I$. Зададим умножение:
     \[
 	(r + I) \cdot (s + I) = rs + I, \qquad r, s \in R
-    .\] 
+    .\]
     Если $ r + x \in  r + I$ и $ s + y \in s + I$ --- другие представители классов,
     \[
-	(r + x) (s + y) = rs + (ry + xs + xy) \in  rs + I 
-    .\] 
+	(r + x) (s + y) = rs + (ry + xs + xy) \in  rs + I
+    .\]
     Следовательно, определение корректно. Операции в $ R \po I $ удовлетворяют свойствам кольца,  так как операции в  $ R$ удовлетворяют.
 
     Отображение  $ \pi $ зададим аналогично группам: $ \pi(x) = x + I$ --- это гомоморфизм, причем сюрьективный.
     Найдем его ядро:
     \[
 	\pi(x) = e_{R \po I} = e + I = I \Longleftrightarrow x \in I
-    .\] 
+    .\]
     Значит,  $ \ker \pi = I$.
 \end{proof}
 \begin{defn}
@@ -1797,58 +1797,58 @@ $$
 \end{defn}
 \section{Универсальное свойство факторкольца и теорема о гомоморфизме}
 \begin{thm}[Универсальное свойство факторкольца]
-    Пусть $ R, R'$ --- кольца,  $ I$ ---  двусторонний идеал в  $ R$,  $ f: A \to  R'$. Если  $ I \subseteq \ker f$, то существует единственный гомоморфизм $ g : R \po I \to  R'$ такой, что $ f = f \circ \pi$. 
+    Пусть $ R, R'$ --- кольца,  $ I$ ---  двусторонний идеал в  $ R$,  $ f: A \to  R'$. Если  $ I \subseteq \ker f$, то существует единственный гомоморфизм $ g : R \po I \to  R'$ такой, что $ f = f \circ \pi$.
 
     Если $ \ker f = I$, то  $ g$ инъективен. Если $ f$ сюрьективен, то  $ g$ сюрьективен.
     $$
-\begin{diagram}
-    \node{R} \arrow[1]{e,t}{f} 
-    \arrow{s,l}{\pi}
-    \node[1]{R'} \\
-    \node{R \po I} \arrow[1]{ne,b}{g}
-\end{diagram}
-$$
+    \begin{diagram}
+	\node{R} \arrow[1]{e,t}{f}
+	\arrow{s,l}{\pi}
+	\node[1]{R'} \\
+	\node{R \po I} \arrow[1]{ne,b}{g}
+    \end{diagram}
+    $$
 \end{thm}
 \begin{proof}
     Пусть $ x \in R$. $f = g \circ \pi \Longrightarrow $
     \begin{equation}\label{eq_vin_2}
 	g(x + I) = f(x)
     \end{equation}
-    Если $ y$ --- другой представитель  $ x + I$, то  $ y = x + a$ для некоторого  $ a \in I$, и $ g(y + I) = f(y) = f(x) + f(a) = g(x)$, так как $ a \in I \subseteq \ker f$. 
+    Если $ y$ --- другой представитель  $ x + I$, то  $ y = x + a$ для некоторого  $ a \in I$, и $ g(y + I) = f(y) = f(x) + f(a) = g(x)$, так как $ a \in I \subseteq \ker f$.
     Проверим $ g(xy + I) = g(x+ I)g(y + I)$:
-     \[
-	 g(xy + I) =  f(xy) = f(x) f(y) = g(x+I)g(y+I)
-    .\] 
+    \[
+	g(xy + I) =  f(xy) = f(x) f(y) = g(x+I)g(y+I)
+    .\]
     Также
     \[
 	g((x+y) + I) = f(x+y) = f(x) + f(y) = g(x+I) +g(y+I)
-    .\] 
-    Следовательно, формула \ref{eq_vin_2} корректно определяет отображение $ g$. 
+    .\]
+    Следовательно, формула \ref{eq_vin_2} корректно определяет отображение $ g$.
     Оно является гомоморфизмом (проверили выше).
     Очевидно, что  $ g$ единственно, так как удовлетворяет  $ f =g \circ \pi$.
 
     Если композиция сюрьективна, то $ g$ обязан быть сюрьективным,  так как применяется последним.
 
-    Если  $ \ker f = I$, 
-     \[
-    x + I \in \ker g \Longleftrightarrow x \in \ker f = I \Longleftrightarrow x + I = 1_{R \po I}
-    .\] 
+    Если  $ \ker f = I$,
+    \[
+	x + I \in \ker g \Longleftrightarrow x \in \ker f = I \Longleftrightarrow x + I = 1_{R \po I}
+    .\]
 \end{proof}
 \section{Определение комплексных чисел, арифметические операции, геометрическое представление}
 \subsection{Определение и арифметика}
 \begin{defn}
-    Факторкольцо $ \Cm = \R[t] \po (t^2+1)$ называется {\sf полем комплексных чисел}. 
+    Факторкольцо $ \Cm = \R[t] \po (t^2+1)$ называется {\sf полем комплексных чисел}.
 \end{defn}
 Композиция отображений $ \R \hookrightarrow \R[t] \twoheadrightarrow \Cm$ является гомоморфизмом колец с единицей.
-Так как $ \R$ --- поле, то она инъективна, ее ядро --- идеал в  $ \R$, который тривиален.  
+Так как $ \R$ --- поле, то она инъективна, ее ядро --- идеал в  $ \R$, который тривиален.
 Будем отождествлять элементы поля $ \R$ с их образами под действием этого мономорфизма и считать, что  $ \R$ --- подполе  в $ \Cm$:
 \[
     r \in \R \longleftrightarrow r + (t^2+1) \R[t]
-.\] 
-Обозначим через $ i$ смежный класс  $ t + (t^2+1)\R[t]$. Заметим, что 
+.\]
+Обозначим через $ i$ смежный класс  $ t + (t^2+1)\R[t]$. Заметим, что
 \[
     i^2+1 = t^2+1 + (t^2+1)\R[t] = 0_{\Cm} \Longrightarrow i^2 = -1
-.\] 
+.\]
 Рассмотрим элемент поля $ p \in \R[t]$:
 \begin{align*}
     &p = (t^2+1) \cdot f + (a+bt) \in a + bt + (t^2+1) \R[t] \\
@@ -1858,29 +1858,29 @@ $$
 Сложение определено по правилу:
 $$
 (a+bi)+(c+di) = (a+c) + (b+d) i
-    .$$
-    Так как $ i^2 = -1$:
-    \[
-	(a+bi)(c + di) = (ac -bd)+(ad + bc)i
-    .\] 
-    \begin{defn}
-        Пусть $ x, y \in \R$ и $ z = x + yi$.
-	Тогда  $ x = \re z$ ---  {\sf вещественная часть}, а $ y = \im z$ --- {\sf мнимая часть} числа  $ z$.
+.$$
+Так как $ i^2 = -1$:
+\[
+    (a+bi)(c + di) = (ac -bd)+(ad + bc)i
+.\]
+\begin{defn}
+    Пусть $ x, y \in \R$ и $ z = x + yi$.
+    Тогда  $ x = \re z$ ---  {\sf вещественная часть}, а $ y = \im z$ --- {\sf мнимая часть} числа  $ z$.
 
-	Число $\overline{z}= x - yi $ называется {\sf комплексно сопряженным} к $ z$.
-    \end{defn}
+    Число $\overline{z}= x - yi $ называется {\sf комплексно сопряженным} к $ z$.
+\end{defn}
 \begin{prop}
     $ $
     \begin{enumerate}[noitemsep]
 	\item $ (a+bi) (a-bi) = a^2  + b^2$
 	\item $ (a+bi)+(a-bi) = 2a$
-        \item $ z \in \R \Longleftrightarrow  z=\overline{z}$
-        \item $ z \in \R \Longleftrightarrow  z +\overline{z} \in \R$
-        \item $ z \in \R \Longleftrightarrow  z \overline{z} \in \R$
+	\item $ z \in \R \Longleftrightarrow  z=\overline{z}$
+	\item $ z \in \R \Longleftrightarrow  z +\overline{z} \in \R$
+	\item $ z \in \R \Longleftrightarrow  z \overline{z} \in \R$
 	\item Мультипликативный обратный:
 	    \[
 		\frac{1}{a + bi} = \frac{a-bi}{(a+bi)(a-bi)} = \frac{a}{a^2+b^2} + \frac{-b}{a^2+b^2}i
-	    .\] 
+	    .\]
     \end{enumerate}
 \end{prop}
 \begin{st}
@@ -1899,18 +1899,128 @@ $$
 \begin{defn}
     $ \arg z \coloneqq \alpha \in \R \po 2\pi\Z$
     \[
-    \arg z = 
-    \begin{cases}
-	\arctg \frac{b}{a} + 2 \pi\Z & a > 0\\
-	\pi+ \arctg \frac{b}{a} + 2\pi\Z & a<0 \\
-	\frac{\pi}{2} \cdot \sign(b) & a = 0
-    \end{cases}
-    \] 
+	\arg z =
+	\begin{cases}
+	    \arctg \frac{b}{a} + 2 \pi\Z & a > 0\\
+	    \pi+ \arctg \frac{b}{a} + 2\pi\Z & a<0 \\
+	    \frac{\pi}{2} \cdot \sign(b) & a = 0
+	\end{cases}
+    \]
 \end{defn}
 Можем выразить через аргумент:
 \begin{align*}
     a &= |z| \cdot  \cos \alpha \\
-    b &= |z| \cdot  \sin 
+    b &= |z| \cdot  \sin \alpha
 \end{align*}
 Тогда $ z = |z| \cdot (\cos\alpha + i \sin\alpha)$
+\section{Тригонометрическая и показательная форма комплексных  чисел. Операции в тригонометрической форме}
+\subsection{Тригонометрическая форма}
+Тригонометрическая форма: $ z = a + bi = r(\cos \varphi  + i \sin \varphi )$.
+\subsubsection{Операции в тригонометрической форме}
+Умножение:
+\[
+    \begin{aligned}
+	zw &= |z|(\cos \arg z + i \sin \arg z) \cdot |w|(\cos \arg w + i \sin \arg w) = \\
+	   &= |z|\cdot |w| \cdot \Bigl( \cos (\arg z) \cos  ( \arg w) - \sin(\arg z) \sin(\arg w)  
+	   + i\bigl(\cos (\arg z) \sin(\arg w) + \sin (\arg z) \cos(\arg w)\bigr)\Bigr)  = \\
+	   & = |z| \cdot |w| \cdot \Bigl( \cos (\arg z + \arg z) + i \sin (\arg z + \arg w)\Bigr)
+    \end{aligned}
+.\]
+Для целого $ n$ выполняется {\bf формула Муавра}:
+ \[
+     z^{n} = |z|^{n} \Bigl( \cos (n \arg z) + i \sin(n \arg z)\Bigr)
+.\] 
+Единственность представления  комплексного числа в тригонометрической форме и формулу произведения в тригонометрической форме можно выразить так:
+\[
+    \Cm^{*} \cong \R_{>0}^{*} \times \R \po 2 \pi\Z
+.\] 
+Так как $ \ln : \R_{>0}^{*} \to  \R$ --- изоморфизм:
+\begin{st}
+    $ \Cm^{*} \cong \R \times \R \po 2 \pi \Z$
+\end{st}
+\begin{proof}
+    Отображения $ z \mapsto (\ln |z|, \arg z)$ и $ (r, x) \mapsto e^{r}(\cos x + i \sin x)$ являются взаимно обратными гомоморфизма ми.
+\end{proof}
+\subsection{Показательная форма}
+\begin{st}
+    Напишем степенные ряды для экспоненты и тригонометрических функций:
+    \[
+	\begin{aligned}
+	    & e^{t} = \slim_{n=0}^{\infty} \frac{t ^{n}}{n!}\\
+	    & \cos t = \slim_{n=1}^{ \infty} \frac{t ^{2k}}{(2k)!} \cdot (-1)^{k} = \slim_{k=0}^{\infty} \frac{ \alpha ^{2k}}{(2k)!}\\
+	    & \sin t = \slim_{n=1}^{ \infty} \frac{t ^{2k+1}}{(2k+1)!} \cdot (-1)^{k} = i\slim_{k=0}^{\infty} \frac{ \alpha ^{2k+1}}{(2k+1)!}
+    \end{aligned} 
+    .\] 
+    \[
+	e ^{i \alpha} = \slim_{n= 2k} \frac{(i\alpha)^{2k}}{(2k)!} + \slim_{n= 2k+1}\frac{(i \alpha )^{2k+1}}{(2k+1)!} %%= \cos \alpha  + i \sin \alpha 
+    .\] 
+    \[
+    e ^{i \alpha} \coloneqq \cos \alpha + i \sin \alpha 
+    .\] 
+    $$ \varepsilon  ( \alpha ) = e ^{i \alpha }$$
+\end{st}
+\begin{defn}[Показательная форма комплексного числа]
+    $$z = |z| \cdot e ^{i \cdot Arg z}$$
+    \[
+    e^{2\pi i} = \cos 2\pi + i \sin 2\pi = 1
+    .\] 
+    $2
+    \pi$ --- период для экспоненты.
+    \[
+    e ^{\alpha + 2\pi i} = e^{ \alpha }
+    .\] 
+    \[
+	a, b \in  \R: ~ e^{a + bi} = e ^{ a} e ^{bi} = e^{a ( \cos b + i \sin a)}    
+    .\]
+\end{defn}
+\section{Строение мультипликативной группы комплексных чисел, корни из 1, уравнение $ z^{n} = w$}
+\section{Евклидовы кольца и кольца главных идеалов}
+\subsection{Евклидовы кольца}
+\begin{defn}
+ 	Область целостности --- коммутативное кольцо с единицей без делителей нуля.   
+\end{defn}
+\begin{name}
+    $ R$ --- коммутативное кольцо с $ 1$ без делителей нуля.
+\end{name}
+\begin{defn}
+    $ f: R \to  \N_0 \cup \{-\infty\}$ 
+    Обладает свойствами:
+    \begin{enumerate}
+	\item $ f(0) < f(r), \quad \forall  r \in  R$
+	\item $ \forall a, b \in  R, b\ne 0 ~ \exists  c, r \in R: a = b c + r \wedge f(r) < f(b)$
+    \end{enumerate}
+    Тогда $ R$ --- евклидова кольцо с евклидовой нормой  $ f$.
+\end{defn}
+\begin{thm}
+    Любой идеал евклидова кольца главный.
+\end{thm}
+\begin{proof}
+    Пусть $ I \triangleleft  R$. 
+    \[
+	a \in  I \setminus \{0\}: f(a) \le  f(b) \quad \forall  b \in  I \setminus \{0\}
+    .\] 
+    \[
+	b = ac + r, \quad f(r) < f(a)
+    .\] 
+    \[
+	r = \underbrace{b}_{\in I} - \underbrace{ac}_{ \in  I} \in  I 
+    .\] 
+    Если $r \ne 0$, то $ f(a) \le  f(r) < f(a)$ . Противоречие. 
+\end{proof}
+\begin{note}
+    На практике ищется с помощью алгоритма Евклида.
+\end{note}
+\begin{exs}
+    % $ $\\
+    \begin{tabular}[ht]{l|l}
+	Кольцо & Норма\\
+	\hline
+	$ \Z$ &$ |\cdot|$\\
+	$ F[x], ~ F \text{ --- поле}$ & $  \deg$\\
+	Гауссовы целые числа: $ \Z[i] = \{a + bi \mid a, b \in\Z\}$ & $ |\cdot|$
+    \end{tabular}
+\end{exs}
+\begin{ex}[не евклидово кольцо]
+    $ \Z [\sqrt{19}]$ --- не евклидово кольцо главных идеалов. 
+\end{ex}
 \end{document}
