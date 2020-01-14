@@ -1975,44 +1975,52 @@ $$
 \end{defn}
 \section{Строение мультипликативной группы комплексных чисел, корни из 1, уравнение $ z^{n} = w$}
 \section{Евклидовы кольца и кольца главных идеалов}
-\subsection{Евклидовы кольца}
 \begin{defn}
- 	Область целостности --- коммутативное кольцо с единицей без делителей нуля.   
+    Элемент $ a $ кольца $ R$ называется {\sf делителем  нуля}, если существует  $ b \in R \setminus \{0\}$ такой, что $ ab = 0$.
+
+    {\sf Область целостности} --- коммутативное кольцо с единицей без  нетривиальных делителей нуля (то есть кроме нуля).   
 \end{defn}
 \begin{name}
     $ R$ --- коммутативное кольцо с $ 1$ без делителей нуля.
 \end{name}
 \begin{defn}
-    $ f: R \to  \N_0 \cup \{-\infty\}$ 
-    Обладает свойствами:
-    \begin{enumerate}
-	\item $ f(0) < f(r), \quad \forall  r \in  R$
-	\item $ \forall a, b \in  R, b\ne 0 ~ \exists  c, r \in R: a = b c + r \wedge f(r) < f(b)$
+    Пусть задана функция $ f: R \to  \N \cup \{-\infty\}$, обладающая следующим свойствами: 
+    \begin{enumerate}[noitemsep]
+	\item $ f(0) < f(r), \quad \forall  r \in  R \setminus \{0\}$;
+	\item $ \forall a, b \in  R, ~b\ne 0 ~ \exists  q, r \in R: a = b q + r \wedge f(r) < f(b)$.
     \end{enumerate}
-    Тогда $ R$ --- евклидова кольцо с евклидовой нормой  $ f$.
+    Тогда $ R$ --- {\sf евклидова кольцо с евклидовой нормой  $ f$}.
+\end{defn}
+\begin{defn}
+    Кольцо $ R$ называется {\sf  кольцом главных идеалов}, если любой идеал в  $ R$ является главным, то есть имеет вид  $ aR$ для некоторого  $ a \in R$.
+
+    {\sf Область главных идеалов (ОГИ)} --- область целостности, в которой любой идеал главный.
 \end{defn}
 \begin{thm}
-    Любой идеал евклидова кольца главный.
+    Евклидово кольцо является областью главный идеалов.
 \end{thm}
 \begin{proof}
-    Пусть $ I \triangleleft  R$. 
+    Пусть  $ I \triangleleft  R$ --- нетривиальный идеал. 
+    Рассмотрим $ b \in I$ с минимальной возможной евклидовой нормой.
     \[
-	a \in  I \setminus \{0\}: f(a) \le  f(b) \quad \forall  b \in  I \setminus \{0\}
+	b \in  I \setminus \{0\}: f(b) \le  f(a) \quad \forall  a \in  I \setminus \{0\}
+    .\] 
+    Тогда $ \exists q, r \in R$:
+    \[
+	a = b q + r , ~ f(r) < f(b)
     .\] 
     \[
-	b = ac + r, \quad f(r) < f(a)
+	r = \underbrace{a}_{\in I} - \underbrace{bq}_{ \in  I} \in  I 
     .\] 
-    \[
-	r = \underbrace{b}_{\in I} - \underbrace{ac}_{ \in  I} \in  I 
-    .\] 
-    Если $r \ne 0$, то $ f(a) \le  f(r) < f(a)$ . Противоречие. 
+    Если $r \ne 0$, то $ f(b) \le  f(r) < f(b)$ . Противоречие. 
+
+    Значит, произвольный элемент из $ I$ делится на  $ b$, следовательно,  $ I \subseteq bR$. С другой стороны, $ b \in I \Longrightarrow bR \subseteq I$, из чего следует равенство. 
 \end{proof}
-\begin{note}
-    На практике ищется с помощью алгоритма Евклида.
-\end{note}
 \begin{exs}
-    % $ $\\
+    Примеры евклидовых колей и их норм: 
+
     \begin{tabular}[ht]{l|l}
+	\hline
 	Кольцо & Норма\\
 	\hline
 	$ \Z$ &$ |\cdot|$\\
@@ -2020,7 +2028,144 @@ $$
 	Гауссовы целые числа: $ \Z[i] = \{a + bi \mid a, b \in\Z\}$ & $ |\cdot|$
     \end{tabular}
 \end{exs}
-\begin{ex}[не евклидово кольцо]
-    $ \Z [\sqrt{19}]$ --- не евклидово кольцо главных идеалов. 
+\begin{ex}
+    $ \Z [\sqrt{-19}]$ --- не евклидово кольцо, но кольцо главных идеалов. 
 \end{ex}
+\section{Взаимно простые идеалы, их пересечение и произведение}
+Пусть $ R$ --- кольцо,  $ I, J$ --- идеалы в  $ R$.
+\begin{st}
+    Сумма идеалов $ I + J = \{a + b \mid a \in I, ~ b \in  J\}$ является идеалом, причем это наименьший идеал, содержащий $ I\cup  J$.
+\end{st}
+\begin{defn}
+    {\sf Произведение идеалов}  --- идеал $ I J$, порожденный элементами $ ab$ по всем $ a \in I, ~ b \in J$:
+   \[
+   \left\{ \sum_{i = 1}^{k} a_{i}b_j \middle| k \in \N, ~ a_i \in I, ~ b_j \in  J \right\} 
+   .\] 
+   \end{defn}
+\begin{defn}
+    Идеалы $ I$ и $ J$ кольца $ R$ называются {\sf взаимно простыми}, если  $ I + J = R$.
+\end{defn}
+\begin{lm}
+    Если $ I$ и  $ J$ ---  взаимно простые идеалы, то  $ IJ =I \cap  J $.
+\end{lm}
+\begin{proof}
+    $ $
+    \begin{description}
+    \item $ \boxed{ \subseteq }$ По определению идеала.
+    \item $ \boxed{\supseteq}$ Пусть $ x \in I \cap J$. Так как $ I$ и  $ J$ взаимно просты, то  $ \exists a \in I, ~ b \in J: a+ b = 1$. Тогда $ x = xa + xb \in (I \cap J) I + (I \cap J) J \subset IJ$
+    \end{description}
+\end{proof}
+\begin{defn}
+    $ A, B$ --- кольца. {\sf Декартово произведение} колец --- множество
+    \[
+    A \oplus B = A \times  B
+    \] 
+    с покомпонентными операциями:
+    \[
+	\begin{aligned}
+	    (a_1, b_1) + (a_2, b_2) &= (a_1 + a_2, b_1 +b_2) \\
+	    (a_1, b_1) \cdot  (a_2, b_2) &= (a_1 \cdot  a_2, b_1 \cdot b_2)
+	\end{aligned}
+    .\] 
+\end{defn}
+\begin{thm}
+    Пусть $ I + J = R$. Тогда \[
+	R \diagup  {IJ} \cong R \diagup I \oplus R \diagup  J
+    .\] 
+\end{thm}
+\begin{proof}
+    Рассмотрим естественный гомоморфизм:
+    \begin{align*}
+	\varphi & : R \to  R \diagup I \oplus R \diagup  J \\
+	r & \mapsto (r + I, r + J)
+    \end{align*}
+    Посмотрим на ядро $ \varphi $:
+    $$ \ker \varphi  \ni r \Longleftrightarrow 
+    \begin{cases}
+	    r + I = I \\
+	    r + J
+    \end{cases}
+	 \Longleftrightarrow r \in  I \cap  J = I \cdot J
+	$$
+	Докажем, что $ \varphi $ --- сюрьекция:
+	\[
+	\text{Пусть } \exists  a \in I, b \in J: a + b = 1
+	.\] 
+	\[
+	r = br_1+ar_2 \equiv r_1 \mod I
+	.\] 
+	\[
+	r = br_1+ar_2 \equiv r_2 \mod J
+	.\] 
+	То есть $ \varphi (r) =  (r_1 + I, r_2 + J)$, следовательно, $ \varphi $ --- сюрьективно.
+
+	По теореме о гомоморфизме колец \[
+	    R \diagup {IJ} \cong R\diagup I \oplus R\diagup J
+	.\] 
+\end{proof}
+\section{Китайская теорема об остатках}
+\begin{lm}
+    Пусть $ J, I_1, \ldots I_n $ ---  идеалы в $ R$ и $ J$ взаимно прост с каждым из  $ I_i$. Тогда он взаимно прост с их произведением. 
+\end{lm}
+\begin{proof}
+    Индукция.
+    \begin{description}
+	\item 
+    База для $ k=2$. 
+    \begin{equation}\label{base_act}
+	R = J + I_1 = J + I_1R = J + I_1(J + I_2) = (J + I_1 J) + I_1I_2 \subseteq J + I_1I_2
+    \end{equation}
+\item 
+    Переход $ n-1 \to  n$:
+
+    По предположению индукции $ J + \underbrace{I_1 + \ldots  I_{n-1}}_{I} = R$. Нужно доказать , что $ J + I \cdot I_n = R$.
+    Проделаем действия из базы \ref{base_act}.
+    \end{description}
+\end{proof}
+\begin{thm}[Китайская теорема об остатках]
+    $ I_1, \ldots  I_n$ --- попарно взаимно простые идеалы, то есть $ \forall  j \ne k:~ I_j + I_k = R$.
+    Тогда \[
+	\frac{R}{I_1\cdot \ldots I_n } \cong \frac{R}{I} \oplus \ldots  \oplus \frac{R}{I_n}
+    .\] 
+    \begin{note}
+        Здесь дробью обозначается фактор кольцо.
+    \end{note}
+\end{thm}
+\begin{proof}
+    Индукция по $ n$.
+    Так как $ I_k$ взаимно просто с  $ I_1\cdot \ldots I_{n-1}$
+    \[
+	\frac{R}{I_1 \ldots I_n} \cong \frac{R}{I_1 \cdot \ldots I_{n-1} } \oplus \frac{R}{I_n}
+    .\] 
+    Дальше по предположению индукции получаем то, что хотим.
+\end{proof}
+\begin{st}
+ Если $ x \equiv x_k \mod I_k, \quad k = 1, \ldots n$, то
+ \[
+     x \equiv \slim_{k=1}^{n} x_k c_k \mod I_1 \ldots I_n, \qquad c_k \in  \left(\prod_{j \ne k} I_j\right) \cap (1 + I_k)
+    .\] 
+\end{st}
+\begin{note}
+    В целых числах:
+    \[
+    x \equiv x_k \mod m_k, \quad k = 1, \ldots  n
+    .\] 
+    Чтобы найти $ c_k$, нужно решить диофантово уравнение:
+    \[
+	y \cdot m_k + \underbrace{z \cdot \prod_{j \ne k} m_j}_{=c_k} = 1 
+    .\] 
+\end{note}
+\begin{st}[применение КТО]
+    В $ F[t]$ :
+    \[
+	p(x_k) = y_k \quad \forall  k = 1, \ldots n, x_i \ne x_k  ~ \forall  i \ne k
+    \] 
+равносильно
+    \[
+	p \equiv y_k \mod (t - x_k)    
+    .\] 
+    \[
+	p(t) \equiv \slim_{k=1}^{n} y_k \prod \frac{t -x_i}{x_k - x_i} \mod (t - x_i) \ldots (t - x_n)
+    .\] 
+\end{st}
 \end{document}
