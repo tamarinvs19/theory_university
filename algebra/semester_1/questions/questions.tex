@@ -2168,4 +2168,246 @@ $$
 	p(t) \equiv \slim_{k=1}^{n} y_k \prod \frac{t -x_i}{x_k - x_i} \mod (t - x_i) \ldots (t - x_n)
     .\] 
 \end{st}
+\section{Существование максимальных идеалов}
+\begin{defn}
+    Собственный идеал $ P$ кольца $ R$ называется простым, если $ ab \in  P \Rightarrow a \in  P \vee b \in  P$ 
+\end{defn}
+\begin{note}
+    Другими словами $ R \setminus P$ замкнуто относительно умножения
+\end{note}
+\begin{defn}
+    Собственный идеал $ I$ называется {\sf максимальным}, если он не содержится ни в каком другом собственном идеале. 
+\end{defn}
+\begin{note}
+     Другими словами, $ M$ --- максимальный идеал, если $ M \ne R$ и $ M \subseteq I \subset R \Rightarrow I = M$.
+\end{note}
+\begin{thm}
+    Любой собственный идеал содержится в каком-то максимальном идеале.
+\end{thm}
+\begin{proof}
+    $ J \vartriangleleft R$. % сделать отрицание нестрогости!!
+
+    $ \mathcal{X}$ --- множество всех идеалов, содержащих $ J$ и не содержащих единицу.
+
+    Если $\mathcal{Y}$ --- линейно упорядоченное подмножество $ \mathcal{X}$, то $ \bigcup_{I \in \mathcal{Y}} I \in \mathcal{X}$
+    \[
+	a, b \in  \bigcup_{I \in \mathcal{Y}} I \Longrightarrow \exists I_1, I_2 \in \mathcal{Y}: a \in  I_1, b \in I_2 \wedge (I_1 \subseteq I_2 \vee I_2 \subseteq I_1) 
+    ,\] 
+    так как $\mathcal{Y}$ --- линейно упорядочено.
+    \[
+	a, b \in  I_k ~(k = 1, 2): a+b \in  I_k \subseteq \bigcup_{I \in \mathcal{Y}}  I
+    .\] 
+    \[
+    a \in  \bigcup_{I \in  \mathcal Y} I \Longrightarrow ra \in  \bigcup_{I \in  \mathcal Y} I, ~ \forall r \in  R
+    .\] 
+    Следовательно, $ \bigcup_{I \in \mathcal{Y}} I $ --- идеал.
+    \[
+    \bigcup_{I \in\mathcal{Y}} \subseteq J \wedge \bigcup_{ I \in \mathcal{Y}} \not\ni 1 
+    .\] 
+    По лемме Цорна $ \mathcal{X}$ содержит максимальный элемент. Пусть это $ M$.
+    Проверим, что $ M$ максимальный и среди всех собственных идеалов.
+    Если $ M \subseteq N \subsetneq R$ %2 nnot
+    , то $ N \in  \mathcal{X} \Rightarrow  N = M$.
+\end{proof}
+\section{Факторкольца по простым и максимальным идеалам. Прообразы простых и максимальных идеалов}
+\begin{defn}
+    Кольцо называется {\sf областью целостности}, если $ \{0\}$ является простым идеалом. Другими словами, $ R $ --- область целостности, если  $ R \ne \{0\}$ и $ ab \ne  0 ~ \forall a, b \in R \setminus \{0\}$.
+\end{defn}
+\begin{lm}
+    Прообраз простого идеала --- простой. Прообраз максимального идеала при эпиморфизме --- максимальный.
+\end{lm}
+\begin{proof}
+    Пусть $ \varphi : R_1 \to R_2 $ --- гомоморфизм.
+    \begin{enumerate}
+        \item Пусть $ P$ ---  простой идеал в $ R_2$.
+	    Тогда 
+$ ab \in  P \Longleftrightarrow  a \in  P \vee b \in  P$.
+Теперь посмотрим на $ \varphi^{-1}(P) = P'$. 
+\[
+    a'b' \in P' \Longleftrightarrow \varphi (a'b') \in P \Longleftrightarrow \varphi (a') \varphi (b') \in P \Longleftrightarrow \varphi (a') \in P \vee \varphi (b') \in P \Longleftrightarrow a' \in P' \vee b' \in P'
+.\] 
+\item Пусть $ M$ --- максимальный идеал в $ R_2$,  $ \varphi $ --- эпиморфизм.
+    Обозначим $ M' = \varphi^{-1}(M)$.
+    Предположим, что $ \exists I \subsetneq M'$. Посмотрим на $ \varphi (I)$. $ \varphi (I) \supseteq \varphi (M') = M$. Так как $ M$ --- максимальный идеал, а $ \varphi $ --- эпиморфизм,  $ \varphi (I) = M$.
+
+    Пусть $ \exists a \in I: a \not\in M'$. Тогда $ \varphi (a) = \varphi (b), ~ b \in M'$.
+    // дальше надо что-то еще сделать
+    \end{enumerate}
+\end{proof}
+\begin{cor}
+    Идеал $ P$ --- простой  тогда и только тогда, когда $ R \po P$ --- область целостности. 
+    Идеал $ M$ --- максимальный  тогда и только тогда, когда  $ R \po M$ --- поле.
+\end{cor}
+\begin{cor}\label{cor_max_p}
+    Любой максимальный идеал является простым.
+\end{cor}
+\begin{thm}
+    В $ R$ любой ненулевой простой идеал является максимальным.
+\end{thm}
+\begin{proof}
+    Обозначим простой идеал $ pR$ и предположим, что он содержится в каком-то идеале $ mR \ne R$.
+    Тогда  $ p = mr \Longrightarrow m \in  pR \vee r \in  pR$. В первом случае $ mR = pR$, а втором  $ r = pa$, то есть $ p = map \Longrightarrow  1 = ma \Longrightarrow  mR = R$. Противоречие. 
+\end{proof}
+\section{Неприводимые и простые элементы}
+\begin{name}
+    $ R$ --- область целостности.
+\end{name}
+ \begin{defn}
+     Элемент $ p \in R$ называется {\sf простым}, если $ pR$ --- простой.
+\end{defn}
+\begin{defn}
+    Элементы $ a, b \in  R$ называются  {\sf ассоциированными}, если $ aR = bR$
+\end{defn}
+\begin{lm}
+    $ R $-- область целостности. $ a, b$ --- ассоциированные тогда и только тогда, когда  $ a = b \varepsilon $ для некоторого $ \varepsilon \in \R^{*}$
+\end{lm}
+\begin{proof}
+    $ aR = bR \Rightarrow a = b \cdot \varepsilon , b = a \delta  \Rightarrow a = a \delta  \varepsilon  \Leftrightarrow a (1- \delta  \varepsilon ) = 0 \Rightarrow \varepsilon  \text{ обратим }$
+\end{proof}
+\begin{defn}
+    Необратимый элемент $ a \in R$ называется {\sf неприводимым}, если из равенства $ a = bc$ следует, что  $ b$ или  $ c$ ассоциирован с  $ a$.
+\end{defn}
+\begin{lm}
+    Необратимый элемент $ a$ неприводим  тогда и только тогда, когда Он не раскладывается в произведение необратимых элементов.
+\end{lm}
+\begin{lm}\label{lm_acc}
+    Ненулевой необратимый элемент $ a$ неприводим  тогда и только тогда, когда $ aR$ --- максимальный в множестве главных идеалов.
+\end{lm}
+\begin{lm}\label{lm_p_np}
+    Простой элемент неприводим.
+\end{lm}
+\begin{proof}
+    $ pR$ --- простой идеал, следовательно,
+    \[
+    ab = p \Rightarrow 
+    \left [
+    \begin{array}{l}
+	a \in  pR \\
+	b \in  pR
+        
+    \end{array}
+    \right .
+    \Rightarrow 
+    \left[
+    \begin{array}{l}
+        aR \subset pR \\
+	bR \subset  pR
+    \end{array}
+    \right .
+    .\] 
+    Но $ pR \subset  aR \cap bR$. Тогда 
+    \[
+	\left[
+	\begin{array}{l}
+        aR = pR \\
+	bR = pR
+    \end{array}
+    \right.
+    .\] 
+    Получаем, что $ p$ --- неприводим.
+\end{proof}
+\begin{lm}
+    Пусть $ R$ --- область главных идеалов,  $ p \in R \setminus \{0\}$.
+    Тогда следующие условия эквивалентны:
+    \begin{enumerate}[noitemsep]
+	\item $ pR$ --- максимальный идеал;
+	\item $ pR$ --- простой идеал;
+	\item  $ p$ неприводим.
+    \end{enumerate}
+    \begin{proof}
+        $ $
+	\begin{description}
+	    \item $ \boxed{1 \Longrightarrow 2}$ По следствию \ref{cor_max_p}
+	    \item $ \boxed{2 \Longrightarrow 3}$ По лемме \ref{lm_p_np}
+	    \item $ \boxed{3 \Longrightarrow 1}$
+		Если $ p$ неприводим, то по лемме  \ref{lm_acc} $ pR$ максимальный в множестве собственных главных идеалов, так как любой идеал в $ R$ является главным, то и в множестве собственных всех собственных идеалов.
+	\end{description}
+    \end{proof}
+\end{lm}
+\section{Нёторовы кольца (два определения и их равносильность)}
+\begin{defn}
+    Кольцо $R$ называется  {\sf нётеровым}, если любое линейно упорядоченное по включению множество идеалов содержит наибольший элемент.
+
+ACC --- ascending chain condition (условие обрыва возрастающих цепей)
+\end{defn}
+\begin{lm}
+    $ R$ --- нётерово тогда и только тогда, когда любой идеал в $ R$ конечно порожден.
+\end{lm}
+\begin{proof}
+    $ $
+    \begin{description}
+    \item $\boxed{ \Longrightarrow }$
+    Пусть $ R$ --- нётерово, $ I \triangleleft R$. Возьмем $ a_1 \in  I$. \[
+    a_1 R = I_1\ne I \Longrightarrow  \exists  a_2 \in  I \setminus R   
+    .\] 
+    Пусть $I_2 := a_1R + a_2R$. Аналогично получим  $ I_3, \dots $.
+    Получаем цепочку, которая на может быть бесконечной, значит она где-то оборвется и мы получим, что любой идеал порожден этим набором.
+\item $ \boxed{ \Longleftarrow }$
+    $ \mathcal{A} $ --- линейно упорядоченное множество идеалов. 
+    Так как оно конечно порождено:
+    \[
+	\bigcup_{I \in  \mathcal A} I = a_1 R + \ldots  +a_n R
+    .\] 
+    $ \exists  I_1, \ldots I_n \in  \mathcal{A}$, такие что $ a_k \in  I_k$.
+    Так как $ \mathcal{A}$ --- линейно упорядочено, существует наибольший из $ I_k$, пусть $ I_j$.
+     \[
+    a_1, \ldots a_n \in  I_j \Longrightarrow a_1R + \ldots + a_n R = I_j
+    .\] 
+Значит $ I_j$ --- наибольший из $ \mathcal{A}$
+    \end{description}
+\end{proof}
+\section{Существование разложения на неприводимые в неторовых кольцах}
+\begin{thm}
+    Любой необратимый элемент неторова кольца раскладывается в произведение неприводимых.
+\end{thm}
+\begin{proof}
+    Пусть $ r = r_1 \in R$ ---  необратимый элемент. Если $ r_1$ приводим, то $ \exists r_2, r_3 \in R: r_1 = r_2r_3$, причем $ r_1R \subsetneq r_2R$ и $ r_1R \subsetneq r_3R$.
+
+    По индукции найдем для каждого приводимого $ r_i$ такие  $ r_{2i}, r_{2i+1}$, что $ r_i = r_{2i}r_{2i+1}$, причем $ r_iR \subsetneq r_{2i}R$ и $ r_{i}R \subsetneq r_{2i +1 }R $.
+
+    Получили бинарное дерево, каждая ветка которого конечна, так как кольцо $ R$ неторово. Следовательно, и все дерево конечно (иначе можно было бы выбирать ветку, которая еще не закончилась бесконечно). Кроме того, листья неприводимы, а  $ r$ равно их произведению.
+\end{proof}
+\section{Факториальные кольца. Факториальность кольца главных идеалов}
+\begin{defn}
+    Область целостности $ R$ называется {\sf факториальным кольцом}, если любой ненулевой  необратимый элемент  раскладывается в произведение неприводимых единственным образом с точностью до ассоциированности.
+\end{defn}
+% \begin{lm}
+%     Факториальное кольцо --- область целостности.
+% \end{lm}
+% \begin{proof}
+%     Если $ p_1\cdot \ldots \cdot p_m = 0$ , то $ p_1^2 \cdot p_2 \cdot \ldots  \cdot p_m = 0$ --- другое разложение.
+%
+%     Единственность означает:
+%     $ p_1 \cdot \ldots  p_m = q_1 \cdot \ldots q_n $, где $ p_i, q_j$ --- необратимые $ \Longrightarrow m=n \wedge \exists  \sigma \in  S_m: p_i  $ ассоциировано с $ \sigma (i)$.
+% \end{proof}
+\begin{thm}
+    Пусть $ R$ --- область  целостности, в которой любой элемент раскладывается в произведение неприводимых и любой неприводимый элемент порождает простой идеал. Тогда $ R$ --- факториально.
+\end{thm}
+\begin{proof}
+    Пусть $ \varepsilon  p_1 \cdot p_2 \ldots  \cdot p_n = \theta q_1 \ldots  q_m$, где все $ p_k$ b  $ q_l$ неприводимы,  $ \varepsilon, \theta $ --- обратимы.
+
+    Индукция по $ \min(n, m)$. Докажем, что $ n = m$ и сущестует перестановка  $ S_n$ такая, что  $ p_k$ ассоциирован c  $ q_{\sigma(k)}$ для всех $ k \in [1, n]$.
+\begin{description}
+    \item 
+    База $m=0$: правая часть обратима, значит $ n = 0$.
+\item Переход: $ \min(n, m) > 1$.
+    По условию идеал $ p_nR$ простой. Поэтому  $ \exists l: g_{l} \in p_nR$.
+Так как $ q_l$ неприводим, то  $ q_l = \delta p_n$, где  $ \delta$ обратимо.
+Тогда
+ \[
+\varepsilon \cdot p_1 \ldots \cdot p_n = \theta \cdot  q_1 \ldots  \delta p_n \cdot q_m
+.\] 
+Сокращаем $ p_n$:
+ \[
+\varepsilon p_1 \ldots p_n-1 = \theta q_1 \ldots q_{l-1} q_{l+1} \ldots q_m
+.\] 
+По индукционному предположению $ n - 1= m - 1$ и существует биекция  $ \tau: \{1, \ldots n-1\} \to  \{1, \ldots l-1, l+1, \ldots m\}$ такая, что $ p_k$ ассоциирован с $ q_{\tau(k)}$ для всех $ k \in [1, n-1]$. Пусть $ \forall k \in [1, n-1]: \sigma(k) = \tau(k)$  и $\sigma(n) = l$. Такая перестановка подойдет.
+\end{description}
+\end{proof}
+\begin{note}
+    Верно и обратное
+\end{note}
+\begin{cor}
+    Область главных идеалов является факториальным кольцом.
+\end{cor}
 \end{document}
