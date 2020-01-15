@@ -2057,6 +2057,74 @@ $$
     .\]
 \end{defn}
 \section{Строение мультипликативной группы комплексных чисел, корни из 1, уравнение $ z^{n} = w$}
+\begin{note}
+    Тут что-то написано с лекций, возможно, этого недостаточно.
+\end{note}
+    На языке теории групп:
+    \[
+	r \in  \R^{*}_{>0} , \alpha  \in  \R\diagup 2 \pi \Z: (r, \alpha ) \mapsto r \cdot e ^{i \alpha} 
+    .\] 
+    То есть  $\R^{*}_{>0} \times  \R\diagup 2\pi\Z \to  \Cm ^{*}$ --- изоморфизм.
+    \[
+	\Cm^{*} \cong \underbrace{\R^{*}_{>0} \times  \R\diagup 2\pi\Z}_{\ln} \cong \R \times  \R\diagup 2\pi \Z \cong \Cm\diagup 2\pi\Z
+    .\] 
+    \[
+    Ln: \Cm^{*} \to  \Cm\diagup 3\pi\Z
+    .\] 
+    $Ln: (r, e^{i\alpha + 2\pi\Z}) = \ln r + i (\alpha + 2\pi\Z)= \ln r + i \alpha  + 2\pi\Z$.
+\begin{st}[вычисление корня $n$-й степени]
+    Вычисление корня в аддитивной  группе $\Cm\diagup 2\pi\Z$  --- решение уравнения:
+    \[
+	\begin{array}{l}
+	xn \equiv 0 \mod 2\pi i \Z\\
+	xn = 2\pi i n, k \in  \Z \\
+	x \equiv \frac{2\pi i k}{n} \mod 2\pi i \Z, ~ k \in  \Z\diagup n\Z
+	\end{array}
+    .\] 
+    $z ^{n} = 1, \quad z = Ln z$,  далее
+    \[
+    nx = 0 \mid 2\pi i \Z
+    .\] 
+    \[
+	z = e^{x}=e ^{\frac{2\pi ik}{n}}
+    .\] 
+\end{st}
+\[
+    z^{n} \Longleftrightarrow z = e^{\frac{2 \pi  i k}{n}}, k \in  \Z \diagup n\Z
+.\] 
+\[
+    \Theta_n (Z) = z^{k} \text{ --- гомоморфизм }  \Cm \to  \Cm^{*}
+.\] 
+\[
+    \mu_n = \ker \Theta_n = \{e ^{ \frac{2\pi i k}{n}} \mid k \in  \Z\diagup n\Z\}
+.\] 
+Эти числа делят окружность на $ n$ равных частей.
+
+$ \Z \diagup  n \Z \to  \mu_n\\
+k + n\Z \mapsto e ^{\frac{2\pi i k}{n}}$ --- изоморфизм.
+\begin{defn}
+    Образующие элементы $ \mu_n$ называются превообразными корнями из 1.
+\end{defn}
+\begin{cor}
+    $ e^{\frac{2\pi i k}{n}}$ --- превообразный корень тогда и только тогда, когда $ \gcd(k, n) = 1$.
+\end{cor}
+\begin{st}
+    $ z^{n} = w = r e^{i \varphi }$.
+    Одно из решений этого уравнения: $ \left( \sqrt[n]{r} \cdot e ^{\frac{i \varphi }{n}} \right)^{n} $.
+
+    А все решения можно записать:
+    \[
+	\sqrt[n]{w} = \{\sqrt[n]{r} \cdot e ^{i \frac{phi  + 2 \pi k}{n}} \mid k \in  \Z\diagup n\Z\}, \quad z^{n} = w
+    .\] 
+\end{st}
+\begin{thm}[Основная теорема алгебры]
+    $ p \in  \Cm[x], ~ \deg p \ge 1$
+
+    Тогда $ \exists \alpha  \in  \Cm: p( \alpha ) = 0$.
+\end{thm}
+\begin{thm}[Лиувилль]
+    Любая ограниченная дифференцируемая функция $ \Cm \to  \Cm$ --- константа.
+\end{thm}
 \section{Евклидовы кольца и кольца главных идеалов}
 \begin{defn}
     Элемент $ a $ кольца $ R$ называется {\sf делителем  нуля}, если существует  $ b \in R \setminus \{0\}$ такой, что $ ab = 0$.
