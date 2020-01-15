@@ -2306,7 +2306,7 @@ $$
     .\]
     Получаем, что $ p$ --- неприводим.
 \end{proof}
-\begin{lm}
+\begin{lm}\label{lm_max_prime_n}
     Пусть $ R$ --- область главных идеалов,  $ p \in R \setminus \{0\}$.
     Тогда следующие условия эквивалентны:
     \begin{enumerate}[noitemsep]
@@ -2433,7 +2433,7 @@ $$
 \begin{proof}
     Идеал $ aR + bR$ является минимальным идеалом, содержащим  $ a , b$. По условию он является главным. Значит  $ aR = bR = dR$, тогда (по определению)  $ d = \gcd(a, b)$.
 \end{proof}
-\begin{cor}
+\begin{cor}\label{cor_pp}
     Пусть $ R$ --- кольцо главных идеалов. Идеалы  $ aR$ и  $ bR$ являются  взаимно простыми, если у элементов  $ a $ и  $ b$ нет обратимых общих делителей (такие элементы называются {\sf взаимно простыми}).
 \end{cor}
 \begin{lm}
@@ -2794,6 +2794,47 @@ $$
      Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
  \end{proof}
  \section{Функция Эйлера. Теорема Эйлера}
+ Так как $ \Z$  --- евклидово кольцо, то оно является областью главных идеалов. По лемме \ref{lm_max_prime_n} любой ненулевой простой идеал является максимальным, значит $ \Z \po p\Z$ --- поле  тогда и только тогда, когда $ p \in \Pm$.
+
+ Если $ n_1, \ldots n_t$ --- попарно взаимно просты, то имеет место китайская теорема об остатках:
+ \[
+     \frac{\Z}{n_1 \ldots n_t\Z} \cong \frac{\Z}{n_1\Z} \oplus \ldots \frac{\Z}{n_t\Z}
+ .\] 
+ \begin{defn}
+     Порядок мультипликативной группы $ (\Z \po n\Z)^{*}$ обозначается $ \varphi (n)$. Функция $ \varphi :\N \to  \N$ называется {\sf функцией Эйлера}.
+ \end{defn}
+ \begin{lm}
+     Образ числа $ n \in \Z$ обратим в кольце $ \Z \po n\Z$  тогда и только тогда, когда $ \gcd (n,m) = 1$. Таким образом,  $ \varphi (n)$ равна количеству чисел от $ 0$ до $ n$, взаимно простых с  $ n$.
+ \end{lm}
+ \begin{proof}
+     Пусть $ \overline{m}$ --- образ $ m$ в  $ \Z\po n\Z$. 
+      $ \overline{m}$ обратим тогда и только тогда, когда $ \exists \overline{x } \in \Z\po n\Z: \overline{m}\cdot \overline{z} = 1$. 
+      Если $ x \in \Z$ --- прообраз $ \overline{x}$, то вместо $ \overline{m} \cdot  \overline{x} = 1$ можем записать $ mx \in  1 + n\Z$, то есть идеалы $ m\Z$ и  $ n\Z$ взаимно просты. По следствию \ref{cor_pp} $ \gcd(m, n) = 1$.
+ \end{proof}
+ \begin{lm}
+     Если кольцо $ R$ c единицей (не обязательно коммутативное) является прямой суммой колец  $ R_1 \oplus \ldots R_k$, то $ \R^{*} \cong R_1^{*} \times \ldots R_k^{*}$. Если $ R^{*}$ конечна, то $ |R^{*}| = |R^{*}_1| \cdot \ldots |R_k^{*}|$.
+ \end{lm}
+ \begin{thm}
+     $ $
+     \begin{itemize}[noitemsep]
+	 \item 
+     Если $ \gcd(a, b) = 1$, то  $ \varphi (ab) = \varphi (a) \varphi (b)$.
+ \item Если $ p \in \Pm$, $ k \in \N$, то $ \varphi (p^{k}) = p^{k} - p^{k-1}$.
+ \item Пусть  $ p_1, \ldots p_l$ --- различные простые числа, $ k_1, \ldots k_l \in \N$, $ n = \prod_{i = 1}^{l}p_i^{k_i}$. Тогда 
+     \[
+	 \varphi (n) = \prod_{i=1}^{l}\left(p_{i}^{k_i} - p_i^{k_i -1}\right) =n\prod_{i = 1}^{l}\frac{p_i - 1}{p_i}
+     .\] 
+     \end{itemize}
+ \end{thm}
+ \begin{thm}[теорема Эйлера]
+     Если $ \gcd(a, n) = 1$, то  $ a^{ \varphi (n)} \equiv 1 \mod n$.
+ \end{thm}
+ \begin{proof}
+     Так как $ a$ взаимно просто с  $ n$,  $ \overline{a} $ обратим в $ \Z\po n\Z$ и принадлежит  $ (\Z \po n\Z)*$.  $ \overline{a}$ порождает в $ \Z \po n\Z $ циклическую подгруппу, порядок которой делит  $ \varphi (n)$ по теореме Лагранжа.
+     \[
+	 \overline{a}^{ \varphi (n)} = \overline{1} \Longrightarrow a^{ \varphi (n)} \equiv 1 \mod n
+     .\] 
+ \end{proof}
  \section{Экспонента группы $ (\Z \po p^{k}\Z)^{*}$ при $ p \ne  2$ }
  \section{Экспонента группы $ (\Z \po 2^{k}\Z)^{*}$ }
  \section{Интерполяция по Лагранжу и связь ее с КТО}
