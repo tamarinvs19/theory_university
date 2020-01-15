@@ -67,8 +67,11 @@
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 \def\mycheck{\mathrel{\stackrel{\rm ?}=}}
 
+\usepackage{tocloft}
 \renewcommand{\thesection}{Вопрос \arabic{section}}
 \renewcommand{\thesubsection}{\roman{subsection}}
+\cftsetindents{section}{0.2in}{0.9in}
+\cftsetindents{subsection}{0.7in}{0.3in}
 
 \renewcommand{\proofname}{Proof}
 
@@ -101,7 +104,7 @@
 \begin{document}
 
 \maketitle
-% \tableofcontents
+\tableofcontents
 
 \section{Векторное пространство}
 \begin{defn}
@@ -116,7 +119,7 @@
 \end{defn}
 \begin{prop}
     $ $
-    \begin{enumerate}
+    \begin{enumerate}[noitemsep]
 	\item $ v \cdot 0 = 0 \cdot \alpha  = 0$
 	\item $ v \cdot (-1) = -v$
 	\item $ v \cdot (-\alpha) = (-v)\alpha = - (v \alpha)$
@@ -2491,8 +2494,8 @@ $$
 \begin{defn}
     $ S \subseteq R$, $ S$ --- мультипликативное подмножество, если:
     \begin{itemize}[noitemsep]
-	\item $ 1 \in  S$ 
-	    \item  $\forall s_1, s_2 \in  S: s_1 s_2 \in S$
+	\item $ 1 \in  S$
+	\item  $\forall s_1, s_2 \in  S: s_1 s_2 \in S$
     \end{itemize}
 \end{defn}
 \begin{defn}
@@ -2512,13 +2515,13 @@ $$
     Если $ R$ ---- область целостности, то  $ \{0 \}$ --- простой идеал.
     Локализация в этом идеале будет полем, которое называется {\sf полем частных кольца $ R$}.
 \end{note}
- \begin{thm}[Универсальное свойство локализации]
-     Пусть $ R$ --- область целостности, $ S = R \po \{0\}$. Тогда $ F = S^{-1}R$ является полем, а гомоморфизм локализации $ \lambda_S: R \rightarrowtail$ инъективен. При этом  $ \lambda_S$ удовлетворяет следующему универсальному свойству: для любого поля  $ K$ и мономорфизма  $ \varphi :R \rightarrowtail K$ существует единственный мономорфизм $ \psi: F \rightarrowtail K$ такой, что  $ \varphi  = \psi \circ \lambda_S$.
- \end{thm}
+\begin{thm}[Универсальное свойство локализации]
+    Пусть $ R$ --- область целостности, $ S = R \po \{0\}$. Тогда $ F = S^{-1}R$ является полем, а гомоморфизм локализации $ \lambda_S: R \rightarrowtail$ инъективен. При этом  $ \lambda_S$ удовлетворяет следующему универсальному свойству: для любого поля  $ K$ и мономорфизма  $ \varphi :R \rightarrowtail K$ существует единственный мономорфизм $ \psi: F \rightarrowtail K$ такой, что  $ \varphi  = \psi \circ \lambda_S$.
+\end{thm}
 \subsection{Примеры}
 \begin{enumerate}
-    \item Для $ s \in R$ положим $ \langle s \rangle = \{s^{n} \mid n \in \N_0\}$. Локализация $ \langle s \rangle^{-1} R $ обозначается через $ R_s$ и называется {\sf главной локализацией в элементе $ s$}.  
-    \item Если $ P$ --- простой идеал  $ R$, то  $ R \po S$ --- мультипликативное подмножество. 
+    \item Для $ s \in R$ положим $ \langle s \rangle = \{s^{n} \mid n \in \N_0\}$. Локализация $ \langle s \rangle^{-1} R $ обозначается через $ R_s$ и называется {\sf главной локализацией в элементе $ s$}.
+    \item Если $ P$ --- простой идеал  $ R$, то  $ R \po S$ --- мультипликативное подмножество.
 	Локализация  $ R_{P} \coloneqq (R \po P)^{-1}$ называется {\sf локализацией кольца $ R$ в простом идеале  $ P$}.
     \item  $ S$ --- множество всех элементов   $ R$, не являющихся делителями нуля. Тогда  $ S^{-1}R$ называется {\sf полным кольцом частных кольца $ R$}.
     \item  $ R = K[x]$, где  $ K$ --- кольцо,  $ S$ --- множество унитарных многочленов.
@@ -2609,326 +2612,326 @@ $$
     Нейтральный элемент по сложению: $ \frac{0}{1} = \frac{0}{s}$.
 
     Обратный к $ \frac{r}{s}$ : $ \frac{-r}{s}$.
-    
+
     $ \lambda_S$ --- гомоморфизм.
 
-     Первое свойство локализации:
-     $\lambda_S(s) \cdot \frac{1}{s } =  \frac{s}{1 }\cdot \frac{1}{s} = \frac{s}{s}=1$.
+    Первое свойство локализации:
+    $\lambda_S(s) \cdot \frac{1}{s } =  \frac{s}{1 }\cdot \frac{1}{s} = \frac{s}{s}=1$.
 
-     Пусть $ \varphi : R \to  A$ --- гомоморфизм из второго свойства. Определим $ \psi: S^{-1}R \to  A$ равенством $ \psi( \frac{r}{s}) = \varphi (r) \varphi (s)^{-1}$.
+    Пусть $ \varphi : R \to  A$ --- гомоморфизм из второго свойства. Определим $ \psi: S^{-1}R \to  A$ равенством $ \psi( \frac{r}{s}) = \varphi (r) \varphi (s)^{-1}$.
 
-     Если $ \frac{r'}{s'} = \frac{r}{s}$, то $ \exists s'' \in S: s''r's = s''rs'$ и $ \varphi (s'')\varphi(r')\varphi(s) = \varphi (s'') \varphi (r) \varphi (s')$. Домножим на $ \varphi (s'') \varphi (s)^{-1} \varphi (s')^{-1}$:
-     \[
-	 \varphi (r') \varphi (s')^{-1} = \varphi (r) \varphi (s)^{-1}
-     .\] 
-     Следовательно, определение $ \psi$ корректно.
+    Если $ \frac{r'}{s'} = \frac{r}{s}$, то $ \exists s'' \in S: s''r's = s''rs'$ и $ \varphi (s'')\varphi(r')\varphi(s) = \varphi (s'') \varphi (r) \varphi (s')$. Домножим на $ \varphi (s'') \varphi (s)^{-1} \varphi (s')^{-1}$:
+    \[
+	\varphi (r') \varphi (s')^{-1} = \varphi (r) \varphi (s)^{-1}
+    .\]
+    Следовательно, определение $ \psi$ корректно.
 
-     Так как  $ \varphi (1) = 1$, $ \varphi = \psi \circ \lambda_S$. 
-     Кроме того $ \psi$ --- гомоморфизм.
+    Так как  $ \varphi (1) = 1$, $ \varphi = \psi \circ \lambda_S$.
+    Кроме того $ \psi$ --- гомоморфизм.
 
-     Проверим, что  $ \psi$ задается однозначно.
-     Так как $ \varphi = \psi \circ \lambda_S$, $ \psi(\frac{r}{1}) = \varphi (r)$. Так как $ \psi$ --- гомоморфизм:
-      \[
-	  \varphi (r) = \psi\left( \frac{r}{1} \right) = \psi\left( \frac{r}{s} \cdot \frac{s}{1} \right)   = \psi\left( \frac{r}{s} \right)\cdot \varphi (s) 
-     .\] 
-     По условию $ \varphi (s)$ обратимо, следовательно, $ \psi(\frac{r}{s}) =  \varphi (r) \varphi (s)^{-1}$. Значит, $ \psi$ однозначно определено.
+    Проверим, что  $ \psi$ задается однозначно.
+    Так как $ \varphi = \psi \circ \lambda_S$, $ \psi(\frac{r}{1}) = \varphi (r)$. Так как $ \psi$ --- гомоморфизм:
+    \[
+	\varphi (r) = \psi\left( \frac{r}{1} \right) = \psi\left( \frac{r}{s} \cdot \frac{s}{1} \right)   = \psi\left( \frac{r}{s} \right)\cdot \varphi (s)
+    .\]
+    По условию $ \varphi (s)$ обратимо, следовательно, $ \psi(\frac{r}{s}) =  \varphi (r) \varphi (s)^{-1}$. Значит, $ \psi$ однозначно определено.
 \end{proof}
 \section{Поле частных евклидова кольца и разложение на простейшие дроби}
 \begin{defn}
     Пусть $ R$ ---  евклидово кольцо с евклидовой нормой $ f$, $ F$ --- его поле частных. {\sf Простейшей дробью} называется элемент $ \frac{r}{s^{n}} \in F$, где $ r, s \in R$, $ s$ неприводим, и  $ f(r) < f(s)$.
 \end{defn}
- \begin{st}
-     $ F$ --- поле частных $ R$. $ a, b, c \in  R$, где $ \gcd(b, c)$
+\begin{st}
+    $ F$ --- поле частных $ R$. $ a, b, c \in  R$, где $ \gcd(b, c)$
     Дробь $ \frac{a}{bc}$ раскладывается в сумму двух дробей со знаменателями $ b$ и  $ c$.
- \end{st}
- \begin{proof}
-     По теореме о линейном представлении НОД $ \exists x, y \in R: 1 = bx + cy$.
-     Из чего следует, что $ \frac{a}{bc} = \frac{abx + acy}{bc} = \frac{ax}{c} + \frac{ay}{b}$. 
- \end{proof}
- \begin{note}
-     Пусть
-     \[
-     b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m}, \qquad  p_i \in R \text{ --- неприводимы}
-     .\] 
-     Тогда
-     $ p_i^{k_i} $ взаимно просто с $ \prod_{j \ne i} p_j ^{k_j}$.
- \end{note}
- \begin{cor}
-     Пусть $ R$ --- кольцо главных идеалов.
-     \[
-	 \forall a, b \in  R ~ \exists  r_i \in  R: \frac{a}{b} = \sum_{i=1}^{m} \frac{r_i}{p_i^{k_i}}, \quad b = \prod p_i^{k_i}, ~ p_i \in R \text{ --- неприводимы}
-     .\] 
- \end{cor}
- \begin{thm}
-     Любой элемент поля частных $ F$ евклидова кольца $ R$ раскладывается в сумму элемента из $ R$ и простейших дробей. 
- \end{thm}
- \begin{proof}
-     Пусть $ p $ --- неприводим, $ k \in  \N, r, p \in  R $. Разложим $ \frac{r}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
+\end{st}
+\begin{proof}
+    По теореме о линейном представлении НОД $ \exists x, y \in R: 1 = bx + cy$.
+    Из чего следует, что $ \frac{a}{bc} = \frac{abx + acy}{bc} = \frac{ax}{c} + \frac{ay}{b}$.
+\end{proof}
+\begin{note}
+    Пусть
+    \[
+	b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m}, \qquad  p_i \in R \text{ --- неприводимы}
+    .\]
+    Тогда
+    $ p_i^{k_i} $ взаимно просто с $ \prod_{j \ne i} p_j ^{k_j}$.
+\end{note}
+\begin{cor}
+    Пусть $ R$ --- кольцо главных идеалов.
+    \[
+	\forall a, b \in  R ~ \exists  r_i \in  R: \frac{a}{b} = \sum_{i=1}^{m} \frac{r_i}{p_i^{k_i}}, \quad b = \prod p_i^{k_i}, ~ p_i \in R \text{ --- неприводимы}
+    .\]
+\end{cor}
+\begin{thm}
+    Любой элемент поля частных $ F$ евклидова кольца $ R$ раскладывается в сумму элемента из $ R$ и простейших дробей.
+\end{thm}
+\begin{proof}
+    Пусть $ p $ --- неприводим, $ k \in  \N, r, p \in  R $. Разложим $ \frac{r}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
 
-     Индукция по $ k$.
-     \begin{description}
-	 \item База $ (k = 0)$:
-      \[
-     r = pb + x \Longrightarrow \frac{r}{p } = b + \frac{c}{p}
-     .\] 
-	 \item 
-	     Переход $ (k -1 \to  k)$:
-     Пусть $ f$ --- евклидова норма. Разделим  $ r$ на  $ p$ с остатком:
-     $ r = sp + q, \quad f(q) < f(p)$.
-     Тогда 
+    Индукция по $ k$.
+    \begin{description}
+	\item База $ (k = 0)$:
+	    \[
+		r = pb + x \Longrightarrow \frac{r}{p } = b + \frac{c}{p}
+	    .\]
+	\item
+	    Переход $ (k -1 \to  k)$:
+	    Пусть $ f$ --- евклидова норма. Разделим  $ r$ на  $ p$ с остатком:
+	    $ r = sp + q, \quad f(q) < f(p)$.
+	    Тогда
+	    \[
+		\frac{r}{p^{k}} = \frac{s}{p^{k-1}} + \frac{q}{p^{k}}
+	    .\]
+	    Вторая дробь --- простейшая, а первая по предположению индукции раскладывается в сумму простейших и элемента из $ R$.
+    \end{description}
+\end{proof}
+\section{Определение алгебры над кольцом. Алгебра многочленов и ее универсальное свойство}
+\begin{name}
+    $ R$ --- коммутативное кольцо с единицей.
+\end{name}
+\begin{defn}
+    {\sf Многочленом  $ p$ от одной переменной $ t$ над $ R$} называется конечный набор $ ( \alpha _0, \ldots  \alpha _n)$, записанный в виде $p(t) =  \alpha _0 + \alpha _1 t + \ldots + \alpha _n t^{n}$. При этом {\sf степень многочлена} равна $ n = \deg p$.
+\end{defn}
+\begin{note}
+    Сумма, произведение и степень ($ +, \cdot$ ) многочленов определены стандартным образом.
+\end{note}
+\begin{defn}
+    Пусть $ V$ --- векторное пространство над полем  $ F$, снабженное операцией умножения  $ V \times V \to  V$. Тогда $ V$ является {\sf алгеброй над полем $ F$}, если  $ \forall x, y, z \in V, ~\alpha, \beta \in F$:
+    \begin{enumerate}[noitemsep]
+	\item $ (x+y) z = xz+ yz$
+	\item  $ x (y + z) = xy + xz$
+	\item  $ (\alpha x)(\beta y) = (\alpha \beta)(xy)$
+    \end{enumerate}
+\end{defn}
+\begin{defn}
+    $ F[t]$ --- {\sf множество всех многочленов} от переменной $ t$ в поле $ F$. С операциями сложения и умножения  является алгеброй над $ F$.
+\end{defn}
+Определим полиномиальную функцию $ \tilde p: A \to  A$ формулой
 \[
-\frac{r}{p^{k}} = \frac{s}{p^{k-1}} + \frac{q}{p^{k}}
-.\] 
-Вторая дробь --- простейшая, а первая по предположению индукции раскладывается в сумму простейших и элемента из $ R$.
-     \end{description}
- \end{proof}
- \section{Определение алгебры над кольцом. Алгебра многочленов и ее универсальное свойство}
- \begin{name}
-     $ R$ --- коммутативное кольцо с единицей.
- \end{name}
- \begin{defn}
-     {\sf Многочленом  $ p$ от одной переменной $ t$ над $ R$} называется конечный набор $ ( \alpha _0, \ldots  \alpha _n)$, записанный в виде $p(t) =  \alpha _0 + \alpha _1 t + \ldots + \alpha _n t^{n}$. При этом {\sf степень многочлена} равна $ n = \deg p$.
- \end{defn}
- \begin{note}
-     Сумма, произведение и степень ($ +, \cdot$ ) многочленов определены стандартным образом.
- \end{note}
- \begin{defn}
-     Пусть $ V$ --- векторное пространство над полем  $ F$, снабженное операцией умножения  $ V \times V \to  V$. Тогда $ V$ является {\sf алгеброй над полем $ F$}, если  $ \forall x, y, z \in V, ~\alpha, \beta \in F$:
-     \begin{enumerate}[noitemsep]
-	 \item $ (x+y) z = xz+ yz$
-	 \item  $ x (y + z) = xy + xz$
-	 \item  $ (\alpha x)(\beta y) = (\alpha \beta)(xy)$
-     \end{enumerate}
- \end{defn}
- \begin{defn}
-     $ F[t]$ --- {\sf множество всех многочленов} от переменной $ t$ в поле $ F$. С операциями сложения и умножения  является алгеброй над $ F$.
- \end{defn}
- Определим полиномиальную функцию $ \tilde p: A \to  A$ формулой
-  \[
-      \tilde p(a) = \alpha_0 + \alpha_1 a + \ldots + \alpha_n a^{n}
- .\] 
- \begin{defn}
-     $ A $-- алгебра над $ F$ , если $ A$ --- кольцо и  $ F$  --- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
+    \tilde p(a) = \alpha_0 + \alpha_1 a + \ldots + \alpha_n a^{n}
+.\]
+\begin{defn}
+    $ A $-- алгебра над $ F$ , если $ A$ --- кольцо и  $ F$  --- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
 
-     По другому:
-     $ 
-     \begin{array}{l}
-\varphi : R \to  A \\
-\varphi (r) = r \cdot 1_A
-     \end{array}
-     $
+    По другому:
+    $
+    \begin{array}{l}
+	\varphi : R \to  A \\
+	\varphi (r) = r \cdot 1_A
+    \end{array}
+    $
 
-     Обратно:
-     Если задана $ \varphi : R \to  A$ (гомоморфизм колец с единицей) \[
-	 ra \coloneqq \varphi (r) \cdot a
-     \] 
-     задает на $ A$ структуру $ R$- модуля.
- \end{defn}
- \begin{note}
-     В определении $ A$ не обязательно является коммутативным.
- \end{note}
- \begin{defn}
-     $ A, B$ алгебры над $ R$.
-     $\Theta : A \to  B$
-      --- гомоморфизм $ R$-алгебр, если 
-      \begin{enumerate}[noitemsep]
-	 \item $ \Theta(a_1a_2) =\Theta (a_1) \Theta(a_2) $
-	 \item $ \Theta(a_1+a_2) = \Theta(a_1) + \Theta(a_2)$
-	 \item $ \Theta (1) = 1 $ (если все с 1)
-	 \item  $ \Theta(ra) = r \Theta(a)$
-     \end{enumerate}
- \end{defn}
- \begin{defn}
-     $ A$ --- $ R$-алгебра, $ a \in  A, p \in  R[t], \quad p(t) = \alpha _0 \cdot  1 + \ldots + \alpha _n \cdot  t ^{n}$.
- \[
-     \varepsilon _a(p) = p(a) \coloneqq \alpha _0 + \ldots + \alpha _n a^{n}
- .\] 
- $ \varepsilon _a: R[t] \to  A$ --- гомоморфизм подстановки.
- \end{defn}
- \begin{st}[Универсальное свойство кольца многочленов]
-     $
-     \forall  a \in  A  
-     $ существует единственный гомоморфизм $ R $-алгебры  $ \varepsilon : R[t] \to A: t \mapsto a$.
- \end{st}
- \begin{proof}
-     $ \forall  r \in  R: \varepsilon (r) = \varepsilon (r \cdot 1) = r \cdot  \varepsilon (1) = r \cdot  1$
-     \[
-	 \varepsilon ( \alpha _0 + \ldots  + \alpha _n t ^{n}) = \varepsilon ( \alpha _0) + \ldots  \alpha _n \varepsilon ( t ^{n}) =  \alpha _0 \cdot  1 + \ldots \alpha _n \cdot  a^{_n}
-     .\] 
- \end{proof}
- \section{Многочлены от одной переменной: деление с остатком, теорема Безу, количество корней многочлена}
+    Обратно:
+    Если задана $ \varphi : R \to  A$ (гомоморфизм колец с единицей) \[
+	ra \coloneqq \varphi (r) \cdot a
+    \]
+    задает на $ A$ структуру $ R$- модуля.
+\end{defn}
+\begin{note}
+    В определении $ A$ не обязательно является коммутативным.
+\end{note}
+\begin{defn}
+    $ A, B$ алгебры над $ R$.
+    $\Theta : A \to  B$
+    --- гомоморфизм $ R$-алгебр, если
+    \begin{enumerate}[noitemsep]
+	\item $ \Theta(a_1a_2) =\Theta (a_1) \Theta(a_2) $
+	\item $ \Theta(a_1+a_2) = \Theta(a_1) + \Theta(a_2)$
+	\item $ \Theta (1) = 1 $ (если все с 1)
+	\item  $ \Theta(ra) = r \Theta(a)$
+    \end{enumerate}
+\end{defn}
+\begin{defn}
+    $ A$ --- $ R$-алгебра, $ a \in  A, p \in  R[t], \quad p(t) = \alpha _0 \cdot  1 + \ldots + \alpha _n \cdot  t ^{n}$.
+    \[
+	\varepsilon _a(p) = p(a) \coloneqq \alpha _0 + \ldots + \alpha _n a^{n}
+    .\]
+    $ \varepsilon _a: R[t] \to  A$ --- гомоморфизм подстановки.
+\end{defn}
+\begin{st}[Универсальное свойство кольца многочленов]
+    $
+    \forall  a \in  A
+    $ существует единственный гомоморфизм $ R $-алгебры  $ \varepsilon : R[t] \to A: t \mapsto a$.
+\end{st}
+\begin{proof}
+    $ \forall  r \in  R: \varepsilon (r) = \varepsilon (r \cdot 1) = r \cdot  \varepsilon (1) = r \cdot  1$
+    \[
+	\varepsilon ( \alpha _0 + \ldots  + \alpha _n t ^{n}) = \varepsilon ( \alpha _0) + \ldots  \alpha _n \varepsilon ( t ^{n}) =  \alpha _0 \cdot  1 + \ldots \alpha _n \cdot  a^{_n}
+    .\]
+\end{proof}
+\section{Многочлены от одной переменной: деление с остатком, теорема Безу, количество корней многочлена}
 \begin{name}
     Далее $ F$  --- поле.
 \end{name}
 \begin{thm}
-  кольцо многочленов $ F[t]$  над полем $ F $ --- евклидово с евклидовой нормой $ \deg$.
+    кольцо многочленов $ F[t]$  над полем $ F $ --- евклидово с евклидовой нормой $ \deg$.
 \end{thm}
- \begin{thm}[Безу]
-     Пусть $ \alpha \in F$, $ p \in F[t]$.
-     \begin{enumerate}[noitemsep]
-	 \item 
-     Остаток от деления многочлена $ p$ на $ t - \alpha $ равен $ p(\alpha)$.
- \item Элемент $ \alpha $ является корнем многочлена $ p$  тогда и только тогда, когда $ p$ делится на  $ t- \alpha $.
- \item Многочлен степени $ n$ не может иметь больше, чем  $ n$ корней.
-     \end{enumerate}
- \end{thm}
- \section{Конечная подгруппа мультипликативной группы поля}
- \begin{thm}\label{th_end}
-      Любая конечная подгруппа мультипликативной группы поля циклическая.
- \end{thm}
- \begin{proof}
+\begin{thm}[Безу]
+    Пусть $ \alpha \in F$, $ p \in F[t]$.
+    \begin{enumerate}[noitemsep]
+	\item
+	    Остаток от деления многочлена $ p$ на $ t - \alpha $ равен $ p(\alpha)$.
+	\item Элемент $ \alpha $ является корнем многочлена $ p$  тогда и только тогда, когда $ p$ делится на  $ t- \alpha $.
+	\item Многочлен степени $ n$ не может иметь больше, чем  $ n$ корней.
+    \end{enumerate}
+\end{thm}
+\section{Конечная подгруппа мультипликативной группы поля}
+\begin{thm}\label{th_end}
+    Любая конечная подгруппа мультипликативной группы поля циклическая.
+\end{thm}
+\begin{proof}
     Пусть $ F$ --- поле, $ G \le F^{*}$, $ |G| =n $.
 
-     $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ корни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней. 
-     $ k$ делит  $ |G| \Longrightarrow  \exp G = |G|$. Следовательно, $ G$ --- циклическая. 
- \end{proof}
- \begin{thm}
-     Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
-     \[
-	 p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
-     .\] 
- \end{thm}
- \begin{proof}
-     По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
-
-     Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
- \end{proof}
- \section{Функция Эйлера. Теорема Эйлера}
- Так как $ \Z$  --- евклидово кольцо, то оно является областью главных идеалов. По лемме \ref{lm_max_prime_n} любой ненулевой простой идеал является максимальным, значит $ \Z \po p\Z$ --- поле  тогда и только тогда, когда $ p \in \Pm$.
-
- Если $ n_1, \ldots n_t$ --- попарно взаимно просты, то имеет место китайская теорема об остатках:
- \[
-     \frac{\Z}{n_1 \ldots n_t\Z} \cong \frac{\Z}{n_1\Z} \oplus \ldots \frac{\Z}{n_t\Z}
- .\] 
- \begin{defn}
-     Порядок мультипликативной группы $ (\Z \po n\Z)^{*}$ обозначается $ \varphi (n)$. Функция $ \varphi :\N \to  \N$ называется {\sf функцией Эйлера}.
- \end{defn}
- \begin{lm}
-     Образ числа $ n \in \Z$ обратим в кольце $ \Z \po n\Z$  тогда и только тогда, когда $ \gcd (n,m) = 1$. Таким образом,  $ \varphi (n)$ равна количеству чисел от $ 0$ до $ n$, взаимно простых с  $ n$.
- \end{lm}
- \begin{proof}
-     Пусть $ \overline{m}$ --- образ $ m$ в  $ \Z\po n\Z$. 
-      $ \overline{m}$ обратим тогда и только тогда, когда $ \exists \overline{x } \in \Z\po n\Z: \overline{m}\cdot \overline{z} = 1$. 
-      Если $ x \in \Z$ --- прообраз $ \overline{x}$, то вместо $ \overline{m} \cdot  \overline{x} = 1$ можем записать $ mx \in  1 + n\Z$, то есть идеалы $ m\Z$ и  $ n\Z$ взаимно просты. По следствию \ref{cor_pp} $ \gcd(m, n) = 1$.
- \end{proof}
- \begin{lm}
-     Если кольцо $ R$ c единицей (не обязательно коммутативное) является прямой суммой колец  $ R_1 \oplus \ldots R_k$, то $ \R^{*} \cong R_1^{*} \times \ldots R_k^{*}$. Если $ R^{*}$ конечна, то $ |R^{*}| = |R^{*}_1| \cdot \ldots |R_k^{*}|$.
- \end{lm}
- \begin{thm}
-     $ $
-     \begin{itemize}[noitemsep]
-	 \item 
-     Если $ \gcd(a, b) = 1$, то  $ \varphi (ab) = \varphi (a) \varphi (b)$.
- \item Если $ p \in \Pm$, $ k \in \N$, то $ \varphi (p^{k}) = p^{k} - p^{k-1}$.
- \item Пусть  $ p_1, \ldots p_l$ --- различные простые числа, $ k_1, \ldots k_l \in \N$, $ n = \prod_{i = 1}^{l}p_i^{k_i}$. Тогда 
-     \[
-	 \varphi (n) = \prod_{i=1}^{l}\left(p_{i}^{k_i} - p_i^{k_i -1}\right) =n\prod_{i = 1}^{l}\frac{p_i - 1}{p_i}
-     .\] 
-     \end{itemize}
- \end{thm}
- \begin{thm}[теорема Эйлера]
-     Если $ \gcd(a, n) = 1$, то  $ a^{ \varphi (n)} \equiv 1 \mod n$.
- \end{thm}
- \begin{proof}
-     Так как $ a$ взаимно просто с  $ n$,  $ \overline{a} $ обратим в $ \Z\po n\Z$ и принадлежит  $ (\Z \po n\Z)*$.  $ \overline{a}$ порождает в $ \Z \po n\Z $ циклическую подгруппу, порядок которой делит  $ \varphi (n)$ по теореме Лагранжа.
-     \[
-	 \overline{a}^{ \varphi (n)} = \overline{1} \Longrightarrow a^{ \varphi (n)} \equiv 1 \mod n1 \mod n1 \mod n
-     .\] 
- \end{proof}
- \section{Экспонента группы $ (\Z \po p^{k}\Z)^{*}$ при $ p \ne  2$ }
- \begin{thm}
-     Группа $ (\Z \po p^{k }\Z)^{*}$ циклическая для любого $ p \ne 2$, и $ \exp (\Z \po p^{k}\Z)^{*} \del (p-1)p^{k^{p-1}}$. 
- \end{thm}
- \begin{proof}
-     Пусть $ p \in \Pm \wedge p \ne  2$. Поле $ \Z \po p\Z$ --- факторкольцо кольца  $ \Z \po p^{k }\Z$ по идеалу, порожденному $ p$.
-
-     Пусть  $ \pi: \Z \po p^{k}\Z \to  \Z \po p\Z$ --- каноническая проекция. $f: (\Z \po p^{k}\Z)^{*} \to  (\Z \po p\Z)^{*}$ --- гомоморфизм мультипликативных групп, который сюрьективен, так как все числа от $ 1$ до $p-1 $ взаимно просты с $ p^{k}$ и, следовательно, их классы вычетов обратимы. 
-
-     По теореме \ref{th_end} существует элемент $ a \in \Z \po p\Z$ порядка $ p-1$. Тогда порядок его прообраза в  $ (\Z \po p^{k}\Z)^{*}$ делится на $ p-1$. Следовательно, экспонента группы  $ (\Z \po p^{k} \Z)^{*}$ делится на $ p-1$.
-
-Докажем, что при $ k \ge 2$ экспонента делится на $ p^{k-1}$.
-По индукции докажем, что элемент $ 1+p$ имеет порядок  $ p^{k-1}$в этой группе.
-\begin{description}
-\item База $ (k=1)$: очевидно.
-\item Переход  $ (k \ge 2)$: По индукционному предположению
-    $ (1+p)^{p^{k-2}} = 1 + p^{k-1}x$, где $ x$ не делится на  $ p$. 
+    $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ корни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней.
+    $ k$ делит  $ |G| \Longrightarrow  \exp G = |G|$. Следовательно, $ G$ --- циклическая.
+\end{proof}
+\begin{thm}
+    Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
     \[
-	(1+p)^{p^{k-1}} = (1 + p^{k-1} x)^{p} = 1  + p\cdot p^{k-1}x+ \sum_{i=2}^{p} {{p}\choose{i}} p^{i (k-1)} x^{i}
-    .\] 
-    Так как $ {p \choose i} \del p$, то каждое слагаемое суммы делится на  $ p^{1 + 2(k-1)} = p^{k+1}p^{k-2}$.
-    Так как $ p \ge 2$, сумма равна $ p^{k+1}z$, а $ (1+p) ^{p^{k-1}} = 1 + p^{k}y$, где $ y = x + pz$ не делится на  $ p$.
+	p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
+    .\]
+\end{thm}
+\begin{proof}
+    По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
 
-    Таким образом, порядок элемента  $ 1 + p$ в группе  $ (\Z \po p^{k} \Z)^{*}$  делит $ p^{k-1}$. По предположению индукции $ 1+p $ имеет порядок  $ p^{k-1}$, также $ y $ не делит  $ p$, следовательно, порядок  $ 1+p$ равен  $ p^{k-1}$.
-\end{description}
- \end{proof}
- \section{Экспонента группы $ (\Z \po 2^{k}\Z)^{*}$. Теорема Кармайкла }
- \begin{thm}[Кармайкла]
-     $ n = 2^{k} \cdot p_1^{k_1} \ldots p_n^{k_n}$.
-     \begin{itemize}
-	 \item Если  $ k \ge 3$,
-      \[
-	  \exp (\Z \po n\Z)^{*} = \lcm_{i, p_i \ne 2}\left(2^{k-2},~ p_i^{k_i} - p_i^{k_i-1}\right)
-     ,\] 
- \item иначе
-     \[
-	 \exp (\Z \diagup n \Z)^{*}= \lcm _i \left(p_i^{k_i} - p_i^{k^{i}-1}\right)
-     .\] 
-     \end{itemize}
- \end{thm}
- \begin{proof}
-     По теореме Эйлера экспонента группы $ (\Z\po p_{i}^{k_i} \Z)^{*}$ делит $ (p_i^{k_i} = p_{i}^{k_i -1}$. Кроме того 
-     \[
-     \exp (\Z\po n\Z)^{*} = \lcm_i \left(\Z \po p_{i}^{k_i}\Z)^{*}\right)
-     .\] 
-     Если $ k \ge 2$, можно доказать, что $ \exp (\Z\po 2^{k}\Z)^{*}  = 2^{k-2}$.
-     Докажем, что $ (1 + 4z)2^{k-2} = 1+2^{k} y$, где $ y$  имеет ту же четность, что и $ z$.
-     Индукция по $ k$.
-      \begin{description}
-	  \item База $ (k = 2)$.
-	  \item Переход $ (k \ge 3)$.
-	      По индукционному предположению $ (1+4z)^{2^{k-3}} = 1 + 2^{k-1}x$, где $ x \equiv z \mod 2$.
-	      \[
-		  (1+4z)^{2^{k-2}} = (1+ 2^{k-1}x)^{x})^2 = 1 + 2 \cdot 2 ^{k-1} x + 2^{2k-2} x^2 = 1 + 2^{k}(x + 2 ^{k-2}x^2)
-	      .\] 
-	      Так как $ k \ge 3$, $ y = x + 2^{k-2} x^2 \equiv x \equiv z \mod 2$. Если $ z $ нечетно, порядок  $ 1 + 4z$ в группе $ (\Z \po 2^{k}\Z)^{*}$ равен  равен $ k-2$.
+    Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
+\end{proof}
+\section{Функция Эйлера. Теорема Эйлера}
+Так как $ \Z$  --- евклидово кольцо, то оно является областью главных идеалов. По лемме \ref{lm_max_prime_n} любой ненулевой простой идеал является максимальным, значит $ \Z \po p\Z$ --- поле  тогда и только тогда, когда $ p \in \Pm$.
 
-	      С другой стороны, при любом  $ t$ имеем  $ (1 + 2t)^2 = 1 + 4 z$, где $ z = t +t^2 \del 2$. Поэтому (так как $ y \del 2$)
-	      \[
-	      (1+2t)^{2^{k-2}} = (1+ 4z)^{2^{k-3}} = 1 + 2 ^{k-1} y \equiv 1 \mod 2^{k}
-	      .\] 
-	      Следовательно, порядок любого элемента группы $ (\Z \po 2^{k}\Z)^{*}$ делит $ 2^{k-2}$.
-     \end{description}
-     Из этого следует уточнение при $ k \ge  3$.
- \end{proof}
- \section{Интерполяция по Лагранжу и связь ее с КТО}
- \begin{thm}
-     Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
-     \[
-	 p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
-     .\] 
- \end{thm}
- \begin{proof}
-     По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
+Если $ n_1, \ldots n_t$ --- попарно взаимно просты, то имеет место китайская теорема об остатках:
+\[
+    \frac{\Z}{n_1 \ldots n_t\Z} \cong \frac{\Z}{n_1\Z} \oplus \ldots \frac{\Z}{n_t\Z}
+.\]
+\begin{defn}
+    Порядок мультипликативной группы $ (\Z \po n\Z)^{*}$ обозначается $ \varphi (n)$. Функция $ \varphi :\N \to  \N$ называется {\sf функцией Эйлера}.
+\end{defn}
+\begin{lm}
+    Образ числа $ n \in \Z$ обратим в кольце $ \Z \po n\Z$  тогда и только тогда, когда $ \gcd (n,m) = 1$. Таким образом,  $ \varphi (n)$ равна количеству чисел от $ 0$ до $ n$, взаимно простых с  $ n$.
+\end{lm}
+\begin{proof}
+    Пусть $ \overline{m}$ --- образ $ m$ в  $ \Z\po n\Z$.
+    $ \overline{m}$ обратим тогда и только тогда, когда $ \exists \overline{x } \in \Z\po n\Z: \overline{m}\cdot \overline{z} = 1$.
+    Если $ x \in \Z$ --- прообраз $ \overline{x}$, то вместо $ \overline{m} \cdot  \overline{x} = 1$ можем записать $ mx \in  1 + n\Z$, то есть идеалы $ m\Z$ и  $ n\Z$ взаимно просты. По следствию \ref{cor_pp} $ \gcd(m, n) = 1$.
+\end{proof}
+\begin{lm}
+    Если кольцо $ R$ c единицей (не обязательно коммутативное) является прямой суммой колец  $ R_1 \oplus \ldots R_k$, то $ \R^{*} \cong R_1^{*} \times \ldots R_k^{*}$. Если $ R^{*}$ конечна, то $ |R^{*}| = |R^{*}_1| \cdot \ldots |R_k^{*}|$.
+\end{lm}
+\begin{thm}
+    $ $
+    \begin{itemize}[noitemsep]
+	\item
+	    Если $ \gcd(a, b) = 1$, то  $ \varphi (ab) = \varphi (a) \varphi (b)$.
+	\item Если $ p \in \Pm$, $ k \in \N$, то $ \varphi (p^{k}) = p^{k} - p^{k-1}$.
+	\item Пусть  $ p_1, \ldots p_l$ --- различные простые числа, $ k_1, \ldots k_l \in \N$, $ n = \prod_{i = 1}^{l}p_i^{k_i}$. Тогда
+	    \[
+		\varphi (n) = \prod_{i=1}^{l}\left(p_{i}^{k_i} - p_i^{k_i -1}\right) =n\prod_{i = 1}^{l}\frac{p_i - 1}{p_i}
+	    .\]
+    \end{itemize}
+\end{thm}
+\begin{thm}[теорема Эйлера]
+    Если $ \gcd(a, n) = 1$, то  $ a^{ \varphi (n)} \equiv 1 \mod n$.
+\end{thm}
+\begin{proof}
+    Так как $ a$ взаимно просто с  $ n$,  $ \overline{a} $ обратим в $ \Z\po n\Z$ и принадлежит  $ (\Z \po n\Z)*$.  $ \overline{a}$ порождает в $ \Z \po n\Z $ циклическую подгруппу, порядок которой делит  $ \varphi (n)$ по теореме Лагранжа.
+    \[
+	\overline{a}^{ \varphi (n)} = \overline{1} \Longrightarrow a^{ \varphi (n)} \equiv 1 \mod n1 \mod n1 \mod n
+    .\]
+\end{proof}
+\section{Экспонента группы $ (\Z \po p^{k}\Z)^{*}$ при $ p \ne  2$ }
+\begin{thm}
+    Группа $ (\Z \po p^{k }\Z)^{*}$ циклическая для любого $ p \ne 2$, и $ \exp (\Z \po p^{k}\Z)^{*} \del (p-1)p^{k^{p-1}}$.
+\end{thm}
+\begin{proof}
+    Пусть $ p \in \Pm \wedge p \ne  2$. Поле $ \Z \po p\Z$ --- факторкольцо кольца  $ \Z \po p^{k }\Z$ по идеалу, порожденному $ p$.
 
-     Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
- \end{proof}
- \begin{proof}[Итерационный способ]
-     На $ k$-ом шаге строится многочлен степени  $ \le k-1$, удовлетворяющий первым $ k$ условиям.
+    Пусть  $ \pi: \Z \po p^{k}\Z \to  \Z \po p\Z$ --- каноническая проекция. $f: (\Z \po p^{k}\Z)^{*} \to  (\Z \po p\Z)^{*}$ --- гомоморфизм мультипликативных групп, который сюрьективен, так как все числа от $ 1$ до $p-1 $ взаимно просты с $ p^{k}$ и, следовательно, их классы вычетов обратимы.
 
-     \begin{itemize}
-	 \item 
-     На первом шаге  $ p_0(t) = y_0$.
- \item Пусть уже построен $ p_k$, удовлетворяющий условиям  $ \deg p_k \le k -1$ и $ p_k(t_i) = y_i \quad \forall i \in [0, k-1]$.
-   \[
-       p_{k+1} (t) = p_k(t) + \lambda(t - t_0 ) \cdot  \ldots  (t - t_{k-1})
-   .\]  
-   $ \lambda$ можно найти из условия  $ p_{k+1}(t_{k}) = y_k$, так как первые $ k$ уже выполнены. 
-     \end{itemize}
-     
- \end{proof}
+    По теореме \ref{th_end} существует элемент $ a \in \Z \po p\Z$ порядка $ p-1$. Тогда порядок его прообраза в  $ (\Z \po p^{k}\Z)^{*}$ делится на $ p-1$. Следовательно, экспонента группы  $ (\Z \po p^{k} \Z)^{*}$ делится на $ p-1$.
+
+    Докажем, что при $ k \ge 2$ экспонента делится на $ p^{k-1}$.
+    По индукции докажем, что элемент $ 1+p$ имеет порядок  $ p^{k-1}$в этой группе.
+    \begin{description}
+	\item База $ (k=1)$: очевидно.
+	\item Переход  $ (k \ge 2)$: По индукционному предположению
+	    $ (1+p)^{p^{k-2}} = 1 + p^{k-1}x$, где $ x$ не делится на  $ p$.
+	    \[
+		(1+p)^{p^{k-1}} = (1 + p^{k-1} x)^{p} = 1  + p\cdot p^{k-1}x+ \sum_{i=2}^{p} {{p}\choose{i}} p^{i (k-1)} x^{i}
+	    .\]
+	    Так как $ {p \choose i} \del p$, то каждое слагаемое суммы делится на  $ p^{1 + 2(k-1)} = p^{k+1}p^{k-2}$.
+	    Так как $ p \ge 2$, сумма равна $ p^{k+1}z$, а $ (1+p) ^{p^{k-1}} = 1 + p^{k}y$, где $ y = x + pz$ не делится на  $ p$.
+
+	    Таким образом, порядок элемента  $ 1 + p$ в группе  $ (\Z \po p^{k} \Z)^{*}$  делит $ p^{k-1}$. По предположению индукции $ 1+p $ имеет порядок  $ p^{k-1}$, также $ y $ не делит  $ p$, следовательно, порядок  $ 1+p$ равен  $ p^{k-1}$.
+    \end{description}
+\end{proof}
+\section{Экспонента группы $ (\Z \po 2^{k}\Z)^{*}$. Теорема Кармайкла }
+\begin{thm}[Кармайкла]
+    $ n = 2^{k} \cdot p_1^{k_1} \ldots p_n^{k_n}$.
+    \begin{itemize}
+	\item Если  $ k \ge 3$,
+	    \[
+		\exp (\Z \po n\Z)^{*} = \lcm_{i, p_i \ne 2}\left(2^{k-2},~ p_i^{k_i} - p_i^{k_i-1}\right)
+	    ,\]
+	\item иначе
+	    \[
+		\exp (\Z \diagup n \Z)^{*}= \lcm _i \left(p_i^{k_i} - p_i^{k^{i}-1}\right)
+	    .\]
+    \end{itemize}
+\end{thm}
+\begin{proof}
+    По теореме Эйлера экспонента группы $ (\Z\po p_{i}^{k_i} \Z)^{*}$ делит $ (p_i^{k_i} = p_{i}^{k_i -1}$. Кроме того
+    \[
+	\exp (\Z\po n\Z)^{*} = \lcm_i \left(\Z \po p_{i}^{k_i}\Z)^{*}\right)
+    .\]
+    Если $ k \ge 2$, можно доказать, что $ \exp (\Z\po 2^{k}\Z)^{*}  = 2^{k-2}$.
+    Докажем, что $ (1 + 4z)2^{k-2} = 1+2^{k} y$, где $ y$  имеет ту же четность, что и $ z$.
+    Индукция по $ k$.
+    \begin{description}
+	\item База $ (k = 2)$.
+	\item Переход $ (k \ge 3)$.
+	    По индукционному предположению $ (1+4z)^{2^{k-3}} = 1 + 2^{k-1}x$, где $ x \equiv z \mod 2$.
+	    \[
+		(1+4z)^{2^{k-2}} = (1+ 2^{k-1}x)^{x})^2 = 1 + 2 \cdot 2 ^{k-1} x + 2^{2k-2} x^2 = 1 + 2^{k}(x + 2 ^{k-2}x^2)
+	    .\]
+	    Так как $ k \ge 3$, $ y = x + 2^{k-2} x^2 \equiv x \equiv z \mod 2$. Если $ z $ нечетно, порядок  $ 1 + 4z$ в группе $ (\Z \po 2^{k}\Z)^{*}$ равен  равен $ k-2$.
+
+	    С другой стороны, при любом  $ t$ имеем  $ (1 + 2t)^2 = 1 + 4 z$, где $ z = t +t^2 \del 2$. Поэтому (так как $ y \del 2$)
+	    \[
+		(1+2t)^{2^{k-2}} = (1+ 4z)^{2^{k-3}} = 1 + 2 ^{k-1} y \equiv 1 \mod 2^{k}
+	    .\]
+	    Следовательно, порядок любого элемента группы $ (\Z \po 2^{k}\Z)^{*}$ делит $ 2^{k-2}$.
+    \end{description}
+    Из этого следует уточнение при $ k \ge  3$.
+\end{proof}
+\section{Интерполяция по Лагранжу и связь ее с КТО}
+\begin{thm}
+    Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
+    \[
+	p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
+    .\]
+\end{thm}
+\begin{proof}
+    По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
+
+    Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
+\end{proof}
+\begin{proof}[Итерационный способ]
+    На $ k$-ом шаге строится многочлен степени  $ \le k-1$, удовлетворяющий первым $ k$ условиям.
+
+    \begin{itemize}
+	\item
+	    На первом шаге  $ p_0(t) = y_0$.
+	\item Пусть уже построен $ p_k$, удовлетворяющий условиям  $ \deg p_k \le k -1$ и $ p_k(t_i) = y_i \quad \forall i \in [0, k-1]$.
+	    \[
+		p_{k+1} (t) = p_k(t) + \lambda(t - t_0 ) \cdot  \ldots  (t - t_{k-1})
+	    .\]
+	    $ \lambda$ можно найти из условия  $ p_{k+1}(t_{k}) = y_k$, так как первые $ k$ уже выполнены.
+    \end{itemize}
+
+\end{proof}
 \section{Формальная производная и ее свойства}
 \begin{defn}
-     Пусть $ R$ --- коммутативное кольцо с единицей. {\sf Формальной производной многочлена } $ p(t) = a_n t ^{n} + \ldots + a_1t+ a_0 \in R[t]$ называется многочлен $ p'(t) = a_n n t ^{n -1} + \ldots a_1$.
+    Пусть $ R$ --- коммутативное кольцо с единицей. {\sf Формальной производной многочлена } $ p(t) = a_n t ^{n} + \ldots + a_1t+ a_0 \in R[t]$ называется многочлен $ p'(t) = a_n n t ^{n -1} + \ldots a_1$.
 \end{defn}
 \begin{prop}
     $ $
@@ -2936,27 +2939,27 @@ $$
 	\item  $ (\alpha v)' = \alpha  v' $
 	\item  $ (u+ v)' = u'+  v' $
 	\item $
-		    (uv)' = u' v + v' u
-		    $
+	    (uv)' = u' v + v' u
+	    $
 	\item  $ \left( f(g(t)) \right) ' = f'(g(t)) \cdot g'(t)$
     \end{enumerate}
 \end{prop}
 \section{Кратность корня и ее поведение при дифференцировании}
- \begin{defn}
-     Число $ \alpha \in F$ {\sf имеет кратность $ k$ в многочлене}  $ p \in F[t]$, если $ k$ --- наибольшее натуральное число, для которого  $ p $ делится  $ (t - \alpha)^{k}$. 
+\begin{defn}
+    Число $ \alpha \in F$ {\sf имеет кратность $ k$ в многочлене}  $ p \in F[t]$, если $ k$ --- наибольшее натуральное число, для которого  $ p $ делится  $ (t - \alpha)^{k}$.
 
-     Используя теорему Безу, можно переформулировать это определение: $ \alpha $ имеет кратность $ k$ в $p$, если  $ p(t) = (t-\alpha)^{k}g(x), \quad g(\alpha)\ne 0$.
- \end{defn}
- \begin{note}
-     Если кратность корня равна нулю, это не корень.
- \end{note}
+    Используя теорему Безу, можно переформулировать это определение: $ \alpha $ имеет кратность $ k$ в $p$, если  $ p(t) = (t-\alpha)^{k}g(x), \quad g(\alpha)\ne 0$.
+\end{defn}
+\begin{note}
+    Если кратность корня равна нулю, это не корень.
+\end{note}
 \begin{thm}
     Пусть $ \alpha $ --- корень многочлена $ p$ кратности  $ k$.
     Если $ k \ne 0$ в поле $ F$, то кратность  $ \alpha $ в $ p'$ равна $ k-1$.
 \end{thm}
 \begin{proof}
-    По условию $ p(t) = (t- \alpha )^{k}g(t)$. 
-    Возьмем производную 
+    По условию $ p(t) = (t- \alpha )^{k}g(t)$.
+    Возьмем производную
     $$  \bigl((t- \alpha ) ^{ k} g(t)\bigr)' = k (t - \alpha )^{k-1} g(t) + (t- \alpha ) ^{k} g'(t) = (t - \alpha ) ^{k-1} (k g(t) + (t - \alpha ) g'(t)).$$
     Второй сомножитель в точке $ \alpha $ не равен нулю, следовательно, если $ k \ne 0$, кратность $ \alpha $ уменьшилась на один, так как $ kg(\alpha) + (\alpha-\alpha)f'(\alpha) \ne 0$.
 \end{proof}
