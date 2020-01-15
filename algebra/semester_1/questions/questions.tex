@@ -2490,9 +2490,9 @@ $$
 % Если $ r \cdot s = 0$, то $ \varphi (r) = 0$.
 \begin{defn}
     $ S \subseteq R$, $ S$ --- мультипликативное подмножество, если:
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
 	\item $ 1 \in  S$ 
-	    \item  $\forall s_1, \ldots  s_2 \in  S: s_1 s_2 \in S$
+	    \item  $\forall s_1, s_2 \in  S: s_1 s_2 \in S$
     \end{itemize}
 \end{defn}
 \begin{defn}
@@ -2502,12 +2502,19 @@ $$
 	\item для любого гомоморфизма $ \varphi : R \to  A$, при котором $ \varphi (s) \in A^{*}$ для всех  $ s \in S$, существует единственный гомоморфизм $ \psi : S^{-1}R \to  A: \psi \circ \lambda_S = \varphi $.
     \end{enumerate}
 \end{defn}
- \begin{lm}
-     $ \lambda_S $ --- инъекция тогда и только тогда, когда  в $ S$ нет делителей нуля.
- \end{lm}
- \begin{proof}
-     $ \frac{r_1}{1} \frac{r_2}{ 1} \Leftrightarrow  \exists  s \in  S : s (r_1 - r_2) = 0 \Leftrightarrow r_1 = r_2$.  Что равносильно тому что, нет делителей нуля в $ S$.
- \end{proof}
+%  \begin{lm}
+%      $ \lambda_S $ --- инъекция тогда и только тогда, когда  в $ S$ нет делителей нуля.
+%  \end{lm}
+%  \begin{proof}
+%      $ \frac{r_1}{1} \frac{r_2}{ 1} \Leftrightarrow  \exists  s \in  S : s (r_1 - r_2) = 0 \Leftrightarrow r_1 = r_2$.  Что равносильно тому что, нет делителей нуля в $ S$.
+%  \end{proof}
+\begin{note}
+    Если $ R$ ---- область целостности, то  $ \{0 \}$ --- простой идеал.
+    Локализация в этом идеале будет полем, которое называется {\sf полем частных кольца $ R$}.
+\end{note}
+ \begin{thm}[Универсальное свойство локализации]
+     Пусть $ R$ --- область целостности, $ S = R \po \{0\}$. Тогда $ F = S^{-1}R$ является полем, а гомоморфизм локализации $ \lambda_S: R \rightarrowtail$ инъективен. При этом  $ \lambda_S$ удовлетворяет следующему универсальному свойству: для любого поля  $ K$ и мономорфизма  $ \varphi :R \rightarrowtail K$ существует единственный мономорфизм $ \psi: F \rightarrowtail K$ такой, что  $ \varphi  = \psi \circ \lambda_S$.
+ \end{thm}
 \subsection{Примеры}
 \begin{enumerate}
     \item Для $ s \in R$ положим $ \langle s \rangle = \{s^{n} \mid n \in \N_0\}$. Локализация $ \langle s \rangle^{-1} R $ обозначается через $ R_s$ и называется {\sf главной локализацией в элементе $ s$}.  
@@ -2517,7 +2524,7 @@ $$
     \item  $ R = K[x]$, где  $ K$ --- кольцо,  $ S$ --- множество унитарных многочленов.
 \end{enumerate}
 \section{Конструкция локализации}
-Определим отношение эквивалентности <<$ \sim $>> на множестве $ R \times R$:
+Определим отношение эквивалентности <<$ \sim $>> на множестве $ R \times S$:
 \[
     (r_1, s_1) \sim (r_2, s_2) \Longleftrightarrow \exists s \in  S: ss_2r_1 = ss_1r_2
 .\]
@@ -2626,4 +2633,195 @@ $$
      .\] 
      По условию $ \varphi (s)$ обратимо, следовательно, $ \psi(\frac{r}{s}) =  \varphi (r) \varphi (s)^{-1}$. Значит, $ \psi$ однозначно определено.
 \end{proof}
+\section{Поле частных евклидова кольца и разложение на простейшие дроби}
+\begin{defn}
+    Пусть $ R$ ---  евклидово кольцо с евклидовой нормой $ f$, $ F$ --- его поле частных. {\sf Простейшей дробью} называется элемент $ \frac{r}{s^{n}} \in F$, где $ r, s \in R$, $ s$ неприводим, и  $ f(r) < f(s)$.
+\end{defn}
+ \begin{st}
+     $ F$ --- поле частных $ R$. $ a, b, c \in  R$, где $ \gcd(b, c)$
+    Дробь $ \frac{a}{bc}$ раскладывается в сумму двух дробей со знаменателями $ b$ и  $ c$.
+ \end{st}
+ \begin{proof}
+     По теореме о линейном представлении НОД $ \exists x, y \in R: 1 = bx + cy$.
+     Из чего следует, что $ \frac{a}{bc} = \frac{abx + acy}{bc} = \frac{ax}{c} + \frac{ay}{b}$. 
+ \end{proof}
+ \begin{note}
+     Пусть
+     \[
+     b = p_1^{k_1} \cdot  \ldots  \cdot  p_m ^{k_m}, \qquad  p_i \in R \text{ --- неприводимы}
+     .\] 
+     Тогда
+     $ p_i^{k_i} $ взаимно просто с $ \prod_{j \ne i} p_j ^{k_j}$.
+ \end{note}
+ \begin{cor}
+     Пусть $ R$ --- кольцо главных идеалов.
+     \[
+	 \forall a, b \in  R ~ \exists  r_i \in  R: \frac{a}{b} = \sum_{i=1}^{m} \frac{r_i}{p_i^{k_i}}, \quad b = \prod p_i^{k_i}, ~ p_i \in R \text{ --- неприводимы}
+     .\] 
+ \end{cor}
+ \begin{thm}
+     Любой элемент поля частных $ F$ евклидова кольца $ R$ раскладывается в сумму элемента из $ R$ и простейших дробей. 
+ \end{thm}
+ \begin{proof}
+     Пусть $ p $ --- неприводим, $ k \in  \N, r, p \in  R $. Разложим $ \frac{r}{p^{k}}$ в сумму простейших дробей и элемента кольца $ R$.
+
+     Индукция по $ k$.
+     \begin{description}
+	 \item База $ (k = 0)$:
+      \[
+     r = pb + x \Longrightarrow \frac{r}{p } = b + \frac{c}{p}
+     .\] 
+	 \item 
+	     Переход $ (k -1 \to  k)$:
+     Пусть $ f$ --- евклидова норма. Разделим  $ r$ на  $ p$ с остатком:
+     $ r = sp + q, \quad f(q) < f(p)$.
+     Тогда 
+\[
+\frac{r}{p^{k}} = \frac{s}{p^{k-1}} + \frac{q}{p^{k}}
+.\] 
+Вторая дробь --- простейшая, а первая по предположению индукции раскладывается в сумму простейших и элемента из $ R$.
+     \end{description}
+ \end{proof}
+ \section{Определение алгебры над кольцом. Алгебра многочленов и ее универсальное свойство}
+ \begin{name}
+     $ R$ --- коммутативное кольцо с единицей.
+ \end{name}
+ \begin{defn}
+     {\sf Многочленом  $ p$ от одной переменной $ t$ над $ R$} называется конечный набор $ ( \alpha _0, \ldots  \alpha _n)$, записанный в виде $p(t) =  \alpha _0 + \alpha _1 t + \ldots + \alpha _n t^{n}$. При этом {\sf степень многочлена} равна $ n = \deg p$.
+ \end{defn}
+ \begin{note}
+     Сумма, произведение и степень ($ +, \cdot$ ) многочленов определены стандартным образом.
+ \end{note}
+ \begin{defn}
+     Пусть $ V$ --- векторное пространство над полем  $ F$, снабженное операцией умножения  $ V \times V \to  V$. Тогда $ V$ является {\sf алгеброй над полем $ F$}, если  $ \forall x, y, z \in V, ~\alpha, \beta \in F$:
+     \begin{enumerate}[noitemsep]
+	 \item $ (x+y) z = xz+ yz$
+	 \item  $ x (y + z) = xy + xz$
+	 \item  $ (\alpha x)(\beta y) = (\alpha \beta)(xy)$
+     \end{enumerate}
+ \end{defn}
+ \begin{defn}
+     $ F[t]$ --- {\sf множество всех многочленов} от переменной $ t$ в поле $ F$. С операциями сложения и умножения  является алгеброй над $ F$.
+ \end{defn}
+ Определим полиномиальную функцию $ \tilde p: A \to  A$ формулой
+  \[
+      \tilde p(a) = \alpha_0 + \alpha_1 a + \ldots + \alpha_n a^{n}
+ .\] 
+ \begin{defn}
+     $ A $-- алгебра над $ F$ , если $ A$ --- кольцо и  $ F$  --- модуль и $ r(a_1 a_2) = (r a_1) a_2$.
+
+     По другому:
+     $ 
+     \begin{array}{l}
+\varphi : R \to  A \\
+\varphi (r) = r \cdot 1_A
+     \end{array}
+     $
+
+     Обратно:
+     Если задана $ \varphi : R \to  A$ (гомоморфизм колец с единицей) \[
+	 ra \coloneqq \varphi (r) \cdot a
+     \] 
+     задает на $ A$ структуру $ R$- модуля.
+ \end{defn}
+ \begin{note}
+     В определении $ A$ не обязательно является коммутативным.
+ \end{note}
+ \begin{defn}
+     $ A, B$ алгебры над $ R$.
+     $\Theta : A \to  B$
+      --- гомоморфизм $ R$-алгебр, если 
+      \begin{enumerate}[noitemsep]
+	 \item $ \Theta(a_1a_2) =\Theta (a_1) \Theta(a_2) $
+	 \item $ \Theta(a_1+a_2) = \Theta(a_1) + \Theta(a_2)$
+	 \item $ \Theta (1) = 1 $ (если все с 1)
+	 \item  $ \Theta(ra) = r \Theta(a)$
+     \end{enumerate}
+ \end{defn}
+ \begin{defn}
+     $ A$ --- $ R$-алгебра, $ a \in  A, p \in  R[t], \quad p(t) = \alpha _0 \cdot  1 + \ldots + \alpha _n \cdot  t ^{n}$.
+ \[
+     \varepsilon _a(p) = p(a) \coloneqq \alpha _0 + \ldots + \alpha _n a^{n}
+ .\] 
+ $ \varepsilon _a: R[t] \to  A$ --- гомоморфизм подстановки.
+ \end{defn}
+ \begin{st}[Универсальное свойство кольца многочленов]
+     $
+     \forall  a \in  A  
+     $ существует единственный гомоморфизм $ R $-алгебры  $ \varepsilon : R[t] \to A: t \mapsto a$.
+ \end{st}
+ \begin{proof}
+     $ \forall  r \in  R: \varepsilon (r) = \varepsilon (r \cdot 1) = r \cdot  \varepsilon (1) = r \cdot  1$
+     \[
+	 \varepsilon ( \alpha _0 + \ldots  + \alpha _n t ^{n}) = \varepsilon ( \alpha _0) + \ldots  \alpha _n \varepsilon ( t ^{n}) =  \alpha _0 \cdot  1 + \ldots \alpha _n \cdot  a^{_n}
+     .\] 
+ \end{proof}
+ \section{Многочлены от одной переменной: деление с остатком, теорема Безу, количество корней многочлена}
+\begin{name}
+    Далее $ F$  --- поле.
+\end{name}
+\begin{thm}
+  кольцо многочленов $ F[t]$  над полем $ F $ --- евклидово с евклидовой нормой $ \deg$.
+\end{thm}
+ \begin{thm}[Безу]
+     Пусть $ \alpha \in F$, $ p \in F[t]$.
+     \begin{enumerate}[noitemsep]
+	 \item 
+     Остаток от деления многочлена $ p$ на $ t - \alpha $ равен $ p(\alpha)$.
+ \item Элемент $ \alpha $ является корнем многочлена $ p$  тогда и только тогда, когда $ p$ делится на  $ t- \alpha $.
+ \item Многочлен степени $ n$ не может иметь больше, чем  $ n$ корней.
+     \end{enumerate}
+ \end{thm}
+ \section{Конечная подгруппа мультипликативной группы поля}
+  \begin{thm}
+      Любая конечная подгруппа мультипликативной группы поля циклическая.
+ \end{thm}
+ \begin{proof}
+    Пусть $ F$ --- поле, $ G \le F^{*}$, $ |G| =n $.
+
+     $ \exp G = k \Longrightarrow \forall g \in  G: g^{k } = 1$, то есть все элементы $ G$ корни многочлена $ t ^{k} -1 \Longrightarrow  |G| \le k$ . А он имеет на больше  $ k$ корней. 
+     $ k$ делит  $ |G| \Longrightarrow  \exp G = |G|$. Следовательно, $ G$ --- циклическая. 
+ \end{proof}
+ \begin{thm}
+     Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
+     \[
+	 p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
+     .\] 
+ \end{thm}
+ \begin{proof}
+     По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
+
+     Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
+ \end{proof}
+ \section{Функция Эйлера. Теорема Эйлера}
+ \section{Экспонента группы $ (\Z \po p^{k}\Z)^{*}$ при $ p \ne  2$ }
+ \section{Экспонента группы $ (\Z \po 2^{k}\Z)^{*}$ }
+ \section{Интерполяция по Лагранжу и связь ее с КТО}
+ \begin{thm}
+     Пусть $ t_0, y_0, \ldots t_n, y_n \in F$, причем $ t_i \ne  t_j ~ \forall i \ne j$. Существует единственный многочлен $ p$ степени не выше  $ n$, удовлетворяющий условиям  $ p(t_i) = y_i ~ \forall i \in [0, n]$. Этот многочлен можно найти по формуле
+     \[
+	 p(t) = \sum_{i = 0}^{n} y_i \frac{\prod_{j \ne  i}(t-t_j)}{\prod_{j \ne  i}(t_i - t_j)}
+     .\] 
+ \end{thm}
+ \begin{proof}
+     По теореме Безу условия $ p(t_i) = y_i $  равносильны условиям  $ p \equiv y_{i} \mod (t - t_i)$. По китайской теореме об остатках существует единственный по модулю $ w(t) = \prod\limits_{i = 0}^{n}(t-t_i)$ многочлен, удовлетворяющий этим сравнениям.
+
+     Единственный многочлен $ \deg \le n $ --- остаток от деления любого такого многочлена на $ w$.
+ \end{proof}
+ \begin{proof}[итерационный способ]
+     На $ k$-ом шаге строится многочлен степени  $ \le k-1$, удовлетворяющий первым $ k$ условиям.
+
+     \begin{itemize}
+	 \item 
+     На первом шаге  $ p_0(t) = y_0$.
+ \item Пусть уже построен $ p_k$, удовлетворяющий условиям  $ \deg p_k \le k -1$ и $ p_k(t_i) = y_i \quad \forall i \in [0, k-1]$.
+   \[
+       p_{k+1} (t) = p_k(t) + \lambda(t - t_0 ) \cdot  \ldots  (t - t_{k-1})
+   .\]  
+   $ \lambda$ можно найти из условия  $ p_{k+1}(t_{k}) = y_k$, так как первые $ k$ уже выполнены. 
+     \end{itemize}
+     
+ \end{proof}
+\section{Формальная производная и ее свойства}
+\section{Кратность корня и ее поведение при дифференцировании}
 \end{document}
