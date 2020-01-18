@@ -291,6 +291,7 @@
 \begin{name}
     $ (X, \Omega )$ --- топологическое пространство, $ A \subset X$.
 \end{name}
+\subsection{Внутренность множества. Внутренние точки}
 \begin{defn}
     Внутренность множества $ A$ ( $ \Int A, A^{\circ}$ ) --- объединение всех открытых множеств, содержащихся в $ A$.
 \end{defn}
@@ -313,6 +314,7 @@
 \begin{cor}
     $ A$ открыто  тогда и только тогда, когда все его точки внутренние.
 \end{cor}
+\subsection{Замыкание, граница, точки прикостновения}
 \begin{defn}
     Замыкание множества $ A$  ($ \Cl A, \overline{A}$ ) --- пересечение всех замкнутых множеств, содержащих $ A$.
 \end{defn}
@@ -323,12 +325,28 @@
 	\item  $ A$ замкнуто  тогда и только тогда, когда $ \Cl A = A$.
 	\item   $
 	    \begin{aligned}
-	    &\Cl (X \setminus A) = \Int A \\
+	    &\Cl (X \setminus A) = X \setminus \Int A \\
 	    &\Int(X \setminus A) = X \setminus \Cl A
 	    \end{aligned}
 	    $
     \end{enumerate}
 \end{prop}
+\begin{defn}
+    Граница множества $ A$ ($ \Fr A, ~ \partial A$) это $ \Cl A \setminus \Int A$.
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{enumerate}
+	\item $ \Fr A$  замкнуто.
+	\item  $ \Fr A = \Fr (X \setminus A)$
+	\item $ A$ замкнуто  тогда и только тогда, когда $ \Fr A \subset A$.
+	\item $ A $ открыто  тогда и только тогда, когда $ A \cap \Fr A = \varnothing$.
+	\item $ \Cl A = \Int A \sqcup \Fr A$
+    \end{enumerate}
+\end{prop}
+\begin{st}
+    $ X = \Int A \sqcup \Cl A \sqcup \Fr A$
+\end{st}
 \begin{defn}
     Точка $ x \in X$ называется точкой прикосновения, если для любой окрестности $ U \ni x: ~ U \cap A \ne \varnothing$.
 \end{defn}
@@ -345,6 +363,7 @@
     .\]
     $ U \cap A = \varnothing \Longleftrightarrow U \subset X \setminus A \Longleftrightarrow x \text{ --- внутренняя точка } X \setminus A$.
 \end{proof}
+\subsection{Изолированные и предельные точки}
 \begin{defn}
     Точка $ x \in X$ называется внешней точкой множества $ A$, если  $ x$ --- внутренняя точка  $ X \setminus A$.
 
@@ -363,24 +382,6 @@
 	\item  $ A$ замкнуто  тогда и только тогда, когда  $ A$ содержит все свои предельные точки.
     \end{enumerate}
 \end{prop}
-\begin{defn}
-    Граница множества $ A = \Cl A \setminus \Int A$.
-
-    Обозначения: $ \Fr A, ~ \partial A$.
-\end{defn}
-\begin{prop}
-    $ $
-    \begin{enumerate}
-	\item $ \Fr A$  замкнуто.
-	\item  $ \Fr A = \Fr (X \setminus A)$
-	\item $ A$ замкнуто  тогда и только тогда, когда $ \Fr A \subset A$.
-	\item $ A $ открыто  тогда и только тогда, когда $ A \cap \Fr A = \varnothing$.
-	\item $ \Cl A = \Int A \sqcup \Fr A$
-    \end{enumerate}
-\end{prop}
-\begin{st}
-    $ X = \Int A \sqcup \Cl A \sqcup \Fr A$
-\end{st}
 \begin{prac}
     $ $
     \begin{enumerate}
