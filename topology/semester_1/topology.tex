@@ -624,7 +624,7 @@ $ \Sigma \subset \Omega $ --- база топологии $ \Omega $, если $
 $d_X, d_Y$ - метрики.
 \begin{thm}
     \[
-	d((x, y) , (x', y')) = max \{d_X(x, x'), d_Y(y, y')\}
+	d((x, y) , (x', y')) = \max \{d_X(x, x'), d_Y(y, y')\}
     .\]
     $d$ - метрика на $X \times Y$.
     Произведение метризуемых пространств метризуемо.
@@ -728,7 +728,7 @@ $d_X, d_Y$ - метрики.
 \section{Непрерывность}
 $X, Y$ - топологические пространства, $\Omega_1, \Omega_2$ -  топологии, $f: X \to  Y$.
 \begin{defn}
-    $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} (U)\subset \Omega_X$.
+    $f$ -- непрерывна, если $\forall U \subset \Omega _Y: ~ f^{-1} (U) \in  \Omega_X$.
 \end{defn}
 \begin{note}
     \[
@@ -754,30 +754,30 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     $f$ - непрерывна тогда и только тогда, когда $\forall x_0 \in  X: f$ - непрерывна в точке $x_0$.
 \end{thm}
 \begin{proof}
-    $\Rightarrow )$\\
+    $ $
+    \begin{description}
+	\item $ \boxed{ \Longrightarrow }$
     $y_0 \in  U$.
     \[
-	\left \{
-	    \begin{array}{ll}
+	    \begin{cases}
 		f^{-1}(U) \mbox{ открыт} & V\coloneqq f^{-1}(U)\\
 		x_0 \in f^{-1}(U) & f(V) \subset U
-
-	    \end{array}
-	\right .
+	    \end{cases}
     .\]
-    $\Leftarrow )$\\
-    $U \subset Y$ - открыто, хотим доказать, что $f^{-1}(U)$ - открыто.
-    Достаточно доказать, что $\forall x \in  f^{-1}(x) $- внутренняя.
+	\item $ \boxed{ \Longleftarrow  }$
+    $U \subset Y$  открыто, хотим доказать, что $f^{-1}(U)$  открыто.
+    Достаточно доказать, что $\forall x \in  f^{-1}(U) $ внутренняя.
     \[
 	\exists V \ni x: f(V)\subset U \Leftrightarrow x \in  V \subset f^{-1}(U)
     .\]
-    Тогда $x$ - внутренняя точка $f^{-1}(U)$.
+    Тогда $x$ --- внутренняя точка $f^{-1}(U)$.
+    \end{description}
 \end{proof}
 \subsection{Непрерывность в метрических пространствах}
 \begin{thm}
     $X, Y$ -- метрические пространства.  $f: X \to  Y, ~ x_0 \in  X$.
 
-    Тогда $f$ -- непрерывна в точка $x_0$ тогда и только тогда, когда
+    Тогда $f$ --- непрерывна в точка $x_0$ тогда и только тогда, когда
     \[
 	\forall  \varepsilon >0 ~ \exists  \delta  >0: f(B_{ \delta }) \subset B_{ \varepsilon } (f(x))
     .\]
@@ -787,12 +787,15 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
     .\]
 \end{thm}
 \begin{proof}
-    $ \Rightarrow )$ Так как $f$ -- непрерывна в точке $x$, существует окрестность $V \ni x: f(v) \subset  B_{ \varepsilon }(f(x))$. Так как $V$ открыто, $\exists  \delta >0 : B_{ \delta } \subset  V$.
-
-    $ \Leftarrow )$ Рассмотрим $U \ni f(x)$.
+    $ $
+    \begin{description}
+	\item $ \boxed{ \Longrightarrow }$ Так как $f$ -- непрерывна в точке $x$, существует окрестность $V \ni x: f(v) \subset  B_{ \varepsilon }(f(x))$. Так как $V$ открыто, $\exists  \delta >0 : B_{ \delta } \subset  V$.
+	\item $ \boxed{ \Longleftarrow }$ 
+     Рассмотрим $U \ni f(x)$.
     Тогда $\exists  \varepsilon >0: B_{ \varepsilon }(f(x)) \subset U: \\
     \exists \delta  >0 : f(B_{\delta}(x)) \subset  B_{ \varepsilon } (f(x)) \subset  U$.
     Можем взять  $V:=B_{ \delta } (x)$.
+    \end{description}
 \end{proof}
 \subsection{Липшицевы отображения}
 \begin{defn}
