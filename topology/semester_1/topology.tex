@@ -123,11 +123,13 @@
     $ $
     \begin{enumerate}
 	\item Прямая $ \R$,  $$ d(x, y) = |x -y|$$
-	\item Плоскость $ \R^2 = \R \times \R = \{(x, y) \mid x, y \in \R\}$,  $$ d \bigl((x, y), (u, v)\bigr) = \sqrt{(x-u)^2+(y-v)^2}$$
-	\item $ \R^n = \underbrace{\R \times \ldots \times  \R}_n = \{(x_1, \ldots , x_n) \mid x_i\in \R\}$,  $$ d (x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}$$
+	\item Плоскость $ \R^2 = \R \times \R = \{(x, y) \mid x, y \in \R\}$,  
+	    \[ d \bigl((x, y), (u, v)\bigr) = \sqrt{(x-u)^2+(y-v)^2}\]
+	\item $ \R^n = \underbrace{\R \times \ldots \times  \R}_n = \{(x_1, \ldots , x_n) \mid x_i\in \R\}$,  
+	    \[ d (x, y) = \sqrt{\sum_{i=1}^{n} (x_i - y_i)^2}\]
 	\item Подпространство.
 
-	    Пусть  $ X = (X, d)$ ---  метрическое пространство. $ Y \subset X, ~ (Y, d\!\upharpoonright_{Y \times Y}$ --- подпространство.
+	    Пусть  $ X = (X, d)$ ---  метрическое пространство. $ Y \subset X, ~ (Y, d\!\!\upharpoonright_{Y \times Y})$ --- подпространство.
 	\item Единичная метрика.
 
 	    $ X$ любое множество,  $ d (x, y)=
@@ -256,8 +258,8 @@
     Топологическое пространство $ (X, \Omega )$ метризуемо, если существует метрика на $ X$, задающая топологию $ \Omega $.
 \end{defn}
 \begin{defn}
-    $ X$ ---  топологическое пространство.\\
-    Множество $ A \subset X$ называется замкнутым, если $ X \setminus A \in \Omega $.
+    $ X$ ---  топологическое пространство.
+    Множество $ A \subset X$ называется {\bf замкнутым}, если $ X \setminus A \in \Omega $.
 \end{defn}
 \begin{exs}
     $ $
@@ -317,7 +319,7 @@
 \begin{prop}
     $ $
     \begin{enumerate}
-	\item $ \Cl A$ --- наименьшее по включению замкнутое множество, содержащее  $ A$.
+	\item $ \Cl A$ --- наименьшее по включению замкнутое множество, содержащееся в $ A$.
 	\item  $ A$ замкнуто  тогда и только тогда, когда $ \Cl A = A$.
 	\item   $
 	    \begin{aligned}
@@ -404,7 +406,7 @@
     Просто проверяем определение.
 \end{proof}
 \begin{thm}
-    Определение согласовано с метрическим. Если $ X = (X, d)$ ---  метрическое пространство, $ \Omega $ --- топология, заданная метрикой $ d$, то  $ \Omega _Y$ --- топология, заданная $ d\!\upharpoonright_{Y\times Y}$.
+    Определение согласовано с метрическим. Если $ X = (X, d)$ ---  метрическое пространство, $ \Omega $ --- топология, заданная метрикой $ d$, то  $ \Omega _Y$ --- топология, заданная $ d\!\!\upharpoonright_{Y\times Y}$.
 \end{thm}
 \begin{proof}
     $ $
