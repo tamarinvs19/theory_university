@@ -1348,22 +1348,79 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     .\]
     Она корректна, непрерывна, и принимает значение ноль на $ A$  и  единице $ B$.
 \end{proof}
+\clearpage
+\subsection{Лемма Урысона}
 \begin{lm}[Урысон]
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывная функция $ f: X \to  [0, 1]: ~ f\!\!\upharpoonright_A = 0 \text{ и } f\!\!\upharpoonright_B = 1$
 \end{lm}
-% \begin{proof}
-%     $ $
-%     \begin{enumerate}[label=\roman*. ~]
-%         \item Построим открытые множества
-%     \end{enumerate}
-% \end{proof}
+\begin{proof}
+    $ $
+    \begin{enumerate}[label=\roman*. ~]
+        \item Построим открытые множества:
+	    \begin{itemize}[label=$\blacktriangleright$ ]
+		\item $ U_1 \coloneqq X \setminus B$
+		\item $ U_0$ --- такое,  что $ A \subset U_0 \subset \Cl (U_0) \subset U_1$
+		\item $ U_{\frac{1}{2}}$ --- такое, что $ \Cl(U_0) \subset U_{\frac{1}{2}} \subset \Cl (U_{\frac{1}{2}}) \subset U_1$ 
+		\item $ U_{\frac{1}{4}} $ --- такое, что $ \Cl(U_0) \subset U_{\frac{1}{4}}\subset \Cl(U_{\frac{1}{4}}) \subset U_{\frac{1}{2}}$ 
+		\item $ U_{\frac{3}{4}}$ --- такое, что $ \Cl(U_{\frac{1}{2}} \subset U_{\frac{3}{4}}\subset \Cl(U_{\frac{3}{4}}\subset U_1$ 
+
+	    \end{itemize}
+	    И так далее по индукции
+	    \begin{itemize}[label=$\blacktriangleright$ ]
+		\item $ \alpha= \frac{2k + 1}{2^{n}}$ 
+		    $U_{\alpha}$ --- такое, что  $ \Cl(U_{\frac{k}{2^{n-1}}}) \subset U_{\alpha} \subset  \Cl(U_{\alpha}) \subset U_{\frac{k+1}{2^{n-1}}}$
+	    \end{itemize}
+	\item Пусть $ S$ --- множество двоично-рациональных чисел.
+	    В прошлом пункте построили семейство открытых множеств  $ \{U_{\alpha}\}_{\alpha \in S \cap [0, 1]}$ такое, что 
+	    \begin{equation}\label{eq*}
+		\Cl (U_{\alpha}) \subset U_{\beta}, \qquad \forall \alpha<\beta \in S\cap [0, 1]
+	    \end{equation}
+	    Доопределим
+	    \[
+	    \begin{cases}
+		U_{\alpha} = \varnothing & \alpha < 0 \\
+		U_{\alpha} = X & a > 1
+	    \end{cases}
+	    .\] 
+	    Теперь свойство \ref{eq*}  выполняется для всех $ \alpha, \beta \in S$.
+	\item Определим $ f: X \to  \R$
+	    \[
+		f(x) = \inf \{\alpha \in S \mid x \in U_{\alpha}\}
+	    .\] 
+	    По построению $ F(X) \subset [0, 1]$, $ f\!\!\upharpoonright_A = 0, ~ f\!\!\upharpoonright_B = 1$.
+	\item Докажем, что  $ f$ непрерывна.
+	    Достаточно проверить, что  $ \{f < t\} \text{ и } \{f > t\}$ открыты для любого $ t \in \R$.
+	    \begin{description}
+		\item $ \boxed{ \{f < t\} \text{ открыто}}$
+		     \begin{align*}
+			 f(x) < t & \Longleftrightarrow \inf \{\alpha \in S \mid x \in x \in U_{\alpha}\} < t \\
+				  & \Longleftrightarrow \exists \alpha \in S: \alpha < t, ~ x \in U_{\alpha}
+		     \end{align*}
+		     Тогда $ \{f < t\} = \bigcup_{\alpha < t} U_{\alpha}.$
+		     Это объединение открытых множеств.
+		 \item $ \boxed{\{f > t\} \text{ открыто}}$ 
+		     \begin{align*}
+			 f(x) & = \inf \{\alpha \in S \mid x \in U_{\alpha}\} \\
+			      & = \sup \{\alpha \in S \mid x \not\in U_{ \alpha }\}  \\
+			      & = \sup \{ \alpha \in S \mid x \not\in \Cl(U_{\alpha})\} && (\text{из } \ref{eq*}) \\
+			      & = \sup \{\alpha \in S \mid x \in V_{ \alpha }\}, && \text{где } V_{\alpha} = X \setminus \Cl(U_{\alpha})
+		     \end{align*}
+		     Аналогично прошлому шагу:
+		     \begin{align*}
+			 f(x) > t & \Longleftrightarrow \sup \{\alpha \in S \mid x \in V_{\alpha}\}\\
+				  & \Longleftrightarrow \exists \alpha \in S: \alpha > t, ~ x \in V_{\alpha}
+		     \end{align*}
+		     Значит
+		     $ \{f>t\} = \bigcup_{\alpha > t}V_\alpha\} $.
+	    \end{description}
+    \end{enumerate}
+\end{proof}
 \section{Связность}
 \begin{name}
     $ X$ ---  топологическое пространство.
 \end{name}
 \begin{defn}[Связное топологическое пространство]
-    $ $\\
-    $ X$ связно, если:
+    $ X$ {\sf связно}, если:
     \begin{description}
 	\item  его нельзя разбить на два непустых открытых множества;
 	\item его нельзя разбить на два непустых замкнутых множества;
@@ -1373,7 +1430,7 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \end{defn}
 \begin{exs}
     $ $
-    \begin{itemize}
+    \begin{itemize}[noitemsep]
 	\item Антидискретное пространство связно
 	\item Дискретное пространство из хотя бы двух точек несвязно
 	\item $ \R \setminus {0}$ несвязно
