@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{680.31496063bp}%
+    \setlength{\unitlength}{620.72474453bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,18 +50,18 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5)%
+  \begin{picture}(1,0.4358334)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{base.pdf}}%
-    \put(0.54454645,0.11475169){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{i_1}^{x} \times V_{i_1}^{x}$\end{tabular}}}}%
-    \put(0.79166667,0.04166667){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
-    \put(0.16666667,0.41666667){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Y$\end{tabular}}}}%
+    \put(0.41188326,0.08412645){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{i_1}^{x} \times V_{i_1}^{x}$\end{tabular}}}}%
+    \put(0.68272728,0.00402519){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
+    \put(-0.00227336,0.41502544){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Y$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{base.pdf}}%
-    \put(0.53105199,0.2494503){\color[rgb]{0,0.55294118,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$F_x$\end{tabular}}}}%
-    \put(0.51653951,0.05778758){\color[rgb]{0,0.55294118,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
+    \put(0.39709332,0.23175613){\color[rgb]{0,0.55294118,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$F_x$\end{tabular}}}}%
+    \put(0.38118763,0.02169372){\color[rgb]{0,0.55294118,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{base.pdf}}%
-    \put(0.62787978,0.3473903){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{i_n}^{x} \times V_{i_n}^{x}$\end{tabular}}}}%
+    \put(0.50321668,0.33909847){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{i_n}^{x} \times V_{i_n}^{x}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{base.pdf}}%
   \end{picture}%
 \endgroup%
