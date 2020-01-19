@@ -1278,15 +1278,18 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \begin{defn}
     $ X$ обладает свойством $ T_1$, если для любой различных точек $ x, y \in X$ существует такое открытое $ U$, что $ x \not\in U \wedge y \not\in U$ .
 
-    Другое название: $ T_1$-пространство.
+    \begin{name}
+Другое название: $ T_1$-пространство.
+    \end{name}
 \end{defn}
 \begin{thm}
     $ T_1 \Longleftrightarrow $  любая точка является замкнутым множеством.
 \end{thm}
 \begin{defn}
-    $ X$ -- хаусдорфово, если для любых $ x, y \in  X$ существуют окрестности $ U \ni x \wedge V \ni y: ~ U \cap V = \varnothing$.
-
+    $ X$  {\sf хаусдорфово}, если для любых $ x, y \in  X$ существуют окрестности $ U \ni x \wedge V \ni y: ~ U \cap V = \varnothing$.
+    \begin{name}
     Другое название: $ T_2$-пространство.
+    \end{name}
 \end{defn}
 \begin{name}
     про такие окрестности $ U, V$ говорят, что они отделяют  $ x$ и  $ y$ друг от друга.
@@ -1295,16 +1298,17 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     Все метрические пространства хаусдорфовы.
 \end{note}
 \begin{thm}
-    $ X$ хаусдорфово $ \Longleftrightarrow $ ''диагональ`` $ \Delta \coloneqq \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
+    $ X$ хаусдорфово $ \Longleftrightarrow $ <<диагональ>> $ \Delta \coloneqq \{(x, x) \mid x \in  X\}$ замкнута в $ X \times X$
 \end{thm}
 \begin{defn}
-    $ X$ -- регулярно, если
+    $ X$  {\sf регулярно}, если
     \begin{itemize}
 	\item обладает $ T_1$
 	\item $ \forall  \text{ замкнутого }A \subset X~ \forall x \in  X \setminus A~ \exists \text{ открытые } U, V : A \subset  U \wedge x \in V \wedge U \cap  V = \varnothing $
-
-	    Другое название $ T_3$-пространство.
     \end{itemize}
+	    \begin{name}
+	    Другое название: $ T_3$-пространство.
+	    \end{name}
 \end{defn}
 \begin{note}[Переформулировка определения $ T_3$]
     $ X$ регулярно  тогда и только тогда, когда обладает свойством $ T_1$ и \[
@@ -1312,13 +1316,14 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
     .\]
 \end{note}
 \begin{defn}
-    $ X$ -- нормально, если
+    $ X$  {\sf нормально}, если
     \begin{itemize}
 	\item обладает $ T_1$
 	\item $ \forall  A, B \in  X (A \cap  B = \varnothing) ~ \exists  \text{ открытые } U, V: A \subset U,  B  \subset V  \wedge U \cap  V= \varnothing$
     \end{itemize}
-
-    Другое название $ T_4$-пространство.
+    \begin{name}
+    Другое название: $ T_4$-пространство.
+    \end{name}
 \end{defn}
 \begin{note}[Переформулировка определения $ T_4$]
     $ X$ нормально тогда и только тогда, когда обладает свойством $ T_1$ и \[
@@ -1337,7 +1342,7 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \end{thm}
 \begin{proof}
     {\it (Хороший метод)}
-    $ f: X \to  Y$
+    $ f: X \to  \R$
     \[
 	f(x) = \frac{d(x, A)}{d(x, A) + d(x, B)}
     .\]
@@ -1346,6 +1351,12 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \begin{lm}[Урысон]
     $ X$ -- нормально, $ A, B \subset  X$ -- замкнуты, $ A \cap  B = \varnothing$. Тогда существует непрерывная функция $ f: X \to  [0, 1]: ~ f\!\!\upharpoonright_A = 0 \text{ и } f\!\!\upharpoonright_B = 1$
 \end{lm}
+% \begin{proof}
+%     $ $
+%     \begin{enumerate}[label=\roman*. ~]
+%         \item Построим открытые множества
+%     \end{enumerate}
+% \end{proof}
 \section{Связность}
 \begin{name}
     $ X$ ---  топологическое пространство.
