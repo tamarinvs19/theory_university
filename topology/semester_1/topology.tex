@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{epstopdf}
 \usepackage{array,graphicx,caption}
+\usepackage{enumitem}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
@@ -801,7 +802,8 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{defn}
     $X, Y$ -- метрические пространства.
 
-    $f: X \to  Y$ -- липшицево, если $\exists c > 0 \forall  x, x' \in  X: d_Y(f(x), f(x')) \le c d_X(x, x')$. $C$ -- константа Липшица данного отображения.
+    $f: X \to  Y$ --- липшицево, если $\exists c > 0 ~\forall  x, x' \in  X: d_Y(f(x), f(x')) \le c d_X(x, x')$. 
+    \begin{name}$c$ --- константа Липшица данного отображения.\end{name}
 \end{defn}
 \begin{cor}
     Все липшицевы отображения непрерывны.
@@ -840,8 +842,13 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \begin{thm}
     $ X, Y, Z$ --- топологические пространства. $ f: X \to  Y$, $ g: Y \to Z $, $ g \circ f: X \to  Z$.
     $ f$ непрерывно в $ X$,  $ g$ непрерывно в $ f(X)$. Тогда $ g \circ f $ непрерывно в $ X$.
+    \begin{note}
+	$ (g \circ f)(x) = g(f(x))$. Несложно проверить равенство $ (g \circ f)^{-1}(A) = f^{-1}(g^{-1}(A))$.   
+    \end{note}
 \end{thm}
-\subsection{Еще о непрерывности. Предел отображения}
+\begin{proof}
+    Используя то, что $ (g\circ f)^{-1}(A) = f^{-1}(g^{-1}(A))$, понимаем, что если $ A$ открыто в  $ Z$, то его прообраз в $ Y$ -- $ g^{-1}(A)$ открыт, а прообраз $ g^{-1}(A)$ в $ X$ открыт в  $ X$.
+\end{proof}
 \begin{thm}
     $ f: X \to  Y$ непрерывно тогда и только тогда, когда прообраз замкнутого замкнут.
 \end{thm}
@@ -855,6 +862,8 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 	\forall A \subset X: f(\Int A) \subset \Int f(A) 
     .\] 
 \end{ex}
+
+\subsection{Предел отображения}
 \begin{defn}
     Предел отображения $ f: X\setminus {x_0} \to  Y $ в точке $ x_0$ равен $ y_0 \in Y$ при $ x \to  x_0$, если $ \hat{f}: X \to  Y$, определенная равенством \[
     \begin{cases}
@@ -870,17 +879,17 @@ $X, Y$ - топологические пространства, $\Omega_1, \Omeg
 \subsection{Непрерывность и пространства}
 \begin{thm}
     $ Y \subset X$.
-    Включение  $ in: Y \to  X, ~ in(y) = y \quad \forall  y \in Y$ непрерывно.
+    Включение  $ {\rm in}: Y \to  X, ~ {\rm in}(y) = y \quad \forall  y \in Y$ непрерывно.
 \end{thm}
 \begin{thm}
     $ f: X \to  Z, ~ Y \subset X$.
-    Если $ f$ непрерывно, то  $ f\!\upharpoonright_Y$ непрерывно.
+    Если $ f$ непрерывно, то  $ f\!\!\upharpoonright_Y$ непрерывно.
 \end{thm}
 \begin{proof}
-    $ f\!\upharpoonright_Y = f \circ in$ --- композиция непрерывных непрерывна.
+    $ f\!\!\upharpoonright_Y = f \circ {\rm in}$ --- композиция непрерывных непрерывна.
 \end{proof}
 \begin{thm}
-    $ Y \subset  Z, ~ f: X \to  Y$. $ f$ непрерывно  тогда и только тогда, когда  $\hat{f} = in_{Y \to Z} \circ f$ непрерывно.
+    $ Y \subset  Z, ~ f: X \to  Y$. $ f$ непрерывно  тогда и только тогда, когда  $\hat{f} = {\rm in}_{Y \to Z} \circ f$ непрерывно.
 \end{thm}
 \begin{proof}
 \begin{figure}[ht]
@@ -902,7 +911,7 @@ $ $
 \end{description} 
 \end{proof}
 \subsection{Отображения в произведение}
-\begin{defn}[Общий вид отображений в прризведение]
+\begin{defn}[Общий вид отображений в произведение]
     Любое отображение $ f: Z \to X \times Y$ имеет вид $ f = (f_1, f_2): f(z) = (f_1(z), f_2(z)) \quad \forall  z \in Z $.
     $ f_1: Z \to  X$ и $ f_2: Z \to  Y$ --- компоненты.
 
@@ -911,7 +920,7 @@ $ $
 \begin{defn}
     Пусть $ f: X \to \prod_{i \in I}X_i$. Его компоненты --- композиции с проекциями:
     \[
-    f_i = p_i \circ f_i, ~ f_i : Z \to  X_i \quad \forall  i \in I
+    f_i = p_i \circ f, ~ f_i : Z \to  X_i \quad \forall  i \in I
     .\] 
 \end{defn}
 \begin{thm}\label{th_coord}
@@ -929,7 +938,7 @@ $ $
 		    U = p_i^{-1}(V_i), \quad i \in I \wedge V_i \in \Omega_i
 		.\] 
 		\[
-		    f^{-1}(U) = f^{-1} (p_i^{-1}(V^{i})) = f_i^{-1}(V_i)
+		    f^{-1}(U) = f^{-1} (p_i^{-1}(V_{i})) = (p_i \circ f)^{-1}(V_i) =  f_i^{-1}(V_i)
 		.\] 
 		А $ f_i^{-1}(V_i)$ открыто, так как $ f_i$ непрерывно.
     \end{description} 
@@ -947,9 +956,10 @@ $ $
 	0 & x=y=0
     \end{cases}
 .\] 
-По $ x$, по $ y$ непрерывно. Но при $ x=y\ne 0$,  $ f(a, a) = 1$, при $ x=y=0$,  $ f(0, 0) = 0$, следовательно, непрерывности нет.
+По $ x$, по $ y$ непрерывно, потому что просто $ |f_y(x)| \le 1$. Но при $ x=y\ne 0$,  $ f(a, a) = 1$, при $ x=y=0$,  $ f(0, 0) = 0$, следовательно, непрерывности нет.
 \end{ex}
 \begin{thm}
+$ $\\
     $
     \left.
     \begin{array}{l}
@@ -998,11 +1008,11 @@ $ $
     $ X$ --- топологическое пространство.  Если $ f: X \to  \R, ~ g: X \to \R$, то $ \frac{f}{g}$ непрерывна на области определения, то есть $ \{x \in X\mid g(x) \ne 0\}$.
 \end{cor}
 \begin{proof}
-    $ g\!\upharpoonright_{\{g \ne  0\}}$ непрерывна.
+    $ g\!\!\upharpoonright_{\{x \in X\mid g(x) \ne  0\}}$ непрерывна.
     Функция $ \varphi : \R\setminus \{0\} \to  \R, ~ \varphi (t)  = \frac{1}{t}$ непрерывна.
     Тогда
     \[
-    \frac{1}{g} = g\!\upharpoonright_{\{g\ne 0\}} \circ \varphi  \text{ тоже непрерывно}
+    \frac{1}{g} = \varphi \circ g\!\!\upharpoonright_{\{g\ne 0\}} \text{ тоже непрерывно}
     .\] 
     Следовательно,
     \[
@@ -1034,18 +1044,18 @@ $ $
     .\]  
 \end{defn}
 \begin{thm}
-    $ \{A_i\}_{i \in I}$ --- фундаментальное покрытие. $ f: X \to  Y$. Если $ \forall i \in I: f\!\upharpoonright_{A_i}$ непрерывно, то $ f$ непрерывно.
+    $ \{A_i\}_{i \in I}$ --- фундаментальное покрытие. $ f: X \to  Y$. Если $ \forall i \in I: f\!\!\upharpoonright_{A_i}$ непрерывно, то $ f$ непрерывно.
 \end{thm}
 \begin{proof}
-    Для любого отрытого $ U \subset Y$ и любого $ i \in I$: $ \left( f\!\upharpoonright_{A_i} \right)^{-1}(U)$ открыто в $ A_i$.
+    Для любого отрытого $ U \subset Y$ и любого $ i \in I$: $ \left( f\!\!\upharpoonright_{A_i} \right)^{-1}(U)$ открыто в $ A_i$.
      \[
-	 \left( f\!\upharpoonright_{A_i} \right)^{-1}(U) = f^{-1}(U) \cap A_i
+	 \left( f\!\!\upharpoonright_{A_i} \right)^{-1}(U) = f^{-1}(U) \cap A_i
     .\] 
     Так как покрытие фундаментальное, из последнего утверждения следует, что $ f^{-1}(U)$ открыто в $ X$.
 \end{proof}
 \begin{thm}
     Следующие виды покрытий фундаментальны:
-    \begin{enumerate}
+    \begin{enumerate}[noitemsep]
         \item открытые покрытия
 	\item конечные замкнутые покрытия
 	\item локально конечные замкнутые покрытия
@@ -1056,7 +1066,7 @@ $ $
     \begin{enumerate}
         \item Все  $ A_i$ открыты. $ U \subset X$.
 	    \[
-	    \forall  i \in I: U \cap A_i \text{ открыто в} A_i \Longrightarrow U \cap A_i \text{ открыто в } X
+	    \forall  i \in I: U \cap A_i \text{ открыто в } A_i \Longrightarrow U \cap A_i \text{ открыто в } X
 	    .\] 
 	    \[
 		U = \bigcup_{i \in  I} (U \cap A_i) \text{ открыто в }X
@@ -1064,7 +1074,7 @@ $ $
 	\item $ A_1, \ldots A_n$ замкнуто. $ U \subset X$
 Перейдем к дополнению. Докажем, что $ V = X \setminus U$ замкнуто в $ X$.  $ A_i \cap V $ замкнуто в $ A_i$, следовательно, $ A_i \cap V$ замкнуто в $ X$. 
 \[
-    V = \bigcup_{i=0} ^{n}(V \cap A_i) \text{ замкнуто в } X
+    V = \bigcup_{i=1} ^{n}(V \cap A_i) \text{ замкнуто в } X
 .\] 
 Тогда $ X \setminus V = U $ открыто в $ X$.
 \item Локально конечно  $ \Longrightarrow $ $ V_x$ пересекаются с конечным числом  $ A_i$. Применим второй пункт, получим, что пересечение с  $ U$ открыто в  $ X$.
@@ -1086,7 +1096,7 @@ $ $
 \end{name}
 \begin{prop}
     $ $
-    \begin{enumerate}
+    \begin{enumerate}[noitemsep]
 	\item Тождественное отображение --- гомеоморфизм.
 	\item Если $ f$ --- гомеоморфизм, то $ f^{-1}$ --- гомеоморфизм.
 	\item Композиция  гомеоморфизмов --- гомеоморфизм.
@@ -1097,7 +1107,7 @@ $ $
 \end{thm}
 \begin{note}
     $ $
-    \begin{enumerate}
+    \begin{enumerate}[noitemsep]
 	\item Гомеоморфизм задает биекцию между открытыми множествами в $ X$ и $ Y$.
 	\item С топологической точки зрения гомеоморфные пространства неотличимы.
     \end{enumerate}
@@ -1132,15 +1142,35 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 \begin{thm}
     Открытый шар в $ \R^{n}$ гомеоморфен  $ \R^{n}$
 \end{thm}
+\begin{proof}
+    \[
+	f(\vec{x}) = \begin{cases}
+	    \frac{\vec{x}}{|\vec{x}|} \tg |\vec{x}| & x \ne  0 \\
+	    0 & x = 0
+	\end{cases}
+    .\] 
+\end{proof}
 \begin{name}
+    $ $
+    \begin{description}[noitemsep]
+	\item 
     $ D^{n} $ --- замкнутый единичный шар в  $ \R^{n}$
-\end{name}
-\begin{name}
+\item 
     $ S^{n} $ --- единичная сфера в $ \R^{n+1}$
+    \end{description}
 \end{name}
 \begin{thm}
     $ S^{n} \setminus \{\text{точка}\} \cong \R^{n}$
 \end{thm}
+\begin{proof}
+    Выделим последнюю координату  и спроецируем точки на $ \R^{n} $,  где она равна нулю.
+\begin{figure}[ht]
+    \centering
+    \incfig{imagesn}
+    \caption{Для $ n = 1$}
+    \label{fig:imagesn}
+\end{figure}
+\end{proof}
 \begin{prac}
     $ $
     \begin{enumerate}
@@ -1148,24 +1178,25 @@ $ f$ -- биекция между $ [0, 2\pi)$ и $ S^{1}$, $ f$ -- непрер
 	\item $ D^{m} \times D^{n} \cong D ^{n+m}$
     \end{enumerate}
 \end{prac}
+\clearpage
 \section{Аксиомы}
 \subsection{Аксиомы счетности}
 \begin{defn}
-    $ X = (X , \Omega )$
-    База в точке $ x \in  X$ -- такое множество $ \Sigma _x \subset \Omega $, что:
+    $ X = (X , \Omega )$.
+    {\sf База в точке} $ x \in  X$ -- такое множество $ \Sigma _x \subset \Omega $, что:
     \begin{enumerate}
 	\item $ \forall V \in  \Sigma _x: x \in  V$
-	\item $ \forall U \not\ni x \exists V \in  \Sigma _x: V \subset U$
+	\item $ \forall U \ni x~ \exists V \in  \Sigma _x: V \subset U$
     \end{enumerate}
 \end{defn}
 \begin{name}
-    Счетное множество -- не более, чем счетное.
+    Счетное множество --- не более, чем счетное.
 \end{name}
 \begin{defn}
-    Пространство $ X$ удовлетворяет первой аксиоме сетности (1АС), если для любой точки $ x \in  X$ существует счетная база в этой точке.
+    Пространство $ X$ удовлетворяет {\sf первой аксиоме счетности (1АС)}, если для любой точки $ x \in  X$ существует счетная база в этой точке.
 \end{defn}
 \begin{defn}
-    Пространство $ X$ удовлетворяет второй аксиоме счетности (2АС), если у него есть счетная база топологии.
+Пространство $ X$ удовлетворяет {\sf второй аксиоме счетности (2АС)}, если у него есть счетная база топологии.
 \end{defn}
 \begin{thm}
     2AC  $ \Rightarrow $ 1АС
