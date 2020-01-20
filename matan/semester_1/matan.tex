@@ -586,16 +586,16 @@ $\forall \varepsilon  > 0 ~\exists n \in \N: |I_n| < \varepsilon \wedge x \in I_
 \end{defn}
 \begin{thm}[о пределе сужения]
     $f: A \to \R, x \in A'$, $B \subset A'$\\
-    Пусть $x_0 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\!\!\upharpoonright_B)$.
+    Пусть $x_0 \in B' \wedge z = \lim_{x_0} f$. Тогда $z = \lim_{x_0} (f\!\upharpoonright_B)$.
 \end{thm}
 \begin{proof}
     По условию $\forall U(z) \exists \stackrel \circ V: f(\stackrel \circ V \cap A) \subset U $, тем более $f(\stackrel \circ V \cap B) \subset U$.
 \end{proof}
 \begin{thm}[частичное обращение теоремы о пределе сужения]
-    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \!\! \upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
+    Если $B=\stackrel \circ W_{\delta }(x_0) \wedge \exists \lim_{x_0} f \!\upharpoonright_B = z$, то $\exists \lim_{x_0} f = z$.
 \end{thm}
 \begin{proof}
-    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\!\! \upharpoonright_B(\stackrel \circ V) \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
+    $\forall U(z) ~\exists \stackrel \circ V(x_0): f\!\upharpoonright_B(\stackrel \circ V) \cap A \subset U \Leftrightarrow f((\stackrel \circ V \cap \stackrel \circ W_{\delta } ) \cap A ) \subset U$.\\
     $\stackrel \circ V \cap \stackrel \circ W_{\delta }$ - тоже окрестность точки $x_0$.
 \end{proof}
 \subsection{Предел постоянной функции и предел тождественного отображения}\label{ques_17}
@@ -739,8 +739,8 @@ $f: A \to \R, ~x_0$ - предельная точка $A$, ($x_0 \in \R, \neq \p
 $A_1 = A \cap (- \infty, x_0];~ A_2 = A \cap [x_0, + \infty)$.
     \end{name}
 \begin{defn} 
-Если $x_0$  --- предельной точка $A_1$, $ \exists ~\lim_{x_0}{f\!\! \upharpoonright_{A_1}}$, то говорят, что $f$ имеет {\bf   предел слева} от $x_0$.
-Если $x_0$ --- предельная точка $A_2, \exists ~\lim_{x_0}{f\!\! \upharpoonright_{A_2}}$, то говорят, что $f$ имеет {\bf предел слева} от $x_0$. 
+Если $x_0$  --- предельной точка $A_1$, $ \exists ~\lim_{x_0}{f\!\upharpoonright_{A_1}}$, то говорят, что $f$ имеет {\bf   предел слева} от $x_0$.
+Если $x_0$ --- предельная точка $A_2, \exists ~\lim_{x_0}{f\!\upharpoonright_{A_2}}$, то говорят, что $f$ имеет {\bf предел слева} от $x_0$. 
 \begin{name}
 Левый предел обозначают: $\lim_{x \to x_0 - 0}{f(x)}, ~\lim_{x \to      x_0-}{f(x)}$. 
 Правый предел обозначают: $\lim_{x \to x_0 + 0}{f(x)}, ~\lim_{x \to x_0+}{f(x)}$. 
@@ -928,31 +928,34 @@ $\forall ~\varepsilon > 0 ~\exists ~\pivi V(x_0): osc_{\pivi V \cap A}(f - c) \l
     .\] 
 \end{st}
 \begin{thm}[Лейбниц]
-    Пусть $a_n$ - монотонно убывающая неотрицательная последовательность $0 \ge  a_1 \ge a_2 \ldots ~~$. Тогда ряд $\slim_{n=1}^{\infty} a_n$ - сходится тогда и только тогда, 
+    Пусть $a_n$ - монотонно убывающая неотрицательная последовательность $a_1 \ge a_2 \ldots  \ge 0$. Тогда ряд $\slim_{n=1}^{\infty} a_n$ - сходится тогда и только тогда, 
     когда 
     $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится.
 \end{thm}
 \begin{proof}
-	$ $ \\$ \Rightarrow  $\\
+    $ $
+    \begin{description}
+	\item $ \boxed{ \Longrightarrow }$
 	    $\slim_{n=1}^\infty a_n $ - сходится. Достаточно доказать, что частичные суммы второго ряда ограничены.\[
 		\begin{array}{l}
-	    S_k = a_1, + a_2 + \ldots +a_k, \quad k = 2^n\\
+	    S_k = a_1 + a_2 + \ldots +a_k, \quad k = 2^n\\
 	    S_{2^n} = a_1 + a_2 + (a_3+a_4) + (a_5+a_6+a_7+a_8) + \ldots +(a_{2^{n-1}} + \ldots a_{2^n} ) 
 		\end{array}
 	    .\] 
 	    Заменим в каждой скобке на минимальный:
 	    \[
-		S_{2^n} \le a_2 \le 2 a_4 + 4 a_8 + \ldots 2^{n-1} a_{2^n}
+		S_{2^n} \le a_2 + 2 a_4 + 4 a_8 + \ldots 2^{n-1} a_{2^n}
 	    .\] 
 	    Тогда  \[
 		2 a_2 + 4 a_4 + \ldots 2^n a_{2^n} \le 2 S_{2^n}
 	    .\] 
-	    Из чего следует, что $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится.
-	\\$ \Leftarrow $\\
+	    Из чего следует, что $\slim_{n=1}^{\infty} {2^n a_{2^n}}$ сходится.
+	\item $ \boxed{ \Longleftarrow  }$
 	$\slim_{n=1}^{\infty} {2^n a_{2^n}}$ - сходится. Обозначим его сумму за $T$. Тогда 
 	\[
 	    a_1+(a_2+a_3) + (a_4+a_5+a_6+a_7) + \ldots +(a_{2^n} + \ldots a_{2^{n+1} -1} \le a_1 + 2 a_2 +4 a_4 + \ldots 2^n a_{2^n} \le a_1 +T
 	.\] 
+    \end{description}
 \end{proof}
 \subsection{Теорема сравнения для рядов с неотрицательными членами}
 \begin{thm}[Теорема сравнения]
@@ -991,10 +994,10 @@ $\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
 \end{ex}
 \section{Односторонние пределы}
 \begin{defn}
-    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_1 = A \cap (-\infty, x_0)$ и  $ \exists \lim_{x_0} f\!\! \upharpoonright_{A_1} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ слева.
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_1 = A \cap (-\infty, x_0)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_1} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ слева.
 \end{defn}
 \begin{defn}
-    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_2 = A \cap (x_0, +\infty)$ и  $ \exists \lim_{x_0} f\!\! \upharpoonright_{A_2} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ справа.
+    Пусть $ f: A \to  \R$, $ x_0 \in A $ --- предельная точка для $ A_2 = A \cap (x_0, +\infty)$ и  $ \exists \lim_{x_0} f\!\upharpoonright_{A_2} $. Тогда он называется пределом функции $ f$ в точке $ x_0$ справа.
 \end{defn}
 \begin{name}
     $ $
@@ -1032,15 +1035,19 @@ $\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
 \subsection{Определение и свойства}\label{ques_30}
 \begin{defn}
     $f: A \to \R$\\
-    \[
-	a = \varlimsup_{x \to x_0}=\lim\limits_{x \to x_0} \sup f(x)
-    \]\[
-    b = \varliminf_{x \to x_0}=\lim\limits_{x \to x_0} \inf f(x)
-    .\] 
+    \begin{align*}
+	a &= \varlimsup_{x \to x_0} f(x)=\limsup_{x \to x_0} f(x) = \inf _{ \varepsilon > 0 }   \sup_{\substack{|x - x_0 | < \varepsilon \\ x \ne x_0}} f(x) 
+	\\
+	b &= \varliminf_{x \to x_0} f(x)=\liminf_{x \to x_0} f(x) = \sup _{ \varepsilon > 0 }   \inf_{\substack{|x - x_0 | < \varepsilon \\ x \ne x_0}} f(x) 
+    \end{align*}
     Число $a$ называется верхним пределом $f$ в точке $x_0$. \\
 Число $b$ называется нижним пределом $f$ в точке $x_0$.
 \end{defn}
+\begin{thm}
+    Пусть $ f$ ограниченна. Тогда  $ f$ имеет предел в точке  $ x_0$ тогда и только тогда, когда $ \varlimsup_{x_0} f(x) = \varliminf_{x_0}f(x)$.
+\end{thm}
 \begin{prop}
+    $ $
     \begin{enumerate}
         \item $\lambda \in \R$ 
 	    \[
@@ -1059,23 +1066,29 @@ $\slim_{n = 1}^\infty{\frac{1}{n^2}} = \frac{\pi^2}{6}$
 		    \end{array}
 		    \right .
 	    .\] 
-	\item Сумма двух функций $f, g : A \to \R$\\
-	    \[
-		\overline {\lim}_{x_0} (f+g) \le \overline\lim_{x_0} f + \overline \lim_{x_0} g
-	    .\] 
-	    Рассмотрим $x \in \pivi V(x_0)\cap A$.
-	    \[
-		(f+g)(x) = f(x) + g(x) \le M_{\pivi V} (f) + M_{\pivi V} (g) \Rightarrow 
-	    \] 
-	    \[
-		\Rightarrow M_{\pivi V}  (f + g) \le M_{\pivi V} \le  M_{\pivi V} (f) + M_{\pivi V} (g) 
-	    .\] 
-	    Тогда 
-	    \[
-		\varlimsup _{x_0} (f+g) \le M_{\pivi V} (f) + M_{\pivi V}(g) - M_{\pivi V}(f)(g) + \varlimsup_{x_0}(f, g) \le M_{\pivi V} 
-	    .\] 
-	    / Не дописано!!!
-% Не дописано!!!
+	\item Сумма двух функций $f, g : A \to \R, ~ x_0 \in A'$.
+$$\varlimsup_{x \to x_0}{f(x) + g(x)} \le \varlimsup_{x \to x_0}{f(x)} + \varlimsup_{x \to x_0}{g(x)} $$ 
+$$\varliminf_{x \to x_0}{f(x) + g(x)} \ge \varliminf_{x \to x_0}{f(x)} + \varliminf_{x \to x_0}{g(x)} $$ 
+\begin{proof}
+Докажем первую формулу:
+$x_0 \in \R$
+$$\varlimsup_{x \to x_0}{f(x) + g(x)} = \lim_{\varepsilon \to 0}{\sup_{\substack{|x - x_0| < \varepsilon\\ x \in A\setminus\{x_0\}}}{f(x) + g(x)}}$$
+$\sup{f + g} \le \sup{f} + \sup{g}$, так как $f + g \le \sup{f} + \sup{g}$, а супремум константы --- она сама, а потом применим лемму о предельном переходе в неравенстве.
+\end{proof}
+	    % \[
+		% \overline {\lim}_{x_0} (f+g) \le \overline\lim_{x_0} f + \overline \lim_{x_0} g
+	    % .\] 
+	    % Рассмотрим $x \in \pivi V(x_0)\cap A$.
+	    % \[
+		% (f+g)(x) = f(x) + g(x) \le M_{\pivi V} (f) + M_{\pivi V} (g) \Rightarrow 
+	    % \] 
+	    % \[
+		% \Rightarrow M_{\pivi V}  (f + g) \le M_{\pivi V} \le  M_{\pivi V} (f) + M_{\pivi V} (g) 
+	    % .\] 
+	    % Тогда 
+	    % \begin{align*}
+		% \varlimsup _{x_0} (f+g) &\le M_{\pivi V} (f) + M_{\pivi V}(g) - M_{\pivi V}(f)(g) + \varlimsup_{x_0}(f, g) \le M_{\pivi V}  \Longleftrightarrow 
+	    % \end{align*}
     \end{enumerate}
 \end{prop}
 \subsection{Теорема об описании верхнего и нижнего предела}\label{ques_31}
@@ -1200,7 +1213,7 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
     .\] 
     Тогда $|x_n - x_0| < \frac{1}{n}$. По принципу двух полицейских $|x_n - x_0| \to  0$.
     Теперь сделаем все неравными:
-    $x_1 \in  V_1 \cap X, x_1 \ne x_0$, дальше возьмем $\delta_1  < \min (\frac{1}{n} , |x_n - x_0|)$ и скажем, что $x_2 \in  (x_0 - \delta_1 , x_0 + \delta_1 ) \cap X_1, x_2 \ne x_1$ и так далее, $\delta_{n-1}= \min (\frac{1}{n}, |x_0 -x_1|, \ldots |x_0 - x_{n-1}|), x_n \in  (x_0 - \delta _{n-1}, x_0 + \delta_{n-1}), x_n \ne x_0 $
+    $x_1 \in  V_1 \cap X, x_1 \ne x_0$, дальше возьмем $\delta_1  < \min (\frac{1}{n} , |x_n - x_0|)$ и скажем, что $x_2 \in  (x_0 - \delta , x_0 + \delta ) \cap X_1, x_2 \ne x_1$ и так далее, $\delta_{n-1} \min (\frac{1}{n}, |x_0 -x_1|, \ldots |x_0 - x_{n-1}|, x_n \in  (x_0 - \delta _{n-1}, x_0 + \delta_{n-1}), x_n \ne x_0 $
 \end{proof}
 \begin{thm}[Вторая форма теоремы о компактности]
     Всякая ограниченная последовательность имеет сходящуюся подпоследовательность.
@@ -1333,7 +1346,6 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
 \end{lm}
 \begin{proof}
     Проверим, что $g = O(f)$ вблизи  $x_0$ :
-    так как $ f \sim g ~ (x \to  x_0)$ :
     \[
 	\varepsilon >0: \exists \pivi V(x_0): |f(x) - g(x)| \le \varepsilon |g(x)| \quad \forall x \in  \pivi V \cap A
     .\] 
@@ -1368,14 +1380,15 @@ $x : \N \to  \R$, $\{x_n\}_{n \in \N}$ имеет единственную пр�
 \end{note}
 \begin{proof}
     \[
-	fg = f_1g_1 \underbrace{\frac{f}{f_1} \frac{g}{g_1}}_{\mbox{предел этого равен } 1}
-	, \quad 
-	\frac{f}{g} = \frac{f_1}{g_1} \underbrace{\frac{f}{f_1} \frac{g_1}{g}}_{\mbox{предел этого равен } 1}
+	fg = f_1g_1 \underbrace{\frac{f}{f_1} \frac{g}{g_1}}_{\mbox{предел этого равен} 1}
+    .\] 
+    \[
+	\frac{f}{g} = \frac{f_1}{g_1} \underbrace{\frac{f}{f_1} \frac{g_1}{g}}_{\mbox{предел этого равен} 1}
     .\] 
 \end{proof}
 \subsection{Классификация разрывов}
 \begin{enumerate}
-    \item Разрывы первого рода
+    \item Разрыы превого рода
 	\begin{enumerate}
 	    \item Устранимые разрывы: $ \lim_{x_0} f$ существует, но $ \lim_{x_0} f \ne f(x_0)$.
 	    \item Скачок: $ \exists \lim_{x \to  x_0-} f(x) \wedge \exists \lim_{x \to  x_0+} $, но они не равны.
@@ -1835,7 +1848,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     \end{enumerate}
 \end{proof}
 \begin{defn}
-    $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf локальный максимум}, если  \[
+    $ I = (\alpha, \beta), ~ x \in I$. Говорят, что $ f$ имеет {\bf монотонный максимум}, если  \[
 	\exists \delta >0 : f(x_0) \ge f(y) \quad \forall  y \in I \wedge  |x_0 - y| < \delta
     .\]
 \end{defn}
@@ -1849,7 +1862,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     $ x_0 \in (\alpha, \beta)$ --- точка локального экстремума для $ f: (\alpha, \beta) \to  \R$. Если $ \exists f'(x_0)$, то $ f'(x_0) = 0$.
 \end{thm}
 \begin{proof}
-    Пусть $ x_0$ локальный  максимум. Тогда $ f\!\!\upharpoonright_{(\alpha, x_0]}$ --- возрастает в точке $ x_0 \Longrightarrow f'(x_0) \ge 0$. Также $ f\!\!\upharpoonright_{[x_0, \beta)}$ --- убывает в точке $ x_0 \Longrightarrow f'(x_0) \le 0$.
+    Пусть $ x_0$ локальный  максимум. Тогда $ f\!\upharpoonright_{(\alpha, x_0]}$ --- возрастает в точке $ x_0 \Longrightarrow f'(x_0) \ge 0$. Также $ f\!\upharpoonright_{[x_0, \beta)}$ --- убывает в точке $ x_0 \Longrightarrow f'(x_0) \le 0$.
 
     Для других случаев полностью аналогично.
 \end{proof}
@@ -1860,7 +1873,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     Пусть $ f(a) = f(b)$. Тогда  $ \exists c \in (a, b): f'(c) = 0$.
 \end{thm}
 \begin{proof}
-    По теореме Вейерштрасса №2 (теорема \ref{th_ve_2}) $ \exists x, y \in [a, b]:
+    По теореме Вейерштрасса №2 \ref{th_ve_2} $ \exists x, y \in [a, b]:
     \begin{cases}
 	f(x) = \min_{t \in [a, b]}f(t)\\
 	f(y) = \max_{t \in [a, b]}g(t)
@@ -1938,14 +1951,14 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{proof}
     Рассмотрим $ x > u > a$.
      \[
-	 \frac{f(u) - f(x)}{g(u)-g(x)} = \frac{f'(y)}{g'(y)} \qquad y \in (u, x)
+	 \frac{f(a) - f(b)}{g(a)-g(b)} = \frac{f'(y)}{g'(y)} \qquad y \in (a, x)
     .\] 
     \[
-	\forall \varepsilon >0~\exists \delta>0: \Bigl(|y -u| < \delta \Longrightarrow \left| \frac{f'(y)}{g'(y)} - d \right| < \varepsilon \Bigr)
+	\forall \varepsilon ~\exists \delta: \Bigl(|y -a| < \delta \Longrightarrow \left| \frac{f'(y)}{g'(y)} - d \right| < \varepsilon \Bigr)
     .\] 
-    Если $ |x-u| < \delta $, то $ |y -u|<\delta$. 
+    Если $ |x-a| < \delta $, то $ |y -a|<\delta$. 
     \[
-	\left| \frac{f(u)-f(x)}{g(u) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
+	\left| \frac{f(u)-f(x)}{g(a) -g(x)} - d \right| < \varepsilon \stackrel{u \to  a} \Longrightarrow \left| \frac{f(x)}{g(x)} -d \right| \le \varepsilon \qquad\text{при } |x-a|<\delta
     .\] 
 \end{proof}
 \begin{thm}[Правило Лопиталя для $ \infty/\infty$]
@@ -1957,22 +1970,21 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \begin{proof}
     $ x, u \in (a, a + \delta ), ~ x \ne  u$. $ \exists y$ между $ x$ и $ u$:
     \[
-	\frac{f(x) - f(u)}{g(x) - g(u)} = \frac{f'(y)}{g'(y)}
+	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{f'(y)}{g'(y)}
     .\] 
     \begin{equation}\label{eq_lop}
-	\frac{f(x) - f(u)}{g(x) - g(u)} = \frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(x)}}{1 - \frac{g(u)}{g(x)}}
+	\frac{f(x) - f(x)}{g(x) - g(u)} = \frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}
     \end{equation}
     Зафиксируем $ u$ вблизи $ x: \left| \frac{g(u)}{g(x)} \right| < 1$.
-    % Тогда модуль правой части в уравнении  \ref{eq_lop} не более  $ \varepsilon $.
-    Тогда знаменатель правой части в уравнении \ref{eq_lop} больше нуля.
+    Тогда модуль правой части в уравнении  \ref{eq_lop} не более  $ \varepsilon $.
     Воспользуемся тем, что $ \lim_{x \to a} \frac{f'(x)}{g'(x)} = d $:
     \[
-     \forall \varepsilon > 0 ~ \exists \delta>0: |x - a| < \delta \Longrightarrow d - \varepsilon  \le 
-	\frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}} \le d + \varepsilon 
+    d - \varepsilon  \le \left|
+	\frac{\frac{f(x)}{g(x)} - \frac{f(u)}{g(u)}}{1 - \frac{g(u)}{g(x)}}\right|
     .\] 
     Домножим на знаменатель:
     \[
-	(d- \varepsilon ) \left(1- \frac{g(u)}{g(x)}\right) \le \frac{f(x)}{g(x)} - \frac{f(u)}{g(u)} \le (d+ \varepsilon ) \left(1 - \frac{g(u)}{g(x)}\right)
+	(d- \varepsilon ) (1- \frac{g(u)}{g(x)}) \le \frac{f(x)}{g(x)} - \frac{f(u)}{g(u)} \le (d+ \varepsilon ) \left(1 - \frac{g(u)}{g(u)}\right)
     .\] 
     $ x$ близок к $ a$:
     \begin{align*}
@@ -1984,10 +1996,10 @@ $ f(x) = x^{m}$ --- непрерывная функция.
     \end{st}
     Применим утверждение. 
     \[
-	\varlimsup_{x \to  a} v(x) = \inf_{\delta>0}\sup_{|x - a| < \delta } \ge \lim_{x \to  a}  v(x)
+	\varlimsup_{x \to  a} v(x) = \inf_{\delta>0}\sup_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
     .\] 
     \[
-	\varliminf_{x \to  a} v(x) = \sup_{\delta>0}\inf_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
+	\varliminf{x \to  a} v(x) = \sup_{\delta>0}\inf_{|x - a| < \delta } \le \lim_{x \to  a}  v(x)
     .\] 
     Значит
      \[
@@ -1999,7 +2011,7 @@ $ f(x) = x^{m}$ --- непрерывная функция.
 \[
     f(x) = f(a) + f'(a)(x-a) + o_{x \to  a}(x-a)
 .\] 
-Рассмотрим множество $ A = \{x \mid f'(x) \text{ существует}\}$.
+Рассмотрим множество $ A = \{x \mid f'(x) \text{ существует}\}$
 Тогда можно смотреть на  $ f'$ как на функцию, заданную на  $ A$.
 \begin{defn}
     Если $ f'$ определена в точке $ x \in A$, то $ (f')'(x) = f''(x)$ --- вторая производная в точке  $ x$.
@@ -2550,10 +2562,12 @@ $$
     .\]
 \end{ex}
 \begin{ex}
-    \begin{align*}
-	\int e^{x} \sin x dx &= \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx = 
-			     &= \sin x e^{x} - \int \cos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
-    \end{align*}
+    \[
+	\int e^{x} \sin x dx = \int \sin x d e^{x} = \sin x e^{ x} - \int \cos x e^{x} dx
+    .\]
+    \[
+	= \sin x e^{x} - \int xos x d e^{x} = \sin x e^{x} - \cos x e^{ x} - \int \sin x e ^{x} dx
+    .\]
     Теперь решим уравнение и получим:
     \[
 	\int e^{x} \sin x dx = \frac{e^{x} \sin x - e^{x} \cos x}{2} + c
@@ -3093,7 +3107,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \begin{prop}
     $ (\log x)' = \frac{1}{x}$
     \[
-	\frac{\log (x+1) - \log 1}{x} \stackrel{x \to  0}{\longrightarrow} \log'(1) = 1
+	\frac{\log (x+1) - \log 1}{x} \stackrel{to} {x \to  0} \log'(1) = 1
     .\]
     \[
 	\frac{\log(1+x)}{x} \to 1, \quad x \to  0
@@ -3229,13 +3243,13 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]  Такое число называется основанием логарифма $ l$.
 \end{name}
 \begin{note}
-    Если $ l = \log$, основание равно $ e$.
+    $ l = \log$. Тогда основание равно $ e$.
 \end{note}
 \begin{name}[общий случай]
     \[
 	\exists C \ne 0 : l(x) = C \log x
     .\]
-    $ a$ --- основание для $ l$.
+    $ a$ --- ан для $ l$.
     \[
 	1 = l(x) = C \log a ~ \Longrightarrow  ~ C= \frac{1}{\log a}
     .\]
@@ -3276,11 +3290,11 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     $ f'(x) = (\exp (x \log a))' = \exp(x \log a) = \log a \cdot  a^{x}$
 \end{prop}
 \begin{prop}
-    $ \exp' x = \left(e^{ x}\right)' = \exp(x \log e) = \exp x$
+    $ \exp x = e^{ x} = \exp(x \log e) = \exp x$
 \end{prop}
 \begin{defn}
-    Пусть $ a \ne 1$.  \[
-	a^{x} = y: \exp (x \log a) = y \Longleftrightarrow   x = \frac{\log y}{\log a} = \log_a y
+    Пусть $  \ne 1$.  \[
+	a^{x} = y: \exp x \log a \Leftrightarrow  x = \frac{\log y}{\log a} = \log_a y
     .\]
 \end{defn}
 \subsection{Степенная функция}
@@ -3297,7 +3311,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
 \end{st}
 \begin{proof}
     \[
-	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b \log x - x \log a}
+	\frac{x ^{ b}}{a^{ x}} = \frac{\exp b \log x}{\exp x \log a} = e^{ b log x - x log a}
     .\]
     А логарифм растет медленнее линейной функции, тогда полученное выражение стремится к нолю при $ x \to  \infty$.
 \end{proof}
@@ -3321,7 +3335,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     \begin{equation}
 	e ^{ x} = e^{ x_0} \cdot e ^{x- x_0} = e ^{ x_0} \sum_{n=0}^{\infty} \frac{(x-x_0)^{n}}{n!} = \sum_{n=1} ^{\infty} \frac{e^{x_0}}{n!} (x - x_0)
     \end{equation}
-    Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется {\sf <<аналитичность>>}.
+    Экспонента раскладывается в ряд Тейлора в центром в любой точка. Такое свойство называется ,,аналитичность''
 \end{st}
 \begin{ex}
     $ f(x) = \sum_{n=1}^{\infty} 2^{n} \cos n^2 x $ --- непрерывная, ряд сходится равномерно по теореме Вейерштрасса)
@@ -3420,7 +3434,7 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]
     Запишем локальную формулу Тейлора:
     \[
-	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{(k+1)} (1 + c)}{(k+1)!} x ^{ k+1}
+	\log(1+x)=\sum_{n=0}^{n}\frac{\log^{(n)} 1}{n!} x^{n} + \frac{\log^{k+1} (1 + c)}{(k+1)!} x ^{ k+1}
     .\]
     \[
 	\log(1+x) = \sum_{n=1} ^{k}  (-1)^{n+1} \frac{x^{n}}{n} + \frac{(-1)^{ k+1}}{k+1}\cdot  \frac{1}{(1+c)^{k+1}}x ^{ k+1}
@@ -3446,34 +3460,31 @@ $ f, g : [a, b] \to  \R, $ $ f, g$   непрерывны на $ [a, b]$ и $ f,
     .\]
 \end{proof}
 \begin{st}
-    Раскладывается ли логарифм в ряд Тейлора:
+    Раскладывается ли логарифм  ряд Тейлора:
     \begin{equation}\label{log_te}
 	\sum_{n=1} ^{\infty} (-1)^{ n} \frac{x^{n}}{n}
     \end{equation}
     Посмотрим на модуль:
     \[
-	\frac{1}{n} |x|^{n} \longrightarrow +\infty, \quad | x | > 1
+	\frac{1}{n} |x|^{n} \longleftarrow +\infty, \quad | x | > 1
     .\]
     Тогда имеет смысл рассматривать только $ x\in (-1, 1]$.
 \end{st}
 \begin{thm}
-    $ x \in (-1, 1]$. Тогда ряд \ref{log_te}  сходится равномерно  на любом $ (r , 1], \quad r>-1$.
+    $ x \in (-1, 1]$. Тогда ряд \ref{log_te} равномерно сходится равномерно  на любом $ (r , 1], \quad r>-1$.
 \end{thm}
 \begin{proof}
-    $ $
     \begin{enumerate}
 	\item $ x \in  [0, 1]$.
 	    \begin{equation}
 		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} x^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
-		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in (r, 1]
+		\le \frac{1}{k+1} x^{k+1} \le \frac{1}{k+1}, \quad c \in lra
 	    \end{equation}
 	    В частности, $ \log 2 = 1 -\frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \ldots $.
 	\item $ -1 < x \le 0$
 	    \begin{equation}\label{sl_2}
-		\begin{aligned}
-		    \left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| &\le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1} \le \\
-											&	\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
-		\end{aligned}
+		\left| \log(1+x) - \sum_{n=1}^{k}\frac{(-1)^{n+1}}{n} x^{n} \right| \le  \frac{1}{k+1} |x|^{k+1} \left( \frac{1}{1+c} \right) ^{k+1}
+		\le \frac{1}{k+1} |x|^{k+1} \le \left(\frac{1}{1 - |x|}\right)^{k+1} = \frac{1}{k+1} \left( \frac{|x|}{1-|x|} \right)^{k+1}
 	    \end{equation}
 	    Удачным случаем \ref{sl_2} будет $ \frac{|x|}{1 - |x|} < 1 ~ \Leftrightarrow  ~ |x| \le \frac{1}{2}, ~ x \in  (-\frac{1}{2}, 0]$.
 	    Чтобы разобраться с оставшимися вариантами, воспользуемся формулой: $ (1-x) (1 + x + \ldots + x^{n}) = 1 - x^{n+1}$.
@@ -3716,10 +3727,8 @@ $ x, x_0 > 0$
     \end{enumerate}
 \end{thm}
 \begin{proof}
-    $ $
-    \begin{description}
-	\item $\boxed{2 \Longrightarrow  1}$ --- очевидно \\
-    \item $\boxed{1 \Longrightarrow  2}$
+    $2 \Longrightarrow  1$ --- очевидно \\
+    $1 \Longrightarrow  2$
     \[
 	g(t) = f'(t) e ^{-ct}
     .\]
@@ -3727,6 +3736,6 @@ $ x, x_0 > 0$
 	g'(t) = f'(t) e^{-ct} + f(t) (-c e^{-ct}) = c f(t) e^{-ct} - c f(t) e^{-ct} = 0
     .\]
     Тогда $ g(t) \equiv A \in  R$.
-    \end{description}
+
 \end{proof}
 \end{document}
