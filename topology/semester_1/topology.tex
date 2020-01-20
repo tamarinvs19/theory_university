@@ -1902,16 +1902,17 @@ X = 	\left\{ \left(  x, \cos \frac{1}{x} \right) \middle| x>0 \right\} \cup \lef
 \end{proof}
 \subsection{Равномерная непрерывность}
 \begin{defn}
+    Пусть $ X, Y$ --- метрические пространства.
     Отображение $ f: X \to  Y$ {\sf равномерно непрерывно}, если
     \[
 	\forall  \varepsilon >0 ~ \exists  \delta > 0 ~ \forall x, x' \in  X:  \bigl(d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon\bigr)
     .\]
 \end{defn}
 \begin{thm}
-    Если $ X$ компактно, то любое непрерывное  $ f: X \to  Y$ равномерно непрерывно.
+    Если $ X$ --- компактное метрическое пространство, то любое непрерывное  отображение в метрическое пространство $ f: X \to  Y$ равномерно непрерывно.
 \end{thm}
 \begin{proof}
-    Применим следствие \ref{cor_ll} из леммы Лебега к $ f$ и покрытию  $ Y$ шарами радиуса $ \frac{\delta}{2}$
+    Применим следствие \ref{cor_ll} из леммы Лебега к $ f$ и покрытию  $ Y$ шарами радиуса $ \frac{ \varepsilon }{2}$
 \end{proof}
 \subsection{Теорема Тихонова}
 \begin{thm}[Тихонов, без доказательства]
