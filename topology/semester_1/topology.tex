@@ -1857,20 +1857,22 @@ X = 	\left\{ \left(  x, \cos \frac{1}{x} \right) \middle| x>0 \right\} \cup \lef
 \end{proof}
 \subsubsection{Вложения компактов}
 \begin{defn}
-    $ f: X \to  Y$ --- вложение, если $ f$ ---  гомеоморфизм между  $ X$ и  $ f(X)$.
+    $ f: X \to  Y$ --- {\sf вложение}, если $ f$ ---  гомеоморфизм между  $ X$ и  $ f(X)$.
 \end{defn}
 \begin{cor}
     Пусть $ X$ компактно,  $ Y$ хаусдорфово,  $ f: X \to  Y$ --- непрерывная  инъекция. Тогда $ f$ --- вложение.
 \end{cor}
+\clearpage
 \subsection{Лемма Лебега}
 \begin{thm}[Лемма Лебега]
     $ X$ --- компактное метрическое пространство.  $ \{U_i\}$ --- его открытое покрытие.
     Тогда существует такое $ r>0$, что любой шар радиуса $ r$ целиком содержится в одном из  $ U_i$.
     \begin{defn}
-	Число $ r$ называется числом Лебега данного покрытия.
+	Число $ r$ называется {\sf числом Лебега} данного покрытия.
     \end{defn}
 \end{thm}
 \begin{proof}
+    Так как $ U_i$ открыты и покрывают все точки $ x \in X$:
     \[
 	\forall x \in X ~ \exists r_x >0, ~ U_i \in  \{U_i\}: ~ B_{r_x}(x) \subset U_i
     .\]
@@ -1887,7 +1889,7 @@ X = 	\left\{ \left(  x, \cos \frac{1}{x} \right) \middle| x>0 \right\} \cup \lef
 	\label{fig:lemma-lebega}
     \end{figure}
     \[
-	r \le  \frac{r_x}{2}, \quad \overline{xy} + \overline{yz} < r + \frac{r_x}{2} <  r_x
+	r \le  \frac{r_x}{2}, \quad \overline{xy} + \overline{yz} <  \frac{r_x}{2} + r <  r_x
     .\]
     Следовательно, $ B_r (y) \subset B_{\frac{r_x}{2}}(y) \subset B_{r_x}(x) \subset U_i$.
 \end{proof}
@@ -1900,9 +1902,9 @@ X = 	\left\{ \left(  x, \cos \frac{1}{x} \right) \middle| x>0 \right\} \cup \lef
 \end{proof}
 \subsection{Равномерная непрерывность}
 \begin{defn}
-    Отображение $ f: X \to  Y$ равномерно непрерывно, если
+    Отображение $ f: X \to  Y$ {\sf равномерно непрерывно}, если
     \[
-	\forall  \varepsilon >0 ~ \exists  \delta > 0: ~ \forall a, x' \in  X ~ (d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon
+	\forall  \varepsilon >0 ~ \exists  \delta > 0 ~ \forall x, x' \in  X:  \bigl(d(x, x') < \delta \Longrightarrow  d(f(x), f(x')) < \varepsilon\bigr)
     .\]
 \end{defn}
 \begin{thm}
