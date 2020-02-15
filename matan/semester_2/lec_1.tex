@@ -1,4 +1,4 @@
-\documentclass[11pt,dvipsnames]{book}
+\documentclass[11pt,dvipsnames]{report}
 \input{preamble.tex}
 \begin{document}
 \tableofcontents
@@ -22,19 +22,65 @@
 	R_{n, x_0} =\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)}(t) (x-t)^{n} dt 
     .\] 
 \end{thm}
+\begin{proof}
+    Индукция по $n$.
+    $ $
+    \begin{description}
+        \item База: $ n=1$. 
+	    По формуле Ньютона-Лейбница:
+	    \[
+		R_{0, x_0} f(x) = f(x) - f(x_0) = \int_{x_0}^{x} f'(t) dt 
+	    .\] 
+        \item Переход: $ n-1 \to n$. 
+	    \begin{align*}
+		R_{n-1, x_0} f(x) &= \frac{1}{(n-1)!} \int_{x_0}^{x} f^{(n)}(x-t)^{n-1}dt = \\
+				  & = \frac{1}{(n-1)!} \int_{x_0}^{x}  f^{(n)}(t) d \left( \frac{(x-t)^{n}}{n} \right)  = \\
+				  & = \underbrace{-\frac{1}{n!} f^{(n)}(t)(x-t)^{n} \Bigm |_{x_0}^{x}}_{\frac{(x-x_0)^{n}}{n!} f^{(n)}(x_0)} + \underbrace{\frac{1}{n!}  \int_{x_0}^{x} f^{(n+1)}(t) (x-t)^{n}dt}_{R_{n, x_0}f(x)}
+	    \end{align*}
+    \end{description} 
+\end{proof}
 \subsection{Теорема о среднем}
-
-\begin{defn}[]
-    fjls
-\end{defn}
-\begin{lm}
-   afjld 
-\end{lm}
-\begin{ex}
-    fjlsdk
-\end{ex}
-st
-
+\begin{thm}[Хитрая теорема о среднем]\label{th_more_middle}
+    $ f, g \in  C[a, b], ~ g \ge 0$. Тогда 
+    \[
+	\exists c \in (a, b): \int_{a}^{b} f(x) g(x) dx = f(c) \int_{a}^{b} g(x) dx  
+    .\] 
+\end{thm}
+\begin{proof}
+    Найдем максимум и минимум $ f$ на $ [a, b]$. \[
+	m \le f(x) \le M
+    .\] 
+    Тогда \[
+	m g(x) \le f(x) g(x) \le M g(x)
+    .\] 
+    Так как интеграл монотонен
+    \begin{align*}
+	m \int_{a}^{b} g(x) dx & \le  \int_{a}^{b} f(x) d(x) dx \le M \int_{a}^{b} g(x) dx   
+	\\
+	m &\le  \frac{\int_{a}^{b} f(x)g(x)dx}{\int_{a}^{b} g(x)dx } \le M 
+	.
+    \end{align*}
+    По теореме Больцано-Коши о промежуточном значении 
+    \[
+	\exists c \in (a, b): f(c) = \frac{\int_{a}^{b} f(x)g(x)dx}{\int_{a}^{b} g(x)dx } 
+    .\] 
+\end{proof}
+\begin{cor}
+    Если $ \lvert f^{(n+1)} \rvert \le M$, то существует понятно какая оценка сверху для $ \lvert R_{n, x_0} f(x) \rvert$.
+\end{cor}
+\begin{thm}
+    Формула Тейлора с остатком в форме Лагранжа следует из формулы Тейлора с остатком в интегральной форме.
+\end{thm}
+\begin{proof}
+    Запишем остаток в форме Лагранжа:
+    \[
+	R_{n, x_0} f(x) = \frac{f^{(n+1)}(\Theta)}{(n+1)!} (x-x_0)^{n+1}, \quad \Theta \text{ лежит между } x, x_0
+    .\] 
+    По прошлой теореме \ref{th_more_middle}, где $ g(t) = (x-t)^{n}$, получаем, что
+    \[
+	\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \int_{x_0}^{x} (x-t)^{n}dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \cdot \left(-\frac{  ((x-t)^{n})^{n+1}}{n+1} \right) \Biggm |_{x_0}^{x}
+    .\] 
+\end{proof}
 \section{2}
 
 \end{document}
