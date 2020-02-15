@@ -81,5 +81,39 @@
 	\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \int_{x_0}^{x} (x-t)^{n}dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \cdot \left(-\frac{  (x-t)^{n+1}}{n+1} \right) \Biggm |_{x_0}^{x}
     .\] 
 \end{proof}
-\section{2}
+\section{Приближенное вычисление интеграла}
+\begin{defn}[Дробление]
+    Пусть $ \tau  = \left\{ x_0, x_1, \ldots x_{n} \right\} , ~ a < x_0 < \ldots < x_{n} < b$. Тогда $ \tau $ называется {\sf дроблением}  отрезка $ [a, b]$. 
+    \\
+	{\sf Мелкость дробления} $ \lvert \tau  \rvert = \max_{0 \le i \le n-1} (x_{i+1} x_{i})$. 
+	\\
+	$\Theta$ называется {\sf оснащением дробления} $ \tau $, если $ \Theta = \left\{ t_1, \ldots t_n \right\} : t_j = [x_{j-1}, x_j]$. 
+	\\
+	Пара $ (\tau, \Theta )$ называется {\sf оснащенным дроблением}.  
+\end{defn}
+\begin{defn}[Интегральная сумма]
+    Если $ f \in C[a, b]$, $ (\tau, \Theta)$ --- оснащенное дробление отрезка  $ [a, b]$, {\sf интегральной суммой} называется
+    \[
+	S_{\tau, \Theta}(f) = \sum_{j=1}^{n} f(t_j)(x_j - x_{j-1})
+    .\] 
+\end{defn}
+\begin{thm}
+    $ f \in C[a, b]$. Тогда $ \forall \varepsilon > 0 ~ \exists \delta >0: ~ \forall ( \tau , \Theta) \text{--- оснащенное дробление отрезка } [a, b]$, $ \lvert \tau \rvert < \delta:$  
+    \[
+	\left| S_{ \tau, \Theta}(f) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
+    .\] 
+    То есть $ \lim_{\lvert \tau  \rvert \to  0}  = \int_{a}^{b} f(x) dx $.
+\end{thm}
+\begin{proof}
+    По теореме Кантора о равномерной непрерывности
+    \[
+	\forall \varepsilon >0 ~ \exists \delta >0 ~ \forall s, t \in [a, b] : \left(   \lvert s -t \rvert < \delta  \Longrightarrow \lvert f(s) - f(t)\rvert< \frac{\varepsilon}{\lvert b-a \rvert }   \right)
+    .\] 
+    Перепишем неравенство
+    \[
+	\Bigg| \sum_{j=1}^{n} f(t_j)(x_j-x_{j-1}) - \sum_{j=1}^{n} \underbrace{\int_{x_{j-1}}^{x_j} f(x)dx}_{(x_j - x_{j-1})f(c_i)}  \Bigg| \le 
+	\sum_{j=1}^{n}  \Big| f(t_j) - f(c_j) \Big| (x_j - x_{j-1}) \le 
+	\frac{\varepsilon}{\lvert b-a \rvert } \sum_{j=1}^{n} (x_j-x_{j-1}) = \varepsilon 
+    .\] 
+\end{proof}
 \end{document}
