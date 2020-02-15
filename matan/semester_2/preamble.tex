@@ -1,0 +1,111 @@
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+
+% разметка страницы и колонтитул
+\usepackage[left=1.5cm,right=3cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{\leftmark}
+\addtolength{\headheight}{13pt}
+
+\pagestyle{fancy}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\usepackage{xifthen}
+\makeatother
+\def\@lecture{}%
+\newcommand{\lecture}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #3}%
+    }%
+    \subsection*{\@lecture}
+    \marginpar{\small\textsf{\mbox{#2}}}
+}
+\makeatletter
+\usepackage[]{xcolor}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}~}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}~}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\osc}{{\mathop{\text{\rm osc}}}}
+\newcommand{\pivi}{\stackrel \circ }
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=5pt,skipbelow=5pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=red,linewidth=3pt,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    frametitlebackgroundcolor=gray!10,%
+    innertopmargin=7pt,innerbottommargin=5pt,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Definition}
+\newmdtheoremenv[nobreak=true,backgroundcolor=SpringGreen!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Example}
+\theoremstyle{plain}
+\newmdtheoremenv[nobreak=true,backgroundcolor=cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
+
+\theoremstyle{plain}
+\newtheorem*{st}{Statement}
+\newtheorem*{prop}{Property}
+
+\theoremstyle{definition}
+\newtheorem*{exs}{Exs}
+\newtheorem*{cor}{Corollary}
+\newtheorem*{name}{Designation}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{com}{Comment}
+\newtheorem*{note}{Note}
+\newtheorem*{prac}{Practice}
+\newtheorem*{probl}{Exercise}
+
+\renewcommand{\proofname}{Proof}
+
