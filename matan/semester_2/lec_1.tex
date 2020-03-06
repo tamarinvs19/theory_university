@@ -1,6 +1,6 @@
-% \documentclass[11pt,dvipsnames]{report}
-% \input{preamble.tex}
-% \begin{document}
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
 
 \chapter{Интергирование}
 \section{}
@@ -80,5 +80,15 @@
 	\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \int_{x_0}^{x} (x-t)^{n}dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \cdot \left(-\frac{  ((x-t)^{n})^{n+1}}{n+1} \right) \Biggm |_{x_0}^{x}
     .\] 
 \end{proof}
-\section{2}
-% \end{document}
+\section{Приближенное вычисление интеграла}
+\begin{defn}[Дробление]
+    Пусть $ \tau = \{x_0, \ldots , x_{n}\}, ~ a < x_0 < \ldots < x_{n}< b$. Тогда $ \tau $ называется {\sf дроблением отрезка} $ [a, b]$. 
+
+    {\sf Мелкость дробления} --- \[
+	\left| \tau \right| = \max_{0 \le i \le n-1} (x_{i+1} - x_i)
+    .\]  
+    {\sf Оснащение дробления} --- \[
+	\theta = \{t_1, \ldots t_n\}, \quad t_j \in [x_{j-1}, x_j]
+    .\]     
+\end{defn}
+\end{document}

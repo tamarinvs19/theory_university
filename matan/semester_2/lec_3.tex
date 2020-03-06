@@ -1,13 +1,7 @@
-% \documentclass[11pt,dvipsnames]{report}
-% \input{preamble.tex}
-% \begin{document}
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
 \lecture{3}{28 feb}{}
-\begin{figure}[ht]
-    \centering
-    \incfig{puasson}
-    \caption{puasson}
-    \label{fig:puasson}
-\end{figure}
 \[
     \int_{-\infty}^{\infty} e^{-x^2} dx= I 
 .\] 
@@ -80,8 +74,8 @@
     \item независимость от параметризации
     \item $ l(\gamma) \ge  \lvert \gamma(a) - \gamma(b) \rvert $
     \item
-	$ l(\gamma) \ge \sum_{1}^{m} \lvert \gamma(x_j) - \gamma(x_{j-1}) \rvert $
-	Где $ \forall  \text{ дробления }[a, b] ~\tau = \left\{ x_j \right\}  $
+	$ l(\gamma) \ge \sum_{1}^{m} \lvert \gamma(x_j) - \gamma(x_{j-1}) \rvert $,
+	где $ \forall  \text{ дробления }[a, b] ~\tau = \left\{ x_j \right\}  $
 \end{itemize}
 \begin{defn}[Длина пути]
 $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$, где   
@@ -241,9 +235,9 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 \begin{ex}
     $ \R^{m} , ~ \Cm ^{m}$.
     \[
-	\lvert x \rvert _{p} = \left( \sum _{j=1}^{m}\left| x_j \right| ^2 \right) ^{\frac{1}{p}}, \quad p \ge 1
+	\| x \| _{p} = \left( \sum _{j=1}^{m}\left| x_j \right| ^2 \right) ^{\frac{1}{p}}, \quad p \ge 1
     .\] 
-    Если $ p = +\infty$, $ \lvert x \rvert _{+\infty} = \max_{1 \le j \le m}$.
+    Если $ p = +\infty$, $ \| x \| _{+\infty} = \max_{1 \le j \le m}$.
 
 \begin{note}
     Все нормы в $ \R^{m}$ эквивалентны.
@@ -254,7 +248,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     Рассмотрим множество $ C(K) = \left\{ f: K \to  \R \mid f\text{ --- непрервна} \right\} $, оно линейно над $ \R^{m}$.
     Норма:
     \[
-	\lvert f \rvert _{\infty} = \lvert f \rvert _{C(K)} = \max_{x \in K} \left| f(x) \right| 
+	\| f \| _{\infty} = \| f \| _{C(K)} = \max_{x \in K} \left| f(x) \right| 
     .\] 
 \end{ex}
 \begin{thm}
@@ -268,7 +262,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     .\] 
     Последовательность фундаментальны, значит
     \[
-	\forall \varepsilon >0 ~ \exists  N: \forall  k, n > N: \lvert f_k - f_n \rvert  < \varepsilon  ~ \forall x \in  K ~ \left|f_k(x) - f_n(x)  \right| < \varepsilon 
+	\forall \varepsilon >0 ~ \exists  N: \forall  k, n > N: \| f_k - f_n \|  < \varepsilon  ~ \forall x \in  K ~ \left|f_k(x) - f_n(x)  \right| < \varepsilon 
     .\] 
     Устремим $ k \to \infty$. $ f_k(x) \to f(x)$
     \[
@@ -294,7 +288,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     Рассмотрим множество \\ $ l_{\infty}(K) = \left\{ f: K \to  \R \mid f\text{ --- ограничена} \right\} $, оно линейно над $ \R^{m}$.
     Норма:
     \[
-	\lvert f \rvert _{\infty} = = \sup_{x \in K} \left| f(x) \right| 
+	\| f \| _{\infty} = \sup_{x \in K} \left| f(x) \right| 
     .\] 
 \end{ex}
 \begin{thm}
@@ -321,7 +315,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 \end{thm}
 \begin{proof}
     $ \left\{ f_n \right\}  \subset  C^{1} [a, b]$ фундаментальна.
-    Так как $ \varphi_3(f_n - f_k) \to _{n, k ro \infty} 0$, $ \varphi_1(f_n - f_k) \to  0$ и $ \varphi_2(f_n- f_k) \to  0$. Тогда $ \lvert f_n - f_k \rvert \to  0$ и $ \lvert  f'_n - f'_k \rvert  \to 0$. Получаем, что $ \left\{ f_n \right\} $ фундаментальна в $ C[a, b]$ и  $ \left\{ f'_n \right\} $ фундаментальна в $ C[a, b]$.
+    Так как $ \varphi_3(f_n - f_k) \to _{n, k ro \infty} 0$, $ \varphi_1(f_n - f_k) \to  0$ и $ \varphi_2(f_n- f_k) \to  0$. Тогда $ \| f_n - f_k \| \to  0$ и $ \|  f'_n - f'_k \|  \to 0$. Получаем, что $ \left\{ f_n \right\} $ фундаментальна в $ C[a, b]$ и  $ \left\{ f'_n \right\} $ фундаментальна в $ C[a, b]$.
 
     Докажем два пункта:
     \begin{enumerate}
@@ -340,14 +334,14 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     Проверили первый пункт. Второй следует из того, что $ f_n \to  f \wedge f'_n \to  g$.
 \end{proof}
 \begin{rem}
-    $ \lvert f_n - f \rvert  \to  0, \quad f_n \in C(K) \Longrightarrow f \in C(k) $.
+    $ \| f_n - f \|  \to  0, \quad f_n \in C(K) \Longrightarrow f \in C(k) $.
     $$ x_k \to  x_0 \Longrightarrow f(x_k) \to  f(x_0).$$
     \[
 	\lim_{k \to  \infty} \lim_{n \to \infty} f_n(x_k) = \lim_{n \to \infty} \lim_{k \to \infty} (x_k)  = f(n)
     .\] 
 \end{rem}
 \begin{rem}
-    Из того, что $ \lvert f_n - f \rvert _{\infty} \to  0$ и $ \lvert f'_n - g \rvert$, следует  $ f' = g$.
+    Из того, что $ \| f_n - f \| _{\infty} \to  0$ и $ \| f'_n - g \|$, следует  $ f' = g$.
     То есть 
      \[
 	 \left( \lim_{n \to \infty} f_n \right) ' = \lim_{n \to \infty} f'_n
@@ -356,4 +350,4 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 \begin{prac}
     $ \varphi_4(t) = \left| f(a) \right|  + \max_{x \in  [a, b]} \left| f'(x) \right| $
 \end{prac}
-% \end{document}
+\end{document}
