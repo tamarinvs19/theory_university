@@ -90,5 +90,31 @@
     {\sf Оснащение дробления} --- \[
 	\theta = \{t_1, \ldots t_n\}, \quad t_j \in [x_{j-1}, x_j]
     .\]     
+    {\sf Оснащенное дробление} --- пара $ ( \tau,\Theta )$ 
 \end{defn}
+\begin{defn}
+    $ f \in C[a, b]$, $ (\Theta, \tau )$ --- оснащенное дробление отрезка $ [a, b]$. Тогда \[
+	S_{\tau, \Theta} (f) = \sum_{j=1}^{n} f(t_j)(x_j-x_{j+1})
+    \] 
+называется {\sf интегральной суммой}. 
+\end{defn}
+\begin{thm}
+    $ f \in  C[a, b]$. Тогда $ \forall \varepsilon >0 ~ \exists \delta >0$ такие, что для любого оснащенного дробления $( \tau , \Theta)$ отрезка $ [a, b]$, $ \lvert \tau \rvert < \delta $ :
+    \[
+	\left| S_{\tau, \Theta}(t) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
+    .\] 
+    То есть 
+    \[
+	\lim_{\lvert \tau  \rvert \to 0} S_{\tau, \Theta} \to  \int_{a}^{b} f(x)dx 
+    .\] 
+\end{thm}
+\begin{proof}
+    По теореме Канторая о равномерной непрерывности $ \forall \varepsilon >0 ~ \exists \delta >0\colon \bigl( \forall s, t \in  [a , b], \lvert s-t \rvert < S \Longrightarrow \lvert f(s) - f(t) \rvert < \frac{ \varepsilon }{\lvert b-a \rvert } \bigr)$.
+    \begin{align*}
+    \left| \sum_{j=1}^{n} f(t_j) (x_j-x_{j-1}) - \sum_{j=1}^{n}  \int_{x_{j-1}}^{x_j} f(x)dx  \right| \le \\
+\le \left| \sum_{j=1}^{n} \left| f(t_j) - f(r_j) \right| (x_j - x_{j-1}) \right| \le \\
+\le \frac{ \varepsilon }{b-a} \sum_{j=1}^{n} (x_j - x_{j-1}) = \varepsilon 
+    \end{align*}
+    Здесь $ t_j, r_j \in  [x_j, x_{j-1}]$.
+\end{proof}
 % \end{document}
