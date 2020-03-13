@@ -1,0 +1,301 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\lecture{5}{13 march}{}
+\marginpar{\tiny\sf 18 апреля\\в 11:00\\в каб 301\\коллоквиум}
+\begin{note}
+    $ L(X; Y) \subset  \Hom(X; Y)$ --- линейные отображения из $ X$ в $ Y$. Это линейное нормированное пространство.
+\end{note}
+\begin{note}
+    Тоже самое верно для полилинейных отобранной.  То есть выполнены аксиомы нормы, доказательство аналогичное.
+    $ L(X_1, X_2, \ldots X_n;Y) \subset \Poly(X_1, \ldots X_n;Y)$.
+\end{note}
+\begin{thm}[О полноте пространства операторов]
+    Если $ Y$ полно, то $ L(X; Y)$ Тоже полно.
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{enumerate}
+        \item Построение предельного оператора.
+	     \[
+		 \{U_n\} \subset L(X, Y) \text{ --- фундаментальна, то есть $ \| U_n - U_m \|  \to  0,  n, m \to  \infty$}
+	    .\] 
+	    Рассмотрим $ x \in X$:
+	    \[
+		\| U_m x - U_n x \| _Y = \| (U_m-U_n)x \| _Y \le \| U_m - U_n \| \cdot \| x \| _X \to 0, ~n, m \to  \infty
+	    .\] 
+	    Тогда $ \{U_mx\}$ фундаментальна в $ Y$, следовательно,  $ \exists  \lim_{m \to \infty} U_m x \eqqcolon U(x)$ 
+	    \item Линейность предельного отображения.
+		\begin{align*}
+		    U(x_1+x_2) = \lim_{m to \infty} \left( U_m(x_1+x_2) \right)  = \lim U_mx_1 + \im U_mx_2 = Ux_1 + Ux_2\\
+		    U( \lambda x) = \lambda Ux
+		\end{align*}
+	    \item Непрерывность $ U$.
+		 \[
+		\varepsilon  = 1 ~ \exists N \colon \forall n, m \in  \N ~ \forall x \in X: \| U_mx - U_nx \| \le 1 \cdot \| x \| 
+		.\] 
+		Устремим $n \to  \infty$ :
+		\[
+		\exists  N ~ \forall  n > N ~ \forall  x \in  X: \| U_mx - Ux \|  \le \| x \| 
+		.\] 
+		По неравенству треугольника, при достаточно большом $ m > N$
+		\[
+		    \| Ux \|  \le  \| Ux - U_mx \| + \| U_mx \|  \le  \| x \|  + \| Um \| \cdot \| x \|  \le (1 + \| U_m \| ) \cdot \| x \|  
+		.\] 
+		Следовательно, $ U$ непрерывно.
+	    \item Сходимость $ \{Um\}$ к $ U$ по норме $ L(X, Y)$.
+		 \[
+		\forall \varepsilon  >0 ~ \exists  N ~ \forall  n, m > N ~ \forall  x \in X \colon \| U_mx - U_nx \| \le \varepsilon \| x \| 
+		.\] 
+		При $ x \to  \infty$ 
+		\[
+		\forall \varepsilon  >0 ~ \exists  N ~ \forall  m>N  ~ \forall  x \in X \colon \| U_mx - Ux \| \le  \varepsilon \| x \|  \Longleftrightarrow \| Um - U \| \le  \varepsilon 
+		.\] 
+    \end{enumerate}
+\end{proof}
+\begin{thm}
+    Если $ Y$ полно, то  $ L(X_1, \ldots X_n; Y) $ полно.
+\end{thm}
+\begin{ex}[Самый важный случай]
+    $ Y$ --- пространство скаляров. $ L(X, Y) = X^{*}$ --- сопряженное пространство --- пространство линейных непрерывных функционалов.
+\end{ex}
+\begin{thm}
+    $ L_1=L(X_1 \ldots X_k; L(X_{k+1}, \ldots X_{n}; Y) \backsimeq L(X_{1}, \ldots X_n; Y) = L_2$, то есть существует изометрический (сохраняющий норму) изоморфизм.
+\end{thm}
+\begin{proof}
+    Построим биекцию.
+    $ U \in  L_1 \colon U(x_1, \ldots, x_k) \in  L(X_{k+1}, \ldots X_n;Y) $,\\
+    $ U(x_1, \ldots x_k)(x_{k+1}, \ldots x_n) \in Y$.
+
+    Определим $ \tilde U(x_1, \ldots x_n) \coloneqq  U(x_1, \ldots x_k)(x_{k+1}, \ldots x_n)$. Оно будет полилинейно непрерывно. 
+Это же определение работает и в обратную сторону.
+
+Теперь нужно понять, что с нормой все в порядке. 
+\[
+    \| U \| = \sup_{\substack{\| x_i \| = 1\\ 1 \le i \le  k}} \| U(x_1, \ldots x_n) \| =
+    \sup_{\substack{\| x_i \|  = 1\\ 1 \le i \le k}} \Bigl(\sup _{\substack{\| x_{i} \| =1\\ k<i \le n }}  \| U(x_1, \ldots x_k)(x_{k+1}, \ldots x_n) \|\Bigr)  =
+	\sup_{\substack{\| x_i \|= 1\\1 \le i \le n }} \| \tilde U(x_1, \ldots x_n) \|  = \tilde U
+.\] 
+\end{proof}
+\section{Дифференциальные отображения}
+\begin{defn}
+    $ X, Y$ --- нормированные пространства, $ E \subset X$, $ x \in E$, $ x$ --- внутренняя точка, $ f: E \to Y$.
+    $ f$ --- {\sf дифференцируемо в точке  $ x$}, если $ \exists L \in L(X, Y) \colon $  
+    \[
+	f(x+h) - f(x) =L(h) + \o(h), \qquad h \to 0, x + h \in  E
+    .\] 
+\end{defn}
+    \begin{note}
+	$ x, h \in X$, $ f(x), f(x+h) \in Y$, $ Lh \in Y$
+
+	Что такое $ \o(h)$:
+	\[
+	    f(x+h)-f(x) = Lh + \alpha (x, h)
+	.\] 
+	\[
+	    \lim_{h \to  0} \frac{\| \alpha (x, h) \| _Y}{\| h \| _X} = 0
+	.\] 
+    \end{note}
+\begin{defn}
+    $ L$ --- {\sf дифференциал } $ f$ в точке $ x$.  
+\end{defn}
+    \begin{name}
+	Обозначения дифференциала $ D_x f, f'(x), d_x f, df(x)$ 
+
+	Формула из определения выглядит так
+	\[
+	    f(x+h) - f(x) = df(x) h + \o(h), \quad h \to 0
+	.\] 
+    \end{name}
+\begin{note}
+    Это определение --- дифференцируемость по Фреше.
+\end{note}
+\begin{note}
+    В конечномерном случае из линейности $ L$ автоматически следует непрерывность.
+\end{note}
+\begin{thm}
+    Если дифференциал в точке $ x$ существует, то он единственный.
+\end{thm}
+\begin{proof}
+    Пусть $ \exists L_1,L_2 \colon f(x+h) - f(x) = L_ih + \o(h)$.
+    Тогда $ L_1h - L_2h - \o(h)$, докажем, что $ L = L_1- L_2$ равно нулю.
+
+    Зафиксируем $ h \ne 0$.
+    \[
+	\| Lh \|  = \frac{\| L(th) \| }{\| t \| } = \underbrace{\frac{\| L(th) \| }{\| th \|}}_{ \to  0, ~ t \to 0} \| x \|  \to  0, \quad t  \to 0
+    .\] 
+    Следовательно, $ \| Lh \|  = 0 \Longrightarrow L=0$.
+\end{proof}
+\begin{defn}
+    Если $ f: E \subset X \to  Y$ ($ E$ открыто), $ f$ дифференцируема во всех точках $ E$, $ df: E \to  L(X, Y)$ --- {\sf производное отображение}.  
+\end{defn}
+\begin{note}
+    Если $ f$ дифференцируема в точке $ x$, то  $ f$ непрерывна.
+\end{note}
+\paragraph{Правила дифференцирования}
+\begin{description}
+    \item[Линейность] $ f_1, f_2: E \subset X to Y$, $ f_1, f_2$ непрерывны в точке $ x \in E$. Тогда $ \forall \lambda_1, \lambda_2$ --- скаляры:
+	$\lambda_1f_1 + \lambda_2 f_2 $ дифференцируема в точке $ x$ и $ d(\lambda_1 f_1 + \lambda_2 f_2) (x) = \lambda_1df_1(x) + \lambda_2df_2(x)$
+    \item[Дифференциал композиции] $ X, Y, Z$ --- линейные нормируемые пространства, $ U \subset X, ~ V \subset Y$, $ U, V$ открыты, $ f: U to Y, g : V \to  Z$, $ x \in U, f(x) in V$, f дифференцируема в точке $ x$, $ g$  дифференцируема в точке $ f(x)$. Тогда $ g \circ f$ дифференцируема в точке $ x$.
+	 \[
+	     d(g \circ f)(x) = dg(f(x)) \circ df(x))
+	.\] 
+	\begin{proof}
+	    \begin{align*}
+		g(f(x+h)) - g(f(x)) &=\\
+				    &=dg(f(x)\left( f(x+h) - f(x) \right) + \o(f(x+h)- f(x)) \\
+				    &= dg(f(x) \left( df(x)h + \o(h) \right) + \o(f(x+h) - f(x)) = \\
+				    & = dg(f(x)) df(x) h + \underbrace{dg(f(x)(\o(h)) + \o(f(x+h)-f(x))}_{? = \o(h)}
+	    \end{align*}
+	    \[
+		\frac{\| dg(f(x))(\o(h)) \|_Z}{\| h \| _X} \le \frac{\|  dg(f(x)) \|_{} \| \o(h) \|}{\| h \| _X} \to  0 
+	    .\] 
+	    \[
+		\frac{\| \o(f(x+h) -f(x)) \|}{\| h \| } = \underbrace{\frac{\| \o(f(x+h)-f(x))\|}{\| f(x+h) - f(x) \| }}_{ \to  0, h \to 0} \cdot \underbrace{\frac{\| f(x+h) - f(x) \| }{\| h \| }}_{\text{ограничено}}  \to  0, ~ h \to  0
+	    .\] 
+	\end{proof}
+	\item[Дифференцирование обратного] $ x \in U \subset X$, $ U$ открыто, $ f: U \to Y$, существует окрестность $ V(f(x))$ в $ Y$, в которой  $ \exists f^{-1}$. Предположим, что $ f$ дифференцируема в точке $ x$, $ \exists \left( df(x) \right)^{-1} \in L(Y, X)$, $ f^{-1}$ непрерывна в точке $ f(x)$. Тогда  $ f^{-1}$ дифференцируема в точке $ f(x)$ и \[
+		\underbrace{df^{-1}(f(x))}_{ \in L(Y, X)} = \left( df(x) \right)^{-1}
+	.\] 
+	\begin{note}
+	    Здесь слишком много условий
+	\end{note}
+	\begin{proof}
+	    $ f(x) = y,~ f^{-1}(y) = x, ~f(x +h) = y + t, ~ f^{-1}(y+t) = x +h$. $ h \to  0 \Longleftrightarrow t \to  0$.
+	    Давайте запишем
+	    \[
+		t = f(x +h) - f(x) = df(x)h + \o(h)
+	    .\] 
+	    Тогда $ \| t \|  \le C \| h \| $.
+	    Воспользуемся тем, что $df(x)$ обратим.
+	    \begin{align}\label{ali_1}
+		\left( df(x) \right)^{-1} t = h + \left( df(x) \right)^{-1} \left( \o(h) \right) 
+	    \end{align}
+	    \[
+		\| \left( df(x) \right)^{-1}(\o(h)) \|  \le  \| \left( df(x) \right)^{-1} \| \cdot \| \o(h) \| \le \frac{\| h \| }{2}, \quad \| h \|  < \delta  
+	    .\] 
+	    То есть
+\[
+    \forall  \varepsilon  >0 ~ \exists \delta \colon \left( \|  h \| < \delta  \Longrightarrow \frac{\| \o(h) \| }{\| h \| } < \frac{ \varepsilon }{\| \left( df(x) \right)^{-1} \| }\right)
+.\] 
+Тогда $ \forall  \| h \|  < \delta \colon \| (df(x))^{-1}t \| \ge \frac{\| h \| }{2} \Longrightarrow \| h \| \le C \| t \|  $.
+Перепишем \ref{ali_1}
+\[
+    f^{-1} (y+t) - f(y) = (df(x))^{-1} t + \o(t)
+.\] 
+Это определение дифференцируемости.
+Тогда 
+\[
+    df^{-1}(f(x)) = (df(x))^{-1}
+.\] 
+	\end{proof}
+\end{description}
+\section{Примеры и дополнительные свойства дифференцирования}
+\begin{enumerate}
+    \item[0.] $ f: \R \to  \R$, $ f$ дифференцируема.
+	\[
+	    df(x): \R \to  \R, ~ h \mapsto f'(x) h
+	.\] 
+    \item $ f: U \subset X\to  Y$, $ f$ постоянно, то есть $ f(x) = y_0 \quad \forall  x \in U$. Тогда
+	$ df(x) = 0$  (нулевое линейное отображение, все переводит в нуль).
+    \item $ f \in L(X, Y)$, $ df(x) = f$.
+	 \[
+	     f(x+h) - f(x) = f(h) = (df(x))(h)
+	.\] 
+    \item $ f(x, y) = x^2+ 2xy$. $ h = (h_x, h_y)$
+ \begin{align*}
+     f(x+h_x, y+h_y) - f(x, y) &= x^2 + xh_x + h^2_x + 3xy + 3xh_y + 3 yh_x - x^2 - 3xy  + 3 h_x h_y= \\
+			       &= (2x+3y) h_x + 3xh_y + \underbrace{h_x^2+ 3h_x h_y}_{\o(h)} 
+\end{align*}
+В матричной форме
+\[
+    \begin{pmatrix}
+	2x + 3y & 3x
+    \end{pmatrix} \cdot 
+    \begin{pmatrix}
+        h_x \\ h_y
+    \end{pmatrix}
+.\] 
+\item $ x \in U \subset X, ~ f: U \to  Y, ~ A \in L(Y, Z)$. Если $ f$ дифференцируема в точке $ x$, то $ A \circ f$ дифференцируема в точке $ x$ и $ d(A \circ f) (x) = A df(x)$
+\item $ x \in U \subset X, ~ f: U \to  Y_1 \times \ldots \times Y_n$. Это $ n$ отображений: $ f(x) = \left( f_1(x), \ldots f_n(x)  \right) , \quad f_j: U \to  Y_j$. 
+    $ f$ дифференцируема в точек $ x$, тогда и только тогда, когда $ f_1, \ldots f_n$ дифференцируемы в точке $x_0$.
+    \begin{proof}
+	    $ f(x + h) - f(x) = df(x) h + \o(h) \in  Y$. Левая часть равна
+		\[
+		    \left( f_1(x+h) - f_1(x), \ldots f_n(x+h)-f_n(x) \right) 
+		.\] 
+		А правая
+		\[
+		    (L_1h, L_2h, \ldots L_nh) + \o(h)
+		.\] 
+		
+    \end{proof}
+\item $x_j: X_1 \times X_2 \times  \ldots X_n \to X_j, \quad (x_1, \ldots x_n) \mapsto x_j$.
+    \[
+	dx_j(x)h = h_j
+    .\] 
+    Это удобное обозначение базиса, которое мы будем дальше использовать.
+\item $ A : X_1 \times X_n \to  Y$ --- полилинейное и непрерывное.
+    Оставим только два сомножителя.
+    $ A: X_1 \times X_2 \to  Y$. 
+    \[
+	A(x_1 + h_1, x_2 + h_2) - A(x_1, x_2) = A(x_1, h_1) + A(h_1, x_2) + \underbrace{A(h_1, h_2)}_{\o(h)}
+    .\] 
+    \[
+	dA(x_1, x_2) h = A(h_1, x_1) + A(x_1, h_2)
+    .\] 
+    Или можно записать так:
+    \[
+	dA(x_1, x_2) = A(dx_1, x_2) + A(x_1, dx_2)
+    .\] 
+    Совершенно аналогично для $ n$ координат.
+\end{enumerate}
+\begin{prop}
+    $ $
+    \begin{enumerate}[noitemsep,label={\rm\bf \arabic*)}]
+	\item $ f(x) = x_1 \cdot \ldots x_{n}, ~ f: \R^{n} \to  \R$.
+	    \[
+		df(x) = \sum_{j=1}^{n} \left(dx_j \prod_{i \ne j} x_i\right)
+	    .\] 
+	    \[
+		df(x)h = \sum_{j=1}^{n} \left(h_j \prod_{i \ne j} x_i\right)
+	    .\] 
+	\item $ f_1, \ldots f_n: X \to  \R$.
+	    \[
+		d(f_1f_2...f_n) (x)= f_2(x)f_3(x) \ldots df_1(x) + \ldots 
+	    .\] 
+	\item $ \langle \cdot , \cdot  \rangle: \R^{n}  \times   \R^{n}  \to  \R$ --- скалярное произведение.
+	    \[
+	    d \langle \cdot , \cdot  \rangle = \langle dx_1, x_2 \rangle + \langle x_1, dx_2 \rangle
+	    .\] 
+	\item $ f, g: X \to  \R^{n} $
+	    \[
+	    d \langle f, g \rangle = \langle df, g \rangle  + \langle f, dg \rangle
+	    .\] 
+	\item $ f: X \to  Y$ над $ \R(\Cm)$, $\lambda : X \to  \R$
+\[
+    d(\lambda f) = \underbrace{f}_{ \in  Y} \underbrace{d \lambda}_{L(X, \R)} + {\lambda}  \underbrace{df}_{ \in L(X, Y)}
+.\] 
+    \end{enumerate}
+\end{prop}
+\begin{prac}
+    $ U = \{A \in L(X, Y) \mid \exists A^{-1} \in  L(X, Y)\}$ --- множество обратимых линейных отображений.
+    $ f: U \to  L(X, Y), ~ f(A) = A^{-1}$. Найти $ df$.
+\end{prac}
+\section{Частные производные}
+\begin{defn}[Частные производные]
+    Пусть $ a \in  X_1 \times X_2 \times  \ldots  \times X_n$. $ U$ --- окрестность точки $ a$.  $ f: U \to Y$.  $ f(x) = f(x_1, \ldots x_{n})$.
+
+    Определим $ \varphi _j : X_j \to  Y, ~ \varphi _j(x_j) = f(a_1, a_2, \ldots x_j, a_{j+1}, \ldots a_n)$.
+
+    $ d \varphi _j (a_j)$ называется {\sf частным дифференциалом (частной производной)} $ f$ по $ x_j$ в точке $ a$, если существует. 
+\end{defn}
+\begin{name}
+    Частный дифференциал обозначается кучей способов
+    \[
+	\partial_{x_j}f(a), ~ \frac{ \partial f}{ \partial x_j}, \partial_j f(a) \in L(x_i, Y)
+    .\] 
+\end{name}
+
+% \end{document}
