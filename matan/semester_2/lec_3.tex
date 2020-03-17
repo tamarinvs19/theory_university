@@ -1,0 +1,353 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\lecture{3}{28 feb}{}
+\[
+    \int_{-\infty}^{\infty} e^{-x^2} dx= I 
+.\] 
+Получили, что $ V = I^2$.
+\[
+    V = \int_{0}^{1} S(y) dy = \pi \int_{0}^{1} r(y)^2 dy  =  
+.\] 
+Где $ r(y) = \sqrt{-\ln y}$. Подставляем:
+\[
+    = - \pi \int_{0}^{1} \ln y dy = - \pi( y \ln y - y) \Biggm| _{0}^{1} = \pi 
+.\] 
+\section{Кривые в $ \R^{n}$ и их площади}
+\begin{defn}[Путь]
+    {\sf Путь в $ \R^{n} $} ---  отображение $ \gamma : [a, b] \to  \R^{n} , ~ \gamma \in  C[a, b]$. 
+
+    Можно разложить по координатам
+    \[
+	\gamma (t) = \left( \gamma_1(t) , \ldots , \gamma_n(t) \right) , ~ \gamma_i \text{ --- координатные отображения для  } \gamma
+    .\] 
+
+    {\sf Начало пути} --- $ \gamma(a)$,  {\sf конец пути} --- $ \gamma(b)$.
+
+    {\sf Носители пути} ---  $ \gamma([a, b])$.
+
+    $ \gamma $ {\sf замкнут}, если $ \gamma (a) = \gamma(b)$.
+
+    $ \gamma \in C^{n}[a, b] \Longleftrightarrow  \forall  i : \gamma_i \in  C^{r} [a, b] \Longleftrightarrow \gamma \text{ --- $ r$-гладкий путь}$.
+
+    $ \gamma^{-1}$ --- противоположный путь, если $ \gamma^{-1}(t) = \gamma(a-b-t), ~ \forall  t \in  [a, b]$.
+\end{defn}
+\begin{note}
+    Разные пути могут иметь один общий носитель.
+\end{note}
+\begin{defn}
+    Два пути $ \gamma: [a, b] \to  \R^{n} $ и $ \tilde \gamma : [c, d] \to  \R^{n} $ {\sf эквивалентны}, если существует строго возрастающая сюрьекция
+    \[
+	\varphi : [a, b] \to  [c, d]: \gamma = \tilde \gamma  \circ \varphi 
+    .\] 
+\end{defn}
+\begin{st}
+    Это отношение эквивалентности.
+\end{st}
+\begin{defn}[Кривая]
+    {\sf Кривая в $ \R^{n} $} --- класс эквивалентности путей.
+    {\sf Параметризация кривой} --- путь, представляющий кривую.  
+\end{defn}
+\begin{ex}
+\[
+    \gamma_1: [0, \pi] \to  \R^2\quad \gamma_1(t) = (\cos t , \sin t_0)
+.\] 
+\[
+    \gamma_2 : [-1, 1] \to  \R^2\quad \gamma_2(t) = (-t, \sqrt{1-t^2})
+.\] 
+Можно определить:
+\begin{itemize}[noitemsep]
+    \item начало кривой
+    \item конец кривой
+    \item простота
+    \item замкнутость
+    \item кривя $ r$-гладкая, если у нее есть хотя бы одна гладкая параметризация.
+\end{itemize}
+\end{ex}
+\subsection{Поговорим о длине}
+Ожидаемые свойства:
+\begin{itemize}[noitemsep]
+    \item $ \gamma : [a, b] \to  \R^{n}, ~ c \in  (a, b) $. 
+	\[
+	    \gamma^{л} = \gamma \mid_{[a, c]}, \quad \gamma^{п} = \gamma\mid_{[c, b]} \Longrightarrow l(\gamma) = l(\gamma^{л}) + l(\gamma^{п})
+	.\] 
+    \item независимость от параметризации
+    \item $ l(\gamma) \ge  \lvert \gamma(a) - \gamma(b) \rvert $
+    \item
+	$ l(\gamma) \ge \sum_{1}^{m} \lvert \gamma(x_j) - \gamma(x_{j-1}) \rvert $,
+	где $ \forall  \text{ дробления }[a, b] ~\tau = \left\{ x_j \right\}  $
+\end{itemize}
+\begin{defn}[Длина пути]
+$ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$, где   
+\[
+    l_{\tau} = \sum_{j=1}^{m} \lvert \gamma(x_j) -\gamma(x_{j-1}) \rvert, ~ \tau =  \left\{ x_j \right\}_{j=0}^{m}  
+.\] 
+\end{defn}
+\begin{prac}
+    Придумать пример бесконечно длинного пути.
+\end{prac}
+\begin{defn}
+    Если путь имеет конечную длину, он называется  спрямляемым.
+\end{defn}
+\begin{defn}
+    {\sf Длина крвивой} --- длина любой из ее параметризаций.  
+\end{defn}
+\begin{prop}
+    $ $
+\begin{enumerate}[label={ \boxed{\arabic*.}}]
+	\item $ \gamma \sim \tilde \gamma \Longrightarrow l(\gamma) = l(\tilde\gamma)$
+	\item Аддитивность
+	    \[
+		\gamma : [a, b], c \in  (a b) \qquad \gamma^{л} = \gamma \bigm|_{[a, c]} , ~ \gamma^{п} \gamma\bigm|_{[c, b]}
+	    .\] 
+	    Тогда $ l(\gamma) = l(\gamma^{л}) + l(\gamma^{п})$.
+	    \begin{proof}
+		$ $
+		\begin{description}
+		    \item \boxed{ 1 \Longrightarrow 2} $ \tau$ --- дробление $ [a, b]$. 
+			 \begin{align*}
+			     \tau^{l} \left( \tau \cap [a, c] \cup \left\{ c \right\}  \right) \\
+			     \tau^{r}  = \left( \tau \cap [c, b] \cup \left\{ c \right\}  \right) 
+			\end{align*}
+			     \[
+				 l(\gamma) = \sum_{j=1}^{n} \left| \gamma(x_j) - \gamma(x_{j-1} \right|  \le  l_{\tau^{l}} (\gamma^{l})- l_{tau^{r}} (\gamma^{r}) \le l(\gamma^{l}) - l(\gamma^{r})
+			     .\] 
+		    \item \boxed{ 2 \Longrightarrow 1} 
+			$ \tau^{l} $ --- дробление $ [a, b]$,  $ \tau^{r}$ --- дробление $ [c, d]$.  $ \tau = \tau^{l} \cup \tau^{r}$.
+			\begin{align*}
+			    l(\gamma) & \le l_{\tau} (\gamma) = l_{\tau^{l}}(\gamma^{l}) +l _{\tau^{r}}(\gamma^{r}) \\
+			    \sup_{\tau^{l}} l(\gamma) \ge  l(\gamma^{l}) + l_{\tau^r}(\gamma^{r}) \qquad \forall  \tau^l \\
+			    \sup_{\tau^{r}} l(\gamma) \ge  l(\gamma^{l}) + l_{\tau^r}(\gamma^{r}) \qquad \forall  \tau^r
+			\end{align*}
+		\end{description} 
+	    \end{proof}
+    \end{enumerate}
+\end{prop}
+\begin{thm}[Длина гладкого пути]
+    $ \gamma : [a, b] \to  \R^{n} $ --- гладкий путь. Тогда $ \gamma$ обязательно спр и \[
+	l(\gamma) = \int_{a}^{b} \left| \gamma'(t) \right| dt 
+    .\] 
+    \[
+	\gamma'(t) = \left( \gamma'_1(t), \ldots   \gamma'_n(\tau)\right) 
+    .\] 
+    \[
+	\lvert \gamma'(t) \rvert = \sqrt {\lvert \gamma'_1(t)^2 + \ldots  \gamma'_n(t)^2 \rvert }
+    .\] 
+\end{thm}
+\begin{proof}
+    \begin{enumerate}
+	\item 
+    $ \Delta \subset [a, b]$ --- отрезок. Пусть $ m_j(\Delta) = \min_{t \in \Delta} \lvert \gamma'_j (t)\rvert $, $ M_j(\Delta) = \max_{t \in  \Delta} \lvert \gamma'_j(t) \rvert $.
+
+    \[
+	m(\Delta) = \sqrt{\sum_{j=1}^{n} (m_j (\Delta))^2}, \qquad
+	M(\Delta) = \sqrt{\sum_{j=1}^{n} (M_j (\Delta))^2}
+    .\] 
+    Для всех $ \Delta \subset [a, b]$ чему равно $ l(\gamma \bigm|_{\Delta})$?
+
+    Пусть $ \tau= \left\{ x_j \right\} ^{m}_{j=0}$. Тогда 
+    \[
+	l_{\tau} =  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k(x_j) - \gamma_k(x_{j-1} \right|^2 }
+    .\] 
+    По теореме Лагранжа результат равен% добавить слева min корень
+      \begin{align*}
+	  l_{\tau} &=  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k'(...) \right|^2 \cdot  \left| x_j - x_{j-1} \right|  } =  \\
+		   &= \sum_{j=1}^{m}(x_j - x_{j-1}) \sqrt{\sum_{k=1}^{n} \left| \gamma'_k(...) \right| ^2}  
+      \end{align*}
+    Выражение под корнем не превосходит $ M(\Delta)$ и не менее $ m(\Delta)$
+    \[
+	\left| \Delta \right| m(\Delta) \le  l(\gamma\bigm|_{\Delta} \le  \left| \Delta \right| M(\Delta) 
+    .\] 
+\item 
+    \[
+	\int_{\Delta} \left| \gamma'_k (t)\right| dt = \int_{\Delta} \sqrt{\left| \gamma_1'(t)  \right| sr + \ldots \left|\gamma'_n(t)\right|} dt
+    .\] 
+    \[
+	m(\Delta) \le  \max \sqrt {...} \le  M(\Delta)
+    .\] 
+    \[
+	\left| \Delta \right| m(\Delta) \le \int_{\Delta} \left| \gamma'(t) \right| dt \le  \left| \Delta \right| M(\Delta) 
+    .\] 
+\item 
+    \[
+	\forall  \varepsilon >0 ~ \exists  \delta  >0: s, t \in  [a, b] , ~ \lvert s-t \rvert < \delta  \quad \forall j \in  [1, k]: \left| \gamma'_j(s) - \gamma_j'(t)  \right| < \varepsilon 
+    .\] 
+    $ \left| \Delta \right| < \delta  \Longrightarrow M(\Delta) - m(\Delta) = \sqrt{\sum M_j(\Delta)^2} - \sqrt{\sum m_j(\Delta)^2} \le \sum \left| M_j(\Delta) - m_j(\Delta) \le  \varepsilon  n
+    \right| $
+\item Теперь возьмем дробление $ [a, b]$ на кусочки длиной меньше $ \delta  $.
+    \[
+	[a, b] = \Delta_1 \cup \ldots \cup \Delta_k, \quad \lvert \Delta_j \rvert < \delta 
+    .\] 
+    Запишем два неравенства
+    \[
+	m(\Delta_j) \lvert \Delta_j \rvert  \le  l(\gamma \bigm|_{\Delta_j} \le M(\Delta_j) \lvert \Delta_j \rvert 
+    .\] 
+    \[
+	m(\Delta_j) \lvert \Delta_j \rvert  \le \int_{\Delta_j} \left| \gamma' \right| \le M(\Delta_j) \lvert \Delta_j \rvert 
+    .\] 
+    \begin{align*}
+	\sum_{j=1}^{k} m(\Delta_j) \left| \Delta_j \right| \le l(\gamma)\le \sum_{j=1}^{k} M_{j=1}^{k} M(\Delta_j) \left| \Delta_j \right| \\ 
+	\sum_{j=1}^{k} m(\Delta_j) \left| \Delta_j \right| \le \int_a^{b}\left|\gamma' \right| \le \sum_{j=1}^{k} M_{j=1}^{k} M(\Delta_j) \left| \Delta_j \right| 
+    \end{align*}
+    \[
+	\sum_{j=1}^{k} M(\gamma_j) \left| \Delta_j \right| - \sum_{j=1}^{k} m(\Delta_j) \left| \Delta_j \right|  \le  \varepsilon n \cdot  \sum_{j=1}^{k} \left| \Delta _i \right|   = \varepsilon  n (b-a) 
+    .\] 
+    \end{enumerate}
+\end{proof}
+\begin{ex}
+    Посчитаем длину окружности:
+    $ \gamma = (\cos t, \sin t), ~ t \in  [0, 2\pi]$, $ \gamma' = (- \sin t, \cos t)$, $ \left| \gamma' \right| = 1 $.
+    Тогда
+    \[
+	l(\gamma) = \int_{0}^{2\pi} 1 dt = 2 \pi 
+    .\] 
+\end{ex}
+\subsection{Важные частные случаи общей формулы}
+\begin{enumerate}
+    \item $ \gamma(t) = (x(t), y(t), z(t)) $ --- путь в  $ \R^3$.
+	\[
+	    l(\gamma) = \int_{a}^{b} \sqrt{| x'(t)^2| + |y'(t)^2| + |z'(t)^2 | } 
+	.\] 
+    \item Длина графика функции.
+	$ f \in  C^{1}[a, b]$, $ \Gamma_f = \left\{ (x, f(t)) \mid x \in  [a, b] \right\} $.
+	\[
+	    l(\Gamma_f) = \int_{a}^{b} \sqrt{1 + (f'(t))^2} dx
+	.\] 
+    \item Длина кривой в полярных координатах
+	$ r : [\alpha, \beta ] \to  \R_+$, $ \left\{ (r(\varphi), \varphi ) \right\}  = \left\{ (r(\varphi) \cos \varphi, r( \varphi )\sin  \varphi  )\right\} $
+
+	\[
+	    l(\gamma) = \int_{ \alpha h}^{ \beta } \sqrt{r^2 + (r')^2} d \varphi  
+	.\] 
+\end{enumerate}
+\begin{rem}
+    $ \gamma: [a, b] \to \R^{m}, ~ \Delta \subset [a, b]$ --- отрезок.
+    \[
+    l(\gamma \bigm|_{\Delta}) =\int_{\Delta} \underbrace{\left| \gamma'(t) \right| dt}_{\text{Дифференциал дуги}} 
+    .\] 
+
+Если $ f$ задана на носителе пути  $ \gamma$ получаем <<неравномерную длину>>:
+    $ \int_{a}^{b} f(t) \left| \gamma'(t)  \right| dt $
+\end{rem}
+
+\chapter{Дифференциальное исчисление функций многих вещественных переменных}
+\section{Нормированные пространства}
+\begin{ex}
+    $ \R^{m} , ~ \Cm ^{m}$.
+    \[
+	\| x \| _{p} = \left( \sum _{j=1}^{m}\left| x_j \right| ^2 \right) ^{\frac{1}{p}}, \quad p \ge 1
+    .\] 
+    Если $ p = +\infty$, $ \| x \| _{+\infty} = \max_{1 \le j \le m}$.
+
+\begin{note}
+    Все нормы в $ \R^{m}$ эквивалентны.
+\end{note}
+\end{ex}
+\begin{ex}
+    $ (K, \rho)$ --- метрический компакт.
+    Рассмотрим множество $ C(K) = \left\{ f: K \to  \R \mid f\text{ --- непрервна} \right\} $, оно линейно над $ \R^{m}$.
+    Норма:
+    \[
+	\| f \| _{\infty} = \| f \| _{C(K)} = \max_{x \in K} \left| f(x) \right| 
+    .\] 
+\end{ex}
+\begin{thm}
+    $ C(K)$--- полно.
+\end{thm}
+\begin{proof}
+    Рассмотрим фундментальную последовательность функций $ \left| f_n \right| \subset C(K)$.
+    Возьмем $ x \in  K: \left\{ f_n(x) \right\} _{n=1}^{\infty} \subset \R$ --- фундаментальна. Следовательно, 
+    \[
+	\exists  \lim_{n \to  \infty} f_n(x) = : f(x)
+    .\] 
+    Последовательность фундаментальны, значит
+    \[
+	\forall \varepsilon >0 ~ \exists  N: \forall  k, n > N: \| f_k - f_n \|  < \varepsilon  ~ \forall x \in  K ~ \left|f_k(x) - f_n(x)  \right| < \varepsilon 
+    .\] 
+    Устремим $ k \to \infty$. $ f_k(x) \to f(x)$
+    \[
+	\forall  \varepsilon >0 ~ \exists  N ~ \forall n > N ~ \forall  x \in  K: \left| f(x) - f_n(x) \right| \le  \varepsilon 
+    .\] 
+    Возьмем $ n_0 > N$. $ f_{n_0}$ --- равномерно непрерывна, тогда 
+    \[
+	\forall  \varepsilon  ~ \exists \delta > 0 ~ \forall  x_1, x_2: \rho(x_1, x_2) < \delta  \Longrightarrow \left| f_{n_0}(x_1) - f_{n_0}(x_2) \right| < \varepsilon 
+    .\] 
+    \[
+	\left| f(x_1) - f(x_2) \right|  \le  \left| (x_1) -f_{n_0}(x_1) \right| + \left|  f_{n_0}(x_1) - f_{n_0}(x_2) \right| \left| f_{n_0}(x_1 - f(x_2) \right|  \le 3 \varepsilon  
+    .\] 
+    Следовательно, $ f \in C(K)$.
+    Докажем сходимость по норме:
+    \[
+    \forall \varepsilon  >0  ~ \exists  N > 0 ~ \forall  n > N:
+    \underbrace{\forall x \in  K ~ \left| f(x) -f_{n_0}(x)\right| \le  \varepsilon }_{\max_{x \in K}\left| f - f_n \right| \le  \varepsilon }
+    .\]  
+\end{proof}
+
+\begin{ex}
+    $ (K, \rho)$ --- метрический компакт.
+    Рассмотрим множество \\ $ l_{\infty}(K) = \left\{ f: K \to  \R \mid f\text{ --- ограничена} \right\} $, оно линейно над $ \R^{m}$.
+    Норма:
+    \[
+	\| f \| _{\infty} = \sup_{x \in K} \left| f(x) \right| 
+    .\] 
+\end{ex}
+\begin{thm}
+    $ l_{\infty}(X)$ --- полно.
+\end{thm}
+\begin{proof}
+    Аналогично.
+\end{proof}
+\begin{note}
+    $ C(K) \subset l_{\infty}(K)$ --- замкнутое подпространство.
+\end{note}
+\begin{note}
+    Замкнутое подпространство полного пространства полно.
+\end{note}
+\begin{ex}
+    $ K = [a, b]$,  $ C^{1}(K) = C^{1}[a, b]$.
+    \[
+	C^{1}[a,b] = \left\{ f: [a, b] \to  \R \mid f \text{ дифференцируема на } [a, b], f'\in C[a, b] \right\} 
+    .\] 
+    Определим норму $ \varphi_3(t) = \max_{x \in  [a, b]} \left| f(x) \right| + \max_{x \in [a, b]}\left| f'(x) \right|  $.
+\end{ex}
+\begin{thm}
+    $ (C^{1}[a, b], \varphi _3)$ полно.
+\end{thm}
+\begin{proof}
+    $ \left\{ f_n \right\}  \subset  C^{1} [a, b]$ фундаментальна.
+    Так как $ \varphi_3(f_n - f_k) \to _{n, k ro \infty} 0$, $ \varphi_1(f_n - f_k) \to  0$ и $ \varphi_2(f_n- f_k) \to  0$. Тогда $ \| f_n - f_k \| \to  0$ и $ \|  f'_n - f'_k \|  \to 0$. Получаем, что $ \left\{ f_n \right\} $ фундаментальна в $ C[a, b]$ и  $ \left\{ f'_n \right\} $ фундаментальна в $ C[a, b]$.
+
+    Докажем два пункта:
+    \begin{enumerate}
+	\item $ f \in C^1$, тое есть $\exists  g = f'$.
+	\item $ f_3(f_n - f) \to  0$
+    \end{enumerate}
+    Докажем, что $ f(a) - \left(\int_{a}^{b} g(t) dt + f(a)\right) \to  0 $.
+    \[
+    \forall  \varepsilon >0 ~ \exists  N ~ \forall n > N : \max \left| f_n - f \right| < \varepsilon \wedge \max \left| f'_n - g \right|  < \varepsilon 
+    .\] 
+    Перепишем модуль разности 
+    \begin{align*}
+	= &\left| f_n(x) - \left( \int_{a}^{x} f_n'(t)dt + f(a) \right) + \left(f(x) - f_n(x)\right) - \int_{a}^{x} \left( g(t) - f'_n(t)  \right) dt - \left(f_n(a) - f(a)\right) \right| \le  \\ 
+	\le & \left| f(x) - f_n(x) \right|  + \int_{a}^{x} \left| g(x) - f'_n(t) \right| dt  + \left| f_n(a) - f(a) \right| < \varepsilon (b - a + 2) 
+    \end{align*}
+    Проверили первый пункт. Второй следует из того, что $ f_n \to  f \wedge f'_n \to  g$.
+\end{proof}
+\begin{rem}
+    $ \| f_n - f \|  \to  0, \quad f_n \in C(K) \Longrightarrow f \in C(k) $.
+    $$ x_k \to  x_0 \Longrightarrow f(x_k) \to  f(x_0).$$
+    \[
+	\lim_{k \to  \infty} \lim_{n \to \infty} f_n(x_k) = \lim_{n \to \infty} \lim_{k \to \infty} (x_k)  = f(n)
+    .\] 
+\end{rem}
+\begin{rem}
+    Из того, что $ \| f_n - f \| _{\infty} \to  0$ и $ \| f'_n - g \|$, следует  $ f' = g$.
+    То есть 
+     \[
+	 \left( \lim_{n \to \infty} f_n \right) ' = \lim_{n \to \infty} f'_n
+    .\] 
+\end{rem}
+\begin{prac}
+    $ \varphi_4(t) = \left| f(a) \right|  + \max_{x \in  [a, b]} \left| f'(x) \right| $
+\end{prac}
+% \end{document}

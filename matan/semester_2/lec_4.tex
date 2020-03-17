@@ -1,0 +1,327 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\lecture{4}{6 march}{}
+\subsection{Продолжение примеров}
+\begin{enumerate}
+    \item $ C_p[a, b] = \{f \in  C[a, b]\}$
+	\[
+	    \|f\|_{C_p[a, b]} = \|f\|_p = \left( \int_{a}^{b} \left| f(x) \right| dx  \right) ^{\frac{1}{p}}, \quad p \ge 1
+	.\]
+	Это норма:
+	\begin{itemize}
+	    \item Не меньше нуля
+	    \item $ \|f\| = 0 \Longleftrightarrow f = 0$
+	    \item $ \| \lambda f \|  = \lvert \lambda  \rvert \cdot  \|f\|$
+	    \item Неравенство треугольника $ \|f\| + \| g\| \ge \|f + g\|$ (сейчас доказывать не будем)
+	\end{itemize}
+	Эта норма не полная.
+	Но есть процедура {\sf пополнения}.
+	\begin{thm}[без доказательства)]
+	    $ (X, \rho)$ ---  метрическое пространство. Тогда $\exists ! (Y, \tilde\rho)$  --- полное метрическое пространство, такое что
+	    \begin{enumerate}[noitemsep]
+		\item $X \subset  Y $
+		\item $ \rho = \tilde \rho \bigm |_{X \times X}$
+		\item $ Y = dX$
+	    \end{enumerate}
+	\end{thm}
+	Такое пространство пополняется до $ L_p(a, b)$.
+    \item $ l_p = \{x= (x_1, \ldots ) \mid x_j \in  \R, ~ \exists  \lim_{n \to \infty} \sum_{j=1}^{n}\lvert x_j \rvert ^{p} \}, \qquad p \ge 1$
+	Такое пространство тоже нормировано:
+	\[
+	    \| x\|_{\rho} = \left( \sum_{j=1}^{\infty}\lvert x_j \rvert ^{p} \right) ^{\frac{1}{p}}
+	.\]
+	\begin{prac}
+	    $ l_p$ полно
+	\end{prac}
+\end{enumerate}
+\begin{note}
+    В бесконечномерных нормированных пространствах компактность не равносильна замкнутости и конечности. Верно только в правую сторону.
+    \begin{itemize}
+	\item $ l_p$. Возьмем шар $ B = \left\{ x \in  l_p \mid \| x \| \le 1 \right\} $
+	    \begin{align*}
+		e^{1} & = (1, 0, 0, \ldots )\\
+		e^2 & = (0, 1, 0, 0, \ldots ) \\
+		    &\vdots \\
+		e^{k} &= (\underbrace{0, \ldots 0}_{k-1}, 1, 0, \ldots ) \\
+		      & \vdots
+	    \end{align*}
+	    \begin{prac}
+		Проверить не компактность
+		$ B = \left\{ f \in C[a, b] \mid \|f\| = 1 \right\} $ в $ C[a, b]$.
+	    \end{prac}
+    \end{itemize}
+\end{note}
+\section{Сжимающие отображения}
+\begin{defn}
+    $ (X, \rho)$ --- метрическое пространство. $ U: X \to  X$. $ U$ называется {\sf сжимающим отображением}, если
+    \[
+	\forall  \gamma < 1 ~ \forall  x_1, x_2 \in X\colon \rho(U(x_1), U(x_2)) \le  \gamma \rho(x_1, x_2)
+    .\]
+\end{defn}
+\begin{thm}[Принцип сжимающих отображений]
+    $ (X, \rho)$ полно.
+    $ $
+    \begin{enumerate}
+	\item $ U$ --- сжимающее отображение $ \Longrightarrow \exists! x_{*} \colon U(x_1) = x_{*}$ --- неподвижная точка
+	\item Если  $ \exists  N \colon U^{N}$ --- сжимающее отображение $ \Longrightarrow \exists  ! x_{*} \colon U(x_{*} = x_{*}$
+    \end{enumerate}
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{enumerate}
+	\item  Рассмотрим траекторию точки $ x_1$.
+	    \[
+		x_1, x_2=U(x_1), x_3=U(x_2), \ldots x_n = U(x_{n-1})
+	    .\]
+	    \begin{align*}
+		\rho(x_{n+1}, x_{n}) \le  \gamma \rho(x_n, x_{n-1}) \le  \\
+		\gamma^2 \rho(x_{n-1}, x_{n-2}) \le  \\
+		\ldots \\
+		\le \gamma^{n-1} \rho(x_2, x_1) = \gamma^{n-1}d
+	    \end{align*}
+	    Тогда по неравенству треугольника
+	    \[
+		\forall m > n\colon \rho(x_n, x_m) \le \sum^{\infty}_{k=n-1} \gamma^{k}d = \gamma ^{n-1}d(1 + \gamma+ \ldots ) = \frac{\gamma^{n-1} d}{1-\gamma} \longrightarrow 0
+	    .\]
+	    Следовательно, $ \{x_n\}$ фундаментальна. Так как наше пространство полно,существует предел этой последовательности.
+	    $ U(x_{n}) = x_{n+1}$. Первое стремиться к  $ U(x_{*})$, второе --- к $ x_*$.
+
+	    Единственность следует из того, что иначе мы можем уменьшить расстояние между двумя фиксированными неподвижными точками.
+	\item $ \exists x_*$, посмотрим на $ U^{N}(x_*)$. Посмотрим на последовательное применение $ U$ несколько раз. На $ N $-ом шаге мы придем в  $ x_*$.
+
+	    Единственность уже доказали.
+    \end{enumerate}
+\end{proof}
+\begin{ex}[Обыкновенная линейное дифференциальное уравнение первого порядка]
+    $$ f'(x) + a(x) \cdot f(x) = b(x), \qquad a, b \in C[0, 1], \quad f(0) = c $$
+    Задача: найти $ f \in C^{1}[0, 1]$. То есть доказать, что оно существует и единственна.
+    \[
+	f(x) = c + \int_{0}^{x} \left( b(t) - a(t) f(t) \right) dt
+    .\]
+    Заведем отображение $U : C[0, 1] \to  C[0,1]$, что $ (U(f))(x) =c+ \int_{0}^{x} \left( b(t) - a(t) f(t) \right) dt $.
+    Хотим найти неподвижную точку отображения $ U$ (то есть такую $ f$).
+
+    Пусть $ (U_0(f))(x) = - \int_{0}^{x} a(t)f(t) dt $.
+    Правда ли, что
+    \begin{enumerate}
+	\item $ U^{n}(f) - U^{n}(g) = U_0^{n}(f) - U_0^{n} (g) = U_0^{n}(f-g)$
+	\item $ \exists  n\colon U_0^{n}$ --- сжимающее отображение из $ C[0,1]$ в  $ C[0, 1]$.
+    \end{enumerate}
+    Проверим
+    \begin{enumerate}
+	\item При $ n=1$, очевидно.
+	    \begin{align*}
+		U^{n}(f) - U^{n}(g) &= U\left( U^{n-1}(f)\right) -U \left( U^{n-1}(g) \right)  =\\
+				    & = U_0 \left( U_0^{n-1}(f) \right) - U_0(U_0^{n-1}(g)) =
+				    \\
+				    &=U_0\left( U^{n-1}(f) - U^{n-1}(g) \right) =\\
+				    &=U_0\left( U_0^{n-1} (f) - U_0^{n-1}(g)  \right) =\\
+				    &=U_0^{n}(f) - U_0^{n}(g)
+	    \end{align*}
+	\item $ \| U_0^{n}(f-g) \|_{\infty} \le \gamma \| f-g  \|  $
+
+	    Пусть $ f-g= h$.  $ \| U_0^{n}(h)  \| _{\infty} = \gamma \| h \| $.
+	    Пусть $ M= \max \lvert a \rvert, ~ \| h \| _{\infty} \left| h(x) \right|  $.
+	    \begin{align*}
+		\left( U_0^{1}(h) \right) (x) & = -\int_{0}^{x} a(t_1)h(t_1) dt_1\\
+		\left( U_0^{2}(h) \right) (x) & = (-1)^{2}\int_{0}^{x} a(t_2)\left( \int_{0}^{t_2} a(t_1)h(t_1) dt_1  \right) dt_2 \\
+					      & \vdots
+					      \\
+		\left( U_0^{n}(h) \right) (x) &= (-1)^{n} \int_{0}^{x} a(t_n) \int_{0}^{t_n} \left( \ldots  \right)  dt_n
+	    \end{align*}
+	    Оценим
+	    \[
+		\left| \left(U_0^{n}(h)\right)(x) \right|  \le M^{n}\cdot \| h \| _{\infty} \int_{0}^{x} \int_{0}^{t_n} \int_{0}^{t_{n-1}} \ldots \int_{0}^{t_1} dt_1 dt_2 \ldots dt_n = M^{n} \cdot  \|  h \| _{\infty} \frac{x^{n}}{n!}
+	    .\]
+	    \[
+		\| U_0^{n}(h)  \| _{\infty} \le \left( M^{n} \frac{x^{n}}{n!} \right) \| h \| _{\infty}
+	    .\]
+	    Выражение в скобках стремиться к нулю при $ n \to  \infty$. Значит, $ U_0^{n}$ сжимающее.
+	    \begin{note}
+		На самом деле мы сейчас посчитали объем обрезанного куба.
+	    \end{note}
+	    $ f \in C[0,1]$.
+	    Так как $ f(x) = c+ \int_{0}^{x} (b(t) -a(t)f(t))dt  $, $ f \in C^{1}[a, b]$
+    \end{enumerate}
+\end{ex}
+\begin{prac}
+    $ X$ полно, $ U: X \to  X, ~ \forall x, y\colon\rho(U(x), U(y)) < \rho(x, y)$.
+    \begin{enumerate}
+	\item  Верно ли, что $ U$ сжимающее?
+	\item Верно ли, что обязательно есть неподвижная точка?
+    \end{enumerate}
+\end{prac}
+\subsection{Линейные и полилинейные непрерывные отображения (операторы)}
+\begin{defn}[Линейное отображение]
+    $ X, Y$ --- линейные пространства над одним полем скаляров (либо $ \R$, либо $ \Cm$).
+    $ U: X \to  Y$ называется {\sf линейным}, если
+    \begin{enumerate}[noitemsep]
+	\item $ \forall  x_1, x_2 \in X \colon U(x_1+x_2) = U(x_1) + U(x_2)$
+	\item $ \forall x \in X, ~ \lambda \text{ --- скаляр} \colon U(\lambda x) = \lambda U(x)$
+    \end{enumerate}
+\end{defn}
+\begin{note}
+    Для экономии университетского мела не пишут скобки у линейный отображений:
+    $ U(x_1) = Ux_1$
+\end{note}
+\begin{name}
+    $ \Hom(X, Y)$ --- множество всех линейных отображений из $ X$ в $ Y$.
+\end{name}
+\begin{defn}
+    $ X_1, \ldots X_n$ --- линейные пространства, $ Y$ --- линейное пространство над одним скаляром.
+    $ U: X_1 \times  X_2 \times  \ldots \times X_n \to  Y$  --- {\sf полилинейное отображение}, если оно линейно по каждому из аргументов.
+\end{defn}
+\begin{name}
+    $ \Poly(X_1, \ldots X_n, Y)$ --- множество всех полилинейных отображений.
+\end{name}
+\begin{defn}
+    Если  $ Y$ --- поле скаляров, линейное отображение $ U: X \to  Y$  называется {\sf линейным функционалом}.
+\end{defn}
+\begin{ex}\label{ex_1_func}
+    $ X = \left\{ x= (x_1, \ldots ) \mid x_j \in \R, \text{ лишь конечное число отлично от нуля} \right\} $
+
+    $ U: X \to  X, ~ x \mapsto (x_1, 2x_2, 3x_3, \ldots )$
+\end{ex}
+\begin{ex}[$ \delta $-функция]\label{ex_2_func}
+    $ \delta : C[-1, 1] \to  \R, ~ \delta (f) = f(0)$.
+\end{ex}
+\begin{ex}\label{ex_3_func}
+    $ U: C[a, b] \to  \R, ~ Uf = \int_{a}^{b} f(x) dx $
+\end{ex}
+\begin{ex}\label{ex_4_func}
+    $ U: C[a, b] \to  \R, ~ Uf(x) = \int_{a}^{x} f(t)dt $
+\end{ex}
+\begin{ex}\label{ex_5_func}
+    $ U \in \Poly(\underbrace{\R, \R, \ldots \R}_{n}; \R), ~ U(x_1, \ldots x_{n}) = x_1x_2x_3 \ldots x_{n}$
+\end{ex}
+\begin{ex}\label{ex_6_func}
+    $ U \in \Poly(\R^{n}, \R^{n}; \R), ~ U(x, y) = (x, y)$
+\end{ex}
+\begin{ex}\label{ex_7_func}
+    $ U \in \Poly(\R^3,\R^3;\R^3), U(x, y) - [x, y] $ --- векторное произведение.
+\end{ex}
+\begin{ex}\label{ex_8_func}
+    Определитель, все возможные формы объема.
+\end{ex}
+\begin{ex}\label{ex_9_func}
+    $ U_j \in \Hom(X, Y)$. Можно сделать из этого полилинейное $ U \in \Poly(X_1, X_2, \ldots , X_n; Y)$, $ U(x_1, \ldots x_{n}) = U_1x_1+ U_2x_2+ \ldots U_nx_{n}$.
+\end{ex}
+\begin{ex}\label{ex_10_func}
+    $ U: C^{1}[a, b] \to  C[a,b], ~ Uf = f'$
+\end{ex}
+\begin{thm}[Эквивалентные условия непрерывности линейного отображения]
+    $ X, Y$ --- линейный нормированные пространства с одним полем скаляров, $ U \in \Hom(X, Y)$.
+    Следующие утверждения эквивалентны:
+    \begin{enumerate}[noitemsep]
+	\item $ U$ непрерывно
+	\item $ U$ непрерывно в 0
+	\item $ \exists C ~ \forall  x \in X \colon \| Ux \| _Y \le  C \| x \|_X $
+    \end{enumerate}
+\end{thm}
+\begin{defn}
+    $ U$ --- непрерывное  линейное отображение (оператор) из $ X$ в $ Y$.
+    \[
+	\| U \|  = \inf \{C \mid x \in X, ~ \| Ux \| \le C \| x \| \}
+    .\]
+    $ \| U \|  $ --- {\sf операторная норма}.
+\end{defn}
+\begin{note}
+    Если $ U$ --- разрывное отображение, считаем, что $ \| U \|  = \infty$.
+\end{note}
+\begin{note}
+    \[
+	\| U \|  = \sup_{x \ne 0} \frac{\| Ux \|}{\| x \| }
+    .\]
+\end{note}
+\begin{ex}
+    Нормы в прошлых примерах
+    \begin{description}
+	\item[\ref{ex_1_func}] $ \| U \|  = \infty$
+	\item[\ref{ex_2_func}] $ \| U \|  = 1$
+	\item[\ref{ex_3_func}] $ \| U \| = b-a$
+	\item[\ref{ex_4_func}] $ \| U \| = b-a$
+	    \item[\ref{ex_10_func}] $ \| U \|  = 1$
+    \end{description}
+\end{ex}
+\begin{thm}[Условие непрерывности полилинейного отображения]
+    $ U \in  \Poly(X_1, \ldots X_m; Y)$, $X_i, Y  $ --- линейные нормированные пространства. Следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $ U$ непрерывно
+	    \item  $ U$ непрерывно в $ 0$ 
+	    \item  $ \exists  C ~ \forall  x_1 \in X_1, x_2 \in X_2, \ldots x_n \in X_n \colon \| U(x_1, \ldots x_n) \|  \le  X \| x_1 \| \cdot \ldots \cdot \| x_{n} \| $
+    \end{enumerate}
+    \begin{note}
+	В прямом произведении есть норма (Например, такая) \[
+	    \| (x_1, \ldots  x_{n})\| = \max \{\| x_1 \| _{X_1} , \ldots  \| x_{n} \| _{   X_n}\} 
+        .\] 
+    \end{note}
+\end{thm}
+\begin{defn}
+    [Норма полилинейного отображения]
+    \[
+	\| U \|  = \inf \left\{ C \mid \forall  x_1 \in X_1, \ldots x_{n} \in X_n ~ \|  U(x_1, \ldots x_{n}) < C \| x_1 \| \cdot \ldots \| x_{n} \|    \right\} 
+    .\] 
+\end{defn}
+\begin{thm}[эквивалентные способы вычисления оперератора] 		
+    $ U$ --- линейное непрерывное отображение $ X \to  Y$. Тогда
+    \[
+	\| U \| = \sup_{x\ne 0 }\frac{\| U \| }{\| x \| } = \sup_{\| x \| =1} \|  Ux \| = \sup_{\| x \|  \le 1} \| Ux \| = \sup_{\|  x \| < 1} \| Ux \|  
+    .\] 
+\end{thm}
+\begin{proof}
+     Обозначим супремумы за $ A, B, C, D$.
+     Очевидно, что $ C \ge B$ и $  C \ge D$
+     $$ C = \sup_{\|  x  \| < 1} \| Ux \| \le \sup_{\| x \| \le 1} \frac{\| Ux \| }{\| X \| } \le \sup _{x  \ne 0} \frac{\| Ux \| }{\| x \|  } = A.$$
+     Докажем, что $ B \ge A$. $ x \ne 0, ~ \tilde x = \frac{x}{\| x \| }$. 
+     \[
+	 \frac{\| Ux \| }{\| x \| } = \| Ux \|  \le  B
+     .\] 
+     Значит, $ \sup_{x\ne 0} \frac{\| Ux \| }{\| x \| } \le B$.
+
+     Теперь докажем, что  $ D \ge  A$.
+     \[
+	 x \ne 0, ~ \varepsilon >0\colon \tilde x = \frac{x}{\|  x \| }(1 -e \varepsilon ), \quad \|\tilde x \|  = 1 - \varepsilon  < 1
+     .\] 
+     \[
+    \begin{cases}
+        \| U\tilde x \| \le  D\\
+	\| U\tilde x \|  = \frac{1- \varepsilon }{\|  x \| } \| Ux \| 
+    \end{cases} 
+\Longrightarrow \frac{\| Ux \| }{\| x \|}  \le \frac{D}{1 - \varepsilon } \to  0
+     .\] 
+     Следовательно, 
+     \[
+	 \frac{\|  Ux \| }{\| x \| } \le D \Longrightarrow \sup_{x \ne } \frac{\| Ux \| }{\| x \| } \le D
+     .\] 
+\end{proof}
+\begin{rem}
+    В конечномерных пространствах все линейные и полилинейные отображения непрерывны. 
+\end{rem}
+\begin{thm}[эквивалентные способы вычисления нормы полилинейного оператора]
+    $ U: X_1 \times \ldots \times X_n \to  Y $. \[
+	\| U \|  = \sup_{x_j \ne 0} \frac{\| U(x_1, \ldots x_n)}{\| x_1 \| \cdot  \ldots \| x_n \| } \|  = \sup _{ \| x_j=1 \| \| U(x_1, \ldots x_n) \|  }  = \sup_{\|  x_j  \|  < 1} = \sup_{\| x_j \|  \le 1}
+    .\]  
+\end{thm}
+\subsection{Пространство линейных непрерывных операторов}
+\begin{thm}[О свойствах операторной нормы]
+    $ U_1, U_2, U_3 : X \to  Y$ --- линейные непрерывные операторы, $ \lambda $ --- скаляр. 
+    Тогда 
+    \begin{enumerate}
+        \item $\| U_1 + U_2 \| \le \| U_1 \|  + \| U_2 \| $
+	    \item $ \| \lambda U \|  = \lvert \lambda \rvert \| U \| $
+	   \item $ \| U \| = 0 \Longleftrightarrow U = 0$
+	   \item $ U: X \to  Y, V : Y \to Z$ --- линейные отображения.
+	       \begin{align*}
+		   &\| VU \|  \le \| V \|  \cdot \| U \| \\
+		   &V U = V\circ U\\ 
+		   &VUx = V(U(x))
+	       \end{align*}
+    \end{enumerate}
+\end{thm}
+\begin{name}
+    $ L(X, Y) \subset \Hom(X, Y)$ --- пространство линейных операторов.
+\end{name}
+% \end{document}
+

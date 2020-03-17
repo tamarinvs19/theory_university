@@ -1,0 +1,324 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\lecture{2}{21 feb}{}
+\subsection{Свойства}
+\begin{prop}
+    $ $
+    \begin{description}
+	\item[1] $ c \in  (a, b)$:
+	    \[
+		\int_{a }^{ \to b}  f dx = \int_{ a }^{c} f dx + \int_{ c}^{ \to b}
+	    .\]
+	\item [2]$ \int_{a}^{ \to  b} f dx $ --- сходится $ \Longrightarrow $ $ \lim_{A \to  b} \int_{A}^{ \to b} f = 0 $
+\item[2'] Если $ \int_{A}^{ \to b} f \not\to_{A \to b-} \Longrightarrow  \int_{a}^{ \to b}  $ расходится (необходимое условие сходимости несобственного интеграла).
+\item [\framebox{линейность}] $ f, g$ --- функции на $ [a, b)$,  $ \alpha , \beta  \in \R$.
+    \[
+	\int_{a}^{  \to b} , ~ \int_{a}^{ \to  b}  g  \text{ сходятся } \Longrightarrow \int_{a}^{\to b} ( \alpha  f + \beta  g)  = \alpha \int_{ a}^{ \to b}      + \beta  \int_{a}^{ \to  b}  g
+    .\]
+\item  [\framebox{монотонность}]
+    $ f \le  g,  \int_{ a}^{ \to b} f + \int_{a}^{ \to b} g   $ сходятся. \[
+	\int_{ a}^{ \to  b} f \le  \int_{ a}^{ \to b}  g
+    .\]
+    \end{description}
+    \begin{defn}[Абсолютная сходимость]
+	Говорят, что $ \int_{a}^{\to b} f  $ {\sf   сходится абсолютно}, если сходится $ \int_{a}^{ \to b} |f|  $.
+    \end{defn}
+    Если $ \int_{a}^{ \to  b} f $ сходится абсолютно, то $ \int_{a}^{ \to  b} f $ сходится и верно неравенство
+    \[
+	\left| \int_{a}^{ \to b}  f  \right| \le  \int_a ^{ \to b}\left| f  \right|
+    .\]
+    \begin{proof}
+	Воспользуемся критерием Больцано-Коши:
+	\[
+	    \int_{ a}^{ \to  b} |f| \text{  сходится } \Longrightarrow  \forall  \varepsilon  >0 ~ \exists \delta \in  (a, b): \forall B_1, B_2 \in (\delta,  b): \int_{B_1}^{B_2}  |f| dx < \varepsilon  \Longrightarrow \left| \int_{B_1}^{B_2} f dx  \right| < \varepsilon
+	.\]
+	Для любого $ B$ :
+	\[
+	    \left|  \int_{ a}^{B}   \right| \le  \int_{a}^{ B} |f|dx
+	.\]
+	\begin{defn}[Условная сходимость]
+	    $ \int_{a}^{ \to  b} f  $ называется {\sf   условно сходящимся}, если $ \int_{a}^{ \to b} f $ сходится, а $ \int_{a}^{ \to b} |f| $ расходится.
+	\end{defn}
+    \framebox{интегрирование по частям}
+	$ f, g \in  C^{1}[a, b)$
+	\[
+	    \int_{a}^{ \to b} f g' = fg \Bigm|_a^{ \to  b} - \int_{a}^{ \to b}  f' g, \quad fg \Bigm|_a^{ \to b} = \lim_{x \to b-} f(x) g(x) - f(a)g(a)
+	.\]
+	Если два предела из трех существуют, то существует третий и верно это равенство.
+    \end{proof}
+    \begin{description}
+\item [\framebox{замена переменной}]
+    $ \varphi : [ \alpha , \beta ) \to [a, b) , ~ \varphi  \in C^{1}[ \alpha , \beta ), f \in C[a, b)$. Если существует предел, обозначим его так: $ \exists \lim_{x \to  \beta -}  \varphi (x) = \varphi ( \beta -)$.
+    \[
+	\int_{ \alpha }^{ \to \\beta } f( \varphi (x)) \varphi '(x) dx = \int_{ \varphi ( \alpha ) }^{ \varphi (\beta -)} f(y) dy
+    .\]
+    \begin{proof}
+	$ D \in [ \alpha , \beta )$. \[
+	    \Phi (\gamma) = \int_{ \alpha}^{\gamma}  f( \varphi (x)) \varphi '(x) dx
+	.\]
+	$ c \in  [a, b)$
+	\[
+	    F(c) =\int_{ \varphi (\alpha)}^{c } f(y) dy
+	.\]
+	Обычная формула замены перменной: $ \Phi = F( \varphi (x))$.
+	\begin{description}
+	    \item [$\boxed{ \Longrightarrow }$]  Пусть $ \exists  \int_{ \varphi ( \alpha )}^{ \varphi (\beta-)}  f(y) dy$. Возьмем любую последовательность $ \{ \gamma_n \} \subset [ \alpha , \beta ),  \gamma _n \to  \beta  -$.
+		\[
+		    \Phi(\gamma_n) = F( \varphi (\gamma_n))
+		.\]
+		\[
+		    \int_{ \alpha }^{ \gamma_n} f \circ \varphi ' = \int_{ \varphi ( \alpha )}^{ \varphi (\gamma_n)} \to \int_{\varphi(\alpha)}^{\varphi(\beta)}
+		.\]
+	    \item [$\boxed{ \Longleftarrow }$]  Пусть $ \exists \int_{\alpha}^{ \to \beta }(f \circ g) \varphi '  $
+		. Надо проверить, что $ \exists  \int_{ \varphi ( \alpha )}^{ \varphi (\beta -)} f $.
+		\begin{enumerate}
+		    \item $ \varphi (\beta-) < b$ --- очевидно.
+		    \item $ \varphi (\beta -) = b$
+			$ \{ c_n \} \subset [ \varphi ( \alpha ), b) ,  ~ c_n \to  b- ~ \exists \gamma_{n \in[ \alpha , \beta )}: \varphi ( \gamma_n) = c_n$.
+
+			Существует подпоследовательность, стремящаяся либо к $  \beta $, либо к числу меньшему $ \beta $.
+			\begin{itemize}
+			    \item $ \{ \gamma_{n_k}\} \to \beta $
+				    \[
+					\int_{\alpha}^{ \gamma_{n_k}} = \int_{ \varphi (\gamma)}^{ \varphi (\gamma_{n_k}=c_{n_k}}
+				    .\]
+			    \item $ \{\gamma_{n_k}\} \to \tilde\beta < \beta  $
+				    \[
+					\varphi ( \gamma_{n_k} ) \to  \varphi ( \beta) \in  [ a, b) < b
+				    .\]
+				    Но должно быть равно $ b$. Противоречие.
+			    \end{itemize}
+			    Значит $ \gamma_n \to  b $.
+			    \[
+				\int_{ alpha}^{ \varphi (\gamma_n)} (f \circ g) \varphi ' = \int_{phi(alpha)}^{phi(\gamma_n)} f = \int_{ \varphi ( \alpha )}^{c_n} f
+			    .\]
+		    \end{enumerate}
+	    \end{description}
+	\end{proof}
+	    \end{description}
+    \end{prop}
+    \begin{thm}[Признаки сравнения]
+	Пусть $ 0 \le  f \le g,  ~ f, g \in  C[a, b)$. Тогда
+	\begin{enumerate}
+	    \item  если $ \int_{a }^{ \to  b} g  $ сходится, то $ \int_{a}^{  \to  b} f $ сходится,
+	    \item  если $ \int_{a }^{ \to  b} g  $ расходится, то $ \int_{a}^{  \to  b} f $ расходится.
+	\end{enumerate}
+    \end{thm}
+    \begin{proof}
+	$ $
+	\begin{enumerate}
+	    \item
+		Используем критерий Коши $ \forall  \varepsilon >0 ~ \exists  \delta  \in  (a, b): \forall  B_1, B_2 \in  ( \delta  , b): ~ \int_{B_1}^{B_2}g < \varepsilon  \Longrightarrow \int_{B_1}^{B_2} f < \varepsilon     $
+	    \item Аналогично
+	\end{enumerate}
+    \end{proof}
+    \begin{thm}[Признаки Абеля и Дирихле]
+	$ f \in C[a, b), ~ g \in C^{1}[a, b)$, $ g$ монотонна.
+	\begin{description}
+	    \item[Признак Дирихле] Если $ f$ имеет ограниченную первообразную на  $ [a, b), g \to  0$, то $ \int_{}^{ t b}fg  $ сходится.
+	    \item[Признак Абеля] Если $  \int_{a}^{ \to  b}  f $ сходится, $ g$  ограничена, то $ \int_{a}^{ \to b} fg   $ сходится.
+	\end{description}
+    \end{thm}
+    \begin{proof}
+	$ F$ --- первообразная $ f$.  $ F(B) = \int_{a}^{B} f $.
+	\[
+	    \int_{a}^{\to b} f g dx = \int_{a}^{ \to b} g dF == F g \Bigm|_{a}^{\to b} - \int_{a}^{ \to b} F g' dx
+	.\]
+	\begin{description}
+	    \item[признак Даламбера] $ \lim_{B \to b-} F(B) g(B) = 0 $
+	    \item[признак Абеля] $ \exists \lim F, \exists  \lim g $
+	\end{description}
+	Теперь про интеграл.
+	Пусть $ M = \max{F}$, он существует, так как  $ F$ ограничена в любом случае.
+	\[
+	    \int_{a}^{ \to b} F g' dx \le  M \cdot  \int_{ a}^{  \to  b}  |g| dx   = M \cdot \left| \int_{a}^{ \to b} g' dx  \right|  = M \cdot  \left| g(b-) - g(a) \right|
+	.\]
+    \end{proof}
+    \begin{ex}
+	\[
+	    \int_{0}^{ \frac{1}{2}} x^{\alpha} | \ln x|^{ \beta }
+	.\]
+	Рассмотрим случай $ \alpha  > 1$.
+	Метод удавливания логарифма:
+	$ \varepsilon >0 : \alpha - \varepsilon  > -1$,
+	\[
+	    x^{ \alpha } | \ln x| ^{\beta} = x ^{ \alpha  - \varepsilon } x ^{ \varepsilon } | \ln x|^{ \beta }{ \underset{x \to 0}{\longrightarrow} 0} \le  C x ^{ \alpha - \varepsilon }
+	.\]
+	Тогда $ \int_{0}^{ \frac{1}{2}} x^{ \alpha - \varepsilon } dx $ сходится.
+
+	Если $ \alpha  < -1$,
+	\[
+	    \varepsilon  >0 ~ \alpha + \varepsilon  < -1
+	.\]
+	\[
+	    x^{ \alpha } |\ln x| ^{b} = x^{ \varepsilon  + \alpha } \underbrace{x^{ - \varepsilon } |\ln x|^{ \beta }}_{\to \infty}
+	.\]
+	Тогда $ \int_{0}^{ \frac{1}{2}} x^{ \alpha + \varepsilon } dx $ расходится.
+
+	Если $ \alpha = -1$, сделаем замену:
+	\[
+	    \int_{0}^{ \frac{1}{2}} \frac{|\ln x|^{\beta} }{x} dx = - \int_{0}^{\frac{1}{2}}  |\ln x| ^{ \beta } d(f(x) ) = \int_{- \ln \frac{1}{2}}^{\infty}  y ^{  \beta } dy
+	.\]
+	Тоже сходтся.
+    \end{ex}
+    \begin{ex}
+	\[
+	    \int_{10}^{ +\infty}  \frac{\sin x}{s^{ \alpha }}	dx , \quad \int_{10}^{+\infty} \frac{\cos 7x}{x^{ \alpha }}  dx
+	.\]
+	\begin{enumerate}
+	    \item  $\alpha  > 0$.
+		\[
+		    \int_{10}^{+ \infty}  \frac{| \sin x|}{x ^{ \alpha }} dx \text{ сходится, так как сходится }
+		    \int_{10}^{+\infty} \frac{dx}{x^{ \alpha }}
+		.\]
+	    \item $ 0 < \alpha  \le  1$. По признаку Дирихле: $ f(x) = \sin x $ -- ограничена первообразная, $ g(x) = \frac{1}{x^{ \alpha }}$ -- убывает.
+
+		Значит
+		\[
+		    \int_{10}^{+\infty}  \frac{\sin x}{x^{ \alpha }} dx \text{ сходится}
+		.\]
+	\end{enumerate}
+    \end{ex}
+    \begin{ex}[Более общий вид]
+	\[
+	    \int_{10}^{ +\infty}  f(x) \sin \lambda x dx , \quad \int_{10}^{+\infty} f(x) \cos \lambda x dx, \qquad \lambda \in \R \setminus \{0\}
+	.\]
+	$ f \in  C^{1}[0, + \infty)$, $ f$ монотонна.
+	 
+	$ $
+	\begin{description}[noitemsep]
+	    \item Если при $ x \to  +\infty$ $ f \to 0$, то интегралы сходятся,
+	    \item Если при $ x \to  +\infty$ $ f \not\to 0$, то интегралы расходятся.
+	\end{description}
+    \end{ex}
+    \begin{rem}
+	\[
+	    \int_{10}^{+ \infty} f(x) dx \text{ сходится }  \not\Rightarrow  f \to  0, \text{ при } x \to  + \infty
+	.\]
+    \end{rem}
+    \begin{prac}
+	\[
+	    \int_{10}^{+\infty} f(x) dx \text{ сходится}, ~ f \in C[10, +\infty)
+	.\]
+	Следует ли из этого, что
+	\[
+	    \int_{10}^{+\infty}  \left( f(x) \right) ^3 dx \text{ сходится}
+	?\]
+    \end{prac}
+    \section{Вычисление площадей и объемов}
+    \subsection{Площади}
+    \begin{enumerate}
+	\item $ f \in C[a, b], ~ f \ge 0, ~ P_f = \{(x, y) \mid x \in  [a, b], ~ y \in  [0, f(x)]\}$. Тогда $S(P_{f}) = \int_{a}^{b} f(x) dx $
+	\item Криволинейная трапеция. $ f, g \in  C[a, b], ~ f \ge g, ~ T _{f, g} = \{ (x, y) \mid x in [a, b] , y \in  [g(x), f(x)] \}$.
+	    Тогда $ S(T_{f, g}) = \int_{a}^{b} f(x) -g(x) dx $
+	    \begin{cor}[Принцип Кавальери]
+		Если есть две фигуры на плоскости расположенные в одной полосе и длина всех сечений прямыми, параллельными полосе, равны, то их площади равны.
+
+		Сейчас мы можем доказать его только для случаев, когда все границы фигур --- графики функции.
+	    \end{cor}
+	\item Площадь криволинейного сектора в полярных координатах.
+	    $ f : [ \alpha  , \beta ] \to  \R, ~ \beta  - \alpha \le  2 \pi, ~ f \ge 0$, $ g$ непрерывна.
+	    \[
+		\tilde P_f = \{ (r, \varphi ) \in  \R^2 \mid \varphi  \in  [a, b], ~ r \in  [0, f( \varphi )]\}
+	    .\]
+	    \begin{figure}[ht]
+		\centering
+		\incfig{sector}
+		\caption{sector}
+		\label{fig:sector}
+	    \end{figure}
+	    Пусть $ \tau$ --- дробление $ [ \alpha , \beta ]$, $ \tau  = \{ \gamma_j \}^{n}_{j = 0}, \quad \alpha = \gamma_0 < \gamma_1 < \ldots \gamma_n  = \beta $.
+	    Пусть $ M _j= \max_{[\gamma_j, \gamma_{j+1}}, ~ m_j = \min_{[\gamma _j, \gamma_{j+1}]}$.
+	    \[
+		\sum \frac{m^2_j}{2}(\gamma _j - \gamma_{j+1}) \le  S(\tilde P_f) \le \sum \frac{M_j^2}{2 (\gamma _j - \gamma_{j+1})}
+	    .\]
+	    Крайние стремятся к $ \frac{1}{2} \int_{ \alpha }^{ \beta } f^2( \varphi )  d \varphi $.
+	    Значит
+	    \[
+		S(\tilde P_f) \frac{1}{2} \int_{ a}^{b} fst( \varphi ) d \varphi
+	    .\]
+	\item Площадь фигуры, ограниченной праметрически заданной кривой.
+	    $ x, y :  \R to \R$. $ \forall  t: x(t + T) = x(t) , y(t + T) = y(T)$. $ x, y \in  C^{1}(\R)$
+	    \begin{figure}[ht]
+		\centering
+		\incfig{param}
+		\label{fig:param}
+	    \end{figure}
+	    \[
+		S = \int_{A}^{B}  (f(x) - g(x) ) dx
+	    .\]
+	    \begin{align*}
+    &\int_{A}^{B}  g(x) dx \underset{\substack{x= x(t)\\ t \in [b, a+ T]\\ dx = x'(t) dt \\ g(x'(t)) = y(t)}}{=} \int_{b}^{a + T} y(f) x'(t) dt \\
+    & \int_{A}^{B}  f(x) dx \underset{\substack{x=x(t)\\ t \in [a, b]}}{=} -\int_{b}^{a} y(t)  x'(t) dt
+	    \end{align*}
+	    \[
+		S = \int_{A}^{B}  (f(x) - g(x) ) dx  = - \int_{a}^{ a+T} y(t) x'(t) dt  = \int_{a}^{ a+T}  y'(t) x(t) dt
+	    .\]
+    \end{enumerate}
+    \subsection{Объемы}
+    \begin{enumerate}
+	\item
+	    Аксиомы и свойства такие же как и у площади.
+	    Можно определить псевдообъем.
+	\item Фигура $ T \subset \R^3, ~ T \subset \{(x, y, z) \in  \R^3 \mid x \in [a, b]\} $.
+
+	    \begin{defn}
+		Сечение $ T(x) = \{(y, z) \in \R^2 \mid (x, y, z) \in T \}$.
+	    \end{defn}
+	    $ \forall x : T(x)$ имеет площадь,
+	    а \[
+		V(T) = \int_{a}^{b}  S(T(x))dx
+	    .\]
+	\item Дополнительное ограничение не $ T$:
+	    \[
+		\forall  \Delta \subset [a, b] ~ \exists x_{*} , x^{*} \in  \Delta  : \forall x \in  \Delta ~ T(x_{*}) \subset T(x) \subset T(x^{*})
+	    .\]
+    \end{enumerate}
+    \begin{ex}
+	$ T$ --- тело вращения, $ f \in  C[a, b], ~ f \ge  0$.
+	\[
+	    T = \{(x, y, z) \mid \sqrt {y^2 + z^2} \le f(x) \}
+	.\]
+    \end{ex}
+    \begin{proof}[Доказательство формулы]
+	Постулируем объем цилиндра: с произвольным основанием $ V = S H$.
+	Рассмотрим тело $ T$ и $ \tau$ дробление отрезка $[a, b]$ . Поместим его между двумя цилиндрами.
+	\begin{figure}[ht]
+	    \centering
+	    \incfig{cilinder}
+	    \caption{cilinder}
+	    \label{fig:cilinder}
+	\end{figure}
+	\[
+	    \sum (x_j - x_{j-1}) S(T(x_{*} \Delta_j) )\le V \le (x_j - x_{j-1}) S(T(x^{*} \Delta_j))
+	.\]
+	Обе суммы стремятся к $ \int_{a}^{b} S(T(x))dx $ как интегральные суммы.
+    \end{proof}
+    \begin{ex}[Интеграл Эйлера-Пуассона]
+	\[
+	    \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+	.\]
+	% \begin{figure}[ht]
+	%     \centering
+	%     \incfig{epfunc}
+	%     \caption{epfunc}
+	%     \label{fig:epfunc}
+	% \end{figure}
+	$ T = \{0 \le y \le e^{-(x^2+y^2)}\}$
+	\[
+	    T(x) = \{ (y, z) \in  \R^2 \mid 0 \le  y \le  e ^{-(x^2 +z^2)}\}
+	.\]
+	Посчитаем площадь сечения
+	\[
+	    S(T(x)) = \int_{-\infty}^{\infty} e^{-(x^2+z^2) } dz = e ^{-(x^2)} \\int_{-\infty}^{\infty} e ^{-y^2}  = I e^{-x^2}
+	.\]
+    \end{ex}
+\begin{figure}[ht]
+    \centering
+    \incfig{eyler-pyasson}
+    \caption{Интеграл Эйлера-Пуассона}
+    \label{fig:eyler-pyasson}
+\end{figure}
+% \end{document}
