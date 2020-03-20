@@ -1,0 +1,249 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\lecture{6}{20 march}{}
+\section{Важный частный случай: $ X=\R^{m} ,~ Y=\R^{n} $}
+% Начала нет
+
+\begin{st}\label{st_1}
+    Пусть $ x \in U \subset \R^{m}$, $ f \colon U \to \R^{n}, ~ f(x) = \left( f_1(x), \ldots f_n(x) \right) $. Тогда $ f$ дифференцируема в точке $ x$ тогда и только тогда, когда $ f_1, f_2, \ldots f_n$ дифференцируемы в точке $ x$ и 
+     \[
+	 df(x) = \left( df_1(x), \ldots df_n(x)) \right) , \qquad \partial f_i (x) \in  L(\R^{m}, \R), ~ f_j \colon \R^{m} \to  \R
+    .\] 
+\end{st}
+\begin{proof}
+    Пусть $ h \in \R^{m}$. Запишем 
+    \[
+	df(x)h = \left( df_1(x)h, \ldots df_n(x)h \right) 
+    .\] 
+    Тогда
+    \[
+	f(x+h) - f(x) = \left( f_1(x+h) - f_1(x), \ldots f_n(x+h)-f_n(x) \right) 
+    .\] 
+    Первое слагаемое равно $ df(x)h$, а правая % не допичсано!
+\end{proof}
+\begin{st}
+    Если $ n=1$, то получаем просто функцию, а не вектор-функцию. Если $ f \colon U \subset \R^{m} \to  \R$ дифференцируема в точке $ x$, то существуют все частные производные и
+    \[
+	df(x)h = \sum_{j=1}^{m} \frac{ \partial f}{ \partial x_j}(x)h_j, \quad h = (h_1, \ldots h_n)^{T}
+    .\] 
+    при этом 
+    \[
+	df(x) = \left( \frac{ \partial f}{ \partial x_1} \right) 
+    .\] 
+    % не дописано!
+\end{st}
+\begin{st}
+    Вернемся к \ref{st_1}. Пусть $ x \in U \subset \R^{m}$, $ f(x) = \left( f_1(x), \ldots f_n(x) \right) $. Тогда $ f$ дифференцируема в точке $ x$ и существуют частные производные $ \frac{ \partial f_j}{ \partial x_k}(x), ~ j = 1, \ldots m, ~ k = 1, \ldots n$
+    \[
+	\partial f(x) h = 
+	\begin{pmatrix}
+	    df_1(x)h \\
+	    \dots \\
+	    \dots \\
+	    df_n(x)h \\
+	\end{pmatrix}
+    .\] 
+    %Не допичано!
+\end{st}
+\begin{st}
+    Если есть отображения $ f\colon  \R^{m} \to  \R^{n} , ~ g \colon \R^{n} \to \R^{k} $, и они дифференцируемы, то $ d(f \circ f) (x) = dg(f(x))df(x)$:
+     \[
+    \begin{pmatrix}
+	&\dots & \\
+	\dots & \frac{ (\partial g_i \circ f)}{ \partial x_l}(x) & \dots \\
+	      &\dots&
+    \end{pmatrix} = 
+    \begin{pmatrix}
+	&\dots & \\
+	\dots &  \frac{\partial g_i}{ \partial y_j}(f(x)) & \dots \\
+	      &\dots&
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+	&\dots & \\
+	\dots &  \frac{\partial f_i}{ \partial x_l}(x) & \dots \\
+	      &\dots&
+    \end{pmatrix}
+    .\] 
+    Правило цепочки:
+    \[
+	\frac{ \partial (g_i \circ f)}{ \partial x_l}(x) = \sum_{j=1}^{n} \frac{ \partial g_i}{ \partial y_i} (f(x)) \frac{ \partial f_j}{ \partial x_l}(x)
+    .\] 
+\end{st}
+\begin{st}
+    
+\end{st}
+\begin{ex}[вычисление частных производных]
+    Пусть $ f(x, y) = x^3+ 3xy$. 
+    \[
+	\frac{ \partial f}{ \partial x}(x, y) = 3x^2+ 3y
+    .\] 
+    \[
+	\frac{ \partial f}{ \partial y} (x, y) = 3x
+    .\] 
+    То есть
+    \[
+	df(x, y)h = 
+    \begin{pmatrix}
+	3x^2+3y & 3x
+    \end{pmatrix}
+    \cdot 
+    \begin{pmatrix}
+        h_1 \\ h_2
+    \end{pmatrix}
+    .\] 
+    Через градиенты
+    \[
+    \grad
+    .\] 
+\end{ex}
+\begin{st}
+    Если $ f \colon \R^{m}  \to  R$, то частные производные можно определять формулами
+    \[
+	\frac{ \partial f}{ \partial x_j} (x) = \lim_{t \to  0} \frac{ f(x+te_j) - f(x)}{t}, \qquad  e_j = 
+	\begin{pmatrix}
+	    0& \ldots &0 & 1 &0& \ldots &0
+	\end{pmatrix}^T
+    .\] (Единица стоит на $ i$-м месте.) 
+    Это определение можно обобщить. Можно определить производную по направлению.
+\end{st}
+\begin{defn}[Производная по вектору]
+    Пусть $ f \colon X \to  \R, ~ v \in X$. Тогда 
+    \[
+	\frac{ \partial f}{ \partial v}(x) = \lim_{t \to  0} \frac{f(x+tv) - f(x)}{t}
+    \] 
+    --- {\sf производная по вектору} $ v$ или {\sf вдоль вектора}  $ v$. Если  $ \| v \| = 1$, то называют {\sf производной по направлению} $ v$.  
+\end{defn}
+\begin{prop}[Экстремальное свойство градиента]
+    В случае $ \R^{m} $ 
+    \[
+	\frac{ \partial f}{ \partial v} (x) = \langle \grad f(x), v \rangle
+    ,\] 
+    откуда
+    \[
+	\left| \frac{ \partial f}{ \partial v}(x) \right| \le \left| \grad f(x) \right| \left| v \right| 
+    .\] 
+    Функция растет быстрее всего в направлении градиента:
+    \[
+	\max_{\left| v \right| = 1} \left| \frac{ \partial f}{ \partial v} (x)\right| 
+    .\] 
+\end{prop}
+\begin{proof}
+    Все рассуждения предполагают, что $ f$ дифференцируема в $ x$.
+     \[
+	 \frac{ \partial f}{ \partial v} (x) = \langle \grad f(x), v \rangle \Longleftrightarrow \frac{ \partial f}{ \partial v} (x) = df(x) v
+ .\] 
+ \[
+     f(x+tv) - f(x) = df(x)(tv) + \o_{t \to  0}(t)
+ .\] 
+ Тогда 
+ \[
+     \frac{ f(x + tv) -f(x)}{t} = df(x) v + \underbrace{\frac{ \o(t)}{t}}_{ \to  0}
+ .\] 
+\end{proof}
+\section{Теорема о конечном приращении (Лагранжа)}
+\begin{thm}[Теорема о конечном приращении]
+    Пусть $ f \colon U \subset X \to  Y$ непрерывно на $ [x, x+t] \subset U$ и дифференцируемо на $ (x, x+h)$. Тогда
+     \[
+	 \| f(x+h) - f(x) \|_Y \le \sup_{\xi \in (x, x+h)} \| df(\xi) \|_{L(X, Y)} \cdot \| h \|_X 
+    .\] 
+\end{thm}
+\begin{proof}
+    Обозначим супремум $ M = \sup_{\xi \in (x, x+h)} \| df(\xi) \| _{L(X, Y)} = \sup_{ \Theta \in (0, 1)} \| df(x, + \Theta h) \|_{L(X,Y)} $.
+	Достаточно  проверить
+    \[
+	\forall [\xi' , \xi''] \subsetneq (x, x+h) \colon \| f(\xi') - f(\xi'') \| \le M \| \xi'-\xi'' \| 
+    .\] 
+    Предположим противное:
+    \[
+	\Delta_1 = [\xi_1' , \xi_1''] \colon \| f( \xi_1') - f(\xi_1'')  \| \ge (M + \varepsilon_0) \| \xi_1' -\xi_1'' \| , \quad \varepsilon_0 > 0 
+    .\] 
+    Разделим отрезок пополам: $ \Delta_1 = \Delta_1^{1} \cup \Delta_1^{2} = [\xi_1' , \frac{\xi_1' + \xi_1''}{2}] \cup  [\frac{\xi_1' + \xi_1''}{2}, \xi_1'']$. На одном из них обязательно выполнено прежнее неравенство.
+
+    Так можем построить последовательность $ \Delta_1 \supset \Delta 2 \ldots  $.
+    Пусть $ \{ \xi_0\} = \cap \Delta_i$. Тогда
+    \[
+	f(\xi_0 + \delta ) - f(\xi_0) = df( \xi_0) \delta  + \alpha (\delta), \quad \frac{ \| \alpha ( \delta ) \| }{\| \delta  \| } \stackrel{ \delta  \to  0}{\to}  0
+    .\] 
+    Тогда 
+    \[
+	\exists  \varepsilon >0 \colon \left( \| \delta  \| < \varepsilon  \Longrightarrow \| f( \xi_0 + \delta ) - f(\xi_0) \| \le \left(M + \frac{ \varepsilon_0}{2}\right) \|  \delta  \| , \quad \frac{ \alpha ( \delta )}{\| \delta  \| } \stackrel{ \delta  \to  0}{ \to }  0\right) 
+    .\] 
+    То есть с некоторого момента все принадлежат окрестности $ \exists N \colon \forall n > N \quad \Delta_n \subset B( \xi_0, \varepsilon ) $.
+
+    \[
+	\| f(\xi_n')-f(\xi_m'') \| \le + 
+	\begin{cases}
+	    \| f( \xi_n') - f( \xi_0) \| \le \left( M+ \frac{ \varepsilon_0}{2} \right) \|  \xi_n' - \xi_0 \| \\  
+	    \| f( \xi_n'') - f( \xi_0) \| \le \left( M+ \frac{ \varepsilon_0}{2} \right) \|  \xi_n'' - \xi_0 \|  
+	\end{cases}
+	= \left( M + \frac{ \varepsilon_0}{ 2} \right) \| \xi_n' - \xi_n'' \| 
+    .\] 
+    Получаем противоречие, так как с некоторого момента утверждение неверно.
+\end{proof}
+\begin{note}
+    В правой части можно ююю
+\end{note}
+\begin{note}
+    На прямой теорема Лагранжа дает существование $ \xi \in (x, x+ \varepsilon )$: 
+    \[
+	\lvert f(x+h) - f(x) \rvert = |f'(\xi)| \cdot |h|
+    .\] 
+    Но для вектор-функции на плоскости это уже может быть не верно.
+\end{note}
+\begin{note}
+    В $ \R^{n}  $ есть доказательства, использующие наличие скалярного произведения.
+\end{note}
+\begin{cor}
+    Если $ f$ из теоремы и  $ A \in L(X, Y)$, то
+    \[
+	\| f(x + h) - f(x) - Ah\|  \le  \sup_{ \xi \in (x, x+h)} \| df( \xi -Ah) \| \| h \| = \sup_{v \in (0, 1)} \|  df(x+ v h - Ah \| \| h \|  
+    .\] 
+    Это теорема при $ g(x ) = f(x) - Ax$.
+\end{cor}
+\begin{cor}
+    Если $ K$ --- выпуклый компакт в  $ X$,  $ f \in C^1(K, Y)$, то $ f$ --- Липшицево на $ K$.
+\end{cor}
+\begin{defn}
+    Если $ f \colon U \subset X \to  Y$ дифференцируемо во всех точках $ U$ и  $ df \colon U \to  L(X, Y)$ непрерывно, то говорят, что $ f$  {\sf непрерывно дифференцируемо} на $ U$ и пишут  $ f \in C^{1}(U, Y)$  
+\end{defn}
+\begin{note}
+    $ f \colon U \subset X_1 \times \ldots \times X_m \to  Y$ непрерывно дифференцируемо на $ U$ тогда и только тогда, когда непрерывны все частные производные.
+    % пофорсить условие
+    % proof 13:32 20.03.2020 iPad
+\end{note}
+\begin{thm}[Признак дифференцируемости]
+    Пусть $ f \colon U \subset X_1 \times \ldots \times X_m \to  Y, ~ x \in U$. Предположим, что $ f$ имеет все частные дифференциалы в  $ U$ и они непрерывны в точке  $ x$. Тогда  $ f$ дифференцируема в точке  $ x$.
+\end{thm}
+\begin{proof}
+    Докажем для $ m =2$. Дифференциал должен выглядеть так:  $ Lh = \partial _{x_1}f(x)h_1 + \partial _{x_2}f(x)h_2$. $ x \in  U \subset X_1 \times X_2$.
+
+    Проверим $ \| f(x+h) - f(x) - Lh \| = \o(h)$ при $ h \to  0$.
+    \[
+	..(x) \le  \underbrace{\| f(x_1 + h_1, x_2+ h_2) - f(x_1 + h_1) - \partial _{x_2}f(x_1x_2)h_1 \|}_{ \le \sup_{\Theta_2 \in (0, 1)} \| \partial _{x_2} f(x_1+h_1, x_2+ \Theta_2 h_2) - \partial _{x_2}f(x_1, x_2) \| \cdot \| h_2 \| } + \underbrace{\| f(x_1 + h_1, x_2) - f(x_1, x_2) - \partial _{x_1}f(x)h_1 \|}_{ \le \sup_{\Theta_1 \in  (0, 1)} \| \partial _{x_1}f(x_1 + \Theta h, x_2) - \partial _{x_1}f(x) \| \cdot \| h_1 \| }  \le 
+    .\] 
+    Заметим, что $ \| h_1 \|  \le  \| h \| \wedge \| h_2 \| \le \| h \|  $.
+    Тогда можем переписать  так: 
+    \[
+	\le \| h \|  \cdot \left( \sup_{\Theta_1} + \sup_{\Theta_1} \right) 
+    .\] 
+    Каждый из этих супремумов стремиться к 0 при $ h \to  0$.
+\end{proof}
+\begin{cor}
+    Непрерывная дифференцируцемость на открытом множестве равносильна непрерывной дифференцируемости всех частных отображений (существованию и непрерывности всех частных дифференциалов). 
+\end{cor}
+\begin{thm}[Теорема о конечном приращении для функций]
+    Пусть $ f\colon U \subset X \to  \R$ непрерывна на $ [x, x+h] \in U$ и дифференцируема на $ (x. x+h)$. Тогда существует такое  $ \xi \in (x, x+h)$, что
+    \[
+	f(x+h) - f(x) = df(\xi )h
+    .\] 
+\end{thm}
+\begin{cor}
+    Если $ U$ --- выпуклое множество и $ df(x) = 0$ для любого $ x$ из  $ U$, то  $ f(x) = const$ на  $ U$. 
+\end{cor}
+\begin{cor}
+    Если $ U$ --- открытое связное множество в  $ df(x) = 0$ для всех  $ x \in  U$, то $ f(x) = const$ на  $ U$. 
+\end{cor}
+% \end{document}
