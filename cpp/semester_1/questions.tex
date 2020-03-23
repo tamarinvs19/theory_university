@@ -1,0 +1,122 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\chapter{Вопросы}
+\section{Программа, состоящая из нескольких файлов}
+\begin{itemize}
+    \item компиляция и линковка
+    \item заголовочные файлы
+    \item утилита make
+\end{itemize}
+\section{Указатели, массивы, ссылки}
+\begin{itemize}
+    \item применение указателей и ссылок
+    \item арифметика указателей
+\end{itemize}
+\section{Три вида памяти. Работа с кучей на C}
+\begin{itemize}
+    \item глобальная/статическая память, стек, куча
+    \item \begin{verbatim}malloc/calloc/realloc/free\end{verbatim}
+    \item \begin{verbatim}void*\end{verbatim}
+\end{itemize}
+\section{Структуры. Неинтрузивный связный список на C}
+\begin{itemize}
+    \item неинтрузивная реализация
+    \item typedef
+\end{itemize}
+\section{Структуры. Интрузивный связный список на C}
+\begin{itemize}
+    \item интрузивная реализация
+    \item typedef
+\end{itemize}
+\section{Функции. Указатели на функции}
+\begin{itemize}
+    \item как происходит вызов функции
+    \item реализация сортировки
+    \item \begin{verbatim}void sort(void* base, size_t num, size_t size, int (*compar)(const void*,const void*));\end{verbatim}
+\end{itemize}
+\section{Обзор стандартной библиотеки C}
+\begin{itemize}
+    \item \begin{verbatim}string.h (memcpy, memcmp, strcpy, strcmp, strcat, strstr, strchr, strtok)\end{verbatim}
+    \item \begin{verbatim}stdlib.h (atoi, strtoll, srand/rand, qsort)\end{verbatim}
+\end{itemize}
+\section{Ввод-вывод на C. Текстовые файлы}
+\begin{itemize}
+    \item FILE, fopen, fclose, r/w, t/b
+    \item stdin, stdout, stderr
+    \item printf, scanf, fprintf, fscanf, sprintf, sscanf, fgets
+    \item обработка ошибок, feof, ferror
+\end{itemize}
+\section{Ввод/вывод на C. Бинарные файлы}
+\begin{itemize}
+    \item FILE, fopen, fclose, r/w, t/b, буферизация
+    \item fread, fwrite, fseek, ftell, fflush
+    \item обработка ошибок, feof, ferror
+\end{itemize}
+\section{Классы и объекты}
+\begin{itemize}
+    \item инкапсуляция: private/public
+    \item конструктор (overloading), деструктор
+    \item инициализация полей (в том числе C++11)
+    \item C++11: =default, constructor chaining
+\end{itemize}
+\section{Работа с кучей на C++}
+\begin{itemize}
+    \item new/delete
+    \item cоздание объектов в куче
+    \item конструктор копий
+    \item оператор присваивания
+    \item C++11: =delete
+\end{itemize}
+\section{Наследование и полиморфизм}
+\begin{itemize}
+    \item protected
+    \item virtual (overriding)
+    \item таблица виртуальных функций
+    \item статическое/динамическое связывание
+\end{itemize}
+\section{Умные указатели}
+\begin{itemize}
+    \item \begin{verbatim}scoped_ptr \end{verbatim}
+    \item \begin{verbatim}unique_ptr \end{verbatim}
+    \item \begin{verbatim}shared_ptr \end{verbatim}
+\end{itemize}
+\section{Перегрузка операторов}
+\begin{itemize}
+    \item бинарные и унарные
+    \item в классе/вне классе
+    \item приведение типов
+\end{itemize}
+\section{Ключевые слова extern, static, inline}
+\begin{itemize}
+    \item extern у переменных
+    \item static у переменных и функций
+    \item static у полей и методов
+    \item inline у функций
+\end{itemize}
+\section{Разное}
+\begin{itemize}
+    \item ключевое слово const (С/C++)
+    \item перегрузка функций
+    \item параметры функций по умолчанию
+\end{itemize}
+\section{Наследование: детали}
+\begin{itemize}
+    \item сортировка и структуры данных C vs ООП
+    \item private/protected наследование
+    \item C+11: final, override
+\end{itemize}
+\section{Элементы проектирования}
+\begin{itemize}
+    \item декомпозиция программы (Model, View)
+    \item автотесты
+\end{itemize}
+\section{Множественное наследование}
+\begin{itemize}
+    \item разрешение конфликтов имен
+    \item виртуальное наследование
+    \item наследование интерфейсов
+\end{itemize}
+
+% \end{document}

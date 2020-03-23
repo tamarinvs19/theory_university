@@ -1,0 +1,123 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+
+\section{Программа, состоящая из нескольких файлов}
+\begin{itemize}
+    \item компиляция и линковка
+\begin{lstlisting}[label=some-code,caption={main.c}]
+int main() {
+    return 0;
+}
+\end{lstlisting}
+Причины разбиения на файлы:
+\begin{enumerate}[noitemsep]
+    \item Абстракция
+    \item Несколько программистов
+    \item Быстродействие
+\end{enumerate}
+ Пусть в программе будет несколько файлов:
+\begin{lstlisting}[label=some-code,caption={main.c}]
+int main() {
+    hello();
+    return 0;
+}
+\end{lstlisting}
+\begin{lstlisting}[label=some-code,caption={hello.c}]
+void hello() {
+    printf("Hello!");
+}
+\end{lstlisting}
+Для компиляции:
+\begin{verbatim}
+$ gcc main.c hello.c -o main
+\end{verbatim}
+Что происходит во время выполнения команды? Каждый файл компилируется по отдельности.
+\begin{figure}[ht]
+    \centering
+    \incfig{ram}
+    \caption{ram}
+    \label{fig:ram}
+\end{figure}
+В памяти каждый блок соответствует функции.
+\begin{enumerate}
+    \item компиляция: из $*.c$ получаются объектные файлы $*.o$
+    \item линковка: выполняется линковщиком, задача состоит в том, чтобы собрать в один исполняемый файл, объединить блоки в памяти межу собой и выполнить разрешение адресов.
+	Линковщик устанавливает относительные адреса, линковка более быстрый процесс.
+
+	Если мы запустим компиляцию от объектных файлов, будет выполняться только линковка.
+\end{enumerate}
+
+Пусть теперь сигнатура  $hello$ поменялась: теперь там есть параметры. Если скомпилируем по отдельности проблем не будет, но ошибка останется не замеченной. Для этого используются заголовочные файлы. 
+
+    \item заголовочные файлы
+У функции есть
+\begin{enumerate}
+    \item  Определение (definition)
+    \item  Объявление (declaration) : сигнатура - получаемое и возвращаемое
+\end{enumerate}
+
+\begin{lstlisting}[label=some-code,caption={hello.h}]
+void hello(int n);
+\end{lstlisting}
+\begin{lstlisting}[label=some-code,caption={hello.c}]
+#include "hello.h"
+void hello(int n) {
+    printf("%d", n);
+}
+\end{lstlisting}
+\begin{lstlisting}[label=some-code,caption={main.c}]
+#include "hello.h"
+int main() {
+    hello();
+    return 0;
+}
+\end{lstlisting}
+Теперь одно определение подключается в оба файла. Можно не указывать имя переменной в определении.
+
+Если  мы хотим ссылаться в цикле
+\begin{lstlisting}[label=some-code,caption={a.h}]
+#ifndef _a_H_
+#define _a_H_
+#include "b.h"
+#endif
+\end{lstlisting}
+\begin{lstlisting}[label=some-code,caption={b.h}]
+#ifndef _b_H_
+#define _b_H_
+#include "a.h"
+#endif 
+\end{lstlisting}
+    \item утилита make\\
+	GCC:
+	\begin{itemize}
+	    \item  только препроцессор $\to$ все $ \#\ldots $
+	\begin{verbatim}
+	$ gcc -E
+	\end{verbatim}
+    \item  только компиляция
+	\begin{verbatim}
+	$ gcc -c
+	\end{verbatim}
+    \item только перевод в ассемблер
+	\begin{verbatim}
+	$ gcc -s
+	\end{verbatim}
+	\end{itemize}
+	Для автоматизации используется $ make$.
+	 \begin{lstlisting}[label=some-code,caption={Makefile}]
+main: main.o str.o util.o
+    gcc  main.o str.o util.o -o main
+main.o: main.cpp util.h str.h
+    gcc -c main.cpp
+str.o: str.cpp str.h
+    gcc -c str.cpp
+util.o: util.cpp util.h
+    gcc -c util.cpp
+
+clean:
+     rm -rf *.o
+	\end{lstlisting}
+\end{itemize}
+
+% \end{document}

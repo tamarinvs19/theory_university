@@ -1,0 +1,68 @@
+\documentclass[a4paper]{report}
+
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fullpage}
+
+\usepackage{textcomp}
+\usepackage{verbatim}
+
+\usepackage{color} %% это для отображения цвета в коде
+\usepackage[]{xcolor}
+\usepackage{listings} %% собственно, это и есть пакет listings
+
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}} %% это сделает текст заголовка белым
+%% код ниже нарисует серую рамочку вокруг заголовка кода.
+\DeclareCaptionFormat{listing}{\colorbox{gray!70}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{tocloft}
+\renewcommand{\thesection}{Вопрос \arabic{section}}
+\renewcommand{\thesubsection}{\roman{subsection}}
+\cftsetindents{section}{0.2in}{0.9in}
+\cftsetindents{subsection}{0.7in}{0.3in}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\leftmark}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyhead[C]{}
+\addtolength{\headheight}{13pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\pagestyle{fancy}
+
