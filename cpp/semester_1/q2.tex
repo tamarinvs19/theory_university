@@ -1,0 +1,112 @@
+% \documentclass[11pt,dvipsnames,a4paper]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Указатели, массивы, ссылки}
+\begin{itemize}[noitemsep]
+    \item применение указателей и ссылок
+    \item арифметика указателей
+\end{itemize}
+\subsection{Массивы}
+\begin{ccode}
+int array[10]; // size 10*sizeof(int)
+
+a[0] = 10;
+int array[5] = {0, 1, 2, 3, 4};
+int array[] = {0, 1, 2, 3, 4};
+int array[5] = {0};
+\end{ccode}
+При создании вторым способом компилятор дописывает в конец ''0''.
+\begin{ccode}
+char array[] = {'H', 'e', 'l', 'l', 'o'}
+char array[] = "Hello"
+\end{ccode}
+Двухмерные массивы
+\begin{ccode}
+int m[10][10];
+int m[2][2] = { {1, 2}, {3, 4}};
+\end{ccode}
+\subsection{Указатели}
+Это адрес ячейки:
+\begin{ccode}
+int *p; // pointer
+int a, b;
+p = &a; // address of a
+b = *p; // value by addres p
+
+printf("%p", p); // output of addres
+\end{ccode}
+Теперь a равно b;
+
+Адрес массива --- указатель на его первый элемент.
+\begin{ccode}
+char array[10];
+char *p;
+p = array[0];
+p = array;
+\end{ccode}
+\subsection{Арифметика указателей}
+\begin{ccode}
+int i[10];
+char c[10];
+int *pi = &i[0];
+char *pc = &c[0];
+pi+=1;
+pc+=1;
+\end{ccode}
+Когда прибавляем 1 к адресу, он увеличивается на размер типа: в первом случае на 4 байта, во втором на 1 байт.
+\begin{ccode}
+i[3] === *(i+3) === 3[i]
+\end{ccode}
+Можно вычитать, но нельзя складывать.
+\subsection{Различия между указателями разных типов}
+На C компилируется, а на плюсах нет.
+\begin{ccode}
+char c[10];
+int *pi = &c[0];
+\end{ccode}
+\subsection{Применение}
+Полезно передавать в функцию указатель на большой объект.
+\begin{ccode}
+void strlen(char* ptr) {
+    char *p = ptr;
+    while (*p != '\0') 
+        ++p;
+    return p - ptr;
+}
+\end{ccode}
+Второй вариант будет быстрее:
+\begin{ccode}
+while (p[i] != 1)
+    i++;
+
+while (*p != 1)
+    p++;
+\end{ccode}
+\begin{ccode}
+void swap(int *pa, int *pb) {
+    int tmp = *pa;
+    *pa = *pb;
+    *pb = tmp;
+}
+int main() {
+    int a = 3; int b = 4;
+    swap(&a, &b);
+    return 0;
+}
+\end{ccode}
+\subsection{Ссылки}
+Новая форма запси последнего примера
+\begin{ccode}
+void swap(int& pa, int& pb) {
+    int tmp = pa;
+    pa = pb;
+    pb = tmp;
+}
+int main() {
+    int a = 3; int b = 4;
+    swap(a, b);
+    return 0;
+}
+\end{ccode}
+
+% \end{document}

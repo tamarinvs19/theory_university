@@ -1,0 +1,19 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Ввод-вывод на C. Текстовые файлы}
+{\tt
+\begin{itemize}[noitemsep]
+    \item FILE, fopen, fclose, r/w, t/b
+    \item stdin, stdout, stderr
+    \item printf, scanf, fprintf, fscanf, sprintf, sscanf, fgets
+    \item {\rm обработка ошибок}, feof, ferror
+\end{itemize}
+    }
+\subsection{\tt FILE, fopen, fclose, r/w, t/b}
+{\tt FILE} --- структура, описывающая абстракцию для ввода-вывода (файл на диске, клавиатура, экран). Определяет поток, содержит информацию для управления потоком (указатель на буфер, его показатели состояния).
+Внутри:
+\begin{itemize}[noitemsep]
+    \item Дескриптор --- идентификатор (целое число) файла внутри ОС.
+\end{itemize}
+% \end{document}

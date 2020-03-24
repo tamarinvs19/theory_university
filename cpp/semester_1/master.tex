@@ -1,27 +1,18 @@
+\documentclass[11pt,dvipsnames]{report}
 \input{preamble.tex}
+\usepackage{minted}
 
 \begin{document}
-\lstset{ %
-language=C++,                 % выбор языка для подсветки (здесь это С)
-basicstyle=\small\sffamily, % размер и начертание шрифта для подсветки кода
-numbers=left,               % где поставить нумерацию строк (слева\справа)
-numberstyle=\tiny,           % размер шрифта для номеров строк
-stepnumber=1,                   % размер шага между двумя номерами строк
-numbersep=7pt,                % как далеко отстоят номера строк от подсвечиваемого кода
-backgroundcolor=\color{white}, % цвет фона подсветки - используем \usepackage{color}
-showspaces=false,            % показывать или нет пробелы специальными отступами
-showstringspaces=false,      % показывать или нет пробелы в строках
-showtabs=false,             % показывать или нет табуляцию в строках
-frame=single,              % рисовать рамку вокруг кода
-tabsize=4,                 % размер табуляции по умолчанию равен 2 пробелам
-captionpos=t,              % позиция заголовка вверху [t] или внизу [b]
-breaklines=true,           % автоматически переносить строки (да\нет)
-breakatwhitespace=false, % переносить строки только если есть пробел
-escapeinside={\%*}{*)}   % если нужно добавить комментарии в коде
-}
 
 \input{questions.tex} 
-\chapter{Ответы}
+\chapter{}
 \input{q1.tex} 
+\newpage \input{q2.tex} 
+\newpage \input{q3.tex} 
+\newpage \input{q4.tex} 
+\newpage \input{q5.tex} 
+\newpage \input{q6.tex} 
+\newpage \input{q7.tex} 
+\newpage \input{q8.tex} 
 
 \end{document}

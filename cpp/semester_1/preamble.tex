@@ -1,5 +1,3 @@
-\documentclass[a4paper]{report}
-
 \usepackage [utf8] {inputenc}
 \usepackage [T2A] {fontenc}
 \usepackage {amsfonts}
@@ -22,13 +20,6 @@
 
 \usepackage{color} %% это для отображения цвета в коде
 \usepackage[]{xcolor}
-\usepackage{listings} %% собственно, это и есть пакет listings
-
-\usepackage{caption}
-\DeclareCaptionFont{white}{\color{white}} %% это сделает текст заголовка белым
-%% код ниже нарисует серую рамочку вокруг заголовка кода.
-\DeclareCaptionFormat{listing}{\colorbox{gray!70}{\parbox{\textwidth}{#1#2#3}}}
-\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
 
 % figure support
 \usepackage{import}
@@ -58,7 +49,7 @@
 \usepackage{fancybox,fancyhdr}
 \fancyhf{}
 \fancyfoot[R]{\thepage}
-\fancyfoot[L]{\leftmark}
+\fancyfoot[L]{\thesection}
 % \fancyfoot[RO,LE]{\thesection}
 \fancyhead[C]{}
 \addtolength{\headheight}{13pt}
@@ -66,3 +57,13 @@
 
 \pagestyle{fancy}
 
+\usepackage[newfloat]{minted}
+\definecolor{cbg}{rgb}{0.95,0.95,0.95}
+
+% \usepackage{caption}
+% \newenvironment{code}{\captionsetup{labelfont=bf,skip=0pt,font={small},indention=0cm,justification=justified,singlelinecheck=false}}{}
+% \SetupFloatingEnvironment{listing}{name=}
+% \newenvironment{code}{\captionsetup{format=listing,labelfont=white,textfont=white,singlelinecheck=false,margin=0pt,font={bf,footnotesize}}{}
+
+\newminted{c}{fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,bgcolor=,frame=single}
+% \renewcommand{\listoflistingscaption}{List of Program Code}

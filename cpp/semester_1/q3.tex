@@ -1,0 +1,101 @@
+% \documentclass[11pt,dvipsnames,a4paper]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Три вида памяти. Работа с кучей на C}
+\begin{itemize}[noitemsep]
+    \item глобальная/статическая память, стек, куча
+    \item \begin{verbatim}malloc/calloc/realloc/free\end{verbatim}
+    \item \begin{verbatim}void*\end{verbatim}
+\end{itemize}
+\subsection{Глобальная/статическая}
+Видна везде, определяется вне функций, память выделяется, когда загружается программа.
+\begin{minted}[fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,frame=single,label=hello.h]{c}
+#ifndef _hello_H_
+#define _hello_H_
+extern int a;
+#endif _hello_H_
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,frame=single,label=main.c]{c}
+#include "hello.h"
+int a = 0;
+int main() {
+    return 0;
+}
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,frame=single,label=hello.c]{c}
+int a=3;
+void hello() {
+}
+\end{minted}
+Static
+\begin{ccode}
+void f() {
+static int call_count = 0;
+call_count++;
+}
+
+int main() {
+    f(); f(); f();
+}
+\end{ccode}
+Если объявить $ static$ вне функции, она не будет видна даже с $ extern$.
+\subsection{Стек (stack)}
+Поддерживает операции $ push$ и  $ pop$.
+Когда функция заканчивается, память, выделенная для нее, освобождается.
+Вычисляется в момент компиляции, как и глобальная.
+
+При запуске рекурсии большой глубины может переполниться $ stack$ и произойти аварийное завершение.
+\subsection{Динамическая (heap)}
+По запросу программиста во время работы:
+\begin{ccode}
+#include <stdlib.h>
+int *p = (int*)malloc(10000*sizeof(int));
+p[0] = 1;
+free p;
+\end{ccode}
+$ typedef$ позволяет задавать новые типы:
+\begin{ccode}
+typedef unsigned int size_t
+\end{ccode}
+\begin{ccode}
+void *malloc(size_t size);
+\end{ccode}
+$ void *$ --- указатель на все, универсальный указатель, который можно привести к любому типу, но запрещена адресная арифметика.
+
+\paragraph{Утечка памяти. Memory leak}
+\begin{ccode}
+int *p = (int*)malloc(10000*sizeof(int));
+p = (int*)malloc(10*sizeof(int));
+\end{ccode}
+\paragraph{Особенности динамической памяти}
+\begin{enumerate}[noitemsep]
+    \item Скорость выделения меньше, чем у любой другой
+    \item  Имеет смысл выделять только объекты большого размера. Так как кроме самого объекта нужно создать ссылку на место в памяти.
+\end{enumerate}
+\subsection{Выделение массива массивов}
+\begin{ccode}
+int **m = (int**)malloc(N * sizeof(int*));
+for (int i = 0; i < N: ++i) {
+    m[i] = (int *)malloc(N * sizeof(int));
+}
+
+m[42][42] = 42;
+
+for (int i = 0; i < N; ++i) {
+    free(m[i]);
+}
+free(m);
+\end{ccode}
+\subsection{Еще}
+\begin{itemize}[noitemsep]
+    \item calloc
+	--- выделяет память и инициализирует нулями
+    \item realloc
+	--- изменяет размер существующего массива:
+	\begin{enumerate}[noitemsep]
+	    \item если нужное число байт не занято рядом, просто увеличиваем
+	    \item иначе находим другое место и переносим туда весь массив
+	    \item если нет вообще памяти, возвращаем 0.
+	\end{enumerate}
+\end{itemize}
+% \end{document}

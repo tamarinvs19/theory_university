@@ -1,0 +1,84 @@
+% \documentclass[11pt,dvipsnames,a4paper]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Структуры. Неинтрузивный связный список на C}
+\begin{itemize}[noitemsep]
+    \item неинтрузивная реализация
+    \item typedef
+\end{itemize}
+\subsection{Структуры}
+Сущность --- набор переменных: точка, товар.
+\begin{ccode}
+struct product_s {
+    char label[256];
+    unsigned char weight;
+    unsigned int price;
+};
+
+scanf("\%s \%f \%d", p.label, &(p.weight), &(p.price));
+
+struct product_s array[100];
+array[0].weight = 42;
+
+struct product_s* ptr = malloc(sizeof(struct product_s));
+ptr->weight = 42;
+\end{ccode}
+Полное копирование: оператор = требует линейное время.
+\begin{ccode}
+struct product_s a, b;
+b = a;
+\end{ccode}
+Если мы копируем указатель, копируется только значение: новый указатель ссылается на тот же объект.
+\begin{ccode}
+struct array_s {
+    int* p;
+    int n;
+}
+struct array_s a, b;
+a.p = malloc(sizeof(int) * 100);
+a.n = 100;
+b = a;
+a.p[0] = 42;
+b.p[0] == a.p[0] ? printf(1) : printf(0); // equal values
+\end{ccode}
+Структура может быть размещена на стеке, в глобальной памяти, на куче.
+\subsection{Связный список}
+Список --- блок данных и указатель на следующий. Если список связный, то еще на предыдущий.
+\begin{ccode}
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next, *prev;
+};
+
+struct List {
+    struct Node *head;
+    void new_node(int data);
+    void delete_node(struct Node* n);
+};
+
+void List::new_node(int data) {
+    struct Node* n = (struct Node*)malloc(sizeof(struct Node));
+    n->next = this->head;
+    n->data = data;
+    n->prev = this->head->prev;
+    this->head->prev->next = n;
+    this->head = n;
+}
+
+void List::delete_node(struct Node* n) {
+    n->prev->next = n->next;
+    n->next->prev = n->prev;
+    free(n);
+}
+\end{ccode}
+\subsection{typedef}
+Не команда для препроцессора, это просто синоним для существующего типа.
+\begin{ccode}
+typedef long long ll;
+typedef struct point {
+    //pass
+} point_s
+\end{ccode}
+% \end{document}

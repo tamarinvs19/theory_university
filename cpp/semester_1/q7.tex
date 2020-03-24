@@ -1,0 +1,83 @@
+% \documentclass[11pt,dvipsnames,a4paper]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Обзор стандартной библиотеки C}
+\begin{itemize}[noitemsep]
+    \item \begin{verbatim}string.h (memcpy, memcmp, strcpy, strcmp, strcat, strstr, strchr, strtok)\end{verbatim}
+    \item \begin{verbatim}stdlib.h (atoi, strtol, srand/rand, qsort)\end{verbatim}
+\end{itemize}
+\subsection{string.h}
+\paragraph{memcpy}
+Копирование в destination из source num байтов.
+\begin{ccode}
+void* memcpy (void* destination, const void* source, size_t num);
+\end{ccode}
+\paragraph{memcmp}
+Сравнение кусков памяти. Возвращаемое значение: 0, если одинаковы, положительное число, если в ptr1 встретился байт с большим unsigned int значением, отрицательное, иначе.
+\begin{ccode}
+int memcpy (const void* ptr1, const void* ptr2, size_t num);
+\end{ccode}
+\paragraph{strcpy}
+Копирование С-строки в destination из source.
+\begin{ccode}
+char* memcpy (char* dstination, const char* source);
+\end{ccode}
+\paragraph{strcmp}
+Сравнение строк: если первая длиннее, результат положительный.
+\begin{ccode}
+int strcmp (const char* str1, const char* str2);
+\end{ccode}
+\paragraph{strcat}
+Конкатенация строк: приклеивает source к destination справа.
+\begin{ccode}
+char* strcat (char* destination, const char* source);
+\end{ccode}
+\paragraph{strstr}
+Поиск подстроки в строке: возвращает указатель на место в первой строке или NULL;
+\begin{ccode}
+char* strstr (const char* str1, const char* str2);
+\end{ccode}
+\paragraph{strchr}
+Поиск cимвола в строке: возвращает указатель на место в первой строке или NULL;
+\begin{ccode}
+char* strchr (const char* str1, int symbol);
+\end{ccode}
+\paragraph{strtok}
+Разбить строку на токены по разделителям: внутри лежит статическая переменная, которая хранит место в строке (откуда начать при следующем вызове), строку разрушает, расставляя нули, чтобы printf "знал", где останавливаться.
+\begin{ccode}
+char str[] = "This ,a simple string.";
+char *pch = strtok(str, " ,");
+while (pch != NULL) {
+    printf("\%s\n", pch);
+    pch = strtok(NULL, " ,.-");
+}
+\end{ccode}
+\subsection{stdlib.h}
+\paragraph{atoi}
+Переводит строку в число int. Пробелы пропускаются, знак перед числом учитывается. При ошибке undefined behavior.
+\begin{ccode}
+int atoi(const char* str);
+int res = atoi("-1");
+\end{ccode}
+\paragraph{strtol}
+Переводит строку в число long long int. Если успешно, то возвращает число, если строка неправильная --- вернет 0, если переполнение, то вернет LLONG\_MAX$(2^{63}-1)$ или LONG\_MIN $(-2^{63})$. endPtr --- первый символ, на котором сломалось.
+\begin{ccode}
+long long int strtol(char* buffer, char** endPtr, int base);
+char *end; char *ptr = "25a";
+int N = strtol(ptr, &end, 10);
+if (ptr == end) {}
+\end{ccode}
+\paragraph{srand/rand}
+Генерация рандомных чисел.
+\begin{ccode}
+void srand(unsigned int seed);
+srand(time(NULL)); // time.h
+int r1 = rand();
+srand(time(NULL));
+\end{ccode}
+\paragraph{qsort}
+Быстрая сортировка. base --- массив, num --- количество элементов, size --- размер элемента, compar --- указатель на функцию сравнения.
+\begin{ccode}
+void qsort(void* base, size_t num, size_t size; int (*compar)(const void*, const void*));
+\end{ccode}
+% \end{document}
