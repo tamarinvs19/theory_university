@@ -1,0 +1,148 @@
+\section{Умные указатели}
+\begin{itemize}[noitemsep]
+    \item \begin{verbatim}scoped_ptr \end{verbatim}
+    \item \begin{verbatim}unique_ptr \end{verbatim}
+    \item \begin{verbatim}shared_ptr \end{verbatim}
+\end{itemize}
+\subsection{scored\_ptr}
+Хотим сделать обертку над указателем, чтобы не думать о памяти (об ее освобождении), при выходе из области видимости указатель сам должен очистить.
+
+$ $
+
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=scoped\_ptr.h]{cpp}
+class scoped_ptr {
+private:
+    Person* myPointer;
+public:
+    scoped_ptr(Person* ptr);
+    ~scoped_ptr();
+
+    Person* ptr();
+    Person& operator *() const;
+    Person* operator ->() const;
+    bool isNull() const;
+private:
+    scoped_ptr(const scoped_ptr& p);
+    const scoped_ptr& 
+         operator=(const scoped_ptr& p);
+}
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=scoped\_ptr.cpp]{cpp}
+scoped_ptr::scoped_ptr(Person* ptr) {
+    myPointer = ptr;
+}
+scoped_ptr::~scoped_ptr() {
+    if (myPointer != 0) 
+        delete myPointer;
+}
+Person& scoped_ptr::operator *() const {
+    return *myPointer;
+}
+Person* scoped_ptr::operator ->() const {
+    return myPointer;
+}
+bool scoped_ptr::isNull() const {
+    return myPointer == 0;
+}
+\end{minted}
+\end{minipage}
+
+$ $
+
+\begin{minipage}{0.45\textwidth}
+Использование:
+\begin{ccode}
+scoped_ptr p = new Person("Bob");
+p->getName();
+*p.getName(); // не скомпилируется,
+// сначала . потом *
+(*p).getName();
+\end{ccode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+Но есть проблемы:
+\begin{ccode}
+scoped_ptr p1 = new Person("Bob");
+scoped_ptr p2 = new Person("Alice");
+scoped_ptr p3 = p1; // дважды деструкор в конце
+PrintPerson(p1); // аналогично
+p1 = p2; // утечка из p2 и проблема с delete
+\end{ccode}
+\end{minipage}
+\subsection{unique\_ptr}
+Можно перемещать и один раз передать в функцию, после этого будет NULL.
+
+$ $
+
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=unique\_ptr.h]{cpp}
+class unique_ptr {
+private:
+    Person* p;
+public:
+    unique_ptr(Person* ptr);
+    ~unique_ptr();
+
+    Person* ptr();
+    Person& operator *() const;
+    Person* operator ->() const;
+    bool isNull() const;
+private:
+    unique_ptr(unique_ptr& p);
+}
+    unique_ptr& operator=(unique_ptr& p);
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=unique\_ptr.cpp]{cpp}
+unique_ptr::unique_ptr(Person* ptr) {
+    myPointer = ptr;
+}
+unique_ptr::~unique_ptr() {
+    if (myPointer != 0) 
+        delete myPointer;
+}
+Person& unique_ptr::operator *() const {
+    return *myPointer;
+}
+Person* unique_ptr::operator ->() const {
+    return myPointer;
+}
+bool unique_ptr::isNull() const {
+    return myPointer == 0;
+}
+unique_ptr::unique_ptr(unique_ptr& p) {
+    myPointer = p.myPointer;
+    p.myPointer = 0;
+}
+unique_ptr& unique_ptr::operator =
+	(unique_ptr& p) {
+    if (this != &p) {
+        if (myPointer != ) 
+	    delete myPointer;
+	myPointer = p.myPointer;
+	p.myPointer = 0;
+    }
+    return *this;
+}
+\end{minted}
+\end{minipage}
+\subsection{shared\_ptr}
+\begin{itemize}[noitemsep]
+    \item Создаем вспомогательный объект Storage, где есть счетчик ссылок и указатель на Object.
+\begin{ccode}
+shared_ptr p1 = new Object;
+\end{ccode}
+\item Создадим второй указатель и присвоим ему значение первого. Нужно увеличить счетчик на 1.
+\begin{ccode}
+shared_ptr p2 = p1;
+\end{ccode}
+\item Теперь область видимости заканчивается, вызывается деструктор p2. Уменьшим счетчик на 1, так как он не 0, ничего более не делаем.
+\item Вызывается деструктор p1, уменьшаем счетчик еще на 1, получаем нуль, поэтому вызываем деструктор для Object, а потом и для Storage.
+\end{itemize}

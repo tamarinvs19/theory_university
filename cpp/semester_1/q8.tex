@@ -3,17 +3,121 @@
 % \begin{document}
 \section{Ввод-вывод на C. Текстовые файлы}
 {\tt
-\begin{itemize}[noitemsep]
-    \item FILE, fopen, fclose, r/w, t/b
-    \item stdin, stdout, stderr
-    \item printf, scanf, fprintf, fscanf, sprintf, sscanf, fgets
-    \item {\rm обработка ошибок}, feof, ferror
-\end{itemize}
-    }
-\subsection{\tt FILE, fopen, fclose, r/w, t/b}
+    \begin{itemize}[noitemsep]
+	\item FILE, fopen, fclose, r/w, t/b
+	\item stdin, stdout, stderr
+	\item printf, scanf, fprintf, fscanf, sprintf, sscanf, fgets
+	\item {\rm обработка ошибок}, feof, ferror
+    \end{itemize}
+}
+\subsection{FILE, fopen, fclose, r/w, t/b}\label{subsec:quection8_file}
 {\tt FILE} --- структура, описывающая абстракцию для ввода-вывода (файл на диске, клавиатура, экран). Определяет поток, содержит информацию для управления потоком (указатель на буфер, его показатели состояния).
 Внутри:
 \begin{itemize}[noitemsep]
-    \item Дескриптор --- идентификатор (целое число) файла внутри ОС.
+    \item Дескриптор --- идентификатор (целое число) файла внутри ОС
+    \item Промежуточный буфер --- сначала накапливаем буферъ потом за один вызов записываем на диск (так быстрее, чем писать отдельно)
+    \item Текущее положение в файле
+    \item Индикатор ошибки при последней операции
+    \item Индикатор конца файла
 \end{itemize}
+Для работы с этими полями используется {\tt stdio}.
+\paragraph{Интерпретация байтов в памяти}
+\begin{itemize}[noitemsep]
+    \item Текстовый формат
+	\begin{itemize}[noitemsep]
+	    \item Интерпретируется как последовательность символов:
+	100 = 3 символа '1', '0', '0'
+	\item Есть спецсимволы: перевод строки, табуляция.
+	\item Проблемы: разные кодировки (например перевод строки)
+	    \item Простая интерпретация, но большой размер
+	\end{itemize}
+    \item Бинарный формат
+	\begin{itemize}[noitemsep]
+	    \item Для обработки нужно описание, сложный формат (bmp, wav, elf)
+		\item Заголовок записывается: первыми четырьмя --- ширина, вторыми четырьмя --- высота, остальные данные тремя байтами RGB c выравниванием.
+		\item Сложная интерпретация, но компактнее.
+	\end{itemize}
+\end{itemize}
+\paragraph{fopen}
+\begin{ccode}
+FILE *fopen(const char* fname, const char* mode);
+
+FILE *f = fopen("in.txt", mode);
+if ( f == NULL ) {
+    // файл не открылся
+}
+fclose(f);
+\end{ccode}
+Если файл не открылся, возвращает нулевой указатель. 
+\begin{ccode}
+FILE* fin = fopen("in.txt", "r");
+FILE* fout = fopen("out.txt", "w");
+\end{ccode}
+\paragraph{fclose}
+Закрывает файл и разъединяет filestream, связанный с потоком. Все буферы записываются и сбрасываются. Если закрыто успешно, возвращает нуль, иначе EOF.
+\begin{ccode}
+int fclose(FILE *filestream);
+\end{ccode}
+\subsection{stdin, stdout, stderr}
+\begin{itemize}[noitemsep]
+    \item Поток 0 (stdin) --- для чтения команд пользователя и входных данных
+    \item Поток 1 (stdout) --- для вывода данных на экран
+    \item Поток 2 (stderr) --- для вывода на экран, но без буфера.
+\end{itemize}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=stdio.h]{c}
+FILE *f0 = fopen("in.txt", "..."); // файл на диске
+FILE *f1 = stdin; // чтение с клавиатуры
+FILE *f2 = stdout; // вывод на экран
+\end{minted}
+\subsection{printf, scanf, fprintf, fscanf, sprintf, sscanf, fgets}
+\paragraph{printf}
+Запись отформатированной строки в stdout. Возвращает количество записанных символов. В случае ошибки возвращает отрицательное число.
+\begin{ccode}
+int printf(const char* format, ... );
+\end{ccode}
+\paragraph{scanf}
+Считывание данных из потока stdin. Возвращает количество успешно считанных символов. В случае ошибки возвращает EOF.
+\begin{ccode}
+int scanf(const char* format, ... );
+\end{ccode}
+\paragraph{fprintf}
+Форматированный вывод в файл.
+\begin{ccode}
+int fprintf(FILE *stream, const char* format, ... );
+\end{ccode}
+\paragraph{fscanf}
+Форматированное чтение из файла.
+\begin{ccode}
+int fscanf(FILE *fp, const char* format, ... );
+\end{ccode}
+\paragraph{sprintf}
+Вывод в массив, указанный buf
+\begin{ccode}
+int sprintf(char* buf, const char* format, args );
+\end{ccode}
+\paragraph{sscanf}
+Ввод из массива buf
+\begin{ccode}
+int sscanf(char* buf, const char* format, args );
+\end{ccode}
+\subsection{Обработка ошибок,  feof, ferror}\label{subsec:quection8_err}
+\begin{ccode}
+while (!feof(fin)) {
+    fread(...);
+    if (ferror(fin)) {
+	// сделать что-то
+    }
+}
+\end{ccode}
+\paragraph{feof}
+Проверка достижения конца файла, связанного с потоком через параметр fstream. Если файл достиг конца, возвращается не нуль.
+\begin{ccode}
+int feof(FILE* fstream);
+\end{ccode}
+\paragraph{ferror}
+Отслеживание появления ошибки, связанной с потоком через fstream. Если произошла ошибка, возвращается не нуль. Так как fread сначала перейдет чтением ``за конец файла'', а потом установит индикатор. Поэтому правильно выполнять эту операцию после feof, чтобы проинформировать о возникшей ошибке.
+\begin{ccode}
+int ferror(FILE* fstream);
+\end{ccode}
+
 % \end{document}

@@ -1,0 +1,65 @@
+\section{Ввод/вывод на C. Бинарные файлы}
+{\tt
+\begin{itemize}[noitemsep]
+    \item FILE, fopen, fclose, r/w, t/b, буферизация
+    \item fread, fwrite, fseek, ftell, fflush
+    \item {\rm обработка ошибок}, feof, ferror
+\end{itemize}
+}
+
+\subsection{FILE, fopen, fclose, r/w, t/b, буферизация} 
+См. \ref{subsec:quection8_file}.
+\subsection{fread, fwrite, fseek, ftell, fflush}
+\begin{ccode}
+FILE* fin = fopen("in.txt", "rb");
+FILE* fout = fopen("out.txt", "w");
+int array[100];
+fread(array, sizeof(int), 100, fin);
+fwrite(array, sizeof(int), 50, fout);
+fclose(fout);
+fclose(fin);
+\end{ccode}
+\paragraph{fread}
+Считывает массив размером count, каждый из которых имеет размер  size байт, из потока. Сохраняет в блоке памяти, на который указывает ptrvoid. Индикатор положения увеличивается на количество записанных байтов. Возвращает количество успешно считанных элементов.
+\begin{ccode}
+size_t fread(void* ptrvoid, size_t size, size_t count, FILE* fstream);
+\end{ccode}
+\paragraph{fwrite}
+Записывает массив размером count элементов, каждый из которых имеет размер size байт, в блок памяти, на который указывает ptrvoid.
+\begin{ccode}
+size_t fwrite(const coid* ptrvoid, size_t size, size_t count, FILE* fstream);
+\end{ccode}
+\paragraph{fseek}
+Перемещает указатель позиции в потоке, добавляя смещение offset к положению origin.
+\begin{description}[noitemsep]
+    \item[SEEK\_SET] начало файла
+    \item[SEEK\_CUR] текущее положение файла
+    \item[SEEK\_END] конец файла
+\end{description}
+\begin{ccode}
+size_t fseek(FILE* fstream, long int offset, int origin);
+\end{ccode}
+\paragraph{ftell}
+Возвращает текущую позицию потока. Для бинарных --- количество байт от начала файла.
+\begin{ccode}
+long int ftell(FILE* fstream);
+\end{ccode}
+\paragraph{fflush}
+Любые не записанные данные в выходном буфере записываются в файл. Если аргумент равен нулевому указателю, все открытые потоки записываются. Если операция успешна, возвращает нуль.
+\begin{ccode}
+int fflush(FILE* fstream);
+
+int main() {
+    FILE* fout = fopen("in", "w");
+    int a = 3, b = 5;
+    fprintf(fout, "\%d \%d", a, b); // может так и остаться в буфере, если malloc сломается
+    fflush(fout); // поэтому можем принудительно записать
+    int *array = malloc(100000000);
+    if (array == NULL)
+	return -1
+    fclose(fout);
+    return 0;
+}
+\end{ccode}
+\subsection{FILE, fopen, fclose, r/w, t/b, буферизация} 
+См. \ref{subsec:quection8_err}.

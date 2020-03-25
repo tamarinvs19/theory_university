@@ -1,0 +1,58 @@
+\section{Работа с кучей на C++}
+\begin{itemize}[noitemsep]
+    \item new/delete
+    \item cоздание объектов в куче
+    \item конструктор копий
+    \item оператор присваивания
+    \item C++11: =delete
+\end{itemize}
+\subsection{new/delete}
+Это аналоги malloc и free. Но new и delete --- операторы, их транслирует компилятор, а не линкуется из библиотеки.
+Нельзя смешивать две пары, так как они могут иметь внутренние различия.
+\begin{ccode}
+int* pi = new int[5]; // создаем массив
+my_class* a = new my_class;
+delete [] a;
+delete my_class;
+\end{ccode}
+\subsection{Создание объектов в куче}
+new и delete вызывают конструкторы и деструкторы классов соответственно. При создании массива через new не стоит удалять без [], может вызвать undefined behavior. Если вызываем delete [], он проходит по массиву и вызывает деструктор у каждого элемента.
+\subsection{Конструктор копий}
+Используется, когда нужен оператор присваивания. Есть один объект нашего классы, мы хотим проинициализировать новый с такими же значениями полей.
+\begin{ccode}
+class Array {
+    Array (const Array& a) {
+	size = a.size;
+	data = new int[size];
+	// если просто скопировать объекты через знак равно,
+	//будет побайтовое копирование и будут ссылаться на одну память
+	for (size_t i = 0; i < size; ++i) 
+	    data[i] = a.data[i];
+    }
+}
+
+Array a = b;
+f(a); // здесь тоже копирование
+\end{ccode}
+В конструктор копий передается именно ссылка, так как иначе потребуется скопировать объект, то есть возникнет рекурсивный бесконечный вызов.
+\subsection{Оператор присваивания}
+Хотим создать два объекта, а потом присвоить первому второй. Для этого можно определить оператор ``=''.
+\begin{ccode}
+Array& Array::operator=(const Array& a) {
+    if (&a == this) // для a = a;
+	return *this;
+    delete [] data;
+    size = a.size;
+    data - new int[size];
+    for (size_t i = 0; i < size; ++i) 
+	data[i] = a.data[i];
+    return *this; // для a = b = c;
+}
+\end{ccode}
+Еще можно сделать это же с помощью swap:
+\begin{ccode}
+Array& Array::operator=(Array a) { //copy-swap
+    std::swap(_data, a._data);
+    return *this;
+}
+\end{ccode}

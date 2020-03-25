@@ -1,0 +1,126 @@
+\section{Ключевые слова extern, static, inline}
+\begin{itemize}[noitemsep]
+    \item extern у переменных
+    \item static у переменных и функций
+    \item static у полей и методов
+    \item inline у функций
+\end{itemize}
+\subsection{extern}
+Если есть два файла, в первом создается переменная {\tt int a = 0;}, во втором в функции мы пытаемся {\tt a++;}. Выдаст ошибку, так как не знает, что это за переменная. Можно создать заголовочный файл, записать туда эту переменную. Либо в во втором файле написать {\tt extern int a;}. Компилятор не будет создавать переменную, а только будет знать, что такая есть.
+\subsection{static у переменных и функций}
+\begin{enumerate}[noitemsep]
+    \item Глобальные static переменные
+
+	Будут видны только в своем файле, так как обрабатывается на внутренней стадии линковки: для каждого модуля создается таблица с адресами переменных.
+    \item Локальные static переменные
+
+	Будет сохранять свое значение между вызовами функции (хранится в области глобальных переменных).
+\begin{ccode}
+void func() {
+    static int num_func_calls = 0;
+    printf("\%d" num_func_calls++)
+}
+\end{ccode}
+\item static функции
+
+    По умолчанию у всех функций есть ключевое слово extern. Если хотим запретить функции вызов в другом файле, нужно добавить static.
+
+    Может использоваться при написании библиотеки, если мы не хотим пользователю дать пользоваться какой-то функцией. 
+
+    Или чтобы не перекрывались имена у разных программистов, пишущих одну программу.
+\end{enumerate}
+\subsection{static у полей и методов}
+\begin{enumerate}[noitemsep]
+    \item static у полей
+
+	Это глобальная переменная для всех объектов класса, при этом область видимости будет только внутри него.
+
+	$ $
+
+	\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=person.h]{cpp}
+class Person {
+private:
+    static int last_id;
+    int id;
+    char name[256];
+    int age;
+public:
+    Person(const char* name, int age);
+};
+\end{minted}
+	\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=person.cpp]{cpp}
+int Person::last_id = 0;
+Person::Person(const char* name, int age) :
+	name(name), age(age) {
+    id = last_id++;
+}
+
+int main() {
+    Person p1("Bob", 12);
+    Person p2("Alice", 11);
+}
+\end{minted}
+\end{minipage}
+   \item static у методов
+       
+       У него нет this, следовательно, не может получить доступ к нестатическим полям, может быть вызван через имя класса.
+\begin{ccode}
+class Person {
+    ...
+    static int get_next_id() {
+	return last_id;
+    }
+}
+int main() {
+    int i = Person::get_index_id();
+}
+\end{ccode}
+\begin{ccode}
+class Point {
+    int x, y;
+    static int distance(const Point& p1, const Point& p2);
+    Point(int x, int y) : x(x), y(y) {}
+};
+int main() {
+    Point p1(1, 3); Point p2(2, 3);
+    Point::distance(p1, p2);
+\end{ccode}
+\end{enumerate}
+\subsection{inline у функций}
+
+Сообщает оптимизатору, чтобы по возможности он вставил код этой функции в место, где она вызывается.
+Тем самым экономиться время работы и память, которые были бы потрачены на вызов функции.
+
+$ $
+
+\begin{minipage}{0.45\textwidth}
+\begin{ccode}
+int max(int a, int b) {
+    return a > b : a ? b;
+}
+int main() {
+    int c = 10;
+    int b = 20;
+    int d = max(c, b);
+}
+\end{ccode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    После оптимизации:
+\begin{ccode}
+int main() {
+    int c = 10;
+    int b = 20;
+    int d = a > b ? a : b;
+}
+\end{ccode}
+\end{minipage}
+
+Но это не гарантировано: компилятор сам решает, стоит ли это делать и сможет ли он. Кроме этого, обязательно знать и тело функции тоже. Если оно будет в другом месте, компилятор не поймет, что делать.
+
+Все функции внутри header являются inline. Если хотим этого избежать --- пишем определение отдельно.

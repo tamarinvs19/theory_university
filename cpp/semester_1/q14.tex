@@ -1,0 +1,86 @@
+\section{Перегрузка операторов}
+\begin{itemize}[noitemsep]
+    \item бинарные и унарные
+    \item в классе/вне классе
+    \item приведение типов
+\end{itemize}
+\subsection{бинарные и унарные опрераторы}
+Унарные операторы требуют только один объект.
+С помощью перегрузки операторов можно определить короткую запись некоторых операций для своего класса.
+Операторы ``.'' и ``a ? b : c'' перегружать нельзя.
+\begin{cppcode}
+class BigInt {
+    char operator [](size_t i) const; // для print(const BigInt&);
+    char& operator [](size_t i);  // для BigInt a(239); a[3] = 5;
+    size_t size_;
+    char* digits_;
+    BigInt(const BigInt& num) { 
+	size_ = num.size_;
+	digits_ = num.digits_;
+    }
+
+    void swap(BigInt& b) {
+	std::swap(size_, b.size_);
+	std::swap(digits_, b.digits_);
+    }
+    BigInt& operator=(const BigInt& num) {
+	if (this != &num) {
+	    BigInt tmp(num);
+	    tmp.swap(*this);
+	}
+	return *this;
+    }
+    BigInt& operator++() { // prefix
+	...
+	return *this;
+    } 
+    BigInt& operator++(int) { // postfix
+	BigInt t(*this);
+	++(*this);
+	return t;
+};
+// достаточно реализовать только эти операторы сравнения
+bool operator <(BigInt const & a , BigInt const & b ) { ... }
+bool operator ==(BigInt const & a , BigInt const & b) { ... }
+\end{cppcode}
+Унарные операторы лучше реализовывать внутри класса. Бинарные и операторы сравнения снаружи.
+\subsection{в классе/вне класса}
+Операторы могут быть переопределены как внутри класса, так и вне (это будет функцией от одной/двух переменных и не будет методом класс). Это полезно, когда нет доступа к классу.
+\begin{cppcode}
+// outside class
+BigInt operator+(const BigInt a, const BigInt& b) {
+    a += b;
+    return a;
+}
+// inside class: `this` == `a`
+BigInt BigInt::operator+(const BigInt& b) {
+    (*this) += b;
+    return *this;
+}
+\end{cppcode}
+\subsection{приведение типов}
+\begin{itemize}[noitemsep]
+    \item int к BigInt через конструктор
+\begin{cppcode}
+class BigInt {
+    BigInt(int a) { .. };
+};
+BigInt a = 3;
+BigInt a = (BigInt)3;
+\end{cppcode}
+\item Это не всегда удобно и понятно. {\tt Matrix m = 3;} Можно запретить использование конструктора для приведения типов.
+\begin{cppcode}
+class Matrix {
+    explicit Matrix(size_t a) { .. }
+};
+\end{cppcode}
+\item BigInt к int
+\begin{cppcode}
+class BigInt {
+    operator int() const {
+	return ...;
+    }
+};
+BigInt a(23919); int b = a;
+\end{cppcode}
+\end{itemize}

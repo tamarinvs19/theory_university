@@ -1,0 +1,127 @@
+\section{Наследование и полиморфизм}
+\begin{itemize}[noitemsep]
+    \item protected
+    \item virtual (overriding)
+    \item таблица виртуальных функций
+    \item статическое/динамическое связывание
+\end{itemize}
+\begin{itemize}[noitemsep,label=$\to$]
+    \item
+Наследование --- создание класса на основе другого, при этом производный класс будет иметь те же методы, но возможно добавлять новые поля, методы, переопределять или дописывать старые.
+\item
+Полиморфизм --- возможность сделать объект базового типа объектом производных типов, в также возможность переписать/дописать методы базового в производном.
+\end{itemize}
+\subsection{protected}
+{\tt protected} позволяет видеть содержимое не только представителям класса, но и всем классам-наследникам. Это позволяет использовать поля и методы родителя в классах наследниках, которые при этом не должны быть публичными.
+\subsection{virtual (overriding)}
+Виртуальные функции нужны для того, чтобы эти функции могли быть там перекрыты (переписаны) у детей. Это требуется для того, чтобы программа понимала какую функцию нужно вызывать при работе.
+Конструктор не может быть виртуальным, но деструктор может.
+Если виртуальная функция объявлена с присвоением нуля, она обязательно должна будет перекрыта в дочернем классе, а в этом реализации нет.
+
+\begin{minipage}{0.4\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=list.h]{cpp}
+class List {
+protected:
+    int val;
+    List *next;
+public:
+    List(int val);
+    ~List();
+    virtual void push_back(int val);
+    size_t length() const;
+};
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=doubleList.h]{cpp}
+#include "list.h"
+class DoubleList: public List {
+private:
+    DoubleList* prev;
+public:
+    DoubleList(int val);
+    ~DoubleList();
+    void push_back(int val);
+    void pop_back(int val); // new method
+};
+\end{minted}
+\end{minipage}
+
+\begin{minipage}{0.4\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=list.cpp]{cpp}
+#include "list.h"
+List::List(int val) {
+    this->val = val;
+    this->next = NULL;
+}
+~List::List() { delete this->next; }
+
+void List::push_back(int val) {
+    List* cur = this;
+    while (cur->next != NULL) 
+        cur = cur->next;
+    cur->next = new List(val);
+}
+
+size_t List::length() const {
+    size_t count = 0;
+    const List* cur = this;
+    while (cur->next != NULL) {
+        cur = cur->next;
+	count++;
+    }
+    return count;
+}
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=doubleList.cpp]{cpp}
+#include "doubleList.h"
+DoubleList::DoubleList(int val): List(cal) {
+    this->prev = NULL;
+}
+~DoubleList::DoubleList() {}
+
+void DoubleList::push_back(int val) {
+    DoubleList* cur = this;
+    while (cur->next != NULL)
+	cur = (DoubleList* )cur->next;
+    cur->next = new DoubleList(val);
+    ((DoubleList* )cur->next)->prev = cur;
+}
+void DoubleList::pop_back() {
+    DoubleList* cur = this;
+    while (cur->next != NULL)
+        cur = cur->next;
+    this->prev = NULL;
+    delete this;
+}
+\end{minted}
+\end{minipage}
+\subsection{таблица виртуальных функций}
+Все виртуальные методы класса автоматически записываются в таблицу, которая идет перед классом. При вызове виртуальной функции программа смотрит в таблицу, находит адрес нужной виртуальной функции, и вызывает ее.
+
+Каждый объект с виртуальными функциями хранит скрытое поле {\tt vptr} на начало этой таблицы.
+\subsection{статическое/динамическое связывание}
+Связывание --- сопоставление имени функции и ее адреса в памяти.
+\begin{itemize}
+    \item Статическое связывание --- имя можно заменить на адрес в этапе построения.
+\begin{ccode}
+Sale s(...);
+int r = s.getSalary();
+\end{ccode}
+\item Динамическое связывание --- имя можно заменить на адрес только на этапе выполнения.
+\begin{ccode}
+Employee *e;
+int t, salary;
+scanf("\%d \%d", &t, &salary);
+if (d = 0) 
+    e = new Developer(salary);
+else
+    e = new SaleManager(salary);
+printf("\%d", w->getSalary());
+\end{ccode}
+\end{itemize}
+По умолчанию в С++ используется статическое связывание, но если у метода есть ключевое слово {\tt virtual}, то для него используется динамическое.
