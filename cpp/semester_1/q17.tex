@@ -1,0 +1,226 @@
+\section{Наследование: детали}
+\begin{itemize}[noitemsep]
+    \item сортировка и структуры данных C vs ООП
+    \item private/protected наследование
+    \item C+11: final, override
+\end{itemize}
+\subsection{сортировка и структуры данных C vs ООП}
+\subsubsection{сортировка в стиле С}
+\begin{ccode}
+struct point_s {
+    int x, y;
+};
+
+void qsort (void* base, size_t num, size_t size,
+	    int (*compar)(const void*, const void*)) {}
+
+int cmp_point1 (const void* v1, const void* v2) { 
+    // здесть нет никакой проверки типов со стороны компилятора
+    const struct point_s *p1 = (const struct point*) v1;
+    const struct point_s *p2 = (const struct point*) v2;
+    ...
+}
+
+struct point_s points[10];
+qsort(points, 10, sizeof(points[0]), cmp_point1);
+\end{ccode}
+\subsubsection{сортировка в стиле ООП}
+\begin{cppcode}
+class Comparable {
+    virtual bool operator<(const Comparable* v)=0 const;
+};
+void nsort(Comparable** m, size_t size) {
+    ...
+    m[i] = ;
+}
+
+class Point: public Comparable {
+private:
+    int x, y;
+public:
+    virtual bool operator<(const Comparable* v) const { ... };
+};
+
+int N = 10;
+Point** points = new Point[N];
+for (size_t i = 0; i < N; ++i) 
+    points[i] = new Point(i, i);
+nsort(points, N);
+\end{cppcode}
+\subsubsection{связный список в стиле С}
+\paragraph{неинтруизивный}
+\begin{ccode}
+struct node_s {
+    void* user_data;
+    struct node_s *next;
+};
+struct list_s {
+    struct node_s *head;
+};
+
+void push_back(struct list_s *i, struct node_s *n);
+\end{ccode}
+\begin{ccode}
+struct node_s *n = malloc(sizeof(struct node_s));
+n->user_data = malloc(sizeof(struct point_s));
+// два malloc
+push_back(&l, n);
+\end{ccode}
+\paragraph{интруизивный}
+\begin{ccode}
+struct point_s {
+    int x, y;
+    struct node_s node;
+};
+list_t l;
+struct point_s *pn = malloc(sizeof(*pn));
+// malloc один, но требутся трюк для получения x, y
+push_back(&l, &pn->node);
+\end{ccode}
+\subsubsection{связный список в стиле С++}
+\begin{cppcode}
+class Object {
+public:
+    virtual bool operator<(const Object* o) {
+	return this < o;
+    }
+    virtual bool operator=(const Object* o) {
+	return this == o;
+    }
+    virtual int hash(const Object* o) {
+	return (int)this;
+    }
+};
+
+class Node {
+public:
+    void setData(Object* o);
+private:
+    Object* o;
+    Node* next;
+};
+
+class List {
+    Node* head;
+public:
+    void push_back(Node *n);
+};
+
+class Point: public Object {
+    int x, y;
+    virtual bool operator<(const Object* o) {
+	Point *p = (Point*) o;
+	return this < o;
+    }
+};
+\end{cppcode}
+\begin{cppcode}
+List l;
+Node *n = new Node;
+n->setData(new Point(3, 4));
+// тоже два new
+l.push_back(n);
+\end{cppcode}
+\subsubsection{private/protected/public наследование}
+\begin{cppcode}
+class P {
+public:
+    int x;
+protated:
+    int y;
+private:
+    int x;
+};
+\end{cppcode}
+\begin{cppcode}
+class A: public P {
+    // x is public
+    // y is protected
+    // z in not accessible from P
+}
+
+class B: protected P {
+    // x is protected
+    // y is protected
+    // z in not accessible from P
+}
+
+class C: private P {
+    // x is private
+    // y is private
+    // z in not accessible from P
+}
+\end{cppcode}
+\paragraph{Два типа отношений}
+\begin{description}[noitemsep]
+    \item[has a] у машины есть двигатель и тормоза
+\begin{cppcode}
+class Car {
+    Engine e;
+    Brakes b;
+};
+\end{cppcode}
+    \item[is a] грузовик это  машина, автобус это машина 
+\begin{cppcode}
+class Track: public Car {};
+class Bus: public Car {};
+\end{cppcode}
+\end{description}
+Еще можно показать, что машина не двигатель:
+\begin{cppcode}
+class Engine {
+    protected:
+    void maintenanceCheck() { .. };
+};
+
+class Car: private Engine {
+    void reset() {
+	maintenanceCheck();
+    }
+};
+\end{cppcode}
+
+\subsection{C++11: final, override}
+\subsubsection{override}
+\begin{minipage}{0.45\textwidth}
+\begin{cppcode}
+class Base {
+    public:
+    virtual void f(int);
+    virtual int g() const;
+    void h(int);
+};
+\end{cppcode}
+\begin{cppcode}
+class Derived: public Base {
+public:
+    void f(int); // не знаем virtual?
+    int g(); // перегрузка вместо перекрытия
+    void h(int); // не была virtual
+}
+\end{cppcode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    Это можно исправить, используя override;
+\begin{ccode}
+class Derived: public Base {
+    public:
+    void f(int) override; // ok
+    int g() override; // CE
+    void h(int) override; // CE
+};
+\end{ccode}
+\end{minipage}
+\subsubsection{final}
+\begin{ccode}
+struct Base {
+    virtual void f();
+};
+struct Derived: public Base {
+    void f() final; // дети не могут больше унаследовать f()
+}
+struct DerivedD: public Derived {
+    void f(); // CE
+}
+\end{ccode}

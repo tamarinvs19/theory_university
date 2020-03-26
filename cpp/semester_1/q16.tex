@@ -1,0 +1,85 @@
+\section{Разное}
+\begin{itemize}[noitemsep]
+    \item ключевое слово const (С/C++)
+    \item перегрузка функций
+    \item параметры функций по умолчанию
+\end{itemize}
+\subsection{ключевое слово const}
+\subsubsection{в С}
+Назначение:
+$ $
+\begin{enumerate}[noitemsep]
+    \item избавить себя от описок
+	\item сделать код более понятным для читающего
+\end{enumerate}
+\begin{cppcode}
+const double pi = 3.14159;
+char const * ptr1; // pointer to const
+char * const ptr1; // const pointer
+
+size_t strlen(const char *s);
+
+const Array operator=(const Array a) {...}; //значение только rvalue
+
+void f(const char* str) {
+    char* s1 = (char*)str;
+    s1[0] = 'x';
+}
+\end{cppcode}
+\begin{cppcode}
+char s1[] = "Hello, world!";
+const char* s2 = "Hello, world";
+f(s1);
+f(s2); // RT error
+\end{cppcode}
+s2 --- строковая константа:
+\begin{itemize}[noitemsep]
+    \item храниться в отдельном блоке памяти рядом с глобальными;
+    \item память, выделенная под такую константу, может быть помечена как read-only 
+\end{itemize}
+\subsubsection{в C++}
+\begin{cppcode}
+class Array {
+private:
+    const size_t size; 
+    int* data;
+public:
+    Array(size_t s);
+    Array(const Array& a); // a не будет изменен
+    Array& operation=(const Array& a);
+    ~Array();
+
+    int get(int i) const;
+    void get(int i, int v);
+    size_t get_size() const; // защищает от изменения сам объект
+}
+\end{cppcode}
+\begin{cppcode}
+void print(const Array& a) {
+    for (size_t i = 0; i < a.get_size(); ++i) 
+	printf("%d", a.get(i));
+}
+\end{cppcode}
+\subsection{перегрузка функций}
+Можно создать несколько функций с одним именем, но разными параметрами, при этом линкер их сможет различить: во время компиляции  им присваиваются новые имена (name mangling). Так можно, например, создать одному классу несколько конструкторов.
+\subsection{параметры функций по умолчанию}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=player.h]{cpp}
+class Player {
+private:
+    double life;
+    int damage;
+public:
+    Player(double life = 100.0, int damage = 10);
+    // Player(double life, int damage = 10); ok
+    // Player(double life = 100.0, int damage); error
+}
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=main.cpp]{cpp}
+#include "player.h'
+int main() {
+    Player p1(2, 3);
+    Player p2(2);
+    Player p2();
+}
+\end{minted}
+Параметры по умолчанию должны быть указаны в  header, так как их необходимо знать при компиляции $main.cpp$, а другие файлы в этот момент не используются.
