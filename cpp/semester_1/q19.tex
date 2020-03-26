@@ -1,0 +1,90 @@
+\section{Множественное наследование}
+\begin{itemize}[noitemsep]
+    \item разрешение конфликтов имен
+    \item виртуальное наследование
+    \item наследование интерфейсов
+\end{itemize}
+Множественное наследование --- возможность  наследовать сразу несколько классов.
+Виртуальное наследование --- один экземпляр родителя.
+\begin{cppcode}
+    class Person {
+	private:
+	string name_;
+	public:
+	string name() const { return name_; }
+    };
+
+    class Student: virtual public Person {
+	private:
+	string university_;
+	public:
+	string university() const { return university_; }
+    };
+
+    class Employee: virtual public Person {
+	private:
+	string company_;
+	public:
+	string company() const { return company_; }
+    };
+
+    class BadStudent: public Student, public Employee {};
+\end{cppcode}
+Здесь не нужно виртуальное наследование: даты создания могут быть разными.
+\begin{cppcode}
+    class Song: public Music, public Lyrics {
+	void show() { cout << Music::date << " " << Lyrics::date << endl; }
+    };
+\end{cppcode}
+\paragraph{Конструктор при виртуальном наследовании}
+\begin{cppcode}
+    class Person {
+	private:
+	string name_;
+	public:
+	explicit Person(string const& name): name_(name) {}
+    };
+
+    class Student: virtual public Person {
+	public:
+	explicit Student(string const& name): Person(name) {}
+    };
+
+    class Employee: virtual public Person {
+	public:
+	explicit Employee(string const& name): Person(name) {}
+    };
+
+    class BadStudent: public Student, public Employee {
+	explicit BadStudent(string const& name): Person(name), Student(name), Employee(name) {}
+    };
+\end{cppcode}
+Но лучше использовать интерфейсы, где все методы абстрактные, нет полей. Тогда при наследовании не будет проблем с дублированием переменных и методов.
+\begin{cppcode}
+class Person {
+public:
+    string name () const { return name_ ; }
+private:
+    string name_ ;
+};
+class IStudent {
+public:
+    virtual string name () const = 0;
+    virtual string university () const = 0;
+    virtual ~ IStudent () {}
+};
+class IFullTimeEmployee {
+public:
+    virtual string name () const = 0;
+    virtual string company () const = 0;
+    virtual ~ IFullTimeEmployee () {}
+};
+class BadStudent : public Person , public IStudent , public IFullTimeEmployee {
+public:
+    string name () const { return Person :: name (); }
+    string university () const { return university_ ; }
+    string company () const { return company_ ; }
+private:
+    string university_ , company_ ;
+};
+\end{cppcode}
