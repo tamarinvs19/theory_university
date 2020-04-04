@@ -1,0 +1,123 @@
+\documentclass[11pt,dvipsnames]{article}
+\input{preamble.tex}
+
+\title{Действие группы на множестве}
+\author{Тамарин Вячеслав}
+
+\begin{document}
+\maketitle
+\section{Действие группы на множестве}
+
+\begin{defn}
+    Пусть  $ X$ ---  множество,  $ G $ --- группа. 
+    Группа действует на множество означает, что задан гомоморфизм из $ G$ в группу биекций с операцией композиции $ B{ij}(X) = S_X$ 
+\end{defn}
+\begin{ex}
+    $ X = \{1, 2, 3\}$, $ G = \Z$. 
+    Группа биекций --- $ S_3$, гомоморфизм $ f(x) = (123)^{x}$.
+    \[
+	f(n) = 
+	\begin{cases}
+	    (123), & n  = 1 \pmod 3 \\
+	    (321), & n  =2 \pmod 3 \\
+	    1, & n  = 0 \pmod 3
+	\end{cases}
+    .\] 
+    $ (12) \not\in \im(f)$, $ \im(f) = C_3 \subsetneq S_3$, $ \ker (f) = 3 \Z$.
+\end{ex}
+\begin{ex}
+    $ \{1, \tau \} = C_2 \curvearrowright X = \{1, 2, 3\}$ --- симметрии треугольника.
+\end{ex}
+\begin{prac}\label{prac:1}
+    Доказать, что это отношение эквивалентности:
+    $ x \sim y \Longleftrightarrow  \exists g \in  G \colon gx = y$. То есть  для гомоморфизма $ f\colon G \to  B{ij}(X), ~(f(g))(x)=y $.
+\end{prac}
+\begin{defn}
+    {\sf Орбита действия группы} $ G \curvearrowright X$ --- класс эквивалентности отношения из упражнения \ref{prac:1}. Множество орбит --- $X \diagup G \coloneqq X \diagup \sim $.
+\end{defn}
+\begin{prac}
+    Рассмотрим кубик. Рассмотрим группу поворотов $ G$.
+    $ X $ --- множество кубов, покрашенных в 2 цвета.  $ \left| X \right| = 2\cdot 6 = 64$. $ G \curvearrowright X$.	
+\end{prac}
+\begin{defn}
+    {\sf Стабилизатор } --- такие элементы из  $ G$, которые оставляют элемент на месте. $$ \Stab(x) = \{g \in G \mid gx = x\}.$$
+\end{defn}
+\begin{st}
+    $ \forall x \in X ~ \exists y \in G\colon  \Stab (x) = \{g^{-1} h g \mid h \in  \Stab(y)\}$
+\end{st} 
+\begin{thm}
+    \[
+	\lvert O_x \rvert  \cdot \lvert \Stab(x) \rvert = \lvert G \rvert 
+    .\] 
+\end{thm}
+\begin{defn}
+    Пусть $ g \in G$. {\sf Множество неподвижных элементов} относительно $ g$ --- $ X^{g} = \{x \in X \mid gx = x\}$.
+\end{defn}
+\begin{thm}
+    \[
+	\sum_{g \in G} \left| X^{g} \right|  = \sum_{x \in X}{\left|  \Stab(x) \right|} 
+    .\] 
+\end{thm}
+\begin{thm}
+    \[
+    \left| X \diagup G \right| = \frac{1}{\left| G \right| } \cdot \sum_{g \in G}^{} \left| X^{g} \right| 
+    .\] 
+\end{thm}
+\section{Матричная интерпретация}
+\begin{thm}
+    $ A \in \M_3(\R)$ задает поворот вокруг некоторой оси, проходящей через 0 тогда и только тогда, когда 
+    \begin{itemize}[noitemsep]
+	\item $ A$ сохраняет скалярное произведение 
+	     \item $ \det A = 1$
+    \end{itemize}
+\end{thm}
+\begin{thm}
+    Пусть $ A \in \M_m(\R)$. 
+     \[
+    \forall u, v ~ \langle u, v \rangle = \langle Au, Av \rangle \Longleftrightarrow A \cdot A^{T}
+    .\] 
+\end{thm}
+\subsection{$ \SO_3(\R)$}
+\begin{defn}
+$ \SO_3(\R) = \{A \in \M_3(\R) \mid A\cdot A^{T }= 1 ,~  \det A = 1\}$
+\end{defn}
+Пусть $ G \le \SO_3(\R), ~ 1 < \lvert G \rvert < \infty$.
+Пусть $ g \in G$. Обозначим этот поворот $ l_g$.
+Также рассмотрим единичную сферу $ S^2$.
+\[
+\left| S^2 \cap l_g \right|  = 2
+.\] 
+Эти две точки называются {\sf  полюсами} $ g$.  
+
+Рассмотрим множество всех полюсов по всем элементам $ g \in G$. $ X = \bigcup_{g \in G} (S^2 \cap l_g) $ --- это конечное множество.
+
+Пусть $ N = \left| X \diagup G \right| = \frac{1}{\lvert G \rvert }\cdot \sum_{x \in X}^{}|X^{g}|  $.
+\begin{itemize}[noitemsep]
+    \item $ g = 1 \Longrightarrow \lvert X^{g} \rvert = \lvert X \rvert $
+    \item $ g \ne 1 \Longrightarrow \lvert X^{g} \rvert  = \lvert 2 \rvert $
+\end{itemize}
+Тогда прошлое равенство можно переписать
+\[
+    \lvert X \diagup G \rvert  = \frac{\lvert X \rvert + (\lvert G \rvert  -1)\cdot 2}{\lvert G \rvert } 
+.\] 
+Предположим, что $ X \diagup G = \bigsqcup_{i = 1}^{N} Gx_i$. Тогда 
+\[
+\lvert X \rvert  = \sum_{i=1}^{N} |Gx_i|
+.\] 
+\begin{thm}
+    \[
+	2\left( 1- \frac{1}{\lvert G \rvert } \right)  = \sum_{i=1}^{N} \left( 1 - \frac{1}{\lvert \Stab(x_{i}) \rvert } \right) 
+    .\] 
+\end{thm}
+\begin{st}
+     \[
+	 1 \le  2 \left(1-\frac{1}{\lvert G \rvert }\right) < 2
+    .\] 
+    \[
+	\frac{1}{2 } \le 1 -\frac{1}{\lvert \Stab (x) \rvert } < 1
+    .\] 
+\end{st}
+\begin{st}
+    $ N \in \{2, 3\}$
+\end{st}
+\end{document}
