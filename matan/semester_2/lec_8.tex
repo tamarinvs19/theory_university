@@ -1,0 +1,67 @@
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
+
+\lecture{8}{3 Apr}{}
+\section{Странные примеры экстремумов}
+\subsection{Задача Гюйгенса}
+\begin{desc}
+    Есть два шара с массами $ M$ и $ m \in (0, M)$. Шар с массой $ M$ летит со скоростью  $ V$ на покоящийся нар массой  $ m$. Какая скорость будет у малого шара после столкновения? И как ее вообще найти?
+\end{desc}
+\begin{figure}[ht]
+    \centering
+    \incfig{balls}
+    \caption{balls}
+    \label{fig:balls}
+\end{figure}
+После столкновения посчитаем импульс и энергию.
+По закону сохранения импульса и закону сохранения энергии
+\begin{align*}
+    m_1v_1 + m_2v_2 &= m_1 \widetilde{ v_1} + m_2 \widetilde{ v_2} \\
+m_1v_1^2 + m_2v_2^2 &= m_1 \widetilde{ v_1}^2 + m_2 \widetilde{ v_2}^2 
+\end{align*}
+\begin{align*}
+    m_1(v_1-\widetilde{ v_1} ) &= m_2(\widetilde{ v_2} -v_2)\\
+    m_1(v_1^2-\widetilde{ v_1}^2 ) &= m_2(\widetilde{ v_2}^2 -v_2^2)\\
+\end{align*}
+Поделим одно на другое и получим, что $ v_1+\widetilde{ v_1} = v_2+\widetilde{ v_2}  $.
+Дальше можно подставить в первое уравнение и получить
+\[
+    m_1v_1+ m_2v_2 =m_1 \widetilde{ v_1} +m_2(v_1+ \widetilde{ v_1} -v_2)
+.\] 
+Тогда
+\[
+    \widetilde{ v_1}= \frac{(m_1-m_2)v_1 +2m_2v_2}{m_1+m_2}
+.\] 
+\[
+    \widetilde{ v_2}= \frac{(m_2-m_1)v_2 +2m_1v_1}{m_1+m_2}
+.\] 
+Если $ v_2=0$, 
+\[
+    \widetilde{ v_2} = \frac{2m_1v_1}{m_1+m_2} 
+.\] 
+\begin{defn}[Задача Гюйгенса]
+    С какими массами $ m_1, \ldots m_n$ разместить по пути покоящеися шары, чтобы передался максимальный импульс?
+\end{defn}
+\[
+    v \cdot  \frac{2M}{M+m_1} \cdot  \frac{2m_1}{m_1+m_2} \cdot \ldots \cdot \frac{2m_n}{m_n +m} = f(m_1, \ldots m_n) \cdot v \cdot 2^{n+1}
+.\] 
+Нужно найти максимум этой функции. Он существует, так как в бесконечности  одной и переменных значение стремиться к 0.
+
+Посчитаем частные производные и 
+\[
+    \partial _j f(\ldots ) = 0 \Longleftrightarrow  m_j^2=m_{j-1}m_{j+1}
+.\] 
+Тогда 
+\[
+q =     \frac{M}{m_1}= \frac{m_1}{m_2} = \ldots = \frac{m_n}{m}
+.\] 
+ \[
+     q^{n+1} = \frac{M}{m}, \quad q = \sqrt[n+1]{\frac{M}{m}}
+ .\] 
+ А скорость
+ \[
+     \widetilde{ v} = 2^{n+1} \left( \frac{q}{q+1} \right) ^{n+1} v
+ .\] 
+ TODO: дописать
+\end{document}

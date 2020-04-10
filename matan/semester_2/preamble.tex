@@ -90,9 +90,22 @@
     frametitlebackgroundcolor=gray!10,%
     innertopmargin=7pt,innerbottommargin=5pt,
 }
+\mdfdefinestyle{corstyle}{%
+    linecolor=gray!50,linewidth=3pt,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    frametitlebackgroundcolor=gray!10,%
+    innertopmargin=7pt,innerbottommargin=5pt,
+}
+\mdfdefinestyle{descrstyle}{%
+    linecolor=Green,linewidth=3pt,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    innertopmargin=7pt,innerbottommargin=5pt,
+}
 \theoremstyle{definition}
 \mdtheorem[style=defstyle]{defn}{Definition}
 \newmdtheoremenv[nobreak=true,backgroundcolor=SpringGreen!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Example}
+\mdtheorem[style=corstyle]{cor}{Corollary}
+\mdtheorem[style=descrstyle]{desc}{Description}
 \theoremstyle{plain}
 \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
@@ -102,7 +115,6 @@
 \newtheorem*{prop}{Property}
 
 \theoremstyle{definition}
-\newtheorem*{cor}{Corollary}
 \newtheorem*{name}{Designation}
 
 \theoremstyle{remark}
