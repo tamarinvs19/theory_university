@@ -1,0 +1,301 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+%
+\lecture{10}{17 Apr}{\dag}
+\section{Условные экстремумы}
+\begin{defn}[Локальный максимум]
+    Пусть $ f\colon W \subset \R^{n+m} \to  \R$, $ \Phi\colon W \to  \R^{m} $ , $ z_0 \in W$, $ \Phi(z_0) = 0$ и существует такая окрестность $ U \subset W$ точки $ z_0$, что
+    \[
+	\forall z \in U \cap \{\Phi = 0\} \quad f(z) \le f(z_0)
+    .\] 
+    Тогда точка $ z_0$ называется {\sf точкой условного локального максимума} функции $ f$ при условии $ \Phi = 0$.  
+\end{defn}
+\begin{note}
+    Аналогично определяется локальный минимум и экстремум, также строгие аналоги.
+\end{note}
+\begin{note}[уравнения связи]
+    $ \Phi(z) = \left(\Phi_1(z), \ldots \Phi_m(z)\right)  $ тогда и только тогда, когда 
+    \[
+	\Phi_1(z) = 0, \ldots \Phi_m(z) = 0
+    \] 
+    --- $ m$ уравнений связи --- часто задают  $ n$-мерную поверхность.
+\end{note}
+Когда такие поверхности получаются?
+
+Пусть $ \Phi$ непрерывно дифференцируемо в окрестности точки  $ z_0 \in W$, рассмотрим матрицу дифференциала
+\[
+    d\Phi (z) = 
+    \begin{pmatrix}
+	\frac{\partial \Phi_1}{\partial z_1}(z_0) & \ldots & \frac{\partial \Phi_1}{\partial z_{n+m}}(z_0) \\
+	\vdots & \ddots & \vdots \\
+	\frac{\partial \Phi_m}{\partial z_1}(z_0) & \ldots & \frac{\partial \Phi_m}{\partial z_{n+m}}(z_0)
+    \end{pmatrix}
+.\] 
+Если $ \rank d\Phi(z_0) = m$, то в окрестности точки $ z_0$ уравнение $ \Phi(z) = 0$ задает  $ n$-мерную плоскость в  $ \R^{n+m}$.
+
+\begin{note}
+    $ \Phi(z) = \left( \Phi_1(z), \ldots \Phi_m(z) \right)  = 0$
+\end{note}
+
+Приходим к тому, что надо искать экстремум функции
+\[
+    \tilde f(x) - f(x, y) - f(x, g(x)), \qquad  x = (x_1, \ldots x_{n})
+.\] 
+Но возникает проблемка: $ g$ задана неявно.
+
+Если  $ z_0$ --- локальный экстремум функции $ f$ при условии, что  $ \Phi(z) = 0$, то  $ x_0$ --- локальный экстремум функции $ \tilde f$. В случае гладкости обоих функций для этого есть необходимое условие экстремума
+  \[
+      d \tilde f(x_0) = 0 \Longleftrightarrow \partial _x f(x_0, g(x_0)) + \partial _yf(x_0, g(x_0)) dy(x_0) = 0
+ .\] 
+ Еще $ \Phi(x, g(x)) = 0$, в окрестности $ x_0$. Поэтому 
+ \[
+     \partial _x \Phi(x_0, g(x_0)) + \partial _y(\Phi(x_0, g(x_0))dg(x_0) = 0
+ .\] 
+
+ Применим теорему о формуле неявной функции
+ \[
+     dg = - \left( \partial _y \varphi (x_0, g(x_0)) \right)^{-1} \partial _x \Phi(x_0, g(x_0))
+ .\] 
+ Подставим $ dg(x_0)$
+ \[
+     \partial _x f(x_0, g(x)) - \underbrace{\partial _y f(x_0, g(x_0)) \left( \partial _y \Phi(x_0, g(x_0)) \right)^{-1} \partial _x \varphi (x_0, g(x_0))}_{\lambda}
+ .\] 
+\[
+\begin{aligned}
+    \partial _x f(z_0) - \lambda \partial _x \Phi(z_0) = 0 \\
+    \partial _y f(z_0) - \lambda \partial _y \Phi(z_0) = 0
+\end{aligned}
+\] 
+Получаем 
+\begin{equation}\label{d:lag}
+    df(z_0) - \lambda d\Phi(z_0) = 0
+\end{equation}
+$ \lambda$ --- вектор-строка длины  $ m$, так как $ \partial _y f(z_0) \in  L(\R^{m} , \R)$.
+
+Тогда выражение \ref{d:lag} --- $ n+m$ выражений и еще есть $ m$ уравнений на $ \Phi$.
+\begin{thm}[Необходимое условие условного экстремума]
+    $ W \subset \R^{n+m}$, $ f \in C^{1}(W, \R)$, $ \Phi \in C^{1}(W, \R^{m})$, $ z_0 \in W$, $ \rank d\Phi(z_0) = m$, $ \Phi(z_0) = 0$.  Если $ z_0$ --- точка условного локального экстремума функции $ f$ при условии  $ \Phi(z) = 0$, то существует  $ \lambda \in \R^{m}$ такое, что
+    \[
+	df(z_0) - \lambda d\Phi(z_0) = 0
+    .\] 
+\end{thm}
+\begin{defn}
+    $ \lambda$ называется {\sf множителем Лагранжа}, а метод называется {\sf методом неопределенных множителей Лагранжа}.    
+\end{defn}
+\begin{note}
+    Система 
+    \[
+	df(z_0) - \lambda d\Phi(z_0) - 0, \quad \Phi(z_0) = 0
+    \] 
+    состоит из $ 2m+n$ уравнений с  $ 2m+n$ неизвестными  $ z_0$ и $ \lambda$.
+\end{note}
+\subsection{Примеры}
+\paragraph{Минимум и максимум квадратичной формы на сфере}
+$ S^{n-1} \subset \R^{n} = \{x \in \R^{n} \mid \lvert x \rvert = 1\}$, где норма евклидова.
+
+\[
+    f\colon \R^{n} \to  \R \quad f = \sum_{j=1}^{n} \sum_{k=1}^{n} a_{jk} x_j x_k = x^{T}Ax, \quad x = (x_1, \ldots x_{n})
+.\] 
+Можно считать, что матрица $ A$, задающая $ a_jk$, симметрична ($ a_jk = a_kj$).
+
+ Пусть
+\[
+    \varphi (x) = x_1^2 + \ldots + x_{n}^2 - 1
+.\] 
+Тогда $ S^{n-1}$ --- множество нулей этой функции, а $ S^{n-1}$ компактно, следовательно экстремумы достигаются. 
+
+\[
+    \exists \lambda \in  \R\colon d\left( f- \lambda \varphi  \right) (x) = 0
+.\] 
+Посчитаем
+\[
+    \frac{\partial (f-\lambda \varphi )}{\partial  x_j} (x) =  2 \sum_{k=1}^{n} a_{jk} x_k - 2 \lambda x_j
+,\] 
+что равносильно $ Ax = \lambda x$.
+Следовательно, $ x $ --- собственный вектор матрицы $ A$, а  $ \lambda$ --- ее собственное число.
+
+Пусть $ \lvert x_s  \rvert = 1$.
+\[
+    f(x_s) = x_s^{T}A x_s = \lambda_s \underbrace{x_s^{T}x_T}_{\lvert x_s \rvert ^2} = \lambda _s
+.\] 
+
+Значит, нужно выбрать максимальное и минимальное собственное число.
+\paragraph{Задача Дидоны}
+Хотим найти максимальную площадь $ S$ ограниченную кривой фиксированной длины $ P$, при этом $ L = \{f \in C^{2}[0, l] \mid f(0) = f(l) = 0\}$
+% картинка !!
+%     _ _ _
+%   -/     |__
+%  -|---------|-----
+%   0         l
+
+\begin{align*}
+    S(t) &= \int_{0}^{l} f(x) dx  \\
+    \Phi(f) &= \int_{0}^{l} \sqrt{1+ (f'(x))^2 } dx - P = 0
+\end{align*}
+
+В данном случае нам требуется более общая формулировка, которую мы не доказывали.
+
+$ f$ ---  условный экстремум (экстрималь). 
+\[
+    \exists \lambda \in  \R\colon \forall h \in L \quad \partial _h(S - \lambda \Phi)(f) = 0
+.\] 
+Это выражение переписывается с помощью уравнения Эйлера-Лагранжа
+\[
+    (s-\lambda \varphi )(f) = \int_{0}^{l} F(x, f(x), f'(x)) dx  \qquad F(u_1, u_2, u_3) = u_2 - \lambda \sqrt{ 1+u_3^2} 
+.\] 
+$ \partial F - \frac{d}{dx}\partial _{x_1} F = 0$, $ \partial _2 F = 1$, $ \partial _3 F = - \lambda \frac{u_3}{\sqrt{ 1 + u_3^2} }$.
+
+$ f(l) = f(0) = 0$,  \[
+    1 + \lambda \left( \frac{f'(x)}{\sqrt{ 1 + (f'(x))^2} } \right) ' = 0 
+.\] 
+\[
+    \frac{f'(x)}{\sqrt{ 1 + (f'(x))^2} } = - \frac{x +C}{\lambda}, \quad \frac{(f'(x))^2}{1+(f'(x))^2} = \frac{(x+ C)^2}{\lambda ^2}
+.\] 
+\[
+    f'(x) = \sqrt{ \frac{(x+c)^2}{\lambda^2 - (x+C)^2}}  
+.\] 
+\[
+    y = f(x) = \pm \sqrt{\lambda ^2 - (x + C)^2 } + С_1 
+.\] 
+\[
+    (y- C_1)^2 + (x+C)^2 = \lambda^2
+.\] 
+Получаем, что это действительно часть окружности.
+\paragraph{Задача про цепную линию}
+Есть два гвоздя и веревка длины $ P$.
+% картинка
+%         B|
+%  A|      |
+%   |*   * |
+%   | ***  |
+%   |a    b|
+
+\[
+    \Phi(f) =   \int_{a}^{b} \sqrt{ 1+ (f'(x))^2}  dx = P
+.\] 
+Хотим минимизировать потенциальную энергию, то есть
+\[
+    J(f) = \int_{a}^{b} f(x) \sqrt{1 + (f'(x))^2 } dx 
+.\] 
+\[
+    L = \{f \in C^2[a, b] \mid f(x) = A, f(b) = B\}
+.\] 
+Воспользуемся методом множителей Лагранжа для бесконечности.
+\[
+    F(u_1, u_2, u_3) = (u_2-\lambda)\sqrt{ 1+ u_3^2 } 
+.\] 
+$ \exists \lambda\colon \forall h \in L_0 ~ \partial _n (J - \lambda \varphi )(f) = 0$.
+Далее воспользуемся уравнением Эйлера-Лагранжа.
+Получаем
+\[
+    \partial _2 F(f, f', -\frac{d}{dx}(u_3 F(f, f'))) = 0
+.\] 
+\[
+    F(f, f') - f' \partial _3F(f, f') \stackrel{?}{=} C
+.\] 
+Продифференцируем это выражение по $ x$
+\[
+    \partial _2 F(f, f')f' + \cancel{ \partial _3 F(f, f') f''} - \cancel{ f'' \partial _3 F(f, f')} - f'(\partial _3 F(f, f')) = 0
+.\] 
+Получили, что это была константа, раз производная 0.
+\[
+    (f(x) - \lambda) \sqrt{ 1 + (f'(x))^2}  - f'(x) (f(x) - \lambda) \frac{f'(x)}{\sqrt{1+(f'(x))^2 } } = C
+.\] 
+
+
+
+\part{Ряды}
+\section{Определения и примеры}
+\begin{defn}
+    $ X$ --- нормированное пространство, $ \{x_k\}_{k=1}^{\infty} \subset X$. 
+    $ \sum_{k=1}^{\infty}  x_k$ --- {\sf ряд}, $ x_k$ ---  {\sf  члены ряда}.    
+
+    $ S_n = \sum_{k= 1}^{n} x_k$ --- {\sf частичная сумма ряда}.  
+\end{defn}
+\begin{defn}[сходимость ряда]
+    Ряд  $ \sum_{k=1}^{\infty} x_k$ называется {\sf сходящимся}, если 
+    \[
+    \exists \lim_{n \to \infty} S_n =: S
+    .\] 
+    Иначе ряд называется {\sf расходящимся}.  
+\end{defn}
+\begin{rem}
+    В $ \R$ сумма ряда может быть равна  $ \pm \infty$.
+\end{rem}
+\begin{rem}
+    Ряд может не начинаться с 1:
+    \[
+	\sum_{k=0}^{\infty} x_k, ~ \sum_{k=n}^{\infty} x_k
+    .\] 
+\end{rem}
+\begin{ex}
+    $ \sum_{k=1}^{\infty} 0 = 0$, этот ряд сходится.
+\end{ex}
+\begin{ex}
+    $
+	\sum_{k=1}^{\infty} (-1)^{k}
+	$  расходится.
+\end{ex}
+\begin{ex}
+    $ z \in \Cm$. $ \sum_{k=0}^{\infty} z^{k}$. Посчитаем частичную сумму $ S_n \stackrel{z\ne 1}{=} \frac{z^{n+1} -1}{z-1}$. $ \lim_{n \to \infty} z^{n}$ существует, если $ \lvert z \rvert < 1$.
+\end{ex}
+\begin{ex}
+    $ \sum_{k=1}^{\infty} \frac{1}{k(k-1)} $ расходится, так как $ S_n = 1 - \frac{1}{n+1} \to  1$.
+\end{ex}
+\begin{ex}
+    $ \sum_{k=0}^{\infty} \frac{x^{k}}{k!} = e^{x}$ тоже сходится.
+\end{ex}
+\begin{ex}
+    Гармонический ряд $ \sum_{k=1}^{\infty} \frac{1}{k}$ расходится, $ H_n = \sum_{k=1}^{n} \frac{1}{k} \sim \ln n$.
+\end{ex}
+\subsection{Свойства}
+\begin{prop}
+
+    $ $
+    \begin{description}[noitemsep]
+	\item[\boxed{1}] $ \sum_{k=1}^{\infty} x_k$ сходится $ \Longleftrightarrow $ $ \forall m \in \N$ сходится ряд $ \sum_{k = k+1}^{\infty} x_k $ и при этом
+	    \[
+		\sum_{k=1}^{\infty} x_k = \sum_{k=1}^{n}x_k + \underbrace{ \sum_{k = m+1}^{\infty} }_{\text{остаток}}
+	    .\] 
+	\item[\boxed{2}] $ \sum_{k=1}^{\infty} x_k $  сходится $ \Longrightarrow $ $ \sum_{k = m+1}^{\infty} x_k \stackrel{m \to  \infty}{\to} 0$
+    \item[\boxed{\text{линейность}}] $ \sum_{k=1}^{\infty} x_k$ и $ \sum_{k=1}^{\infty} y_k$ сходятся. Тогда 
+	\[
+	    \forall \alpha , \beta  : \sum_{k=1}^{\infty} (\alpha  x_k + \beta y_k) \text{ сходится}
+	\] 
+	при этом
+	$$
+	    \forall \alpha , \beta  : \sum_{k=1}^{\infty} (\alpha  x_k + \beta y_k) = \alpha  \sum_{k=1}^{\infty} x_k + \beta \sum_{k=1}^{\infty} y_k
+	    .$$
+	    \begin{note}
+	        Если один ряд сходится, а второй расходится, то их сумма расходится.
+	    \end{note}
+	\item $ x_k \in  \R^{m} $. 
+	    \[
+		\sum_{k=1}^{\infty} = \left( \sum_{k=1}^{\infty}x_k^{(0)} + \ldots + \sum_{k=1}^{\infty}  x_k^{(m)} \right) 
+	    .\] 
+	\item  $ z_k \in \Cm$. $ z_k = x_k + i y_k$.
+	     \[
+	    \sum_{k=1}^{\infty} (\alpha  x_k + i y_k) = \sum_{k=1}^{\infty} x_k +i \sum_{k=1}^{\infty} y_k
+	    .\] 
+	\item[\boxed{\text{монотонность}}] $ a_k,~ b_k \in \R$, $ a_k \le b_k$, $ \sum_{k=1}^{\infty} a_k$ и $\sum_{k=1}^{\infty} и_k$ сходится (возможно с $ \pm \infty)$, тогда
+	    \[
+	    \sum_{k=1}^{\infty} a_k \le \sum_{k=1}^{\infty} b_k
+	    .\] 
+	\item[\boxed{\text{необходимое условие сходимости}}] $ \{x_k\} \subset X$, $ \sum_{k=1}^{\infty} x_k$ сходится, тогда $ x_k \stackrel{x \to  \infty}{ \longrightarrow} 0$.
+	\item[\boxed{\text{критерий Больцано-Коши}}] Пусть $ X$ полно. $ \{x_k\} \subset X$. Ряд $ \sum_{k=1}^{\infty} x_k$  сходится тогда и только тогда, когда 
+	    \[
+	    \forall \varepsilon >0 ~ \exists N ~ \forall n> N ~ \forall  p \in \N: \left\| \sum_{k=n+1}^{n+p} x_k \right\| < \varepsilon 
+	    .\] 
+	    \begin{proof}
+		$ \sum_{k=1}^{\infty} x_k$ сходится равносильно тому, что $ \{S_n\}$ сходится, что равносильно тому, что $ S_n$ фундаментальна в  $ X$. То есть 
+		\[
+		\forall \varepsilon >0 ~ \exists N ~ \forall m, n > N : \| S_m - S_n \| < \varepsilon  
+		.\] 
+		\[
+		m > n \Longrightarrow m = n+[, ~p \in \N: S_m - S_n = \sum_{k = n+1}^{n+p} x_k 
+		.\] 
+	    \end{proof}
+    \end{description} 
+\end{prop}
+% \end{document}
