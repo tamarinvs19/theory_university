@@ -89,20 +89,20 @@
 
     $ $
     \begin{description}
-	\item[1] $ \sum x_k, \sum y_k $ абсолютно сходятся,  $ \alpha , \beta $ --- скаляры. Тогда ряд $ \sum_{}^{} ( \alpha x_k + \beta y_k)$ абсолютно сходится, так как
+	\item[\boxed{\text{1}}] $ \sum x_k, \sum y_k $ абсолютно сходятся,  $ \alpha , \beta $ --- скаляры. Тогда ряд $ \sum_{}^{} ( \alpha x_k + \beta y_k)$ абсолютно сходится, так как
 	    \[
 	    \|  \alpha x_k + \beta  y_k \|  \le \| \alpha  \| \cdot \|  x_k \|  + \| \beta  \| \cdot  \|  y_k \| 
 	    .\] 
-	\item[2] Если $ \sum_{k=1}^{\infty} x_k$ сходится, $ \sum_{k=1}^{\infty} \| x_k \| $ сходится, то $ \| \sum_{k=1}^{\infty}  x_k\| \le \sum_{k=1}^{\infty} \| x_k \| $, так как
+	\item[\boxed{\text{2}}] Если $ \sum_{k=1}^{\infty} x_k$ сходится, $ \sum_{k=1}^{\infty} \| x_k \| $ сходится, то $ \| \sum_{k=1}^{\infty}  x_k\| \le \sum_{k=1}^{\infty} \| x_k \| $, так как
 	    \[
 		\| S \| \stackrel{n \to  \infty}{\longleftarrow} \| S_n \| \le \sum_{k=1}^{n} \|  x_k \|  \stackrel{n \to  \infty}{\longrightarrow} \sum_{k=1}^{\infty} \| x_k \| 
 	    .\] 
-	\item[3] $ X$ --- полное нормированное пространство. $ \sum_{k=1}^{\infty} \| x_k \|   $ сходится, тогда $ \sum_{k=1}^{\infty} x_k$ сходится.
+	\item[\boxed{\text{3}}] $ X$ --- полное нормированное пространство. $ \sum_{k=1}^{\infty} \| x_k \|   $ сходится, тогда $ \sum_{k=1}^{\infty} x_k$ сходится.
 	    \begin{proof}
 		    $ \forall  \varepsilon >0 ~ \exists  N \colon  \forall n > N , p \in  \N ~ \sum_{k = n+1}^{n+p} \| x_k \|  < \varepsilon $, следовательно, $ \| \sum_{k = n+1}^{n+p} x_k \| < \varepsilon $. Получили, что $ \sum_{k=1}^{\infty} x_k$ сходится.
 	    \end{proof}
-	\item[4] В полном нормированном пространстве $ \sum_{k=1}^{\infty} x_k$ сходится абсолютно, $ \sum_{k=1}^{\infty} y_k$ сходится условно, тогда $ \sum_{k=1}^{\infty} (x_k+ y_k)$ сходится условно.
-	\item[5] $ X $ --- полное, $ \overline{\lim}_{n \to  \infty} \sqrt[n]{ \|  x_n \| } $ , $ \lim_{n \to \infty} \frac{\| x_{n+1} \| }{\| x_n \| }$
+	\item[\boxed{\text{4}}] В полном нормированном пространстве $ \sum_{k=1}^{\infty} x_k$ сходится абсолютно, $ \sum_{k=1}^{\infty} y_k$ сходится условно, тогда $ \sum_{k=1}^{\infty} (x_k+ y_k)$ сходится условно.
+	\item[\boxed{\text{5}}] $ X $ --- полное, $ \overline{\lim}_{n \to  \infty} \sqrt[n]{ \|  x_n \| } $ , $ \lim_{n \to \infty} \frac{\| x_{n+1} \| }{\| x_n \| }$
 
     \end{description}
 \end{prop}
@@ -161,19 +161,25 @@
 	\sum_{k=1}^{\infty} \frac{\sin k}{k}, ~ \sum_{k=1}^{\infty} \frac{\cos k}{k} \text{ сходятся}
     .\] 
     \[
-	A_n = \sum_{k=1}^{n}  \sin k= \sum_{k=1}^{n}  \Im (x\cos k  i \sin k) = \Im \sum_{k=1}^{n}  e^{ik}
+	A_n = \sum_{k=1}^{n}  \sin k= \sum_{k=1}^{n}  \im (x\cos k  i \sin k) = \im \sum_{k=1}^{n}  e^{ik}
     .\] 
     \[
 	\sum_{k=1}^{n}  e^{ik} =  e^{i} \frac{e^{n_i} - 1}{e^{i} - 1}=
-	e^{i }(e^{\frac{ni}{i}} \frac{e^{\frac{ni}{2}-e^{-\frac{ni}{2}}{e^{i \frac{i}{2}(e^{i\frac{i}{2}-e^{-i\frac{i}{2})}}}}}} = e^{\frac{n+1}{2}i} \frac{\sin \frac{n}{2}}{\sin \frac{1}{2}} = \frac{\sin \frac{n+1}{2}\sin \frac{n}{2}}{\frac{1}{2}}
+e^{i }\frac{e^{\frac{ni}{2}} \left(e^{\frac{ni}{2}}-e^{-\frac{ni}{2}}\right)\cdot \frac{1}{2i}}{e^{\frac{i}{2}}\left(e^{\frac{i}{2}}-e^{-\frac{i}{2}}\right)\cdot \frac{1}{2i}} = e^{\frac{n+1}{2}i} \frac{\sin \frac{n}{2}}{\sin \frac{1}{2}} 
+    .\] 
+    Теперь берем мнимую часть 
+    \[
+    A_n  = \frac{\sin \frac{n+1}{2}\sin \frac{n}{2}}{\sin\frac{1}{2}} \le \frac{1}{\sin \frac{1}{2}}
     .\] 
     Для косинуса аналогично.
 \end{ex}
-\begin{thm}[О перестановке сленов абсолютно сходящегося ряда]
+\begin{thm}[О перестановке членов абсолютно сходящегося ряда]
     $ \sum_{k=1}^{\infty}a_k $ --- абсолютно сходящийся ряд.
     $ \varphi \colon \N \to \N$ --- биекция, тогда $ \sum_{k=1}^{\infty} a_{\phi(k)}$ сходится к той же сумме.
 \end{thm}
 \begin{proof}
+
+    $ $
     \begin{enumerate}
 	\item $ a_k > 0$,  $ S_n = \sum_{k=1}^{n} a_k$, $ T_n = \sum_{k=1}^{n} a_{\varphi(k)}$
 	    \[
