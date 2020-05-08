@@ -91,24 +91,22 @@
     frametitlebackgroundcolor=gray!10,%
     innertopmargin=7pt,innerbottommargin=5pt,
 }
-\mdfdefinestyle{corstyle}{%
-    linecolor=gray!50,linewidth=3pt,topline=false,bottomline=false,%
+\mdfdefinestyle{thmstyle}{%
+    linecolor=cyan!100,linewidth=3pt,topline=false,bottomline=false,%
     frametitlerule=false,%
-    frametitlebackgroundcolor=gray!10,%
-    innertopmargin=7pt,innerbottommargin=5pt,
-}
-\mdfdefinestyle{descrstyle}{%
-    linecolor=Green,linewidth=3pt,topline=false,bottomline=false,%
-    frametitlerule=false,%
+    frametitlebackgroundcolor=cyan!20,%
     innertopmargin=7pt,innerbottommargin=5pt,
 }
 \theoremstyle{definition}
 \mdtheorem[style=defstyle]{defn}{Definition}
-\newmdtheoremenv[nobreak=true,backgroundcolor=SpringGreen!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Example}
-\mdtheorem[style=corstyle]{cor}{Corollary}
-\mdtheorem[style=descrstyle]{desc}{Description}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Corollary}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Description}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Example}
 \theoremstyle{plain}
-\newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
+\mdtheorem[style=thmstyle]{thm}{Theorem}
+% \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
+
 \newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
 
 \theoremstyle{plain}
