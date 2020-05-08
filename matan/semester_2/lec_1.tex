@@ -73,11 +73,11 @@
 \begin{proof}
     Запишем остаток в форме Лагранжа:
     \[
-	R_{n, x_0} f(x) = \frac{f^{(n+1)}(\Theta)}{(n+1)!} (x-x_0)^{n+1}, \quad \Theta \text{ лежит между } x, x_0
+	R_{n, x_0} f(x) = \frac{f^{(n+1)}(\theta)}{(n+1)!} (x-x_0)^{n+1}, \quad \theta \text{ лежит между } x, x_0
     .\] 
     По прошлой теореме \ref{th_more_middle}, где $ g(t) = (x-t)^{n}$, получаем, что
     \[
-	\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \int_{x_0}^{x} (x-t)^{n}dt = \frac{1}{n!} \cdot f^{(n+1)}(\Theta) \cdot \left(-\frac{  (x-t)^{n+1}}{n+1} \right) \Biggm |_{x_0}^{x}
+	\frac{1}{n!} \int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt = \frac{1}{n!} \cdot f^{(n+1)}(\theta) \int_{x_0}^{x} (x-t)^{n}dt = \frac{1}{n!} \cdot f^{(n+1)}(\theta) \cdot \left(-\frac{  (x-t)^{n+1}}{n+1} \right) \Biggm |_{x_0}^{x}
     .\] 
 \end{proof}
 \section{Приближенное вычисление интеграла}
@@ -86,20 +86,20 @@
     \\
 	{\sf Мелкость дробления} $ \lvert \tau  \rvert = \max_{0 \le i \le n-1} (x_{i+1} x_{i})$. 
 	\\
-	$\Theta$ называется {\sf оснащением дробления} $ \tau $, если $ \Theta = \left\{ t_1, \ldots t_n \right\} : t_j = [x_{j-1}, x_j]$. 
+	$\theta$ называется {\sf оснащением дробления} $ \tau $, если $ \theta = \left\{ t_1, \ldots t_n \right\} : t_j = [x_{j-1}, x_j]$. 
 	\\
-	Пара $ (\tau, \Theta )$ называется {\sf оснащенным дроблением}.  
+	Пара $ (\tau, \theta )$ называется {\sf оснащенным дроблением}.  
 \end{defn}
 \begin{defn}[Интегральная сумма]
-    Если $ f \in C[a, b]$, $ (\tau, \Theta)$ --- оснащенное дробление отрезка  $ [a, b]$, {\sf интегральной суммой} называется
+    Если $ f \in C[a, b]$, $ (\tau, \theta)$ --- оснащенное дробление отрезка  $ [a, b]$, {\sf интегральной суммой} называется
     \[
-	S_{\tau, \Theta}(f) = \sum_{j=1}^{n} f(t_j)(x_j - x_{j-1})
+	S_{\tau, \theta}(f) = \sum_{j=1}^{n} f(t_j)(x_j - x_{j-1})
     .\] 
 \end{defn}
 \begin{thm}
-    $ f \in C[a, b]$. Тогда $ \forall \varepsilon > 0 ~ \exists \delta >0: ~ \forall ( \tau , \Theta) \text{--- оснащенное дробление отрезка } [a, b]$, $ \lvert \tau \rvert < \delta:$  
+    $ f \in C[a, b]$. Тогда $ \forall \varepsilon > 0 ~ \exists \delta >0: ~ \forall ( \tau , \theta) \text{--- оснащенное дробление отрезка } [a, b]$, $ \lvert \tau \rvert < \delta:$  
     \[
-	\left| S_{ \tau, \Theta}(f) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
+	\left| S_{ \tau, \theta}(f) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
     .\] 
     То есть $ \lim_{\lvert \tau  \rvert \to  0}  = \int_{a}^{b} f(x) dx $.
 \end{thm}
@@ -125,26 +125,26 @@
     {\sf Оснащение дробления} --- \[
 	\theta = \{t_1, \ldots t_n\}, \quad t_j \in [x_{j-1}, x_j]
     .\]     
-    {\sf Оснащенное дробление} --- пара $ ( \tau,\Theta )$ 
+    {\sf Оснащенное дробление} --- пара $ ( \tau,\theta )$ 
 \end{defn}
 \begin{defn}
-    $ f \in C[a, b]$, $ (\Theta, \tau )$ --- оснащенное дробление отрезка $ [a, b]$. Тогда \[
-	S_{\tau, \Theta} (f) = \sum_{j=1}^{n} f(t_j)(x_j-x_{j+1})
+    $ f \in C[a, b]$, $ (\theta, \tau )$ --- оснащенное дробление отрезка $ [a, b]$. Тогда \[
+	S_{\tau, \theta} (f) = \sum_{j=1}^{n} f(t_j)(x_j-x_{j+1})
     \] 
 называется {\sf интегральной суммой}. 
 \end{defn}
 \begin{thm}
-    $ f \in  C[a, b]$. Тогда $ \forall \varepsilon >0 ~ \exists \delta >0$ такие, что для любого оснащенного дробления $( \tau , \Theta)$ отрезка $ [a, b]$, $ \lvert \tau \rvert < \delta $ :
+    $ f \in  C[a, b]$. Тогда $ \forall \varepsilon >0 ~ \exists \delta >0$ такие, что для любого оснащенного дробления $( \tau , \theta)$ отрезка $ [a, b]$, $ \lvert \tau \rvert < \delta $ :
     \[
-	\left| S_{\tau, \Theta}(t) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
+	\left| S_{\tau, \theta}(t) - \int_{a}^{b} f(x) dx  \right| \le \varepsilon 
     .\] 
     То есть 
     \[
-	\lim_{\lvert \tau  \rvert \to 0} S_{\tau, \Theta} \to  \int_{a}^{b} f(x)dx 
+	\lim_{\lvert \tau  \rvert \to 0} S_{\tau, \theta} \to  \int_{a}^{b} f(x)dx 
     .\] 
 \end{thm}
 \begin{proof}
-    По теореме Канторая о равномерной непрерывности $ \forall \varepsilon >0 ~ \exists \delta >0\colon \bigl( \forall s, t \in  [a , b], \lvert s-t \rvert < S \Longrightarrow \lvert f(s) - f(t) \rvert < \frac{ \varepsilon }{\lvert b-a \rvert } \bigr)$.
+    По теореме Кантора о равномерной непрерывности $ \forall \varepsilon >0 ~ \exists \delta >0\colon \bigl( \forall s, t \in  [a , b], \lvert s-t \rvert < S \Longrightarrow \lvert f(s) - f(t) \rvert < \frac{ \varepsilon }{\lvert b-a \rvert } \bigr)$.
     \begin{align*}
     \left| \sum_{j=1}^{n} f(t_j) (x_j-x_{j-1}) - \sum_{j=1}^{n}  \int_{x_{j-1}}^{x_j} f(x)dx  \right| \le \\
 \le \left| \sum_{j=1}^{n} \left| f(t_j) - f(r_j) \right| (x_j - x_{j-1}) \right| \le \\
@@ -152,4 +152,210 @@
     \end{align*}
     Здесь $ t_j, r_j \in  [x_j, x_{j-1}]$.
 \end{proof}
+\begin{defn}
+    Пусть $ f\colon [a, b] \to \R$ и 
+   $$
+   \exists A\colon \forall \varepsilon >0 ~ \exists \delta >0 \colon \forall (\tau , \theta) ~ \lvert \tau  \rvert < \delta  \quad \lvert S_{\tau , \theta} - A\rvert  < \varepsilon 
+   .$$
+   Тогда $ A$ ---  {\sf интеграл по Риману от функции $ f$ на отрезке  $ [a, b]$}.  
+\end{defn}
+\begin{prac}
+    Доказать, что, если $ f $ кусочно-непрерывна (то есть имеет 1 разрыв первого рода в точке  $ c$), то  $ f$ интегрируема по Риману и 
+    \[
+	\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x)dx + \int_{c}^{b} f(x)dx   
+    .\] 
+\end{prac}
+\begin{ex}
+    \[
+\int_{0}^{a} e^{x}dx = ? 
+    \] 
+    Рассмотрим $ \tau  = \left\{0, \frac{a}{n}, \frac{2a}{n},\ldots, a \right\}$ и $ \theta  = \left\{0, \frac{a}{n}, \frac{2a}{n}, \ldots , a\frac{n-1}{n}\right\}$.
+\[
+\begin{aligned}
+    \int_{0}^{a} e^{x}dx & = \lim_{n \to \infty} \sum_{j=0 }^{n-1} f\left( \frac{ja}{n} \right) \cdot \frac{a}{n}  = \lim_{n \to \infty} \frac{a}{n}\left( 1 + e^{\frac{a}{n}} + \ldots + e^{a\frac{n-1}{n}} \right) = \\ 
+			 &= \lim_{n \to \infty} \frac{a}{n} \frac{e^{\frac{an}{n} - 1}}{e^{\frac{a}{n}}-1} = \lim_{n \to \infty} \underbrace{\frac{a}{n} \cdot \frac{1}{e^{\frac{a}{n}-1}}}_{ \to 0} e^{a } - 1 = e^{a }-1
+\end{aligned}
+\]
+\end{ex}
+\begin{ex}
+    \[
+    \begin{aligned}
+	\lim_{n \to \infty} \left( \frac{1}{n+1} + \ldots + \frac{1}{2n} \right) & = \lim_{n \to \infty} \frac{1}{n} \left( \frac{1}{1+\frac{1}{n}} + \ldots  + \frac{1}{1+ \frac{n}{n}} \right)  = \\
+										 &= \int_{0}^{1} \frac{dx}{1+x} = \ln(1+x) \Bigm|_0^{1} = \ln 2 
+    \end{aligned}
+    \]
+\end{ex}
+\begin{ex}
+    $ p > 0$
+    \[
+    \begin{aligned}
+	\sum_{k=1}^{n} k^{p} &= n^{1+p}\left( \left(\frac{1}{n}\right)^{p} + \left( \frac{2}{n} \right) ^{p} + \ldots + \left( \frac{n}{n} \right) ^{p} \right) \cdot \frac{1}{n} = \\
+			     & = n^{1+p}\int_{0}^{1} x^{p} dx = \frac{1}{p+1} \cdot n^{p+1} 
+    \end{aligned}
+    \]
+\end{ex}
+\subsection{Интеграл Пуассона}
+\[
+\begin{aligned}
+    I(a) &= \int_{0}^{\pi} \underbrace{\ln(1 -2 a \cos x + a^2}_{f(x)} dx = \lim_{n \to \infty} \sum_{k=1}^{n} \frac{\pi}{n}f\left( \frac{(k-1)\pi}{n} \right) = \\
+	 &= \lim_{n \to \infty} \sum_{k=1}^{n} \frac{\pi}{n} \ln\left(1 - 2a \cos \left( \frac{(k-1)\pi}{n} \right) + a^2\right) = \lim_{n \to \infty} \frac{\pi}{n} \ln\left( \prod_{k=1}^{n} 1 - 2a\cos \frac{(k-1)\pi}{n} + a^2 \right)  =\\
+	 &= \lim_{n \to \infty} \frac{\pi}{n} \ln \left( \frac{a^{2n}-1}{a+1}\cdot (a-1) \right) = \lim_{n \to \infty} \ln\left( \frac{a^{2n} - 1}{n} \right) = \\
+	 &= 
+	 \begin{cases}
+	     0&\lvert a \rvert < 1\\
+	     2\ln a& \lvert a \rvert > 1
+	 \end{cases}
+\end{aligned}
+.\]
+\begin{prac}
+     \[
+	 \int_{0}^{\pi} \ln (\cos x) dx = ? 
+    .\] 
+\end{prac}
+\begin{prac}
+
+    $ $
+    \begin{itemize}[noitemsep]
+	\item $ I(a) = I(-a)$
+	\item  $ I(-a) + I(a) = I(a^2)$
+    \end{itemize}
+\end{prac}
+\subsection{Формула трапеции}
+\begin{st}
+    Пусть $ \left| f' \right| \le c$. Тогда
+    \[
+    \begin{aligned}
+	\left| \int_{a}^{b} f(x) dx - S_{\tau , \theta }(f)  \right| & \le \\
+								     & \le \sum_{t_j, c_i \in  [x_{j-1}, x_j]}^{} \left| f(t_j) - f(c_j) \right| (x_j - x_{j-1}) \le C \cdot \lvert b - a \rvert 
+    \end{aligned}
+    \]
+\end{st}
+    
+{\bf Формула трапеции}  
+\[
+    \sum_{}^{} \frac{f(x_j) + f(x_{j-1})}{2} (x_j- x_{j-1}) \approx \int_{a}^{b} f(x) dx
+.\] 
+\begin{thm}[о погрешности в формуле трапеции]
+    $ f \in  C^2[a, b]$.
+    \[
+	\int_{a}^{b} f(x) dx - \sum_{j=1}^{n} \frac{f(x_{j - 1}) + f(x_j)}{2} (x_j - x_{j-1}) \le \frac{1}{8}\lvert \tau  \rvert ^2 \int_{a}^{b} \lvert f''(x) \rvert dx  
+    .\] 
+	{\bf Для равномерного дробления}
+	    \[
+	    \begin{aligned}
+		\left| \int_{a}^{b} f(x) dx - \frac{b-a}{n}\sum_{j=1}^{n} \frac{f\left(a + \frac{j-1}{n}b \right) + f\left( a+ \frac{j}{n}b \right) }{2} \right|  \le \frac{1}{8} \frac{ (b-a)^2}{n^2} \int_{a}^{b} \lvert f''(x) \rvert  dx
+	    \end{aligned}
+	    \]
+\end{thm}
+\begin{proof}
+    Рассмотрим один участок разбиения $ [x_{j-1}, x_j]$ и докажем неравенство для него. Пусть $ g$ ---  линейная функция, соединяющая вершины столбцов на каждом участке разбиения. Определим $ h = f - g$.  $ h(x_j) = h(x_{j-1})  = 0$, $ h'' = (f-g)'' = f''$. Обозначим  $ x_{j-1} = \alpha , ~ x_j = \beta  $.
+
+    Перепишем нужное неравенство
+    \[
+	\left| \int_{\alpha }^{\beta } h(x) dx  \right| \stackrel{?}{\le} \frac{1}{8} (\beta - \alpha )^2 \int_{\alpha }^{\beta } \lvert h''(x) \rvert  dx
+    .\] 
+    Проинтегрируем, где $ c $ любая константа, $ c_1, c_2$ корни уравнения $ \frac{(x-\alpha )(x-\beta )}{2} = 0$:
+    \[
+    \begin{aligned}
+	\int_{\alpha }^{\beta } h(x) dx &= \int_{\alpha }^{\beta } h(x) d(x-c) = (x-c) h(x) \Bigm|_\alpha ^\beta - \int_{\alpha }^{\beta } h'(x)(x-c)dx = \\
+					&= (x-c) h(x) \Bigm|_\alpha ^{\beta } - \int_{\alpha }^{\beta } h'(x) d\left( \frac{x^2}{2}+c_1x + c_2 \right) = \\
+					&= (x-c) h(x) \Bigm|_\alpha ^{\beta } - h'(x)\left( \frac{x^2}{2} + c_1x+c_2 \right) \Bigm|_{\alpha }^{\beta } + \int_{\alpha }^{\beta } h''(x)\left( \frac{x^2}{2} +c_1 x + c_2 \right) dx = \\
+					& = \int_{\alpha }^{\beta } h''(x) \frac{(x-\alpha )(x-\beta )}{2}dx 
+    \end{aligned}
+    .\]
+    Так как  $ \sqrt{(x-\alpha)(x-\beta )} \le \frac{\alpha -\beta }{2} $, можем переписать
+    \[
+	\left| \int_{\alpha }^{\beta } h(x) fx  \right| \le \left( \frac{\alpha -\beta }{2} \right) ^2 \cdot \frac{1}{2} \int_{\alpha }^{\beta } \left| h''(x) \right| dx = \frac{1}{8}(\beta -\alpha )^2 \int_{\alpha }^{\beta } \left| h''(x) \right| dx  
+    .\] 
+\end{proof}
+\begin{cor}[Формула Эйлера-Маклорена]
+    \[
+    \begin{aligned}
+	f(m) + f(m+1) + \ldots + f(n)& = \frac{f(m) + f(n)}{2} + \frac{f(m)}{2} + f(m+1) + \ldots + f(n-1) + \frac{f(n)}{2} =\\
+				     &= \frac{f(m) + f(n)}{2} + T(f, m, n)
+    \end{aligned}
+    \]
+Воспользуемся рассуждениями из доказательства выше. Так, можно получить, что 
+\[
+\begin{aligned}
+    T(f,m,n) &= \int_m^n f(x)dx + \sum_{k=m}^{n-1} \int_k^{k+1}f''(x)\frac{(x-k)(k+1-x)}{2}dx = \\ 
+	     &=\int_m^n f(x)dx + \int_m^n f''(x) \frac{\{x\}(1-\{x\})}{2} dx
+\end{aligned}
+\]
+\end{cor}
+
+\begin{ex} 
+    Рассмотрим $1^p+\ldots+n^p$ при $p=-1$ ~--- гармоническая сумма. 
+    \[
+    \begin{aligned}
+	H_n&=1+\frac{1}{2}+\ldots+\frac{1}{n}=\frac{1}{2}\left(1+\frac{1}{n}\right)+\underbrace{\int_1^n \frac{dx}{x}}_{\ln n} +\underbrace{\int_1^n \frac{2}{x^3} \frac{\{x\}(1-\{x\})}{2} dx}_{\le \int_1^n \frac{dx}{x^3}=
+	   -\frac{1}{2x^2}\Bigm|_1^n\le \frac{1}{2}} =\\
+	   & = \ln n + \gamma + \o(1)
+    \end{aligned}
+    \]
+\end{ex}
+\subsection{Формула Стирлинга}
+\[
+\begin{aligned}
+    \ln (n!) &= \ln (1) + \ln(2) + \ldots + \ln(n) =\\
+	     &= \frac{1}{2}\ln(n) + \int_{1}^{n} \ln x dx - \int_{1}^{n}  \frac{\{x\}(1-\{x\})}{2x^2} dx = \\
+	     &= \frac{1}{2}\ln n + n \ln n - n - 0 + 1 + C + \o(1)
+\end{aligned}
+.\]
+Следовательно, $ n! \approx \frac{n^{n}}{e^{n}} \sqrt{ n} \tilde C$. Тогда, используя формулу Валлиса, получаем $ C_{2n}^{n} \approx \frac{4^{n}}{\sqrt{ \pi n} } $.
+Подставим в формулу $ n!$:
+ \[
+     C_{2n}^{n} = \frac{(2n)!}{n!^2} - \frac{\tilde C\left(\frac{2n}{e}\right)\sqrt{2n}}{(\tilde C)^2 \left( \frac{n}{e} \right) ^{2n}n} = \frac{1}{\tilde C} \cdot \frac{4^{n} \sqrt{ 2} }{\sqrt{ n} }
+.\] 
+Из чего следует, что $ \tilde C = \sqrt{2 \pi}$.
+
+\begin{thm}[Формула Стирлинга]
+     \[
+	 n! \approx \left( \frac{n}{e} \right) ^{n} \sqrt{ 2\pi} 
+    .\] 
+\end{thm}
+
+\section{Несобственные интегралы}
+\begin{defn}[Несобственный интеграл]
+    Пусть $-\infty<a<b\le +\infty$ , $f\in C[a,b)$. Тогда {\sf несобственным интегралом} называется  
+    \[
+	\int_a^{\to b} f(x) dx=\lim_{B\to b-} \int_a^B f(x) dx
+    .\]
+    Если предел существует, то $\int_a^{\to b} f(x) dx$ {\sf сходится}, иначе {\sf расходится}.
+
+    Аналогично определяется $\int_{\to a}^b f(x) dx$.
+\end{defn}
+\begin{thm}[Критерий Больцано-Коши]
+    $ \int_{a}^{\to b} f(x) dx $ сходится тогда и только тогда, когда 
+    \[
+	\forall \varepsilon >0 ~ \exists \delta \in (a, b)\colon \forall B_1, B_2 \in (\delta , b)\colon \left| \int_{B_1}^{B_2}f(x)dx \right| < \varepsilon 
+    .\] 
+\end{thm}
+\begin{proof}
+    Пусть $F(B) \coloneqq \int_a^B f(x) dx$. 
+    Тогда, если $\int_a^{\to b} f(x)dx$ сходится, то $\exists \lim_{B\to b-} F(B)$, а значит 
+    \[
+	\forall \varepsilon>0~ \exists  \delta\colon  \forall  B_1,B_2\in (\delta,B)\colon  |F(B_1)-F(B_2)|<\varepsilon
+    .\]
+    В обратную сторону следует из того, что последовательность $F(B_i)$ фундаментальна.
+\end{proof}
+\begin{note}
+    Критерий Коши чаще используется для расходимости.
+\end{note}
+\begin{ex}
+    $\int_0^1 x^\alpha dx$ . 
+    Если $\alpha \ge 0$, то все легко. Но если $\alpha < 0$, то необходимо считать предел 
+    \[
+	\lim_{A\to 0+} \int_A^1 x^\alpha dx=\lim \frac{x^{\alpha+1}}{\alpha+1}\Bigm|_A^1
+    .\]
+Предел существует только при $\alpha>-1$, а при $\alpha\le -1$ ряд расходится.
+\end{ex}
+\begin{ex}
+    $\int^{+\infty} x^\alpha$. 
+    При $\alpha\neq 1$, 
+    \[
+	\int_1^B x^\alpha dx=\frac{x^{\alpha+1}}{\alpha+1}\Bigm|_1^B.
+    \]
+    При $\alpha<-1$ интеграл сходится, а при $\alpha\ge -1$ расходится.
+\end{ex}
 % \end{document}
