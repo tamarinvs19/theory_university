@@ -86,10 +86,10 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 \begin{prac}
     Придумать пример бесконечно длинного пути.
 \end{prac}
-\begin{defn}
-    Если путь имеет конечную длину, он называется  спрямляемым.
+\begin{defn}[Спрямляемый путь]
+    Если путь имеет конечную длину, он называется {\sf спрямляемым}.
 \end{defn}
-\begin{defn}
+\begin{defn}[Длина кривой]
     {\sf Длина крвивой} --- длина любой из ее параметризаций.  
 \end{defn}
 \begin{prop}
@@ -135,6 +135,8 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     .\] 
 \end{thm}
 \begin{proof}
+    
+    $ $
     \begin{enumerate}
 	\item 
     $ \Delta \subset [a, b]$ --- отрезок. Пусть $ m_j(\Delta) = \min_{t \in \Delta} \lvert \gamma'_j (t)\rvert $, $ M_j(\Delta) = \max_{t \in  \Delta} \lvert \gamma'_j(t) \rvert $.
@@ -143,47 +145,56 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 	m(\Delta) = \sqrt{\sum_{j=1}^{n} (m_j (\Delta))^2}, \qquad
 	M(\Delta) = \sqrt{\sum_{j=1}^{n} (M_j (\Delta))^2}
     .\] 
-    Для всех $ \Delta \subset [a, b]$ чему равно $ l(\gamma \bigm|_{\Delta})$?
+    Для всех $ \Delta \subset [a, b]$ чему равно $ l(\gamma \mid_{\Delta})$?
 
     Пусть $ \tau= \left\{ x_j \right\} ^{m}_{j=0}$. Тогда 
     \[
-	l_{\tau} =  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k(x_j) - \gamma_k(x_{j-1} \right|^2 }
+	l_{\tau}(\gamma \mid_{\Delta }) =  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k(x_j) - \gamma_k(x_{j-1}) \right|^2 }
     .\] 
-    По теореме Лагранжа результат равен% добавить слева min корень
-      \begin{align*}
-	  l_{\tau} &=  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k'(...) \right|^2 \cdot  \left| x_j - x_{j-1} \right|  } =  \\
-		   &= \sum_{j=1}^{m}(x_j - x_{j-1}) \sqrt{\sum_{k=1}^{n} \left| \gamma'_k(...) \right| ^2}  
-      \end{align*}
+    По теореме Лагранжа результат равен
+    \[
+	l_{\tau}(\gamma \mid_{\Delta }) =  \sum_{j=1}^{m} \sqrt{\sum_{k=1}^{n}\left| \gamma_k'(c_i) \right|^2 \cdot  \left| x_j - x_{j-1} \right|  } =  \sum_{j=1}^{m}(x_j - x_{j-1}) \sqrt{\sum_{k=1}^{n} \left| \gamma'_k(c_i) \right| ^2}  
+      .\]
     Выражение под корнем не превосходит $ M(\Delta)$ и не менее $ m(\Delta)$
     \[
-	\left| \Delta \right| m(\Delta) \le  l(\gamma\bigm|_{\Delta} \le  \left| \Delta \right| M(\Delta) 
+	\left| \Delta \right| m(\Delta) \le  l_{\tau }(\gamma\mid_{\Delta}) \le  \left| \Delta \right| M(\Delta) 
     .\] 
-\item 
+\item  Докажем утверждение для интеграла. Так как 
+    \[
+	m(\Delta ) \le \min_{\Delta } \sqrt{ \lvert \gamma _i '(t)\rvert ^2 + \ldots + \lvert \gamma _n'(t) \rvert ^2} \le \max_{\Delta } \sqrt{ \lvert \gamma _1 '(t) \rvert ^2 + \ldots + \lvert \gamma _n'(t) \rvert ^2}  \le M(\Delta ) 
+    ,\] 
     \[
 	\int_{\Delta} \left| \gamma'_k (t)\right| dt = \int_{\Delta} \sqrt{\left| \gamma_1'(t)  \right| sr + \ldots \left|\gamma'_n(t)\right|} dt
     .\] 
-    \[
-	m(\Delta) \le  \max \sqrt {...} \le  M(\Delta)
-    .\] 
+    Тогда
     \[
 	\left| \Delta \right| m(\Delta) \le \int_{\Delta} \left| \gamma'(t) \right| dt \le  \left| \Delta \right| M(\Delta) 
     .\] 
-\item 
+\item Докажем равенство величин, зажатых между одинаковыми границами:
+    так как кривая гладкая, первая производная непрерывна
     \[
-	\forall  \varepsilon >0 ~ \exists  \delta  >0: s, t \in  [a, b] , ~ \lvert s-t \rvert < \delta  \quad \forall j \in  [1, k]: \left| \gamma'_j(s) - \gamma_j'(t)  \right| < \varepsilon 
+	\forall  \varepsilon >0 ~ \exists  \delta  >0\colon  s, t \in  [a, b] , ~ \lvert s-t \rvert < \delta  \quad \forall j \in  [1, k]\colon  \left| \gamma'_j(s) - \gamma_j'(t)  \right| < \varepsilon 
     .\] 
-    $ \left| \Delta \right| < \delta  \Longrightarrow M(\Delta) - m(\Delta) = \sqrt{\sum M_j(\Delta)^2} - \sqrt{\sum m_j(\Delta)^2} \le \sum \left| M_j(\Delta) - m_j(\Delta) \le  \varepsilon  n
-    \right| $
+    $ \left| \Delta \right| < \delta  \Longrightarrow M(\Delta) - m(\Delta) = \sqrt{\sum M_j(\Delta)^2} - \sqrt{\sum m_j(\Delta)^2} \le \sum \left| M_j(\Delta) - m_j(\Delta)\right|  \le  \varepsilon  n
+    $. Распишем предпоследний переход:
+    пусть $ a_j = M_j(\Delta ), ~ b_j = m_j(\Delta )$,
+\[
+    \left| \sum a_j^2 - \sum b_j^2 \right| = \frac{\left| \sum a_j^2 - \sum b_j^2 \right| }
+    {\sqrt{\sum a_j^2 }+\sqrt{ \sum b_j^2}  } \le 
+    \frac{\sum_{}^{} \lvert a_j - b_j \rvert \cdot \lvert a_j + b_j \rvert }{\sqrt{\sum a_j^2 }+\sqrt{ \sum b_j^2}  } \le 
+    \sum_{}^{}\lvert a_j - b_j \rvert  \cdot  \underbrace{\frac{\lvert a_j + b_j \rvert }{\sqrt{\sum a_j^2 }+\sqrt{ \sum b_j^2}  }}_{ \le 1} \le \sum_{}^{} \lvert a_j - b_j \rvert 
+.\] 
+
 \item Теперь возьмем дробление $ [a, b]$ на кусочки длиной меньше $ \delta  $.
     \[
 	[a, b] = \Delta_1 \cup \ldots \cup \Delta_k, \quad \lvert \Delta_j \rvert < \delta 
     .\] 
     Запишем два неравенства
     \[
-	m(\Delta_j) \lvert \Delta_j \rvert  \le  l(\gamma \bigm|_{\Delta_j} \le M(\Delta_j) \lvert \Delta_j \rvert 
+	m(\Delta_j) \lvert \Delta_j \rvert  \le  l(\gamma \mid_{\Delta_j}) \le M(\Delta_j) \lvert \Delta_j \rvert 
     .\] 
     \[
-	m(\Delta_j) \lvert \Delta_j \rvert  \le \int_{\Delta_j} \left| \gamma' \right| \le M(\Delta_j) \lvert \Delta_j \rvert 
+	m(\Delta_j) \lvert \Delta_j \rvert  \le \int_{\Delta_j} \left| \gamma'(t) \right|dt \le M(\Delta_j) \lvert \Delta_j \rvert 
     .\] 
     \begin{align*}
 	\sum_{j=1}^{k} m(\Delta_j) \left| \Delta_j \right| \le l(\gamma)\le \sum_{j=1}^{k} M_{j=1}^{k} M(\Delta_j) \left| \Delta_j \right| \\ 
@@ -230,6 +241,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     $ \int_{a}^{b} f(t) \left| \gamma'(t)  \right| dt $
 \end{rem}
 
+
 \chapter{Дифференциальное исчисление функций многих вещественных переменных}
 \section{Нормированные пространства}
 \begin{ex}
@@ -245,7 +257,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 \end{ex}
 \begin{ex}
     $ (K, \rho)$ --- метрический компакт.
-    Рассмотрим множество $ C(K) = \left\{ f: K \to  \R \mid f\text{ --- непрервна} \right\} $, оно линейно над $ \R^{m}$.
+    Рассмотрим множество $ C(K) = \left\{ f: K \to  \R \mid f\text{ --- непрерывна} \right\} $, оно линейно над $ \R^{m}$.
     Норма:
     \[
 	\| f \| _{\infty} = \| f \| _{C(K)} = \max_{x \in K} \left| f(x) \right| 

@@ -78,6 +78,7 @@
 	\sup_{\substack{\| x_i \|= 1\\1 \le i \le n }} \| \tilde U(x_1, \ldots x_n) \|  = \tilde U
 .\] 
 \end{proof}
+
 \section{Дифференциальные отображения}
 \begin{defn}
     $ X, Y$ --- нормированные пространства, $ E \subset X$, $ x \in E$, $ x$ --- внутренняя точка, $ f: E \to Y$.
@@ -283,11 +284,12 @@
     $ U = \{A \in L(X, Y) \mid \exists A^{-1} \in  L(X, Y)\}$ --- множество обратимых линейных отображений.
     $ f: U \to  L(X, Y), ~ f(A) = A^{-1}$. Найти $ df$.
 \end{prac}
+
 \section{Частные производные}
 \begin{defn}[Частные производные]
-    Пусть $ a \in  X_1 \times X_2 \times  \ldots  \times X_n$. $ U$ --- окрестность точки $ a$.  $ f: U \to Y$.  $ f(x) = f(x_1, \ldots x_{n})$.
+    Пусть $ a \in  X_1 \times X_2 \times  \ldots  \times X_n$. $ U$ --- окрестность точки $ a$.  $ f\colon  U \to Y$.  $ f(x) = f(x_1, \ldots x_{n})$.
 
-    Определим $ \varphi _j : X_j \to  Y, ~ \varphi _j(x_j) = f(a_1, a_2, \ldots x_j, a_{j+1}, \ldots a_n)$.
+    Определим $ \varphi _j \colon  X_j \to  Y, ~ \varphi _j(x_j) = f(a_1, a_2, \ldots x_j, a_{j+1}, \ldots a_n)$.
 
     $ d \varphi _j (a_j)$ называется {\sf частным дифференциалом (частной производной)} $ f$ по $ x_j$ в точке $ a$, если существует. 
 \end{defn}

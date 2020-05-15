@@ -2,10 +2,33 @@
 % \input{preamble.tex}
 % \begin{document}
 
-\lecture{6}{20 march}{}
-\section{Важный частный случай: $ X=\R^{m} ,~ Y=\R^{n} $}
-% Начала нет
+\lecture{6}{20 march}{\dag}
+\begin{st}
+    Если отображение $ f$ дифференцируемо в точке  $ a \in  X_1 \times \ldots \times X_m$, то у него есть все частные дифференциалы и 
+    \[
+	df(a) h = \partial _{x_1}f(a)h_1 + \ldots + \partial _{x_{m}}f(a)h_m, \qquad h = (h_1, \ldots h_m)
+    .\] 
+\end{st}
+\begin{proof}
+    По определению, 
+    \[
+	f(a +h) -f(a) = df(a)h+\o(h), \qquad a, h \in  X_1 \times \ldots \times X_m
+    .\] 
+    Разобьем вектор $ h$:
+     \[
+	 h = t_1 +\ldots + t_m = (h_1, \ldots 0) + (0, h_2, \ldots 0)+ \ldots +(0, \ldots , h_m)
+    .\] 
+    Тогда 
+    \[
+	df(a)t_i = \partial _{x_i}f(a)h_i = L_ih_i + \o(h_i)
+    .\] 
+    В сумме получаем
+    \[
+	df(a)h = \sum_{i=1}^{m} \partial _{x_{i}}f(a)h_i
+    .\] 
+\end{proof}
 
+\section{Важный частный случай: $ X=\R^{m} ,~ Y=\R^{n} $}
 \begin{st}\label{st_1}
     Пусть $ x \in U \subset \R^{m}$, $ f \colon U \to \R^{n}, ~ f(x) = \left( f_1(x), \ldots f_n(x) \right) $. Тогда $ f$ дифференцируема в точке $ x$ тогда и только тогда, когда $ f_1, f_2, \ldots f_n$ дифференцируемы в точке $ x$ и 
      \[
@@ -13,67 +36,79 @@
     .\] 
 \end{st}
 \begin{proof}
-    Пусть $ h \in \R^{m}$. Запишем 
+    $ $
+    \begin{description}
+        \item \boxed{ 1 \Longrightarrow 2} 
+    Пусть $ h \in \R^{m}$. Запишем  по определению
     \[
-	df(x)h = \left( df_1(x)h, \ldots df_n(x)h \right) 
+	df(x)h =\left( f_1(x+h) - f_1(x), \ldots f_n(x+h)-f_n(x) \right) = \left( df_1(x)h, \ldots df_n(x)h \right) = f(x+h) - f(x)  
     .\] 
-    Тогда
-    \[
-	f(x+h) - f(x) = \left( f_1(x+h) - f_1(x), \ldots f_n(x+h)-f_n(x) \right) 
-    .\] 
-    Первое слагаемое равно $ df(x)h$, а правая % не допичсано!
-\end{proof}
-\begin{st}
+        \item \boxed{ 2 \Longrightarrow 1} 
+	    \begin{itemize}
+		\item
     Если $ n=1$, то получаем просто функцию, а не вектор-функцию. Если $ f \colon U \subset \R^{m} \to  \R$ дифференцируема в точке $ x$, то существуют все частные производные и
     \[
-	df(x)h = \sum_{j=1}^{m} \frac{ \partial f}{ \partial x_j}(x)h_j, \quad h = (h_1, \ldots h_n)^{T}
-    .\] 
+	df(x)h = \sum_{j=1}^{m} \frac{ \partial f}{ \partial x_j}(x)h_j, \quad h = (h_1, \ldots h_n)^{\top}
+    ,\] 
     при этом 
     \[
-	df(x) = \left( \frac{ \partial f}{ \partial x_1} \right) 
+	df(x) = \left( \frac{ \partial f}{ \partial x_1}(x), \ldots \frac{\partial f}{\partial x_m} \right) , \quad h = (h_1, \ldots h_m)^{\top}
     .\] 
-    % не дописано!
-\end{st}
-\begin{st}
-    Вернемся к \ref{st_1}. Пусть $ x \in U \subset \R^{m}$, $ f(x) = \left( f_1(x), \ldots f_n(x) \right) $. Тогда $ f$ дифференцируема в точке $ x$ и существуют частные производные $ \frac{ \partial f_j}{ \partial x_k}(x), ~ j = 1, \ldots m, ~ k = 1, \ldots n$
+    Можно завести вектор-градиент
+    \[
+	\grad f(x) = \nabla f(x)= \left( \frac{\partial f}{\partial x_1}(x), \ldots \frac{\partial f}{\partial x_m}(x) \right) ^{\top}
+    ,\] 
+    И тогда
+	    \[
+		df(x)h = \langle \grad(x), h \rangle  \text{ --- скалярное произведение}
+	    .\] 
+	    
+	\item Вернемся к \ref{st_1}. Пусть $ x \in U \subset \R^{m}$, $ f(x) = \left( f_1(x), \ldots f_n(x) \right) $. Тогда $ f$ дифференцируема в точке $ x$ и существуют частные производные $ \frac{ \partial f_j}{ \partial x_k}(x), ~ j = 1, \ldots m, ~ k = 1, \ldots n$
     \[
 	\partial f(x) h = 
 	\begin{pmatrix}
 	    df_1(x)h \\
-	    \dots \\
-	    \dots \\
-	    df_n(x)h \\
+	    \vdots\\
+	    df_n(x)h
+	\end{pmatrix} = 
+	\begin{pmatrix}
+	    \frac{\partial f_1}{\partial x_1}(x) & \dots & \frac{\partial f_1}{\partial x_m}(x) \\
+	    \vdots & \ddots & \vdots \\
+	    \frac{\partial f_n}{\partial x_1}(x) & \dots & \frac{\partial f_n}{\partial x_m}(x) 
+	\end{pmatrix}
+	\cdot 
+	\begin{pmatrix}
+	    h_1 \\ \vdots \\ h_m
 	\end{pmatrix}
     .\] 
-    %Не допичано!
-\end{st}
+    Получили матрицу дифференциала, которая называется {\sf матрицей Якоби}, а если она квадратная, то ее определитель --- {\sf якобиан}.    
+	    \end{itemize}
+    \end{description} 
+\end{proof}
 \begin{st}
-    Если есть отображения $ f\colon  \R^{m} \to  \R^{n} , ~ g \colon \R^{n} \to \R^{k} $, и они дифференцируемы, то $ d(f \circ f) (x) = dg(f(x))df(x)$:
+    Если есть отображения $ f\colon  \R^{m} \to  \R^{n} , ~ g \colon \R^{n} \to \R^{k} $, и они дифференцируемы, то $ d(f \circ f) (x) = dg(f(x))\cdot df(x)$:
      \[
     \begin{pmatrix}
-	&\dots & \\
+	\frac{\partial (g_1\circ f)}{\partial x_1}&\dots & \frac{\partial  (g_1 \circ f)}{\partial x_m}\\
 	\dots & \frac{ (\partial g_i \circ f)}{ \partial x_l}(x) & \dots \\
-	      &\dots&
+	\frac{\partial (g_k\circ f)}{\partial x_1}&\dots & \frac{\partial  (g_k \circ f)}{\partial x_m}
     \end{pmatrix} = 
     \begin{pmatrix}
-	&\dots & \\
-	\dots &  \frac{\partial g_i}{ \partial y_j}(f(x)) & \dots \\
-	      &\dots&
-    \end{pmatrix}
+	\frac{\partial g_1}{\partial f_1(x_1)}f(x)&\dots & \frac{\partial  g_1}{\partial f_n(x)}f(x)\\
+	\dots & \ddots& \dots \\
+	\frac{\partial g_k}{\partial f_1(x)}f(x)&\dots & \frac{\partial  g_k}{\partial f_n(x)}f(x)
+    \end{pmatrix}  
     \cdot
     \begin{pmatrix}
-	&\dots & \\
-	\dots &  \frac{\partial f_i}{ \partial x_l}(x) & \dots \\
-	      &\dots&
-    \end{pmatrix}
+	\frac{\partial f_1}{\partial x_1}(x)&\dots & \frac{\partial  f_1}{\partial x_m}(x)\\
+	\dots & \ddots& \dots \\
+	\frac{\partial f_n}{\partial f_1(x)}(x)&\dots & \frac{\partial  f_n}{\partial x_m}(x)
+    \end{pmatrix}  
     .\] 
-    Правило цепочки:
+    {\sf Правило цепочки}:
     \[
 	\frac{ \partial (g_i \circ f)}{ \partial x_l}(x) = \sum_{j=1}^{n} \frac{ \partial g_i}{ \partial y_i} (f(x)) \frac{ \partial f_j}{ \partial x_l}(x)
     .\] 
-\end{st}
-\begin{st}
-    
 \end{st}
 \begin{ex}[вычисление частных производных]
     Пусть $ f(x, y) = x^3+ 3xy$. 
@@ -94,19 +129,15 @@
         h_1 \\ h_2
     \end{pmatrix}
     .\] 
-    Через градиенты
-    \[
-    \grad
-    .\] 
 \end{ex}
 \begin{st}
     Если $ f \colon \R^{m}  \to  R$, то частные производные можно определять формулами
     \[
 	\frac{ \partial f}{ \partial x_j} (x) = \lim_{t \to  0} \frac{ f(x+te_j) - f(x)}{t}, \qquad  e_j = 
-	\begin{pmatrix}
+	\underset{j}{\begin{pmatrix}
 	    0& \ldots &0 & 1 &0& \ldots &0
-	\end{pmatrix}^T
-    .\] (Единица стоит на $ i$-м месте.) 
+    \end{pmatrix}}^\top
+    .\]
     Это определение можно обобщить. Можно определить производную по направлению.
 \end{st}
 \begin{defn}[Производная по вектору]
@@ -184,9 +215,6 @@
     Получаем противоречие, так как с некоторого момента утверждение неверно.
 \end{proof}
 \begin{note}
-    В правой части можно ююю
-\end{note}
-\begin{note}
     На прямой теорема Лагранжа дает существование $ \xi \in (x, x+ \varepsilon )$: 
     \[
 	\lvert f(x+h) - f(x) \rvert = |f'(\xi)| \cdot |h|
@@ -211,9 +239,23 @@
 \end{defn}
 \begin{note}
     $ f \colon U \subset X_1 \times \ldots \times X_m \to  Y$ непрерывно дифференцируемо на $ U$ тогда и только тогда, когда непрерывны все частные производные.
-    % пофорсить условие
-    % proof 13:32 20.03.2020 iPad
 \end{note}
+\begin{proof}
+    Запишем 
+    \[
+	df(x) = \left( \partial x_1f(x), \ldots \partial x_m f(x) \right) 
+    .\] 
+    Применим это неравенство в следующем выражении
+    \[
+	\sup_{\| h \| =1} \| \partial x_j f(x+\delta ) h_j - \partial x_j f(x)h_j \| = \sup_{\| h \| =1} \| \partial x_jf(x+\delta ) - \partial x_jf(x) \| 
+    .\] 
+    \[
+    \begin{aligned}
+	\| df(x+\delta ) - df(x) \| &= \sup_{\|  h \| =1} \| df(x+ \delta)h - df(x)h  \| = \sup_{\| h \| =1}\left\|\sum_{j=1}^{m}\partial x_jf(x_j+\delta ) - \partial x_jf(x)h_j\right\| \le \\
+				    &\le  \sup_{\| h \| =1} \sum_{j=1}^{m} \| \partial x_jf(x+\delta ) - \partial x_jf(x) \| 
+    \end{aligned}
+    \]
+\end{proof}
 \begin{thm}[Признак дифференцируемости]
     Пусть $ f \colon U \subset X_1 \times \ldots \times X_m \to  Y, ~ x \in U$. Предположим, что $ f$ имеет все частные дифференциалы в  $ U$ и они непрерывны в точке  $ x$. Тогда  $ f$ дифференцируема в точке  $ x$.
 \end{thm}
