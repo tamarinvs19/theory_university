@@ -1,0 +1,124 @@
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{cancel}
+
+% разметка страницы и колонтитул
+\usepackage[left=0.7cm,right=0.7cm,top=2cm,bottom=1cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{\leftmark}
+\addtolength{\headheight}{13pt}
+
+\pagestyle{fancy}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\usepackage[]{xcolor}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}~}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}~}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\Hom}{{\mathop{\text{\rm Hom}}}}
+\newcommand{\Poly}{{\mathop{\text{\rm Poly}}}}
+\newcommand{\GL}{{\mathop{\text{\rm GL}}}}
+\newcommand{\osc}{{\mathop{\text{\rm osc}}}}
+\newcommand{\rank}{{\mathop{\text{\rm rank}}}}
+\newcommand{\id}{{\mathop{\text{\rm id}}}}
+\newcommand{\pivi}{\stackrel \circ }
+
+\renewcommand{\o}{{\mathop{\text{\rm o}}}}
+\renewcommand{\O}{{\mathop{\text{\rm O}}}}
+\newcommand{\grad}{{\mathop{\text{\rm grad}}}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\newcommand{\del}{{\:\small \raisebox{-2pt}{\vdots}\:}}
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=green,linewidth=2pt,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=green!10,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+}
+\mdfdefinestyle{thmstyle}{%
+    linecolor=cyan!100,linewidth=2pt,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=cyan!20,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Пример}
+\theoremstyle{plain}
+\mdtheorem[style=thmstyle]{thm}{Теорема}
+% \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
+
+\theoremstyle{plain}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\renewcommand{\proofname}{Доказательство}
+
+\numberwithin{ex}{section}
+\numberwithin{thm}{section}
+\numberwithin{equation}{section}
+
+\usepackage{tocloft}
+\renewcommand{\thesection}{Вопрос \arabic{section}}
+\renewcommand{\thesubsection}{\roman{subsection}}
+\cftsetindents{section}{0.2in}{0.9in}
+\cftsetindents{subsection}{0.7in}{0.3in}
