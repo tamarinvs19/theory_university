@@ -2,4 +2,35 @@
 % \input{preamble.tex}
 % \begin{document}
 \section{Классификация циклических групп. Порядок элемента в циклической группе. Критерий для определения порядка, если известно отношение $ g^{n}=e$}
+\begin{lm}[Порядок элемента $ \Z / n$]
+    Пусть $ k \in  \Z / n$. Тогда $ \ord k = \frac{n}{(n, k)}$.
+\end{lm}
+\begin{proof}
+    \[
+	\ord k = \min d \colon dk \equiv 0 \pmod n 
+	~\Longrightarrow ~
+	d = \min \left\{t\frac{n}{(n, k)}\right\} 
+    .\] 
+    Наименьшим значением будет то, когда $ t=1$:  $ \frac{n}{(n, k)}$.
+\end{proof}
+\begin{cor}[Порядок элемента в циклической группе]
+    $ G$ --- группа, $ g \in G$, $ \ord g = n$. Тогда   $ \ord g^{k} = \frac{n}{(n, k)}$.
+\end{cor}
+\begin{proof}
+    Из прошлой леммы это доказано для $ \Z / n$, а мы знаем, что  $ G \cong \Z / n$.
+\end{proof}
+\begin{lm}[Критерий определения порядка]
+    Пусть $ g \in G \colon g^{n} = e$ и $ n = p_1^{ \alpha _1} \cdot \ldots \cdot p_k^{ \alpha _k}$. Тогда если $ g^{\frac{n}{p_i}} \ne e \quad i$, то $ n = \ord g$.
+\end{lm}
+\begin{proof}
+    Пусть $ m = \ord g$. 
+     \[
+	 g ^{n} = e \Longrightarrow n \del m
+    .\] 
+    Тогда, если $ n \ne  m$,  
+    \[
+    \exists p_i \colon n \del p_i^{ \alpha _i} \wedge p_i^{ \alpha _i} \not|~ m
+    .\] 
+    Следовательно, $ \frac{n}{p_i} \mid m \Longrightarrow \frac{n}{p_i} = mk$. Но тогда $ g^{mk} = e$. Противоречие. Поэтому $ n = m$.
+\end{proof}
 % \end{document}
