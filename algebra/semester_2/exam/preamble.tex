@@ -76,7 +76,7 @@
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
-    linecolor=green,linewidth=2pt,topline=false,bottomline=false,%
+    linecolor=green!100,linewidth=2pt,topline=false,bottomline=false,%
     frametitlerule=true,%
     frametitlebackgroundcolor=green!10,%
     innertopmargin=4pt,innerbottommargin=4pt,
@@ -84,7 +84,7 @@
 \mdfdefinestyle{thmstyle}{%
     linecolor=cyan!100,linewidth=2pt,topline=false,bottomline=false,%
     frametitlerule=true,%
-    frametitlebackgroundcolor=cyan!20,%
+    frametitlebackgroundcolor=cyan!10,%
     innertopmargin=4pt,innerbottommargin=4pt,
 }
 \theoremstyle{definition}
@@ -94,8 +94,6 @@
 \newmdtheoremenv[nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Пример}
 \theoremstyle{plain}
 \mdtheorem[style=thmstyle]{thm}{Теорема}
-% \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
-
 \newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
 
 \theoremstyle{plain}
@@ -113,12 +111,8 @@
 
 \renewcommand{\proofname}{Доказательство}
 
-\numberwithin{ex}{section}
-\numberwithin{thm}{section}
-\numberwithin{equation}{section}
-
 \usepackage{tocloft}
 \renewcommand{\thesection}{Вопрос \arabic{section}}
 \renewcommand{\thesubsection}{\roman{subsection}}
-\cftsetindents{section}{0.2in}{0.9in}
-\cftsetindents{subsection}{0.7in}{0.3in}
+\cftsetindents{section}{0in}{0.7in}
+\cftsetindents{subsection}{0.7in}{0.2in}
