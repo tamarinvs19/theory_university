@@ -1,0 +1,65 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Классы смежности. Теорема Лагранжа. Следствия.}
+\begin{defn}[Отношение эквивалентности по подгруппе]
+    Пусть $ H \le G$. Определим отношение эквивалентности $ \sim_H$:  $ g_1 \sim_H g_2 \Longleftrightarrow \exists h \in H\colon g_1 = g_2h$.
+    \begin{com}
+        Это отношение эквивалентности.
+	\begin{itemize}[noitemsep]
+	    \item $ g = ge \Longrightarrow g \sim _H g $
+	    \item $ g_1 \sim _H g_2 \Longrightarrow  \exists  h \in H\colon g_1 = hg_2 \Longrightarrow h^{-1}g_1 = g_2 \Longrightarrow g_2 \sim _H g_1 $
+	    \item $ g_1 \sim _H g_2 \sim _H g_3\Longrightarrow  \exists  h_1, h_2 \in H\colon g_1 = hg_2, ~g_2 = h_2g_3 \Longrightarrow g_1 = h_1h_2g_3 \Longrightarrow g_1 \sim _H g_3 $
+        \end{itemize}
+    \end{com}
+\end{defn}
+\begin{defn}[Класс эквивалентности относительно $ \sim _H$]
+    Пусть $ G$ --- группа, $ H \le G$, $ g \in G$. Тогда множество $ gH = \{gh \mid h \in  H\}$ называется {\sf классом эквивалентности относительно $ \sim _H$}. $ gH$ ---  {\sf левый смежный класс} $ g$ по подгруппе  $ H$.    
+\end{defn}
+\begin{defn}[Индекс]
+    Множество всех левых смежных классов будем обозначать $ G / H$. Количество элементов в  $ G /H$ называется  {\sf индексом} $ H$ в  $ G$ и обозначается  $ [G : H]$.  
+\end{defn}
+\begin{cor}
+    Группа $ G$ разбивается в дизъюнктное объединение левых смежных классов
+    $
+    G = \bigsqcup_{gH \in  G/H} gH
+    $.
+\end{cor}
+\begin{st}
+    Пусть $ H$ --- подгруппа  $ G$ и  $ g \in G$. Тогда отображение $ H \to  gH$, заданное по правилу $ h \to  gh$ --- биекция.
+\end{st}
+\begin{defn}[Порядок группы]
+    {\sf Порядок группы } $ G$ --- число элементов в  $ G$.
+\end{defn}
+\begin{thm}[Теорема Лагранжа]
+    Пусть $ G$ --- группа, $ H \le G$. Пусть порядок $ H$ и индекс  $ [G: H]$ конечны. Тогда 
+     \[
+	 \left| G \right|  = \left| H \right| \cdot [G:H]
+    .\] 
+\end{thm}
+\begin{myproof*}
+    По следствию 
+    $
+    G = \bigsqcup_{gH \in  G/H} gH
+    $, всего таких классов $ [G:H]$,  $ \left| gH \right| = | H |$. Из чего и получаем нужное равенство.
+
+\end{myproof*}
+\begin{cor}
+    Пусть $ G$ ---  конечная группа,  $ H \le G$. Тогда $ \left| G \right| \del \left| H \right| $.
+\end{cor}
+\begin{cor}
+    Пусть $ G$ ---  конечная группа,  $ g \in  G$. Тогда $ \left| G \right| \del \ord g $.
+\end{cor}
+\begin{cor}
+    Пусть $ G$ ---  конечная группа порядка $ n$,  $ g \in  G$. Тогда $ g^{n} = e$.
+\end{cor}
+\begin{cor}
+    Пусть $ G$ ---  конечная группа порядка $ p \in \Pm$. Тогда $ G \simeq \Z/p$.
+\end{cor}
+\begin{cor}
+    Пусть $ G$ ---  конечная группа порядка $4$. Тогда $ G \simeq \Z/4 $ или $ G \simeq \Z / 2 \times  \Z / 2$.
+\end{cor}
+\begin{cor}
+    Пусть $ n \in \N$, $ a \in \Z /n ^*$. Тогда $ a^{\varphi (n)} = 1$.
+\end{cor}
+% \end{document}

@@ -1,0 +1,36 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Подгруппы циклических подгрупп. Прообраз подгрупп.}
+\begin{thm}
+    Пусть $G $ циклическая и $ H < G$. Тогда  $ H$ тоже циклическая.\\ Более того, если $ \left| G \right|  = n$,  то $ \forall d ~ n \del d\colon \exists! H \le \Z/n\colon \left| H \right| = d$. 
+\end{thm}
+\begin{myproof*}
+    Рассмотрим два случая.
+    \begin{itemize}
+	\item $ G\simeq  \Z$.
+	    \begin{lm}
+	        Пусть $ H$ --- подгруппа в  $ \Z$. Тогда  $H $ циклическая.
+	    \end{lm}
+	    \begin{myproof*}
+	    Докажем, что $ H = \langle n \rangle = n \Z$. Если $ H = \{0\}$, то  $ n=0$. Пусть  $ m $ --- минимальный натуральный делитель числа  $ n$. Заметим, что все  $ km \in  H$, поэтому $ \langle m \rangle = m\Z \subseteq H$. Пусть $ x \in  H, ~ x \not\in \langle m \rangle$. Тогда $ x = km + r, ~ 0< r < m \Longrightarrow r = x - km \in H$, следовательно,  $ m $ не наименьший. Противоречие. 
+	    \end{myproof*}
+	\item $  G \simeq \Z / n$. Рассмотрим гомоморфизм, $ \pi\colon \Z \to  \Z / n$, $ \pi(x) = \overline{x}$.
+	    \begin{lm}
+		Пусть $ f\colon G_1 \to  G_2$ --- гомоморфизм групп, $ H \le G_2$. Тогда $ f^{-1}(H) \le G_1$.
+	    \end{lm}
+	    \begin{myproof*}
+		\begin{enumerate}[noitemsep]
+		    \item  $ f(e) = e \Longrightarrow f^{-1}(e) = e, ~ e \in  H \Longrightarrow e \in  f^{-1}(H)$
+		    \item $ a = f^{-1}(x), ~ x \in H \Longrightarrow f(a^{-1}) = x ^{-1} \in H$
+		    \item $ f(a), f(b) \in H \Longrightarrow f(ab) = f(a)f(b) \Longrightarrow ab \in f^{-1}(H)$
+	        \end{enumerate}
+	    \end{myproof*}
+	    Мы знаем, что $ H \le G = \Z /n$. По прошлой лемме $ \pi^{-1}(H) \le \Z$, поэтому $ \pi^{-1}(H)$ циклическая. Из этого следует, что и $ H$ циклическая.
+
+	    Докажем существование и единственность подгруппы порядка  $ d$, если  $ n \del d$. Рассмотрим элемент   $ \frac{n}{d} \in  \Z /n$, его порядок равен $ d$, поэтому порожденная им группа будет иметь такой же порядок.
+
+	    Пусть  $ H = \langle x \rangle, ~ \ord x = d$. Если отождествить этот элемент с числом,  $ d = \frac{n}{(n, x)}$. Тогда $ \frac{n}{d} = (n, x) \Longrightarrow x \del \frac{n}{d} \Longrightarrow  H \subseteq \langle \frac{n}{d} \rangle$. Кроме этого в обоих группах $ d$ элементов, следовательно, они совпали.
+    \end{itemize}
+\end{myproof*}
+% \end{document}

@@ -63,6 +63,8 @@
 \newcommand{\rank}{{\mathop{\text{\rm rank}}}}
 \newcommand{\id}{{\mathop{\text{\rm id}}}}
 \newcommand{\pivi}{\stackrel \circ }
+\newcommand{\Fix}{{\mathop{\text{\rm Fix}}}}
+\newcommand{\supp}{{\mathop{\text{\rm supp}}}\:}
 
 \renewcommand{\o}{{\mathop{\text{\rm o}}}}
 \renewcommand{\O}{{\mathop{\text{\rm O}}}}
@@ -80,21 +82,48 @@
     frametitlerule=true,%
     frametitlebackgroundcolor=green!10,%
     innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
 }
 \mdfdefinestyle{thmstyle}{%
     linecolor=cyan!100,linewidth=2pt,topline=false,bottomline=false,%
     frametitlerule=true,%
     frametitlebackgroundcolor=cyan!10,%
     innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlefont=\bf,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
 }
 \theoremstyle{definition}
 \mdtheorem[style=defstyle]{defn}{Определение}
 
-\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Пример}
-\theoremstyle{plain}
+\mdfdefinestyle{corstyle}{%
+    nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\mdfdefinestyle{exstyle}{%
+    nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=2pt,
+}
+\mdfdefinestyle{lmstyle}{%
+    nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=2pt,
+}
+
+\mdtheorem[style=exstyle]{ex}{Пример}
+\mdtheorem[style=lmstyle]{lm}{Лемма}
+\mdtheorem[style=corstyle]{cor}{Следствие}
 \mdtheorem[style=thmstyle]{thm}{Теорема}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
+% \newmdtheoremenv[leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,innertopmargin=-7pt,innerbottommargin=2pt]{myproof}{\it Доказательство}
+\mdfdefinestyle{myproofstyle}{%
+leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,innertopmargin=0pt,innerbottommargin=2pt%
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\mdtheorem[style=myproofstyle]{myproof}{\it Доказательство}
 
 \theoremstyle{plain}
 \newtheorem*{st}{Утверждение}
