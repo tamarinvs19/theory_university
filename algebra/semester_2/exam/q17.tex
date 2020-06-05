@@ -1,0 +1,21 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Действие группы на множестве. Примеры. Действия и гомоморфизмы. Описание группы самосовмещений тетраэдра. Теорема Кэли.}
+\begin{defn}[Действие группы на множестве]
+    {\sf Действие группы $ G$ на множестве  $ X$} --- отображение $ \cdot \colon G \times X \to  X$, удовлетворяющее аксиомам:
+    \begin{itemize}[noitemsep]
+	\item $ \forall x \in X\colon e\cdot x = x$
+	\item $ \forall x \in X, g, h \in G\colon (gh)\cdot x = g\cdot (h\cdot x)$
+    \end{itemize}
+    \begin{name}
+        $ G \curvearrowright X$
+    \end{name}
+\end{defn}
+\begin{thm}
+    Пусть заданы группа $ G$ и множество  $ X$. Тогда для каждого действия  $ G \curvearrowright X$ существует гомоморфизм, переводящий  $ g \to T_g$, где $ T_g(x) = gx$ --- биекция, заданная домножением на  $ g$.
+\end{thm}
+\begin{thm}[Кэли]
+    Любая группа $ G$ вкладывается в  $ S_G$. Если  $ \lvert G \rvert = n$, то есть подгруппа $ H \le S_{n} \cong G $.
+\end{thm}
+% \end{document}

@@ -1,0 +1,20 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Лемма Бренсайда. Пример с раскраской квадрата.}
+\begin{defn}[Множество орбит]
+    Пусть группа $ G$ действует на множестве  $ X$.  {\sf Множество всех орбит относительно этого действия} будем обозначать $ X / G$.  
+\end{defn}
+\begin{defn}[Множество неподвижных точек]
+    Пусть так же задан элемент $ g \in G$. Тогда обозначим за $ \Fix(f)$ ---  {\sf множество неподвижных точек элюента $ g$}:
+     \[
+	 \Fix(g) = \{x \in X \mid gx = x\}
+    .\] 
+\end{defn}
+\begin{thm}[Бренсайд]
+    Пусть конечная группа $ G$ действует на конечном множестве  $ X$. Тогда 
+     \[
+	 \left| X / G \right|  = \frac{1}{\left| G \right| } \sum_{g \in G}^{} \left| \Fix(g) \right| 
+    .\] 
+\end{thm}
+% \end{document}

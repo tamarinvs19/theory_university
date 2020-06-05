@@ -1,0 +1,32 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Инвариантное подмножество. Орбита. Стабилизатор. Связь орбиты и стабилизатора. Следствие про делимость. Вычисление орбиты. Пример.}
+\begin{defn}[Инвариантное подмножество]
+    Пусть $ G \curvearrowright X$. Подмножество  $ Y \subseteq X$ называется {\sf инвариантным} относительно данного действия, если для всех $ g \in G$ выполнено $ g(Y) = Y$.
+\end{defn}
+\begin{defn}[Орбита]
+    {\sf Орбита } элемента $ x$ --- множество элементов, которые можно получить при помощи группы  $ G$:
+    \[
+    O_x = G \cdot x \coloneqq \{ y \in X \mid \exists g \in G\colon g\cdot x = y\}
+    .\] 
+\end{defn}
+\begin{defn}[Стабилизатор]
+    {\sf Стабилизатор} точки $ x$ --- множество элементов группы  $ G$, оставляющих ее на месте:
+    \[
+    \Stab_x = G_x \coloneqq \{g \in G \mid g\cdot x = x\}
+    .\] 
+\end{defn}
+\begin{thm}[О связи орбиты и стабилизатора]
+    Пусть $ G \curvearrowright X$  и задана точка $ x \in X$. Тогда для любой точки $ y \in O_x$ множество $ \{h \in G \mid hx = y\}$ является левым смежным классом группы $ G$ по стабилизатору  $ \Stab_x$. 
+
+    Обратно, для любого элемента $ h \in g\Stab_x$ верно, что $ hx = gx$. В частности, корректно определены отношения, задающее биекцию между  $ O_x \longleftrightarrow G / \Stab_x$,  заданные так
+     \[
+    y \in O_x \to \{h \in G \mid hx = y\}\qquad g\Stab_x \to  gx \in O_x
+    .\] 
+\end{thm}
+\begin{cor}[про делимость]
+    Пусть $ G$ --- конечная группа, действующая на множестве $ X$. Если задан элемент $ x \in X$, то
+    $ \lvert G \rvert  = \lvert O_x \rvert \cdot \lvert \Stab_x \rvert $.
+\end{cor}
+% \end{document}
