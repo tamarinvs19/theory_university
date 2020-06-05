@@ -1,0 +1,29 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Сюрьективный гомоморфизм и образующие. Сюрьективный гомоморфизм и порядок. Нормальная подгруппа. Переформулировки. Примеры.}
+\begin{st}
+    Пусть дан сюрьективный  гомоморфизм $ f \colon G \to  H $, $ \ker f = \langle g_1, \ldots g_k \rangle$, $ H = \langle h_1, \ldots h_l \rangle$. Если взять $ h_i' \in G$ такие, что $ g(h_i') = h_i$, то группа  $ G$ будет порождена  $ h_1', \ldots h_l', g_1, \ldots g_k$.
+\end{st}
+\begin{lm}
+    Пусть $ f \colon G \to  H$ --- гомоморфизм. Тогда $ f(g_1) = f(g_2)$ тогда и только тогда, когда $ g_1 \in g_2 \ker f$.
+\end{lm}
+\begin{st}
+     Пусть $ G$ конечна,  $ f\colon  G \to  H$ --- сюрьективный гомоморфизм. Тогда $ \lvert G \rvert  = \lvert \ker f \rvert \cdot \lvert H \rvert $.
+\end{st}
+\begin{defn}[Нормальная подгруппа]
+    Подгруппа $ H \le G$ называется нормальной, если для любых $ g \in G$ и $ h \in H$ выполнено следующее: $ ghg^{-1} \in H$.
+    \begin{name}
+        $ H \trianglelefteq G$.
+    \end{name}
+\end{defn}
+\begin{st}[Переформулировки]
+    Пусть  $ H \le G$. Следующие утверждения эквивалентны:
+    \begin{itemize}[noitemsep]
+	\item $ \forall  g \in G\colon gHg^{-1} \subseteq H$
+	\item $ \forall g \in G\colon gHg^{-1} = H$
+	\item $ \forall g \in G\colon gH = Hg$
+	\item $ \forall g \in G\colon gH \subseteq Hg$
+    \end{itemize}
+\end{st}
+% \end{document}

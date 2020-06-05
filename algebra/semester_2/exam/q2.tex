@@ -11,40 +11,15 @@
 \begin{lm}
     Пусть $ g \in G$. Если $ \ord g$ конечен, то  $ \ord g =n$, где  $ n $ --- наименьшее натуральное число, что  $ g^{n} = e$, иначе такого $ n$ не существует.
 \end{lm}
-\begin{proof}
-    $ $
-    \begin{itemize}
-	\item	Пусть $ g^{n} = e$. Докажем, что $ \ord g \le n$. Рассмотрим $ \{e, g, g^2, \ldots ,g^{n}, \ldots \}$. Начиная с $ g^n$ элементы повторяются. А именно
-	\[
-	g^{m } = g^{nq + r } = g^{r}
-	.\] 
-	Следовательно, различных элементов группы $ \langle g \rangle$ всего $ n$.
-    \item Пусть $ \ord g = \infty$ и $ g^{n} = e$ при $ n \in  \N$. но в группе $ \langle g \rangle $ не более $ n$ элементов. Противоречие.
-    \item Пусть $ m = \ord g < \infty$. Рассмотрим $ \{e, g, \ldots g^{m}\}$. Здесь $ m+1$ элемент, поэтому там есть два равных. Пусть  $ g^{i} = g^{j} \Longrightarrow g^{i-j} = e$. Но тогда $ \left| \langle g \rangle \right| \le i-j$. Значит, $ i = m, j=0$,  $ g^{m} = e$. Также получаем, что до этого ни один $ g^{k} = e$, поэтому, $ m$ и есть минимальное.
-    \end{itemize}
-\end{proof}
 \begin{st}
     Пусть $ g \in G$, $ g^{n} = e, ~n \in \N$. Тогда $ n \del \ord n$. 
 \end{st}
-\begin{proof}
-    Поделим с остатком $ n = q\cdot \ord g + r, ~ 0 \le r < \ord g$. Тогда $ e = g^{n} = g^{r}$. Если $ r \ne 0$, то $ g^{r} \ne e$. Следовательно, $ r = 0$.
-\end{proof}
 
 \begin{lm}
     Пусть $ G$ --- группа, $ g \in G$. Тогда существует такой единственный гомоморфизм  $ f\colon \Z \to  G, ~ f(1) = g$.
 \end{lm}
-\begin{proof}
-    Такой гомоморфизм существует (как задан в условии, все условия выполняются). Заметим, что $ g(n) = g(1)^{n} = g^{n}$. Поэтому он задан однозначно.
-\end{proof}
 
 \begin{thm}[Об изоморфмности циклической группы]
     Пусть $ g \in G$ Если $\ord g = n$, то $ \langle g \rangle$ изоморфна группе  $ \Z / n$. Если  $ \ord g = \infty$, то $ \langle g \rangle $ изоморфна $ \Z$.
 \end{thm}
-\begin{proof}
-    $ $
-    \begin{itemize}
-	\item Пусть $ \ord g =n$. Построим $ f\colon \Z / n \to  G$ так $ f(\overline{k}) = g^{k} $. Проверим корректность: пусть $ k_1 \equiv k_2 \pmod n$, то есть $ k_1 = k_2+sn \Longrightarrow g^{k_1} = g^{k_2} \cdot g^{sn} = g^{k_2}$.  Из свойств элементов   $ \Z / n$ и  $ f$ следуют необходимые условия гомоморфизма. Также заметим, что это биекция.
-	\item Пусть $ \ord g = \infty$. Построим гомоморфизм $ f\colon f(1) = g \Longrightarrow f(n) = g(1)^{n} = g^{n}$. Он сюрьективен, проверим инъективность: пусть $ \ker f \ne {0}$, тогда $ \exists k \in \N \colon g^{k} = e $, а тогда $ \langle g \rangle$ конечна. Противоречие. 
-    \end{itemize}
-\end{proof}
 % \end{document}

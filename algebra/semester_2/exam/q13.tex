@@ -1,0 +1,42 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Лемма про возведение в степень по модулю $ p^{\alpha }$. Строение группы $ \Z / ^{*}_{ p^{\alpha }}$ при простом $ p$. Ответ в зависимости от разложения $ p$ на множители.}
+\begin{lm}
+    Пусть $ p \in \Pm$, если  $ n$ нечетно, то  $ s \ge 1$, если $ p =2$, то  $ s \ge 2$.
+    Тогда 
+    \[
+	x  \equiv 1 + c p^{s} \pmod p^{s+1} \Longrightarrow x^{p} \equiv 1 + c p^{s+1} \pmod p^{s+2}
+    .\] 
+\end{lm}
+\begin{st}
+
+    $ $
+    \begin{itemize}[noitemsep]
+	\item
+Пусть $ p \in \Pm$ и $ p$ нечетно. Тогда  $ \Z / ^* _{   p^{\alpha }}$ изоморфна циклической группе
+\[
+    \Z / _{ p^{\alpha -1} (p-1)} \cong \Z / _{   p-1} \times \Z / _{ p^{\alpha -1} } 
+.\] 
+\item
+Если $ p = 2$:
+\begin{description}[noitemsep]
+     \item[$\alpha  = 1$] группа $ \Z / ^{* } _{p^{\alpha }}$ тривиальна
+     \item[$\alpha \ge 2$] $ \Z / ^{*} _{p^{\alpha }} \cong \Z / _2 \times \Z _{2^{\alpha -2}}$.
+\end{description}
+    \end{itemize}
+\end{st}
+\begin{thm}[ Ответ в зависимости от разложения]
+    Пусть $ n = 2^{k} p_1 d\alpha _1 \ldots p_s ^{ \alpha _s}$.  Тогда
+    \begin{description}[noitemsep]
+    \item[$ k = 0, 1$] 
+	\[
+	    \Z / ^{*} _{n} \cong \prod _{i=1}^{s} \Z / _{p_i^{\alpha _i - 1} (p_i - 1)}
+	\] 
+    \item[$ k \ge 2$] 
+	\[
+	    \Z /^{*}_{n} \cong \Z /_2 \times \Z / _{2^{k-2} } \times \prod_{i=1}^{s} \Z /_{p_i^{\alpha _i -1}(p_i-1)}
+	\] 
+    \end{description}
+\end{thm}
+% \end{document}

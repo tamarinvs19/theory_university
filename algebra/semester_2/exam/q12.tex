@@ -1,0 +1,28 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Прямое произведение. Порядок элемента в прямом произведении. Прямое произведение и подгруппы. Образующие прямого произведения. Критерий разложимости в прямое произведение.}
+\begin{st}
+    Пусть $ (g, h) \in  G\times H$. Тогда $ \ord(g, h) = HOK(\ord g, ord h)$.
+\end{st}
+\begin{thm}
+    Пусть $ G = \langle g_1, \ldots g_k \rangle$, $ H = \langle h_1, \ldots h_l \rangle$. Тогда $ (g_1, e), \ldots (g_k, e), (e, h_1), \ldots (e, h_l)$ --- образующие $ G \times H$.
+\end{thm}
+\begin{defn}[Разложение в произведение подгрупп]
+    Группа $ G$  {\sf раскладывается в произведение своих подгрупп } $ G_1, G_2$, если отображение $ f\colon G_1 \times G_2 \to G$, $ f(g, h) = gh$, является гомоморфизмом.  
+    \begin{name}
+        $ G = G_1 \times G_2$.
+    \end{name}
+\end{defn}
+\begin{thm}[Критерий разложимости в прямое произведение подгрупп]
+    Пусть $ G_1 , G_2 \le G$.  $ G_1 \times G_2 = G$ тогда и только тогда, когда 
+    \begin{itemize}[noitemsep]
+	\item $ G_1\cap G_2 = \{e\} $ 
+	\item $ g_1 \in G_1, g_2 \in G_2 \Longrightarrow g_1g_2 = g_2 g_1$
+	\item $ \langle G_1, G_2  \rangle = G$.
+    \end{itemize}
+    \begin{note}
+        Последнее условие равносильно тому, что $ \forall g \in G ~ \exists g_1 \in G_1, g_2 \in G_2\colon g = g_1 g_2$, при условии первого пункта.
+    \end{note}
+\end{thm}
+% \end{document}

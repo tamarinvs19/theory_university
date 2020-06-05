@@ -38,10 +38,45 @@
 \begin{thm}[Разложение в произведение циклов]
     Пусть $ \sigma \in S_{n} $. Тогда существует единственный с точностью до порядка набор независимых циклов $ c_1, \ldots , c_k, ~ c_i \ne \id$, что $ \sigma  = c_1  \ldots c_k$.
 \end{thm}
+\begin{myproof*}
+    Рассмотрим все различные орбиты $ \Omega_1, \Omega _2, \ldots \Omega _s$.
+    Определим перестановки $ c_i, ~ i \in  \{1, \ldots s\}$:
+    \[
+    c_i = 
+    \begin{cases}
+	\sigma (x),& x \in \Omega _i\\
+	x,& x \not\in \Omega _i
+    \end{cases}
+    .\] 
+    Докажем, что $ c_i$ --- независимые циклы.
+    \begin{itemize}[noitemsep]
+	\item $ \supp c_i \subseteq \Omega _i$, поэтому все $ c_i$ различны.
+	\item Докажем, что  $ c_i = \left( x, \sigma (x), \ldots \sigma ^{l-1}(x) \right), \quad  l = \left| \Omega _i \right|, x  \in \Omega _i $. 
+	    \begin{itemize}[noitemsep]
+		\item $ \sigma ^{k}(x) = x, ~ k >0 \Longrightarrow \left| \Omega _i \right| \le k$
+		\item $ \sigma ^{k_1}(x)  = \sigma ^{k_2}(x), ~ 0 \le k_2 < k_1 < l \Longrightarrow \sigma ^{k_2-k_1}(x) = x \Longrightarrow \left| \Omega _i \right| \le k_2-k_1 < l$. Из чего следует, что все элементы $ \Omega _i$ различны.
+		\item Рассмотрим элемент $ \sigma ^{l}(x) \in \{x, \sigma (x), \ldots \sigma ^{l-1}(x)\}$. По прошлому пункту он не может совпасть ни с кем кроме $ x$.
+	    \end{itemize}
+	Получили, что $ c_i$ --- цикл.
+    \end{itemize}
+    Докажем, что $ \sigma = c_1 \ldots c_s$.
+    Пусть  $ x \in  \Omega _i$, тогда  $ \sigma (x) \in  \Omega _i$.
+    \[
+	c_1 \ldots c_s(x) = c_1 \ldots c_{i-1}c_i(x) = c_1 \ldots c_{i-1}(\sigma (x)) = \sigma (x)
+    .\] 
+
+    Теперь докажем единственность. Пусть $ \sigma  = c_1\ldots c_k$. $ \supp c_i = \Omega _j$. Порядок следования элементов в $ c_i$ определяется действием на этой орбите, так как остальные циклы независимы и не влияют на жту орбиту.
+\end{myproof*}
 \begin{thm}[Порядок перестановки]
     Пусть $ \sigma  \in S_n$ и $ \sigma  = c_1\ldots c_k$. Обозначим $ d_i$ за длину  $ c_i$. Тогда  $ \ord \sigma  = НОК\left( d_1, \ldots d_k \right) $
 \end{thm}
+\begin{myproof*}
+    Так как независимые перестановки коммутируют, $ \sigma ^{d} = \prod c_i^{d}$. Так как $ c_i^{d}$ тоже независимы, чтобы $ \sigma ^{d} = id$, нужно $ c_i^{d} = id$. То есть требуется $ d \del d_i$.
+\end{myproof*}
 \begin{thm}[Обратная перестановка в циклической записи]
     Пусть $ c = (a_1, \ldots a_k)$. Тогда $ c^{-1} = (a_k, \ldots a_1)$.\\ Если $ \sigma  = c_1c_2\ldots c_s$, где $ c_i$ --- независимые циклы, то  $ \sigma^{-1} = c_1^{-1}c_2^{-1}\ldots c_s^{-1}$.
 \end{thm}
+\begin{myproof*}
+    Так как $ c_i^{-1}$ тоже независимы, они коммутируют, поэтому можем поставить в нужном порядке.
+\end{myproof*}
 % \end{document}
