@@ -1,16 +1,20 @@
-\documentclass[11pt,dvipsnames]{report}
-\input{preamble.tex}
-\begin{document}
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
 \section{Разложение в произведение транспозиций. Знак перестановки. Знак как гомоморфизм. Знак и число транспозиций в разложении.}
+
 \begin{defn}[Транспозиция]
     Цикл вида $ (ij), ~ i \ne j$ называется {\sf транспозицией}.  
 \end{defn}
+
 \begin{st}
     Любая перестановка раскладывается в произведение транспозиций.
 \end{st}
+
 \begin{defn}[Инверсия]
     Пара $ i < j$ образует  {\sf инверсию}, если $ \sigma (i) > \sigma (j)$.  
 \end{defn}
+
 \begin{defn}[Четность и знак перестановки]
     {\sf Четность перестановки} --- четность числа инверсий $ Inv(\sigma)$ в ней.  
     \\
@@ -18,5 +22,21 @@
     \[
 	\sgn( \sigma ) = (-1)^{Inv( \sigma )} = \prod_{i>j} \frac{ \sigma (i) - \sigma (j)}{i - j}
     .\] 
+    \begin{ex}
+	$ \sgn (1 , 2) = -1$
+    \end{ex}
 \end{defn}
-\end{document}
+
+\begin{st}
+    Отображение $ \sgn \colon S_{n} \to  \{\pm 1\}$ является гомоморфизмом групп.
+\end{st}
+
+\begin{lm}
+    $ g \in  S_{n} $. Тогда $ g (1, 2) g^{-1} = (g(1), g(2))$. Знак любой транспозиции равен $ -1$.
+\end{lm}
+
+\begin{thm}
+    Пусть $ \sigma  = \tau _1 \ldots \tau _k$, $ \tau _i$ --- транспозиция. Тогда $ \sgn \sigma  = (-1)^{k}$.
+\end{thm}
+
+% \end{document}

@@ -1,0 +1,21 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Разные способы вычисления знака перестановки. Знак обратной перестановки. Знакопеременная группа. Задача о пятнадцати.}
+\begin{st}
+    $ \sgn \sigma  = \sgn \sigma^{-1} $
+\end{st}
+\begin{st}
+    Пусть $ \sigma  = c_1 \ldots c_n$, $ c_i$ --- независимые циклы. Тогда  $ \sgn \sigma = (-1)^{\text{кол-во} c_i \text{ четной длины}} = (-1)^{n-k}$, где $ k $ ---  количество орбит  $ \sigma $.
+\end{st}
+\begin{defn}[Знакопеременная группа]
+    {\sf Знакопеременная группа }  $ A_n$ --- группа 
+    \[
+	A_n = \{\sigma \in \S_n \mid \sigma \text{ --- четная}\} = \ker \left( \sgn  \right) 
+    .\] 
+    \[
+	\left| A_n \right|  = \frac{n!}{2}
+    .\] 
+\end{defn}
+
+% \end{document}
