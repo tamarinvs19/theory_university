@@ -18,7 +18,7 @@
 \usepackage{cancel}
 
 % разметка страницы и колонтитул
-\usepackage[left=0.7cm,right=0.7cm,top=2cm,bottom=1cm,bindingoffset=0cm]{geometry}
+\usepackage[left=0.7cm,right=0.7cm,top=2cm,bottom=1.2cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
 \fancyhf{}
 \fancyhead[R]{\thepage}
@@ -80,17 +80,17 @@
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
-    linecolor=green!100,linewidth=2pt,topline=false,bottomline=false,%
+    linecolor=ForestGreen!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
     frametitlerule=true,%
-    frametitlebackgroundcolor=green!10,%
+    frametitlebackgroundcolor=ForestGreen!30,%
     innertopmargin=4pt,innerbottommargin=4pt,
     frametitlebelowskip=0pt,
     frametitleaboveskip=2pt,
 }
 \mdfdefinestyle{thmstyle}{%
-    linecolor=cyan!100,linewidth=2pt,topline=false,bottomline=false,%
+    linecolor=CornflowerBlue!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
     frametitlerule=true,%
-    frametitlebackgroundcolor=cyan!10,%
+    frametitlebackgroundcolor=CornflowerBlue!30,%
     innertopmargin=4pt,innerbottommargin=4pt,
     frametitlefont=\bf,
     frametitlebelowskip=0pt,
@@ -100,18 +100,28 @@
 \mdtheorem[style=defstyle]{defn}{Определение}
 
 \mdfdefinestyle{corstyle}{%
-    nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
+    linecolor=Aquamarine!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Aquamarine!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
     frametitlebelowskip=0pt,
     frametitleaboveskip=2pt,
 }
+
 \mdfdefinestyle{exstyle}{%
-    nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
-    frametitlebelowskip=1pt,
+    linecolor=Violet!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Violet!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
     frametitleaboveskip=2pt,
 }
 \mdfdefinestyle{lmstyle}{%
-    nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=1pt,innerbottommargin=3pt,
-    frametitlebelowskip=1pt,
+    linecolor=Mulberry!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Mulberry!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
     frametitleaboveskip=2pt,
 }
 
@@ -128,11 +138,11 @@ leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,inner
 \mdtheorem[style=myproofstyle]{myproof}{\it Доказательство}
 
 \theoremstyle{plain}
-\newtheorem*{st}{Утверждение}
 \newtheorem*{prop}{Свойства}
 
 \theoremstyle{definition}
 \newtheorem*{name}{Обозначение}
+\newtheorem*{st}{Утверждение}
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Ремарка}
@@ -145,5 +155,5 @@ leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,inner
 \usepackage{tocloft}
 \renewcommand{\thesection}{Вопрос \arabic{section}}
 \renewcommand{\thesubsection}{\roman{subsection}}
-\cftsetindents{section}{0in}{0.7in}
+\cftsetindents{section}{0in}{0.8in}
 \cftsetindents{subsection}{0.7in}{0.2in}
