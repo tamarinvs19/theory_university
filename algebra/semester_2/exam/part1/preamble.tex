@@ -18,13 +18,10 @@
 \usepackage{cancel}
 
 % разметка страницы и колонтитул
-\usepackage[left=0.7cm,right=0.7cm,top=2cm,bottom=1.2cm,bindingoffset=0cm]{geometry}
+\usepackage[left=0.7cm,right=0.7cm,top=1.2cm,bottom=1.2cm,bindingoffset=0cm,paperwidth=210mm,paperheight=297mm]{geometry}
 \usepackage{fancybox,fancyhdr}
 \fancyhf{}
-\fancyhead[R]{\thepage}
-\fancyhead[L]{\rightmark}
-% \fancyfoot[RO,LE]{\thesection}
-\fancyfoot[C]{\leftmark}
+\fancyhead[L]{\thepage}
 \addtolength{\headheight}{13pt}
 
 \pagestyle{fancy}
@@ -40,7 +37,6 @@
 }
 
 \usepackage[]{xcolor}
-\usepackage[]{color}[dvipsnames]
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
