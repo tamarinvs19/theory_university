@@ -1,0 +1,70 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Свойства определителя. Примеры вычисления. Ориентация и объем.}
+\begin{lm}[Свойства определителей квадратных матриц]
+    \begin{enumerate}[noitemsep]
+        \item $ \det A = \det A^{\top}$
+	\item 
+	    \begin{enumerate}[noitemsep]
+		\item При элементарных преобразованиях первого типа для строк и столбцов определитель не меняется.
+		\item При смене строк местами меняется знак.
+		\item При домножении строки на $ \lambda $ определитель домножается на $ \lambda $.
+	    \end{enumerate} 
+	\item $ \det(AB) = \det(A)\det(B)$.
+	\item $ \det 
+	    \begin{pmatrix}
+		A&B\\0&C
+	    \end{pmatrix} = \det (A) \det (C)$
+	\item 
+	    \[
+	    \det 
+	    \begin{pmatrix}
+		a_{11} & a_{12} & \ldots & a_{1n}\\
+		0 & a_{22} & \ldots & a_{2n}\\
+		\vdots & \vdots & \ddots & \\
+		0 & \ldots & 0&  a_{nn}
+	    \end{pmatrix}
+	    =
+	    \det 
+	    \begin{pmatrix}
+		a_{11} & 0 & \ldots & 0\\
+		a_{21} & a_{22} & \ldots & 0\\
+		\vdots & \vdots & \ddots & \\
+		a_{n1} & a_{n_2} &  \ldots &  a_{nn}
+	    \end{pmatrix}
+	    = \prod_{i = 1}^{n} a_{ii}
+	    .\] 
+	\item $ \det (A^{-1}) = (\det A)^{-1}$.
+	\item $ \det \colon \GL(V) \to  K^{*}$ --- гомоморфизм групп.
+    \end{enumerate} 
+\end{lm}
+\begin{ex}
+    \begin{enumerate}[noitemsep]
+        \item $ \det 
+	    \begin{pmatrix}
+		a & b\\ c&d 
+	    \end{pmatrix} = ad - bc$.
+	\item Определитель Вандермонда
+	    \[
+	    \det 
+	    \begin{pmatrix}
+		1 & \ldots & 1\\
+		\lambda _1 & \ldots & \lambda _n \\
+		\vdots & & \vdots \\
+		\lambda_1^{n-1} & \ldots & \lambda _n^{n-1}
+	    \end{pmatrix}
+	    = \prod_{i > j} (\lambda_i - \lambda _j)
+	    .\] 
+    \end{enumerate} 
+\end{ex}
+\begin{st}
+    Пусть отображение  $ \Volume\colon M_n(\R) \to  \R$, обладает следующими свойствами:
+    \begin{enumerate}[noitemsep]
+	\item $ \Volume(E_n) = 1$
+	\item  $ \Volume(\ldots , u + \lambda  v, \ldots , v, \ldots ) = \Volume(\ldots , u, \ldots , v, \ldots )$ 
+	\item $ \Volume(\ldots, \lambda v, \ldots ) = \lvert \lambda  \rvert \Volume (\ldots , v, \ldots )$
+    \end{enumerate} 
+    Тогда $ \Volume (A) = \lvert \det A \rvert $
+\end{st}
+% \end{document}

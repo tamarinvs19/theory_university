@@ -1,0 +1,37 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Определитель как форма объема. Формы объема, связанные с выбором базиса и их свойства.}
+\begin{defn}[Форма объема]
+    Пусть $ n = \dim V$. Антисимметричная полилинейная форма  $ w \colon  V^{n} \to K$   называется {\sf формой объема} на $ V$. Если такая форма не равна 0, то будем говорить, что она  {\sf невырожденная}.   
+\end{defn}
+\begin{defn}[Определитель]
+    {\sf Определителем $ \det$} называется отображение $ \det \colon M_n(K) \to  K$ такое, что
+    \[
+	\det (A) = \sum_{\sigma \in S_{n} }^{}\sgn(\sigma ) \prod_{1 \le i \le n} a_{i\sigma (i)}
+    .\] 
+\end{defn}
+\begin{defn}
+    Пусть $ e_1, \ldots e_n$ --- базис пространства $ V$. Определим отображение  $ \Vol_e\colon V^{n} \to  K$ такое, что 
+    \[
+	\Vol_e (v_1, \ldots v_n) = \det(e(v_1), \ldots , e(v_n))
+    ,\] 
+    где $ e\colon V \to  K^{n}$ --- отображение сопоставления координат.
+\end{defn}
+
+\begin{thm}[Свойства форм]
+    \begin{enumerate}[noitemsep]
+        \item Определитель является формой объема на $ K^{n}$, при этом $ \det E = 1$.
+	\item Если  $ V$ --- пространство размерности  $ n$, то любая форма объема на  $ V$ имеет вид 
+	     \[
+		 w = w(e_1, \ldots e_n)\Vol_e
+	    .\] 
+	    В частности, если $ e, f$ --- базисы, то  $ \Vol_f = \det(C_{f \to  e}) \Vol_e$.
+	\item Пространство форм объема одномерно.
+	\item Для любой невырожденной формы объема $ w$ верно утверждение:
+	     \[
+		 w(v_1, \ldots v_n) = 0 \Longleftrightarrow v_1, \ldots v_n \text{ линейно зависимы}
+	    .\] 
+    \end{enumerate} 
+\end{thm}
+% \end{document}

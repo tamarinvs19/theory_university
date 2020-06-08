@@ -1,0 +1,69 @@
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
+\section{Аксиоматизация объема параллелепипеда. Полилинейное отображение, кососимметричность. Свойства.}
+\begin{defn}[Параллелепипед]
+Пусть $ V$ --- векторное пространство размерности  $ n$ над полем $ \R$.  Тогда для набора  $ v_1, \ldots v_n \in V$ определим {\sf параллелепипед}
+ \[
+     D(v_1, \ldots v_n ) = \left\{ \sum_{i=1}^{n} \lambda_i v_i \Biggm| \lambda_i \in  [\;0, 1] \right\} 
+.\] 
+\end{defn}
+\begin{prop}[Аксиоматизация в $ \R^{n}$ ]
+    Будем записывать векторы в матрицу.
+    \begin{enumerate}[noitemsep,start=0]
+	\item $ \Vol(E_n)$ = 1
+	\item $ \Vol(\ldots , \lambda v, \ldots ) = \lvert \lambda \rvert \Vol (\ldots , v, \ldots )$
+	\item $ \Vol(\ldots , v , \ldots , u , \ldots ) = \Vol(\ldots , v, \ldots , u + \lambda v, \ldots )$ (исходя из принципа Кавальери)
+	\item $ \Vol(\ldots , v, \ldots , v, \ldots ) = 0$
+    \end{enumerate}
+\end{prop}
+\begin{prop}[Аксиоматизация в поле $ K$ ]
+
+    $ $
+    \begin{enumerate}[noitemsep]
+	\item $ w(\ldots , \lambda v, \ldots ) = \lambda w (\ldots , v, \ldots )$
+	\item $ w(\ldots , u+v, \ldots ) = w(\ldots , u, \ldots ) + w(\ldots , v, \ldots )$
+	\item $ w(\ldots , v, \ldots , v, \ldots ) = 0$
+    \end{enumerate}
+\end{prop}
+\begin{defn}[Полилинейное отображение]
+Пусть $ U_1, \ldots U_l, V$ --- векторные пространства над полем $ K$. Отображение  $ w\colon U_1 \times \ldots \times U_l \to  V$ называется {\sf полилинейным}, если 
+\[
+    w(v_1, \ldots v_i + \lambda u_i , \ldots v_l) = w(v_1, \ldots , v_i, \ldots  v_l) + \lambda w(v_1, \ldots , u_i, \ldots v_l)
+.\] 
+\begin{name}
+    $ \Hom_K(U_1, \ldots U_l; V) $ --- множество всех полилинейный отображений.
+\end{name}
+\end{defn}
+
+\begin{defn}[Форма]
+    Полилинейное отображение $ w \colon V^{l} \to  K$ называется {\sf полилинейной формой степени $ l$ на  $ V$}.  
+\end{defn}
+\begin{defn}
+    Полилинейная форма $ w\colon V^{l} \to  K$ на пространстве $ V$ над полем  $ K$ называется 
+    \begin{itemize}[noitemsep]
+	\item {\sf антисимметричной}  или {\sf кососимметричной}, если $ w(v_1, \ldots v, \ldots , v, \ldots , v_l) = 0$;
+	\item {\sf симметричной}, если $ w(v_1, \ldots , v_i, \ldots , v_j, \ldots , v_l) = w(v_1, \ldots , v_j, \ldots v_i, \ldots , v_l)$.  
+    \end{itemize}
+\end{defn}
+\begin{lm}
+    Пусть $ V$ --- векторное пространство размерности $ n$.
+    Для полилинейного отображения $ w: V^{l} \to  K$ и любого $ e_1, \ldots e_n$ базиса $ V$ выполнено
+    \[
+    w(v_1, \ldots v_l) = \sum_{1 \le i_1, \ldots i_l \le n}^{} w(e_{i_1}, \ldots , e_{i_l}) \prod _{j=1}^{l} a_{i_j, j}, \qquad \text{где }  a_{ij} \text{ --- }  i\text{-ая координата вектора } v_j \text{ в базисе } e 
+    .\] 
+\end{lm}
+\begin{lm}
+    Пусть  $V$ --- векторное пространство размерности $n$. Для полилинейного отображения $ w\colon V^{l} \to  K$ выполнено:
+    \begin{enumerate}[noitemsep]
+	\item если $ w$ кососимметрично, то  $ w(\ldots , u, \ldots , v, \ldots ) = - w(\ldots , v, \ldots , u, \ldots )$;
+	    \item если $ \Char K \ne 2$, из результата первого свойства следует кососимметричность;
+	    \item если $ w$ кососимметрично, то для любой перестановки  $ \sigma  \in S_{l} $ верно $ w(v_{\sigma (1)}, \ldots v_{\sigma (l)}) = \sgn (\sigma ) w(v_1, \ldots v_l)$;
+	    \item если $ w$ кососимметрично,  $ w(\ldots v, \ldots , u, \ldots ) = w(\ldots , v, \ldots , u + \lambda v, \ldots )$;
+	    \item если $ w $ кососимметрично и $ l  = n$, для набора векторов $ v_1, \ldots v_n$ и базиса $ e_1, \ldots e_n$ выполнено
+		\[
+		    w(v_1, \ldots v_n) = w(e_1, \ldots e_n) \sum_{\sigma \in S_n}^{} \sgn(\\sigma ) \prod_{j=1}^{n} a_{\sigma (j), j} = w(e_1, \ldots e_n) \sum_{\sigma \in S_{n} }^{} \sgn(\sigma ) \prod _{i=1}^{n} a_{i, \sigma (i)}  
+		.\] 
+    \end{enumerate} 
+\end{lm}
+% \end{document}
