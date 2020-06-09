@@ -1,0 +1,20 @@
+\section{Вычисление длины проекции. Версия теоремы Пифагора. Расстояние между вектором и подпространством и между аффинными подпространствами.}
+\begin{note}
+    Для любого подпространства в унитарном пространстве $ U \le V$ определено его ортогональное дополнение $ U^{\top} = \{v \in V \mid \forall  u \in U\colon \langle u, v \rangle = 0 \}$. $ V$ раскладывается в прямую сумму  $ V = U \oplus U^{\top}$.
+\end{note}
+\begin{cor}
+    Пусть $ e_1, \ldots e_n $ --- ортогональный базис $ V$,  подпространство  $ U $ порождено  $ e_1, \ldots e_k$. Тогда 
+    \begin{enumerate}[noitemsep]
+	\item $ pr_U x = \sum_{}^{} \frac{\langle x, e_i \rangle}{\langle e_i, e_i \rangle}e_i$ 
+	\item $ \| pr_{U^{\top}}x \|^2 + \| pr_U x \| ^2 = \| x \| ^2 $
+    \end{enumerate} 
+\end{cor}
+\begin{defn}[Расстояние]
+    Пусть $ A$ и  $ B$ --- подмножества метрического пространства. Тогда {\sf расстоянием} $ \rho(A, B) = \inf_{x \in A,~ y \in B} \rho(x, y)$.  
+\end{defn}
+\begin{thm}
+    Пусть $ U \le V$, $ x \in V$. Тогда $ \rho(x, U) $ достигается на проекции  $ pr_U(x)$ и равно  $ \| x - pr_U(x) \| = \| pr_{U^{\top}}(x) \|  $
+\end{thm}
+\begin{lm}
+    Пусть $ A_1 = L_1+x$, $ A_2 = L_2+y$ --- аффинные подпространства. Тогда $ \rho(A_1, A_2) = \rho(y-x, L_1+L_2)$
+\end{lm}
