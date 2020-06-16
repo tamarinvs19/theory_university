@@ -1,0 +1,70 @@
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fullpage}
+
+\usepackage{textcomp}
+\usepackage{verbatim}
+
+\usepackage{color} %% это для отображения цвета в коде
+\usepackage[]{xcolor}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
+\usepackage{tocloft}
+\renewcommand{\thesection}{Вопрос \arabic{section}}
+\renewcommand{\thesubsection}{\roman{subsection}}
+\cftsetindents{section}{0.2in}{0.9in}
+\cftsetindents{subsection}{0.7in}{0.3in}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\thesection}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyhead[C]{}
+\addtolength{\headheight}{13pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\pagestyle{fancy}
+
+\usepackage[newfloat]{minted}
+\definecolor{cbg}{rgb}{0.95,0.95,0.95}
+
+% \usepackage{caption}
+% \newenvironment{code}{\captionsetup{labelfont=bf,skip=0pt,font={small},indention=0cm,justification=justified,singlelinecheck=false}}{}
+% \SetupFloatingEnvironment{listing}{name=}
+% \newenvironment{code}{\captionsetup{format=listing,labelfont=white,textfont=white,singlelinecheck=false,margin=0pt,font={bf,footnotesize}}{}
+
+\newminted{c}{fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,bgcolor=,frame=single}
+\newminted{cpp}{fontsize=\footnotesize,numbersep=4pt,framesep=1mm,linenos,bgcolor=,frame=single}
+% \renewcommand{\listoflistingscaption}{List of Program Code}

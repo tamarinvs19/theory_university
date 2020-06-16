@@ -1,0 +1,163 @@
+\section{Шаблоны}
+\begin{itemize}[noitemsep]
+    \item решение в стиле C (\texttt{\#define})
+    \item шаблонные классы
+    \item шаблонные функции
+    \item специализация шаблонов (частичные и полные; в т.ч. для функций)
+    \item шаблонный параметр, не являющийся типом
+\end{itemize}
+\subsection{Решение в стиле $ C$}
+Пусть есть класс массива для целых чисел или умный указатель
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class MyArray {
+private:
+    int *array;
+};
+
+class scoped_ptr {
+private:
+    GaussNumber *ptr;
+}
+\end{minted}
+Эти классы рассчитаны только для одного типа данных и для каждого типа придется вручную создавать новый тип.
+
+Решить проблему можно с помощью \texttt{\#define}. Классы для каждого нового типа будет генерировать препроцессор с помощью макросов.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=MyArray.h]{c}
+#define MyArray(TYPE) class MyArray_##TYPE {\
+private: \
+    TYPE *array; \
+    size_t size; \
+public: \
+    TYPE get(size_t index) { \
+        return array[index]; \
+    } \
+};
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=main.c]{c}
+#include "MyArray.h"
+MyArray(int);
+MyArray(double);
+
+int main() {
+    MyArray_int a; // вместо MyArray(int) будет полный текст макроса
+    MyArray_double b;
+}
+\end{minted}
+\paragraph{Проблема:}
+Программист и компилятор видят разный исходный текст, разные сообщения од ошибках, препрепроцессор заменит любое подходящее слово на данный код.  
+
+\subsection{Шаблонные классы}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=MyArray.h]{cpp}
+template <typename T>
+class MyArray {
+private:
+    T *array;
+    size_t size;
+public:
+    T& get(size_t index) {
+        return array[i];
+    }
+};
+\end{minted}
+Можно вынести определение методов за пределы объявления класса
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=MyArray.h]{cpp}
+template<class T> // синоним template<typename T>
+T& MyArray<T>::operator[] (size_t index) {
+    return array[i];
+}
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=main.cpp]{cpp}
+#include "MyArray.h"
+int main() {
+    MyArray<int> a;
+    MyArray<double> b;
+    MyArray<MyArray<int>> c; // лучше не писать до c++11
+}
+\end{minted}
+\paragraph{Особенности:}
+\begin{enumerate}[noitemsep]
+    \item Подстановку делает компилятор, а не препроцессор
+    \item Код шаблонного класса всегда в заголовочном файле
+    \item Иногда помещают в \texttt{MyArray\_impl.h} 
+    \item Увеличивается время компиляции
+    \item Методы шаблонного класса всегда \texttt{inline}
+\end{enumerate} 
+\subsection{Шаблонные функции}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template <class T>
+void swap(T &a, T &b) {
+    T t(a);
+    a = b;
+    b = t;
+}
+int i = 10, j = 20;
+swap<int>(i, j);
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template <typename V>
+void reverse(MyArray<V> &a) {
+    V t;
+    for (size_t i = 0; i < a.size()/2; ++i) {
+        t = a.get(i);
+	a.set(i, a.get(a.size() - i - 1);
+	a.set(a.size() - i - 1, t);
+    }
+}
+// Вызов
+reverse<int>(a);
+\end{minted}
+\subsubsection{Вывод шаблонных параметров}
+Компилятор может понять, какие аргументы у шаблона функции, если это однозначно определяется.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+MyArray<int> a;
+MyArray<double> b;
+reverse(a);
+reverse(b);
+\end{minted}
+\subsection{Специализация}
+Идея: оптимизация для конкретного класса.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Общая версия]{cpp}
+template<typename T>
+class Array {
+private:
+    T *a;
+public:
+    Array (size_t size) {
+        a = new T [size];
+	...
+    }
+};
+\end{minted}
+Полная специализация
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Для bool]{cpp}
+template<>
+class Array<bool> {
+private:
+    char *a;
+public:
+    Array (size_t size) {
+        a = new char [(size-1)/8 + 2];
+	...
+    }
+};
+\end{minted}
+Частичная специализация
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Для массивов]{cpp}
+template<class T>
+class Array <Array<t>> {
+    T **a;
+};
+\end{minted}
+\subsection{Шаблонный параметр, не являющийся типом}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<size_t Size>
+class Bitset {
+private:
+    char m[(Size-1)/8 + 1];
+public:
+    bool get(size_t index) { ... }
+};
+
+Bitset<128> b1;
+\end{minted}
+
