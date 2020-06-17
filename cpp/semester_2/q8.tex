@@ -1,0 +1,95 @@
+\section{Реализация итераторов и алгоритмов}
+\begin{itemize}[noitemsep]
+	\item реализация собственного итератора
+	\item \texttt{value\_type, iterator\_category}
+	\item \texttt{std::advance, std::distance} (зачем и реализация)
+\end{itemize}
+Для того, чтобы реализовать алгоритм, нужно будет получить тип элемента, на который указывает итератор. Для этого у итератора нужно добавить поле, хранящее этот тип.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class T>
+class vector {
+    T *array;
+	class iterator {
+	    typedef T value_type;
+	};
+};
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class It>
+void q_sort(It p, It q) {
+    It::value_type pivot = *p;
+}
+\end{minted}
+Также есть \texttt{iterator::pointer}, \texttt{iterator::reference}, \texttt{iterator::iterator\_category}.
+
+Если мы знаем, какие операции поддерживает итератор, можно написать более эффективный код.
+Возможные категории:
+\begin{description}
+	\item[Random access iterator (RA)] Поддерживает ++, - -, +=. Используется в \texttt{std::vector, std::deque, std::array} (последний С++11).
+	\item[Bidirectioinal iterator (BiDi)] Поддерживает только ++, - -. Это более слабый итератор. Используется в остальных контейнерах.
+	\item[Forward iterator (Fwd)] Поддерживает только ++. Можно использовать в вводе/выводе.
+\end{description}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=RA]{cpp}
+template <class T>
+class vector {
+    T *array;
+	class iterator {
+	    typedef ra_tag iterator_category; // пустая структура для хранения типа
+	};
+};
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=BiDi]{cpp}
+template <class T>
+class list {
+	Node *head;
+	class iterator {
+	    typedef bidi_tag iterator_category; // пустая структура для хранения типа
+	};
+};
+\end{minted}
+Теперь нужно использовать знание о том, что итератор поддерживает больше операций. Для этого используются следующие функции:
+\paragraph{\texttt{std::advance(it, n)}} Продвигает итератор на $ n$ позиций вперед. Для RA использует +=, для BiDi ++.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Реализация]{cpp}
+template <class Iterator>
+Iterator advance (Iterator it, int amount) {
+    typedef iterator::iterator_category tag;
+	advance(it, amount, tag());
+}
+
+template <class RAIterator>
+RAIterator advance (RAIterator it, int amount, ra_tag t) {
+    return it + amount;
+}
+
+template <class BiDiIterator>
+BiDiIterator advance (BiDiIterator it, int amount, bidi_tag t) {
+    for (; amount; --amount;) ++it;
+	return it;
+}
+\end{minted}
+\paragraph{\texttt{std::distance(it1, it2)}} Возвращает расстояние между итераторами.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class It>
+typename std::iterator_traits<It>::difference_type 
+    distance(It first, It last) {
+    return detail::do_distance(first, last,
+                               typename std::iterator_traits<It>::iterator_category());
+}
+
+template<class It>
+typename std::iterator_traits<It>::difference_type 
+    do_distance(It first, It last, std::input_iterator_tag) {
+    std::iterator_traits<It>::difference_type result = 0;
+    while (first != last) {
+        ++first;
+        ++result;
+    }
+    return result;
+}
+ 
+template<class It>
+typename std::iterator_traits<It>::difference_type 
+    do_distance(It first, It last, std::random_access_iterator_tag) {
+    return last - first;
+}
+\end{minted}
