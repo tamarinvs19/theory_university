@@ -1,0 +1,121 @@
+\section{Приведение типов}
+\begin{itemize}[noitemsep]
+    \item C-style cast, static\_cast, const\_cast, reinterpret\_cast - поведение и преимущества
+    \item RTTI и dynamic\_cast
+\end{itemize}
+\subsection{Приведение типов в C}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void f(char *p);
+int *pi = malloc(100 * sizeof(int));
+f(pi); // неявное приведение типов
+
+int a = 65535;
+char b = a; // неявное приведение типов
+
+int c = 3.5; // тоже неявное
+
+int a = 5; int b = 6;
+double c = a / (double)b; // явное, действительно хотим
+\end{minted}
+Неявное приведение может вызвать warning, если указать -Wall -Werror, станет ошибкой.
+\subsection{Приведение типов в C++}
+Явное приведение требуется для указателей (кроме к void* и приведения у базовому классу).
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void *f();
+int* pi = (int*) f();
+
+// class B : public class A
+void print(const A* p);
+B b;
+print(& b);
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Приведение для классов]{cpp}
+Class BigInt {
+    BigInt(int a);  // from int
+    operator int(); // to int
+
+    BigInt(const Complex&); // from Complex
+    operator Complex();     // to Complex
+\end{minted}
+Явное приведение упрощает поиск в коде и более точно выражает намерение программиста:
+\begin{itemize}[noitemsep]
+    \item Разные cast'ы для разных случаев
+    \item Компилятор делает более точную проверку
+\end{itemize}
+explicit запрещает неявное приведение.
+\subsubsection{static\_cast} 
+Примитивные типы; классы, связанные с наследованием; приведение к void*; пользовательские преобразования BigInt $\to$ int 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+int a = 65535;
+char b = static_cast<char>(a);
+
+// class B: public class A
+void f(B *b);
+A *a = new B();
+f(static_cast<B*>(a));
+\end{minted}
+\subsubsection{reinterpret\_cast}
+Указатели разных типов
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void* f();
+int* pi = reinterpret_cast<int*>(f());
+
+char *pc =  ...; int *pi = ...;
+pc = reinterpret_cast<char*> pi;
+\end{minted}
+
+\subsubsection{const\_cast}
+Добавление и удаление const
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+char const *p1 = "Hello";
+char *p2 = const_cast<char*>(p1);
+p2[0] = 'h'; // undefined behavior
+\end{minted}
+\subsection{Технология RTTI (Run-Time Type Information)}
+\begin{itemize}[noitemsep]
+    \item Оператор dynamic\_cast осуществляет безопасное преобразование указателя на базовый класс в указатель на производный (ссылки).
+    \item Оператор typeid возвращает фактический тип объекта для указателя (ссылки).
+\end{itemize}
+\subsubsection{dynamic\_cast}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+// class B: public class A;
+// class C: public class A;
+void f(B *b);
+
+A *a = new C();
+f(static_cast<B*>(a)); // при компиляции без ошибок, но undefined behavior во время работы
+
+if (dynamic_cast<B*>(a) != 0) {
+    f(static_cast<B*>(a));
+}
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Фактический тип]{cpp}
+#include <typeinfo>
+// class C: public class A
+A *a = new C();
+type_info ti = typeid(*a); // требуется ссылка
+ti.name(); // "C"
+\end{minted}
+\begin{minipage}{0.35\textwidth}
+\begin{itemize}[noitemsep]
+    \item RTTI работает для классов с виртуальными функциями, информация о типе хранится в таблице виртуальных функций
+    \item Чаще всего используется, когда нужно сделать костыль для существующего кода, который нельзя переделать. 
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class Shape {
+    virtual draw() = 0;
+};
+
+draw_all(Shape* shapes, size_t n) {
+    for (int i = 0; i < n; i++) {
+	Shape *p = shapes[i];
+	p->draw();
+	if (dynamic_cast<AnimatedShape*>(p) != 0) 
+            p->animated_draw();
+    }
+}
+\end{minted}
+\end{minipage}
