@@ -1,0 +1,203 @@
+\section{Алгоритмы}
+\begin{itemize}[noitemsep]
+	\item функторы
+	\item обзор алгоритмов с примерами (swap, iter\_swap, sort, find, copy, unique, remove\_if, lower\_bound)
+	\item erase-remove idiom
+	\item реализация алгоритмов через итераторы
+\end{itemize}
+\subsection{Функторы}
+Функторы --- классы, объекты котороых похожи на функцию и перегружен оператор (). Используется, когда нужно описать алгоритму, что нужно сделать, при этом можтет иметь поля.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+struct sum_sq {
+    int operator() (int a, int b) const {
+	    return a * a + b * b;
+	}
+};
+sum_sq f;
+int res = f(3, 4);
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=сравниваем с данным числом]{cpp}
+struct cmp {
+    int value;
+	cmp(int v): value (v) {}
+
+	bool operator () (int a) const {
+	    return a < value;
+	}
+};
+
+cmp f(2);
+bool b = f(13);
+\end{minted}
+Такой функтор (с bool) называют {\sf предикатом}.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Подсчет суммы]{cpp}
+struct accum {
+    int acc;
+	accum() : acc(0) {}
+
+	void operator () (int a) {
+	    acc += a;
+	}
+};
+
+accum f;
+f(13); f(16);
+\end{minted}
+На функциях можно сделать аналогично черес статические переменные.
+
+\subsection{Алгоритмы}
+\subsubsection{Микро-алгоритмы}
+\begin{itemize}[noitemsep]
+	\item \begin{verbatim}
+swap(T &a, T&b)
+	\end{verbatim}
+\item 
+	\begin{verbatim}
+	iter_swap(It p, It q)
+	\end{verbatim} 
+	меняет местами значения, на которые указывают итераторы
+\item 
+	\begin{verbatim}
+	max(const T &a, const T &b)
+	\end{verbatim}
+\item 
+	\begin{verbatim}
+	min(const T &a, const T &b)
+	\end{verbatim}
+\item 
+	\begin{verbatim}
+	size_t count(It p, It q, const T& x)
+	\end{verbatim}
+\item 
+	\begin{verbatim}
+	size_t count_if(It p, It q, Pr pred)
+	\end{verbatim}
+\end{itemize}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=пример использования предикаторов]{cpp}
+struct Person {
+    int age;
+	string name;
+	string city;
+	Person (...) {...}
+};
+struct by_city {
+    bool operator () (const Person &p1, const Person &p2) const {
+		return p1.city < p2.city;
+	}
+};
+
+Person p1(30, "V", "Msc"); Person p2(15, "K", "Spb");
+by_city f;
+std::max<Person, by_city> (p1, p2, f);
+std::max(p1, p2, by_city()); // анонимная переменная
+\end{minted}
+\subsubsection{Алгоритмы типа find}
+\begin{itemize}[noitemsep]
+\item 
+	\begin{verbatim}
+	find(It p, It q, const T &x)
+	\end{verbatim} 
+	возвращает итератор на первое вхождение элемента x в последовательнось между p и q
+\item 
+	\begin{verbatim}
+	find_if(It p, It q, Pr pred)
+	\end{verbatim} 
+	возвращает итератор на первое вхождение элемента, для которого pred вернул true
+\item 
+	\begin{verbatim}
+	max_element(It p, It q)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	min_element(It p, It q)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	equal(It p, It q, Itr i)
+	\end{verbatim} 
+	Сравнивает две последовательности, первая p-q, вторя должна быть той же длины. Если короче, то undefined behaviour.
+\item 
+	\begin{verbatim}
+	pair<It, Itr>mismach(It p, It q, Itr i)
+	\end{verbatim} 
+	Возвращает пару итераторов, указывающую на первое несовпадение.
+\item 
+	\begin{verbatim}
+	F for_each(It p, It q, F func)
+	\end{verbatim} 
+	Применяет func для всех элементов, возвращает функтор.
+\end{itemize}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v = {1, 2, 5, 3, 4, 5, 5, 2};
+std::vector<int>::iterator two = find(v.begin(), v.end(), 2);
+\end{minted}
+\subsubsection{Модифицирующие алгоритмы}
+\begin{itemize}[noitemsep]
+\item 
+	\begin{verbatim}
+	fill(It p, It q, const T &x)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	generate(It p, It q, F gen)
+	\end{verbatim} 
+	Заполняет последовательность значениями, сгенерированными функтором gen
+\item 
+	\begin{verbatim}
+	copy(It p, It q, Itr out)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	reverse(It p, It q)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	sort(It p, It q)
+	\end{verbatim} 
+\item 
+	\begin{verbatim}
+	transform(It p, It q, Itr out, F func)
+	\end{verbatim} 
+	К каждому элементу применяем функтор func и записывают в последовательность, начинающуюся с итератора out
+\end{itemize}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v = {5, 2, 8, 9, 4, 1};
+std::sort(v.begin(), v.end());
+
+std::vector<int> v1 = {5, 3, 3, 4, 1, 5, 5, 4};
+std::vector<int>::iterator last = std::unique(v1.begin(), v1.end());
+v1.erase(last, v1.end());
+\end{minted}
+
+\subsubsection{erase-remove idiom}
+Сначала поставим все нужные элементы в начало, а в конце оставим мусор, вернем итератор на начало мусора. Далее можно его удалить через erase. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+v.erase(std::remove(std::begin(v), std::end(v), 5), std::end(v)); 
+\end{minted}
+
+\subsubsection{Реализация алгоритмов через итераторы}
+Это удобно тем, что после одной реализации можно использовать для различных типов и структур данных, имеющих итераторы.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class InputIt, class OutputIt>
+OutputIt copy(InputIt first, InputIt last, OutputIt d_first) {
+    while (first != last) 
+	    *d_first++ = *first++;
+    return d_first;
+}
+
+vector<int> v;
+list<int> l;
+copy(v.begin(), v.end(), l.begin());
+
+template<class InputIt, class OutputIt, class UnaryPredicate>
+OutputIt copy_if(InputIt first, InputIt last, OutputIt d_first, UnaryPredicate pred) {
+    while (first != last) {
+	    if (pred(*first))
+			*d_first++ = *first;
+		first++;
+	}
+    return d_first;
+}
+copy_if(v.begin(), v.end(), l.begin(), divide_by(8));
+\end{minted}
