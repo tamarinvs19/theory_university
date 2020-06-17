@@ -1,0 +1,298 @@
+\section{Исключения}
+\begin{itemize}[noitemsep]
+    \item обработка ошибок в стиле C
+    \item try/catch/throw
+    \item исключения в конструкторах и деструкторах
+    \item идиома RAII: использование и примеры классов
+    \item гарантии исключений
+\end{itemize}
+Виды ошибок:
+\begin{enumerate}[noitemsep]
+    \item По вине программиста
+	\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Примеры]{cpp}
+char *s = NULL;
+size_t l = strlen(s);
+Array a(-1);
+	\end{minted}
+	Обработка этих ошибок
+	\begin{itemize}[noitemsep]
+	    \item Лучше выявить на стадии тестирования
+	    \item Если программа идеальна, не происходят
+	    \item Библиотека C такие ошибки не обрабатывает
+	    \item Библиотека С++ по-разному: \texttt{vector.at(i), vector.operator[i]}
+	    \item Обрабатывать или нет --- на усмотрение программиста
+	\end{itemize}
+    \item По вине окружения
+	\begin{itemize}[noitemsep]
+	    \item Файл не существует
+	    \item Сервер разорвал соединение
+	    \item Вместо числа ввели букву
+	\end{itemize}
+	 Обработка ошибок
+	 \begin{itemize}[noitemsep]
+	     \item Могут происходить и при работе идеальной программы
+	     \item Обязательно обрабатывать
+	 \end{itemize}
+\end{enumerate} 
+\subsection{Обработка ошибок в стиле C}
+Для обработки ошибок:
+\begin{itemize}[noitemsep]
+    \item Проверка на наличие ошибки в if
+    \item Освобождение ресурсов
+	\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+delete [] array;
+close(f);
+	\end{minted}
+    \item Сообщить пользователю или вызывающей функции
+	\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+FILE *f = fopen("a.txt", "r");
+if (f == NULL) {
+    printf("File a.txt not found\n");
+}
+
+if (f == NULL) {
+    return -1;
+}
+	\end{minted}
+
+    \item Предпринять действия по восстановлению (попробовать соединиться еще раз)
+\end{itemize}
+В стиле C  информация об ошибке передается через возвращаемое значение и через глобальную переменную:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+FILE* fopen(...) {
+    if (file not found) {
+        errno = 666;
+	return NULL;
+    }
+    if (permission denied) {
+        errno = 777;
+	return NULL;
+    }
+    ...
+}
+\end{minted}
+По возвращаемому значению не знаем причину ошибки, глобальная переменная хранит код ошибки, можно получить оттуда сообщение (\texttt{strerror(code)})
+.
+
+Не всегда хватает диапазона возвращаемых значений функции
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class Array {
+    int *a;
+public:
+    // возвращает -1, когда индекс выходит за границу
+    int get(size_t index);
+};
+int r1 = atoi("0");
+int r2 = atoi("a"); // ?
+\end{minted}
+Также код логики и обработка ошибок перемешаны
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+r = fread(...);
+if (r < ...) {
+    // error
+}
+r = fseek(...);
+if (r != 0) {
+    // error
+}
+\end{minted}
+\subsection{try/catch/throw}
+
+
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Структура исключений]{cpp}
+class MyException {
+private:
+    char message[256];
+    // filename, line, function name ... 
+public:
+    const char* get();
+};
+
+double divide (int a, int b) {
+    if (b == 0) {
+	throw MyException("Division by zero");
+    }
+    return a/b;
+}
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Структура исключений]{cpp}
+try {
+    x = divide(c, d);
+}
+catch (MyException& e) {
+    std::cout << e.get(); // сообщаем пользователю
+    // можем освободить ресурсы
+    // throw e; проинформировать вызвавшую функцию
+\end{minted}
+\end{minipage}
+\subsection{Идиома RAII}
+Взятие ресурса должно <<инкапсулировать>> в класс, чтобы в случае исключения вызвался деструктор и освободил ресурс.
+
+\begin{minipage}{0.45\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void f() {
+    MyArray buffer(n);
+    if ( ... ) throw MyException( ... );
+}
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void g() {
+    autoptr p(new Person("Jenya", 36, true));
+    divide(c, e); // может быть исключение
+    \end{minted}
+\end{minipage}
+
+\begin{minipage}{0.35\textwidth}
+Если в divide произойдет  исключение, объект еще не будет <<достроен>>, поэтому деструктор не вызовется:
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class PhoneBookItem {
+    PhoneBookItem (const char *audio, const char *pic) {
+        af = fopen(audio, "r");
+        pf = fopen(pic, "r");
+	divide(c, e); // исключение
+	f();
+    }
+    ~PhoneBookItem() {
+        fclose(af);
+        fclose(pf);
+    }
+\end{minted}
+\end{minipage}
+
+
+\begin{minipage}{0.35\textwidth}
+    Поэтому нужно предусмотреть такую ситуацию и обернуть конструктор в try/catch:
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class PhoneBookItem {
+    PhoneBookItem (const char *audio, const char *pic) {
+	try {
+	    af = fopen(audio, "r");
+	    pf = fopen(pic, "r");
+	    divide(c, e); // исключение
+	    f();
+	}
+	catch(MyException& e) {
+	    fclose(af);
+	    fclose(pf);
+	    throw e;
+	}
+    }
+}
+\end{minted}
+\end{minipage}
+
+\begin{minipage}{0.35\textwidth}
+Исключения в деструкторе бросать нельзя, так как они могут подменить реальную причину ошибки. Если так происходит, программа аварийно завершается. В такой ситуации можно поступить так:
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+    \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class PersonDatabase {
+    ~PersonDatabase() {
+        try {
+	    // брошена серверная ошибка
+	    networkLogger.log("Database is closed.");
+	}
+	catch (...) {} // поймать все
+    }
+};
+
+f() {
+    PersonDatabase db;
+    if (...) throw MyException("Error: disk is full.")
+}
+    \end{minted}
+\end{minipage}
+\subsection{Гарантии}
+Гарантии:
+\begin{enumerate}[noitemsep]
+    \item обязательства функции (метода) с точки зрения работы с исключениями
+    \item документация для программиста, работающего с функцией (методом)
+\end{enumerate} 
+Виды гарантий:
+\begin{description}[itemindent=0.5mm,noitemsep]
+    \item[no throw guarantee] не бросает исключений вообще
+
+	\begin{minipage}{0.45\textwidth}
+	\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void strlen(const char *s) {
+    int count = 0;
+    while (*s != 0) {
+        s++; count++;
+    }
+    return count;
+}
+	\end{minted}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.45\textwidth}
+	\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void f() {
+    try {
+	strlen(s);
+	divide(a, b);
+    }
+    catch (...) { }
+}
+	\end{minted}
+	\end{minipage}
+
+    \item[basic guarantee] в случае возникновения исключения ресурсы не утекают
+
+	\begin{minipage}{0.35\textwidth}
+	    Если произойдет исключение, то память <<течь>> не будет, но измененные элементы array свои значения не восстановят:
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.55\textwidth}
+	    \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class PersonDatabase {
+    MyVector<Person> array;
+    void process() {
+	auto_ptr<Person> p(new Person());
+	for (int i = 0; i < array.length; i++) {
+	    int a = divide(rand(), rand())
+	    // может быть исключение
+	    array[i]->setAge(a);
+	    std::cout << p;
+	}
+    }
+};
+	    \end{minted}
+	\end{minipage}
+    \item[strong guarantee] переменные принимают те же значения, что были до возникновения ошибки
+
+	\begin{minipage}{0.35\textwidth}
+	    Идиома copy-and-swap
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.55\textwidth}
+	    \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class PersonDatabase {
+    MyVector<Person> array;
+    void process() {
+	auto_ptr<Person> p(new Person());
+	MyVector<Person> copy(array);
+	for (int i = 0; i < array.length; i++) {
+	    int a = divide(rand(), rand())
+	    // может быть исключение
+	    copy[i]->setAge(a);
+	}
+        array = copy;
+    }
+};
+	    \end{minted}
+	\end{minipage}
+\end{description} 
