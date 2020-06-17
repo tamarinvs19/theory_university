@@ -1,0 +1,161 @@
+\section{Последовательные контейнеры}
+\begin{itemize}[noitemsep]
+	\item string, vector, list
+	\item array
+	\item внутреннее устройство и основные операции
+	\item итераторы и их инвалидация
+\end{itemize}
+Требования к хранимым в контейнере объектам:
+\begin{enumerate}[noitemsep]
+	\item Корректно  работает конструктор копий (copy-constructable)
+	\item Корректно работает оператор присваивания
+\end{enumerate} 
+Методы всех контейнеров:
+\begin{enumerate}[noitemsep]
+    \item Конструктор по умолчанию, конструктор копирования, оператор присваивания, деструктор
+	\item Операторы сравнения: \texttt{==, !=,   >, >=, <, <=}
+	\item \texttt{size(), empty()}
+	\item \texttt{swap(obj2)}
+	\item \texttt{insert(), erase()}
+	\item \texttt{clear()}
+	\item \texttt{begin(), end()}
+\end{enumerate} 
+Особенности последовательных контейнеров:
+\begin{enumerate}[noitemsep]
+    \item Сохраняют порядок, в котором были добавлены элементы
+	\item  Есть добавление в конец: \texttt{push\_back}
+\end{enumerate} 
+\subsection{string, vector, list}
+\subsubsection{vector}
+Динамический массив с автоматическим изменением размера при добавлении элементов.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v;
+\end{minted}
+\begin{enumerate}[noitemsep]
+    \item Для уменьшения числа вызовов new при добавлении элементов выделяется с запасом
+	\item \texttt{size, capacity}
+	\item Сложность добавления в конец вектора и удаления из конца --- $ \mathcal{O}^{*}(1)$ 
+	\item Сложность добавления и удаления элемента из начала или середины --- $ \mathcal{O}(n)$
+	\item Сложность доступа к элементу по индексу --- $ \mathcal{O}(1)$
+\end{enumerate} 
+Методы:
+\begin{enumerate}[noitemsep]
+	\item \texttt{size()}/\texttt{resize()} --- получение/изменение размера вектора
+	\item \texttt{capacity()}/\texttt{reserve()} --- получение/изменение зарезервированной памяти
+	\item \texttt{push\_back()}/\texttt{pop\_back()} --- добавление/удаление последнего элемента
+	\item 
+		\texttt{operator[]}, \texttt{at()} --- получение элемента по индексу
+	\item \texttt{data()} --- указатель на массив
+\end{enumerate} 
+
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include <vector>
+
+int main() {
+	std::vector<int> v;
+	v.push_back(10);
+	v.pop_back();
+	v[0] = 13;
+	v.at(0) = 14;
+	size_t size = v.size();
+	bool is_empty = v.empty();
+	v.clear();
+	v.resize(10); // меняем размер на 10 элементов, работает, если есть конструктор по умолчанию
+	v.resize(20, 5); // новые 10 элементов будут равны 5
+
+	int *dst = new ...
+	memcpy(dst, v.data(), v.size());
+
+	v.reserve(100); // резервируем память на 100 элементов, размер  не меняется
+	v.reserve(v.size() + 100);
+	v.clear(); // изменит размер до 0, но вместимость не изменится
+	vector<int>(v).swap(v); // уменьшить размерность вектора до реально используемых элементов
+	return 0;
+}
+\end{minted}
+\subsubsection{list}
+Двусвязный список. Вставка и удаление в любом месте за $ \mathcal(O)(1)$. Нет обращения по индексу.
+Методы:
+ \begin{enumerate}[noitemsep]
+	\item \texttt{size()}/\texttt{resize()} --- получение/изменение размера вектора
+	\item \texttt{push\_back()}/\texttt{pop\_back()} --- добавление/удаление последнего элемента
+	\item \texttt{push\_front()}/\texttt{pop\_front()} --- добавление/удаление первого элемента
+	\item \texttt{merge()}/\texttt{splice()} --- объединение/разделение 
+\end{enumerate} 
+\subsubsection{string}
+Контейнер для хранения символьных последовательностей.
+\begin{enumerate}[noitemsep]
+	\item Метод \texttt{c\_str()} для совместимости со старым кодом:
+		\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::string res = "Hello";
+printf("%s", res.c_str());
+		\end{minted}
+	\item Алгоритмы \texttt{substr(), find(), \ldots }
+	\item Поддержка преобразований типа с С-строками
+		\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+f(const std::string& s);
+f("Hello");
+		\end{minted}
+	\item \texttt{append, operator+, operator+=}
+	\item \texttt{string = basic\_string<char>} 
+	\item \texttt{wstring = basic\_string<wchar\_t>} --- для работы с длинными символами
+\end{enumerate} 
+\subsection{Итераторы}
+Объекты, которые синтаксически ведут себя как указатель (++, -, *, ->). Это универсальный способ перебора элементов контейнеров в STL. Итераторы реализованы как вложенные классы для контейнеров.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class vector {
+	...
+	class iterator {
+	    operator ++() { T* ptr++; }
+	}
+}
+vector::iterator it1;
+
+class list {
+    class iterator {
+		operator ++() { Node<T> ptr = ptr->next; }
+	}
+}
+list::iterator it2;
+\end{minted}
+Все итераторы имеют функции, которые возвращают итераторы на первый и следующий за последним элемент.
+
+Для vector и deque реализована арифметика, как для указателй:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+int i = *(v.begin() + 5);
+\end{minted}
+Проход по контейнеру:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+list<int> l;
+list<int>::iterator it = l.begin();
+for (; it != l.end(); ++it) cout << *it;
+\end{minted}
+Итератор, не позволяющий менять данные, на которые он указывает:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+list<int>::const_iterator cit = l.begin();
+\end{minted}
+Удаление элемента, на который указываем
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+it = v.erase(it);
+\end{minted}
+Вставка элемента на данную позицию
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+it = v.insert(it, 5);
+\end{minted}
+\subsubsection{Инвалидация итераторов}
+После того, как произвели операцию с контейнером, итератор может указывать в неверное место.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v;
+it = v.erase(it); // возвращаем следующий элемент
+std::vector<int>::iterator itb = v.begin();
+v.push_back(3);
+v.push_back(5);
+\end{minted}
+Поставить перед каждым четным элементом вектора 0:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v;
+for (std::vector<int>:: iterator i = v.begin(); i != v.end(); ++i) {
+    if (*i % 2 == 0) {
+	    i = v.insert(i, 0);
+		++i;
+\end{minted}
