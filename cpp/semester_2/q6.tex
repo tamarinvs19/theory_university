@@ -1,0 +1,149 @@
+\section{Ассоциативные контейнеры}
+\begin{itemize}[noitemsep]
+	\item set, multiset, map, multimap
+	\item unordered\_set, unordered\_map
+	\item внутреннее устройство и основные операции
+	\item итераторы и их инвалидация
+\end{itemize}
+Особенности:
+\begin{enumerate}[noitemsep]
+	\item Переупорядочивают элементы для быстрого поискка $ \mathcal(O)(\log n)$ 
+	\item Возможные реализации: дерево поиска $ \mathcal{O}(\log n)$ 
+	\item Требуют отношение порядка \texttt{operator<()}
+	\item Нет произвольного доступа по индексу
+\end{enumerate} 
+Общие методы:
+\begin{enumerate}[noitemsep]
+    \item Конструктор по умолчанию, конструктор копирования, оператор присваивания, деструктор
+	\item Операторы сравнения: \texttt{==, !=,   >, >=, <, <=}
+	\item \texttt{size(), empty()}
+	\item \texttt{swap(obj2)}
+	\item \texttt{clear()}
+	\item \texttt{begin(), end()}
+	\item \texttt{erase} по ключу
+	\item \texttt{insert}/\texttt{insert} c подсказкой (итератор)
+	\item \texttt{count} число элементов с заданным ключом
+	\item \texttt{find} поиск точного совпадения (возвращает  итератор)
+	\item \texttt{lower\_bound, upper\_bound, equal\_range} 
+\end{enumerate} 
+\subsection{set, multiset}
+В set все элементы уникальны, в multiset допустимы дубликаты. Реализованы с помощью BST с ключами в вершине. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include <set>
+
+std::set<int> s;
+s.insert(10); s.insert(20); s.insert(10); // s.size() = 2
+
+std::multiset<int> ms;
+ms.insert(10); ms.insert(20); ms.insert(20); // ms.size() = 3
+
+std::cout << s.count(20) << " " << ms.count(20) << std::endl;
+\end{minted}
+Порядок не сохраняется. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::set<int> s;
+s.insert(10);
+s.insert(6);
+s.insert(20);
+s.insert(5);
+s.insert(1);
+
+for (std::set<int>::iterator it = s.begin(); it != s.end(); ++i) 
+	std::cout << *it << " ";
+} // выведет 1 5 6 10 20
+\end{minted}
+Присваивание запрещено.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::set<int> s;
+s.insert(10);
+std::set<int>::iterator it = s.find(10);
+*it = 5; // запрещено
+\end{minted}
+\subsection{map, multimap}
+В map элементы уникальны, в multimap --- нет. Реализация с помощью BST, в вершине $(key, value)$
+Особый метод: \texttt{operator[]}.
+\paragraph{Вспомогательный класс pair}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class F, class S>
+struct pair {
+	F first;
+	S second;
+	... // конструкторы
+};
+
+template<class F, class S>
+pair<F, S> make_pair(F const& f, S const& s);
+
+template<class Key, class T, ...> class map {
+	...
+	typedef pair<const Key, T> value_type;
+};
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include <map>
+
+std::map<string, int> phonebook;
+phonebook.insert(std::pair<string, int> ("Mary", 2128506));
+phonebook.insert(std::make_pair("Alex", 9286385); // вывод типов параметров
+phonebook.insert(std::make_pair("Bob", 2128506);
+
+std::map<std::string, int>::iterator it = phonebook.find("John");
+if (it != phonebook.end()) 
+    std::cout << "Jonh`s p/n is " << it->second << std::endl;
+
+for (it = phonebook.begin(); it != phonebook.end(); ++it)
+    std::cout << it->first << ": " << it->second << "\n";
+\end{minted}
+\paragraph{\texttt{operator[]}}
+Работает только с неконстантными map.
+Требует наличие конструктора по умолчанию у T.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+T & operator[](Key const& k) {
+    iterator i = find(k);
+	if (i == end())
+	    i = insert(k, T());
+    return i->second;
+}
+\end{minted}
+Требует $ \mathcal{O}(\log n)$ времени.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Пример]{cpp}
+m["vasya"] = 10;
+m["petya"] = 20;
+int p = m["kola"]; // если такого ключа нет, будет создан новый элемент со значением 0
+\end{minted}
+\subsection{Инвалидация}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::map<string, int> m;
+std::map<string, int>::iterator it = m.begin();
+for (; it != m.end;)
+    if (it->second == 0)
+	    m.erase(++it);
+	else
+	    ++it;
+\end{minted}
+В С++11
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+for (; it != m.end(); )
+    if (it->second == 0) 
+	    it = m.erase(it);
+    else
+	    ++it;
+\end{minted}
+\subsection{Собственный компаратор}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+struct Person {
+    string name;
+	string surname;
+};
+bool operator < (Person const& a, Person const& b) {
+    return a.name < b.name || (a.name == b.name && a.surname < b.surname);
+}
+std::set<Person> s1; // уникальные по name и surname
+
+struct PersonComp {
+	bool operator () (Person const& a, Person const& b) const {
+	    return a.surname < b.surname;
+	}
+};
+std::set<Person, PersonComp> s2; // только по surname
+\end{minted}
