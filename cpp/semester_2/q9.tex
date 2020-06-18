@@ -1,0 +1,138 @@
+\section{С++11. Разное.}
+\begin{itemize}[noitemsep]
+	\item \texttt{lambda} и захваты
+	\item \texttt{auto, decltype}
+	\item \texttt{initializer\_list}
+	\item \texttt{shared\_ptr, unique\_ptr} (использование)
+\end{itemize}
+\subsection{Вывод типов}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+auto x = expression; // тип x выводится по expression
+decltype(expression) y; // тип x будет такой же, как у expression
+\end{minted}
+Для чего это нужно? Пусть мы хотим пройти по вектору строк константным итератором в обратном порядке. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+for (std::vector<std::string>::const_iterator i = v.cbegin(); i != v.cend(); ++i) {
+    std::vector<std::string>::const_reverse_iterator j = i;
+	...
+}
+\end{minted}
+Получаем очень очень длинный и тяжелочитабельный код. На C++11 можно переписать короче
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+for (auto i = v.cbegin(); i != v.cend(); ++i) { // v.cbegin() - константный итератор
+    decltype(v.crbegin()) j = i;
+	...
+}
+\end{minted}
+Еще отличия auto и dectype:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+const std::vector<int> v(1);
+auto a = v[0]; // int, так как нужен тип, которому можно присвоить значение
+decltype(v[0]) b = 1 // const int& (как и у v[0])
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=decltype в typedef]{cpp}
+typedef decltype(v[0]) new_type;
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Уточнение auto]{cpp}
+string s = "hello";
+auto& s1 = s; // s1 - string&;
+const auto& c = v[0]; // c - const int&
+\end{minted}
+Но есть побочный эффект:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::map <KeyClass, ValueClass> m;
+auto I = m.find(something); // все знают, что find вернет iterator
+
+MyClass myObj;
+auto ret = myObj.findRecord(something);
+// большинству придется сходить посмотреть, что возвращает findRecord
+\end{minted}
+\subsection{lambda}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<int> v = {50, -10, 20, -30};
+// до С++ нужен компаратор
+struct abs_cmpr {
+    bool operator () (int a, int b) const {
+	    return abs(a) < abs(b);
+	}
+};
+std::sort(v.begin(), v.end(), abs_cmpr());
+
+// С++11 есть lambda функции для упрощения таких задач 
+std::sort(v.begin(), v.end(), [](int a, int b) { return abs(a) < abs(b); });
+\end{minted}
+\subsubsection{Структура lambda функций}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+[список захвата](параметры){сама функция}
+\end{minted}
+Захвачены могут быть локальные переменные из области видимости. Типы захвата:
+\begin{enumerate}[noitemsep]
+	\item ничего \texttt{[]}
+	\item все по ссылке \texttt{[\&]}
+	\item все по значению \texttt{[=]}
+	\item смешанные \texttt{[x,\&y], [\&,x], [=,\&z]}
+\end{enumerate} 
+\paragraph{begin, end} 
+Сделаны для реализации алгоритмов как для итераторов, так и для массивов.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class T>
+void foo(T& v) {
+    auto i = begin(v);
+	auto e = end(v);
+	for (; i != e; i++) {}
+}
+
+template<class T, size_t N>
+T* end(T (&a)[N]) { return a + N; }
+
+// параметр N выводится компилятором
+int a[4] = {0, 1, 2, 3};
+auto e = end(a);
+\end{minted}
+C помощью этого реализован \texttt{for(x : )}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+for (auto x: v) cout << x << " ";
+for (auto& x: v) x++;
+\end{minted}
+\subsection{initializer\_list}
+Инициализация по списку элементов для своих объектов.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::vector<std::string> v = {"AA", "BB", "CC"};
+std::vector<std::string> v ({"AA", "BB", "CC"});
+std::vector<std::string> v {"AA", "BB", "CC"};
+\end{minted}
+По такому коду генерируется initializer\_list
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template <typename T>
+class vector {
+public:
+	vector (std::initialaizer_list<T> l) {
+	    const T *array = l.begin();
+		T value = *(array++);
+		...
+		l.size();
+	}
+};
+\end{minted}
+\subsection{unique\_ptr, shared\_ptr}
+Первое используется, если нужна ровно одна ссылка, второе же требует больше ресурсов и времени из-за постоянных вычислений.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+struct Foo {
+    ...
+	void bar() {std::cout << "Foo::bar\n";}
+};
+
+void f(const Foo&) {std::cout << "f(const Foo&)\n";} 
+
+int main() {
+	std::unique_ptr<Foo> p1(new Foo); 
+	if (p1) p1->bar();
+
+	// теперь только p2 будет владеть Foo
+	std::unique_ptr<Foo> p2(std::move(p1));
+	f(*p2);
+
+	p1 = std::move(p2); // можем вернуть p1
+	if (p1) p1->bar();
+}
+\end{minted}

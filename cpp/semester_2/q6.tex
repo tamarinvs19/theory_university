@@ -94,6 +94,7 @@ if (it != phonebook.end())
 for (it = phonebook.begin(); it != phonebook.end(); ++it)
     std::cout << it->first << ": " << it->second << "\n";
 \end{minted}
+
 \paragraph{\texttt{operator[]}}
 Работает только с неконстантными map.
 Требует наличие конструктора по умолчанию у T.
@@ -111,6 +112,38 @@ m["vasya"] = 10;
 m["petya"] = 20;
 int p = m["kola"]; // если такого ключа нет, будет создан новый элемент со значением 0
 \end{minted}
+\subsection{unordered\_map, unordered\_set}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class Key, class Hash = std::hash<Key>,
+		 class KeyEqual = std::equal_to<Key>,
+		 class Allocator = std::allocator<Key>>
+	class unordered_set;
+\end{minted}
+Реализовано как хэштаблица из каманов и списков. Операции find знимают $ \mathcal(O)(1)$, но, если все оказались в одном кармане, то  $ \mathcal{O}(n)$, insert аналогично, если вызывает рехэширование).
+
+Для своего типа нужно реализовать hash:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class Point {
+private:
+    int x, y;
+private:
+    bool operator == (const Point& rhs) const {
+		return x == rhs.x && y == rhs.y;
+	}
+};
+
+namespace std {
+    template<>
+	struct hash<Point> {
+	    size_t operator() (Point const &p) const {
+		    return (std::hash<int>()(p.getX()) * 53 + std::hash<int>()(p.getY())) * 239;
+		}
+	};
+}
+
+std::unordered_set<Point> points;
+\end{minted}
+
 \subsection{Инвалидация}
 \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
 std::map<string, int> m;
