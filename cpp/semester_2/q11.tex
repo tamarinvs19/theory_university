@@ -1,0 +1,80 @@
+\section{Метапрограммирование - I}
+\begin{itemize}[noitemsep]
+	\item решение в стиле C (\texttt{\#define, \#ifdef})
+	\item \texttt{constexpr, static\_assert}
+	\item SFINAE, реализация предиката для типа (\texttt{has\_iterator, is\_integral})
+\end{itemize}
+\subsection{решение в стиле С}
+Можно написать условие через \texttt{\#ifdef}, там указать \texttt{\#error}, если условие выполнится, и мы попадем на \texttt{\#error}, тогда возникнет ошибка предпроцессора.
+
+\subsection{\texttt{constexpr}}
+Это модификатор функции, говорящий о том, что для явного аргумента можно вычислить во время компиляции и заменить на результат. На такую функцию накладывается несколько ограничений: (только С++11) однострочная, не должна вызывать функцию не constexpr, нет try/catch, не virtual, \ldots 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+constexpr unsigned fibonacci (unsigned i) {
+	return (i <= 1u) ? i : (fibonacci(i-1) + fibonacci(i-2));
+}
+int array[fibonacci(3)];
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Вариант без constexpr - вычисление на этапе компиляции]{cpp}
+template<int N>
+struct Factorial { // переход 
+    static int value N * Factorial<N-1>::value;
+};
+
+template<>
+struct Factorial<0> { // база 
+    static int value = 1;
+};
+
+std::cout << Factorial<5>::value << std::endl;
+\end{minted}
+
+\subsection{\texttt{static\_assert}}
+Осуществляет проверку условия во время компиляции:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+static_assert(sizeof(unsigned int) * 8 == 32, "16 bit CPU is not supported");
+\end{minted}
+
+\subsection{template alias}
+Аналог typedef для шаблонов. Для этого есть новое слово using.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<typename T>
+using fast_vector = std::vector<T, big_pool_allocator<T>>;
+fast_vector<int> v;
+\end{minted}
+
+\subsection{SFINAE}
+Используется, чтобы понять есть ли у класса метод с определенными параметрами во время компиляции.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class Foo {
+public:
+    void do_smth(int);
+	Foo() = delete;
+};
+
+class Bar {
+};
+
+template<typename T>
+сlass Has_func {
+public:
+	template<typename U>
+	static decltype(std::declval<U>().do_smth(1000)) detect(const U&); 
+	// declval нужен, чтобы при отсутствии конструктора по умолчанию у Foo, все компилировалось 
+	static float detect(...); // принимает любой аргумент
+
+	static constexpr bool flag = std::is_same<void, decltype(detect(std::declval<T>()))>::value;
+};
+
+// std::is_same<void, int>::value // сравниваем типы на равенство
+
+int main() {
+    if (Has_func<Foo>::flag)
+	    std::cout << "method exists" << std::endl;
+	else
+	    std::cout << "method does not exist" << std::endl;
+	return 0;
+}
+\end{minted}
+
+
