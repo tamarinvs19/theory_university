@@ -1,0 +1,96 @@
+\section{move семантика}
+\begin{itemize}[noitemsep]
+	\item rvalue и lvalue
+	\item rvalue references
+	\item move constructor, move assignment
+	\item std::move
+\end{itemize}
+\subsection{lvalue и rvalue}
+\begin{description}
+	\item[lvalue]
+		Может быть и в левой, и в правой части присваивания (переменная).
+		\begin{itemize}[noitemsep]
+			\item продолжает существовать за пределами выражения, где было использовано
+			\item имеет имя
+			\item можно взять адрес
+		\end{itemize}
+	\item[rvalue]
+		Выражение, которое может быть только в правой части присваивания.
+		\begin{itemize}[noitemsep]
+			\item не существует за пределами выражения, где было использовано
+			\item временное значение (temporary value)
+	    \end{itemize}
+\end{description}
+\subsubsection{Примеры}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+int a = 42;
+int b = 43;
+int c = a * b; // a * b - rvalue
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+vector<Person> people;
+people.push_back(Person("Name", 36); // Person("Name", 36) - rvalue
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+int square(int x) { return x*x; }
+int sq square(10); // square(10) - rvalue
+\end{minted}
+\subsection{move}
+Используется, если внутри класса храним какие-то ресурсы: указатель на динамически выделенную память, файлы, \ldots 
+Оптимизируем работу с временными выражениями rvalue.
+Пусть есть класс, обладающий описанными свойствами.
+
+\begin{minipage}{0.35\textwidth}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class X {
+    int *array;
+	X(size_t size);
+	~X();
+	X(const X&);
+	X& operator = (const X&);
+};
+
+X foo();
+X x;
+x = foo();
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}{0.55\textwidth}
+	Что происходит во время присваивания?
+\begin{enumerate}[noitemsep]
+	\item копируем ресурс из temporary (rvalue)
+	\item освобождаем ресурс в x (delete, fclose, \ldots )
+	\item присваиваем в x скопированный ресурс
+	\item освобождаем ресурс в temporary
+\end{enumerate} 
+\end{minipage}
+Можем обработать эффективно.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+class X {
+    int *array = NULL; 
+	X(size_t size);
+	~X();
+	X(const X& x); // X& - lvalue reference
+	X& operator = (const X& x);
+
+	X(X&& x) { std::swap(this->array, x.array); } // X&& - rvalue reference, это move constructor
+	X& operator = (X&& x) { this->array = std::move(x.array) } // это move assignment
+};
+
+X x1(100);
+X x2(x1); // вызываем X(const X& x), так как x1 - lvalue
+X x3(X(100)); // вызываем X(X&& x), так как X(100) - rvalue
+\end{minted}
+% line 78 ? сойдет ??
+
+\subsection{std::move}
+Говорим, что мы хотим для этой переменной использовать move конструктор:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<class T>
+void swap (T& a, T& b) {
+	T tmp(std::move(a));
+	a = std::move(b);
+	b = std::move(tmp);
+}
+\end{minted}
