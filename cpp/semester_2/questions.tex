@@ -1,0 +1,105 @@
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
+
+\section{Шаблоны}
+\begin{itemize}[noitemsep]
+    \item решение в стиле C (\texttt{\#define})
+    \item шаблонные классы
+    \item шаблонные функции
+    \item специализация шаблонов (частичные и полные; в т.ч. для функций)
+    \item шаблонный параметр, не являющийся типом
+\end{itemize}
+
+\section{Исключения}
+\begin{itemize}[noitemsep]
+    \item обработка ошибок в стиле C
+    \item try/catch/throw
+    \item исключения в конструкторах и деструкторах
+    \item идиома RAII: использование и примеры классов
+    \item гарантии исключений
+\end{itemize}
+
+\section{Ввод-вывод в С++}
+\begin{itemize}[noitemsep]
+    \item иерархия классов
+    \item методы/флаги/манипуляторы
+    \item обработка ошибок
+    \item ввод-вывод пользовательских типов
+\end{itemize}
+
+\section{Приведение типов}
+\begin{itemize}[noitemsep]
+    \item C-style cast, static\_cast, const\_cast, reinterpret\_cast - поведение и преимущества
+    \item RTTI и dynamic\_cast
+\end{itemize}
+
+\section{Последовательные контейнеры}
+\begin{itemize}[noitemsep]
+	\item string, vector, list
+	\item array
+	\item внутреннее устройство и основные операции
+	\item итераторы и их инвалидация
+\end{itemize}
+
+\section{Ассоциативные контейнеры}
+\begin{itemize}[noitemsep]
+	\item set, multiset, map, multimap
+	\item unordered\_set, unordered\_map
+	\item внутреннее устройство и основные операции
+	\item итераторы и их инвалидация
+\end{itemize}
+
+\section{Алгоритмы}
+\begin{itemize}[noitemsep]
+	\item функторы
+	\item обзор алгоритмов с примерами (swap, iter\_swap, sort, find, copy, unique, remove\_if, lower\_bound)
+	\item erase-remove idiom
+	\item реализация алгоритмов через итераторы
+\end{itemize}
+
+\section{Реализация итераторов и алгоритмов}
+\begin{itemize}[noitemsep]
+	\item реализация собственного итератора
+	\item \texttt{value\_type, iterator\_category}
+	\item \texttt{std::advance, std::distance} (зачем и реализация)
+\end{itemize}
+
+\section{С++11. Разное.}
+\begin{itemize}[noitemsep]
+	\item \texttt{lambda} и захваты
+	\item \texttt{auto, decltype}
+	\item \texttt{initializer\_list}
+	\item \texttt{shared\_ptr, unique\_ptr} (использование)
+\end{itemize}
+
+\section{move семантика}
+\begin{itemize}[noitemsep]
+	\item rvalue и lvalue
+	\item rvalue references
+	\item move constructor, move assignment
+	\item std::move
+\end{itemize}
+
+\section{Метапрограммирование - I}
+\begin{itemize}[noitemsep]
+	\item решение в стиле C (\texttt{\#define, \#ifdef})
+	\item \texttt{constexpr, static\_assert}
+	\item SFINAE, реализация предиката для типа (\texttt{has\_iterator, is\_integral})
+\end{itemize}
+
+\section{Метапрограммирование - II}
+\begin{itemize}[noitemsep]
+	\item переменное число параметров в стиле C (\texttt{va\_arg, va\_list, va\_start, va\_end})
+	\item variadic templates (для функций)
+	\item std::function (использование)
+	\item std::bind (использование)
+\end{itemize}
+
+\section{Многопоточное программирование}
+\begin{itemize}[noitemsep]
+	\item std::thread
+	\item std::mutex
+	\item std::conditional\_variable
+\end{itemize}
+\end{document}
