@@ -1,0 +1,137 @@
+\section{Метапрограммирование - II}
+\begin{itemize}[noitemsep]
+	\item переменное число параметров в стиле C (\texttt{va\_arg, va\_list, va\_start, va\_end})
+	\item variadic templates (для функций)
+	\item std::function (использование)
+	\item std::bind (использование)
+\end{itemize}
+
+\subsection{Переменное число аргументов в стиле С}
+В функции printf первым аргументом идет шаблон, а далее любое количество аргументов. 
+Для этого используются три макроса \texttt{va\_start, va\_arg, va\_end}. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=printf]{cpp}
+void simple_printf(const char* fmt, ...) {
+	va_list args;
+	va_start(args, fmt); 
+	// Макрос записывает в args адрес начала следующего за fmt параметра на стеке
+	while (*fmt != '\0') {
+		if (*fmt == 'd') {
+			int i = va_arg(args, int); // достаем из стека переменную типа int
+			// здесь выводим int с помощью putc
+		}
+		fmt++;
+	}
+	va_end(args);
+}
+
+// могут возникать труднообнаруживаемые ошибки
+printf("%s", 5);
+printf("%d %d", 4);
+printf("%d", 4, 5);
+\end{minted}
+
+\subsection{Variadic template}
+Шаблон с переменным числом аргументов, подобие рекурсии.
+Для рекурсии нам нужен переход о n к n-1 элементу и база, где нужно остановится.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+template<typename T>
+T sum(T n) { return n; }
+
+template<typename T, typename... Args>
+T sum(T n, Args... rest) { return n + sum(rest...); }
+
+double d = sum(3, (double)4.3, 5);
+\end{minted}
+Многоточие будет отщипывать один аргумент, далее тот же шаблон будет применяться, пока не останется один аргумент и вызовется база.
+
+Для данного примера компилятор сгенерирует  три функции:
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+T sum(T, Args ...) [with T = int; Args = {double, int}];
+T sum(T, Args ...) [with T = double; Args = {int}];
+T sum(T, Args ...) [with T = int];
+\end{minted}
+
+\subsection{Переменное число аргументов в С++11}
+С помощью variadic template можно реализовать printf так, чтобы мы получали информацию об ошибках компиляции.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+void printf(const char *s) {
+	while (*s) {
+		if (*s == '%' && *(++s) != '%')
+			throw std::runtime_error("invalid format");
+		std::cout << *s++;
+	}
+}
+
+template<typename T, typename... Args>
+void printf(const char *s, T value, Args... rest) {
+	while (*s) {
+		if (*s == '%' && *(++s) != '%') {
+			std::cout << value;
+			printf(++s, rest...);
+			return;
+		}
+		std::cout << *s++;
+	}
+	throw std::logic_error("extra arguments provided to printf");
+}
+\end{minted}
+
+\subsection{std::function}
+Используется для создания функций на этапе компиляции.  Например, есть функция с тремя параметрами, а нам нужно вызвать ее с двумя параметрами, а третий зафиксирован. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include <functional>
+void execute(const vector<function<void ()>>& fs) { 
+// здесь может лежать и функция и функтор и ламбда, главное без параметров и типа void
+	for (auto& f: fs) f();
+}
+
+void simple_func() {
+	cout << "simple function" << endl;
+}
+
+struct functor {
+	void operator () () const {
+		cout << "functor" << endl;
+	}
+}
+
+int main() {
+	vector<function<void ()>> x;
+	x.push(simple_func);
+	functor functor_instance;
+	x.push_back(functor_instance);
+	x.push_back([] () { cout << "lambda" << endl; });
+	execute(x);
+}
+\end{minted}
+
+\subsection{std::bind}
+Позволяет создать обертку над функцией, уменьшив количество параметров. 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include<functional>
+
+void show_text(const string& t) { // есть параметр
+    cout << "Text: " << t << endl;
+}
+
+int main() {
+	vector<function<void ()>> x;
+	function<void ()> f = bind(show_text, "Hello");
+	x.push_back(f);
+	execute(x);
+\end{minted}
+
+\subsection{placeholder}
+Есть функция с параметрами, хотим подставить первый параметр другой функции на место второго.  
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+#include <functional>
+using namespace std::placeholders;
+
+int multiplay (int a, int b) { return a * b; }
+
+int main() {
+    auto f = bind(multiplay, 5, _1); // подставляем первый параметр из f во второй из multyplay
+	cout << "out: " << f(6); // = 30
+}
+\end{minted}
+
