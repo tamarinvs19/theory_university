@@ -4,4 +4,156 @@
 	\item std::mutex
 	\item std::conditional\_variable
 \end{itemize}
-i12
+\begin{description}
+	\item[Процессы (программы)] независимые адресные пространства
+	\item[Потоки (функции в программе)]
+		имеют общий доступ к переменным (общее адресное пространство)
+\end{description}
+Во время передачи управления от одного потока другому: сохранить значения регистров в память и загрузить из пямяти для нового потока. Если потоков очень много, накладные расходы сделают вычисления неэффективными.
+
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=параллельное сложение векторов]{cpp}
+#include <vector>
+#include <thread>
+
+typedef std::vector<int> ivect;
+void sum_vec (const ivect* v1, const ivect* v2, ivect* res, size_t start, size_t end) {
+	for (int i = start, i < end; ++i)
+		(*res)[i] = (*v1)[i] + (*v2)[i];
+}
+
+int main() {
+	ivect v1(100000); ivect v2(100000); ivect res(100000);
+	size_t m = v1.size() / 2;
+	std::thread t1(sum_vec, &v1, &v2, &res, 0, m);
+	std::thread t2(sum_vec, &v1, &v2, &res, m, v1.size());
+	t1.join(); t2.join(); 
+	return 0;
+}
+\end{minted}
+\begin{verbatim}
+$ g++ -std=c++11 vec_sum.cpp -o vs -lpthread
+\end{verbatim}
+
+\subsection{Ссылки}
+Когда мы передаем какие-то аргументы, в std::thread создаются внутри копии параметров и передает их в запускаемую функцию. ref и cref говорят, что нужно передавать тссылку, а не копию.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::thread t1(sum_vec, std::cref(v1), std::cref(v2), std::ref(res), 0, m);
+\end{minted}
+\subsection{Race conditions}
+Так как потоки переключаются ОС, могут возникать ситуации гонок, результат зависит от порядка переключения между потоками. Чтобы избежать этого можно использовать std::mutex.
+
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+struct Counter {
+	std::mutex mutex;
+	int value;
+
+	Counter() : value(0) {}
+
+	void increment() {
+		mutex.lock();
+		++value; // здесь может находится только один поток, остальные будут ждать выше
+		mutex.unlock();
+	}
+};
+\end{minted}
+
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=Обработка исключений]{cpp}
+class Stocks {
+	std::list<int> l;
+	std::mutex m;
+
+	void calc(..) {
+		if (..) throw std::logic_error(..);
+		..
+	}
+
+	void fill(..) {
+		std::lock_guard<std::mutex> lg(m);
+		// если используем m.lock/unlock после исключения потоки будут вечно ждать освобождения mutex
+		for (..)
+			l.insert(it); 
+		calc();
+	}
+
+	void deplete(..) {
+		std::lock_guard<std::mutex> lg(m);
+		for (..) 
+			l.erase(it);
+	}
+};
+\end{minted}
+
+\subsubsection{deadlock}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+std::mutex a, b;
+void f1() {
+	a.lock();
+	b.lock(); // 1
+	b.unlock();
+	a.unlock();
+}
+void f2() {
+	b.lock();
+	a.lock(); // 2
+	a.unlock();
+	b.unlock();
+}
+\end{minted}
+Первый поток оказался в 1, заблокировал a и ждет, когда второй разблокирует b. Второй находится в 2, ждет когда первый разблокирует a. 
+
+\subsection{Циклический буфер}
+Пусть есть две модели: producers и consumers. Первые складывают задания в очередь, вторые достают и обрабатывают. Пусть очередь имеет фиксированный размер.
+
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
+struct BoundedBuffer {
+	int* buffer;
+	int capacity;
+
+	int begin; int end; int count;
+
+	std::mutex lock;
+
+	std::condition_variable not_full;
+	std::condition_variable not_empty;
+
+	BoundedBuffer (int capacity) : 
+			capacity(capacity), begin(0), end(0), count(0) {
+		buffer = new int[capacity];
+	}
+
+	~BoundedBuffer() {
+	    delete[] bufffer;
+	}
+
+	deposit (int data) {
+		std::unique_lock<std::mutex> l(lock);
+
+		not_full.wait(l, [this](){ return count != capacity; });
+		// освободили mutex и заснули, не тратим ресурсы
+		// когда notify проснулся, проверяем условие и забираем mutex
+		
+		buffer[end] = data;
+		end = (end + 1) % capacity;
+		++count;
+
+		l.unlock();
+		not_emplty.notify_one(); // будим одного любого
+		// notify_all - разбудить всех
+	}
+
+	int fetch () {
+		std::unique_lock<std::mutex> l(lock);
+		not_empty.wait(l, [this](){ return cout != 0; }); 
+
+		int result = buffer[begin];
+		begin = (begin + 1) % capacity;
+		--count;
+
+		l.unlock();
+		not_full.notify_one();
+
+		return result;
+	}
+}
+\end{minted}
+
