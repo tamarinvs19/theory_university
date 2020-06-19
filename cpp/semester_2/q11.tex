@@ -4,8 +4,7 @@
 	\item \texttt{constexpr, static\_assert}
 	\item SFINAE, реализация предиката для типа (\texttt{has\_iterator, is\_integral})
 \end{itemize}
-\subsection{решение в стиле С}
-Можно написать условие через \texttt{\#ifdef}, там указать \texttt{\#error}, если условие выполнится, и мы попадем на \texttt{\#error}, тогда возникнет ошибка предпроцессора.
+Метапрограммирование -- алгоритмы, выполняемые во время компиляции программы: вычисляют значение/константа (define, constexpr) или тип (type deduce), генерируют  алгоритм (variadic templates), выбор варианта программы (ifdef, enable\_if).
 
 \subsection{\texttt{constexpr}}
 Это модификатор функции, говорящий о том, что для явного аргумента можно вычислить во время компиляции и заменить на результат. На такую функцию накладывается несколько ограничений: (только С++11) однострочная, не должна вызывать функцию не constexpr, нет try/catch, не virtual, \ldots 
@@ -45,6 +44,26 @@ fast_vector<int> v;
 
 \subsection{SFINAE}
 Используется, чтобы понять есть ли у класса метод с определенными параметрами во время компиляции.
+При выборе одной из перегрузок шаблонной функции варианты, вызывающие синтаксическую ошибку, не вызывают ошибку компиляции, а исключаются из списка кандидатов.
+
+\subsubsection{has\_iterator}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=has\_iterator]{cpp}
+template <typename T>
+struct has_iterator {
+	template has_iterator {
+	template <typename U>
+	static char test (typename U::iterator* x);
+
+	template<typename U>
+	static long test(U* x);
+
+	static const bool value = sizeof(test<T>(0)) == 1;
+};
+std::cout << has_iterator<char>::value << std::endl;
+std::cout << has_iterator<std::vector<int>>::value << std::endl;
+\end{minted}
+
+\subsubsection{has\_function}
 \begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=]{cpp}
 class Foo {
 public:
@@ -77,4 +96,38 @@ int main() {
 }
 \end{minted}
 
+\subsection{решение в стиле С}
+Можно написать условие через \texttt{\#ifdef}, там указать \texttt{\#error}, если условие выполнится, и мы попадем на \texttt{\#error}, тогда возникнет ошибка предпроцессора.
 
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=static\_assert]{cpp}
+#include <limits.h>
+#define SECONDS(age) (age * 365 * 24 * 60 * 60)
+
+main() {
+    #if INT_MAX < SECONDS(12)
+		#error Integer size cannot hold age in seconds
+    #endif
+}
+\end{minted}
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,frame=single,label=ifndef-else]{cpp}
+#ifndef __SSE__
+float euclidian(int n, float* x, float* y) {
+	for (int i = 0; i < n; ++i) {
+		float num = x[i] - y[i];
+		result += num * num;
+	}
+}
+#else
+float euclidian(int n, float* x, float* y) {
+	__m128 euclidian = _mm_setzero_ps();
+	for (; n > 3; n -= 4) {
+		__128 a = _mm_loadu_ps(x);
+		__128 b = _mm_loadu_ps(y);
+		__128 a_minus_b = _mm_sub_ps(a, b);
+		__128 a_minus_b_sq = _mm_mul_ps(a_minus_b, a_minus_b);
+		euclidian = _mm_add_ps(euclidian, a_minus_b_sq);
+		x += 4; y += 4;
+	}
+}
+#endif
+\end{minted}
