@@ -5,54 +5,79 @@
 \lecture{7}{20 march}{\dag}
 \section{Производные высших порядков}
 \begin{defn}
-    Песть $ U \subset \R^{m} $, $ f\colon U \to  \R$, то есть $ f(x) = f(x_1, \ldots x_{n})$. Частная производная
+	Пусть $ U \subset \R^{m} $, $ f\colon U \to  \R$, то есть $ f(x) = f(x_1, \ldots x_{n})$. \textsf{Частная производная}
     \[
 	\partial _jf(x)  = \lim_{t \to  0} \frac{f(x_t e_j) - f(x)}{t}
     \] 
-    может бвть определена на каком то подмножестве $ U$ (для простоты будем считать, что на всем  $ U$ ). То есть $ \partial _j f \colon U \to \R$ --- функция, у которой могут быть часчтные производные
+    может быть определена на каком-то подмножестве $ U$ (для простоты будем считать, что на всем  $ U$ ). То есть $ \partial _j f \colon U \to \R$ --- функция, у которой могут быть частные производные
     \[
-	\partial _k \partial _j f(x) = \partial x_{x_k} \partial _{x_j}f(x) = \frac{\partial ^2}{\partial _{x_k} \partial _{x_j}} = \partial ^2_{x_j x_k} f(x)
-    \] --- вторая производная. 
+		\partial _k \partial _j f(x) =
+		\partial _{x_k} \partial _{x_j}f(x) =
+		\frac{\partial ^2}{\partial _{x_k} \partial _{x_j}} (x)= \partial ^2_{x_j x_k} f(x)
+    \] --- вторая частная производная по $ x_i$ и  $ x_j$ в точке  $ x$. 
 	По индукции можно определить  $ k$-ю производную.
-	%формула
+	\[
+		\frac{\partial ^{k} f}{ \partial _{ x_{j_k} } \ldots \partial _{x_{j_1}}  } (x) =
+		\partial _{j_k} \ldots \partial _{j_1} f(x)
+	.\] 
 \end{defn}
 \begin{thm}[о перестановочности производных]
-Пусть функция $ f\colon U \subset \R^{m} \to  \R$ имеет вторые частные производные  $ \partial _{x_j} \partial _{x_k} f$ и $ \partial _{x_k} \partial _{x_j}$ в $ U$ и они непрерывны в точке   $ x \in U$. Тогда $ \partial _{x_j} \partial _{   x_j} f(x) = \partial _{x_j} \partial _{  x_{k}}f(x)$
+Пусть функция $ f\colon U \subset \R^{m} \to  \R$ имеет вторые частные производные  $ \partial _{x_j} \partial _{x_k} f$
+и $ \partial _{x_k} \partial _{x_j}$ в $ U$ и они непрерывны в точке   $ x \in U$. 
+Тогда $ \partial _{x_j} \partial _{   x_j} f(x) = \partial _{x_j} \partial _{  x_{k}}f(x)$.
 \end{thm}
 \begin{proof}
     Зафиксируем все переменные кроме $ x_k$ и $ x_j$.
+	Тогда можем думать, что это и есть функция от двух переменных.
     \[
 	f(x) = f(x_1, x_2)
     .\] 
+
+	Рассмотрим точку $ (x_1, x_2)$ и точки на малом расстоянии, принадлежащие $ U$.
+\begin{figure}[ht]
+    \centering
+    \incfig{replace-diff}
+    \caption{}
+    \label{fig:replace-diff}
+\end{figure}
+	Изучим следующее выражение:
     \[
-	\underbrace{F(h_1, h_2)}_{ \varphi (1) - \varphi (0)} = f(x_1+h_1, x_2+h_2) - f(x_1, x_2+h_2) - f(x_1 + h_1, h_2) + f(x_1, x_2)
-    .\] 
-    Где $ \varphi (t) = f(x_1+h_1, x_2+h_2) - f(x_1, x_2+h_2)$.
+	\underbrace{F(h_1, h_2)}_{ \varphi (1) - \varphi (0)} =
+	f(x_1+h_1, x_2+h_2) - f(x_1, x_2+h_2) - f(x_1 + h_1, h_2) + f(x_1, x_2)
+    ,\] 
+    где $ \varphi (t) = f(x_1+h_1, x_2+h_2) - f(x_1, x_2+h_2)$.
+	Оценим двумя способами по направлениям. Сначала фиксируем $ x$ и группируем пары 1-2 и 3-4.
+
     Это дифференцируемая функция. Можем взять производную
-    \[
+   \[
 	\varphi '(t) = \partial _{x_2}f(x_1 + h_2, x_2+h_2) \cdot h_2 - \partial _{x_2}f(x_1, x_2+h_2)\cdot h_2 
     .\] 
-    Сгруппируем второе с четвертым:
+	По теореме Лагранжа $ F(h_1, h_2) = \varphi '(\theta _2)$.
+	Перепишем значение $ F$ и воспользуемся тем, что $ x_2+\theta _2 h_2$ зафиксировано, поэтому нужно посчитать производную по первой координате, взяв промежуточную точку $ x_1 + \theta _1 h_1$:
     $$
     \begin{aligned}
-	F(h_1, h_2) = \varphi '( \Theta_2) = h_2  \cdot \left( \partial _{x_2}f(x_1 + h_1, x_2+\Theta h_2) - \partial _{x_2}f(x_1, x_2+ \Theta h_2) \right)  = \\
-	= h_2 h_1 \partial _{x_1} \partial _{x_2} f(x_1+ \Theta h_1, x_2+ \Theta_2 h_2) = 
+	F(h_1, h_2) = \varphi '( \theta_2) = h_2  \cdot \left( \partial _{x_2}f(x_1 + h_1, x_2+\theta_2 h_2) - \partial _{x_2}f(x_1, x_2+ \theta_2 h_2) \right)  = \\
+	= h_2 h_1 \partial _{x_1} \partial _{x_2} f(x_1+ \theta _1 h_1, x_2+ \theta_2 h_2) = 
     \end{aligned}
     $$
-    Кроме того существуют $ \tilde \Theta_1, \tilde \Theta_2$, что
+	Совершенно аналогично можно было сгруппировать другие пары слагаемых, поэтому
+	существуют $ \tilde \theta_1, \tilde \theta_2 \in (0, 1)$, что
     \[
-	= h_1 h_2  \partial _{x_2} \partial _{x_1} f(x_1 + \Theta_1 h_1, x_2+ \Theta_2 h_2)
+	= h_1 h_2  \partial _{x_2} \partial _{x_1} f(x_1 + \tilde\theta_1 h_1, x_2+ \tilde\theta_2 h_2)
     .\] 
-    Посчитаем предел  и воспользуемся непрерывностью производных
+	Посчитаем предел (с одной стороны, это $ \partial _{x_1} \partial _{x_2}$, с другой, $ \partial _{x_{2}} \partial _{x_1}$) и воспользуемся непрерывностью производных
     \[
-	\lim_{h \to  0} \frac{F(h_1, h_2)}{h_1h_2}  = \underbrace{\lim_{h \to  0} \partial _{x_1} \partial _{   x_2 }f(x_1 + \Theta_1 h_1, x_2 + \Theta_2 h_2)}_{\partial _{x_1} \partial _{x_2} f(x_1, x_2)} = \underbrace{\lim_{h \to  0} \partial _{x_2} \partial _{x_1} f(x_1 + \tilde \Theta 1 h_1, x_2 + \tilde \Theta_2 h_2) }_{\partial _{x_2} \partial _{x_1} f(x_1, x_2)}
+	\lim_{h \to  0} \frac{F(h_1, h_2)}{h_1h_2}  =
+	\underbrace{\lim_{h \to  0} \partial _{x_1} \partial _{   x_2 }f(x_1 + \theta_1 h_1, x_2 + \theta_2 h_2)}_{\partial _{x_1} \partial _{x_2} f(x_1, x_2)} =
+	\underbrace{\lim_{h \to  0} \partial _{x_2} \partial _{x_1} f(x_1 + \tilde \theta _1 h_1, x_2 + \tilde \theta_2 h_2) }_{\partial _{x_2} \partial _{x_1} f(x_1, x_2)}
     .\] 
 \end{proof}
+
 \begin{defn}
     $ C^{k}(U, \R)$ --- множество функций, имеющих все $ k$-ые частные производные, непрерывные в  $ U$.
 \end{defn}
 \begin{cor}
-    Если $ f \in C^{k}(U , \R)$, то для всех $ n \le k$, $ 1 \le  j_1, \ldots j_n$, $ \sigma \in S_n $, $ x \in U$ верно равенство
+    Если $ f \in C^{k}(U , \R)$, то для всех $ n \le k$, $ 1 \le  j_1, \ldots j_n \le m$, $ \sigma \in S_n $, $ x \in U$ верно равенство
     \[
 	\partial _{ j_n }\ldots \partial _{j_1}f(x) = \partial _{j_{ \sigma (n)}}\ldots \partial _{j _{   \sigma (1)}}
     .\] 
@@ -60,16 +85,26 @@
 \subsection{Общий случай}
 \paragraph{Подход первый}
 Пусть $ f\colon  U \subset X \to  Y$ дифференцируемо на $ U$, тогда  $ df \colon U \to  L(X, Y)$ тоже отображение между нормированными пространствами и может оказаться дифференцируемо в точке $ x \in U$. 
-\begin{defn}
-    Если отображение $ df$ определенио в окрестности \ldots 
+\begin{defn}[Страшие дифференциалы]
+    Если отображение $ df$ определено в окрестности точки $ x$ и дифференцируемо в этой точке, то говорят, что  $ f$  {\sf дважды дифференцируемо} в точке $ x$. 
+
+	Дифференциал отображения  $ df$ называется  {\sf вторым дифференциалом}.  
+	\[
+		d^2f(x) = d(df)(x) \in  L(X, L(X, Y)) = L(X, X; Y)  \text{ --- \sf билинейное отображение на } X  \times X
+	.\] 
+	По индукции можно определить {\sf полилинейное отображение на $ X^{n}$}:
+	\[
+		d^{n}f(x) = d(d^{n-1}f)(x) \in  L(\underbrace{X, \ldots X}_{n}; Y)
+	.\] 
 \end{defn}
 \paragraph{Подход второй}
-\begin{defn}
+\begin{defn}[Производная по вектору]
     Пусть $ f\colon U \subset  X \to  Y$. Определим
     \[
 	\frac{\partial f}{\partial h}(x) = \partial _h f(x) = \lim_{t \to  0} \frac{f(x+th) - f(x)}{t} 
     .\] 
-    Если $ \partial _k$ существует в $ U$, то  $ \partial _h f \colon U \to  Y$ и может оказаться, что существует производная по какому-нибудь вектору. ТО есть можно определить вторую производную по паре векторов
+    Если $ \partial _k$ существует в $ U$, то  $ \partial _h f \colon U \to  Y$ и может оказаться, что существует производная по какому-нибудь еще вектору.
+	То есть можно определить вторую производную по паре векторов
     \[
 	\partial _{h_2} \partial _{h_1}f(x)
     .\] 
@@ -85,91 +120,146 @@
     $ $
     \begin{enumerate}[noitemsep]
 	\item $ \partial _{\lambda h}f(x) = \lambda \partial_h f(x)$
+		\begin{proof}
+		    По определению
+		\end{proof}
 	\item Если $ f$ дифференцируема в точке  $ x$, то  $ \partial _h f(x) = df(x) h$
+		\begin{proof}
+			Посчитаем
+			\[
+				\frac{f(x+th) - f(x)}{t} = \frac{\cancel{f(x)} + df(x)(th) + \o(\ldots ) - \cancel{f(x)}}{t}  = df(x)(h)
+			.\] 
+		\end{proof}
 	\item Если $ A \in L(Y, Z) $, то $ \partial _h (A \circ f) (x) = A\partial _h f(x)$
+		\begin{proof}
+		    \[
+				\frac{Af(x+th) - Af(x)}{t} = A \left( \frac{f(x+th) - f(x)}{t} \right) 
+		    .\] 
+			Так как $ A$ --- непрерывное отображение, в пределе тоже можем вынести  $ A$.
+		\end{proof}
     \end{enumerate}
 \end{prop}
 \subsection{Связь между двумя подходами}
 \begin{thm}[о связи старших дифференциалов и производных по векторам]
-    Пусть $ f \colon U \subset X \to  Y$ дифференцируемо  в точке $ x$. 
+    Пусть $ f \colon U \subset X \to  Y$ $ n$ раз дифференцируемо  в точке $ x$. 
     Тогда  $ \forall h_1, \ldots h_n \in X\colon $
     \[
-	d^{n}f(x) (h_1, \ldots h_n) = \partial _{  h_1} \ldots \partial _{h_n})f(x)
+		(d^{n}f(x) (h_1, \ldots h_n) = \partial _{  h_1} \ldots \partial _{h_n})f(x)
     .\] 
 \end{thm}
 \begin{proof}
-    Докажем для двух, то есть $ \partial ^2f(x) h_1, h_2) = \partial _{h_1} \partial _{h_2}f(x)$.
+	Докажем для двух, то есть $ \partial ^2f(x) (h_1, h_2) = \partial _{h_1} \partial _{h_2} f(x)$.
     \[
     \Bigl(	d(df)(x))h_1\Bigr) h_2 = \Bigl(\partial _{h_1} (df) (x) \Bigr)h_2
     .\] 
-    Это равно
+
+    Это равно по определению
     \[
-	\left(   \lim_{t \to  0}  \frac{df(x+ th_1) - df(x)}{t}\right) h_2 = \lim_{t \to  0} \frac{df(x+th_1)h_2 - df(x)h_2}{t} = \partial _{h_1}\left( df(x) h \right) = \partial _{h_1} \left( \partial _{h_1} f(x) \right) 
+	\left(   \lim_{t \to  0}  \frac{df(x+ th_1) - df(x)}{t}\right) h_2 =
+\]
+Если последовательность операторов $ A_n$ сходится к оператору  $ A_0$, то есть  $ \| A_0 - A_n \| \to  0_{L(X, Y)} $, то $ A_n h_2 \to A_0 h_2$:
+	\[
+	 = \lim_{t \to  0} \frac{df(x+th_1)h_2 - df(x)h_2}{t} 
+	 = \partial _{h_1}\left( df(x) h_2 \right) 
+	 = \partial _{h_1} \left( \partial _{h_1} f(x) \right) 
     .\] 
     По индукции можно доказать, что что утверждение верно для $ n$ переменных.
 \end{proof}
 \subsection{Симметричность дифференциалов}
 \begin{thm}[О симметричности $ n$-го дифференциала]
-    Пусть $ f\colon U \subset X \to  Y$ дифференцируемо $ n$ раз  в точке  $ x \in U$. Тогда полилинейное отображение $ d^{n}f(x)$ является симметричной относительно любой пары своих аргументов.
+    Пусть $ f\colon U \subset X \to  Y$ дифференцируемо $ n$ раз  в точке  $ x \in U$.
+	Тогда полилинейное отображение $ d^{n}f(x)$ является симметричной относительно любой пары своих аргументов.
+	\[
+		d^{n}f(x) (h_1, \ldots h_n) = \partial _{h_1} \ldots \partial _{h_n}f(x)
+	.\] 
 \end{thm}
 \begin{proof}
-    Докажем, что второй дифференциал симметричный.  Пусть $ \exists d^{2}f(x)$ и для всех $ h_1, h_2\colon d^2f(h_1, h_2) = d^2f(x_2, h_1)$.  
+    Докажем, что второй дифференциал симметричный.
+	Пусть $ \exists d^{2}f(x)$ и для всех $ h_1, h_2\colon d^2f(h_1, h_2) = d^2f(h_2, h_1)$.  
+
+	Рассмотрим функцию 
+	 \[
+		 F(t, h_1, h_2) = f( x+t(h_1+h_2)) - f(x+th_1) - f(x+th_2) + f(x)
+	.\] 
+\begin{figure}[ht]
+    \centering
+    \incfig{symmetric-diff}
+    \caption{}
+    \label{fig:symmetric-diff}
+\end{figure}
     Хотим доказать, что
     \[
-	\lim_{t \to  0}\frac{F(t, h_1, h_2 )}{t^2} = df(x) h_1,h_2
+	\lim_{t \to  0}\frac{F(t, h_1, h_2 )}{t^2} = d^2f(x) h_1 h_2
     .\] 
     То есть
     \[
-	\| F(t, h_1, h_2) - t^2 d^2f(h_1,h_2) \| = o(t^2) 
+	\| F(t, h_1, h_2) - t^2 d^2f(h_1, h_2) \| = \o(t^2) 
     .\] 
-    Заведем отображени $ F(t, h_1, h_2) = f(x + t(h_1, h_2)) - f(x +th_1) - f(x + th_2) + f(x)$.
-    Пусть $ \varphi (v) = f(x+ t(h_2 + v)) - f(x+tv)$, где $ v$ сонаправлен с  $ h_2$ и $ \| v \| \le  \| h_2 \| $.
 
+    Заведем отображение 
+    $ \varphi (v) = f(x+ t(h_2 + v)) - f(x+tv)$, где $ v$ сонаправлен с  $ h_2$ и $ \| v \| \le  \| h_2 \| $.
+	Тогда
     \[
 	F(t, h_1, h_2) = \varphi (h_2) - \varphi (0)
     .\] 
 Применим теорему о конечном приращении
 \begin{align*}
-    \|  \varphi (h_1) - \varphi (0) - \underbrace{(t^2 d^2f(x)h_1)}_{A}h_2 \| \le \sup_{\Theta \in (0, 1)}  \| d \varphi (\Theta h_1 - t^2 d^2f(x)h_1 \|_{L(X, Y)}  \cdot \| h_2 \|_{\| X \| }  = \\
-    = \sup_{\Theta \in (0, 1)} \| df(x + t(h_1 + \Theta h_2)) \cdot  t  - df(x + t \Theta h_2)t -t^2d^2f(x)h_1\| \cdot \| h_2 \| _{\| X \| }  
+    \|  \varphi (h_2) - \varphi (0) - \underbrace{(t^2 d^2f(x)h_1)}_{A}h_2 \| 
+	\le \sup_{\theta \in (0, 1)}  \| d \varphi  (\theta h_2 - t^2 d^2f(x)h_1 \|_{L(X, Y)}  \cdot \| h_2 \|_{\| X \| }  = \\
+    = \sup_{\theta \in (0, 1)} \| df(x + t(h_1 + \theta h_2)) \cdot  t  - df(x + t \theta h_2)\cdot t -t^2d^2f(x)h_1\| \cdot \| h_2 \| _{\| X \| }  =
 \end{align*}
-Известно, что $ df(x + \tilde h) = df(x) + d^2f(x) \tilde h + \alpha (\tilde h)$, где $ \alpha (\tilde h) = o(\tilde h)$ (это все операторы).
-Получаем
+Воспользуемся тем, что $ df(x)$ дифференцируемо.
+Известно, что $ df(x + \tilde h) = df(x) + d^2f(x) \tilde h + \alpha (\tilde h)$, где $ \alpha (\tilde h) = \o(\tilde h)$ (это все операторы).
+ Выносим $ t$ и получаем
 \[
-    \cancel {df(x)} + \underline{d^2f \Bigl(t (h_1 + \Theta h_2)\Bigr)} + \alpha (h_1+ \Theta h_2) - \cancel{df(x)} - \underline{d^2f(t \Theta h_1)} - \alpha (t\Theta h_1) - \underline{td^2f(x)h_1}
-.\] 
-Первое и четвертое сокращаются, третье и шестое равны $ o(t)$.
+	= \cancel {df(x)} + \underline{d^2f \Bigl(t (h_1 + \theta h_2)\Bigr)} + \alpha \bigl(t(h_1+ \theta h_2)\bigr) - \cancel{df(x)} - \underline{d^2f(t \theta h_1)} - \alpha (t\theta h_2) - \underline{td^2f(x)h_1}
+\] 
+Первое и четвертое сокращаются, подчеркнутые в сумме дают 0, третье и шестое равны $ o(t)$.
 Всего осталось  $ o(t^2)$.
 \end{proof}
+
 \begin{thm}[частный случай, $ X = \R^{m} ~\R^{n}$]
     Пусть $ \{e_j\}_{j=1}^{m}$ --- стандартный базис.
     \[
 	h_j = \left( h_j^{(1)}, \ldots h_j^{(m)} \right)  \sum_{k=1}^{m} h_{j}^{(k)} e_k 
     .\] 
     Тогда
-    \begin{align*}
-	d^{n}f(x) (h_1, \ldots h_m) & = d^{n}f(x) \left( \sum_{k=1}^{m} h_1^{(k)} e_k, \ldots \sum_{k=1}^{m} x_m^{(k)}e_k \right) 
-    \end{align*}
-   % пропущены формулы?! 
+	\[
+	\begin{aligned}
+	d^{n}f(x) (h_1, \ldots h_n) & = d^{n}f(x) \left( \sum_{k=1}^{m} h_1^{(k)} e_k, \ldots \sum_{k=1}^{m} x_m^{(k)}e_k \right) = \\
+								&= \sum_{1 \le k_1, \ldots k_n \le m}^{} h_1^{(k_1)}\cdot  \ldots  \cdot h_n^{(k_n)} d^{n}f(x)(e_{k_1}, \ldots e_{k_n}) = \\
+								&= \sum_{1 \le  k_1, \ldots k_n \le m}^{}  h_1^{(k_1)} \cdot \ldots \cdot h_n^{(k_n)} \partial _{k_1} \ldots \partial _{k_n}f(x)
+	\end{aligned}
+	\]
 \end{thm}
+
 \begin{thm}[еще более частный случай, $ X = \R^{m} , Y = \R, h_i = h_j$ ]
-    Если $ h = (h^{(1)}, \ldots h^{(n)}$, То
+	Если $ h = (h^{(1)}, \ldots h^{(n)})$, То
     \[
-	d^{n}f(x) (h, \ldots h) = \sum_{1 \le k_i \le m} \prod H^{(k_j)} \frac{\partial ^{n } f}{\partial x_{k_1} \ldots \partial x_{k_n}} = 
+		d^{n}f(x) (h_1, \ldots h_n) = \sum_{1 \le k_i \le m} \prod_{i=1}^{n} h_i^{(k_j)}\partial _{ k_i } f(x)
     .\] 
-    Сгруппируем одинаковые слагаемые, в которых $ \alpha _1$ раз происходит дифференцирование по $ x_1, \alpha _2$ --- по $ x_2$  \ldots $ a_m$ по  $ x_m$, $ \sum \alpha _j = n, ~ \alpha _j \in \Z^{+} $ 
-    \[
-=(h^{(1)})^{\alpha _1} \ldots (h^{(m)})^{\alpha _m} 
-=\sum_{\alpha = (\alpha _1, \ldots \alpha _m)} \frac{n!}{\alpha _1! \ldots \alpha _m!} \frac{\partial ^{n}f(x)}{(\partial x_1)^{\alpha _1} \ldots (\partial x_1)^{\alpha _m}}=
-    .\] 
+	\[
+		d^{n}f(x) = \sum_{1 \le k_i \le m}^{} \frac{\partial ^{n} f}{\partial _{x_{k_1}} \ldots \partial _{x_{k_n}}} (x) \partial _{x_{k_1}} \ldots \partial _{x_{k_n}} 
+	.\] 
+	Еще более частный случай, все $ h_i$ равны:
+	\[
+	\begin{aligned}
+		\partial ^{n} f(x) (\underbrace{h, \ldots h}_{n}) & = 
+														  & = \sum_{1 \le k_i \le m}^{} h^{(k_1)} \cdot  \ldots h^{(k_n)}\frac{\partial ^{n} f}{\partial _{x_{k_1}} \ldots \partial _{ x_{k_n} } } (x) =\\
+	\end{aligned}
+    \] 
+	Сгруппируем одинаковые слагаемые, в которых $ \alpha _1$ раз происходит дифференцирование по $ x_1, \alpha _2$ --- по $ x_2$  \ldots $ a_m$ по  $ x_m$, $ \sum \alpha _j = n, ~ \alpha _j \in \Z^{+} $.
+	\[
+	\begin{aligned}
+=\sum_{\alpha = (\alpha _1, \ldots \alpha _m)} \frac{n!}{\alpha _1! \ldots \alpha _m!} \frac{\partial ^{n}f(x)}{(\partial x_1)^{\alpha _1} \ldots (\partial x_1)^{\alpha _m}}
+\bigl(h^{(1)}\bigr)^{\alpha _1} \ldots \bigl(h^{(n)}\bigr)^{\alpha _m} 
+\end{aligned}
+\]
 \end{thm}
 \begin{name}
-    $ $
-    \\
-    $ \alpha  = (\alpha 1, \ldots \alpha _m)$ ---  мультииндекс, $ \alpha _j \in  \Z^{+}$,\\
-    $ \left| \alpha  \right| = \sum \alpha _j $ --- высота  $ \alpha $\\
-    $ \alpha !  = \prod \alpha _j ! = \prod (h^{(j)}{\alpha _j})$
-
+	$ \alpha  = (\alpha_1, \ldots \alpha _m)$ ---  {\sf мультииндекс}, $ \alpha _j \in  \Z^{+}$,
+	$ \left| \alpha  \right| = \sum \alpha _j $ --- {\sf высота}  $ \alpha $,
+    $ \alpha !  = \prod \alpha _j ! = \prod (h^{(j)}{\alpha _j})$.
 \end{name}
 Можно переписать формулу из теоремы
 \[
@@ -182,28 +272,46 @@
     .\] 
 \end{prac}
 \section{Многомерная формула Тейлора}
-Пусть $ f\colon U \subset \R^{m} \to  \R$, $ [x, x+h] \subset U, t \in (0, 1)$.Рассмотрим функцию $ \varphi (t) = f(x+th), ~\varphi \colon [0, 1] \to  \R$. Если $ f \in C^{k}(U, \R)$, то $ \varphi \in  C^{k}[0, 1]$.
-\begin{align*}
-    \varphi ' = df(x + th)h = \partial _h f(x+th) \\
-    \varphi ''(t) = \partial _h\partial _h f(x + th) = d^2f(x+ht)(h, h) \\
-    \vdots
+Пусть $ f\colon U \subset \R^{m} \to  \R$, $ [x, x+h] \subset U, t \in (0, 1)$
+.Рассмотрим функцию $ \varphi (t) = f(x+th), ~\varphi \colon [0, 1] \to  \R$.
+Если $ f \in C^{k}(U, \R)$, то $ \varphi \in  C^{k}[0, 1]$.
+\[
+\begin{aligned}
+	\varphi ' &= df(x + th)h = \partial _h f(x+th) \\
+	\varphi ''(t) &= \partial _h\partial _h f(x + th) = d^2f(x+ht)(h, h) \\
+				  &\vdots
     \\
-    \varphi ^{(n)} = \sum_{\lvert a \rvert \le  n} \frac{n! \partial ^{n} f}{\alpha ! \partial x^{\alpha }}  (x+ th) h^{\alpha }
-\end{align*}
+	\varphi ^{(n)} &= \sum_{\lvert a \rvert \le  n} \frac{n!}{a!}\frac{ \partial ^{n} f}{ \partial x^{\alpha }}  (x+ th) h^{\alpha } = d^{n}f(x+th) (h, \ldots h)
+\end{aligned}
+\]
+
 \begin{thm}[Формула Тейлора с остатком в форме Лагранжа]
-    Если $ f \in C^{n+1}(U, \R), ~[x, x+h] \subset U$, то существует $ \nu \in (0, 1)\colon $
+    Если $ f \in C^{n+1}(U, \R), ~[x, x+h] \subset U$, то существует $ \vartheta \in (0, 1)\colon $
     \[
-	f(x+h) = \sum_{\lvert \alpha  \rvert \le n}^{} \frac{h^{ a  }}{\alpha !} \frac{\partial \lvert \alpha  \rvert f}{\partial x^{\alpha }} + \sum_{\lvert \alpha  \rvert = n+1}^{} \frac{h^{\alpha }}{\alpha !} \frac{\partial ^{n+1} f}{\partial x^{\alpha }} (x + \vartheta h)
+	f(x+h) = 
+	\sum_{\alpha \le n}^{} 
+	\frac{h^{ \lvert a \rvert   }}{\alpha !} 
+	\frac{\partial ^{\lvert \alpha  \rvert} f}{\partial x^{\alpha }}(x) +
+	\sum_{\lvert \alpha  \rvert = n+1}^{} 
+	\frac{h^{\alpha  }}{\alpha !}
+	\frac{\partial ^{n+1} f}{\partial x^{\alpha }} (x + \vartheta h)
     .\] 
 \end{thm}
+\begin{proof}
+	Запишем формулу Тейлора с остатком форме Лагранжа для функции $ \varphi (t) = f(x+th)$:
+	\[
+		\varphi (1) = \varphi (0) + \varphi '(0) + \frac{\varphi  ''}{2!} + \ldots + \frac{\varphi ^{(n)}(0)}{n!} + \frac{\varphi ^{(n+1)} (\vartheta)}{(n+1)!}
+	.\] 
+	Подставим в $ \varphi (0)$ вместо $ \varphi $ соответствующее $ f$ и получим нужную формулу.
+\end{proof}
 \begin{thm}[Формула Тейлора в дифференциалах]
-    Если $ f \in C^{n+1}(U, \R), ~[x, x+h] \subset U$, то существует $ \nu \in (0, 1)\colon $
+    Если $ f \in C^{n+1}(U, \R), ~[x, x+h] \subset U$, то существует $ \vartheta  \in (0, 1)\colon $
     \[
 	f(x+h) = \sum_{k=0}^{n}  \frac{d^{k} f(x) h^{k}}{k!} + \frac{1}{(k+1)!} d^{k+1}f(x+ \vartheta h)h^{k+1}
     .\] 
 \end{thm}
 \begin{thm}[Формула Тейлора в дифференциалах в общем случае (без доказательства)]
-    Если $ f\colon X \to  Y, ~f \in C^{n+1}(U, Y), ~[x, x+h] \subset U$, то существует $ \nu \in (0, 1)\colon $
+    Если $ f\colon X \to  Y, ~f \in C^{n+1}(U, Y), ~[x, x+h] \subset U$, то существует $ \vartheta \in (0, 1)\colon $
     \[
 	f(x+h) = \sum_{k=0}^{n}  \frac{d^{k} f(x) h^{k}}{k!} + \frac{1}{(k+1)!} d^{k+1}f(x+ \vartheta h)h^{k+1}
     .\] 
@@ -212,6 +320,7 @@
 \begin{defn}
     Определение экстремумов, максимумов, минимумов, локальных и глобальных аналогично одномерным.
 \end{defn}
+
 \begin{thm}[необходимое условие экструмума]
     Пусть $ f\colon U \to  \R$, $ x_0 \in U$. Тогда
     \begin{enumerate}[noitemsep]
@@ -219,8 +328,11 @@
 	\item Если $ f$ дифференцируема в точке  $ x_0$, то $ df(x_0) = 0$
     \end{enumerate}
 \end{thm}
+\begin{proof}
+	Подставим $ \varphi (t) = f(x+th)$.
+\end{proof}
 \begin{note}
-    В случае дифференцируемости b $ X = \R^{m}$ на $ m$ координат точки  $ x_0$ получаем $ m$ уравнений.
+    В случае дифференцируемости и $ X = \R^{m}$ на $ m$ координат точки  $ x_0$ получаем $ m$ уравнений.
     \[
 	\partial _1 f(x_0) = \ldots = \partial _m f(x_m) = 0
     .\] 
@@ -230,21 +342,30 @@
     Точка $ x_0$ называется {\sf   стационарной} для $ f$, если  $ \grad f(x_0) = 0$.
 \end{defn}
 \begin{thm}[достаточное условие экструмума]
-    ПУсть $ f\colon U \subset X \to  \R$ дважды дифференцируема в окрестности точки $ x_0 \in  U$ и $ df(x_0) = 0$.
+    Пусть $ f\colon U \subset X \to  \R$ дважды дифференцируема в окрестности точки $ x_0 \in  U$ и $ df(x_0) = 0$.
     \begin{itemize}[noitemsep]
 	\item Если для некоторого $ \nu >0 $ и любого  $ h$ верно $ d^2f(x_0) (h, h) \ge  \nu \| h \|^2 $, то $ x_0$ --- точка локального минимума.
 	\item Если для некоторого $ \nu >0 $ и любого  $ h$ верно $ -d^2f(x_0) (h, h) \ge  \nu \| h \|^2 $, то $ x_0$ --- точка локального максимума.
     \end{itemize}
 \end{thm}
+
 \begin{proof}
-    По формуле Тейлора
+    По формуле Тейлора:
+	\[
+		f(x_0 + h) = f(x) + \underbrace{df(x_0)}_{=0}h + \frac{d^2f(x_0)(h, h)}{2} + \text{остаток}
+	.\] 
+	Разберем случай $ d^2f(x_0) (h, h) \ge v \cdot \| h^2 \| $, еще мы знаем, что остаток равен  $ \o(h^2)$. Тогда 
+	\[
+		f(x_0+h) \ge f(x_0)
+	.\] 
+	Поэтому $ x_0$ --- точка локального минимума.
 \end{proof}
 \begin{note}
     В $ \R^{m}$ сводится к положительной или отрицательной определенности матрицы, составленной из вторых частных производных. 
     \[
-    h^{T} 
+    h^{\top} 
     \begin{pmatrix}
-    \frac{\partial ^2f}{\partial x_1 \partial x_2} 
+    \frac{\partial ^2f}{\partial x_i \partial x_j} 
     \end{pmatrix}
     h
     .\] 
