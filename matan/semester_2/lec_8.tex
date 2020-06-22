@@ -8,12 +8,14 @@
 \begin{desc}
     Есть два шара с массами $ M$ и $ m \in (0, M)$. Шар с массой $ M$ летит со скоростью  $ V$ на покоящийся нар массой  $ m$. Какая скорость будет у малого шара после столкновения? И как ее вообще найти?
 \end{desc}
+\begin{center}
 \begin{figure}[ht]
     \centering
     \incfig{balls}
-    \caption{balls}
+    \caption{Столкновение шаров}
     \label{fig:balls}
 \end{figure}
+\end{center}
 После столкновения посчитаем импульс и энергию.
 По закону сохранения импульса и закону сохранения энергии
 \begin{align*}
@@ -38,17 +40,25 @@ m_1v_1^2 + m_2v_2^2 &= m_1 \widetilde{ v_1}^2 + m_2 \widetilde{ v_2}^2
 .\] 
 Если $ v_2=0$, 
 \[
-    \widetilde{ v_2} = \frac{2m_1v_1}{m_1+m_2} 
+	\widetilde{ v_2} = \frac{2m_1v_1}{m_1+m_2}  \in (v_1, 2v_1)
 .\] 
 \begin{defn}[Задача Гюйгенса]
-    С какими массами $ m_1, \ldots m_n$ разместить по пути покоящеися шары, чтобы передался максимальный импульс?
+    С какими массами $ m_1, \ldots m_n$ разместить по пути покоящиеся шары, чтобы передался максимальный импульс?
 \end{defn}
+\begin{figure}[ht]
+    \centering
+    \incfig{huygens-task}
+    \caption{Задача Гюйгенса}
+    \label{fig:huygens-task}
+\end{figure}
 \[
-    v \cdot  \frac{2M}{M+m_1} \cdot  \frac{2m_1}{m_1+m_2} \cdot \ldots \cdot \frac{2m_n}{m_n +m} = f(m_1, \ldots m_n) \cdot v \cdot 2^{n+1}
+	\widetilde{v} = v \cdot  \frac{2M}{M+m_1} \cdot  \frac{2m_1}{m_1+m_2} \cdot \ldots \cdot \frac{2m_n}{m_n +m} = f(m_1, \ldots m_n) \cdot v \cdot 2^{n+1}
 .\] 
-Нужно найти максимум этой функции. Он существует, так как в бесконечности  одной и переменных значение стремиться к 0.
 
-Посчитаем частные производные и 
+Нужно найти максимум этой функции. Он существует, так как в бесконечности  одной и переменных значение стремиться к 0.
+Обозначим $ m_0 = M, ~ m_{n+1} = m$.
+
+Посчитаем частные производные и приравняем к $ 0$ 
 \[
     \partial _j f(\ldots ) = 0 \Longleftrightarrow  m_j^2=m_{j-1}m_{j+1}
 .\] 
@@ -63,5 +73,199 @@ q =     \frac{M}{m_1}= \frac{m_1}{m_2} = \ldots = \frac{m_n}{m}
  \[
      \widetilde{ v} = 2^{n+1} \left( \frac{q}{q+1} \right) ^{n+1} v
  .\] 
- TODO: дописать
+ При $ n = 0$, получается  $ \widetilde{v} = 2\cdot \frac{\frac{M}{m}}{\frac{M}{n} + 1}  < 2$ 
+\begin{prac}
+    \[
+		\lim_{n \to \infty} \left( \frac{2 \sqrt[n]{\frac{M}{m} }}{\sqrt[n]{\frac{M}{m}+1 } }  \right) ^{n+1} = ?
+    .\] 
+\end{prac}
+\subsection{Кратчайшее расстояние до линейного подпространства}
+\begin{thm}
+	Пусть $ H$ --- пространство со скалярным произведением,  $ L \subset H$ --- линейное подмножество (подпространство), $ x_0 \in H$. Пусть $ z_0$ --- наилучшее приближение к $ x_0$ в $ L$, то есть
+	 \[
+	\| x_0 - z_0 \| = \min_{z \in  L} \| x_0 - z \| 
+	,\] 
+	тогда $ x_0-z_0 \perp L$, то есть $ \forall z \in L\colon \langle x_0 - z_0, z \rangle = 0$.
+\end{thm}
+\begin{proof}
+	Введем функцию $ f\colon L \to  R$, $ f(z) = \| x_0 - z \|^2 $. В точке $ z_0$ эта функция имеет минимум.
+	Хотим минимизировать $ f$.
+	 \[
+		 f(z) = \langle x_0 -z, x_0 -z \rangle = \langle z, z \rangle - \langle x_0, z \rangle - \langle z, x_0 \rangle + \langle x_0, x_0 \rangle
+	.\] 
+	Продифференцируем:
+	\[
+	\begin{aligned}
+		df(z_0)h &= \langle z_0, h \rangle + \langle h, z_0 \rangle - \langle x_0, h \rangle - \langle h, x_0 \rangle \\
+				 &= \langle z_0-x_0, h \rangle+ \langle  h, z_0 - x_0 \rangle = \\
+				 &=2 \re \langle h, z_0-x_0 \rangle
+	\end{aligned}
+	.\] 
+	Так как $ \forall h \in L\colon df(z_0)h = 0$, в веществественном случае получаем перпендикулярность.
+	
+	Если поле комплексное, то для всех $ \theta $ 
+	\[
+		2 \re \langle he^{i \theta }, z_0- x_0 \rangle = 0
+	.\] 
+	Выберем $ \theta $ так, что $ \langle he^{i \theta }, z_0 -x_0 \rangle \in  \R$,  поэтому можно вынести скаляр $ e^{i \theta }$ и получить $ \langle h, z_0-x_0 \rangle = 0$.
+\end{proof}
+\begin{defn}[Аффинное подпространство]
+   Пусть $ L \subset X$, $ x_0, l_0 \in H$, $ L_0 \subset H$ --- линейное подпространство. Подпространство $ L = \{l_0 + z \mid z \in L_0\}$ называется  {\sf аффинным}.  
+\end{defn}
+Рассмотрим функцию $ f\colon L \to  \R$, $ f(z) = \| z-x_0 \| ^2$. Нужно найти ее минимум. Пусть $ z_0$ --- точка минимума.
+
+\[
+	df(z_0) \colon L_0 \to  \R
+.\] 
+\[
+	f(z_0 + h) = f(z_0) + df(z_0) h + \o(h)
+.\] 
+Будем брать $ h\colon z_0 + h \in L \Longleftrightarrow h \in  L_0$ --- область допустимых приращений.
+
+\subsection{Задача о брахистороне}
+\paragraph{Постановка задачи}
+Пусть есть координатная плоскость с осями $ x$ и  $ y$. Мы находимся в точке  $ (0, 0)$ и хотим попасть в точку  $ (x', y')$, выбрав оптимальную траекторию.
+\begin{figure}[ht]
+    \centering
+    \incfig{brachistochrone-problem}
+    \caption{Задача о брахистороне}
+    \label{fig:brachistochrone-problem}
+\end{figure}
+Хотим минимизировать время, затраченное на спуск, по всем функциям $ f$.
+Обозначим множество функций
+\[
+	L = \{f \in C^{1}[0, x_{*} \mid f(0) = 0, ~f(x_*) = y_*\}
+.\] 
+
+Посчитаем мгновенную скорость: 
+\[
+	\frac{mv(x)^2}{2} = mgx \Longrightarrow v(x) = \sqrt{ 2gx} 
+.\] 
+
+Чтобы найти время, нужно разбить путь на малые отрезки, на них разделить расстояние на скорость и просуммировать. То есть проинтегрировать функцию. Воспользуемся утверждением о том, что при достаточно малом кусочке длина дуги будет равна $ \sqrt{ 1+ f'(x)^2} $ :
+\[
+	T(f) = \int_{0}^{x_*} \frac{\sqrt{ 1+f'(x)^2}}{\sqrt{ 2gx} }dx  
+.\] 
+Заведем функционал $ J\colon L \to  \R$:
+ \[
+	 J[f] = \int_{0}^{x_*} \frac{\sqrt{ 1+f'(x)^2}}{\sqrt{ x} }dx  
+.\] 
+
+\subparagraph{Общий вид}
+В более общем виде функционал $ J[f]$, где $ F\colon \R^3 \to  \R$, принимает такой вид:
+\[
+	J[f] = \int_{a}^{b} F(x, f(x), f'(x)) dx  
+.\] 
+В нашем случае $ F(u_1, u_2, u_3) = \frac{\sqrt{ 1 + u_3^2}}{\sqrt{ u_1} }  $.
+
+\begin{prac}
+Если $ F \in C^{1}(\R^3)$, то $ J$  дифференцируема.
+\end{prac}
+\begin{proof}
+	Пусть $ F \in C^{1}(\R^3), ~ F\colon \R^3 \to  \R$, $ J\colon L \to \R$
+	\[
+		L = \{f \in C^{1}[a, b]\mid f(a)  = A,~ f(b) = B\}
+	.\] 
+Определим $ L_0 $ --- пространство  допустимых приращений к функции:
+\[
+	L_0 = \{f \in  C^{1}[a, b] \mid f(a) = f(b) = 0\}
+.\] 
+
+Тогда $ dJ(f)\colon L_0 \to  \R$ --- линейное непрерывное отображение.
+
+Пусть $ J = J_2 \circ J_1 $, где 
+\[
+\begin{aligned}
+	J_2 &\colon C[a, b] \to  \R, &&J_2(f) = \int_{a}^{b} f(x)dx \\
+	J_1 &\colon C^{1}[a, b] \to C[a, b], && J_1(f)(x) = F(x, f(x), f'(x)
+\end{aligned}
+\]
+Тогда $ dJ(f) = J_2 \circ d J_1(f)$. Чтобы доказать это, докажем, что $ dJ_2(J_1(f)) = J_2$. Пусть $ q = J_1(f)\colon \R \to  \R$ и $ h \to  0$ --- приращение. Тогда
+\[
+	J_2(q + h) - J_2(q) = \int_{a}^{b} q(x)dx = J_2(q) 
+.\] 
+Теперь нужно проверить, что $ J_1$ дифференцируемо, так как с $ J_2$ уже все в порядке.
+\[
+	d_hJ(f) = J_2 \circ d_hJ_1(f)
+.\] 
+\[
+	h \in L_0 = \lim_{t \to  \infty} \frac{J_1(f+th)-J_1(f)}{t}
+.\] 
+Таким образом, для всех $ x$  нужно посчитать 
+\begin{equation}\label{eq:limf}
+	\lim_{t \to  \infty} \frac{F(x, f(x) + th(x), f'(x) + th'(x) ) - F(x, f(x) , f'(x))}{t}
+\end{equation}
+Пусть 
+\[
+	\varphi (t) = F(x, f(x) +th(x), f'(x)+th'(x))
+.\] 
+Тогда \ref{eq:limf} равна $ \varphi '(0)$.
+При этом 
+\[
+	\varphi '(t) = \partial _2 F(x, f(x) + th(x), f'(x)+th'(x))h(x) + \partial _3 F(x, f(x)+th(x), f'(x)+th'(x))h'(x)
+,\] 
+из чего следует, что
+\ref{eq:limf} равно
+\[
+	\partial _2 F(x, f(x), f'(x))h(x) + \partial _3 F(x, f(x), f'(x))h'(x)
+.\] 
+Проинтегрируем
+\[
+	\partial _hJ(f) = \int_{a}^{b} \partial _2 F(x, f(x), f'(x))h(x) + \partial _3 F(x, f(x), f'(x))h'(x) dx  
+.\] 
+Необходимое условие экстремума состоит в том, что $ \forall h \in L_0\colon \partial _h J(f) = 0$.
+
+Заметим, что
+\[
+\begin{aligned}
+	\partial _h J(f) &= \int_{a}^{b} \left( \partial _2F(x, f(x), f'(x)) - \frac{d}{dx} \Bigl( \partial _3 F(\ldots )\Bigr) \right)h(x) dx + \partial _3 F(\ldots ) h(x) \Bigm|_{a}^{b} = \\
+					 &=\int_{a}^{b} g(x)h(x) dx = 0
+\end{aligned}
+\]
+Так как это равенство верно для всех $ h$ из $ L_0$, $ g(x) = 0$: пусть  $ g(x') \ne 0$. Тогда по непрерывности $ g(x) \ne 0$ в некоторой окрестности $ x'$. Тогда существует $ h$ такое, что  $ h(x) \ne  0$ только в этой окрестности $ x'$, поэтому
+ \[
+	 \int_{a}^{b} g(x)h(x)dx \ne 0 
+.\] 
+\begin{figure}[ht]
+    \centering
+    \incfig{proff-g-is-zero}
+    \label{fig:proff-g-is-zero}
+\end{figure}
+
+Следовательно, $ f$ --- экстремум. Тогда  \[
+	\partial _2 F(x, f(x), f'(x)) - \frac{d}{dx}\partial _3 f(x, f(x), f'(x)) = 0, ~ f(a) = A , ~ f(b) = B
+.\] 
+Полученное дифференциальное уравнение от $ f$ называется  {\sf уравнением Эйлера-Лагранжа}.  
+\paragraph{Применим для решения первоначальной задачи}
+\[
+	F(u_1, u_2, u_3) = F(x, f(x), f'(x)) = \sqrt{ \frac{1+f'(x)^2}{x}} 
+.\] 
+Тогда $ \partial _2 F(\ldots )$  в уравнении просто равно 0, а
+\[
+	\partial _3 F(\ldots ) = \frac{f'(x)}{\sqrt{ x} \cdot \sqrt{ 1 + f'(x)^2}  }
+.\] 
+Поэтому 
+\[
+	\left( \frac{f'(x)}{\sqrt{ x} \cdot \sqrt{ 1 + f'(x)^2} } \right)' = 0, \quad f(x) = y', \quad f(0) = 0
+.\] 
+Следовательно, 
+\[
+	\frac{f'(x)}{\sqrt{ x} \cdot \sqrt{ 1+f'(x)^2} } = c
+.\] 
+Возведем в квадрат и получим, что
+\[
+	\frac{x}{c^2} = \frac{1}{f'(x)^2} +1 \Longrightarrow \frac{const -x}{x} = \frac{1}{f'(x)^2} \Longrightarrow f'(x) - \sqrt{ \frac{x}{const-x}} 
+.\] 
+Таким образом,
+\[
+	f(x) = \int_{0}^{x} \sqrt{ \frac{s}{const - s}}dx  
+,\] 
+при этом $ const$ можно подобрать так, что $ f(x^{*}) = y^{*}$. Это {\sf циклоида}.  
+\begin{figure}[ht]
+    \centering
+    \incfig{cycloid}
+    \caption{Циклоида}
+    \label{fig:cycloid}
+\end{figure}
+\end{proof}
 % \end{document}
