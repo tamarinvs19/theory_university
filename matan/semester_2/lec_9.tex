@@ -4,47 +4,57 @@
 %
 \lecture{9}{10 Apr}{\dag}
 \section{Поверхности и криволинейные координаты}
-\begin{description}
-    \item[Поверхность-график] Пусть $ f \colon U \subset \R^2 \to  \R$ --- непрерывная функция на открытом множестве, график функции, поверхность ---
+\begin{defn}[Поверхность-график]
+	Пусть $ f \colon U \subset \R^2 \to  \R$ --- непрерывная функция на открытом множестве. {\sf Поверхность-график функции} ---
 	\[
 	    S = \Gamma _f = \{(x, y, z) \mid z = f(x, y), ~ (x, y) \in U \}
 	.\]
-    \item  [Параметризация] Отображение $ F\colon U \to  S$, такое что $ F(x, y) = (x, y, f(x, y))$ --- непрерывное, биектинвное отображениoе
-    \item [Пути на $ S$] Если  $ \gamma \colon [a, b] \to  U$ --- путь в $ U$, то  $ F \circ \gamma $ -- путь в $ S$, и наоборот.
-    \item [Криволинейные координаты на $ S$]  $ (x, y) $ выполняют роль координат на  $ S$. Образы координатных линий --- координатные кривые на  $ S$.
-\end{description}
+\end{defn}
+\begin{defn}[Параметризация]
+	{\sf Параметризация } $ S$ --- отображение $ F\colon U \to  S$, такое что $ F(x, y) = (x, y, f(x, y))$ --- непрерывное, Биективное отображение
+\end{defn}
+\paragraph{Пути на $ S$ }
+	Если  $ \gamma \colon [a, b] \to  U$ --- путь в $ U$, то  $ F \circ \gamma $ -- путь в $ S$, и наоборот.
+\paragraph{Криволинейные координаты на $ S$}
+	$ (x, y) $ выполняют роль координат на  $ S$. Образы координатных линий --- координатные кривые на  $ S$.
 \subsection{Касательная плоскость к графику функции}
-\begin{itemize}
-    \item Пусть $ f$  дифференцируемо в точке $ (x_0, y_0) \in U$. Тогда
-	\[
-	    f(x, y) = f(x_0, y_0) + A(x-x_0)+B(y-y_0)+\o(\ldots ), \qquad (x, y) \to  (x_0, y_0)
-	.\]
-	\[
-	    df(x_0, y_0) = \left( \partial _xf(x_0, y_0), \partial _yf(x_0, y_0) \right)
-	.\]
-    \item Множество точек  $ (x, y, z) \in \R^3$, удовлетворяющий уравнению
-	\[
-	    z = f(x_0, y_0) + A(x-x_0) + B(y-y_0)
-	.\]
-	называется {\sf касательной плоскостью} к $ S$ в точке  $ (x_0, y_0, f(x_0, y_0)$.
-    \item  Эта плоскость единственна и
+Пусть $ f$  дифференцируемо в точке $ (x_0, y_0) \in U$. Тогда
+\[
+	f(x, y) = f(x_0, y_0) + A(x-x_0)+B(y-y_0)+\o(\ldots ), \qquad (x, y) \to  (x_0, y_0)
+.\]
+\[
+	df(x_0, y_0) = \left( \partial _xf(x_0, y_0), \partial _yf(x_0, y_0) \right)
+.\]
+\begin{defn}[Кaсательная плоскость]
+	Множество точек  $ (x, y, z) \in \R^3$, удовлетворяющий уравнению
+\[
+	z = f(x_0, y_0) + A(x-x_0) + B(y-y_0)
+.\]
+называется {\sf касательной плоскостью} к $ S$ в точке  $ (x_0, y_0, f(x_0, y_0)$.
+\end{defn}
+\begin{note}
+Эта плоскость единственна и
 	\[
 	    A= \partial _xf(x_0, y_0) , \qquad B= \partial _yf(x_0, y_0)
 	.\]
-    \item Нормаль к плоскости
+\end{note}
+\begin{note}
+Нормаль к плоскости
 	\[
 	    n = \left( \partial _xf(x_0, y_0), \partial _yf(x_0, y_0) \right) = \left( \nabla f(x_0, y_0), -1 \right)
 	.\]
-\end{itemize}
+\end{note}
 \subsection{Касательный вектор}
-\begin{itemize}
-    \item  Если гладкий путь в $ \Gamma \colon [a,b] \to  \R^3, ~\Gamma (t) = \left( x(t), y(t), z(t) \right)  $, то касательный вектор к нему это $ \left( x'(t), y'(t),z'(t) \right) $.  Если путь лежит на поверхности $ S$, то есть $ \Gamma = F \circ \gamma $, то
+\begin{defn}[Касательный вектор к пути]
+	Если гладкий путь в $ \Gamma \colon [a,b] \to  \R^3, ~\Gamma (t) = \left( x(t), y(t), z(t) \right)  $, то {\sf касательный вектор} к нему --- это $ \left( x'(t), y'(t),z'(t) \right) $.  Если путь лежит на поверхности $ S$, то есть $ \Gamma = F \circ \gamma $, то
 	\[
 	    \Gamma '(t) = \left( x'(t), y'(t), \partial _xf(x(t), y(t) + \partial _yf(x(t), y(t))y'(t) \right)
 	.\]
+\end{defn}
+\begin{itemize}
     \item Касательный вектор к пути на поверхности перпендикулярен нормали и лежит в касательной плоскости.
 
-	Уравнение нормали
+	{\sf Уравнение нормали}
 	\[
 	    n=\left( \partial _xf(x_0, y_0), \partial _y(x_0, y_0), -1 \right)
 	.\]
@@ -74,8 +84,6 @@
     \item
 	Рассмотрим множество $ \{x^2+y^2-1= 0\}$ --- окружность на плоскости. Это не график функции $ y = f(x)$, но почти для всех точек можем взять окрестность, которая будет графиком.
     \item  Можно честно решить относительно $ y$ уравнение  $ y = \pm \sqrt{1-x^2 } $
-
-	TODO: Дописать $\circlearrowleft$
 \end{itemize}
 
 \subsection{Подстановка}
@@ -101,25 +109,30 @@
     \item Тем самым, получить задание $ m$-мерной поверхности в   $ \R^{m+n}$.
 \end{itemize}
 \section{Теорема о неявном отображении}
-\begin{thm}[О неявном отображении]
-    $ $
+\begin{thm}[О неявном отображении] \label{thm:implicit-display}
     \begin{itemize}[noitemsep]
 	\item Пусть $ X, Y, Z$ --- нормированные пространства,   $ Y$--- полное, $ (x_0, y_0) \in W \subset X \times Y$.
 	\item Отображение непрерывно $ F \colon W \to  Z$ в точке $ (x_0, y_0)$, $ F(x_0, y_0) = 0$
-	    \item В $ W$ существует частный дифференциал  $ F$ по  $ y$ ( $ \exists  \partial _y F \colon W \to  L(Y, Z)$) и непрерывно в точке $ (x_0, y_0)$.
-	    \item  Оператор обратим $ (\partial _yF(x_0, y_0) )^{-1} \in  L(Z, Y)$
+	\item В $ W$ существует частный дифференциал  $ F$ по  $ y$ ($ \exists  \partial _y F \colon W \to  L(Y, Z)$) и непрерывен в точке $ (x_0, y_0)$.
+	\item  Оператор обратим $ (\partial _yF(x_0, y_0) )^{-1} \in  L(Z, Y)$
     \end{itemize}
-    Тогда существуют $ U \subset X$ --- окрестность точки $ x_0$, $ V \subset Y$ --- окрестность точки $ y_0$, $ f\colon U \to  V$ такие, что $ U \times V \subset W$ и
+	{\bf Тогда} существуют $ U \subset X$ --- окрестность точки $ x_0$, $ V \subset Y$ --- окрестность точки $ y_0$, $ f\colon U \to  V$ такие, что $ U \times V \subset W$ и
     \[
 	\{F(x, y) = 0\} \cap (U \times V) = \Gamma _f = \{(x, f(x)) \mid x \in U\}
     .\] 
 \end{thm}
 \begin{proof}
+\begin{figure}[ht]
+    \centering
+    \incfig{implicit-display}
+    \caption{График функции в окрестности}
+    \label{fig:implicit-display}
+\end{figure}
     Пусть $ (x_0, y_0) = (0, 0)$
     \begin{enumerate}[noitemsep]
-	\item Пусть $ g_x (y) = y - \left( \partial _yF(0, 0) \right)^{-1}F(x, y) , \quad g_X\colon Y \to  Y $.
+	\item Пусть $ g_x (y) = y - \left( \partial _yF(0, 0) \right)^{-1}F(x, y) , \quad g_x\colon Y \to  Y $.
 	    \[
-		F(x, y) = 0 \Longleftrightarrow y \text{ --- неподвижная точка  } g_X
+		F(x, y) = 0 \Longleftrightarrow y \text{ --- неподвижная точка  } g_x
 	    .\] 
 	    Докажем это. Нужно выделить подмножество $ Y$, где отображение действует.
 	     \[
@@ -140,9 +153,9 @@
 	    \[
 		g_x\left(\{\| y \| \le \varepsilon  \}\right) \subset \{\| y \| \le \varepsilon  \}
 	    .\] 
-	    Применим теорему о сжимающем отображении
+		Применим теорему о сжимающем отображении (так как производная ограничена $ \frac{1}{2}$ и $ Y$ полное): $ g_x\colon V \to  V, \quad V = B_{\varepsilon }(0) \subset Y$, поэтому 
 	    \[
-		y \colon \|  y \| \le \varepsilon, \quad	\| g_x(y) - g_y(x) \|  \le \sup_{0 < \Theta < 1} \|  dg_x(\Theta) \| \cdot \| y \| \le  \frac{\varepsilon}{2}
+		 \exists y \colon \|  y \| \le \varepsilon, \quad	\| g_x(y) - g_y(x) \|  \le \sup_{0 < \theta < 1} \|  dg_x(\theta y) \| \cdot \| y \| \le  \frac{\varepsilon}{2}
 	    .\] 
 	    Так как $ Y$ полное, шар $ M$, где действует $ g$, является метрическим,отображение $ g_x$ сжимающее. Следовательно, существует единственная неподвижная точка
 	     \[
@@ -152,27 +165,30 @@
     \end{enumerate}
 \end{proof}
 \begin{note}
-    Отображение $ f$ непрерывно в точке $ x_0$.
+    Отображение $ f$ непрерывно в точке $ x_0$, так как $ \Delta $ мы выбираем сами.
 \end{note}
 \begin{note}
-    Если случай конечномерный, то достаточно требовать только обратимость (без непрерывности)
-\end{note}
-\begin{note}
-    $
-    \begin{pmatrix}
-        \partial f_k \\ \partial y_j
-    \end{pmatrix}
-    $ --- обратимая матрица,  то есть ее определитель не 0.
+    Если случай конечномерный, то достаточно требовать только обратимость (без непрерывности):
+	\[
+		\exists \left( \partial _y F(x_0, y_0) \right)^{-1} \Longleftrightarrow \det 
+		\begin{pmatrix}
+			\frac{\partial f_i}{\partial y_i}(x_0, y_0)
+		\end{pmatrix}
+	.\] 
 \end{note}
 \begin{thm}
-    Если в условиях прошлой теоремы отображения  $ F, ~\partial _yF$ непрерывны не только в точке $ (x_0, y_0)$, но в целой окрестности, то $ f$  непрерывно в окрестности точки  $ x_0$
+	Если в условиях прошлой теоремы \ref{thm:implicit-display} отображения  $ F, ~\partial _yF$ непрерывны не только в точке $ (x_0, y_0)$, но в целой окрестности, то $ f$  непрерывно в окрестности точки  $ x_0$
 \end{thm}
 \begin{proof}
-    Хотим проверить, что $ \exists ~ (d_y D(x, y))^{-1} \in L(Z, Y)$, при $ (x, y)$ близких к $ (x0, y0)$. Уже знаем, что $ \exists ~\left( \partial _yF(x_0, y_0) \right)^{-1} \in L(Z, Y)$.
+    Хотим проверить, что $ \exists ~ (d_y D(x, y))^{-1} \in L(Z, Y)$, при $ (x, y)$ близких к $ (x_0, y_0)$.
+	Уже знаем, что $ \exists ~\left( \partial _yF(x_0, y_0) \right)^{-1} \in L(Z, Y)$.
     \begin{lm}[об обратимости оператора близкого к тождественному]\label{lm_ob:2}
 	$ Y$ --- полное,  $ B \in L(Y, Y)$, $ \| B \|  \le  1 $. Тогда $ \exists ( I - B)^{-1} \in L(Y, Y)$.
     \end{lm}
     \begin{proof}
+		Сначала проверим обратимость, а потом непрерывность обратного отображения.
+		\begin{itemize}
+			\item
 	Докажем, что
         \[
 	    \forall v \in ~ \exists ! ~ u \in Y \colon (I-B) u = v  
@@ -181,78 +197,119 @@
 	\[
 	    u = c + Bu \quad g_v(u) = v + Bu
 	.\] 
+	Теперь хотим найти неподвижную точку $ g_v$.
 	Это сжимающее отображение так как
 	\[
-	    \|  g_v(u_1) - g_v(u_2) \| = \| Bu_1 - Bu_2 \| \le \| B \| \cdot \| u_1-u_2 \| 
+	    \|  g_v(u_1) - g_v(u_2) \| = \| Bu_1 - Bu_2 \| \le \| B \| \cdot \| u_1-u_2 \| \le \| u_1 - u_2 \| 
 	.\] 
 	Тогда по теореме сжимающем отображении существует неподвижная точка.
-
+	\item Проверим непрерывность:
+		пусть $ u_n$ --- решение для  $ v_n$,  $ u$ --- решение для  $ v$,
 	\[
-	v_n \to  v_0j \Longrightarrow u_n \to  u, ~ u_n = v_n + B u_n \wedge  u_0  = v_0 + Bu_0
+	v_n \to  v_0 \Longrightarrow u_n \to  u, ~ u_n = v_n + B u_n \wedge  u_0  = v_0 + Bu_0
 	.\] 
-	$ u_n  - u_0 = v_n - v_0 + B\left( u_n - u_0 \right) $
+	Вычтем одно из другого
+	$$ u_n  - u_0 = v_n - v_0 + B\left( u_n - u_0 \right) .$$
+	Теперь запишем неравенство треугольника для норм
 	\[
 	\| u_n - u_0 \| \le \| v_n - v_0 \| + \| B \| \cdot \|  u_n-u_0 \|    
 	.\] 
 	\[
 	\|  u_n - u_0 \| \le \frac{1}{1-\|  B \| }  \|  v_n - v_0 \| \to  0
 	.\] 
+		\end{itemize}
     \end{proof}
     \begin{lm}[об обратимости обератора близкого к обратимому]\label{lm_obr:1}
-	$ Y $ --- полное пространство. $ A, A_0 \in  L(Y, Z)$, $ \exists  A_0^{-1} \in L(Z, Y)$. Если $ \| A-A_0 \| < \frac{1}{\| A_0^{-1} \| }$, то $ A^{-1} \in L(Z, Y)$ 
+	$ Y $ --- полное пространство. $ A, A_0 \in  L(Y, Z)$, $ \exists  A_0^{-1} \in L(Z, Y)$. Если $ \| A-A_0 \| < \frac{1}{\| A_0^{-1} \| }$, то $\exists  A^{-1} \in L(Z, Y)$ 
     \end{lm}
     \begin{proof}
 	Применяем лемму \ref{lm_ob:2}
 	\[
-	\underbrace{A}_{L(Y, Z)} = A_0 + A - A_0 = \underbrace{A_0}_{\text{обратимо и }L(Y, Z)} \underbrace{(I_Y+A_0^{-1}(A-A_0))}_{\text{обратимо и }L(Y, Y)} , \quad \| B \| \le \| A-A_0 \| \cdot \|  A_0^{-1} \| <1 
+	\underbrace{A}_{L(Y, Z)} = A_0 + A - A_0 = 
+	\underbrace{(I_Y+(A-A_0)A_0^{-1})}_{L(Y, Y)} 
+	\underbrace{A_0}_{L(Y, Z)} 	
+	, 
+	\quad \| B \| \le \| A-A_0 \| \cdot \|  A_0^{-1} \| <1 
 	.\] 
+	Знаем, что $ A_0 \in L(Y, Z)$ обратимо и непрерывно.
+	Проверим, что $ I_Y + B = I_Y + (A - A_0) A_0^{-1}$ Обратимо и непрерывно.
+	\[
+	\| B \|  \le \| A_0^{-1} \| \cdot  \| A - A_0 \| <1
+	.\] 
+	Теперь можем применить \ref{lm_ob:2} и получить обратимость непрерывность обратного.
+	Поэтому $ I_Y + B$ тоже обратимо и обратное непрерывно.
     \end{proof}
-    По лемме \ref{lm_obr:1} получаем утверждение теоремы.
+	Итого, можем применить для всех $ (x, y)$ таких, что
+	 \[
+		 \| \partial _y F(x, y) - \partial _y F(x_0, y_0) \| < \frac{1}{\| (\partial _y F(x_0, y_0))^{-1} \| } 
+	,\] 
+	теорему о неявной функции. Так как $ \partial _Y F(x, y)$ непрерывно, можем взять шар с центром в $ (x_0, y_0)$, где все точки обладают этим свойством.
 \end{proof}
 \begin{thm}
-    Если в условиях теоремы $ 1$ отображения  $ F$ дифференцируемо в точке  $ (x_0, y_0)$, то и $ f$ дифференцируемо в точке  $ x_0$ и 
+	Если в условиях теоремы \ref{thm:implicit-display} дополнительно отображение  $ F$ дифференцируемо в точке  $ (x_0, y_0)$, то и $ f$ дифференцируемо в точке  $ x_0$ и 
     \[
-	df(x_0) = -(\partial )yF(x_0, y_0))^{-1} \partial _x F(x_0, y_0)
+	df(x_0) = -(\partial_yF(x_0, y_0))^{-1} \partial _x F(x_0, y_0)
     .\] 
 \end{thm}
 \begin{proof}
     Пусть $ (x_0, y_0) = (0, 0)$.
+	по определнию дифференциала
     \[
-	F(x, y) = F(0, 0) - \partial _xF(0, 0)x + \partial _yF(0, 0) y +\underbrace{\o(\| x \|+ \|  y \| ) }_{\alpha (x, y)}
+	F(x, y) = F(0, 0) - \partial _xF(0, 0)x + \partial _yF(0, 0)_y +\underbrace{\o (\| x \|+ \|  y \| ) }_{\alpha (x, y)}
     .\] 
-    Знаем, что $ F(x, y) = 0 \Longleftrightarrow y = f(x)$.
+	Пусть мы уже живем в множестве, где определеная неявная функция $ f$. Тогда $ F(x, y) = 0 \Longleftrightarrow y = f(x)$ и 
     \[
-	0 = \partial _xF(0, 0) x + \partial _y F(0, 0)f(x) + \alpha (x, y)
+		0 = \partial _xF(0, 0) x + \partial _y F(0, 0)f(x) + \alpha (x, f(x))
     .\] 
+	Выразим $ f(x)$:
     \[
-	f(x) = -\left( \partial _y F(0, 0) \right)^{-1}\partial _x F(0, 0) x - (\partial _y F(0, 0))^{-1} \underbrace{\alpha (x, f(x))}_{?= \o(\| x \| )}
+	f(x) = -\left( \partial _y F(0, 0) \right)^{-1}\partial _x F(0, 0) x -  \underbrace{(\partial _y F(0, 0))^{-1}\alpha (x, f(x))}_{\text{проверим, что } = \o(\| x \| )}
     .\] 
-    Если $ x \to  0$, $ f(x) \to  0$.
+	Так как $ f$ непрерывно $ (x_0, y_0)$, если $ x \to  0$, $ f(x) \to  0$.
     \[
-	\exists \delta > 0\colon \|  x  \| < \delta \Longrightarrow \frac{ \|  \alpha (x, f(x))  \|}{\| x \| + \|  f(x) \| }  \le \frac{1}{\|  d_yF(0, 0)^{-1} \| \cdot \frac{1}{2} }
+	\exists \delta > 0\colon \|  x  \| < \delta \Longrightarrow 
+	\frac{ \|  \alpha (x, f(x))  \|}{\| x \| + 
+	\|  f(x) \| } 
+	\le \frac{1}{\|  d_yF(0, 0)^{-1} \| }\cdot \frac{1}{2} 
     .\] 
+	Все вместе
     \[
 	\|  \partial _yF(0, 0)^{-1} \alpha (x, f(x)) \| \le \frac{1}{2}\left( \|  x \| + \|  f(x) \|  \right)  
     .\] 
+	Тогда
     \[
 	\| f(x) \| \le C \| x \| + \frac{1}{2} \left( \| x \| + \| f(x) \|   \right)  
     .\] 
-    \[
-	\frac{1}{2}\|  f(x) \| \le  C \|  x \| + \frac{1}{2}  \| x \| \Longrightarrow  \| f(x)  \|\le \widetilde{ c} \| x \|  \Longrightarrow  \o(\| x \|+\| f(x) \|) = \o(\| x \| )  
-    .\] 
+	Переносим $ \frac{1}{2}$
+	\[
+	\begin{aligned}
+		\frac{1}{2}\|  f(x) \| &\le  C \|  x \| + \frac{1}{2}  \| x \| \\
+							   &\Longrightarrow  \| f(x)  \|\le \widetilde{ c} \| x \|\\ 
+							   &\Longrightarrow  \o(\| x \|+\| f(x) \|) = \o(\| x \| )  
+	\end{aligned}
+	\]
 \end{proof}
 \begin{note}
     Можно попросить большую дифференцируемость $ F$ и получить большую дифференцируемость  $ f$.  Аналогично можно попросить дифференцируемость в окрестности и получить дифференцируемостьв окрестности.
 \end{note}
 \begin{thm}[об обратном отображении]
-    Пусть  $ F\colon W \subset Y \to  X$, $ Y$--- полно, $ F(y_0) = x_0$, $ F$ дифференцируемо в  $ W$, $ dF$ непрерывна в точке   $ y_0$, и существует  $ \left( dF(y_0) \right)^{-1} \in L(X, Y) $. Тогда существуют окрестности $ U \subset W$ точки $ x_0 $ и $ V$ точка  $ y_0$ такие, что $ F \colon V \to  U$ --- биекция, то есть существует $ F^{-1} \colon U \to  V$, $ F ^{-1}$ --- дифференцируемо  в точке $ x_0$ и 
+    Пусть  $ F\colon W \subset Y \to  X$, $ Y$ --- полно, 
+	$ F(y_0) = x_0$,
+	$ F$ дифференцируемо в  $ W$,
+	$ dF$ непрерывна в точке   $ y_0$ 
+	и существует  $ \left( dF(y_0) \right)^{-1} \in L(X, Y) $.
+
+	Тогда существуют окрестности $ U \subset W$ точки $ x_0 $ и $ V$ точка  $ y_0$ такие,
+	что $ F \colon V \to  U$ --- биекция,
+	то есть существует $ F^{-1} \colon U \to  V$,
+	$ F ^{-1}$ --- дифференцируемо  в точке $ x_0$ и 
     \[
-	dF^{-1}(x_0) = \left( dF(y_0) \right)^{-1}
+		d(F^{-1})(x_0) = \left( dF(y_0) \right)^{-1}
     .\] 
 \end{thm}
 \begin{proof}
-    Рассмотрим $ G(x, y) = X - F(y), \quad F\colon X \times Y \to  X$.
-    Заметим, что $ G(x, y) = 0 \Longleftrightarrow x = F(y)$. 
+    Рассмотрим $ G(x, y) = x - F(y), \quad G\colon X \times Y \to  X$.
+    Заметим, что $ G(x, y) = 0 \Longleftrightarrow x = F(y)$. Поэтому  
     $ G(x_0, y_0) = 0$.
 
     \[
@@ -267,7 +324,7 @@
     .\] 
     И  $ f = F^{-1}$ на  $ U$.
     \[
-	dF^{-1}(y_0) = df(y_0) = \ldots = dF(y_0))^{-1}
+		dF^{-1}(x_0) = df(x_0) = -\left( \partial _y G(x, y_0) \right)^{-1}\partial _x G(x_0, y_0)  = (dF(y_0))^{-1}
     .\] 
 \end{proof}
 \begin{note}
