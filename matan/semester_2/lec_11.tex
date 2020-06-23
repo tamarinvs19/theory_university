@@ -3,29 +3,49 @@
 % \begin{document}
 
 \lecture{11}{23 Apr}{\dag}
-\begin{defn}
-    Рассмотрим $ \sum_{k=}^{\infty} a_k$. $ \sum_{k=1}^{A_k} $ --- Группировка ряда $ \sum_{k=1}^{\infty} a_k$, если $ A_1= a_1 + \ldots a_{n_1}$, $ A_2 = a_{n_1+1} + \ldots  + a_{n_2}$, то есть $ n_j$ --- возрастающая последовательность натуральных чисел, $ n_0= 0$. $ A_j = \sum_{k=n_{j-1}+1}^{n_j} a_k$.
+\begin{defn}[Группировка ряда]
+    Рассмотрим ряд $ \sum_{k=1}^{\infty} a_k$.
+	$ \sum_{k=1}^{\infty}{A_k} $ --- {\sf группировка ряда} $ \sum_{k=1}^{\infty} a_k$, 
+	если 
+	$$ A_1= a_1 + \ldots + a_{n_1},$$ 
+	$$ A_2 = a_{n_1+1} + \ldots  + a_{n_2},$$
+	то есть $ n_j$ --- возрастающая последовательность натуральных чисел, $ n_0= 0$. $ A_j = \sum_{k=n_{j-1}+1}^{n_j} a_k$.
 \end{defn}
-\begin{thm}[о группировке] 
-
-    $ $
+\begin{thm}[о группировке ряда] 
+	Пусть есть ряд $ \sum_{k=1}^{\infty} a_k$ и его группировка $ \sum_{k=1}^{A+k} $ 
     \begin{enumerate}[noitemsep]
-	\item Если ряд сходится, его группировка тоже сходится, причем $ \sum_{k=1}^{\infty} a_k = \sum_{k=1}^{\infty} A_k$.
-	    \item Пусть $ a_n \to  0$ и в каждом  $ A_k$ не более $ L$ слагаемых. Тогда, если $ \sum_{k=1}^{\infty} A_k$ сходится, то $ \sum_{k=1}^{\infty} a_k$ сходится.
-
+		\item Если ряд сходится, его группировка тоже сходится, причем $ \sum_{k=1}^{\infty} a_k = \sum_{k=1}^{\infty} A_k$.
+			\begin{proof}
+			    Частичные суммы группировки --- это частичные суммы исходного ряда, поэтому их подпоследовательность сходится к тому же числу, что и вся последовательность.
+			\end{proof}
+	    \item Пусть $ a_n \to  0$ и в каждом  $ A_k$ не более $ L$ слагаемых.
+			Тогда, если $ \sum_{k=1}^{\infty} A_k$ сходится, то $ \sum_{k=1}^{\infty} a_k$ сходится.
 		\begin{proof}
-		    Рассмотрим $ S_n = \sum_{j=1}^{n} a_j$, $ n_j < n \le n_{j+1}$. Посмотрим на $ S_{n_j}$ и $ S_{n_{j+1}}$.
+		    Рассмотрим $ S_n = \sum_{j=1}^{n} a_j$,
+			$ n_j < n \le n_{j+1}$, где $ S_{n_j}$ и $ S_{n_{j+1}}$ --- частичные суммы ряда $ \sum_{k=1}^{\infty} A_k$.
 		    \[
-		    \exists \varepsilon 
+				\exists \varepsilon ~ \forall  N \colon \bigl( n_j > N \Longrightarrow \lvert S_{n_j} - S \rvert < \varepsilon \bigr)
 		    .\] 
-		TODO: дописать доказательство
+			Еще потребуем, чтобы при $ k > N$ значение $ \lvert a_k \rvert  < \frac{\varepsilon}{L} $.
+			Тогда 
+			\[
+				S_n = S_{n_j} + \underbrace{a_{n_{j}+1} + \ldots + a_{n}}_{ \le L \text{ слагаемых}}
+			.\] 
+			Каждое из дополнительных слагаемых не больше $ \frac{\varepsilon}{L}$, поэтому
+			\[
+			\lvert S_{n_{j}+1} - S_{n} \rvert \le L \cdot \frac{\varepsilon}{L} = \varepsilon \Longrightarrow \lvert S - S_n \rvert < 2\varepsilon 
+			.\] 
 		\end{proof}
-	    \item Пусть ряд числовой. Для любого $ A_k$ в сумме участвуют только слагаемые одного знака.
+	\item Пусть ряд числовой ($ \R$). Для любого $ A_k$ в сумме участвуют только слагаемые одного знака. 
+		Тогда, если $ \sum_{k=1}^{\infty} A_k$ сходится, то $ \sum_{k=1}^{\infty} a_k$ сходится.
 		\begin{proof}
-		     Если $ n_i < n < n_j$, то  $ S_{n}$ лежит между $ S_{n_j}$ и $ S_{n_i}$. Можно добиться, чтобы расстояния были меньше $ \varepsilon $, тогда и $ S_n$ будет отличаться на малую величину.
+		     Если $ n_i < n < n_j$, то  $ S_{n}$ лежит между $ S_{n_j}$ и $ S_{n_i}$.
+			 Можно добиться, чтобы расстояния были меньше $ \varepsilon $, тогда и $ S_n$ будет отличаться на малую величину.
+			 Следовательно, и у $ S_n$ есть предел.
 		\end{proof}
     \end{enumerate}
 \end{thm}
+
 \section{Положительные ряды}
 \begin{defn}[положительный ряд]
     Числовой ряд называется {\sf положительным}, если все его члены неотрицательны.  
@@ -34,118 +54,193 @@
 
     $ $
     \begin{description}
-	\item[\boxed{\text{1}}] Ряд сходится тогда и только тогда, когда  $ \{S_n\}$ ограничена (сверху).
-	\item[\boxed{\text{Признак сравнения}}] $ 0 \le a_n \le b_n$, то
+	\item[\boxed{\texttt{1}}] Ряд сходится тогда и только тогда, когда  $ \{S_n\}$ ограничена (сверху).
+
+	\item[\boxed{\texttt{Признак сравнения}}] $ 0 \le a_n \le b_n$, то
 	    \begin{enumerate}
 		\item $ \sum_{=1}^{\infty} b_n$ сходится, тогда $ \sum_{n=1}^{\infty} a_n $ сходится
 		\item $ \sum_{n=1}^{\infty} a_n$ расходится, тогда $ \sum_{n=1}^{\infty} b_n$ Тоже расходится.
 	    \end{enumerate}
-	\item[\boxed{\text{2'}}] $ 0 \le a_n, b_n$, $ a_n = \O(b_n)$ и  $ \sum_{j=1}^{\infty} b_j$ сходится, тогда $ \sum_{n=1}^{\infty} a_n$ сходится. 
-	\item[\boxed{\text{2''}}] $ 0 \le a_n , b_n$, если  $ a_n ~ b_n$, то  $ \sum_{n=1}^{\infty} a_n$ сходится тогда и только тогда, когда  $ \sum_{n=1}^{\infty} b_n$ сходится.
-	\item[\boxed{\text{Признак Коши}}] Пусть $ a_n \ge 0$ и $ q = \overline{\lim}_{n \to \infty} \sqrt[n]{ a_n} $
+
+	\item[\boxed{\texttt{2'}}] $ 0 \le a_n, b_n$, $ a_n = \O(b_n)$ и  $ \sum_{j=1}^{\infty} b_j$ сходится, тогда $ \sum_{n=1}^{\infty} a_n$ сходится. 
+
+	\item[\boxed{\texttt{2''}}] $ 0 \le a_n , b_n$, если  $ a_n \sim  b_n$, то  $ \sum_{n=1}^{\infty} a_n$ сходится тогда и только тогда, когда  $ \sum_{n=1}^{\infty} b_n$ сходится.
+
+	\item[\boxed{\texttt{Признак Коши}}]
+		Пусть $ a_n \ge 0$ и $ q = \overline{\lim}_{n \to \infty} \sqrt[n]{ a_n} $
 	    \begin{enumerate}
 		\item $ q < 1$, то  $ \sum_{n=1}^{\infty} a_n $ сходится
 		    \item $ q > 1$, то $ \sum_{n=1}^{\infty}a_n $ расходится
 	    \end{enumerate}
 	    \begin{proof}
-
 		$ $
 	        \begin{enumerate}
-		    \item Выберем $ 0<\tilde q < 1 $, с некоторого места мы не выходим сильно правее  $ q$, поэтому  $ \exists  N ~ \forall  n > N \colon \sqrt[n]{ a_n} < \tilde q  $, тогда $ a_n < (\tilde q)^{n}$.
-		    \item $ \forall   N   \exists  n > N \colon  a_n > 1 \Longrightarrow a_n  \not\to 0$, следовательно, ряд расходится.
+		    \item Выберем любое $ 0<\tilde q < 1 $, с некоторого места мы не выходим сильно правее  $ q$,
+				поэтому  $ \exists  N ~ \forall  n > N \colon \sqrt[n]{ a_n} < \tilde q  $, тогда $ a_n < (\tilde q)^{n}$. А ряд $ \sum_{k=1}^{\infty} q^{k}$ сходится.
+
+		    \item $ \forall  N  ~ \exists  n > N \colon  a_n > 1 \Longrightarrow a_n  \not\to 0$, следовательно, ряд расходится.
 	        \end{enumerate}
 	    \end{proof}
-	\item[\boxed{\text{Признак Даламбера}}] $ a_n > 0$ и  $ \exists \lim_{n to + \infty} \frac{a_{n+1}}{a_n} = q$. Тогда 
+		\begin{note}
+		    Обычно достаточно использовать обычный предел в этом признаке.
+		\end{note}
+
+	\item[\boxed{\texttt{Признак Даламбера}}] 
+		$ a_n > 0$ и  $ \exists \lim_{n to + \infty} \frac{a_{n+1}}{a_n} = q$. Тогда 
 	    \begin{enumerate}
-		\item $ q> 1$, то ряд расходится
-		\item  $ q < 1$, то ряд сходится
+			\item $ q > 1$, то ряд расходится
+			\item  $ q < 1$, то ряд сходится
 	    \end{enumerate}
 	    \begin{proof}
-	        
 		$ $
 		\begin{enumerate}
-		    \item $ a_{n+1} > a_n$, пожтому ряд точно не сходится.
-		    \item Возьмем $ q < \tilde q < 1$, тогда  $ \exists  N ~ \forall  n > N \colon \frac{a_{n+1}}{a_n} < \tilde q$.
+		    \item Если  $ q > 1$, $ a_{n+1} > a_n$, поэтому ряд точно не сходится.
+		    \item Если $ q < 1$, возьмем $ q < \tilde q < 1$, 
+				тогда  $ \exists  N ~ \forall  n > N \colon \frac{a_{n+1}}{a_n} < \tilde q$.
 			Запишем 
 			 \[
-			     a_{n+1} = \frac{a_{n+1}}{a_n} \cdot \frac{a_n}{a_{n-1}} \cdot  \ldots \frac{a_{N+1}}{a_N} \cdot a_N < (q)^{n - N + 1} \cdot a _{N^2} = C(\tilde q)^{n+1}
+			     a_{n+1} = \frac{a_{n+1}}{a_n} \cdot \frac{a_n}{a_{n-1}} \cdot  \ldots \frac{a_{N+1}}{a_N} \cdot a_N < (q)^{n - N + 1} \cdot a _{N^2}
+				 = C(\tilde q)^{n+1}
 			.\] 
 		\end{enumerate}
 	    \end{proof}
-	\item[\boxed{\text{Интегральный признак}}] Пусть $f \ge 0 $, монотонно убывает $ f::[1, + \infty) \to  \R$. Тогда 
+
+	\item[\boxed{\texttt{Интегральный признак}}] Пусть $f \ge 0 $, монотонно убывает $ f\colon [1, + \infty) \to  \R$. Тогда 
 	    \[
-		\sum_{n = 1}^{\infty} f(n) \text{ сходится } \Longleftrightarrow \int_{1}^{n} f(x) dx \text{ сходится}
+		\sum_{k = 1}^{\infty} f(k) \text{ сходится } \Longleftrightarrow \int_{1}^{k} f(x) dx \text{ сходится}
 	    .\] 
 	    \begin{proof}
-	        Просто смотрим по определению интеграла.
+			$ $
+			\begin{description}
+			    \item \boxed{ 1 \Longrightarrow 2} 
+					\[
+						\int_{1}^{\infty} f(x)dx = \sum_{k=1}^{\infty} \int_{k}^{k+1} f(x) dx \le \sum_{k=1}^{\infty} f(k) \cdot (k+1-k) = \sum_{k=1}^{\infty} f(k)  
+					.\] 
+					Так как конечная сумма сходится, интеграл тоже сходится.
+			    \item \boxed{ 2 \Longrightarrow 1} 
+					\[
+						\sum_{k=1}^{\infty} f(k) =
+						f(1) + \sum_{k=1}^{\infty} f(k) \le
+						f(1) + \sum_{k=1}^{\infty} \int_{k}^{k+1} f(x)dx = 
+						f(1) + \int_{1}^{\infty} f(x)dx 
+					.\] 
+					Так как интеграл сходится, сумма ограничена сверху, поэтому ряд сходится.
+			\end{description} 
 	    \end{proof}
     \end{description}
 \end{prop}
 \section{Числовые ряды с произвольными членами}
-\begin{defn}
-    $ x_k \in  X$ --- нормированное пространство. $ \sum_{k=1}^{\infty} x_k$ {\sf абсолютно сходится}, если сходится $ \sum_{k=1}^{\infty} \| x_k \| $.
+\begin{defn}[Абсолютная сходимость]
+    $ x_k \in  X$ --- нормированное пространство. 
+	$ \sum_{k=1}^{\infty} x_k$ {\sf абсолютно сходится}, если сходится $ \sum_{k=1}^{\infty} \| x_k \| $.
 \end{defn}
 \begin{prop}
-
     $ $
     \begin{description}
 	\item[\boxed{\text{1}}] $ \sum x_k, \sum y_k $ абсолютно сходятся,  $ \alpha , \beta $ --- скаляры. Тогда ряд $ \sum_{}^{} ( \alpha x_k + \beta y_k)$ абсолютно сходится, так как
 	    \[
 	    \|  \alpha x_k + \beta  y_k \|  \le \| \alpha  \| \cdot \|  x_k \|  + \| \beta  \| \cdot  \|  y_k \| 
 	    .\] 
-	\item[\boxed{\text{2}}] Если $ \sum_{k=1}^{\infty} x_k$ сходится, $ \sum_{k=1}^{\infty} \| x_k \| $ сходится, то $ \| \sum_{k=1}^{\infty}  x_k\| \le \sum_{k=1}^{\infty} \| x_k \| $, так как
+	\item[\boxed{\text{2}}] 
+		Если $ \sum_{k=1}^{\infty} x_k$ сходится, $ \sum_{k=1}^{\infty} \| x_k \| $ сходится,
+		то $ \left\| \sum_{k=1}^{\infty}  x_k\right\| \le \sum_{k=1}^{\infty} \| x_k \| $, так как
 	    \[
 		\| S \| \stackrel{n \to  \infty}{\longleftarrow} \| S_n \| \le \sum_{k=1}^{n} \|  x_k \|  \stackrel{n \to  \infty}{\longrightarrow} \sum_{k=1}^{\infty} \| x_k \| 
 	    .\] 
-	\item[\boxed{\text{3}}] $ X$ --- полное нормированное пространство. $ \sum_{k=1}^{\infty} \| x_k \|   $ сходится, тогда $ \sum_{k=1}^{\infty} x_k$ сходится.
-	    \begin{proof}
-		    $ \forall  \varepsilon >0 ~ \exists  N \colon  \forall n > N , p \in  \N ~ \sum_{k = n+1}^{n+p} \| x_k \|  < \varepsilon $, следовательно, $ \| \sum_{k = n+1}^{n+p} x_k \| < \varepsilon $. Получили, что $ \sum_{k=1}^{\infty} x_k$ сходится.
-	    \end{proof}
-	\item[\boxed{\text{4}}] В полном нормированном пространстве $ \sum_{k=1}^{\infty} x_k$ сходится абсолютно, $ \sum_{k=1}^{\infty} y_k$ сходится условно, тогда $ \sum_{k=1}^{\infty} (x_k+ y_k)$ сходится условно.
-	\item[\boxed{\text{5}}] $ X $ --- полное, $ \overline{\lim}_{n \to  \infty} \sqrt[n]{ \|  x_n \| } $ , $ \lim_{n \to \infty} \frac{\| x_{n+1} \| }{\| x_n \| }$
 
-    \end{description}
-\end{prop}
+	\item[\boxed{\text{3}}] 
+		$ X$ --- полное нормированное пространство.
+		$ \sum_{k=1}^{\infty} \| x_k \|   $ сходится, тогда $ \sum_{k=1}^{\infty} x_k$ сходится.
+	    \begin{proof}
+			По критерию Больцано-Коши
+		    $$ \forall  \varepsilon >0 ~ \exists  N \colon  \forall n > N ,~ p \in  \N ~ \sum_{k = n+1}^{n+p} \| x_k \|  < \varepsilon ,$$
+			следовательно, 
+			$$ \left\| \sum_{k = n+1}^{n+p} x_k \right\| < \varepsilon .$$
+			А тогда по критерию Больцано-Коши получаем, что $ \sum_{k=1}^{\infty} x_k$ сходится.
+	    \end{proof}
+\end{description}
 \begin{defn}
     Если ряд сходится, но не сходится абсолютно, он называется {\sf условно сходящимся.}  
 \end{defn}
+\begin{description}
+	\item[\boxed{\text{4}}]
+		В полном нормированном пространстве $ \sum_{k=1}^{\infty} x_k$ сходится абсолютно,
+		$ \sum_{k=1}^{\infty} y_k$ сходится условно,
+		тогда $ \sum_{k=1}^{\infty} (x_k+ y_k)$ сходится условно.
+
+	\item[\boxed{\text{5}}] 
+		Если $ X $ --- полное, то в признаках Коши и Даламбера можно считать 
+		$$ \overline{\lim}_{n \to  \infty} \sqrt[n]{ \|  x_n \| }  \text{ и } \lim_{n \to \infty} \frac{\| x_{n+1} \| }{\| x_n \| }$$ соответственно.
+
+    \end{description}
+\end{prop}
+
 \begin{lm}[преобразование Абеля]
-    Пусть $ \{a_n\}, \{b_n\}$ --- последовательности. Пусть $A_n = \sum_{k=1}^{n} a_n , ~ A_0 = 0$.
+    Пусть $ \{a_n\}, \{b_n\}$ --- последовательности. Пусть $A_n = \sum_{k=1}^{n} a_n$ и $A_0 = 0$.
     Рассмотрим
-    \begin{align*}
-	\sum_{k=1}^{n}  a_k b_k &= \sum_{k=1}^{n} (Ak - A_{k+1}) b_k = \sum_{k=1}^{n} A_kb_k - \sum_{k=1}^{n} A_{k-1}b_k = \\
-				&= \sum_{k=1}^{n} A_k b_k - \sum_{k=1}^{n-1} A_k b_k+1 = A_n b_n  \sum_{k=1}^{n-1} A_k(b_k-b_{k+1})
-    \end{align*}
+	\[
+    \begin{aligned}
+	\sum_{k=1}^{n}  a_k b_k &= \sum_{k=1}^{n} (A_k - A_{k-1}) b_k = \sum_{k=1}^{n} A_kb_k - \sum_{k=1}^{n} A_{k-1}b_k = \\
+							&= \sum_{k=1}^{n} A_k b_k - \sum_{k=1}^{n-1} A_k b_{k+1} = A_n b_n  \sum_{k=1}^{n-1} A_k(b_k-b_{k+1})
+    \end{aligned}
+\]
     Получили дискретный аналог интегрирования по частям.
 \end{lm}
+
 \begin{thm}[Признаки Дирихле и Абеля]
-    $ \{a_n\}, \{b_n\}$ --- числовые последовательности.  $ b_n$ --- монотонная последовательность, $ b_n \in \R, a_n in \Cm$
+    Пусть $ \{a_n\}, \{b_n\}$ --- числовые последовательности.  $ b_n$ --- монотонная последовательность, $ b_n \in \R$, $a_n \in \Cm$, $ A_n = \sum_{k=1}^{n} a_k$.
 
 \begin{description}
-    \item[Признак Дирихле] $ \{A_n\} $ --- ограниченная последовательность, $ b_n \to  0$.
-    \item[Признак Абеля] $ \sum_{k=1}^{n} a_k $ сходится, $ b_n $ ограничено
+	\item[\boxed{\texttt{Признак Дирихле}}] $ \{A_n\} $ --- ограниченная последовательность, $ b_n \to  0$.
+	\item[\boxed{\texttt{Признак Абеля}}] $ \sum_{k=1}^{n} a_k $ сходится, $ b_n $ ограничено
 \end{description}
-тогда $ \sum_{n=1}^{\infty} a_nb_n$ сходится.
+Если выполнен один из признаков, $ \sum_{n=1}^{\infty} a_nb_n$ сходится.
 \end{thm}
 \begin{proof}
+	 Из преобразования Абеля:
      \[
 	 \sum_{k=1}^{n} a_k b_k = A_n b_n + \sum_{k=1}^{n-1} A_k (b_k - b_{k+1})
      .\] 
-     Первое слагаемое сходится при условии обоих признаков. 
+	 Хотим доказать, что у обоих слагаемых есть предел.Первое слагаемое сходится при условии обоих признаков. 
 
-     Для признака Абеля сразу все хорошо: второе слагаемое сходится.
+	 Докажем, что $ \sum_{k=1}^{n-1} A_k(b_k -b_{k+1})$ абсолютно сходится (значит, и просто сходится, так как пространство полное).
 
-     Для признака Дирихле проверим $ \sum_{k=1}^{\infty}  \left| A_k(b_k - b_{k+1}) \right| \le X \sum_{k=1}^{\infty} | b_k - b_{k+1} | $
-     В атом случае сходится даже без модуля $ \sum_{k=1}^{\infty} b_k - b_{k+1} $, так как $ \sum_{k=1}^{n}  b_{n+1} - b_1$.
+	 Заметим, что в обоих признаках $ \{A_k\}$ ограничена: в признаке Дирихле явно сказано, в признаке Абеля должно сходится. Пусть $ \lvert A_k \rvert  \le C$. 
+	 Тогда
+	 \[
+		 \sum_{k=1}^{\infty} \lvert A_k(b_k - b_{k+1}) \rvert \le C \sum_{k=1}^{\infty} \lvert b_k - b_{k+1} \rvert 
+	 .\] 
+	 Так как $ \{b_n\}$ монотонна, $ b_k - b_{k+1}$ всегда одного знака. Пусть $ b_k \ge b_{k+1}$ (иначе домноожим на  $ -1$). 
+	 Тогда 
+	 \[
+	 \sum_{k=1}^{\infty} b_k - b_{k+1} = b_1 - b_{n+1}
+	 .\] 
+	 Из обоих признаков следует, что у $ b_1 - b_{n+1}$ есть предел, поэтому следующий ряд сходится
+	 \[
+	 C \sum_{k=1}^{\infty} \lvert b_k - b_{k+1} \rvert 
+	 .\] 
+	 Следовательно, сходится и \[
+		 \sum_{k=1}^{n-1} A_k(b_k-b_{k-1})
+	 .\] 
 \end{proof}
-\begin{thm}[Признак Лейбница] $ b_n$ убывает к нулю, тогда ряд $ \sum_{n=1}^{\infty} (-1)^{n} b_n$ сходится.
+
+\begin{thm}[Признак Лейбница]
+	Пусть $ b_n$ убывает к нулю. Тогда ряд $ \sum_{n=1}^{\infty} (-1)^{n} b_n$ сходится.
 \end{thm}
 \begin{proof}
-    $ a_n = (-1)^{n}$, $ A_n \in  \{1, 0\}$ --- ограничено. По признаку Дирихле ряд произведения сходится.
+    Обозначим $ a_n = (-1)^{n}$, $ A_n \in  \{1, 0\}$ --- ограничено. По признаку Дирихле ряд произведения сходится:
+	\[
+		\sum_{n=1}^{\infty} a_n b_n = \sum_{n=1}^{\infty} (-1)^{n}b_k
+	.\] 
 \end{proof}
 \begin{note}
-    $ S_n = \sum_{k=1}^{n} (-1)^{k}b_k$, $ S$ --- сумма ряда. Тогда $ \lvert S- S_n \rvert  \le b_{n+1}$. 
+    Если 
+	$$ S_n = \sum_{k=1}^{n} (-1)^{k}b_k, \quad S = \sum_{k=1}^{\infty} (-1)^{k}b_k
+	\Longrightarrow 
+	 \lvert S- S_n \rvert  \le b_{n+1} 
+	.$$
 \end{note}
+
 \begin{ex}[Ряд Лейбница]
     \[
 	\sum_{k=1}^{\infty} (-1)^{k+1}\frac{1}{2k-1} \text{ сходится условно }
@@ -173,19 +268,23 @@ e^{i }\frac{e^{\frac{ni}{2}} \left(e^{\frac{ni}{2}}-e^{-\frac{ni}{2}}\right)\cdo
     .\] 
     Для косинуса аналогично.
 \end{ex}
+
 \begin{thm}[О перестановке членов абсолютно сходящегося ряда]
-    $ \sum_{k=1}^{\infty}a_k $ --- абсолютно сходящийся ряд.
-    $ \varphi \colon \N \to \N$ --- биекция, тогда $ \sum_{k=1}^{\infty} a_{\phi(k)}$ сходится к той же сумме.
+    Пусть $ \sum_{k=1}^{\infty}a_k $ --- абсолютно сходящийся ряд.
+    $ \varphi \colon \N \to \N$ --- биекция, тогда 
+	$ \sum_{k=1}^{\infty} a_{\phi(k)}$ сходится к той же сумме.
 \end{thm}
 \begin{proof}
-
     $ $
     \begin{enumerate}
-	\item $ a_k > 0$,  $ S_n = \sum_{k=1}^{n} a_k$, $ T_n = \sum_{k=1}^{n} a_{\varphi(k)}$
+	\item Пусть $ a_k > 0$. Обозначим  $ S_n = \sum_{k=1}^{n} a_k$ и $ T_n = \sum_{k=1}^{n} a_{\varphi(k)}$.
+		Тогда
 	    \[
-	    \forall  n ~ \exists  n_1, n_2 \colon S_n \le T_{n_1} \le S_{n_2} \Longrightarrow T_n \to  S = \lim_{n \to \infty} S_n
+	    \forall  n ~ \exists  n_1, n_2 \colon S_n \le T_{n_1} \le S_{n_2} \Longrightarrow T_n \to  S
+		= \lim_{n \to \infty} S_n
 	    .\] 
-	\item $ a_k \in  \R$. Запишем $ a_k = (a_k)_+ - (a_k)_-, ~ \lvert a_k \rvert  = (a_k)_+ (a_k)_-$.
+
+	\item Пусть $ a_k \in  \R$. Запишем $ a_k = (a_k)_+ - (a_k)_-, ~ \lvert a_k \rvert  = (a_k)_+ (a_k)_-$.
 	    Тогда 
 	    \[
 		\sum{\lvert a_k \rvert }  \text{ сходится } \Longrightarrow   \sum_{k=1}^{\infty} (a_k)_+, ~\sum_{k=1}^{\infty} (a_k)_- \text{ сходятся}.
@@ -194,52 +293,81 @@ e^{i }\frac{e^{\frac{ni}{2}} \left(e^{\frac{ni}{2}}-e^{-\frac{ni}{2}}\right)\cdo
 	    \[
 		\sum_{k=1}^{\infty} a_k = \sum_{k=1}^{\infty}(a_k)_+ - \sum_{k=1}^{\infty} (a_k)_- = \sum_{k=1}^{\infty} (a_{ \varphi (k)})_+ - \sum_{k=1}^{\infty} (a_{ \varphi (k)})_- = \sum_{k=1}^{\infty}  a_{ \varphi (t)}  
 	    .\] 
-	\item $ a_k \in \Cm$, $ a_ k= b_k + i c_k$. Применяем второй пункт.
+	\item Последний случай $ a_k \in \Cm$, $ a_ k= b_k + i c_k$. Применяем второй пункт.
     \end{enumerate}
 \end{proof}
+
 \begin{thm}[Теорема Римана]
     $ a_k \in  \R$. $ \sum_{k=1}^{\infty} a_k$ сходится условно. Тогда $$ \forall S \in  \overline{\R} ~ \exists \varphi  \colon \N \to \N \colon \sum_{k=1}^{\infty} a_{\varphi(k)} = S
     $$
 \end{thm}
+\section{Умножение рядов}
+
 \begin{thm}[Коши об умножении рядов]
-    $ \sum_{k=1}^{\infty} a_k, ~ \sum_{k=1}^{\infty}b_k $ --- абсолютно сходящиеся численные ряды. Тогда $ \sum_{k, n =1}^{\infty}a_k b_n $ сходится при любых порядках слагаемых, при этом $ \sum_{k,n=1}^{\infty} a_kb_n = \sum_{k=1}^{\infty} a_k \cdot \sum_{n=1}^{\infty}b_n $
+    Пусть $ \sum_{k=1}^{\infty} a_k, ~ \sum_{k=1}^{\infty}b_k $ --- абсолютно сходящиеся численные ряды.
+	Тогда $ \sum_{k, n =1}^{\infty}a_k b_n $ сходится при любых порядках слагаемых,
+	при этом 
+	$$ \sum_{k,n=1}^{\infty} a_k b_n = \sum_{k=1}^{\infty} a_k \cdot \sum_{n=1}^{\infty}b_n .$$
 \end{thm}
 \begin{proof}
-    Пусть $ \sum_{k=1}^{n} a_k = A_k, \sum_{k=1}^{n} \lvert a_k \rvert = \overline{A_n}, \sum_{k=1}^{\infty}  =A, \sum_{k=1}^{\infty} \lvert a_k \rvert = \overline{A} $, аналогично для $ b$.
+    Пусть 
+	$$ \sum_{k=1}^{n} a_k = A_k, \sum_{k=1}^{n} \lvert a_k \rvert = \overline{A_n}, \sum_{k=1}^{\infty}  =A, \sum_{k=1}^{\infty} \lvert a_k \rvert = \overline{A} ,$$ и аналогично для $ b$.
     
     Зафиксируем на множестве пар некоторый порядок.
 
+	Пусть
     $ S_m$ --- частичная сумма $ \sum \lvert a_k \rvert \lvert b_n \rvert $, $ N $ --- максимальный из встречающихся индексов.
     \[
-	S_m \le \sum_{k=1}^{N}  \lvert a_k \rvert \sum_{k=1}^{N}  \lvert b_k \rvert \le \overline{A} \overline{B} \Longrightarrow \text{ hряд } \sum \lvert a_k \rvert \lvert b_n \rvert  \text{сходится}
+	S_m \le \sum_{k=1}^{N}  \lvert a_k \rvert \sum_{k=1}^{N}  \lvert b_k \rvert \le \overline{A} \overline{B} \Longrightarrow \text{ ряд } \sum \lvert a_k \rvert \lvert b_n \rvert  \text{сходится}
     .\] 
-    Теперь просуммируем по квадратам
+    Теперь просуммируем с заданным порядком по квадратам: $ 1\times 1, ~ 2\times 2, \ldots $
+	Пусть мы взяли $ m$ слагаемых
     \[
 	n^2 \le m <(n+1)^2
     .\] 
+	Тогда
     \[
     S \leftarrow S_{n^2} = A_n\cdot  B_n \to  A\cdot B
     .\] 
     \[
-	\lvert S_{n^2} - S_m \rvert \le \lvert a_{n+1} \rvert \cdot \overline{B} + \lvert b_{n+1} \rvert \cdot \overline{A} \stackrel{n \to  \infty}{\longrightarrow} 0
+	\lvert S_{n^2} - S_m \rvert \le \lvert a_{n+1} \rvert \cdot \overline{B} 
+	+ \lvert b_{n+1} \rvert 
+	\cdot \overline{A}
+	\stackrel{n \to  \infty}{\longrightarrow} 0
     .\] 
+	Значит,
+	\[
+	S_m \to  A\cdot B \Longrightarrow \sum_{k, n = 1}^{\infty} = A \cdot B
+	.\] 
 \end{proof}
+
 \begin{defn}[Произведение рядов по Коши]
-    $ \sum_{n=1}^{\infty} a_n$, $ \sum_{n=1}^{\infty} b_n$ --- ряды. $ c_n = a_1b_n + a_2b_{n-1} + \ldots a_nb_1$. Тогда ряд $ \sum_{n=1}^{\infty} c_n$ называется {\sf  произведением рядов}.  
+    $ \sum_{n=1}^{\infty} a_n$, $ \sum_{n=1}^{\infty} b_n$ --- ряды. 
+	$ c_n = a_1b_n + a_2b_{n-1} + \ldots a_nb_1$.
+	Тогда ряд $ \sum_{n=1}^{\infty} c_n$ называется {\sf  произведением рядов}.  
 \end{defn}
+
 \begin{thm}[Мергенс]
     $ \sum_{n=1}^{\infty} a_n$ сходится абсолютно, $ \sum_{k=1}^{\infty} b_n$ сходится. Тогда $ \sum_{n=1}^{\infty} c_n $ сходится и равно $ \sum_{n=1}^{\infty} a_n \sum_{n=1}^{\infty} b_n$.
 \end{thm}
+
 \begin{thm}[Абель]
     $ \sum_{n=1}^{\infty} a_n, \sum_{n=1}^{\infty} b_n, \sum_{n=1}^{\infty} c_n$ сходится, тогда $ \sum_{n=1}^{\infty} c_n = \sum_{n=1}^{\infty} a_n \sum_{n=1}^{\infty} b_n$
 \end{thm}
+
 \begin{ex}
     $ a_n = b_n = (-1)^{n}\frac{1}{\sqrt{ n} } \Longrightarrow  \lvert a_n \rvert \ge 1$
 \end{ex}
+
 \section{Бесконечные произведения}
-\begin{defn}
-    Частичные произведения $ \prod_{k=1}^{n}p_k =P_n$. Частичные произведения сходятся к $ P$если  $ \exists  \lim_{n \to \infty} P_n = P$ и $ P\ne 0, P \ne \infty$. Если $ P=0$, говорят, что расходится к 0, если к  $ \pm \infty$, говорят, что расходится к $ \pm \infty$.
+\begin{defn}[Частичные произведения]
+	{\sf Частичные произведения} $ \prod_{k=1}^{n}p_k =P_n$.
+
+	Частичные произведения {\sf сходятся} к $ P$, если  $ \exists  \lim_{n \to \infty} P_n = P$ и $ P\ne 0, P \ne \infty$.
+
+	Если $ P=0$, говорят, что {\sf расходится к $0$}, если к  $ \pm \infty$, говорят, {\sf что расходится к $ \pm \infty$}.
 \end{defn}
+
 \begin{ex}
     \[
 	\prod_{n=2}^{\infty}\left(1- \frac{1}{n^2}\right)
@@ -248,9 +376,9 @@ e^{i }\frac{e^{\frac{ni}{2}} \left(e^{\frac{ni}{2}}-e^{-\frac{ni}{2}}\right)\cdo
 	P_n = \frac{1}{2}\cdot \frac{n+1}{n} \to  \frac{1}{2}
     .\] 
 \end{ex}
-\begin{ex}
+\begin{ex}[Формула Ваниса]
     \[
-	\prod_{n=1}^{\infty} \left( 1 - \frac{1}{4n^2} \right)  = \frac{2}{\pi} \text{(формула Ваниса)}
+	\prod_{n=1}^{\infty} \left( 1 - \frac{1}{4n^2} \right)  = \frac{2}{\pi}
     .\] 
 \end{ex}
 \begin{prop}
@@ -258,12 +386,12 @@ e^{i }\frac{e^{\frac{ni}{2}} \left(e^{\frac{ni}{2}}-e^{-\frac{ni}{2}}\right)\cdo
     \begin{description}
 	\item[\boxed{1}]  $ \prod_{n=1}^{\infty} p_n$ сходится, тогда $ p_n \to  1$ 
 	\item[\boxed{2}]  Первые несколько слагаемых ряда можно отбросить, на сходимость это не повлияет
-	\item[\boxed{3}] Всегда можно считать, что $ p_n > 0$
+	\item[\boxed{3}] Всегда можно считать, что $ p_n > 0$, так как, если ряд сходится, то $ p_n \to  1$.
 	\item[\boxed{4}] $ \prod_{n=1}^{\infty}p_n, p_n >0$. 
 	    \[
 	    \prod_{n=1}^{\infty} p_n \text{ сходится} \Longleftrightarrow \prod_{n=1}^{\infty} \ln p_n \text{ сходится}
 	    .\] 
-	    $ \ln P_n = S_n$
+	    Используем $ \ln P_n = S_n$.
     \end{description}
 \end{prop}
 \begin{ex}
