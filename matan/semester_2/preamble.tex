@@ -65,66 +65,72 @@
 \newcommand{\slim}{\sum\limits}
 \newcommand{\im}{\operatorname{Im}}
 \newcommand{\re}{\operatorname{Re}}
-\newcommand{\ke}{{\mathop{\text{\rm Ker}}}~}
-\newcommand{\ord}{{\mathop{\text{\rm ord}}}~}
-\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}~}
-\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
-\newcommand{\Hom}{{\mathop{\text{\rm Hom}}}}
-\newcommand{\Poly}{{\mathop{\text{\rm Poly}}}}
-\newcommand{\osc}{{\mathop{\text{\rm osc}}}}
-\newcommand{\rank}{{\mathop{\text{\rm rank}}}}
+\newcommand{\ke}{ \operatorname{Ker}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\Hom}{ \operatorname{Hom}}
+\newcommand{\Poly}{\operatorname{Poly}}
+\newcommand{\osc}{ \operatorname{osc}}
+\newcommand{\rank}{\operatorname{rank}}
 \newcommand{\pivi}{\stackrel \circ }
 
 \renewcommand{\o}{o}
 \renewcommand{\O}{\mathcal{O}}
 % \renewcommand{\O}[1]{$\mathcal{O}(#1)$}
-\newcommand{\grad}{{\mathop{\text{\rm grad}}}}
+\newcommand{\grad}{\operatorname{grad}}
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
 
 \usepackage{mdframed}
-\mdfsetup{skipabove=5pt,skipbelow=5pt}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
-    linecolor=red,linewidth=3pt,topline=false,bottomline=false,%
+    linecolor=red,
+	linewidth=2pt,topline=false,bottomline=false,%
     frametitlerule=false,%
-    frametitlebackgroundcolor=gray!10,%
-    innertopmargin=7pt,innerbottommargin=5pt,
+    frametitlebackgroundcolor=red!10,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=3pt,
 }
 \mdfdefinestyle{thmstyle}{%
-    linecolor=cyan!100,linewidth=3pt,topline=false,bottomline=false,%
+    linecolor=cyan!100,
+	linewidth=2pt,topline=false,bottomline=false,%
     frametitlerule=false,%
     frametitlebackgroundcolor=cyan!20,%
-    innertopmargin=7pt,innerbottommargin=5pt,
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=3pt,
 }
 \theoremstyle{definition}
-\mdtheorem[style=defstyle]{defn}{Definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
 
-\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Corollary}
-\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Description}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Violet!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{ex}{Example}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=-4pt,innerbottommargin=4pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!10,linewidth=0pt,innertopmargin=-4pt,innerbottommargin=4pt]{desc}{Описание}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=-4pt,innerbottommargin=4pt]{ex}{Пример}
 \theoremstyle{plain}
-\mdtheorem[style=thmstyle]{thm}{Theorem}
+\mdtheorem[style=thmstyle]{thm}{Теорема}
 % \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
 
-\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Lemma}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=-4pt,innerbottommargin=4pt]{lm}{Лемма}
 
 \theoremstyle{plain}
-\newtheorem*{st}{Statement}
-\newtheorem*{prop}{Property}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
 
 \theoremstyle{definition}
-\newtheorem*{name}{Designation}
+\newtheorem*{name}{Обозначение}
 
 \theoremstyle{remark}
-\newtheorem*{rem}{Remark}
-\newtheorem*{com}{Comment}
-\newtheorem*{note}{Note}
-\newtheorem*{prac}{Practice}
-\newtheorem*{probl}{Exercise}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{prac}{Упражнение}
+\newtheorem*{probl}{Задача}
 
-\renewcommand{\proofname}{Proof}
+\renewcommand{\proofname}{Доказательство}
 
 \numberwithin{ex}{section}
 \numberwithin{thm}{section}
