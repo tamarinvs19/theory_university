@@ -1,0 +1,310 @@
+\documentclass[10pt,dvipsnames]{report}
+\input{preamble.tex}
+
+\title{Важные определения и формулировки}
+\author{Тамарин Вячеслав}
+
+\begin{document}
+
+\begin{thm}[Одномерная формула Тейлора с остатком в интегральной форме]
+    $ f \in  C^{n+1} (\langle a, b \rangle), ~ x, x_0 \in  (a, b)$. Тогда
+	\[
+		f(x) = \sum_{i=0}^{n} \frac{1}{i!}f^{\left( i \right) } (x) (x - x_0)^{i} + \frac{1}{n!}\int_{x_0}^{x} f^{(n+1)} (t)(x-t)^{n} dt 
+	.\] 
+\end{thm}
+
+
+\begin{thm}[Многомерная формула Тейлора с остатком в форме Лагранжа]
+    Если $ f \in C^{n+1}(U, \R), ~[x, x+h] \subset U$, то существует $ \vartheta \in (0, 1)\colon $
+    \[
+	f(x+h) = 
+	\sum_{\alpha \le n}^{} 
+	\frac{h^{ \lvert a \rvert   }}{\alpha !} 
+	\frac{\partial ^{\lvert \alpha  \rvert} f}{\partial x^{\alpha }}(x) +
+	\sum_{\lvert \alpha  \rvert = n+1}^{} 
+	\frac{h^{\alpha  }}{\alpha !}
+	\frac{\partial ^{n+1} f}{\partial x^{\alpha }} (x + \vartheta h)
+    .\] 
+	\begin{note}
+		Здесь $ \alpha = (\alpha_1, \ldots \alpha_m)$ --- мультииндекс
+	\end{note}
+\end{thm}
+
+
+\begin{defn}[Несобственный интеграл]
+    Пусть $-\infty<a<b\le +\infty$ , $f\in C[a,b)$. Тогда {\sf несобственным интегралом} называется  
+    \[
+	\int_a^{\to b} f(x) dx=\lim_{B\to b-} \int_a^B f(x) dx
+    .\]
+    Если предел существует, то $\int_a^{\to b} f(x) dx$ {\sf сходится}, иначе {\sf расходится}.
+	\begin{note}
+    Аналогично определяется $\int_{\to a}^b f(x) dx$.
+	\end{note}
+\end{defn}
+\begin{thm}[Критерий Больцано-Коши]
+    $ \int_{a}^{\to b} f(x) dx $ сходится тогда и только тогда, когда 
+    \[
+	\forall \varepsilon >0 ~ \exists \delta \in (a, b)\colon \forall B_1, B_2 \in (\delta , b)\colon \left| \int_{B_1}^{B_2}f(x)dx \right| < \varepsilon 
+    .\] 
+\end{thm}
+
+
+\begin{defn}[Путь]
+    {\sf Путь в $ \R^{n} $} ---  отображение $ \gamma : [a, b] \to  \R^{n} , ~ \gamma \in  C[a, b]$. 
+    {\sf Носители пути} ---  $ \gamma([a, b])$.
+
+    $ \gamma \in C^{n}[a, b] \Longleftrightarrow  \forall  i : \gamma_i \in  C^{r} [a, b] \Longleftrightarrow \gamma \text{ --- $ r$-гладкий путь}$.
+\end{defn}
+
+\begin{defn}[Кривая]
+    {\sf Кривая в $ \R^{n} $} --- класс эквивалентности путей.
+    {\sf Параметризация кривой} --- путь, представляющий кривую.  
+\end{defn}
+
+\begin{defn}[Длина пути]
+$ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$, где   
+\[
+    l_{\tau} = \sum_{j=1}^{m} \lvert \gamma(x_j) -\gamma(x_{j-1}) \rvert, ~ \tau =  \left\{ x_j \right\}_{j=0}^{m}  
+.\] 
+\end{defn}
+
+\begin{defn}[Длина кривой]
+    {\sf Длина кривой} --- длина любой из ее параметризаций.  
+\end{defn}
+
+\begin{thm}[Длина гладкого пути]
+    $ \gamma : [a, b] \to  \R^{n} $ --- гладкий путь. Тогда $ \gamma$ обязательно спр и \[
+	l(\gamma) = \int_{a}^{b} \left| \gamma'(t) \right| dt 
+    .\] 
+    \[
+	\gamma'(t) = \left( \gamma'_1(t), \ldots   \gamma'_n(\tau)\right) 
+    .\] 
+    \[
+	\lvert \gamma'(t) \rvert = \sqrt {\lvert \gamma'_1(t)^2 + \ldots  \gamma'_n(t)^2 \rvert }
+    .\] 
+\end{thm}
+
+
+\begin{defn}
+    $ (X, \rho)$ --- метрическое пространство. $ U: X \to  X$. $ U$ называется {\sf сжимающим отображением}, если
+    \[
+	\forall  \gamma < 1 ~ \forall  x_1, x_2 \in X\colon \rho(U(x_1), U(x_2)) \le  \gamma \rho(x_1, x_2)
+    .\]
+\end{defn}
+
+\begin{thm}[Принцип сжимающих отображений]
+    $ (X, \rho)$ полно.
+    $ $
+    \begin{enumerate}
+	\item $ U$ --- сжимающее отображение $ \Longrightarrow \exists! x_{*} \colon U(x_1) = x_{*}$ --- неподвижная точка
+	\item Если  $ \exists  N \colon U^{N}$ --- сжимающее отображение $ \Longrightarrow \exists  ! x_{*} \colon U(x_{*} = x_{*}$
+    \end{enumerate}
+\end{thm}
+
+
+\begin{defn}[Линейное отображение]
+    $ X, Y$ --- линейные пространства над одним полем скаляров (либо $ \R$, либо $ \Cm$).
+    $ U: X \to  Y$ называется {\sf линейным}, если
+    \begin{enumerate}[noitemsep]
+	\item $ \forall  x_1, x_2 \in X \colon U(x_1+x_2) = U(x_1) + U(x_2)$
+	\item $ \forall x \in X, ~ \lambda \text{ --- скаляр} \colon U(\lambda x) = \lambda U(x)$
+    \end{enumerate}
+	\begin{name}
+		$ \Hom(X, Y)$ --- множество всех линейных отображений из $ X$ в $ Y$.
+	\end{name}
+\end{defn}
+\begin{defn}[Полилинейное отображение]
+    $ X_1, \ldots X_n$ --- линейные пространства, $ Y$ --- линейное пространство над одним скаляром.
+    $ U: X_1 \times  X_2 \times  \ldots \times X_n \to  Y$  --- {\sf полилинейное отображение}, если оно линейно по каждому из аргументов.
+	\begin{name}
+		$ \Poly(X_1, \ldots X_n, Y)$ --- множество всех полилинейных отображений.
+	\end{name}
+\end{defn}
+
+\begin{defn}[Операторная норма]
+    $ U$ --- непрерывное  линейное отображение (оператор) из $ X$ в $ Y$.
+    \[
+	\| U \|  = \inf \{C \mid x \in X, ~ \| Ux \| \le C \| x \| \}
+    .\]
+    $ \| U \|  $ --- {\sf операторная норма}.
+	\begin{note}
+		Если $ U$ --- разрывное отображение, считаем, что $ \| U \|  = \infty$.
+	\end{note}
+	\begin{note}
+		\[
+		\| U \|  = \sup_{x \ne 0} \frac{\| Ux \|}{\| x \| }
+		.\]
+	\end{note}
+\end{defn}
+\begin{defn}[Норма полилинейного отображения]
+    \[
+	\| U \|  = \inf \left\{ C \mid \forall  x_1 \in X_1, \ldots x_{n} \in X_n ~ \|  U(x_1, \ldots x_{n}) < C \| x_1 \| \cdot \ldots \| x_{n} \|    \right\} 
+    .\] 
+\end{defn}
+
+
+\begin{defn}
+    $ X, Y$ --- нормированные пространства, $ E \subset X$, $ x \in E$, $ x$ --- внутренняя точка, $ f: E \to Y$.
+    $ f$ --- {\sf дифференцируемо в точке  $ x$}, если $ \exists L \in L(X, Y) \colon $  
+    \[
+	f(x+h) - f(x) =L(h) + \o(h), \qquad h \to 0, x + h \in  E
+    .\] 
+    $ L$ --- {\sf дифференциал } $ f$ в точке $ x$.  
+\end{defn}
+\paragraph{Правила дифференцирования}
+\begin{description}
+	\item[\framebox{Линейность}] $ f_1, f_2: E \subset X to Y$, $ f_1, f_2$ непрерывны в точке $ x \in E$. Тогда $ \forall \lambda_1, \lambda_2$ --- скаляры:
+	$\lambda_1f_1 + \lambda_2 f_2 $ дифференцируема в точке $ x$ и $ d(\lambda_1 f_1 + \lambda_2 f_2) (x) = \lambda_1df_1(x) + \lambda_2df_2(x)$
+	\item[\framebox{Дифференциал композиции}] $ X, Y, Z$ --- линейные нормируемые пространства, $ U \subset X, ~ V \subset Y$, $ U, V$ открыты, $ f: U to Y, g : V \to  Z$, $ x \in U, f(x) in V$, f дифференцируема в точке $ x$, $ g$  дифференцируема в точке $ f(x)$. Тогда $ g \circ f$ дифференцируема в точке $ x$.
+	 \[
+	     d(g \circ f)(x) = dg(f(x)) \circ df(x))
+	.\] 
+\item[\framebox{Дифференцирование обратного}] $ x \in U \subset X$, $ U$ открыто, $ f: U \to Y$, существует окрестность $ V(f(x))$ в $ Y$, в которой  $ \exists f^{-1}$. Предположим, что $ f$ дифференцируема в точке $ x$, $ \exists \left( df(x) \right)^{-1} \in L(Y, X)$, $ f^{-1}$ непрерывна в точке $ f(x)$. Тогда  $ f^{-1}$ дифференцируема в точке $ f(x)$ и \[
+		\underbrace{df^{-1}(f(x))}_{ \in L(Y, X)} = \left( df(x) \right)^{-1}
+	.\] 
+\end{description}
+
+
+\begin{defn}[Частные производные]
+    Пусть $ a \in  X_1 \times X_2 \times  \ldots  \times X_n$. $ U$ --- окрестность точки $ a$.  $ f\colon  U \to Y$.  $ f(x) = f(x_1, \ldots x_{n})$.
+
+    Определим $ \varphi _j \colon  X_j \to  Y, ~ \varphi _j(x_j) = f(a_1, a_2, \ldots x_j, a_{j+1}, \ldots a_n)$.
+
+    $ d \varphi _j (a_j)$ называется {\sf частным дифференциалом (частной производной)} $ f$ по $ x_j$ в точке $ a$, если существует. 
+\end{defn}
+
+
+\begin{defn}[Производная по вектору]
+    Пусть $ f \colon X \to  \R, ~ v \in X$. Тогда 
+    \[
+	\frac{ \partial f}{ \partial v}(x) = \lim_{t \to  0} \frac{f(x+tv) - f(x)}{t}
+    \] 
+    --- {\sf производная по вектору} $ v$ или {\sf вдоль вектора}  $ v$. Если  $ \| v \| = 1$, то называют {\sf производной по направлению} $ v$.  
+\end{defn}
+\begin{prop}[Экстремальное свойство градиента]
+    В случае $ \R^{m} $ 
+    \[
+	\frac{ \partial f}{ \partial v} (x) = \langle \grad f(x), v \rangle
+    ,\] 
+    откуда
+    \[
+	\left| \frac{ \partial f}{ \partial v}(x) \right| \le \left| \grad f(x) \right| \left| v \right| 
+    .\] 
+    Функция растет быстрее всего в направлении градиента:
+    \[
+	\max_{\left| v \right| = 1} \left| \frac{ \partial f}{ \partial v} (x)\right| 
+    .\] 
+\end{prop}
+
+
+\begin{thm}[Теорема о конечном приращении]
+    Пусть $ f \colon U \subset X \to  Y$ непрерывно на $ [x, x+t] \subset U$ и дифференцируемо на $ (x, x+h)$. Тогда
+     \[
+	 \| f(x+h) - f(x) \|_Y \le \sup_{\xi \in (x, x+h)} \| df(\xi) \|_{L(X, Y)} \cdot \| h \|_X 
+    .\] 
+\end{thm}
+
+
+\begin{thm}[Теорема о конечном приращении для функций]
+    Пусть $ f\colon U \subset X \to  \R$ непрерывна на $ [x, x+h] \in U$ и дифференцируема на $ (x. x+h)$. Тогда существует такое  $ \xi \in (x, x+h)$, что
+    \[
+	f(x+h) - f(x) = df(\xi )h
+    .\] 
+\end{thm}
+
+
+\begin{thm}[О неявном отображении] \label{thm:implicit-display}
+    \begin{itemize}[noitemsep]
+	\item Пусть $ X, Y, Z$ --- нормированные пространства,   $ Y$--- полное, $ (x_0, y_0) \in W \subset X \times Y$.
+	\item Отображение непрерывно $ F \colon W \to  Z$ в точке $ (x_0, y_0)$, $ F(x_0, y_0) = 0$
+	\item В $ W$ существует частный дифференциал  $ F$ по  $ y$ ($ \exists  \partial _y F \colon W \to  L(Y, Z)$) и непрерывен в точке $ (x_0, y_0)$.
+	\item  Оператор обратим $ (\partial _yF(x_0, y_0) )^{-1} \in  L(Z, Y)$
+    \end{itemize}
+	{\bf Тогда} существуют $ U \subset X$ --- окрестность точки $ x_0$, $ V \subset Y$ --- окрестность точки $ y_0$, $ f\colon U \to  V$ такие, что $ U \times V \subset W$ и
+    \[
+	\{F(x, y) = 0\} \cap (U \times V) = \Gamma _f = \{(x, f(x)) \mid x \in U\}
+    .\] 
+\end{thm}
+
+
+\begin{thm}[необходимое условие экструмума]
+    Пусть $ f\colon U \to  \R$, $ x_0 \in U$. Тогда
+    \begin{enumerate}[noitemsep]
+	\item Если для какого-то $ h$ существует  $ \partial _h f(x_0)$, то она равна 0.
+	\item Если $ f$ дифференцируема в точке  $ x_0$, то $ df(x_0) = 0$
+    \end{enumerate}
+\end{thm}
+
+
+\begin{defn}[сходимость ряда]
+    Ряд  $ \sum_{k=1}^{\infty} x_k$ называется {\sf сходящимся}, если 
+    \[
+    \exists \lim_{n \to \infty} S_n \eqqcolon S
+    .\] 
+    Иначе ряд называется {\sf расходящимся}.  
+\end{defn}
+\begin{prop}
+    $ $
+    \begin{description}[]
+	\item[\boxed{1}] $ \sum_{k=1}^{\infty} x_k$ сходится $ \Longleftrightarrow $ $ \forall m \in \N$ сходится ряд $ \sum_{k = k+1}^{\infty} x_k $ и при этом
+	    \[
+		\sum_{k=1}^{\infty} x_k = \sum_{k=1}^{n}x_k + \underbrace{ \sum_{k = m+1}^{\infty} }_{\text{остаток}}
+	    .\] 
+
+	\item[\boxed{2}] $ \sum_{k=1}^{\infty} x_k $  сходится $ \Longrightarrow $ $  \sum_{k = m+1}^{\infty} x_k \stackrel{m \to  \infty}{\to} 0$
+		\begin{proof}
+		    Распишем формулу суммы ряда:
+			\[
+			S = S_m + \sum_{k = m+1}^{\infty}  x_k
+			.\] 
+			$ S_m$ стремиться к  $ S$ при  $ m \to  \infty$, поэтому
+			\[
+				\sum_{k=m+1}^{\infty} x_k  = S - S_m \stackrel{m \to  \infty}{ \to  0}
+			.\] 
+		\end{proof}
+
+    \item[\boxed{\texttt{линейность}}] $ \sum_{k=1}^{\infty} x_k$ и $ \sum_{k=1}^{\infty} y_k$ сходятся. Тогда 
+	\[
+	    \forall \alpha , \beta  : \sum_{k=1}^{\infty} (\alpha  x_k + \beta y_k) \text{ сходится}
+	\] 
+	при этом
+	$$
+	    \forall \alpha , \beta  : \sum_{k=1}^{\infty} (\alpha  x_k + \beta y_k) = \alpha  \sum_{k=1}^{\infty} x_k + \beta \sum_{k=1}^{\infty} y_k
+	    .$$
+	    \begin{note}
+	        Если один ряд сходится, а второй расходится, то их сумма расходится.
+	    \end{note}
+
+	\item[\boxed{ x_k \in  \R^{m} }]. 
+	    \[
+		\sum_{k=1}^{\infty} x_k  = \left( \sum_{k=1}^{\infty}x_k^{(0)} + \ldots + \sum_{k=1}^{\infty}  x_k^{(m)} \right) 
+	    .\] 
+
+	\item[\boxed{ z_k \in \Cm$. $ z_k = x_k + i y_k}].
+	     \[
+	    \sum_{k=1}^{\infty} (\alpha  x_k + i y_k) = \sum_{k=1}^{\infty} x_k +i \sum_{k=1}^{\infty} y_k
+	    .\] 
+
+	\item[\boxed{\texttt{монотонность}}] $ a_k,~ b_k \in \R$, $ a_k \le b_k$, $ \sum_{k=1}^{\infty} a_k$ и $\sum_{k=1}^{\infty} и_k$ сходится (возможно с $ \pm \infty)$, тогда
+	    \[
+	    \sum_{k=1}^{\infty} a_k \le \sum_{k=1}^{\infty} b_k
+	    .\] 
+	\item[\boxed{\texttt{необходимое условие сходимости}}] 
+		$ \{x_k\} \subset X$, $ \sum_{k=1}^{\infty} x_k$ сходится, тогда $ x_k \stackrel{x \to  \infty}{ \longrightarrow} 0$.
+	\item[\boxed{\texttt{критерий Больцано-Коши}}]
+		Пусть $ X$ полно. $ \{x_k\} \subset X$. 
+	    \[
+	    \sum_{k=1}^{\infty} x_k \text{ сходится} \Longleftrightarrow \forall \varepsilon >0 ~ \exists N ~ \forall n> N ~ \forall  p \in \N: \left\| \sum_{k=n+1}^{n+p} x_k \right\| < \varepsilon 
+	    .\] 
+	    \begin{proof}
+		Сходимость $ \sum_{k=1}^{\infty} x_k$ равносильна тому, что $ \{S_n\}$ сходится, что равносильно тому, что $ S_n$ фундаментальна в  $ X$. То есть 
+		\[
+		\forall \varepsilon >0 ~ \exists N ~ \forall m, n > N : \| S_m - S_n \| < \varepsilon  
+		.\] 
+		\[
+		m > n \Longrightarrow m = n+p, ~p \in \N: S_m - S_n = \sum_{k = n+1}^{n+p} x_k 
+		.\] 
+	    \end{proof}
+    \end{description} 
+\end{prop}
+\end{document}
