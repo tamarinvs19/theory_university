@@ -18,7 +18,7 @@
 	\end{itemize}
 	Эта норма не полная.
 	Но есть процедура {\sf пополнения}.
-	\begin{thm}[без доказательства)]
+	\begin{thm}[(без доказательства)]
 	    $ (X, \rho)$ ---  метрическое пространство. Тогда $\exists ! (Y, \tilde\rho)$  --- полное метрическое пространство, такое что
 	    \begin{enumerate}[noitemsep]
 		\item $X \subset  Y $
@@ -57,14 +57,14 @@
 \begin{defn}
     $ (X, \rho)$ --- метрическое пространство. $ U: X \to  X$. $ U$ называется {\sf сжимающим отображением}, если
     \[
-	\forall  \gamma < 1 ~ \forall  x_1, x_2 \in X\colon \rho(U(x_1), U(x_2)) \le  \gamma \rho(x_1, x_2)
+	\exists   \gamma < 1 ~ \forall  x_1, x_2 \in X\colon \rho(U(x_1), U(x_2)) \le  \gamma \rho(x_1, x_2)
     .\]
 \end{defn}
 \begin{thm}[Принцип сжимающих отображений]
     $ (X, \rho)$ полно.
     $ $
     \begin{enumerate}
-	\item $ U$ --- сжимающее отображение $ \Longrightarrow \exists! x_{*} \colon U(x_1) = x_{*}$ --- неподвижная точка
+	\item $ U$ --- сжимающее отображение $ \Longrightarrow \exists! x_{*} \colon U(x_*) = x_{*}$ --- неподвижная точка
 	\item Если  $ \exists  N \colon U^{N}$ --- сжимающее отображение $ \Longrightarrow \exists  ! x_{*} \colon U(x_{*} = x_{*}$
     \end{enumerate}
 \end{thm}
@@ -250,7 +250,7 @@
     \begin{enumerate}
         \item $ U$ непрерывно
 	    \item  $ U$ непрерывно в $ 0$ 
-	    \item  $ \exists  C ~ \forall  x_1 \in X_1, x_2 \in X_2, \ldots x_n \in X_n \colon \| U(x_1, \ldots x_n) \|  \le  X \| x_1 \| \cdot \ldots \cdot \| x_{n} \| $
+	    \item  $ \exists  C ~ \forall  x_1 \in X_1, x_2 \in X_2, \ldots x_n \in X_n \colon \| U(x_1, \ldots x_n) \|  \le  C \| x_1 \| \cdot \ldots \cdot \| x_{n} \| $
     \end{enumerate}
     \begin{note}
 	В прямом произведении есть норма (Например, такая) \[
@@ -261,7 +261,7 @@
 \begin{defn}
     [Норма полилинейного отображения]
     \[
-	\| U \|  = \inf \left\{ C \mid \forall  x_1 \in X_1, \ldots x_{n} \in X_n ~ \|  U(x_1, \ldots x_{n}) < C \| x_1 \| \cdot \ldots \| x_{n} \|    \right\} 
+	\| U \|  = \inf \left\{ C \mid \forall  x_1 \in X_1, \ldots x_{n} \in X_n ~ \|  U(x_1, \ldots x_{n}) \| < C \| x_1 \| \cdot \ldots \| x_{n} \|    \right\} 
     .\] 
 \end{defn}
 \begin{thm}[Эквивалентные способы вычисления оперератора] 		
@@ -301,7 +301,7 @@
 \end{rem}
 \begin{thm}[эквивалентные способы вычисления нормы полилинейного оператора]
     $ U: X_1 \times \ldots \times X_n \to  Y $. \[
-	\| U \|  = \sup_{x_j \ne 0} \frac{\| U(x_1, \ldots x_n)}{\| x_1 \| \cdot  \ldots \| x_n \| } \|  = \sup _{ \| x_j=1 \| \| U(x_1, \ldots x_n) \|  }  = \sup_{\|  x_j  \|  < 1} = \sup_{\| x_j \|  \le 1}
+	\| U \|  = \sup_{x_j \ne 0} \frac{\| U(x_1, \ldots x_n)\|}{\| x_1 \| \cdot  \ldots \| x_n \| }   = \sup _{ \| x_j=1 \| \| U(x_1, \ldots x_n) \|  }  = \sup_{\|  x_j  \|  < 1} = \sup_{\| x_j \|  \le 1}
     .\]  
 \end{thm}
 

@@ -98,21 +98,21 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
 	\item $ \gamma \sim \tilde \gamma \Longrightarrow l(\gamma) = l(\tilde\gamma)$
 	\item Аддитивность
 	    \[
-		\gamma : [a, b], c \in  (a b) \qquad \gamma^{л} = \gamma \bigm|_{[a, c]} , ~ \gamma^{п} \gamma\bigm|_{[c, b]}
+		\gamma : [a, b], c \in  (a b) \qquad \gamma^{l} = \gamma \bigm|_{[a, c]} , ~ \gamma^{r} \gamma\bigm|_{[c, b]}
 	    .\] 
-	    Тогда $ l(\gamma) = l(\gamma^{л}) + l(\gamma^{п})$.
+	    Тогда $ l(\gamma) = l(\gamma^{l}) + l(\gamma^{r})$.
 	    \begin{proof}
 		$ $
 		\begin{description}
-		    \item \boxed{ 1 \Longrightarrow 2} $ \tau$ --- дробление $ [a, b]$. 
+		    \item \boxed{ \le } $ \tau$ --- дробление $ [a, b]$. 
 			 \begin{align*}
 			     \tau^{l} \left( \tau \cap [a, c] \cup \left\{ c \right\}  \right) \\
 			     \tau^{r}  = \left( \tau \cap [c, b] \cup \left\{ c \right\}  \right) 
 			\end{align*}
 			     \[
-				 l(\gamma) = \sum_{j=1}^{n} \left| \gamma(x_j) - \gamma(x_{j-1} \right|  \le  l_{\tau^{l}} (\gamma^{l})- l_{tau^{r}} (\gamma^{r}) \le l(\gamma^{l}) - l(\gamma^{r})
+				 l(\gamma) = \sum_{j=1}^{n} \left| \gamma(x_j) - \gamma(x_{j-1} \right|  \le  l_{\tau^{l}} (\gamma^{l})- l_{\tau^{r}} (\gamma^{r}) \le l(\gamma^{l}) - l(\gamma^{r})
 			     .\] 
-		    \item \boxed{ 2 \Longrightarrow 1} 
+		    \item \boxed{ \ge } 
 			$ \tau^{l} $ --- дробление $ [a, b]$,  $ \tau^{r}$ --- дробление $ [c, d]$.  $ \tau = \tau^{l} \cup \tau^{r}$.
 			\begin{align*}
 			    l(\gamma) & \le l_{\tau} (\gamma) = l_{\tau^{l}}(\gamma^{l}) +l _{\tau^{r}}(\gamma^{r}) \\
@@ -124,7 +124,7 @@ $ \gamma: [a, b] \to  \R^{n} $ --- путь. $ l(\gamma) = \sup_{\tau} l_{\tau}$
     \end{enumerate}
 \end{prop}
 \begin{thm}[Длина гладкого пути]
-    $ \gamma : [a, b] \to  \R^{n} $ --- гладкий путь. Тогда $ \gamma$ обязательно спр и \[
+    $ \gamma : [a, b] \to  \R^{n} $ --- гладкий путь. Тогда $ \gamma$ обязательно спрямляемый и \[
 	l(\gamma) = \int_{a}^{b} \left| \gamma'(t) \right| dt 
     .\] 
     \[

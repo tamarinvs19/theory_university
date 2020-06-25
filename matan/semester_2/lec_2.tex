@@ -15,7 +15,7 @@
 \item[2'] Если $ \int_{A}^{ \to b} f \not\to_{A \to b-} \Longrightarrow  \int_{a}^{ \to b}  $ расходится (необходимое условие сходимости несобственного интеграла).
 \item [\framebox{линейность}] $ f, g$ --- функции на $ [a, b)$,  $ \alpha , \beta  \in \R$.
     \[
-	\int_{a}^{  \to b} , ~ \int_{a}^{ \to  b}  g  \text{ сходятся } \Longrightarrow \int_{a}^{\to b} ( \alpha  f + \beta  g)  = \alpha \int_{ a}^{ \to b}      + \beta  \int_{a}^{ \to  b}  g
+	\int_{a}^{  \to b} f, ~ \int_{a}^{ \to  b}  g  \text{ сходятся } \Longrightarrow \int_{a}^{\to b} ( \alpha  f + \beta  g)  = \alpha \int_{ a}^{ \to b}  f    + \beta  \int_{a}^{ \to  b}  g
     .\]
 \item  [\framebox{монотонность}]
     $ f \le  g,  \int_{ a}^{ \to b} f + \int_{a}^{ \to b} g   $ сходятся. \[
@@ -56,7 +56,7 @@
 	\int_{ \alpha }^{ \to \beta } f( \varphi (x)) \varphi '(x) dx = \int_{ \varphi ( \alpha ) }^{ \varphi (\beta -)} f(y) dy
     .\]
     \begin{proof}
-	$ D \in [ \alpha , \beta )$. \[
+	$ \gamma  \in [ \alpha , \beta )$. \[
 	    \Phi (\gamma) = \int_{ \alpha}^{\gamma}  f( \varphi (x)) \varphi '(x) dx
 	.\]
 	$ c \in  [a, b)$
@@ -118,7 +118,7 @@
     \begin{thm}[Признаки Абеля и Дирихле]
 	$ f \in C[a, b), ~ g \in C^{1}[a, b)$, $ g$ монотонна.
 	\begin{description}
-	    \item[Признак Дирихле] Если $ f$ имеет ограниченную первообразную на  $ [a, b), g \to  0$, то $ \int_{}^{ t b}fg  $ сходится.
+	    \item[Признак Дирихле] Если $ f$ имеет ограниченную первообразную на  $ [a, b), g \to  0$, то $ \int_{}^{ \to  b}fg  $ сходится.
 	    \item[Признак Абеля] Если $  \int_{a}^{ \to  b}  f $ сходится, $ g$  ограничена, то $ \int_{a}^{ \to b} fg   $ сходится.
 	\end{description}
     \end{thm}
@@ -212,7 +212,7 @@
     \subsection{Площади}
     \begin{enumerate}
 	\item $ f \in C[a, b], ~ f \ge 0, ~ P_f = \{(x, y) \mid x \in  [a, b], ~ y \in  [0, f(x)]\}$. Тогда $S(P_{f}) = \int_{a}^{b} f(x) dx $
-	\item Криволинейная трапеция. $ f, g \in  C[a, b], ~ f \ge g, ~ T _{f, g} = \{ (x, y) \mid x in [a, b] , y \in  [g(x), f(x)] \}$.
+	\item Криволинейная трапеция. $ f, g \in  C[a, b], ~ f \ge g, ~ T _{f, g} = \{ (x, y) \mid x \in [a, b] ,~ y \in  [g(x), f(x)] \}$.
 	    Тогда $ S(T_{f, g}) = \int_{a}^{b} f(x) -g(x) dx $
 	    \begin{cor}[Принцип Кавальери]
 		Если есть две фигуры на плоскости расположенные в одной полосе и длина всех сечений прямыми, параллельными полосе, равны, то их площади равны.
@@ -235,10 +235,11 @@
 		S(\tilde P_f) \frac{1}{2} \int_{ a}^{b} fst( \varphi ) d \varphi
 	    .\]
 	\item Площадь фигуры, ограниченной праметрически заданной кривой.
-	    $ x, y :  \R to \R$. $ \forall  t: x(t + T) = x(t) , y(t + T) = y(T)$. $ x, y \in  C^{1}(\R)$
+	    $ x, y \colon   \R \to \R$. $ \forall  t\colon  x(t + T) = x(t),~ y(t + T) = y(T)$. $ x, y \in  C^{1}(\R)$
 	    \begin{figure}[ht]
 		\centering
 		\incfig{param}
+		\caption{Фигура, ограниченная параметрически заданной кривой}
 		\label{fig:param}
 	    \end{figure}
 	    \[
