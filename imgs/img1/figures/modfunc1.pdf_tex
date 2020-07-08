@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.92.5, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'fig1.pdf' (pdf, eps, ps)
+%% Accompanies image file 'modfunc1.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -53,18 +53,18 @@
   \begin{picture}(1,0.5)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{modfunc1.pdf}}%
     \put(0.48946047,0.36638781){\color[rgb]{0,0,0}\transparent{0.951626}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Pi$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=2]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{modfunc1.pdf}}%
     \put(0.42910671,0.23550975){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
     \put(0.55357374,0.23506234){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{modfunc1.pdf}}%
     \put(0.50779667,0.21724091){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\phi_0$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{modfunc1.pdf}}%
     \put(0.48493026,0.13250427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbb{C}_{+}$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{modfunc1.pdf}}%
     \put(0.42988812,0.06449293){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
     \put(0.55608521,0.06373825){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{fig1.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{modfunc1.pdf}}%
   \end{picture}%
 \endgroup%
