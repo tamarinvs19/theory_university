@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="240mm"
-   height="120mm"
-   viewBox="0 0 240 120"
+   width="112.00004mm"
+   height="109.54617mm"
+   viewBox="0 0 112.00004 109.54616"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -474,9 +474,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99437388"
-     inkscape:cx="133.42758"
-     inkscape:cy="178.69792"
+     inkscape:zoom="0.70312851"
+     inkscape:cx="302.32544"
+     inkscape:cy="183.44008"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -484,11 +484,15 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1044"
-     inkscape:window-x="0"
-     inkscape:window-y="36"
-     inkscape:window-maximized="0">
+     inkscape:window-width="960"
+     inkscape:window-height="1062"
+     inkscape:window-x="960"
+     inkscape:window-y="18"
+     inkscape:window-maximized="0"
+     fit-margin-left="1"
+     fit-margin-top="1"
+     fit-margin-bottom="1"
+     fit-margin-right="1">
     <inkscape:grid
        type="xygrid"
        id="grid815"
@@ -496,7 +500,9 @@
        spacingx="10"
        spacingy="10"
        empspacing="4"
-       dotted="false" />
+       dotted="false"
+       originx="-63.504173"
+       originy="-5.1038347" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -514,7 +520,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-177)">
+     transform="translate(-63.50417,-182.35001)">
     <path
        id="path863-5"
        d="m 134.8082,207.39915 -0.005,-23.7633 7.97274,0.0628 c 4.38501,0.0345 11.07364,0.0628 14.86363,0.0628 l 6.8909,6e-5 -0.004,23.65322 -0.005,23.65321 -0.22722,-0.86284 c -1.6619,-6.31052 -7.07532,-10.82684 -13.51641,-11.27652 -2.82,-0.19687 -5.50401,0.34599 -7.97231,1.61246 -3.88827,1.99505 -6.65207,5.46977 -7.7717,9.77076 l -0.22144,0.85066 z"

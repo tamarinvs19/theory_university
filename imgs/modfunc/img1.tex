@@ -26,16 +26,22 @@
 \begin{document}
 
 \begin{figure}[ht]
-    \centering
-    \incfig{modfunc1}
+	\begin{minipage}[c][\totalheight][c]{0.45\columnwidth}
+	\incfig{modfunc1}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c][\totalheight][c]{0.45\columnwidth}
+	\incfig{modfunc2}
+	\end{minipage}
+	\\
+	\begin{minipage}[c][\totalheight][c]{0.45\columnwidth}
     \caption{Первая картинка}
-    \label{fig:modfunc1}
-\end{figure}
-
-\begin{figure}[ht]
-    \centering
-    \incfig{modfunc2}
+	\label{fig:modfunc1}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[c][\totalheight][c]{0.45\columnwidth}
     \caption{Вторая картинка}
-    \label{fig:modfunc2}
+	\label{fig:modfunc2}
+	\end{minipage}
 \end{figure}
 \end{document}
