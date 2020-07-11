@@ -1,0 +1,40 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{fullpage}
+\usepackage{textcomp}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\begin{figure}[ht]
+    \centering
+    \incfig{svk1}
+    \caption{svk1}
+    \label{fig:svk1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{svk2}
+    \caption{svk2}
+    \label{fig:svk2}
+\end{figure}
+\end{document}
