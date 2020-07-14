@@ -100,8 +100,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.99437388"
-     inkscape:cx="318.41375"
-     inkscape:cy="73.203493"
+     inkscape:cx="305.84303"
+     inkscape:cy="69.180861"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -109,9 +109,9 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="911"
+     inkscape:window-width="1906"
      inkscape:window-height="1026"
-     inkscape:window-x="1000"
+     inkscape:window-x="5"
      inkscape:window-y="45"
      inkscape:window-maximized="1"
      inkscape:snap-global="true"
@@ -276,38 +276,5 @@
          x="218.07327"
          y="265.82565"
          style="stroke-width:0.26458332">$B$</tspan></text>
-    <text
-       id="text2625"
-       xml:space="preserve"
-       style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="275.1221"
-       x="136.04312"><tspan
-         id="tspan2623"
-         sodipodi:role="line"
-         x="136.04312"
-         y="275.1221"
-         style="stroke-width:0.26458332">$\text{Normal}$</tspan></text>
-    <text
-       id="text2639"
-       xml:space="preserve"
-       style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="275.31454"
-       x="72.184593"><tspan
-         id="tspan2637"
-         sodipodi:role="line"
-         x="72.184593"
-         y="275.31454"
-         style="stroke-width:0.26458332">$\text{Regular}$</tspan></text>
-    <text
-       id="text2653"
-       xml:space="preserve"
-       style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="275.74835"
-       x="10.340727"><tspan
-         id="tspan2651"
-         sodipodi:role="line"
-         x="10.340727"
-         y="275.74835"
-         style="stroke-width:0.26458332">$\text{Hausdorff}$</tspan></text>
   </g>
 </svg>
