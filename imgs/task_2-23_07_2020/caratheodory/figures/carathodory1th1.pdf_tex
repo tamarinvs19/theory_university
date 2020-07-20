@@ -1,4 +1,4 @@
-%% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
+%% Creator: Inkscape inkscape 0.92.5, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'carathodory1th1.pdf' (pdf, eps, ps)
 %%
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{680.31496063bp}%
+    \setlength{\unitlength}{389.08331924bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,9 +50,21 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5)%
+  \begin{picture}(1,0.72904083)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{carathodory1th1.pdf}}%
+    \put(0.27916942,0.56876713){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$ \xi $\end{tabular}}}}%
+    \put(0.16931966,0.56306926){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma _{r_n}$\end{tabular}}}}%
+    \put(0.17903319,0.44970351){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$D(\xi, r_n)$\end{tabular}}}}%
+    \put(0.43000479,0.61103274){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f$\end{tabular}}}}%
+    \put(0.77875418,0.68768601){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_n$\end{tabular}}}}%
+    \put(0.9149511,0.63755788){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_n$\end{tabular}}}}%
+    \put(0.79222685,0.55266535){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$f(\gamma _{r_n})$\end{tabular}}}}%
+    \put(0.72244038,0.40077075){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Omega $\end{tabular}}}}%
+    \put(0.80567185,0.28283581){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\Gamma $\end{tabular}}}}%
+    \put(0.76740441,0.0106283){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z_1$\end{tabular}}}}%
+    \put(0.905493,0.01521327){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$z_2$\end{tabular}}}}%
+    \put(0.82016626,0.05586441){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$I_{z_1, z_2}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
