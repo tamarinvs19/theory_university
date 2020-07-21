@@ -56,6 +56,7 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{factor2.pdf}}%
     \put(0.87036002,0.5405092){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(V)$\end{tabular}}}}%
     \put(0.70057713,0.00377603){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(W)$\end{tabular}}}}%
-    \put(0.11276765,0.02933477){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(U)$\end{tabular}}}}%
+    \put(0.13342222,0.0319165){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(U)$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{factor2.pdf}}%
   \end{picture}%
 \endgroup%

@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{630.6295512bp}%
+    \setlength{\unitlength}{641.747499bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,23 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.24771125)%
+  \begin{picture}(1,0.24172747)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{factor1.pdf}}%
-    \put(0.08728146,0.11948579){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U$\end{tabular}}}}%
-    \put(0.00474536,0.00174792){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0 \times 0$\end{tabular}}}}%
-    \put(0.36503209,0.00349429){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x \times 0$\end{tabular}}}}%
+    \put(0.10309386,0.11572345){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{factor1.pdf}}%
-    \put(0.36919703,0.23867545){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x \times 1$\end{tabular}}}}%
+    \put(0.36865667,0.11621027){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{factor1.pdf}}%
-    \put(0.39151315,0.11712686){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
+    \put(0.91687456,0.17484029){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
+    \put(0.91119227,0.07392908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x \times y$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{factor1.pdf}}%
-    \put(0.57278054,0.09431255){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0 \times y$\end{tabular}}}}%
-    \put(0.61035081,0.19134744){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1 \times y$\end{tabular}}}}%
+    \put(-0.0104337,0.00220839){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(0, 0)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{factor1.pdf}}%
-    \put(0.91540904,0.17964485){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
-    \put(0.90962657,0.07695458){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x \times y$\end{tabular}}}}%
+    \put(0.34885045,0.00248189){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(x, 0)$\end{tabular}}}}%
+    \put(0.35009703,0.23268564){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(x, 1)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{factor1.pdf}}%
+    \put(0.62533378,0.1799207){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(1, y)$\end{tabular}}}}%
+    \put(0.59536358,0.09484089){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(0, y)$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
