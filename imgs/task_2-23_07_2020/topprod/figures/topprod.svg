@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="193.29247mm"
-   height="112.88996mm"
-   viewBox="0 0 193.29246 112.88996"
+   width="194.35078mm"
+   height="113.94831mm"
+   viewBox="0 0 194.35078 113.94831"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -429,9 +429,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8125141"
-     inkscape:cx="282.81662"
-     inkscape:cy="321.89131"
+     inkscape:zoom="1.4062571"
+     inkscape:cx="236.29778"
+     inkscape:cy="249.57945"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -457,8 +457,8 @@
        spacingy="10"
        empspacing="4"
        dotted="false"
-       originx="-16.707541"
-       originy="2.8899611" />
+       originx="-15.649209"
+       originy="3.9483133" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -476,7 +476,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-16.707541,-187)">
+     transform="translate(-15.649209,-187)">
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.60000002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:none"
        d="m 39.999999,277 c 0,-30 0,-60 0,-90"
@@ -643,33 +643,33 @@
        id="text3746"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="293.14249"
-       x="159.8773"><tspan
+       y="294.20084"
+       x="159.34814"><tspan
          id="tspan3744"
          sodipodi:role="line"
-         x="159.8773"
-         y="293.14249"
+         x="159.34814"
+         y="294.20084"
          style="stroke-width:0.26458332">$U_2$</tspan></text>
     <text
        id="text3760"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="299.48947"
-       x="98.039223"><tspan
+       y="301.077"
+       x="97.510056"><tspan
          id="tspan3758"
          sodipodi:role="line"
-         x="98.039223"
-         y="299.48947"
+         x="97.510056"
+         y="301.077"
          style="stroke-width:0.26458332">$U_1$</tspan></text>
     <text
        id="text3774"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        y="248.04784"
-       x="16.462078"><tspan
+       x="15.403746"><tspan
          id="tspan3772"
          sodipodi:role="line"
-         x="16.462078"
+         x="15.403746"
          y="248.04784"
          style="stroke-width:0.26458332">$V_1$</tspan></text>
     <text
@@ -677,10 +677,10 @@
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        y="220.57043"
-       x="23.453066"><tspan
+       x="21.865564"><tspan
          id="tspan3786"
          sodipodi:role="line"
-         x="23.453066"
+         x="21.865564"
          y="220.57043"
          style="stroke-width:0.26458332">$V_2$</tspan></text>
   </g>
