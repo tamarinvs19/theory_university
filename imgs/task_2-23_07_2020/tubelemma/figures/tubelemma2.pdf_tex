@@ -58,7 +58,8 @@
     \put(0.97223653,0.12407907){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
     \put(0.07283402,0.41364822){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$Y$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{tubelemma2.pdf}}%
-    \put(0.58313669,0.00552887){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
+    \put(0.58483081,0.0264233){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{tubelemma2.pdf}}%
+    \put(0.57893103,0.09681648){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x_0$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
