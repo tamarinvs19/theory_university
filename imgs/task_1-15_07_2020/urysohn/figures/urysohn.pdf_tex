@@ -56,13 +56,13 @@
     \put(0,0){\includegraphics[width=\unitlength,page=1]{urysohn.pdf}}%
     \put(0.25137707,0.25946276){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$A$\end{tabular}}}}%
     \put(0.67193171,0.26135211){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$B$\end{tabular}}}}%
-    \put(0.35161431,0.20580794){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_0$\end{tabular}}}}%
-    \put(0.39341773,0.30457333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{5}}$\end{tabular}}}}%
-    \put(0.44631914,0.37825744){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{4}}$\end{tabular}}}}%
-    \put(0.51303434,0.42979016){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{3}}$\end{tabular}}}}%
-    \put(0.6683162,0.45760959){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{2}}$\end{tabular}}}}%
-    \put(0.78527791,0.44060552){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{2}{3}}$\end{tabular}}}}%
-    \put(0.86746405,0.41982282){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{3}{4}}$\end{tabular}}}}%
+    \put(0.35444829,0.2048633){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_0$\end{tabular}}}}%
+    \put(0.39058374,0.32252204){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{5}}$\end{tabular}}}}%
+    \put(0.44915312,0.39053809){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{4}}$\end{tabular}}}}%
+    \put(0.51208967,0.44301553){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{3}}$\end{tabular}}}}%
+    \put(0.66737156,0.47461358){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{1}{2}}$\end{tabular}}}}%
+    \put(0.7918906,0.45005219){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{2}{3}}$\end{tabular}}}}%
+    \put(0.87596609,0.4254908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{3}{4}}$\end{tabular}}}}%
     \put(0.82871932,0.08567292){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_1$\end{tabular}}}}%
     \put(0.9204384,0.01290419){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$X$\end{tabular}}}}%
     \put(0.58020973,0.08979945){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$U_{\frac{2}{5}}$\end{tabular}}}}%
