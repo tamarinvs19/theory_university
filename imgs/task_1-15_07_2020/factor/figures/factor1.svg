@@ -356,9 +356,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8125141"
-     inkscape:cx="497.09481"
-     inkscape:cy="104.97828"
+     inkscape:zoom="3.9774956"
+     inkscape:cx="799.65642"
+     inkscape:cy="66.065687"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -366,10 +366,10 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1906"
-     inkscape:window-height="1026"
-     inkscape:window-x="5"
-     inkscape:window-y="45"
+     inkscape:window-width="911"
+     inkscape:window-height="488"
+     inkscape:window-x="1000"
+     inkscape:window-y="583"
      inkscape:window-maximized="1"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -716,8 +716,8 @@
          id="tspan2528"
          sodipodi:role="line"
          x="211.04337"
-         y="248.16354"
-         style="stroke-width:0.26458332">$x \times y$</tspan></text>
+         y="250.50449"
+         style="stroke-width:0.26458332" /></text>
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.42132249;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:url(#marker-arrow-1.5923999999999998)"
        d="m 210,247 -3.69659,-12.55895"
@@ -804,5 +804,16 @@
          x="139.54156"
          y="243.42923"
          style="stroke-width:0.26458332">$(0, y)$</tspan></text>
+    <text
+       id="text1258"
+       xml:space="preserve"
+       style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="210.6692"
+       y="248.20233"><tspan
+         id="tspan1256"
+         sodipodi:role="line"
+         x="210.6692"
+         y="248.20233"
+         style="stroke-width:0.26458332">$(x, y)$</tspan></text>
   </g>
 </svg>

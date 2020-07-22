@@ -59,7 +59,6 @@
     \put(0.36865667,0.11621027){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{factor1.pdf}}%
     \put(0.91687456,0.17484029){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$W$\end{tabular}}}}%
-    \put(0.91119227,0.07392908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$x \times y$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{factor1.pdf}}%
     \put(-0.0104337,0.00220839){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(0, 0)$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{factor1.pdf}}%
@@ -68,5 +67,6 @@
     \put(0,0){\includegraphics[width=\unitlength,page=6]{factor1.pdf}}%
     \put(0.62533378,0.1799207){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(1, y)$\end{tabular}}}}%
     \put(0.59536358,0.09484089){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(0, y)$\end{tabular}}}}%
+    \put(0.90953957,0.07375775){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(x, y)$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
