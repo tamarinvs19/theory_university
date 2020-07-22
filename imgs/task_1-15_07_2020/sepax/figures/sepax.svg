@@ -99,9 +99,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.99437388"
-     inkscape:cx="126.83591"
-     inkscape:cy="65.158229"
+     inkscape:zoom="2.8125141"
+     inkscape:cx="515.54289"
+     inkscape:cy="221.41261"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -109,10 +109,10 @@
      width="200mm"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:window-width="1906"
-     inkscape:window-height="1026"
-     inkscape:window-x="5"
-     inkscape:window-y="45"
+     inkscape:window-width="911"
+     inkscape:window-height="488"
+     inkscape:window-x="1000"
+     inkscape:window-y="583"
      inkscape:window-maximized="1"
      inkscape:snap-global="true"
      fit-margin-top="0"
@@ -179,9 +179,10 @@
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.82099998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:none"
-       d="m 135.08969,233.78254 c -10.39159,-6.87461 -4.16187,-19.16838 1.50518,-24.83543 3.23777,-3.23777 -0.32374,-12.47027 3.38665,-16.18066 7.08414,-7.08414 62.21347,-9.15758 66.22782,-1.12889 1.86013,3.72026 -0.51505,12.18018 -2.63406,14.29919 -4.5873,4.58729 4.28931,14.22415 -4.13924,18.43843 -5.63505,2.81752 -14.27072,1.11464 -20.3199,4.13923 -4.90274,2.45137 4.35346,17.63369 2.25776,21.82508 -3.23784,6.47569 -36.19863,6.32264 -41.01608,1.50518 -4.48748,-4.48748 -1.87669,-12.12712 -5.26813,-18.06213 z"
+       d="m 135.08969,233.78254 c -10.633,-6.64265 -9.90655,-16.0016 0.44086,-26.16583 3.26655,-3.20873 0.74058,-11.13987 4.45097,-14.85026 7.08414,-7.08414 62.21347,-9.15758 66.22782,-1.12889 1.86013,3.72026 -0.51505,12.18018 -2.63406,14.29919 -4.5873,4.58729 4.28931,14.22415 -4.13924,18.43843 -5.63505,2.81752 -14.27072,1.11464 -20.3199,4.13923 -4.90274,2.45137 4.35346,17.63369 2.25776,21.82508 -3.23784,6.47569 -36.19863,6.32264 -41.01608,1.50518 -4.48748,-4.48748 -1.87669,-12.12712 -5.26813,-18.06213 z"
        id="path2487"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csssccsccc" />
     <path
        style="fill:url(#pattern2517);fill-opacity:1;stroke:#000000;stroke-width:0.82099998;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:none"
        d="m 188.5235,232.27736 -2.63406,7.14959 6.397,10.91254 -18.81472,16.93325 42.89757,1.12888 1.50517,-24.45913 z"
@@ -225,12 +226,12 @@
        id="text2555"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="233.25209"
+       y="232.72293"
        x="31.478804"><tspan
          id="tspan2553"
          sodipodi:role="line"
          x="31.478804"
-         y="233.25209"
+         y="232.72293"
          style="stroke-width:0.26458332">$y$</tspan></text>
     <text
        id="text2569"
@@ -248,32 +249,32 @@
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        y="240.04156"
-       x="99.42923"><tspan
+       x="100.48756"><tspan
          id="tspan2581"
          sodipodi:role="line"
-         x="99.42923"
+         x="100.48756"
          y="240.04156"
          style="stroke-width:0.26458332">$B$</tspan></text>
     <text
        id="text2597"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       y="222.17549"
-       x="132.12529"><tspan
+       y="221.25644"
+       x="131.35657"><tspan
          id="tspan2595"
          sodipodi:role="line"
-         x="132.12529"
-         y="222.17549"
+         x="131.35657"
+         y="221.25644"
          style="stroke-width:0.26458332">$A$</tspan></text>
     <text
        id="text2611"
        xml:space="preserve"
        style="font-size:2.64583325px;font-family:Hack;-inkscape-font-specification:'Hack, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        y="265.82565"
-       x="218.07327"><tspan
+       x="219.13159"><tspan
          id="tspan2609"
          sodipodi:role="line"
-         x="218.07327"
+         x="219.13159"
          y="265.82565"
          style="stroke-width:0.26458332">$B$</tspan></text>
   </g>
