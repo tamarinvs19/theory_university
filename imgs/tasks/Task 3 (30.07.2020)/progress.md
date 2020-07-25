@@ -7,5 +7,5 @@
 *[ ] DS-6
 *[x] LevelSet
 *[x] ManChart
-*[ ] TangentVF
+*[x] TangentVF
 *[x] TransMap
