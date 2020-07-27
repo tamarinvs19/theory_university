@@ -60,5 +60,6 @@
     \put(0.82037303,0.08770752){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
     \put(0.10166314,0.09214223){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$0$\end{tabular}}}}%
     \put(0.09891535,0.81867701){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{ds6.pdf}}%
   \end{picture}%
 \endgroup%
