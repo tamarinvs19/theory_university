@@ -1,0 +1,62 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{fullpage}
+\usepackage{textcomp}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\begin{document}
+\begin{figure}[ht]
+    \centering
+	\begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{surfcancel}
+    \caption{SurfCancel}
+	\end{minipage}
+    \label{fig:surfcancel}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+	\begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{surfcut}
+    \caption{SurfCut}
+	\end{minipage}
+    \label{fig:surfcut}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+	\begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{surfhom}
+    \caption{SurfHom}
+	\end{minipage}
+    \label{fig:surfhom}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+	\begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{surfmobius}
+    \caption{SurfMobius}
+	\end{minipage}
+    \label{fig:surfmobius}
+\end{figure}
+\end{document}
