@@ -6,11 +6,11 @@
 * [x] SurfCut
 * [x] SurfHom
 * [x] SurfMobius
-* [ ] SurfPaste
-* [ ] SurfSphere
+* [x] SurfPaste
+* [x] SurfSphere
 * [ ] SurfTh-1
 * [ ] SurfTh-2
 * [ ] SurfTh-3
 * [ ] SurfTh-4
 * [ ] SurfTh-5
-* [ ] SurfTorus
+* [x] SurfTorus
