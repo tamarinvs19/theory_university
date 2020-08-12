@@ -12,5 +12,5 @@
 * [x] SurfTh-2
 * [x] SurfTh-3
 * [x] SurfTh-4
-* [ ] SurfTh-5
+* [x] SurfTh-5
 * [x] SurfTorus

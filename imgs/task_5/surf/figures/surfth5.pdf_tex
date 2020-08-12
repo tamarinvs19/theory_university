@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{680.31496063bp}%
+    \setlength{\unitlength}{385.46622209bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,8 +50,46 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.5)%
+  \begin{picture}(1,0.70887607)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{surfth5.pdf}}%
+    \put(0.64678413,0.52020369){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{surfth5.pdf}}%
+    \put(0.58560638,0.69409322){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{surfth5.pdf}}%
+    \put(0.51331335,0.69392031){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{surfth5.pdf}}%
+    \put(0.43894489,0.69388821){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{surfth5.pdf}}%
+    \put(0.3373768,0.69349941){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{surfth5.pdf}}%
+    \put(0.2160125,0.69409322){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{surfth5.pdf}}%
+    \put(0.14268178,0.69409333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{surfth5.pdf}}%
+    \put(0.06995551,0.69351568){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{surfth5.pdf}}%
+    \put(0.00993514,0.50595905){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{surfth5.pdf}}%
+    \put(0.26940752,0.39291261){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{surfth5.pdf}}%
+    \put(0.48485302,0.50728684){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{surfth5.pdf}}%
+    \put(0.26580431,0.13952482){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{surfth5.pdf}}%
+    \put(0.42797319,0.14677719){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{surfth5.pdf}}%
+    \put(0.63867733,0.02263383){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{surfth5.pdf}}%
+    \put(0.90551706,0.15804669){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{surfth5.pdf}}%
+    \put(0.7074607,0.32745611){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0.58609645,0.32804993){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
+    \put(0.51276571,0.32805004){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
+    \put(0.44003944,0.32747238){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
+    \put(0.36607536,0.32662463){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
+    \put(0.29378231,0.32645172){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
+    \put(0.21941384,0.32641963){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
