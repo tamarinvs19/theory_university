@@ -8,9 +8,9 @@
 * [x] SurfMobius
 * [x] SurfPaste
 * [x] SurfSphere
-* [ ] SurfTh-1
-* [ ] SurfTh-2
-* [ ] SurfTh-3
-* [ ] SurfTh-4
+* [x] SurfTh-1
+* [x] SurfTh-2
+* [x] SurfTh-3
+* [x] SurfTh-4
 * [ ] SurfTh-5
 * [x] SurfTorus
