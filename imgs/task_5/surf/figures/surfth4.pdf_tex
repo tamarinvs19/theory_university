@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{258.01328884bp}%
+    \setlength{\unitlength}{260.67993885bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,53 +50,52 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.46392311)%
+  \begin{picture}(1,0.46122321)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{surfth4.pdf}}%
-    \put(0.22172157,0.00132197){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0.2226502,0.00130845){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{surfth4.pdf}}%
-    \put(0.08441074,0.05075707){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
+    \put(0.08866206,0.05228369){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{surfth4.pdf}}%
-    \put(0.0212599,0.11795257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
+    \put(0.02615723,0.11879182){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{surfth4.pdf}}%
-    \put(0.21185038,0.18846182){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(-0.00453307,0.22885785){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{surfth4.pdf}}%
-    \put(-0.00600215,0.2255935){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0.05595431,0.38269069){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=6]{surfth4.pdf}}%
-    \put(0.05136495,0.38457893){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
+    \put(0.22657461,0.45412762){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{surfth4.pdf}}%
-    \put(0.22374867,0.45675417){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0.38172219,0.37744531){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=8]{surfth4.pdf}}%
-    \put(0.38049974,0.37927934){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
+    \put(0.4114014,0.12323412){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=9]{surfth4.pdf}}%
-    \put(0.44570812,0.22783534){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0.34101107,0.04976081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=10]{surfth4.pdf}}%
-    \put(0.4104857,0.12244079){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
+    \put(0.76780398,0.05062859){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=11]{surfth4.pdf}}%
-    \put(0.33936787,0.0482081){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
+    \put(0.59649209,0.25177173){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=12]{surfth4.pdf}}%
-    \put(0.77057182,0.04908486){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0.92034261,0.24575895){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=13]{surfth4.pdf}}%
-    \put(0.53644086,0.08970412){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0.63312674,0.32359675){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=14]{surfth4.pdf}}%
-    \put(0.59748936,0.25230688){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_3$\end{tabular}}}}%
+    \put(0.56499517,0.38850603){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=15]{surfth4.pdf}}%
-    \put(0.92468698,0.24623195){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_2$\end{tabular}}}}%
+    \put(0.76751021,0.45445913){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=16]{surfth4.pdf}}%
-    \put(0.98944426,0.09330317){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
+    \put(0.95145508,0.39013574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=17]{surfth4.pdf}}%
-    \put(0.76742095,0.28370847){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
+    \put(0.88656298,0.32324781){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=18]{surfth4.pdf}}%
-    \put(0.63450264,0.32487423){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_4$\end{tabular}}}}%
+    \put(0.76462951,0.27074872){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=19]{surfth4.pdf}}%
-    \put(0.56566691,0.39045436){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_1$\end{tabular}}}}%
+    \put(0.213433,0.18518297){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0.39908972,0.22879895){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=20]{surfth4.pdf}}%
-    \put(0.77027501,0.45708912){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c$\end{tabular}}}}%
+    \put(0.53572703,0.0933076){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=21]{surfth4.pdf}}%
-    \put(0.95612101,0.39210092){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$w_0$\end{tabular}}}}%
+    \put(0.93934988,0.0932487){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=22]{surfth4.pdf}}%
-    \put(0.89055823,0.32452168){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$y_5$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=23]{surfth4.pdf}}%
   \end{picture}%
 \endgroup%
