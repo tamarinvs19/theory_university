@@ -62,12 +62,9 @@
     \put(0.45145743,0.46708949){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(x, \psi(x))$\end{tabular}}}}%
     \put(0.45167553,0.15528978){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$(x,\varphi (x))$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{sp4.pdf}}%
-    \put(0.28425698,0.1631089){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bf 3$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{sp4.pdf}}%
-    \put(0.13529575,0.35741914){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bf 4$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{sp4.pdf}}%
-    \put(0.49656655,0.53107862){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bf 2$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{sp4.pdf}}%
-    \put(0.83273721,0.41783546){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\bf 1$\end{tabular}}}}%
+    \put(0.83118821,0.42065903){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma _1$\end{tabular}}}}%
+    \put(0.49384383,0.53365362){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma _2$\end{tabular}}}}%
+    \put(0.13235676,0.36010999){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma _4$\end{tabular}}}}%
+    \put(0.28047053,0.16697357){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\gamma _3$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
