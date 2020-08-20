@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{fullpage}
+
+\usepackage{textcomp}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\begin{document}
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{jordan1}
+    \caption{Jordan1}
+    \end{minipage}
+    \label{fig:jordan1}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{jordan2}
+    \caption{Jordan2}
+    \end{minipage}
+    \label{fig:jordan2}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[c][\totalheight][c]{\columnwidth}
+    \incfig{jordan3}
+    \caption{Jordan3}
+    \end{minipage}
+    \label{fig:jordan3}
+\end{figure}
+\end{document}
