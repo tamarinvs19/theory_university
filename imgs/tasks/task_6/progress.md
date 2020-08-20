@@ -5,8 +5,8 @@
 * [ ] DS-7
 * [ ] DS-8
 * [ ] DS-9
-* [ ] Graph1
-* [ ] Graph2
+* [x] Graph1
+* [x] Graph2
 * [x] Jordan1
 * [x] Jordan2
 * [x] Jordan3
