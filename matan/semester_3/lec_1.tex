@@ -1,0 +1,119 @@
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
+
+\begin{ex}
+    Рассмотрим функции $ f_n(x) = x^{n}$ на отрезке $ (0, 1)$. Так как $ \forall x \in  (0, 1)\colon  x^{n} \mathrel{\rightarrow}_{n \to  \infty} 0$, $ f_n \to  f \equiv 0$. Но $ f_n \not\rightrightarrows 0$, потому что, например, для  $ \varepsilon = \frac{1}{2}$ каким бы ни было $ N$ для всех $ n > N$ можно взять такое $ x$ рядом с единицей, что  $ \lvert x^{n}-0 \rvert > \frac{1}{2}$.
+\end{ex}
+
+\begin{st}
+    $ f_n \rightrightarrows f$ на $ E$ равносильно тому, что
+     \[
+	 \sup_{x \in E} \lvert f_n(x)-f(x) \rvert \stackrel{n \to  \infty} \longrightarrow 0
+    .\] 
+\end{st}
+\begin{rem}
+    Если мы смотрим на множество непрерывных функций на компакте $ C(K)$, где норма 
+    \[
+	\| f \| _{C(K)} = \max_{x \in  K} \lvert f(x) \rvert 
+    ,\] 
+    то из поточечной сходимости следует равномерная:
+    \[
+    f_{n} \to  f \Longrightarrow \| f_n - f \| \to  0 \Longleftrightarrow f_n \rightrightarrows f \text{ на }  K
+    .\] 
+    Аналогично будет с множеством ограниченных функций на $ E$ ($ l^{\infty}(E)$) с нормой 
+    \[
+	\| f \| _{\infty}  = \sup_{x \in E}\lvert f(x) \rvert 
+    .\] 
+\end{rem}
+
+\begin{defn}[Равномерная ограниченность]
+    Последовательность функций $ f_n \colon E \to \R (\Cm)$ называется {\sf равномерно ограниченной на $ E$}, если существует такое $ M$, что
+    \[
+	\forall x \in E ~ \forall n \in \N \colon \lvert f_n(x) \rvert \le M
+    .\] 
+\end{defn}
+
+\begin{ex}
+    Пусть $ f_n \in C(K)$. Тогда равномерная ограниченность $ \{f_n\}$ равносильна ограниченности по норме, то есть все функции содержатся в некотором шаре с центром в нуле.
+\end{ex}
+
+\begin{prop}
+    \begin{enumerate}
+	\item Из равномерной сходимости следует поточечная
+	\item Если для всех $ x \in E$ выполнено 
+	    $$ \lvert f_n(x) - f(x) \rvert \le a_n,$$
+	    где $ \{a_n\}$ --- последовательность, стремящаяся к нулю при $ n \to  \infty$, то $ f_n$ равномерно сходится к $ f$ на $ E$. 
+	\item Если существует $ \varepsilon_0$ и $ x_n \in E$ для всех $ n$ такие, что
+	     \[
+		 \lvert f_n(x_n) - f(x_n) \rvert \ge \varepsilon_0
+	    ,\] 
+	    то $ f_n$ не сходится равномерно к $ f$ на $ E$.
+	\item Пусть $ \{f_n\} \rightrightarrows f$ на $ E$ и $ \{g_n\}$ равномерно ограничена на $E $. Тогда $ f_ng_n \rightrightarrows 0$.
+	    \begin{proof}
+	        \[
+		    \sup_{x \in E}\lvert f_n(x)g_n(x) \rvert \le M_{g_n} \cdot \underbrace{\sup_{x \in  E}\lvert f_n(x) \rvert }_{ \to 0} \stackrel{n \to \infty} \longrightarrow 0
+	        .\] 
+	    \end{proof}
+	\item {\bf Критерий Коши}. Пусть $ f_n \colon E \to  \R(\Cm)$. $ f_n$ равномерно сходится на $ E$, согда\footnote{С этого момента буду писать <<согда>> вместо <<тогда и только тогда, когда>>, чтобы упростить формулировки} для любого положительного $ \varepsilon $ существует $ N$, что
+	    \[
+		\forall n, m > N ~ \forall x \in  E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon 
+	    .\] 
+	    \begin{proof}
+	        $ $
+	        \begin{description}
+	            \item \boxed{ 1 \Longrightarrow 2} Запишем определение равномерной сходимости на $ E$ для $ \frac{\varepsilon}{2}$:
+			\[
+			    \forall \varepsilon >0 ~ \exists N \colon  \forall n > N ~ \forall x \in E \quad  \lvert f_n(x) - f(n) \rvert < \frac{\varepsilon}{2}
+			.\] 
+			Тогда для любых $ n, m > N$
+			\begin{align*}
+			    \lvert f_m(x) - f(x)_n \rvert & \le \\
+							  & \le \lvert f_m(x) - f(x) \rvert + \lvert f_n(x) - f(x) \rvert \le  \\
+							  & \le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon 
+			\end{align*}
+	            \item \boxed{ 2 \Longrightarrow 1} 
+			Из условия Коши получаем, что для всех $ x \in E$ последовательность $ {f_n(x)}$ фундаметальна. Следовательно, существует предел  $ f(x) \coloneqq \lim_{n \to \infty} f_n(x)$.
+
+			Устремим $ m \to  \infty$. Тогда \[
+			    \lvert f_n(x) - f(x) \rvert \le  \varepsilon 
+			.\] 
+			По определению равномерной сходимости получаем, что $ f_n \rightrightarrows f$ на $ E$.
+	        \end{description} 
+	    \end{proof}
+	\item \label{prop_5} Пусть $ E$ --- метрическое пространство. Рассмотрим последовательность непрерывных в точке $ x \in E$ функций $ f_n \colon E \to \R(\Cm) $. Если $ f_n \rightrightarrows f$ на $ E$, то  $ f$ тоже непрерывна в точке  $ a$.
+	     \begin{proof}
+	        Проверим, что 
+		\[
+		    \lim_{x \to  a} f(x) = f(a)
+		.\] 
+		А именно, для любого $ \varepsilon  > 0$ существует $ \delta > 0$ такое, что
+		\[
+		    \forall x \in E \quad \rho(x, a) < \delta \Longrightarrow \lvert f(x) - f(a) \rvert  < \varepsilon 
+		.\] 
+
+		Используем равномерную сходимость: для любого  $ \varepsilon > 0$ существует $ N$ такое, что
+		\begin{equation}\label{eq:koshi_1}
+		    \forall n > N ~ \forall x \in E \quad \lvert f_n(x) - f(x) \rvert  < \frac{\varepsilon}{3}
+		.\end{equation}
+		Так как $ f_n$ непрерывна в точке $ a$, можем записать определение для  $ \frac{\varepsilon}{3}$ и заодно взять $ n > N$:
+		\[
+		    \exists \delta >0 \colon \forall x \in  E \quad \rho(x, a) < \delta \Longrightarrow \lvert f_n(x) - f_n(a) \rvert \le \frac{\varepsilon}{3}
+		.\] 
+		Используем два полученых неравенства:
+		\begin{align*}
+		    \lvert f(x) - f(a) \rvert \le  & \\
+					       \le  & \lvert f(x) - f_n(x) \rvert + \\
+					       + & \lvert f_n(x) - f_n(a) \rvert + \\
+					       + & \lvert f_n(a) - f_n(a) \rvert < \\
+					       < & \frac{\varepsilon}{3} * 3 = \varepsilon 
+		\end{align*}
+	    \end{proof}
+
+	\item {\bf Теорема Стокса-Зайделя}. Пусть $ f_n \in C(E)$. Если $ f_n \rightrightarrows f$, то $ f$ непрерывна на $ E$. 
+	    \begin{proof}
+		Следствие из \ref{prop_5}[прошлого свойства].
+	    \end{proof}
+    \end{enumerate}
+\end{prop}
+\end{document}
