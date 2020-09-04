@@ -1,0 +1,32 @@
+\documentclass[11pt,dvipsnames]{report}
+\input{preamble.tex}
+\begin{document}
+
+\lecture{1}{2 Sept}{\dag}
+
+\chapter{Функциональные последовательности и ряды}
+\section{Равномерная и поточечная сходимости}
+
+\begin{defn}[Поточечная сходимость]
+	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ поточечно} ($ f_n \to  f$), если 
+	\[
+		\forall x \in E\colon \lim_{n \to \infty} f_n (x) = f(x)
+	.\] 
+	То есть для любого  $ x \in E$ и любого $ \varepsilon >0$ существует $ N_{(x, \varepsilon )}$ такое, что
+	\[
+		\forall n > N\colon \lvert f_n(x) - f(x) \rvert < \varepsilon 
+	.\] 
+\end{defn}
+\begin{note}
+    Это определение можно обобщить куда угодно, где есть мера.
+	В данном курсе под $ E$ обычно подразумевается подмножество $ \R^{n}$.
+\end{note}
+
+\begin{defn}[Равномерная сходимость]
+	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ равномерно на $ E$} ($ f_n \rightrightarrows  f$), если 
+	для любого $ \varepsilon >0$ существует $ N_{(\varepsilon )}$ такое, что 
+	\[
+		\forall n > N ~ \forall x \in E \colon \lvert f_n(x) - f(x)  \rvert < \varepsilon 
+	.\] 
+\end{defn}
+\end{document}
