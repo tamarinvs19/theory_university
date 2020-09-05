@@ -1,10 +1,9 @@
-\documentclass[11pt,dvipsnames]{report}
-\input{preamble.tex}
-\begin{document}
-
-\lecture{1}{2 Sept}{\dag}
+% \documentclass[11pt,dvipsnames]{report}
+% \input{preamble.tex}
+% \begin{document}
 
 \chapter{Функциональные последовательности и ряды}
+\lecture{1}{2 Sept}{\dag}
 \section{Равномерная и поточечная сходимости}
 
 \begin{defn}[Поточечная сходимость]
@@ -122,9 +121,9 @@
 		.\] 
 
 		Используем равномерную сходимость: для любого  $ \varepsilon > 0$ существует $ N$ такое, что
-		\begin{equation}\label{eq:koshi_1}
+		\[\label{eq:koshi_1}
 		    \forall n > N ~ \forall x \in E \quad \lvert f_n(x) - f(x) \rvert  < \frac{\varepsilon}{3}
-		.\end{equation}
+			.\]
 		Так как $ f_n$ непрерывна в точке $ a$, можем записать определение для  $ \frac{\varepsilon}{3}$ и заодно взять $ n > N$:
 		\[
 		    \exists \delta >0 \colon \forall x \in  E \quad \rho(x, a) < \delta \Longrightarrow \lvert f_n(x) - f_n(a) \rvert \le \frac{\varepsilon}{3}
@@ -135,7 +134,7 @@
 					       \le  & \lvert f(x) - f_n(x) \rvert + \\
 					       + & \lvert f_n(x) - f_n(a) \rvert + \\
 					       + & \lvert f_n(a) - f_n(a) \rvert < \\
-					       < & \frac{\varepsilon}{3} * 3 = \varepsilon 
+					       < & \frac{\varepsilon}{3} \cdot  3 = \varepsilon 
 		\end{align*}
 	    \end{proof}
 
@@ -191,6 +190,141 @@
 				.\] 
 				Так как $ \sum_{n=1}^{\infty} v_n(x)$ равномерно сходится, можно воспользоваться критерием Коши и получить, что последний модуль  меньше $ \varepsilon $ при $ m, n > N$ и  $ x \in E$. Тогда можем применить критерий Коши для $ \sum_{n=1}^{\infty} u_n(x)$.
 			\end{proof}
+
+		\item {\bf Признак Вейерштрасса}. Пусть $ u_n\colon E \to  \R(\Cm)$ и для всех $ x \in E$ выполнено неравенство $ \lvert u_n(x)  \rvert \le a_n$. Если сходится ряд $ \sum_{n=1}^{\infty} a_n$, то ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно. 
+			\begin{proof}
+			    Применить признак Коши.
+			\end{proof}
+		\item Если $ \sum_{n=1}^{\infty} \lvert u_n(x) \rvert $ сходится равномерно, то и ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно.
+		\item {\bf Признак Дирихле}. Пусть $ u_n, v_n \colon E \to \R(\Cm)$, обозначим  $ U_n(x) = \sum_{k=1}^{n} u_k(x)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
+			\begin{enumerate}[noitemsep]
+				\item ряд $ U_n$ равномерно ограничен на $ E$, то есть 
+					$
+						\exists M\colon \forall x \in E ~ \forall n \quad \lvert U_n(x) \rvert \le M
+					$; 
+				\item ряд $ v_n$ равномерно сходится к нулю ($ v_n \rightrightarrows 0$);
+				\item для любого $ x \in E$ последовательность $ \{v_n(x)\}$ монотонна.
+			\end{enumerate} 
+			\begin{proof}
+			    Воспользуемся преобразованием Абеля:
+				\[
+					S_n(x) = \sum_{k=1}^{n} u_k(x)v_k(x) = U_n(x)v_n(x) + \sum_{k=1}^{n-1} U_k(x) (v_k(x) - v_{k+1}(x))
+				.\] 
+				Так как  $ U_n(x)$ равномерно ограничено, а $ v_n(x) $ равномерно сходится к нулю, $ U_n(x)v_n(x)$ тоже равномерно сходится к нулю. Теперь докажем, что второе слагаемое тоже равномерно сходится. Для этого достаточно проверить, что следующий ряд равномерно сходится
+				 \[
+					 \sum_{k=1}^{\infty} \lvert U_k(x) (v_k(x) - v_{k+1}) \rvert 
+				.\] 
+				Оценим частичную сумму\footnote{В последнем переходе мы используем монотонность $ v_k(x)$}
+				\[
+				\begin{aligned}
+					\sum_{k=1}^{n-1} \lvert U_k(x) (v_k(x) - v_{k+1}(x)) \rvert & \le \\
+																				& \le \sum_{k=1}^{n-1} \lvert U_k(x) \rvert \cdot \lvert v_k(x) - v_{k+1}(x) \rvert \le  \\
+																				& \le M \cdot \sum_{k=1}^{n-1} \lvert v_k(x) - v_{k+1}(x) \rvert = \\ 
+																				& = M \cdot \lvert v_1(x) - v_n(x) \rvert 
+				\end{aligned}
+				\]
+				Так как $ v_n \rightrightarrows 0$, $ \lvert v_1(x) - v_n(x) \rvert \underset{n \to \infty}{\longrightarrow} \lvert v_1(x) \rvert $. Значит, частичная сумма ряда стремится к $ M \cdot \lvert v_1(x) \rvert $, следовательно\footnote{Например, по признаку сравнения}, второе слагаемое тоже равномерно сходится, а тогда и сумма равномерно сходится.
+			\end{proof}
+		\item {\bf Признак Лейбница}. Если выполнены следующие условия, то ряд $ \sum_{n=1}^{\infty} (-1)^{n}v_n(x)$ равномерно сходится:
+			\begin{enumerate}[noitemsep]
+			    \item $ v_n \rightrightarrows 0$ на $ E$;
+				\item для любого $ x \in E$, ряд $ \{v_n(x)\}$ монотонный.
+			\end{enumerate} 
+			\begin{proof}
+				Обозначим за $ u_n(x) \coloneqq (-1)^{n}$. Заметим, что ряд $ U_n(x) = \sum_{k=1}^{n} u_k(x)$ ограничен, тогда по признаку Дирихле $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ равномерно сходится.
+			\end{proof}
+			\begin{ex}
+				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{\sin(nx)}{n}$. Обозначим $ u_n(x) = \sin(nx)$ и $ v_n(x) = \frac{1}{n}$. Последний равномерно сходится к нулю и монотонно убывает.
+				\[
+				\begin{aligned}
+					U_n(x) &= \sum_{k=0}^{n} \sin(kx) = \\
+						   &= \im\left(  \sum_{k=0}^{n} e^{ikx}  \right) = \im \left( \frac{1-e^{i(n+1)x}}{1 - e^{ix}} \right) = \\
+						   &= \im\left( \frac{e^{ix\cdot \frac{n+1}{2}} \cdot \left( e^{ix\cdot \frac{n+1}{2}}- e^{-ix\cdot \frac{n+1}{2}} \right)}{e^{\frac{ix}{2} - e^{-\frac{ix}{2}}}}  \right)  = \\
+						   &= \im \left( e^{\frac{ixn}{2}} \right) \cdot \frac{\sin \frac{n+1}{2}x }{\sin  \frac{x}{2} } = \\
+						   &= \frac{\sin \frac{nx}{2} \cdot \sin\frac{n+1}{2}x}{\sin \frac{x}{2}}
+				\end{aligned}
+				\]
+			\end{ex}
+			\begin{ex}
+				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{(-1)^{n}x^{n}}{n}$ при $ x \in (0, 1)$. Обозначим $ v_n(x) = \frac{x^{n}}{n}$. $ v_n(x)$ монотонна для всех $ x \in (0, 1)$, так же  $ \lvert v_n(x) \rvert \le \frac{1}{n}$, поэтому $ v_n$ равномерно сходится к нулю.  По признаку Лейбница исходный ряд равномерно сходится.
+			\end{ex}
+		\item {\bf Признак Абеля}.  Пусть $ u_n, v_n \colon E \to \R(\Cm)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
+			\begin{enumerate}[noitemsep]
+				\item ряд $ \sum_{n=1}^{\infty} u_n$ равномерно сходится на $ E$; 
+				\item ряд $ v_n$ равномерно ограничен;
+				\item для любого $ x \in E$ последовательность $ \{v_n(x)\}$ монотонна.
+			\end{enumerate} 
+			\begin{proof}
+			    Проверим критерий Коши, а именно: для любого $ \varepsilon >0$ должно существовать число $ N$ такое, что 
+				 \[
+					 \forall n > N ~ \forall p \in \N ~ \forall x \in E\colon \left|   \sum_{k=n+1}^{n+p} u_k(x)v_k(x)  \right| < \varepsilon 
+				.\] 
+				Используем преобразование Абеля\footnote{Для удобства сделаем, чтобы сумма начиналась с единицы. Из-за этого придется писать больше скобок.}:
+				\[
+				\begin{aligned}
+					\sum_{k=n+1}^{n+p}u_k (x)v_k(x) &= \sum_{k=1}^{p} u_{n+k}(x) + v_{n+k}(x) =\\
+									   &= \bigl( U_{n+p}(x) - U_{n}(x) \bigr)\cdot  v_{n+p}(x) + \sum_{k=1}^{p-1} \bigl( U_{n+k}(x) - U_n(x) \bigr) \cdot \bigl( v_{n+k}(x)-v_{n+k+1}(x) \bigr) 
+				\end{aligned}
+				\]
+				Так как $ v_n$ равномерно ограничено, а $ u_n $ равномерно сходится\footnote{Поэтому можем использовать критерий Коши}:
+				\[
+					\bigl(U_{n+p}(x) - U_n(x)\bigr)\cdot v_{n+p}(x) \le \left| U_{n+p}(x) - U_n(x) \right| \cdot M < \varepsilon \cdot M
+				.\]
+				Для второго слагаемого аналогично используем критерий Коши для $ u_n$ и монотонность  $ v_n$:
+				 \[
+					 \begin{aligned}
+						 \sum_{k=1}^{p-1} \bigl(U_{n+k}(x) - U_n(x)\bigr) \cdot \bigl(v_{n+k}(x) - v_{n+k+1}\bigr) &\le \\
+																												   & \le \sum_{k=1}^{p-1} \bigl|U_{n+k}(x) - U_n(x)\bigr| \cdot \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| &\le \\
+																												   & \le \varepsilon \cdot \sum_{k=1}^{p-1} \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| \le \\
+																												   & \le \varepsilon \cdot \left| v_{n+1}(x) - v_{n+p}(x) \right|  \le \varepsilon \cdot 2 M
+					 \end{aligned}
+				\] 
+				Итого, оценили сумму из критерия Коши через $ \varepsilon $, поэтому можем им воспользоваться.
+			\end{proof}
 	\end{enumerate} 
 \end{prop}
-\end{document}
+
+\section{Свойства равномерно сходящихся функциональных последовательностей и рядов}
+\begin{prop}
+\item Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
+	Тогда пределы $ \lim\limits_{n \to  \infty} b_n$, $ \lim\limits_{x \to a} f(x)$ существуют и равны. 
+	
+	То есть \[
+		\lim_{n \to \infty} \lim_{x \to  a} f_n(x) = \lim_{x \to  a} \lim_{n \to \infty} f_n(x)
+	.\] 
+	\begin{proof}
+			$ $
+	    \begin{enumerate}
+	        \item Проверим, что у $ b_n$ есть предел. Из критерия Коши для $ f_n$ следует, что для каждого  $ \varepsilon >0$ существует $ N$, что 
+				 \[
+					 \forall n, m > N ~ \forall x \in E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon 
+				.\] 
+				Устремим $ x \to  a$. Тогда $ f_n(x) \to b_n$ и $ f_m(x) \to b_m$. Из того, что 
+				 \[
+				\forall \varepsilon  > 0 ~ \exists N\colon \forall n, m > N \quad \lvert b_n - b_m \rvert < \varepsilon 
+				,\] 
+				следует, что  последовательность $ \{b_n\}$ фундаментальна. Поэтому предел  $ b_n$ существует и  $ b\coloneqq \lim_{n \to \infty} b_n $.
+			\item Определим функции 
+				\[
+					g_n(x) = 
+					\begin{cases}
+						f_n(x) & x \ne a \\
+						b_n & x = a
+					\end{cases}
+					,
+					\quad
+					g(x) = 
+					\begin{cases}
+						f(x) & x \ne a \\
+						b & x = a
+					\end{cases}
+				\] 
+				Эти функции непрерывны в точке $ a$. Кроме этого  $ g_n \rightrightarrows g$ на $ E \cup \{a\}$, так как можно выбрать $ N$ из прошлого пункта.
+			\item Используем свойство равномерной сходимости % ???
+				\[
+					b = lim_{x \to  a} g(x) = \lim_{x \to a} f(x) 
+				.\] 
+	    \end{enumerate} 
+	\end{proof}
+\end{prop}
+% \end{document}
