@@ -1,5 +1,5 @@
 # Теория в TeXe
-Здесь выкладывается теория с лекций факультета <<Математики и Компьютерных наук>> СПбГУ (2019-2020 гг).
+Здесь выкладывается теория с лекций факультета "Математики и Компьютерных наук" СПбГУ (2019-2020 гг).
 
 Ставьте <bold style='font-size=16pt'>★</bold>,  если вам помогают мои конспекты.
 
@@ -26,7 +26,7 @@
 
 #### Примечания
 * В `/imgs` лежат картинки для конспектов МКН.
-* Пишу конспекты в [`vim`](https://www.vim.org), для картинок использую [`inkscape`](https://inkscape.org) с менеджером сочетаний [`inkscape-shortcut-manager`](https://github.com/gillescastel/inkscape-shortcut-manager) и удобной программой для управления изображениями [`inkscape-figure`](https://github.com/gillescastel/inkscape-figures).
+* Пишу конспекты в [`vim`](https://www.vim.org), для картинок использую [`inkscape`](https://inkscape.org) с менеджером сочетаний [`inkscape-shortcut-manager`](https://github.com/gillescastel/inkscape-shortcut-manager) и удобной программой для управления изображениями [`inkscape-figures`](https://github.com/gillescastel/inkscape-figures).
 
 ## Неточности, ошибки
 Буду рад, если сообщите об ошибках или предложите более качественную запись какого-то места в конспекте.
