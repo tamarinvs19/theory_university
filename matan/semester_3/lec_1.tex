@@ -7,242 +7,242 @@
 \section{Равномерная и поточечная сходимости}
 
 \begin{defn}[Поточечная сходимость]
-	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ поточечно} ($ f_n \to  f$), если 
+	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ поточечно} ($ f_n \to  f$), если
 	\[
 		\forall x \in E\colon \lim_{n \to \infty} f_n (x) = f(x)
-	.\] 
+	.\]
 	То есть для любого  $ x \in E$ и любого $ \varepsilon >0$ существует $ N_{(x, \varepsilon )}$ такое, что
 	\[
-		\forall n > N\colon \lvert f_n(x) - f(x) \rvert < \varepsilon 
-	.\] 
+		\forall n > N\colon \lvert f_n(x) - f(x) \rvert < \varepsilon
+	.\]
 \end{defn}
 \begin{note}
-    Это определение можно обобщить куда угодно, где есть мера.
+	Это определение можно обобщить куда угодно, где есть мера.
 	В данном курсе под $ E$ обычно подразумевается подмножество $ \R^{n}$.
 \end{note}
 
 \begin{defn}[Равномерная сходимость]
-	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ равномерно на $ E$} ($ f_n \rightrightarrows  f$), если 
-	для любого $ \varepsilon >0$ существует $ N_{(\varepsilon )}$ такое, что 
+	Пусть определена последовательность функций $ f_n\colon E \to \R (\Cm)$, и $ f\colon E \to \R(\Cm)$. Тогда говорят, что {\sf $ f_n$ сходится к  $ f$ равномерно на $ E$} ($ f_n \rightrightarrows  f$), если
+	для любого $ \varepsilon >0$ существует $ N_{(\varepsilon )}$ такое, что
 	\[
-		\forall n > N ~ \forall x \in E \colon \lvert f_n(x) - f(x)  \rvert < \varepsilon 
-	.\] 
+		\forall n > N ~ \forall x \in E \colon \lvert f_n(x) - f(x)  \rvert < \varepsilon
+	.\]
 \end{defn}
 \begin{ex}
-    Рассмотрим функции $ f_n(x) = x^{n}$ на отрезке $ (0, 1)$. Так как $ \forall x \in  (0, 1)\colon  x^{n} \mathrel{\rightarrow}_{n \to  \infty} 0$, $ f_n \to  f \equiv 0$. Но $ f_n \not\rightrightarrows 0$, потому что, например, для  $ \varepsilon = \frac{1}{2}$ каким бы ни было $ N$ для всех $ n > N$ можно взять такое $ x$ рядом с единицей, что  $ \lvert x^{n}-0 \rvert > \frac{1}{2}$.
+	Рассмотрим функции $ f_n(x) = x^{n}$ на отрезке $ (0, 1)$. Так как $ \forall x \in  (0, 1)\colon  x^{n} \mathrel{\rightarrow}_{n \to  \infty} 0$, $ f_n \to  f \equiv 0$. Но $ f_n \not\rightrightarrows 0$, потому что, например, для  $ \varepsilon = \frac{1}{2}$ каким бы ни было $ N$ для всех $ n > N$ можно взять такое $ x$ рядом с единицей, что  $ \lvert x^{n}-0 \rvert > \frac{1}{2}$.
 \end{ex}
 
 \begin{st}
-    $ f_n \rightrightarrows f$ на $ E$ равносильно тому, что
-     \[
-	 \sup_{x \in E} \lvert f_n(x)-f(x) \rvert \stackrel{n \to  \infty} \longrightarrow 0
-    .\] 
+	$ f_n \rightrightarrows f$ на $ E$ равносильно тому, что
+	\[
+		\sup_{x \in E} \lvert f_n(x)-f(x) \rvert \stackrel{n \to  \infty} \longrightarrow 0
+	.\]
 \end{st}
 \begin{rem}
-    Если мы смотрим на множество непрерывных функций на компакте $ C(K)$, где норма 
-    \[
-	\| f \| _{C(K)} = \max_{x \in  K} \lvert f(x) \rvert 
-    ,\] 
-    то из поточечной сходимости следует равномерная:
-    \[
-    f_{n} \to  f \Longrightarrow \| f_n - f \| \to  0 \Longleftrightarrow f_n \rightrightarrows f \text{ на }  K
-    .\] 
-    Аналогично будет с множеством ограниченных функций на $ E$ ($ l^{\infty}(E)$) с нормой 
-    \[
-	\| f \| _{\infty}  = \sup_{x \in E}\lvert f(x) \rvert 
-    .\] 
+	Если мы смотрим на множество непрерывных функций на компакте $ C(K)$, где норма
+	\[
+		\| f \| _{C(K)} = \max_{x \in  K} \lvert f(x) \rvert
+	,\]
+	то из поточечной сходимости следует равномерная:
+	\[
+		f_{n} \to  f \Longrightarrow \| f_n - f \| \to  0 \Longleftrightarrow f_n \rightrightarrows f \text{ на }  K
+	.\]
+	Аналогично будет с множеством ограниченных функций на $ E$ ($ l^{\infty}(E)$) с нормой
+	\[
+		\| f \| _{\infty}  = \sup_{x \in E}\lvert f(x) \rvert
+	.\]
 \end{rem}
 
 \begin{defn}[Равномерная ограниченность]
-    Последовательность функций $ f_n \colon E \to \R (\Cm)$ называется {\sf равномерно ограниченной на $ E$}, если существует такое $ M$, что
-    \[
-	\forall x \in E ~ \forall n \in \N \colon \lvert f_n(x) \rvert \le M
-    .\] 
+	Последовательность функций $ f_n \colon E \to \R (\Cm)$ называется {\sf равномерно ограниченной на $ E$}, если существует такое $ M$, что
+	\[
+		\forall x \in E ~ \forall n \in \N \colon \lvert f_n(x) \rvert \le M
+	.\]
 \end{defn}
 
 \begin{ex}
-    Пусть $ f_n \in C(K)$. Тогда равномерная ограниченность $ \{f_n\}$ равносильна ограниченности по норме, то есть все функции содержатся в некотором шаре с центром в нуле.
+	Пусть $ f_n \in C(K)$. Тогда равномерная ограниченность $ \{f_n\}$ равносильна ограниченности по норме, то есть все функции содержатся в некотором шаре с центром в нуле.
 \end{ex}
 
 \begin{prop}
 	$ $
-    \begin{enumerate}
-	\item[0.] Из равномерной сходимости следует поточечная
+	\begin{enumerate}
+		\item[0.] Из равномерной сходимости следует поточечная
 
-	\item Если для всех $ x \in E$ выполнено 
-	    $$ \lvert f_n(x) - f(x) \rvert \le a_n,$$
-	    где $ \{a_n\}$ --- последовательность, стремящаяся к нулю при $ n \to  \infty$, то $ f_n$ равномерно сходится к $ f$ на $ E$. 
-	\item Если существует $ \varepsilon_0$ и $ x_n \in E$ для всех $ n$ такие, что
-	     \[
-		 \lvert f_n(x_n) - f(x_n) \rvert \ge \varepsilon_0
-	    ,\] 
-	    то $ f_n$ не сходится равномерно к $ f$ на $ E$.
-	\item Пусть $ \{f_n\} \rightrightarrows f$ на $ E$ и $ \{g_n\}$ равномерно ограничена на $E $. Тогда $ f_ng_n \rightrightarrows 0$.
-	    \begin{proof}
-	        \[
-		    \sup_{x \in E}\lvert f_n(x)g_n(x) \rvert \le M_{g_n} \cdot \underbrace{\sup_{x \in  E}\lvert f_n(x) \rvert }_{ \to 0} \stackrel{n \to \infty} \longrightarrow 0
-	        .\] 
-	    \end{proof}
-	\item {\bf Критерий Коши}. Пусть $ f_n \colon E \to  \R(\Cm)$. $ f_n$ равномерно сходится на $ E$, согда\footnote{С этого момента буду писать <<согда>> вместо <<тогда и только тогда, когда>>, чтобы упростить формулировки} для любого положительного $ \varepsilon $ существует $ N$, что
-	    \[
-		\forall n, m > N ~ \forall x \in  E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon 
-	    .\] 
-	    \begin{proof}
-	        $ $
-	        \begin{description}
-	            \item \boxed{ 1 \Longrightarrow 2} Запишем определение равномерной сходимости на $ E$ для $ \frac{\varepsilon}{2}$:
+		\item Если для всех $ x \in E$ выполнено
+			$$ \lvert f_n(x) - f(x) \rvert \le a_n,$$
+			где $ \{a_n\}$ --- последовательность, стремящаяся к нулю при $ n \to  \infty$, то $ f_n$ равномерно сходится к $ f$ на $ E$.
+		\item Если существует $ \varepsilon_0$ и $ x_n \in E$ для всех $ n$ такие, что
 			\[
-			    \forall \varepsilon >0 ~ \exists N \colon  \forall n > N ~ \forall x \in E \quad  \lvert f_n(x) - f(n) \rvert < \frac{\varepsilon}{2}
-			.\] 
-			Тогда для любых $ n, m > N$
-			\begin{align*}
-			    \lvert f_m(x) - f(x)_n \rvert & \le \\
-							  & \le \lvert f_m(x) - f(x) \rvert + \lvert f_n(x) - f(x) \rvert \le  \\
-							  & \le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon 
-			\end{align*}
-	            \item \boxed{ 2 \Longrightarrow 1} 
-			Из условия Коши получаем, что для всех $ x \in E$ последовательность $ {f_n(x)}$ фундаметальна. Следовательно, существует предел  $ f(x) \coloneqq \lim_{n \to \infty} f_n(x)$.
-
-			Устремим $ m \to  \infty$. Тогда \[
-			    \lvert f_n(x) - f(x) \rvert \le  \varepsilon 
-			.\] 
-			По определению равномерной сходимости получаем, что $ f_n \rightrightarrows f$ на $ E$.
-	        \end{description} 
-	    \end{proof}
-	\item \label{prop_5} Пусть $ E$ --- метрическое пространство. Рассмотрим последовательность непрерывных в точке $ x \in E$ функций $ f_n \colon E \to \R(\Cm) $. Если $ f_n \rightrightarrows f$ на $ E$, то  $ f$ тоже непрерывна в точке  $ a$.
-	     \begin{proof}
-	        Проверим, что 
-		\[
-		    \lim_{x \to  a} f(x) = f(a)
-		.\] 
-		А именно, для любого $ \varepsilon  > 0$ существует $ \delta > 0$ такое, что
-		\[
-		    \forall x \in E \quad \rho(x, a) < \delta \Longrightarrow \lvert f(x) - f(a) \rvert  < \varepsilon 
-		.\] 
-
-		Используем равномерную сходимость: для любого  $ \varepsilon > 0$ существует $ N$ такое, что
-		\[\label{eq:koshi_1}
-		    \forall n > N ~ \forall x \in E \quad \lvert f_n(x) - f(x) \rvert  < \frac{\varepsilon}{3}
+				\lvert f_n(x_n) - f(x_n) \rvert \ge \varepsilon_0
+			,\]
+			то $ f_n$ не сходится равномерно к $ f$ на $ E$.
+		\item Пусть $ \{f_n\} \rightrightarrows f$ на $ E$ и $ \{g_n\}$ равномерно ограничена на $E $. Тогда $ f_ng_n \rightrightarrows 0$.
+			\begin{proof}
+				\[
+					\sup_{x \in E}\lvert f_n(x)g_n(x) \rvert \le M_{g_n} \cdot \underbrace{\sup_{x \in  E}\lvert f_n(x) \rvert }_{ \to 0} \stackrel{n \to \infty} \longrightarrow 0
+				.\]
+			\end{proof}
+		\item {\bf Критерий Коши}. Пусть $ f_n \colon E \to  \R(\Cm)$. $ f_n$ равномерно сходится на $ E$, согда\footnote{С этого момента буду писать <<согда>> вместо <<тогда и только тогда, когда>>, чтобы упростить формулировки} для любого положительного $ \varepsilon $ существует $ N$, что
+			\[
+				\forall n, m > N ~ \forall x \in  E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon
 			.\]
-		Так как $ f_n$ непрерывна в точке $ a$, можем записать определение для  $ \frac{\varepsilon}{3}$ и заодно взять $ n > N$:
-		\[
-		    \exists \delta >0 \colon \forall x \in  E \quad \rho(x, a) < \delta \Longrightarrow \lvert f_n(x) - f_n(a) \rvert \le \frac{\varepsilon}{3}
-		.\] 
-		Используем два полученых неравенства:
-		\begin{align*}
-		    \lvert f(x) - f(a) \rvert \le  & \\
-					       \le  & \lvert f(x) - f_n(x) \rvert + \\
-					       + & \lvert f_n(x) - f_n(a) \rvert + \\
-					       + & \lvert f_n(a) - f_n(a) \rvert < \\
-					       < & \frac{\varepsilon}{3} \cdot  3 = \varepsilon 
-		\end{align*}
-	    \end{proof}
+			\begin{proof}
+				$ $
+				\begin{description}
+					\item \boxed{ 1 \Longrightarrow 2} Запишем определение равномерной сходимости на $ E$ для $ \frac{\varepsilon}{2}$:
+						\[
+							\forall \varepsilon >0 ~ \exists N \colon  \forall n > N ~ \forall x \in E \quad  \lvert f_n(x) - f(n) \rvert < \frac{\varepsilon}{2}
+						.\]
+						Тогда для любых $ n, m > N$
+						\begin{align*}
+							\lvert f_m(x) - f(x)_n \rvert & \le \\
+														  & \le \lvert f_m(x) - f(x) \rvert + \lvert f_n(x) - f(x) \rvert \le  \\
+														  & \le \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+						\end{align*}
+					\item \boxed{ 2 \Longrightarrow 1}
+						Из условия Коши получаем, что для всех $ x \in E$ последовательность $ {f_n(x)}$ фундаметальна. Следовательно, существует предел  $ f(x) \coloneqq \lim_{n \to \infty} f_n(x)$.
 
-	\item {\bf Теорема Стокса-Зайделя}. Пусть $ f_n \in C(E)$. Если $ f_n \rightrightarrows f$, то $ f$ непрерывна на $ E$. 
-	    \begin{proof}
-		Следствие из \ref{prop_5}[прошлого свойства].
-	    \end{proof}
-    \end{enumerate}
+						Устремим $ m \to  \infty$. Тогда \[
+							\lvert f_n(x) - f(x) \rvert \le  \varepsilon
+						.\]
+						По определению равномерной сходимости получаем, что $ f_n \rightrightarrows f$ на $ E$.
+				\end{description}
+			\end{proof}
+		\item \label{prop_5} Пусть $ E$ --- метрическое пространство. Рассмотрим последовательность непрерывных в точке $ x \in E$ функций $ f_n \colon E \to \R(\Cm) $. Если $ f_n \rightrightarrows f$ на $ E$, то  $ f$ тоже непрерывна в точке  $ a$.
+			\begin{proof}
+				Проверим, что
+				\[
+					\lim_{x \to  a} f(x) = f(a)
+				.\]
+				А именно, для любого $ \varepsilon  > 0$ существует $ \delta > 0$ такое, что
+				\[
+					\forall x \in E \quad \rho(x, a) < \delta \Longrightarrow \lvert f(x) - f(a) \rvert  < \varepsilon
+				.\]
+
+				Используем равномерную сходимость: для любого  $ \varepsilon > 0$ существует $ N$ такое, что
+				\[\label{eq:koshi_1}
+					\forall n > N ~ \forall x \in E \quad \lvert f_n(x) - f(x) \rvert  < \frac{\varepsilon}{3}
+				.\]
+				Так как $ f_n$ непрерывна в точке $ a$, можем записать определение для  $ \frac{\varepsilon}{3}$ и заодно взять $ n > N$:
+				\[
+					\exists \delta >0 \colon \forall x \in  E \quad \rho(x, a) < \delta \Longrightarrow \lvert f_n(x) - f_n(a) \rvert \le \frac{\varepsilon}{3}
+				.\]
+				Используем два полученых неравенства:
+				\begin{align*}
+					\lvert f(x) - f(a) \rvert \le  & \\
+					\le  & \lvert f(x) - f_n(x) \rvert + \\
+					+ & \lvert f_n(x) - f_n(a) \rvert + \\
+					+ & \lvert f_n(a) - f_n(a) \rvert < \\
+					< & \frac{\varepsilon}{3} \cdot  3 = \varepsilon
+				\end{align*}
+			\end{proof}
+
+		\item {\bf Теорема Стокса-Зайделя}. Пусть $ f_n \in C(E)$. Если $ f_n \rightrightarrows f$, то $ f$ непрерывна на $ E$.
+			\begin{proof}
+				Следствие из \ref{prop_5}[прошлого свойства].
+			\end{proof}
+	\end{enumerate}
 \end{prop}
 
 \section{Равномерные и поточечные сходимости рядов}
 \begin{defn}[Функционоальный ряд]
-	Рассмотрим функции $ u_n \colon E \to  \R(\Cm)$. Тогда 
+	Рассмотрим функции $ u_n \colon E \to  \R(\Cm)$. Тогда
 	\[
-	\begin{aligned}
-		\sum_{n=1}^{\infty} u_n(x) &\text{ --- \sf функциональный ряд,} \\
-		S_n(x) = \sum_{k=1}^{n} u_k(x) & \text{ --- \sf частичная сумма ряда.} 
-	\end{aligned}
+		\begin{aligned}
+			\sum_{n=1}^{\infty} u_n(x) &\text{ --- \sf функциональный ряд,} \\
+			S_n(x) = \sum_{k=1}^{n} u_k(x) & \text{ --- \sf частичная сумма ряда.}
+		\end{aligned}
 	\]
-	Если $ S_n$ сходится к $ S$ поточечно, то говорят, что {\sf ряд сходится поточечно}. Если $ S_n$  сходится к $ S$ равномерно, то говорят, что {\sf ряд сходится равномерно}. 
+	Если $ S_n$ сходится к $ S$ поточечно, то говорят, что {\sf ряд сходится поточечно}. Если $ S_n$  сходится к $ S$ равномерно, то говорят, что {\sf ряд сходится равномерно}.
 	\[
 		r_n = S(x) - S_n(x) \text{ --- \sf остаток ряда}
-	.\] 
+	.\]
 \end{defn}
 \begin{note}
 	Если рассматриваемые функции ограничены ($ u_n \in C(K)$), то $ \sum_{n=1}^{\infty} u_n$ --- ряд в нормированном пространстве, поэтому сходимость в  $ C(K)$ равносильна тому, что $ \| S_n - S \| _{C(K)} \to  0$. Это в свою очередь равносильно тому, что $ S_n$ сходится равномерно к  $ S$ на  $ K$.
 \end{note}
 
 \begin{prop}
-    $ $
+	$ $
 	\begin{enumerate}
-	    \item 
+		\item
 			$ \sum_{n=1}^{\infty} u_n(x)$ равномерно сходится на $ E$, согда $ r_n \rightrightarrows 0$ на $ E$.
 		\item  {\bf Критерий Коши}. $ \sum_{n=1}^{\infty} u_n(x)$ равномерно сходится на $ E$, согда для всех $ \varepsilon  >0$ существует такое $ N$, что
-			 \[
-				 \forall m > N ~ \forall p \in  \N ~ \forall x \in  E\colon \left| \sum_{k=m+1}^{m+p} u_k(x) \right| =\left|S_{m+p} -S_m\right|< \varepsilon 
-			.\] 
-		\item {\bf Необходимое условие равномерной сходимости ряда}.  
-			Если $\sum_{n=1}^{\infty} u_n(x)$ сходится равномерно на $ E$, то $ u_n$ равномерно сходится к 0.  
+			\[
+				\forall m > N ~ \forall p \in  \N ~ \forall x \in  E\colon \left| \sum_{k=m+1}^{m+p} u_k(x) \right| =\left|S_{m+p} -S_m\right|< \varepsilon
+			.\]
+		\item {\bf Необходимое условие равномерной сходимости ряда}.
+			Если $\sum_{n=1}^{\infty} u_n(x)$ сходится равномерно на $ E$, то $ u_n$ равномерно сходится к 0.
 			\begin{proof}
-			    По критерию Коши для $ p = 1$.
+				По критерию Коши для $ p = 1$.
 			\end{proof}
-		\item {\bf Признак сравнения}. Пусть $ u_n, v_n \colon E \to  \R$ \footnote{Здесь на лекции $u_n, v_n$ были определены как $ E \to \R(\Cm)$, но случае $\Cm$ не понятно сравнение комплексного и вещественного числа в следующем неравенстве} и для всех $ x \in E$ выполнено неравенство $ \lvert u_n(x) \rvert \le v_n(x)$  
-			Если $ \sum_{n=1}^{\infty} v_n(x)$ сходится равномерно на $ E$, то  $ \sum_{n=1}^{\infty} u_n(x)$ тоже сходится равномерно на $ E$.	
+		\item {\bf Признак сравнения}. Пусть $ u_n, v_n \colon E \to  \R$ \footnote{Здесь на лекции $u_n, v_n$ были определены как $ E \to \R(\Cm)$, но случае $\Cm$ не понятно сравнение комплексного и вещественного числа в следующем неравенстве} и для всех $ x \in E$ выполнено неравенство $ \lvert u_n(x) \rvert \le v_n(x)$
+			Если $ \sum_{n=1}^{\infty} v_n(x)$ сходится равномерно на $ E$, то  $ \sum_{n=1}^{\infty} u_n(x)$ тоже сходится равномерно на $ E$.
 			\begin{proof}
-			    Обозначим частичные суммы
+				Обозначим частичные суммы
 				\[
 					S_n (x) = \sum_{k=1}^{n}  u_k(x), \quad C_n(x) = \sum_{k=1}^{n} v_k(x)
-				.\] 
+				.\]
 				Заметим, что
 				\[
-					\left| S_m(x) - S_n(x) \right|  \le  \sum_{k=n+1}^{m} v_k(x) \le \left| C_m(x) - C_n(x) \right| 
-				.\] 
+					\left| S_m(x) - S_n(x) \right|  \le  \sum_{k=n+1}^{m} v_k(x) \le \left| C_m(x) - C_n(x) \right|
+				.\]
 				Так как $ \sum_{n=1}^{\infty} v_n(x)$ равномерно сходится, можно воспользоваться критерием Коши и получить, что последний модуль  меньше $ \varepsilon $ при $ m, n > N$ и  $ x \in E$. Тогда можем применить критерий Коши для $ \sum_{n=1}^{\infty} u_n(x)$.
 			\end{proof}
 
-		\item {\bf Признак Вейерштрасса}. Пусть $ u_n\colon E \to  \R(\Cm)$ и для всех $ x \in E$ выполнено неравенство $ \lvert u_n(x)  \rvert \le a_n$. Если сходится ряд $ \sum_{n=1}^{\infty} a_n$, то ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно. 
+		\item {\bf Признак Вейерштрасса}. Пусть $ u_n\colon E \to  \R(\Cm)$ и для всех $ x \in E$ выполнено неравенство $ \lvert u_n(x)  \rvert \le a_n$. Если сходится ряд $ \sum_{n=1}^{\infty} a_n$, то ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно.
 			\begin{proof}
-			    Применить признак Коши.
+				Применить признак Коши.
 			\end{proof}
 		\item Если $ \sum_{n=1}^{\infty} \lvert u_n(x) \rvert $ сходится равномерно, то и ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно.
 		\item {\bf Признак Дирихле}. Пусть $ u_n, v_n \colon E \to \R(\Cm)$, обозначим  $ U_n(x) = \sum_{k=1}^{n} u_k(x)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
 			\begin{enumerate}[noitemsep]
-				\item ряд $ U_n$ равномерно ограничен на $ E$, то есть 
+				\item ряд $ U_n$ равномерно ограничен на $ E$, то есть
 					$
-						\exists M\colon \forall x \in E ~ \forall n \quad \lvert U_n(x) \rvert \le M
-					$; 
+					\exists M\colon \forall x \in E ~ \forall n \quad \lvert U_n(x) \rvert \le M
+					$;
 				\item ряд $ v_n$ равномерно сходится к нулю ($ v_n \rightrightarrows 0$);
 				\item для любого $ x \in E$ последовательность $ \{v_n(x)\}$ монотонна.
-			\end{enumerate} 
+			\end{enumerate}
 			\begin{proof}
-			    Воспользуемся преобразованием Абеля:
+				Воспользуемся преобразованием Абеля:
 				\[
 					S_n(x) = \sum_{k=1}^{n} u_k(x)v_k(x) = U_n(x)v_n(x) + \sum_{k=1}^{n-1} U_k(x) (v_k(x) - v_{k+1}(x))
-				.\] 
+				.\]
 				Так как  $ U_n(x)$ равномерно ограничено, а $ v_n(x) $ равномерно сходится к нулю, $ U_n(x)v_n(x)$ тоже равномерно сходится к нулю. Теперь докажем, что второе слагаемое тоже равномерно сходится. Для этого достаточно проверить, что следующий ряд равномерно сходится
-				 \[
-					 \sum_{k=1}^{\infty} \lvert U_k(x) (v_k(x) - v_{k+1}) \rvert 
-				.\] 
+				\[
+					\sum_{k=1}^{\infty} \lvert U_k(x) (v_k(x) - v_{k+1}) \rvert
+				.\]
 				Оценим частичную сумму\footnote{В последнем переходе мы используем монотонность $ v_k(x)$}
 				\[
-				\begin{aligned}
-					\sum_{k=1}^{n-1} \lvert U_k(x) (v_k(x) - v_{k+1}(x)) \rvert & \le \\
-																				& \le \sum_{k=1}^{n-1} \lvert U_k(x) \rvert \cdot \lvert v_k(x) - v_{k+1}(x) \rvert \le  \\
-																				& \le M \cdot \sum_{k=1}^{n-1} \lvert v_k(x) - v_{k+1}(x) \rvert = \\ 
-																				& = M \cdot \lvert v_1(x) - v_n(x) \rvert 
-				\end{aligned}
+					\begin{aligned}
+						\sum_{k=1}^{n-1} \lvert U_k(x) (v_k(x) - v_{k+1}(x)) \rvert & \le \\
+																					& \le \sum_{k=1}^{n-1} \lvert U_k(x) \rvert \cdot \lvert v_k(x) - v_{k+1}(x) \rvert \le  \\
+																					& \le M \cdot \sum_{k=1}^{n-1} \lvert v_k(x) - v_{k+1}(x) \rvert = \\
+																					& = M \cdot \lvert v_1(x) - v_n(x) \rvert
+					\end{aligned}
 				\]
 				Так как $ v_n \rightrightarrows 0$, $ \lvert v_1(x) - v_n(x) \rvert \underset{n \to \infty}{\longrightarrow} \lvert v_1(x) \rvert $. Значит, частичная сумма ряда стремится к $ M \cdot \lvert v_1(x) \rvert $, следовательно\footnote{Например, по признаку сравнения}, второе слагаемое тоже равномерно сходится, а тогда и сумма равномерно сходится.
 			\end{proof}
 		\item {\bf Признак Лейбница}. Если выполнены следующие условия, то ряд $ \sum_{n=1}^{\infty} (-1)^{n}v_n(x)$ равномерно сходится:
 			\begin{enumerate}[noitemsep]
-			    \item $ v_n \rightrightarrows 0$ на $ E$;
+				\item $ v_n \rightrightarrows 0$ на $ E$;
 				\item для любого $ x \in E$, ряд $ \{v_n(x)\}$ монотонный.
-			\end{enumerate} 
+			\end{enumerate}
 			\begin{proof}
 				Обозначим за $ u_n(x) \coloneqq (-1)^{n}$. Заметим, что ряд $ U_n(x) = \sum_{k=1}^{n} u_k(x)$ ограничен, тогда по признаку Дирихле $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ равномерно сходится.
 			\end{proof}
 			\begin{ex}
 				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{\sin(nx)}{n}$. Обозначим $ u_n(x) = \sin(nx)$ и $ v_n(x) = \frac{1}{n}$. Последний равномерно сходится к нулю и монотонно убывает.
 				\[
-				\begin{aligned}
-					U_n(x) &= \sum_{k=0}^{n} \sin(kx) = \\
-						   &= \im\left(  \sum_{k=0}^{n} e^{ikx}  \right) = \im \left( \frac{1-e^{i(n+1)x}}{1 - e^{ix}} \right) = \\
-						   &= \im\left( \frac{e^{ix\cdot \frac{n+1}{2}} \cdot \left( e^{ix\cdot \frac{n+1}{2}}- e^{-ix\cdot \frac{n+1}{2}} \right)}{e^{\frac{ix}{2} - e^{-\frac{ix}{2}}}}  \right)  = \\
-						   &= \im \left( e^{\frac{ixn}{2}} \right) \cdot \frac{\sin \frac{n+1}{2}x }{\sin  \frac{x}{2} } = \\
-						   &= \frac{\sin \frac{nx}{2} \cdot \sin\frac{n+1}{2}x}{\sin \frac{x}{2}}
-				\end{aligned}
+					\begin{aligned}
+						U_n(x) &= \sum_{k=0}^{n} \sin(kx) = \\
+							   &= \im\left(  \sum_{k=0}^{n} e^{ikx}  \right) = \im \left( \frac{1-e^{i(n+1)x}}{1 - e^{ix}} \right) = \\
+							   &= \im\left( \frac{e^{ix\cdot \frac{n+1}{2}} \cdot \left( e^{ix\cdot \frac{n+1}{2}}- e^{-ix\cdot \frac{n+1}{2}} \right)}{e^{\frac{ix}{2} - e^{-\frac{ix}{2}}}}  \right)  = \\
+							   &= \im \left( e^{\frac{ixn}{2}} \right) \cdot \frac{\sin \frac{n+1}{2}x }{\sin  \frac{x}{2} } = \\
+							   &= \frac{\sin \frac{nx}{2} \cdot \sin\frac{n+1}{2}x}{\sin \frac{x}{2}}
+					\end{aligned}
 				\]
 			\end{ex}
 			\begin{ex}
@@ -250,81 +250,84 @@
 			\end{ex}
 		\item {\bf Признак Абеля}.  Пусть $ u_n, v_n \colon E \to \R(\Cm)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
 			\begin{enumerate}[noitemsep]
-				\item ряд $ \sum_{n=1}^{\infty} u_n$ равномерно сходится на $ E$; 
+				\item ряд $ \sum_{n=1}^{\infty} u_n$ равномерно сходится на $ E$;
 				\item ряд $ v_n$ равномерно ограничен;
 				\item для любого $ x \in E$ последовательность $ \{v_n(x)\}$ монотонна.
-			\end{enumerate} 
+			\end{enumerate}
 			\begin{proof}
-			    Проверим критерий Коши, а именно: для любого $ \varepsilon >0$ должно существовать число $ N$ такое, что 
-				 \[
-					 \forall n > N ~ \forall p \in \N ~ \forall x \in E\colon \left|   \sum_{k=n+1}^{n+p} u_k(x)v_k(x)  \right| < \varepsilon 
-				.\] 
+				Проверим критерий Коши, а именно: для любого $ \varepsilon >0$ должно существовать число $ N$ такое, что
+				\[
+					\forall n > N ~ \forall p \in \N ~ \forall x \in E\colon \left|   \sum_{k=n+1}^{n+p} u_k(x)v_k(x)  \right| < \varepsilon
+				.\]
 				Используем преобразование Абеля\footnote{Для удобства сделаем, чтобы сумма начиналась с единицы. Из-за этого придется писать больше скобок.}:
 				\[
-				\begin{aligned}
-					\sum_{k=n+1}^{n+p}u_k (x)v_k(x) &= \sum_{k=1}^{p} u_{n+k}(x) + v_{n+k}(x) =\\
-									   &= \bigl( U_{n+p}(x) - U_{n}(x) \bigr)\cdot  v_{n+p}(x) + \sum_{k=1}^{p-1} \bigl( U_{n+k}(x) - U_n(x) \bigr) \cdot \bigl( v_{n+k}(x)-v_{n+k+1}(x) \bigr) 
-				\end{aligned}
+					\begin{aligned}
+						\sum_{k=n+1}^{n+p}u_k (x)v_k(x) &= \sum_{k=1}^{p} u_{n+k}(x) + v_{n+k}(x) =\\
+														&= \bigl( U_{n+p}(x) - U_{n}(x) \bigr)\cdot  v_{n+p}(x) + \sum_{k=1}^{p-1} \bigl( U_{n+k}(x) - U_n(x) \bigr) \cdot \bigl( v_{n+k}(x)-v_{n+k+1}(x) \bigr)
+					\end{aligned}
 				\]
 				Так как $ v_n$ равномерно ограничено, а $ u_n $ равномерно сходится\footnote{Поэтому можем использовать критерий Коши}:
 				\[
 					\bigl(U_{n+p}(x) - U_n(x)\bigr)\cdot v_{n+p}(x) \le \left| U_{n+p}(x) - U_n(x) \right| \cdot M < \varepsilon \cdot M
 				.\]
 				Для второго слагаемого аналогично используем критерий Коши для $ u_n$ и монотонность  $ v_n$:
-				 \[
-					 \begin{aligned}
-						 \sum_{k=1}^{p-1} \bigl(U_{n+k}(x) - U_n(x)\bigr) \cdot \bigl(v_{n+k}(x) - v_{n+k+1}\bigr) &\le \\
-																												   & \le \sum_{k=1}^{p-1} \bigl|U_{n+k}(x) - U_n(x)\bigr| \cdot \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| &\le \\
-																												   & \le \varepsilon \cdot \sum_{k=1}^{p-1} \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| \le \\
-																												   & \le \varepsilon \cdot \left| v_{n+1}(x) - v_{n+p}(x) \right|  \le \varepsilon \cdot 2 M
-					 \end{aligned}
-				\] 
+				\[
+					\begin{aligned}
+						\sum_{k=1}^{p-1} \bigl(U_{n+k}(x) - U_n(x)\bigr) \cdot \bigl(v_{n+k}(x) - v_{n+k+1}\bigr) &\le \\
+																												  & \le \sum_{k=1}^{p-1} \bigl|U_{n+k}(x) - U_n(x)\bigr| \cdot \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| &\le \\
+																												  & \le \varepsilon \cdot \sum_{k=1}^{p-1} \bigl|v_{n+k}(x) - v_{n+k+1}\bigr| \le \\
+																												  & \le \varepsilon \cdot \left| v_{n+1}(x) - v_{n+p}(x) \right|  \le \varepsilon \cdot 2 M
+					\end{aligned}
+				\]
 				Итого, оценили сумму из критерия Коши через $ \varepsilon $, поэтому можем им воспользоваться.
 			\end{proof}
-	\end{enumerate} 
+	\end{enumerate}
 \end{prop}
 
 \section{Свойства равномерно сходящихся функциональных последовательностей и рядов}
 \begin{prop}
-\item Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
-	Тогда пределы $ \lim\limits_{n \to  \infty} b_n$, $ \lim\limits_{x \to a} f(x)$ существуют и равны. 
-	
-	То есть \[
-		\lim_{n \to \infty} \lim_{x \to  a} f_n(x) = \lim_{x \to  a} \lim_{n \to \infty} f_n(x)
-	.\] 
-	\begin{proof}
-			$ $
-	    \begin{enumerate}
-	        \item Проверим, что у $ b_n$ есть предел. Из критерия Коши для $ f_n$ следует, что для каждого  $ \varepsilon >0$ существует $ N$, что 
-				 \[
-					 \forall n, m > N ~ \forall x \in E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon 
-				.\] 
-				Устремим $ x \to  a$. Тогда $ f_n(x) \to b_n$ и $ f_m(x) \to b_m$. Из того, что 
-				 \[
-				\forall \varepsilon  > 0 ~ \exists N\colon \forall n, m > N \quad \lvert b_n - b_m \rvert < \varepsilon 
-				,\] 
-				следует, что  последовательность $ \{b_n\}$ фундаментальна. Поэтому предел  $ b_n$ существует и  $ b\coloneqq \lim_{n \to \infty} b_n $.
-			\item Определим функции 
-				\[
-					g_n(x) = 
-					\begin{cases}
-						f_n(x) & x \ne a \\
-						b_n & x = a
-					\end{cases}
-					,
-					\quad
-					g(x) = 
-					\begin{cases}
-						f(x) & x \ne a \\
-						b & x = a
-					\end{cases}
-				\] 
-				Эти функции непрерывны в точке $ a$. Кроме этого  $ g_n \rightrightarrows g$ на $ E \cup \{a\}$, так как можно выбрать $ N$ из прошлого пункта.
-			\item Используем свойство равномерной сходимости % ???
-				\[
-					b = lim_{x \to  a} g(x) = \lim_{x \to a} f(x) 
-				.\] 
-	    \end{enumerate} 
-	\end{proof}
+$ $
+	\begin{enumerate}
+		\item Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
+			Тогда пределы $ \lim\limits_{n \to  \infty} b_n$, $ \lim\limits_{x \to a} f(x)$ существуют и равны.
+
+			То есть \[
+				\lim_{n \to \infty} \lim_{x \to  a} f_n(x) = \lim_{x \to  a} \lim_{n \to \infty} f_n(x)
+			.\]
+			\begin{proof}
+				$ $
+				\begin{enumerate}
+					\item Проверим, что у $ b_n$ есть предел. Из критерия Коши для $ f_n$ следует, что для каждого  $ \varepsilon >0$ существует $ N$, что
+						\[
+							\forall n, m > N ~ \forall x \in E \colon \lvert f_n(x) - f_m(x) \rvert < \varepsilon
+						.\]
+						Устремим $ x \to  a$. Тогда $ f_n(x) \to b_n$ и $ f_m(x) \to b_m$. Из того, что
+						\[
+							\forall \varepsilon  > 0 ~ \exists N\colon \forall n, m > N \quad \lvert b_n - b_m \rvert < \varepsilon
+						,\]
+						следует, что  последовательность $ \{b_n\}$ фундаментальна. Поэтому предел  $ b_n$ существует и  $ b\coloneqq \lim_{n \to \infty} b_n $.
+					\item Определим функции
+						\[
+							g_n(x) =
+							\begin{cases}
+								f_n(x) & x \ne a \\
+								b_n & x = a
+							\end{cases}
+							,
+							\quad
+							g(x) =
+							\begin{cases}
+								f(x) & x \ne a \\
+								b & x = a
+							\end{cases}
+						\]
+						Эти функции непрерывны в точке $ a$. Кроме этого  $ g_n \rightrightarrows g$ на $ E \cup \{a\}$, так как можно выбрать $ N$ из прошлого пункта.
+					\item Используем свойство равномерной сходимости % ???
+						\[
+							b = \lim_{x \to  a} g(x) = \lim_{x \to a} f(x)
+						.\]
+				\end{enumerate}
+			\end{proof}
+	\end{enumerate}
 \end{prop}
 % \end{document}
