@@ -286,9 +286,9 @@
 
 \section{Свойства равномерно сходящихся функциональных последовательностей и рядов}
 \begin{prop}
-$ $
+	$ $
 	\begin{enumerate}
-		\item Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
+		\item \label{prop:rsf1} Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
 			Тогда пределы $ \lim\limits_{n \to  \infty} b_n$, $ \lim\limits_{x \to a} f(x)$ существуют и равны.
 
 			То есть \[
@@ -328,6 +328,9 @@ $ $
 						.\]
 				\end{enumerate}
 			\end{proof}
+			\begin{cor}
+				Если $ f_n \colon [a, b] \to \R(\Cm)$, $ f_n \rightrightarrows f$ на $ (a, b)$ и $ f_n$ непрерывна, то $ f_n \rightrightarrows f$ на $ [a, b]$
+			\end{cor}
 	\end{enumerate}
 \end{prop}
 % \end{document}

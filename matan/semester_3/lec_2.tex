@@ -1,0 +1,385 @@
+\lecture{2}{9 Sept}{\dag}
+\begin{enumerate}
+	\setcounter{enumi}{1}
+\item Пусть $ u_n \colon E \to  \R(\Cm)$, $ a$ --- предельная точка $ E$ и $ \lim_{x \to  a} u_n(x) = b_n$. Если $ \sum_{n=1}^{\infty}u_n(x) $ равномерно сходится на $ E$, то   $ \sum_{n=1}^{\infty} b_n$ сходится и
+	\[
+		\sum_{n=1}^{\infty}  \lim_{x \to  a} u_n(x) = \lim_{x \to  a} \sum_{n=1}^{\infty} u_n(x)
+	.\]
+	\begin{proof}
+		Обозначим частные суммы за
+		\[
+			\begin{aligned}
+				S_n(x) &= \sum_{k=1}^{n} u_k(x) \\
+				B_n &= \sum_{k=1}^{n} b_k
+			\end{aligned}
+		\]
+		Тогда $ \lim_{x \to  a} S_n(x) = B_n$ и $ S_n \rightrightarrows S$ на $ E$.  $ S_n(x)$ --- функции, поэтому можно применить свойство~\ref{prop:rsf1} и получить
+		\[
+			\lim_{n \to \infty} \lim_{x \to a} S_n = \lim_{x \to a} \lim_{n \to \infty} S_n(x)
+		.\]
+	\end{proof}
+\item Пусть  $ f_n \in C[a, b]$ и $ f_{n} \rightrightarrows f$ на $ [a, b]$ \footnote{Из этих двух условий автоматически следует, что $ f$ непрерывна}. Рассмотрим произвольную точку  $ c \in [a, b]$ и первообразную $ \int_{c}^{x} f_{n}(t)dt $. Тогда 
+	\[
+		\int_{c}^{x} f_n(t)dt \rightrightarrows \int_{c}^{x} f(t)dt \text{ на } [a, b]  
+	.\] 
+	В частности,
+	\[
+		\int_{a}^{b} f_n(t)dt \to \int_{a}^{b} f(t) dt  
+	,\] 
+	\[
+		\lim_{n \to \infty} \int_{a}^{b} f_n(t)dt = \int_{a}^{b} \lim_{n \to \infty} f_n(t)dt  
+	.\] 
+	\begin{proof}
+	    Посмотрим на разность 
+		\begin{equation}\label{eq:prop_2}
+			\left| \int_{c}^{x} f(t) dt - \int_{c}^{x} f_n(t) dt   \right| \le \left| c  - x \right| \cdot \max_{t \in [c, x]} \left| f(t) - f_n(t) \right| 
+		\end{equation}
+		Расширив отрезок $ [c, x]$ до $ [a, b]$, получаем следующую оценку на \ref{eq:prop_2}
+		\begin{equation}\label{eq:prop_2_2}
+			\ref{eq:prop_2} \le (b-a) \cdot \max_{t \in [a, b]}\left| f_n(t) - f(t) \right| \stackrel{n \to  \infty}{\longrightarrow} 0
+		\end{equation}
+		Выражение в \ref{eq:prop_2_2} не зависит от $ x$, откуда и следует равномерная сходимость.
+	\end{proof}
+\item {\bf Перестановка дифференцирования и предельного перехода}.
+	Пусть $ f_n \in C[a, b]$, $ f_n' \rightrightarrows g$, $ c \in  [a, b]$ и $ f_n(c) \stackrel{n \to \infty}{\longrightarrow}$. 
+	Тогда $ f_n$ равномерно сходится к $ f$ на $ [a, b]$ и $ f' = g$.
+	То есть
+	\[
+		\bigl( \lim_{n \to \infty} f_n(x) \bigr)' = \lim_{n \to \infty} f_n'(x)
+	.\] 
+	\begin{proof}
+		Так как $ f_n ' \rightrightarrows g$, по прошлому свойству 
+		\[
+			\int_{c}^{x} f_n'(t) dt \rightrightarrows \int_{c}^{x} g(t) dt  
+		.\] 
+		Заметим, что
+		\[
+			\int_{c}^{x} f_n'(t) dt  = f_n(x) - f_n(c)
+		.\] 
+		Поэтому
+		\[
+			f_n(x) = \underbrace{f_n(c)}_{ \to A} + \underbrace{\int_{c}^{x} f_n(t) dt}_{\rightrightarrows \int_{c}^{x} g(t) dt   } \rightrightarrows A + \int_{c}^{x} g(t) dt 
+		.\] 
+	\end{proof}
+	\begin{cor}[дифференцирование равномерно сходящегося ряда]
+		Пусть есть ряд $ \sum_{n=1}^{\infty} u_n(x)$, $ c \in [a, b]$, $ \sum_{n=1}^{\infty} u_n'(x)$ равномерно сходится и ряд $ \sum_{n=1}^{\infty} u_n(c) $ сходится. Тогда ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно и
+		\[
+			\Bigl(\sum_{n=1}^{\infty} u_n(x)\Bigr)' = \sum_{n=1}^{\infty} u_n'(x)
+		.\] 
+	\end{cor}
+\end{enumerate}
+
+\section{Степенные ряды}
+\begin{defn}[Степенной ряд]
+	Ряд $ \slim_{n=0}^{\infty} a_n(z-z_0)^{n}$, где $ a_n, ~ z, ~ z_0 \in \Cm$, называется {\sf степенным с центром в точке $ z_0$}. 
+\end{defn}
+\begin{note}
+	С помощью переносов любой степенной ряд сводится к ряду с центром в нуле $ \sum_{n=0}^{\infty}a_n z^{n} $.\footnote{Далее в утверждениях будет обычно фигурировать ряд с центром в нуле для упрощения рассуждений.}
+\end{note}
+\begin{thm}
+Пусть ряд $ \slim_{n=0}^{\infty} a_n z^{n}$ сходится в точке $ z_0 \in \Cm$. Тогда ряд $ \slim_{n=0}^{\infty} a_n z^{n}$ сходится при всех $ z$, что $ \lvert z \rvert < \lvert z_0 \rvert $.\footnote{То есть для всех $ z$ внутри шара с центром в нуле и радиусом  $ z_0$.}
+\end{thm}
+\begin{proof}
+    Так как ряд сходится в точке $ z_0$, $ a_n z_0^{n} \stackrel{n \to  \infty}{\longrightarrow} 0$, то есть $ \left| a_n z_0^{n} \right| \le M$.
+	Тогда
+	\[
+		\sum_{n=0}^{\infty} \left| a_n z^{n}\right|  = \sum_{n=0}^{\infty} \left| a_n z_0^{n} \right| \cdot \left| \frac{z}{z_0} \right| ^{n} \le M \cdot \sum_{n=0}^{\infty} \left| \frac{z}{z_0} \right| ^{n}
+	.\] 
+	А такой ряд сходится, так как $ \left| \frac{z}{z_0} \right| < 1$.
+\end{proof}
+\begin{cor}
+    Если ряд $ \sum\limits_{n=0}^{\infty} a_n z^{n}_0 $ расходится, то для всех $ z$, что  $ \lvert z \rvert >\lvert z_0 \rvert $, степенной ряд $ \sum\limits_{n=0}^{\infty} a_n z^{n}$ расходится.
+\end{cor}
+
+\begin{defn}[Радиус сходимости]
+	{\sf Радиус сходимости $ R$} степенного ряда $ \slim_{n=0}^{\infty} a_n z^{n}$ --- такое число, что для всех $ z\colon \lvert z \rvert <R$ ряд сходится, а для всех $ z\colon \lvert z \rvert >R$ ряд расходится.
+\end{defn}
+\begin{note}
+    $ R$ может быть равным нулю или бесконечности.
+\end{note}
+
+\begin{thm}[Формула Коши-Адамара]
+Радиус сходимости существует и равен \[
+	R_{\text{сх}} = \frac{1}{\varlimsup_{n \to  \infty} \sqrt[n]{ \lvert a_n \rvert } }
+.\] 
+\end{thm}
+\begin{proof}
+    Зафиксируем $ z$.
+	 \[
+		 q = \varlimsup_{n \to \infty} \sqrt[n]{\lvert a_n z^{n} \rvert  }  = \lvert z \rvert \cdot \varlimsup_{n \to  \infty} \sqrt[n]{ \lvert a_n \rvert } 
+	.\] 
+
+	Если $ \lvert z \rvert < R_{\text{сх}}$, то $ q < 1$, тогда по признаку Коши ряд сходится.
+
+	Если $ \lvert z \rvert > R_{\text{сх}}$, то $ q > 1$, аналогично по признаку Коши ряд расходится. 
+
+	Если $ \lvert z \rvert = R_{\text{сх}}$, то $ q = 1$, и в этом случае ничего сказать нельзя.
+\end{proof}
+\begin{prac}
+    Придумать формулировку в стиле признака Даламбера, то есть 
+	\[
+		q = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| 
+	.\] 
+	Здесь, в отличии от верхнего предела в формуле Коши-Адамара, еще нужно доказать, что предел существует.
+\end{prac}
+
+\begin{ex}
+		$\sum_{n=1}^{\infty} \frac{z^{n}}{n!}$, ~ $ n! \sim  e^{n}$, поэтому $ R_{\text{сх}} = \infty$.
+\end{ex}
+\begin{ex}
+		$\sum_{n=0}^{\infty} z^{n}n!$, ~ $ R_{\text{сх}} = 0$.
+\end{ex}
+\begin{ex}
+		$\sum_{n=1}^{\infty} \frac{z^{n}}{n}$, ~  $ R_{\text{сх}} = 1$.
+\end{ex}
+
+\begin{thm}
+	Пусть $ R$ --- радиус сходимости степенного ряда  $ \sum_{n=0}^{\infty} a_n z^{n}$. Рассмотрим $ 0 < r < R$. Тогда в $ \overline{B(0, r)}$ ряд сходится равномерно.
+\end{thm}
+\begin{proof}
+    Возьмем ряд $ \sum_{n=0}^{\infty} \lvert a_n \rvert r^{n}$. Это сходящийся числовой ряд. Если взять ряд $ \sum_{n=0}^{\infty} a_n z^{n}$ с произвольным $ z$, то 
+	\[
+		\max_{\overline{B(0, r)}} \lvert a_n z^{n} \rvert = \lvert a_n \rvert r^{n}
+	.\] 
+	Получили что, ряд максимумов сходится, из чего про признаку Вейерштрасса следует, что ряд сходится.
+\end{proof}
+\begin{cor}
+	Сумма степенного ряда непрерывна в шаре $ B(0, R_{\text{сх}})$, так как частичные суммы будут непрерывными функциями, которые равномерно сходятся, следовательно, сходятся к непрерывной функции. 
+\end{cor}
+
+\begin{thm}[Теорема Абеля]
+	Рассмотрим ряд $ \sum_{n=0}^{\infty} a_n z^{n}$,  радиус сходимости равен $ R$. Предположим, что в точке $ z$ есть сходимость. Тогда  $ \sum_{n=0}^{\infty} a_n x^{n}$ сходится на $ [0, R]$ равномерно.
+	В частности,
+	\[
+	\exists \lim_{x \to  R-} \sum_{n=0}^{\infty} a_n x^{n} = \sum_{n=0}^{\infty} a_n R^{n}
+	.\] 
+\end{thm}
+\begin{proof}
+    Докажем, что ряд сходится равномерно. Запишем следующее равенство:
+	\[
+		\sum_{n=0}^{\infty} a_n x^{n} = \sum_{n=0}^{\infty} a_{n}R^{n} \left( \frac{x}{R} \right) ^{n}
+	.\] 
+	По условию $ \sum_{n=0}^{\infty} a_{n}R^{n}$ сходится равномерно (не зависит от $ x$), а $ \left( \frac{x}{R} \right) ^{n}$ --- монотонна и ограничена. Тогда по признаку Абеля ряд равномерно сходится на $ [0, R]$
+\end{proof}
+\begin{ex}
+    Разложим в ряд Тейлора
+	\[
+		\ln (1 + x) = x - \frac{x^2}{2} + \frac{x^3}{3} - \frac{x^{4}}{4} + \ldots \qquad \text{ при } \lvert x \rvert < 1
+	.\] 
+	По признаку Абеля при $ \lvert x \rvert = 1$ ряд тоже сходится. Поэтому $ R_{\text{сх}} = 1$, причем на самом радиусе ряд тоже сходится.
+\end{ex}
+\begin{lm}
+    Следующие ряды имеют одинаковые радиусы сходимости:
+	\[
+		\sum_{n=0}^{\infty} a_{n}z^{n}, \quad \sum_{n=0}^{\infty} a_n \frac{z^{n+1}}{n+1}, \quad \sum_{n=0}^{\infty} a_{n} n z^{n-1}
+	.\] 
+\end{lm}
+\begin{proof}
+	Заметим, что если $ x_{n}$ сходится, то\footnote{По определению верхнего предела это супремум частичных пределов последовательности, выберем такую $ \{x_{k_{i}}, y_{k_{i}}\}$. Мы знаем, что $ x_{k_{i}} \to x $, поэтому $ \lim_{i \to \infty} x_{k_{i}} y_{k _{i}} = x \lim_{i \to \infty} y_{k_i}$. }\[
+    \varlimsup_{n \to  \infty} x_{n} y_{n} = \lim_{n \to \infty} x_{n} \varlimsup_{n \to \infty}y_{n}
+    .\] 
+	Теперь воспользуемся формулой Коши-Адамара. Обозначим за $ R_1, R_2, R_3$ радиусы сходимости рядов из условия.
+	\[
+	\begin{aligned}
+		R_2 &= \frac{1}{\varlimsup\limits_{n \to \infty} 
+				\sqrt[n+1]{\left| a_n \cdot \frac{1}{n+1} \right|} }
+				= \frac{1}{\left( \lim\limits_{n\to \infty} \sqrt[n+1]{\frac{1}{n+1}}\right) \cdot \varlimsup\limits_{n\to \infty} \sqrt[n+1]{\lvert a_n \rvert }} =\\ 
+			& = \frac{1}{ \varlimsup\limits_{n\to \infty} \sqrt[n]{\lvert a_{n} \rvert }} = R_1 \\
+		R_3 & = \frac{1}{\varlimsup\limits_{n\to \infty}} \sqrt[n-1]{\left|a_n\cdot n\right|} 
+				=\frac{1}{\left(\lim\limits_{n\to \infty} \sqrt[n-1]{n}\right)\cdot \varlimsup\limits_{n\to \infty} \sqrt[n-1]{\lvert a_n \rvert }} =\\
+			& = \frac{1}{ \varlimsup\limits_{n\to \infty} \sqrt[n]{\lvert a_n \rvert }} = R_1
+	\end{aligned}
+	\]
+\end{proof}
+\begin{thm}
+	Пусть есть вещественный степенной ряд $ \sum_{n=0}^{\infty} a_{n}(x - x_0)^{n}$, его ряд сходимость равен $ R$.
+	Тогда его можно проинтегрировать почленно для всех $ x$, что $ \lvert x - x_0 \rvert < R$:
+	\[
+		\int_{x_0}^{x} \sum_{n=0}^{\infty} a_{n} (t - x_0) ^{n} dt = \sum_{n=0}^{\infty} \int_{x_0}^{x} a_n (t - x_0)^{n} dt = \sum_{n=0}^{\infty} a_{n} \frac{(x-x_0)^{n+1}}{n+1} 
+	.\] 
+\end{thm}
+\begin{proof}
+	Пусть $ r = \lvert x - x_0 \rvert <R$. В $ \overline{B(x_0, r)}$ ряд равномерно сходится.
+	Рассмотрим его частные суммы $ S_n(x)$. Так как  $ S_{n} (x) \rightrightarrows S$,
+	\[
+		\begin{aligned}
+			\int_{x_0}^{x} \sum_{n=0}^{\infty} a_{n} t ^{n} dt &= \int_{x_0}^{x} S(t) dt = \\
+															   & = \int_{x_0}^{x} \lim_{n \to \infty} S_n(t) dt 
+															    = \lim_{n \to \infty} \int_{x_0}^{x} S_{n} (t) dt 
+		\end{aligned}
+	\] 
+\end{proof}
+
+\begin{defn}[Производная комплекснозначной функции]
+    Пусть $ E \subset \Cm$, $ a$ --- внутренняя точка $ E$,  $ f\colon E \to  \Cm$. Производную в точке $ a $ можно определить двумя способами:
+	\begin{enumerate}
+		\item это такая функция 
+			\[
+				f'(a)  =  \lim_{z \to  a}  \frac{f(z)- f(a)}{z - a}
+			.\] 
+		\item $ f$ дифференцируема в точке $ a$, если существует такое $ k \in \Cm$, что 
+			\[
+				f(z) = f(a) = k(z-a) + \o_{z \to  a}(z - a) 
+			.\] 
+	\end{enumerate} 
+	\begin{note}
+		Существование  $ f'(a)$ равносильно тому, что $ f$ дифференцируема в точке $ a$, и в этом случае  $ k = f'(a)$.
+	\end{note}
+\end{defn}
+\begin{thm} \label{th:diff}
+	Рассмотрим ряд $ \sum_{n=0}^{\infty} a_{n} (z - z_0)^{n}$, его радиус сходимости равен  $ R$, $ f(z)$ --- сумма ряда внутри шара $ B(z_0, R)$. Тогда при $ z\colon \lvert z- z_0 \rvert <R$ функция $ f$ дифференцируема сколько угодно раз, при этом 
+	\[
+		f^{(m)} (z) = \sum_{n=m}^{\infty} a_{n} \frac{n!}{(n-m)!} (z - z_0)^{n-m} 
+	.\] 
+\end{thm}
+\begin{proof}
+    Опять скажем, что $ z_0 = 0$. Достаточно доказать для $ m=1$, а далее по индукции. Пусть $ \lvert z \rvert < r < R $. Запишем  определение
+	\[
+	\begin{aligned}
+		f'(z) & = \lim_{w \to  z}  \frac{f(w) - f(z)}{w - z} =\\ &= \lim_{w \to  z} \frac{\sum_{n=0}^{\infty} a_{n} w^{n} - \sum_{n=0}^{\infty} a_{n}z^{n}}{w - z} = \\
+			  & = \lim_{w \to z} \frac{\sum_{n=1}^{\infty} a_{n}(w^{n}-z^{n})}{w-z} \stackrel{?}{=}  \\
+			  & \stackrel{?}{=} \sum_{n=1}^{\infty} \lim_{w \to z} a_{n} \underbrace{(w ^{n-1} + w^{n-2} z + \ldots + z^{n-1})}_{\text{все стремятся к } z^{n-1}} =\\ &= \sum_{n=1}^{\infty} a_{n} \cdot  n \cdot z^{n-1}
+	\end{aligned}
+	\]
+	Осталось доказать один переход. Если докажем равномерную сходимость ряда в $ \overline{B(0, r)}$, то он будет верен.
+	Обозначим 
+	\[
+		u_n(w) = a_{n}(w^{n-1} + w^{n-2} z + \ldots + z^{n-1})
+	.\] 
+	Заметим, что 
+	\[
+		\lvert u_n(w)  \rvert \le \lvert a_{n} \rvert \cdot \bigl(\left| w^{n-1} \right|  + \left| w^{n-2} z \right| + \ldots + \left| z^{n-1} \right| \bigr) \le \lvert a_{n} \rvert  \cdot n \cdot  r^{n-1}
+	.\] 
+	Так как $ r^{n-1} \in \overline{B(0, R)}$, ряд $ \sum_{n=1}^{\infty} \lvert a_{n}  \rvert \cdot n \cdot  r^{n-1}$ сходится.  Тогда по признаку Вейерштрасса ряд $ \sum_{n=1}^{\infty} u_n(w)$ сходится, следовательно можем переставить предел и суммирование. 
+\end{proof}
+
+\begin{thm}[О единственности разложения в степенной ряд]
+	Если $ f(z) = \sum_{n=0}^{\infty} a_{n}(z-z_0)^{n}$ и сходится в круге $ B(z_0, R)$, то коэффициенты задаются однозначно:
+	\[
+		a_{m} = \frac{f^{(m)} (z_0) }{m!}
+	.\] 
+\end{thm}
+\begin{proof}
+	По теореме \ref{th:diff} можем записать следующую формулу:
+	\[
+		f^{(k)}(z)  = \sum_{n=m}^{\infty} a_{n}\cdot  \frac{n!}{(n-k)!} \cdot (z-z_0)^{n-k}
+	.\] 
+	Тогда \[
+		f^{(m)}(z_0) = a_{m} \cdot \frac{n!}{(n-m)!} = a_m m! ~ \Longrightarrow ~  a_m = \frac{f^{(m)}(z_0)}{m!}
+	.\] 
+\end{proof}
+\begin{defn}
+    Для бесконечно дифференцируемого в точке $ z_0$ степенного ряда $ f$ имеет место формула Тейлора с центром в точке $ z_0$ :
+\[
+	f(z) = \sum_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!} (z - z_0)^{m}
+.\] 
+\end{defn}
+
+\section{Разложение элементарных функций в ряды Тейлора}
+Запишем разложения, которые нам уже известны
+\begin{enumerate}
+    \item $ e^{x}$
+		\[
+			\forall x \in \R \qquad e^{x} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!}\ldots = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}
+    .\] 
+\item $ \sin x$ 
+	\[
+		\forall x \in \R \qquad \sin x = \sum_{n=0}^{\infty} (-1)^{n+1} \frac{x^{2n+1}}{(2n+1)!}
+	.\] 
+\item $ \cos x$ 
+	\[
+		\forall x \in \R \qquad \cos x =\sum_{n=0}^{\infty} (-1)^{n+1} \frac{x^{2n}}{(2n)!}
+	.\] 
+\end{enumerate} 
+\begin{defn}
+    Пусть $ z \in \Cm$. Определим $ \exp z, \sin z, \cos z$ для комплексного числа как ряды из формул выше.
+\end{defn}
+\begin{prac}
+    \[
+    \begin{aligned}
+		&e^{z_1 + z_2}  &= e^{z_1} e^{x_2} \\
+		&\cos(z_1 + z_2) &= \cos z_1 \cos z_2 - \sin z_1 \sin z_2 \\
+		&\sin (z_1 + z_2) &= \sin z_1 \cos z_2 + \cos z_1 \sin x_2 \\
+		&\sin ^2 z + \cos^2 z &= 1 \\
+		&(e ^{z})' &= e^{z} \\
+		&(\sin z)' &= \cos z \\
+		&(\cos z)' &= - \sin z
+    \end{aligned}
+    \] 
+\end{prac}
+\begin{thm}[Формула Эйлера]
+    \[
+    e^{iz} = \cos z + i \sin z
+    .\] 
+\end{thm}
+\begin{proof}
+    Честная подстановка. Можно перегруппировывать слагаемые в рядах, так как они абсолютно сходятся.
+\end{proof}
+\begin{enumerate}
+	\setcounter{enumi}{3}
+\item  $ \ln (1 + x)$ 
+ \[
+	 \ln(1 + x) = x - \frac{x^2}{2 } - \frac{x^3}{3} + \ldots \qquad \lvert x  \rvert < 1
+ .\] 
+ \begin{proof}
+	\[
+		\begin{aligned}
+			\ln(1+x) & = \int_{0}^{x}  \frac{1}{1 + t} dt = \int_{0}^{x} (1 - t  + t^2 - \ldots ) dt =\\
+					 & = \sum_{n=0}^{\infty} (-1)^{n} \int_{0}^{x} t ^{n} dt = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{n+1}}{n+1}
+		\end{aligned}
+	\] 
+	Так как $ 1 - t + t^2 - t^3 + \ldots $ --- равномерно сходящийся ряд при $ \lvert t \rvert < 1$, можем интегрировать его почленно.
+ Аналогично мы можем определить $ \ln(1+z)$ для $ z \in \Cm$, если $ \lvert z \rvert < 1$.
+ \end{proof}
+ \item $ \arctg x$ 
+	 \[
+		 \arctg x = x - \frac{x^3}{3} + \frac{x^{5}}{5} - \frac{x^{7}}{7 } + \ldots  = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{2n+1}
+	 .\] 
+	 \begin{proof}
+	     \[
+	     \begin{aligned}
+			 \arctg x &= \int_{0}^{x} \frac{dt}{1+t^2} = \int_{0}^{x} \sum_{n=0}^{\infty} (-1)^{n} t ^{2n} dt = \\
+					  &= \sum_{n=0}^{\infty} (-1)^{n} \int_{0}^{x} t ^{2n} dt = \sum_{n=0}^{\infty} (-1) ^{n} \frac{x^{2n+1}}{2n+1}
+	     \end{aligned}
+	     \]
+		 Формула верна внутри круга $ \lvert t \rvert < 1$ для равномерной сходимости.
+	 \end{proof}
+ \item $ (1+x)^{p}$
+	  \[
+		  (1+x)^{p} = 1 + px + \frac{p(p-1)}{2}x^2 + \ldots  = \sum_{n=0}^{\infty} \frac{p(p-1)\ldots (p-n +1)}{n!} x^{n}
+	  .\] 
+	  Докажем, что радиус сходимости равен $ 1$. Обозначим  \[
+		  S(x) = \sum_{n=0}^{\infty} \frac{p(p-1)\ldots (n-p+1)}{n!} x^{n} , \qquad f(x) = \frac{S(x)}{(1+x)^{p}}, \quad x \in (-1, 1)
+	  .\] 
+	  Поступим хитро: докажем, что $ f(x) \equiv 1$. Заметим, что $ f(0) = 1$. Тогда достаточно проверить, что  $ f'(x) = 0$ для всех  $ x\colon \lvert x \rvert < 1$.
+	  \[
+	  \begin{aligned}
+		  f(x) &= S(x) (1+x)^{-p}  \\
+		  f'(x) &= S'(x) (1+x)^{-p} - p S(x) (1+x)^{-p - 1} = \\
+				&= (1+x)^{-p-1} \left( S'(x) (1-x)  -p S(x) \right) 
+	  \end{aligned}
+	  \]
+	  Проверим, что $ \left( S'(x) (1+x) - pS(x) \right) = 0$.
+	  \[
+	  \begin{aligned}
+		  &{\color{red}p} \cdot S(x) &=& \sum_{n=0}^{\infty} \frac{p(p-1)\ldots (n-p+1)}{n!}x^{n} \cdot {\color{red}p}
+		  \\
+		  &{\color{red} (1+x)} \cdot  S'(x) &=& \sum_{n=1}^{\infty} \frac{p(p-1)\ldots (n-p+1)}{(n-1)!} x^{n-1} \cdot  {\color{red} (1+x)} = \\
+		  &&=& \sum_{n=1}^{\infty} \frac{p(p-1)\ldots (n-p+1)}{(n-1)!}(x^{n-1} +x^{n})
+	  \end{aligned}
+	  \]
+	  Теперь заметим, что 
+	  \[
+		  p\cdot  \frac{p(p-1)\ldots (n-p+1)}{n!} = \frac{p(p-1)\ldots (n-p+1)}{(n+1)!} + \frac{p(p-1)\ldots (n-p)}{n!}
+	  .\] 
+	  Поэтому коэффициенты при $ x^{k}$ будут одинаковыми, следовательно, разность равна нулю.
+  \item Частный случай для $ p=-\frac{1}{2}$
+	   \[
+		   \frac{ p(p-1)\ldots (n-p+1)}{n!} = \frac{\left( -\frac{1}{2} \right) \cdot \left( -\frac{3}{2} \right) \cdot \ldots \cdot \left( -\frac{2n-1}{2} \right) }{n!} = (-1)^{n} \frac{(2n-1)!!}{2^{n}\cdot n!} = (-1)^{n} \frac{(2n-1)!!}{(2n)!!}
+	   .\] 
+   \item $ \arcsin x$
+	   \[
+		   \arcsin x = \int_{0}^{x} \frac{dt}{\sqrt{ 1-t^2} } = \int_{0}^{x} \sum_{n=0}^{\infty} (-1)^{n} \frac{(2n-1)!!}{(2n)!!} (-t^2)^{n} dt = \sum_{n=0}^{\infty} \frac{(2n-1)!!}{(2n)!!}\cdot  \frac{x^{2n+1}}{2n+1}
+	   .\] 
+\end{enumerate} 
+
