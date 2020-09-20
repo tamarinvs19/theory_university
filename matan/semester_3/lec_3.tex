@@ -1,0 +1,39 @@
+\chapter{Теория меры и интегрирования}
+\lecture{3}{16 Sept}{\dag}
+\section{Системы множеств}
+
+\begin{defn}[Алгебра подмножеств]
+    Пусть $ T$ --- произвольное множество, $ 2^{T}$ --- система подмножеств. $ \A \subset 2^{T}$ --- {\sf алгебра подмножеств}, если 
+\begin{enumerate}[label=(\roman*),noitemsep]
+    \item  $ \varnothing \in \A$
+	\item $ A, B \in \A \Longrightarrow  A \cap B \in \A$
+
+	\item $ A \in \A \Longrightarrow T \setminus A \in \A $
+\end{enumerate} 
+\end{defn}
+\begin{prop}
+	$ $
+	\begin{enumerate}[noitemsep]
+        \item $ T \in \A$
+		\item $ A, B \in \A \Longrightarrow A \setminus B  = A \cap (T \setminus B) \in \A$
+		\item $ A, B \in \A \Longrightarrow A \cup B = T \setminus \bigl( (T\setminus A) \cap (T \setminus B) \bigr) \in \A$
+		\item $ A_j \in \A, ~ j = 1,\ldots n \Longrightarrow \bigcup\limits_{j=1}^{n} A_j \in \A, ~ \bigcap\limits_{j=1}^{n}A_j \in \A$
+    \end{enumerate} 
+\end{prop}
+\begin{defn}[$ \sigma $-алгебра]
+	$ \A \subset 2^{T}$ --- $ \sigma $-алгебра, если $ \A$ -- алгебра и 
+	\begin{enumerate}[label=(\roman* $\sigma$),noitemsep]
+		\setcounter{enumi}{1}
+	    \item $ \forall A_j \in \A,~ j \in \N\colon \bigcap\limits_{j=1}^{\infty} A_j \in \A$
+	\end{enumerate} 
+	\begin{note}
+	    $ \forall A_j \in \A, ~ j \in \N \Longrightarrow \bigcup\limits_{j=1}^{\infty} A_j \in \A$
+	\end{note}
+\end{defn}
+\begin{ex}
+	$ $
+	\begin{enumerate}[noitemsep]
+	    \item $ 2^{T} = \A$ 
+		\item $ \{\varnothing, T\} = \A$
+	\end{enumerate} 
+\end{ex}
