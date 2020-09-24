@@ -1,4 +1,3 @@
-\chapter{Теория меры и интегрирования}
 \lecture{4}{23 Sept}{\dag}
 \begin{defn}[Полная мера]
     Пусть $ \mu $ --- мера на полукольце $ \P$. Мера называется {\sf полной}, если
@@ -6,3 +5,126 @@
 		e \in \P, ~ \mu(e) = 0 \Longrightarrow \forall e' \subset e \colon e' \in \P
 	.\] 
 \end{defn}
+\begin{cor}[Ключевое свойство построения меры]
+    $ \tau\!\mid_{\A_{\tau }} $ --- полная мера.
+\end{cor}
+\begin{proof}
+	Рассмотрим $ e \in \A_{\tau }$ и $ e' \subset e$, причем $ \tau (e) = 0$. Хотим доказать, что $ e' \in \A_{\tau }$.
+	Хотим проверить такое равенство для всех $ E \in T$ :
+	\[
+		\tau (E) = \tau (E\cap e') + \tau (E \setminus e')
+	.\] 
+	По монотонности меры, $ \tau (E) \ge \tau (E \setminus e')$.
+	Так как $ E \cap e' \subset E \cap e \subset e$,
+	\[
+		0 \le \tau (E \cap e') \le \tau (e) = 0
+	.\] 
+	Следовательно, верно неравенство 
+	\[
+		\tau (E) \ge  \tau (E \cap e') + \tau (E \setminus e')
+	.\] 
+	А в другую сторону это неравенство верно всегда в силу полуаддитивности внешней меры.
+\end{proof}
+
+\section{Продолжение меры. Построение внешней меры.}
+\begin{name}
+    Рассмотрим полукольцо $ \P$ и $ \mu _0$ --- меру на нем. Пусть 
+	\[
+		\mu ^{*}(E) = \inf \left\{ \sum_{j=1}^{\infty} \mu _0(P_j) \Biggm| E \subset \bigcup_{j=1}^{\infty} P_j, ~ P_j \in \P \right\}
+	.\] 
+	Если $ E$ нельзя покрыть счетным набором $ P_j$, будем считать $ \mu ^{*(E) = +\infty}$.
+\end{name}
+
+\begin{thm}
+	$ \mu ^{*}$ --- внешняя вера и  $ \mu ^{*}(E) = +\infty$.
+\end{thm}
+\begin{proof}
+	$ $
+    \begin{enumerate}
+		\item $ E \in \P \stackrel{?}{ \Longrightarrow } \mu ^{*} (E) = \mu _0(E)$. Нужно проверить неравенство в две стороны.
+			$ $
+			\begin{description}
+				\item \boxed{\le} Возьмем покрытие $ \{E, \varnothing, \varnothing, \ldots \}$. Тогда $
+						\mu ^{*}(E) \le  \mu _0(E) + 0 
+						$.
+					\item \boxed{\ge}  По теореме о счетной полуаддитивности меры, если $ E \subset \bigcup\limits_{j=1}^{\infty} P_j, ~ P_j \in \P $, то $ \mu _0(E) \le \sum_{j=1}^{\infty} \mu _0(P_j) \le \inf \sum_{j=1}^{\infty} \mu _0(P_j)$.
+			\end{description} 
+			В частности, $ \mu ^{*}(\varnothing) = 0$.
+		\item Проверим счетную полуаддитивность $ \mu ^{*}$, то есть докажем, что
+			\[
+				E \subset \bigcup_{j=1}^{\infty} E_n \Longrightarrow \mu ^{*}(E)  \le \sum_{n=1}^{\infty} \mu ^{*}(E_n)
+			.\] 
+			Каждое множество нужно оценить с некоторой точностью разбиения, а потом устремить разницу к нулю.
+
+			Если сумма $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) = +\infty$, то неравенство автоматически выполнено. Предположим, что $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) $ конечно.
+
+			Тогда существует такое покрытие $ \{P_j^{(n)}\}$, что ошибка не большая для фиксированного $ \varepsilon > 0$:
+			\[
+				E_n \subset \bigcup_{j=1}^{\infty} P_j^{(n)}, \quad \sum_{j=1}^{\infty} \mu _0(P_{j}^{(n)}) \le \mu ^{*} (E_n) + \frac{\varepsilon }{2^{n}}
+			.\] 
+			Далее запишем для $ E$ 
+			\[
+				E \subset \bigcup_{n=1}^{\infty} E_n \subset \bigcup_{n=1}^{\infty} \bigcup_{j=1}^{\infty} P_j(n)
+			.\] 
+			Так как $ \mu ^{*}$ --- это инфимум, можно перейти к следующему неравенству
+			\[
+				\begin{aligned}
+					\mu ^{*} (E) &\le \sum_{n=1}^{\infty} \sum_{j=1}^{\infty} \mu _{0}(P_j^{(n)}) \le \sum_{n=1}^{\infty} \mu ^{*}(E_n) + \frac{\varepsilon}{2^{n}} = \\
+					\sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon \cdot \sum_{n=1}^{\infty} \frac{1}{2^{n}} = \sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon 
+				\end{aligned}
+			.\] 
+			Теперь устремим $ \varepsilon \to  0$ и получим
+			\[
+				\mu ^{*} (E) \le \sum_{n=1}^{\infty} \mu ^{*}(E_n)
+			.\] 
+    \end{enumerate} 
+\end{proof}
+
+\subsection{Теорема о продолжении меры}
+\begin{thm}[Теорема о продолжении меры]
+    Пусть $ \mu _0$ --- мера на полукольце $ \P$, $ \mu ^{*}$ --- внешняя мера, построенная ранее. По ней построена  $ \sigma $-алгебра $ \A_{\mu^{*}}$ измеримых по $ \mu ^{*}$ множеств.
+
+	Тогда $ \P \subset \A_{\mu^{*}}$\footnote{Это содержательная часть} и $ \mu ^{*}\!\mid_{\A_{\mu^{*}}}$ --- продолжение меры $ \mu_0$.
+\end{thm}
+\begin{proof}
+	Хотим проверить, что если $ P \in \P$, то  $ \P \in \A_{\mu^{*}}$, то есть
+	\[
+		\forall E \in T\colon \mu ^{*}(E)= \mu ^{*}(E \cap P) + \mu^*( E \setminus P )
+	.\] 
+	Так как $ \le $ верно всегда, остается доказать неравенство в обратную сторону. 
+	Разберем два случая:
+	\begin{description}
+		\item[\boxed{E \in P}] Воспользуемся главной аксиомой полукольца:
+			$E \setminus P = \bigsqcup\limits_{j=1}^{N} Q_j$, где $ Q_j \in \P$ и дизъюнктны.
+			Тогда $ E = \underbrace{(P \setminus E)}_{ \in \P} \cup \bigsqcup\limits_{j=1}^{N} \underbrace{Q_j}_{ \in \P}$, причем это объединение дизъюнктное. Теперь заметим, что для $ \mu_0$ есть конечная аддитивность, а $ \mu^*$ совпадает с $ \mu$ на элементах кольца, и поэтому
+			\[
+			\begin{aligned}
+				\mu^*( E )  &= \mu_0(E) = \mu_0(P \cap E) + \mu_0 \Bigl( \bigsqcup\limits_{j=1}^{N} G_j \Bigr) = \\
+							&= \mu^*( P \cap E ) + \sum_{j=1}^{N} \mu^*( Q_j ) 
+			\end{aligned}
+			\]
+			Так как $ \mu^*$ полуаддитивна, $ \sum_{j=1}^{N} \mu^*( Q_j )  \ge \mu^*\Bigl( \bigcup\limits_{j=1}^{N} Q_j \Bigr) = \mu^*( E \setminus P )$. Тогда 
+			\[
+			\mu^*( E  )= \mu^*( P\cap E ) + \mu^*(E\setminus P) 
+			.\] 
+		\item[\boxed{E \text{ \rm произвольное}}] Если $ \mu^*( E ) = +\infty$, то неравенство сразу верно, поэтому будем считать, что $ \mu^*( E ) < +\infty$. Воспользуемся этим и приблизим с точностью до любого $ \varepsilon $ к объединению элементов полукольца.
+
+			Зафиксируем $ \varepsilon >0$ и построим такие $ P_j \in \P$, что $ E \subset \bigcup\limits_{j=1}^{\infty} P_j$, при этом
+			\[
+			\sum_{j=1}^{\infty} \le \mu^*( E )+\varepsilon 
+			.\] 
+			Так как $ P_j \in \P$ :
+			\[
+				\mu_0(P_j) = \mu^*( P_j ) \ge \mu^*( P_j \cap P ) + \mu^*( P_j \setminus E )
+			.\] 
+			Тогда
+			\[
+			\begin{aligned}
+				\mu^*( E )  + \varepsilon  &\ge  \sum_{j=1}^{\infty} \mu^*( P_j )  \ge \sum_{j=1}^{\infty} \mu^*( P_j \cap P )  + \sum_{j=0}^{\infty} \mu^*( P_j \setminus P )  \ge \\
+										   & \ge \mu^*\Biggl( \Bigl(\bigcup_{j=1}^{\infty} P_j \Bigr) \cap P\Biggr) + \mu^*\Biggl( \Bigl(  \bigcup_{j=1}^{\infty} P_j\Bigr)\setminus P\Biggr) \underset{\varepsilon  \to  0}{\ge} \\
+										   &\underset{\varepsilon \to  0}{\ge} \mu^*( E \cap P ) + \mu^*( E \setminus P )
+			\end{aligned}
+			\]
+	\end{description} 
+\end{proof}
+
