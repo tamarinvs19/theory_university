@@ -37,3 +37,418 @@
 		\item $ \{\varnothing, T\} = \A$
 	\end{enumerate} 
 \end{ex}
+
+\begin{thm}
+	Пусть $ T$ произвольное множество и $ \mathcal{E} \subset 2^{T}$ --- какая-то система подмножеств. Тогда существует минимальная по включению $ \sigma $-алгебра, содержащая $ \mathcal{E}$.
+\end{thm}
+\begin{proof}
+    Возьмем пересечение всех $\sigma$-алгебр, содержащих $\E$.
+\end{proof}
+
+\begin{defn}[Борелевская оболочка]
+	$\sigma$-алгебра из прошлой теоремы называется {\sf борелевской оболочкой}.  
+		Обозначается $ \mathfrak{B}(\E)$
+\end{defn}
+\begin{defn}
+	Рассмотрим топологическое пространство $ (T, \tau )$ ($ \tau $ --- система отрытых множеств). Тогда $ \mathfrak{B}(\tau )$ --- {\sf борелевская}  $\sigma$-алгебра в $ T$. Обозначается $ \mathfrak{B}(T)$.
+\end{defn}
+
+\begin{defn}[Полукольцо]
+    Набор подмножеств $ \P \subset 2^{T}$ называется {\sf полукольцом}, если выполнены следующие аксиомы:
+\begin{enumerate}[label=(\roman*),noitemsep]
+    \item  $ \varnothing \in \P$
+	\item $ P_1, P_2 \in \P \Longrightarrow  P_1 \cap P_2 \in \P$
+
+	\item $ P_1, P_2 \in \P \Longrightarrow P_1 \setminus P_2 = \bigsqcup\limits_{j=1}^{N} Q_{j} $, где $ Q_j \in \P$ и $ Q_j$ дизъюнктны.
+\end{enumerate} 
+\end{defn}
+
+\begin{ex}
+	$ T= \R$, $ \P = \{[a, b)\}$
+\end{ex}
+
+\begin{thm}[о свойствах полукольца]
+    Пусть $ \P$ --- полукольцо, $ P, P_1, \ldots P_n \in \P$. Тогда
+	\begin{enumerate}[noitemsep]
+	    \item $ P \setminus \bigcup\limits_{j=1}^{n}P_j = \bigsqcup\limits_{j=1}^{N} Q_{j}$, где $ Q_{j} \in \P$ и $ Q_j$ дизъюнктны;
+		\item $ \bigcup\limits_{j=1}^{n}P_j = \bigcup\limits_{k=1}^{n}\bigsqcup\limits_{j=1}^{m_{k}} Q_{k_j}$, где $ Q_{k_j} \in \P$, $ Q_{k_j}$ дизъюнктны и $ \forall j \colon Q_{k_j} \subset P_k$;
+		\item в предыдущем пункте можно заменить $ n $ на $ \infty$.
+	\end{enumerate} 
+\end{thm}
+\begin{proof}
+	\begin{enumerate}
+	    \item Очевидно
+		\item  Заметим, что 
+			\[
+				\bigcup_{j=1}^{n}P_j = \underbrace{P_1}_{ \in \P} \cup \overbrace{(P_{2} \setminus P_1)}^{\bigsqcup Q_{j}} \cup \overbrace{(P_{3} \setminus (P_1 \cup P_2)}^{\bigsqcup Q_{j}} \cup  \ldots 
+			.\] 
+			При этом все полученные множества дизъюнктны.
+		\item В предыдущем пункте мы не пользовались конечностью объединения.
+	\end{enumerate} 
+\end{proof}
+
+\begin{ex}[Важный пример: полукольцо ячеек в $ \R^{n} $ и полукольцо биодических ячеек в $\R^{n}$]
+	Первое обозначается $ \P^{n}$,  второе --- $ \P^{n}_{d}$.
+
+	Рассмотрим два вектора
+	\[
+	\begin{aligned}
+		a& = (a_1, \ldots a_{n}) \\
+		b& = (b_1, \ldots b_n)
+	\end{aligned}
+	, \quad \forall i\colon b_i \ge a_i
+	\]
+	Тогда $ [a, b) = \{x \in \R^{n} \mid \forall j \colon a_j \le x < b_j\} = \prod [a_j, b_j)$ --- {\sf ячейка}.
+
+	Ячейка называется {\sf кубической}, если $ \forall j, k \colon  \lvert a_j - b_j \rvert  = \lvert a_k - b_k \rvert $.
+
+	Возьмем $ e = (1, \ldots 1)$ и $ \overline{k} = (k_1, \ldots k_n), ~ k_j \in \Z, ~ \overline{k} \in \Z^{n}$.
+	$ [\overline{k}, \overline{k}+e)$ --- кубик с целочисленными координатами. Такие ячейки назовем {\sf ячейками ранка I}. Они покрывают все $ \R^{n} $ и дизъюнктны.  
+
+	Такие ячейки можно разбить на $ 2^{n}$ меньших ячеек второго ранга: $ \left[ \frac{\overline{k}}{2}, \frac{\overline{k}+e}{2}\right)$. Аналогично можно продолжить до ранга $ S+1$:  $ \left[ \frac{\overline{k}}{2^{S}}, \frac{\overline{k}+e}{2^{S}} \right)$.
+	\begin{prop}
+		$ $
+		\begin{itemize}
+			\item внутри ранга ячейки не пересекаются
+			\item ячейки разных рангов либо не пересекаются, либо одна содержится в другой
+			\item если $ Q$ --- ячейка ранга $ k$, $ Q'$ --- ячейка ранга $ k+1$, то $ Q \setminus Q'$ --- объединение ячеек ранга $ k+1$
+	    \end{itemize}
+	\end{prop}
+	$ \P_{d}' $ --- множество всех ячеек $ \left[ \frac{\overline{k}}{2^{S}}, \frac{\overline{k} +e}{2^{S}}\right)$, для $ s = 0, 1, \ldots d$ и $ \overline{k} \in \Z^{n}$.
+\end{ex}
+\begin{thm}
+    $ \P^{n}$ и $ \P_{d}^{n}$ --- полукольца.
+\end{thm}
+\begin{thm}
+	Для любого открытого непустого $ \varnothing \ne G \subset \R^{n} $ существует счетный набор $ P_k \in \P_{d}^{n}$\footnote{Можно считать, что $ P_k$ не пересекаются} такой, что
+	\[
+	\bigcup_{k=1}^{\infty} P_k = G
+	.\] 
+\end{thm}
+\begin{proof}
+	Рассмотрим точку $ x \in G$ и шар $ B(x, r) \subset G$.
+	% картинка
+	Тогда существует такая ячейка $ S$, что существует  $ P_x$ ранга $ S$, что  $ x \in P_x \subset B(x, r)$ (просто берем диаметр ячейки менее $ x$).
+
+	Всего ячеек счетное число, поэтому в покрытии тоже будет счетное, при этом $ \bigcup_{x \in G} P_x = G$.
+\end{proof}
+
+\section{Объем}
+\begin{defn}[Объем]
+    Рассмотрим множество $ T$, полукольцо $ \P \subset 2^{T}$. Тогда $ \mu\colon \P \to \R \cup \{+\infty\}$ --- {\sf объем}, если
+\begin{enumerate}[label=(\roman*),noitemsep]
+    \item  $ \mu \ge 0$
+	\item $ \mu(\varnothing) = 0$
+
+	\item $ \mu$ конечноаддитивна:
+		\[
+			P, P_1, \ldots P_k \in \P, ~ \bigsqcup_{j=1}^{k}P_j = P \Longrightarrow \mu(P) = \sum_{j=1}^{k} \mu(P_j)
+		.\] 
+\end{enumerate} 
+\end{defn}
+\begin{ex}
+	$ \P = \P^{1} = \{[a, b)\}$, $ \mu([a, b)) = b - a$.
+\end{ex}
+\begin{ex}
+	$ g\colon \R \to \R$, $ g$ монотонно возрастает. Тогда  $ \nu_{g} ([a, b)) = g(b)-g(a)$ --- тоже объем.
+\end{ex}
+\begin{ex}
+    $ \P$ --- множества на плоскости, которые либо ограничены, либо дополнение ограничено.
+	\[
+		\mu_1 (A) = 
+		\begin{cases}
+			1 & A  \text{ неограничено} \\
+			0 & A  \text{ ограничено}
+		\end{cases}
+		, \quad
+		\mu_2 (A) = 
+		\begin{cases}
+			+\infty & A  \text{ неограничено} \\
+			0 & A  \text{ ограничено}
+		\end{cases}
+	\] 
+\end{ex}
+\begin{ex}[классический объем в $ \R^{n} $]
+	Рассмотрим $ \P^{n}$, $ P = \prod\limits_{k=1}^{n} [a_k , b_k)$, где $ \lambda _{n}(P) = \prod_{k=1}^{n}(b_k - a_k)$.
+	\begin{prac}
+	    Проверить, что это объем.
+	\end{prac}
+\end{ex}
+
+\begin{thm}[о свойствах объема]
+	Рассмотрим полукольцо $ \P$,  $ \mu $ --- объем на $ \P$. $ P, P_1, \ldots P_n \in \P$.
+	\begin{enumerate}[noitemsep]
+		\item (монотонность) $ P' \subset P \Longrightarrow \mu(P') \le \mu(P)$
+		\item (усиленная монотонность) $ P_k$ --- дизъюнктны,
+			\[
+				\bigsqcup_{k=1}^{n} P_{k} \subset P \Longrightarrow \sum_{k=1}^{n} \mu(P_k) \le \mu(P)
+			.\] 
+		\item (конечная полуаддитивность)\footnote{Здесь не предполагается, что $ \bigcup_{k=1}^{n} P_k \in \P$} \[
+				P \subset \bigcup_{k=1}^{n} P_k \Longrightarrow \mu (P) \le \sum_{k=1}^{\infty} \mu(P_k)
+		.\] 
+	\end{enumerate} 
+\end{thm}
+\begin{proof}
+	$ $
+    \begin{enumerate}
+        \item Если $ P \subset P'$, то $ P \setminus P' = \bigsqcup\limits_{k=1}^{n} Q_k$, где  $ Q_k \in \P$ и $ Q_k$ дизъюнктны.
+			
+			Тогда $ P = P' \cup \bigsqcup\limits_{k=1}^{n} Q_k$.
+			\[
+				\mu(P) = \mu (P') + \sum_{k=1}^{n} \mu (Q_k) \ge \mu (P')
+			.\] 
+		\item $ P \setminus \bigsqcup\limits_{k=1}^{n} P_k = \bigsqcup\limits_{j=1}^{N} Q_j$, где $ Q_j \in \P$ и $ Q_j$ дизъюнктны. 
+
+			Тогда $ P = \bigsqcup\limits_{k=1}^{n} P_k \cup \bigsqcup\limits_{j=1}^{N} Q_j$. Следовательно,
+			\[
+				\mu(P) = \sum_{k=1}^{n} \mu (P_k) + \sum_{j=1}^{N} (Q_j) \ge \sum_{k=1}^{n} \mu (P_k)
+			.\] 
+		\item Пусть $ P \cap P_k = P_{k}' \in \P$. Тогда $ P = \bigcup\limits_{k=1}^{n} P'_k = \bigcup\limits_{k=1}^{n} \bigcup\limits_{j=1}^{m_k} \underbrace{Q_{k_j}}_{\subset P'_k}$ --- дизъюнктны.
+			\[
+				\mu (P) = \sum_{k=1}^{n} \sum_{j=1}^{m_k} \mu (Q_{k_j}) \stackrel{\text{по 2}}{ \le } \sum_{k=1}^{n} \mu (P_k') \le \sum_{k=1}^{n} \mu (P_k)
+			.\] 
+    \end{enumerate} 
+\end{proof}
+\begin{note}
+	Если $ \P$ --- алгебра, то по аксиоме $ (iii)$ можно проверять только для двух множеств, а далее по индукции.
+\end{note}
+\begin{note}
+    Если $ \P$ --- алгебра, $ A, B \in \P$, $ B \subset A$, то
+	\[
+		\mu (B) < +\infty \Longrightarrow \mu (A\setminus B) = \mu (A) - \mu (B)
+	.\] 
+\end{note}
+
+\section{Мера и ее свойства}
+\begin{defn}[Мера]
+    Пусть $ \P$ --- подкольцо, $ \mu $ --- объем на $ \P$. $ \mu$ называется {\sf мерой}, если $ \mu $ счетно-аддитивен:
+	\[
+		P, P_k \in \P, ~ P_k \text{ --- дизъюнктны}, \bigsqcup_{k=1}^{\infty} P_k = P \Longrightarrow \mu (P) = \sum_{k=1}^{\infty} \mu (P_k)
+	.\]\footnote{Сумма в этом ряду не зависит от порядка, так как он положительный.}
+\end{defn}
+\begin{ex}
+$ $
+	\begin{itemize}
+		\item 
+	Классический объем $ \lambda _n $ в $ \R^{n} $ (докажем позже)
+\item $
+	\left.
+	\begin{aligned}
+	&\nu_{g}([a, b)) = g(b) - g(a) \\
+	&g \nearrow \text{ и непрерывна слева}
+	\end{aligned}
+	\right\}
+	$ $ \Longrightarrow  \nu _g$ --- мера (Упражнение)
+	\end{itemize}
+\end{ex}
+\begin{thm}[о счетной полуаддитивности меры]
+    Пусть $ \P$ --- полукольцо, $ \mu $ --- объем на $ \P$. Тогда $ \mu$ --- мера, согда для любых $ P, P_k \in \P$
+	\[
+		P \subset \bigcup_{k=1}^{\infty} P_k  \Longrightarrow \mu (P) \le \sum_{k=1}^{\infty} \mu (P_k) 
+	.\] 
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+        \item \boxed{ 1 \Longrightarrow 2} $ P'_k= P_k \cap P$, $ P = \bigcup\limits_{k=1}^{\infty} P'_k  = \bigcup\limits_{k=1}^{\infty} \bigcup\limits_{j=1}^{m_k} Q_{k_j}$, где  $ Q_{k_j}$ --- дизъюнктны. Тогда
+			\[
+				\mu (P) = \sum_{k=0}^{\infty} \sum_{j=1}^{m_k} \underbrace{\mu (Q_{k_j}) }_{ \le \mu (P'_k) \le \mu (P_k)} \le \sum_{k=1}^{\infty} \mu (P_k)
+			.\] 
+        \item \boxed{ 2 \Longrightarrow 1}  Пусть $ Q, Q_j \in \P$, $ Q_j$ --- дизъюнктны и $ Q = \bigcup\limits_{j=1}^{\infty} Q_j$. 
+
+			Из полуаддитивности следует, что $ \mu (Q) \le \sum_{j=1}^{\infty} \mu (Q_j)$.
+			Теперь заметим, что
+			\[
+				\bigcup_{j=1}^{n} Q_j \subset Q \Longrightarrow \sum_{j=1}^{n} \mu (Q_j) \le \mu (Q) 
+			.\] 
+			Следовательно,
+			\[
+				\sum_{j=1}^{\infty} \mu (Q_j) \le \mu (Q)
+			.\] 
+    \end{description} 
+\end{proof}
+
+\begin{thm}[о нерпрерывности меры снизу]
+    Пусть $ \A$ --- алгебра, $ \mu$ --- объем на $ \A$. $ \mu $ --- мера, согда
+	для всех $ A_k \in \A$ таких, что $ A_1 \subset A_2 \subset  \ldots $ верно следующее свойство\footnote{Это свойство называется <<непрерывностью меры  снизу>>}
+	\[
+		\bigcup_{k=1}^{\infty} A_k = A \Longrightarrow \mu (A_k) \underset{k \to  \infty}{ \longrightarrow} \mu (A)
+	.\] 
+\end{thm}
+\begin{proof}
+    $ $
+    \begin{description}
+        \item \boxed{ 1 \Longrightarrow 2} Рассмотрим новую систему дизъюнктных множеств из $ \A$:
+			 \[
+				 A'_1 = A_1, ~A_2' = A_2 \setminus A_1, ~A_3' = A_3\setminus (A_1\cup A_2) , \ldots 
+			.\] 
+			Заметим, что
+			\[
+			\bigcup_{j=1}^{\infty} A_j' = \bigcup_{j=1}^{\infty} A_j = A, \quad  A_n = \bigcup_{j=1}^{n} A'_n
+			.\] 
+			Так как $ A_j'$ дизъюнктны, 
+			\[
+				\mu (A) = \sum_{j=1}^{\infty} \mu (A_j') = \lim_{n \to \infty} \sum_{j=1}^{n} \mu (A_j') = \lim_{n \to \infty} \mu (A_n)
+			.\]
+        \item \boxed{ 2 \Longrightarrow 1} 
+			Пусть $ A = \bigcup\limits_{j=1}^{\infty} B_j$, где $ B_j$ дизъюнктны. Рассмотрим такие $ A_k = \bigcup\limits_{j=1}^{k} B_j$. Так как $ A =  \bigcup\limits_{k=1}^{\infty} A_k$,
+			\[
+				\mu (A_k) \underset{k \to  \infty}{\longrightarrow} \mu (A)
+			.\] 
+		Из конечной аддитивности объема следует, что
+		 \[
+			 \mu (A_k) = \sum_{j=1}^{k} \mu (B_j) \underset{k \to  \infty}{\longrightarrow}\sum_{j=1}^{\infty} \mu (B_j) = \mu (A)
+		.\] 
+		Значит, $ \mu $ --- мера.
+    \end{description} 
+\end{proof}
+\begin{defn}[Конечный объем]
+	Рассмотрим множество $ T$,  полукольцо $ \P$ и объем $ \mu $ на $ \P$. Тогда  $ \mu$ называется {\sf конечным объемом}, если  $ \mu (T) < \infty$. 
+\end{defn}
+\begin{thm}[о непрерывности меры сверху]
+	Пусть $ \A$ --- алгебра, $ \mu $ --- конечный объем на $ \A$. Тогда следующие утверждения эквивалентны:
+\begin{enumerate}[label=(\roman*),noitemsep]
+    \item  $ \mu $ --- мера
+	\item для всех $ A_k \in \A $ выполнено\footnote{Это и называется непрерывностью меры сверху}
+		\[
+			A_{k+1 } \subset A_k , ~ A= \bigcap_{k=1}^{\infty} A_k \in \A \Longrightarrow \mu (A_k) \underset{k \to  \infty}{\longrightarrow} \mu (A)
+		.\]  
+
+	\item для всех $ A_k \in \A$ выполнено
+		\[
+			A_{k+1 } \subset A_k , ~ \varnothing= \bigcap_{k=1}^{\infty} \Longrightarrow \mu (A_k) \underset{k \to  \infty}{\longrightarrow} 0
+		.\] 
+\end{enumerate} 
+\end{thm}
+\begin{proof}
+	$ $
+    \begin{description}
+		\item[$(i)  \Longrightarrow  (ii)$]
+			Пусть $ B_k = A_k \setminus A_{k+1}$, тогда $ A_1 = A \cup \bigcup\limits_{j=1}^{\infty} B_j$ и $ B_j$ дизъюнктны.
+			Следовательно, 
+			\[
+				\begin{aligned}
+					\mu (A_1)& = \mu (A) + \sum_{j=1}^{\infty} \mu (B_j) = \mu (A) + \lim_{n \to \infty} \underbrace{\sum_{j=1}^{\infty} \mu (B_j)}_{ \mu (A_1) - \mu (A_{n+1})} \\
+					\underbrace{\bcancel{\mu(A_1)}}_{\text{конечно}} &= \mu (A) + \bcancel{\mu(A_1)} - \lim_{n \to \infty} \mu (A_{n+1}) \\
+					\mu (A) &= \lim_{n \to \infty} \mu (A_{n+1})
+				\end{aligned}
+			\] 
+		\item[$(ii)  \Longrightarrow  (iii)$] Очевидно
+		\item[$(iii)  \Longrightarrow  (i)$]  Пусть $ A = \bigcup\limits_{j=1}^{\infty} B_j$, где $ B_j$ дизъюнктны и $ B_j, A \in \A$. Проверим счетную аддитивность.
+			Рассмотрим 
+			\[
+			A_k = B_{k+1} \cup B_{k+2} \cup \ldots  = A \setminus B_1 \setminus B_2 \setminus \ldots \in \A 
+			.\] 
+			Поэтому, $ \bigcap\limits_{k=1}^{\infty} A_k = \infty$. Следовательно, \[
+			\begin{aligned}
+				&=\mu (A_k) \underset{k \to  \infty}{\longrightarrow} 0\\
+				&= \mu \Big(A \setminus \bigcup_{j=1}^{k} B_j \Big) = \mu (A) - \sum_{j=1}^{k} \mu ( B_j)  \underset{k \to \infty}{\longrightarrow} \mu (A) - \sum_{j=1}^{\infty} \nu (B_j)
+			\end{aligned}
+			\]
+			Получили, что $ \mu (A) = \sum_{j=0}^{\infty} \mu (B_j)$,  значит, $ \mu $ --- мера.
+    \end{description}
+\end{proof}
+
+\section{Продолжение меры. Построение меры по внешней мере.}
+\begin{defn}[Внешняя мера]
+    $ T$ --- произвольное множество, $ \tau \colon 2^{T} \to \R \cup \{+\infty\}$. $ \tau $ --- {\sf внешняя мера}, если  
+\begin{enumerate}[label=(\roman*),noitemsep]
+    \item  $\tau \ge 0$
+	\item $ \tau (\varnothing) = 0$
+	\item (счетная полуаддитивность) \[
+			E \subset \bigcup_{k=1}^{\infty} E_k \Longrightarrow \tau (E) \le \sum_{k=1}^{\infty} \tau (E_k)
+	.\] 
+\end{enumerate} 
+\begin{note}
+    $ \tau $ конечно полуаддитивна.
+\end{note}
+\begin{note}
+	$ \tau $ монотонна: $ E_1 \subset E_2 \Longrightarrow \tau (E_1) \le \tau (E_2) $
+\end{note}
+\end{defn}
+\begin{defn}[$ \tau $-измеримо]
+	Пусть $ \tau $ --- внешняя мера на $ T$. Множество $ A$ --- {\sf $ \tau $-измеримо}, если для любого $ E \subset T$\footnote{В этом неравенстве знак $ \le $ есть всегда}
+	\begin{equation}\label{eq:meas}
+		\tau (E) = \tau (E \cap A) + \tau (E \setminus A).
+	\end{equation}
+\end{defn}
+\begin{thm}
+    Пусть $ \tau $ --- внешняя мера, $ \A_{\tau }$ --- система $ \tau $-измеримых множеств. Тогда $ \A_{\tau }$ --- $ \sigma $-алгебра и $ \tau \! \mid_{\A_{\tau }}$ --- мера.
+\end{thm}
+\begin{proof}
+	$ $
+    \begin{enumerate}
+		\setcounter{enumi}{-1}
+		\item $ \varnothing \in  \A_{\tau }$
+        \item Докажем, что $ A \in \A_{\tau } \Longrightarrow T\setminus A \in \A_{\tau }$
+			Заметим, что
+			\[
+				E \setminus A = E \cap (T \setminus A) \quad E \setminus (T \setminus A) = E \cap A
+			.\] 
+			По определению $ \tau $-измеримости \ref{eq:meas} для всех $ E \subset T$
+			\[
+				\tau (E) = \tau (E \cap A) + \tau (E \setminus A)) = \tau (E \setminus (T\setminus A)) + \tau (E \cap (T \setminus A))
+			.\] 
+			Следовательно, $ T \setminus A \in \A_{\tau }$.
+		\item Докажем, что $ A, B \in \A_{\tau } \Longrightarrow A \cup B \in \A_{\tau }$.
+			Рассмотрим произвольное множество $ E \subset T$. Запишем для него условие \ref{eq:meas} для $ A$
+			\[
+			\begin{aligned}
+				\tau (E) &= \tau (E \cap A) + \tau (E \setminus A) = \\
+						 &= \tau (E \cap A) + \tau ((E\setminus A) \cap B) + \tau ((E\setminus A)\setminus B) = \\
+						 &= \bigl(\tau (E \cap A) + \tau ((E\setminus A)\cap B)\bigr) + \tau (E \setminus (A\cup B)) \ge \\
+						 & \ge \tau (E \cap (A\cup B)) + \tau (E \setminus (A\cup B))
+			\end{aligned}
+			\]
+			Так как неравенство в обратную сторону верно всегда, $ A\cap B \in \A_{\tau }$. 
+		\item Проверим конечную аддитивность $ \tau $ на $ \A_{\tau }$. Хотим доказать, что для дизъюнктных $ A, B \in \A_{\tau }$ выполнено
+			\[
+				\tau (A) + \tau (B) = \tau (A \cap B)
+			.\] 
+			Заметим, что для всех $ E$
+			\[
+			\begin{aligned}
+				(E \cap (A \cup B)) \cap A &= E \cap A \\
+				(E \cap (A \cup B)) \setminus A &= E\cap B
+			\end{aligned}
+			\]
+			Подставим в условие $ \tau $-измеримости \ref{eq:meas}
+			\[
+				\tau (E \cap (A \cup B)) = \tau (E \cap A) + \tau (E \cap B)
+			.\] 
+			Теперь подставим в качестве $ E = T$ 
+			\[
+				\tau (A \cup B) = \tau (A) + \tau (B)
+			.\] 
+		\item Проверим, что $ \A_{\tau }$ --- $ \sigma $-алгебра. Для этого осталось доказать, что 
+			\[
+			\forall A_j \in \A_{\tau } \colon \bigcup_{j=1}^{\infty} A_j \in \A_{\tau }
+			.\] 
+			Обозначим $ A = \bigcup\limits_{j=1}^{\infty} A_j$.
+			\begin{enumerate}
+			    \item Пусть все $ A_j$ дизъюнктны. Для всех $ E$ верно
+					 \[
+						 \tau (E) = \tau \Bigl(E \cap \bigcup_{j=1}^{n} A_j\Bigr) + \tau \Bigl( E \setminus \bigcup_{j=1}^{n} A_j\Bigr) =
+					\] 
+					Воспользуемся конечной аддитивностью и тем, что $ E \setminus A \subseteq E \setminus \bigcup\limits_{j=1}^{n} A_j$:
+					\[
+						= \sum_{j=1}^{n} \tau (E \cap A_j) + \tau \Bigl( E \setminus \bigcup_{j=1}^{n} A_j\Bigr) \ge \sum_{j=1}^{n} \tau ( E \cap A_j) + \tau (E \setminus A)
+					.\] 
+					Устремим $ n \to  \infty $ и воспользуемся счетной аддитивностью для дизъюнктных множеств:
+					\[
+					\begin{aligned}
+						\tau (E) &\ge  \sum_{j=1}^{\infty} \tau (E \cap A_j) + \tau (E \setminus A) \ge \\
+								 & \ge \tau \Bigl( \bigcup_{j=1}^{\infty} (E \cap A_j)\Bigr) + \tau (E \setminus A) \ge  \\
+								 & \ge  \tau (E \cap A) + \tau (E \setminus A) = \tau (E)
+					\end{aligned}
+					\]
+					Следовательно, $ A \in \A_{\tau }$.
+				\item Если $ A_j$ не дизъюнктны, рассмотрим новые $ A_j'$ :
+					 \[
+					 A_{j}' = A_j \setminus \bigcup_{k=1}^{j-1} A_k
+					 .\] 
+					 $ A_j'$ дизъюнктны и измеримы, при этом их объединение равно $A$. Тогда по первому пункту  $ A$ измеримо.
+			\end{enumerate} 
+		$ \mu = \tau \!\mid_{\A_{\tau }}$, при этом известно, что $ \tau \!\mid_{\A_{\tau }}$ --- объем и $ \tau $ полудаддитивна. По теореме о счетной полуаддитивности, $ \tau $ --- мера.
+    \end{enumerate} 
+\end{proof}
