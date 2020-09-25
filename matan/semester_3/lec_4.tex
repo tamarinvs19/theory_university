@@ -127,4 +127,239 @@
 			\]
 	\end{description} 
 \end{proof}
+\begin{defn}[Стандартное продолжение (продолжение Каратеодори)]
+	$ \mu = \mu^{*}\!\mid_{\A_{\mu^{*}}}$ --- {\sf стандартное продолжение}  или {\sf продолжение Каратеодори} меры $ \mu_0$ с полукольца $ \P$. 
+\end{defn}
 
+\begin{note}
+    $ $
+	\begin{enumerate}
+	    \item $ \mu$ --- полная мера, так как сужение --- тоже полная мера.
+		\item Повторное продолжение бессмысленно. 
+			\begin{prac}
+			    Проверить, что внешняя мера получится такой же.
+			\end{prac}
+		\item $ \mu (A) = \inf \left\{ \sum\limits_{j=1}^{\infty} \mu  (P_j) \Biggm| A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~P_j \in \P \right\} $
+	\end{enumerate} 
+\end{note}
+
+\section{Единственность стандартного построения}
+\begin{defn}[$ \sigma $-конечность объема и меры]
+	Пусть $ \P$ --- полукольцо на $ 2^{T}$, $ \mu$ --- объем или мера. Тогда $ \mu$ называется \textsf{$ \sigma $-конечным(ой)}, если существуют такие $ P_j \in \P, ~  \mu(P_j) < +\infty$, что
+	\[
+	T \subset \bigcup_{j=1}^{\infty} P_j
+	.\] 
+\end{defn}
+\begin{thm}
+    Пусть $ \mu$ --- стандартное продолжение $ \mu_0 $ с $ \P$ на $ \A$, а  $ \nu $ --- какое-то продолжение  $ \mu_0$ с $ \P$ на $ \A'$. Тогда
+	\begin{enumerate}[noitemsep]
+		\item для всех $ A \in \A \cap \A'\colon \nu (A) \le \mu(A)$, более того, если $ \mu(A) <+ \infty$, то $ \nu (A) = \mu(A)$ 
+		\item если $ \mu_0$ --- $ \sigma $-конечная мера, то $ \mu= \nu $ на $ \A \cap \A'$ 
+	\end{enumerate} 
+	В частности, $ \sigma $-конечная мера единственным образом продолжается на $ \mathfrak{B}(\P)$\footnote{Это борелевская оболочка}.
+\end{thm}
+\begin{proof}
+	$ $
+	\begin{enumerate}
+	    \item 
+	\begin{enumerate}[label=\boxed{\arabic*}]
+	    \item Проверим неравенство. Известно, что $ A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~ P_j \in \P$, следовательно, \[
+				\nu (A) \le \sum_{j=1}^{\infty} \nu (P_j) \underset{\nu \text{ --- продолжение } \mu_0 }{=} \sum_{j=1}^{\infty} \mu_0(P_j)
+	    .\] 
+		Перейдем к $ \inf$:
+		\[
+			\nu (A) \le  \mu^*( A ) = \mu(A)
+		.\] 
+	\item Пусть $ P \in \P$ и $ \mu(P) = \nu (P) < \infty$. Докажем, что $ \nu (P \cap A) = \mu(P \cap A)$. Предположим, что $ \nu (P \cap A) < \mu(P \cap A)$.
+		\[
+		\begin{aligned}
+			\mu(P) &= \nu (P) = \nu (P \cap A) + \nu (P \setminus A) < \\&< \mu(P \cap A) + \mu(P \setminus A) = \mu(P)
+		\end{aligned}
+		\]
+		Противоречие.
+	\item Пусть $ \mu(A)<\infty$, тогда существуют такие $ P_j \in P$, что $ A \subset \bigsqcup\limits_{j=1}^{\infty} P_j$ \footnote{Можно всегда считать объединение дизъюнктным, так как можно заменить на него по стратегии, использованной ранее}, где $ \mu(P_J) = \mu_0(P_j) < \infty$.
+		Тогда из счетной аддитивности $ \nu $
+		\[
+			\nu (A) =  \sum_{j=1}^{\infty} \nu (P_j \cap A) \underset{\text{по 2}}{=} \sum_{j=1}^{\infty} \mu(P_j \cap A) = \mu(A)
+		.\] 
+	\end{enumerate} 
+		Доказали первый пункт.
+\item Пусть мера $ \sigma $-конечна. Тогда все пространство можно представить в виде объединения конечных объемов и применить подпункт 3 из пункта 1 доказательства.
+	\[
+		\mu_0 \text{ --- }  \sigma \text{-конечна} \Longrightarrow T = \bigsqcup_{j=1}^{\infty} P_j, ~P_j \text{ дизъюнктны},  ~ \mu(P_j) < \infty
+	.\] 
+	\end{enumerate} 
+\end{proof}
+
+\section{Определения и простейшие свойства меры Лебега в $ \R^{n}$}
+На полукольце ячеек  $ \P^{n}$ и диодическом полукольце ячеек $ \P^{n}_d$ мы определили классический объем $ \lambda _n = \lambda $.
+\begin{thm}
+    Классический объем  $ \lambda $ --- $ \sigma $-конечная мера на $ \P^{n}$.
+\end{thm}
+\begin{proof}
+    $ \sigma $-конечность очевидна --- подойдет покрытие единичными кубами.
+
+	Докажем, что это мера. Для этого можно доказать счетную полуаддитивность, то есть
+	\[
+		P \subset \bigcup_{j=1}^{\infty} P_j \Longrightarrow \lambda (P) \le \sum_{j=1}^{\infty} \lambda (P_j)
+	.\] 
+	Пусть $ P = [a, b)$ и $ P_j = [a_j, b_j)$. Зафиксируем $ \varepsilon >0$, расширим один отрезок, а второй наоборот сузим.
+
+	Пусть $ b' \in [a, b),~ P'=[a, b'] \subset P\colon \lambda ([a, b)) - \lambda ([a, b']) < \varepsilon $. 
+
+	Еще возьмем $ a_j' < a_j,  ~P_j\subset (a_j', b_j)\colon \lambda ((a_j', b_j)) - \lambda ([a_j, b_j)) < \frac{\varepsilon}{2^{j}} $.
+
+	Заметим, что
+	\[
+	P' \subset P \subset \bigcup_{j=1}^{\infty} P_j'
+	.\] 
+	Так как $ P_j'$ открытые, а $ P'$ компактно, существует конечное подпокрытие 
+	\[
+		\exists j_k\colon P' = [a, b')  \subset \bigcup_{k=1}^{N} P_{j_k}' \subset \bigcup_{k=1}^{N} [a_{j_k}, b_{j_k})
+	.\] 
+	Так как $ \mu$ конечно полуаддитивна,
+	\[
+		\sum_{k=1}^{N} \lambda ([a_{j_k}', b_{j_k})) \ge \lambda ([a, b')) \ge \lambda ([a, b)) - \varepsilon 
+	.\] 
+	\[
+		\sum_{k=1}^{N} \lambda ([a_{j_k}', b_{j_k})) \le \sum_{j=1}^{\infty} \lambda ([a_j', b_{j})) \le \sum_{j=1}^{\infty} \lambda ([a_j, b_j)) + \frac{\varepsilon}{2^{j}}
+	.\] 
+	Итого,
+	\[
+		\sum_{j=1}^{\infty} \lambda (P_j) + \varepsilon  \ge \lambda (P) - \varepsilon 
+	.\] 
+	Устремим $ \varepsilon \to 0$ и получим требуемое неравенство.
+\end{proof}
+
+\begin{defn}[Мера Лебега]
+    {\sf Мера Лебега}  --- стандартное продолжение  классического объема. $ \A^{n}$ --- получающаяся $ \sigma $-алгебра --- множества {\sf измеримые по Лебегу}. 
+\end{defn}
+\begin{prac}
+    Продолжения с $ \P^{n}$ и $ \P^{n}_d$ совпадают.
+\end{prac}
+\begin{prop}
+	$ $
+	\begin{enumerate}[label=\boxed{\arabic*}]
+	    \item Все открытые множества измеримы.
+			Более того, если $ G$ открыто и $ G \ne \varnothing$, то $ \lambda (G) > 0$.
+		\item Все замкнутые множества измеримы (дополнение к открытому). $ \lambda (\{a\}) = 0$.
+		\item Если $ A$ измеримо и ограничено, то $ \lambda (A) < \infty$ (можно ограничить параллелепипедом). 
+		\item Если  $ E_k$ измеримо и $ \lambda (E_k) = 0$, то $ \lambda \left( \bigcup_{k=1}^{\infty} E_k \right) =0$.
+		\item Если $ E$ --- счетное множество, то $ \lambda (E) = 0$.
+		\item Если $ E$ --- множество и для всех $ \varepsilon >0 ~ \exists E \subset E_{\varepsilon }$ измеримое и $ \lambda (E_{\varepsilon }) < \varepsilon $, то $ E$ измеримо и $ \lambda (E) = 0$.
+			\begin{proof}
+				Построим последовательность $ E_n\colon \lambda (E_n) < \frac{1}{n}$. Можно считать, что $ E_n \supset E_{n+1} \supset \ldots $.
+				Тогда $ E \subset \bigcap_{n=1}^{\infty} E_n$.
+				По непрерывности сверху 
+				\[
+					\lambda \left( \bigcap_{n=1}^{\infty} E_n \right) = \lim_{n \to \infty} \lambda (E_n)
+				.\] 
+				Так как $ \lambda $ полная, предел равен нулю, $ E$ измеримо и $ \lambda (E) = 0$.
+			\end{proof}
+		\item Рассмотрим $ \R^{n} $ и гиперплоскость $ H_k = \{x_k = 0\}$. $ \lambda (H_k) = 0$.
+			\begin{proof}
+				\[
+				H_k = \bigcup_{j=1}^{\infty} Q_j, ~ Q_j = \{x \in \R^{n} \mid x_k  =0, \lvert x_l  \rvert < j \text{ при }  k \ne l\}
+				.\] 
+				Запихнем в маленький параллелепипед:
+				\[
+					P_{\varepsilon } = [-j, j) \times  \ldots \times \underbrace{[-\varepsilon , \varepsilon )}_{k} \times \ldots \times [-j, j)
+				.\] 
+				\[
+					\lambda (P_k) = (2j)^{n-1}\cdot 2 \varepsilon \underset{\varepsilon \to 0}{\longrightarrow} 0
+				.\] 
+			\end{proof}
+		\item В $ \R$ континуальное множество меры 0 --- канторово множество.
+			 \item 
+				    Упражнение. Существует неизмеримое множество.
+	\end{enumerate} 
+\end{prop}
+
+\section{Регулярность меры Лебега}
+\begin{defn}[Регулярная мера]
+	Рассмотрим топологическое пространство $ T$, $ \A \subset \mathfrak{B}(T)$, $ \mu$ --- мера на $ \A$. $ \mu$ называется {\sf регулярной}, если
+\begin{enumerate}[label=(\roman*),noitemsep]
+	\item  $ \forall A \in \A \colon \quad \mu(A) = \inf \{ \mu(G) \mid G \text{ открыто}, ~ A \subset G\}$
+	\item $ \forall A \in \A\colon \quad \mu(A) = \sup \{ \mu (F) \mid F \text{ замкнуто}, ~ A \supset F\}$
+\end{enumerate} 
+\end{defn}
+\begin{prac}
+	Если $ \mu(T) \le \infty$, то из (i) следует (ii).
+\end{prac}
+\begin{lm}
+    Для регулярности меры достаточно выполнения одного из двух свойств:
+	\begin{enumerate}[label={\rm(\alph*)},noitemsep]
+		\item $ \forall \varepsilon >0 ~ \forall A \in \A ~  \exists \text{ открытое }  G\colon \quad A \subset G, ~ \mu(G \setminus A) < \varepsilon $
+		\item $ \forall \varepsilon >0 ~ \forall A \in \A ~ \exists \text{ замкнутое } F\colon \quad A \supset F ~ \mu(A \setminus F) < \varepsilon $
+	\end{enumerate}
+\end{lm}
+\begin{proof}
+    $ $
+    \begin{description}
+		\item \boxed{ (a) \Longleftrightarrow (b)} (a) для $ A$ равносильно (b) для  $ T \setminus A$
+		\item \boxed{ (a) \Longrightarrow (i)} Очевидно
+    \end{description} 
+\end{proof}
+\begin{thm}
+    Мера Лебега регулярна.
+\end{thm}
+\begin{proof}
+	Проверим условие (a) из прошлой леммы.
+	\begin{enumerate}
+		\item Пусть $  \lambda (A) < \infty$. Зафиксируем $ \varepsilon  >0$. Тогда существуют такие $ P_j \in \P^{n}$, что
+			\[
+				\bigcup_{j=1}^{\infty} P_j \supset A, \quad \lambda (P_j) \ge \sum_{j=1}^{\infty} \lambda (P_J) - \frac{\varepsilon}{2}
+			.\] 
+			Немного расширим ячейки, чтобы они стали открытыми множествами. Пусть $ P_j = [a_j , b_j)$, построим $ P_j \subset P_j' (a_j', b_j)  $,  при этом $ \mu(P_j') - \mu(P_j) < \frac{\varepsilon}{2^{j+1}}$.
+
+			Теперь $ G = \bigcup\limits_{j=1}^{\infty} P_j' \supset A $ и  
+			\[
+				\lambda (G \setminus A) = \lambda (G) - \lambda (A) \le \sum_{j=1}^{\infty} \lambda (P_j') - \sum_{j=1}^{\infty} \lambda (P_j) + \frac{\varepsilon}{2} < \varepsilon 
+			.\] 
+		\item Если $  \mu(A) = \infty$, то можем представить $ \R^{n}  = \bigsqcup\limits_{j=1}^{\infty} Q_j$, где $ Q_j$ --- дизъюнктные ячейки из $ \P^{n}$.
+			Тогда можем воспользовался $ \sigma $-конечностью: представим $ A$ так
+			\[
+				A = \bigcup_{j=1}^{\infty} \underbrace{(Q_j \cap A)}_{\text{все конечны по мере}}
+			.\] 
+			Каждое из $ (Q_j \cap A)$ можем приблизить каким-то открытым множеством $ G_j\colon G_j \cap A \subset G_j$ и $ \lambda (G_j \setminus (Q_j \cap A)) < \frac{\varepsilon}{2^{j}}$. 
+
+			Тогда возьмем $ G = \bigcup\limits_{j=1}^{\infty} G_j \supset A$, поэтому $ \lambda (G) - \lambda (A) < \varepsilon $.
+	\end{enumerate} 
+\end{proof}
+\begin{cor}
+    Если $ E$ измеримо по Лебегу, то существуют компактные множество $ K_j $ такие, что \[
+		E = \bigcup_{j=1}^{\infty} K_j \cup e, \quad \lambda (e) = 0
+    .\] 
+\end{cor}
+\begin{proof}
+	Рассмотрим замкнутые $F_j  \subset E$, что $ \lambda (E \setminus F_j) \underset{j \to  \infty}{\longrightarrow} 0$ и $ F_j \subset F_{j+1} \subset \ldots $
+
+	Построим из $ F_j$ компакты: $ K_j = F_j \cap \overline{B(0, j)}$.
+
+	Рассмотрим $ e$:
+	$$
+	e  = E \setminus \bigcup\limits_{j=1}^{\infty} F_j = E \setminus \bigcup\limits_{j=1}^{\infty} K_j
+	.$$
+	Тогда  
+	\[
+	E = \bigcup_{j=1}^{\infty} K_j \cup e
+	.\] 
+	Проверим, что $ \lambda (e) = 0$.
+	\[
+		\lambda (e)  \le \lambda (E \setminus F_j) \underset{j \to \infty}{\longrightarrow} 0
+	.\] 
+	Значит, $ e$ измеримо и $ \lambda(e) = 0$.
+\end{proof}
+\begin{cor}
+	Если $ E$ измеримо, то существуют открытые $ G_j$ и измеримое  $ e'$, что $ \lambda (e') = 0$ и 
+	\[
+	E = \bigcap_{j=1}^{\infty} G_j \setminus e'
+	.\] 
+\end{cor}
+\begin{thm}[Ключевой момент. Почему интеграл Лебега удобнее Римана]
+	Пусть $ G$ --- открытое в $ \R^{n}$, $ f \colon G \to \R^{n} $, $ f$  непрерывно дифференцируема в  $ G$.
+	 \begin{enumerate}[noitemsep]
+		 \item Если $ E \subset G$, то $ f(E)$ измеримо.
+		 \item Если $ \lambda (E) = 0$, то $ \lambda (f(E)) = 0$.
+	\end{enumerate} 
+\end{thm}
