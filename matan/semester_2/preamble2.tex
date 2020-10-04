@@ -1,0 +1,165 @@
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{lipsum}
+\usepackage{comment}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{cancel}
+
+% разметка страницы и колонтитул
+\usepackage[left=0.7cm,right=0.7cm,top=1.2cm,bottom=1.2cm,bindingoffset=0cm,paperwidth=210mm,paperheight=297mm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[L]{\thepage}
+\addtolength{\headheight}{13pt}
+
+\pagestyle{fancy}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\usepackage[]{xcolor}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ilim}{\int\limits}
+\newcommand{\slim}{\sum\limits}
+\newcommand{\im}{{\mathop{\text{\rm Im}}}\:}
+\newcommand{\re}{{\mathop{\text{\rm Re}}}\:}
+\newcommand{\ke}{{\mathop{\text{\rm Ker}}}\:}
+\newcommand{\ord}{{\mathop{\text{\rm ord}}}\:}
+\newcommand{\lcm}{{\mathop{\text{\rm lcm}}}\:}
+\newcommand{\sign}{{\mathop{\text{\rm sign}}}}
+\newcommand{\sgn}{{\mathop{\text{\rm sgn}}}\:}
+\newcommand{\Hom}{{\mathop{\text{\rm Hom}}}}
+\newcommand{\Poly}{{\mathop{\text{\rm Poly}}}}
+\newcommand{\GL}{{\mathop{\text{\rm GL}}}}
+\newcommand{\osc}{{\mathop{\text{\rm osc}}}}
+\newcommand{\rank}{{\mathop{\text{\rm rank}}}}
+\newcommand{\id}{{\mathop{\text{\rm id}}}}
+\newcommand{\pivi}{\stackrel \circ }
+\newcommand{\Fix}{{\mathop{\text{\rm Fix}}}}
+\newcommand{\supp}{{\mathop{\text{\rm supp}}}\:}
+\newcommand{\Stab}{{\mathop{\text{\rm Stab}}}\:}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Volume}{\operatorname{Volume}}
+\newcommand{\Char}{\operatorname{char}}
+\newcommand{\Adj}{\operatorname{Adj}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rk}{\operatorname{rk}}
+\newcommand{\QR}{\operatorname{QR}}
+
+\renewcommand{\o}{{\mathop{\text{\rm o}}}}
+\renewcommand{\O}{{\mathop{\text{\rm O}}}}
+\newcommand{\grad}{{\mathop{\text{\rm grad}}}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\newcommand{\del}{{\:\small \raisebox{-2pt}{\vdots}\:}}
+\def\mydef{\mathrel{\stackrel{\rm def}=}}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=ForestGreen!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=ForestGreen!20,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\mdfdefinestyle{thmstyle}{%
+    linecolor=CornflowerBlue!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Cyan!20,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlefont=\bf,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
+
+\mdfdefinestyle{corstyle}{%
+    linecolor=Aquamarine!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Aquamarine!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+
+\mdfdefinestyle{exstyle}{%
+    linecolor=Violet!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Violet!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\mdfdefinestyle{lmstyle}{%
+    linecolor=Mulberry!100,linewidth=0pt,leftline=false,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=true,%
+    frametitlebackgroundcolor=Mulberry!30,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+
+\mdtheorem[style=exstyle]{ex}{Пример}
+\mdtheorem[style=lmstyle]{lm}{Лемма}
+\mdtheorem[style=corstyle]{cor}{Следствие}
+\mdtheorem[style=thmstyle]{thm}{Теорема}
+% \newmdtheoremenv[leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,innertopmargin=-7pt,innerbottommargin=2pt]{myproof}{\it Доказательство}
+\mdfdefinestyle{myproofstyle}{%
+leftline=true,topline=false,bottomline=false,rightline=false,linewidth=1pt,innertopmargin=0pt,innerbottommargin=2pt%
+    frametitlebelowskip=0pt,
+    frametitleaboveskip=2pt,
+}
+\mdtheorem[style=myproofstyle]{myproof}{\it Доказательство}
+
+\theoremstyle{plain}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem*{name}{Обозначение}
+\newtheorem*{st}{Утверждение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{probl}{Упражнение}
+
+\renewcommand{\proofname}{Доказательство}
+
+\usepackage{tocloft}
+\renewcommand{\thesection}{Вопрос \arabic{section}}
+\renewcommand{\thesubsection}{\roman{subsection}}
+\cftsetindents{section}{0in}{0.8in}
+\cftsetindents{subsection}{0.7in}{0.2in}
