@@ -54,6 +54,10 @@
 \makeatletter
 \usepackage[]{xcolor}
 
+% \usefont{T2A}{lmr}{m}{n}
+\usepackage{gentium}
+\usefont{T2A}{gentium}{m}{n}
+
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -92,9 +96,9 @@
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
     linecolor=red,
-	linewidth=2pt,topline=false,bottomline=false,%
+	linewidth=3pt,rightline=false,topline=false,bottomline=false,%
     frametitlerule=false,%
-    frametitlebackgroundcolor=red!10,%
+    frametitlebackgroundcolor=red!0,%
     innertopmargin=4pt,innerbottommargin=4pt,
     frametitlebelowskip=1pt,
     frametitleaboveskip=3pt,
@@ -111,13 +115,13 @@
 \theoremstyle{definition}
 \mdtheorem[style=defstyle]{defn}{Определение}
 
-\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=4pt]{cor}{Следствие}
-\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=4pt]{desc}{Описание}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=4pt]{ex}{Пример}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
 \theoremstyle{plain}
-\mdtheorem[style=thmstyle]{thm}{Теорема}
-% \newmdtheoremenv[nobreak=true,backgroundcolor=cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Theorem}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=4pt]{lm}{Лемма}
+% \mdtheorem[style=thmstyle]{thm}{Теорема}
+\newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 
 \theoremstyle{plain}
 \newtheorem*{st}{Утверждение}
@@ -134,6 +138,9 @@
 \newtheorem*{probl}{Задача}
 
 \renewcommand{\proofname}{Доказательство}
+\renewenvironment{proof}
+{ \rule{1.5ex}{1.5ex}\small }
+{ \normalsize \hspace{\stretch{1}}\rule{1.5ex}{1.5ex} }
 
 \numberwithin{ex}{section}
 \numberwithin{thm}{section}
