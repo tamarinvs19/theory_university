@@ -1,59 +1,58 @@
 \lecture{5}{30 Sept}{\dag}
-\begin{thm}[О сосхранении измеримости при гладком отображении]
-    Пусть $ G \subset \R^{m}$ и $ G$ --- открытое,  $ C^{1}(G) \ni \Phi\colon G \to \R^{m} $ --- гладкая функция на $ G$.
-    Тогда
-     \begin{enumerate}[noitemsep,label=(\arabic*),noitemsep]
-	 \item  если  $ e \subset G$ и $ \lambda (e) = 0$, то $ \Phi(e) \in \Omega _{m}$ и $ \lambda (\Phi(e)) = 0$ ;
-	 \item если $ E \subset G$ и $ E \in \Omega _{m}$, то $ \Phi(E) \in \Omega _{m}$,
-    \end{enumerate} 
-    где $ \Omega _{m}$ --- семейство измеримых по Лебегу множеств.
+\begin{thm}[О сосхранении измеримости при гладком отображении]\label{th:save_measuring}
+	Пусть $ G \subset \R^{m}$ и $ G$ --- открытое,  $ C^{1}(G) \ni \Phi\colon G \to \R^{m} $ --- гладкая функция на $ G$.
+	Тогда
+	\begin{enumerate}[noitemsep,label=(\arabic*),noitemsep]
+		\item  если  $ e \subset G$ и $ \lambda (e) = 0$, то $ \Phi(e) \in \Omega _{m}$ и $ \lambda (\Phi(e)) = 0$ ;
+		\item если $ E \subset G$ и $ E \in \Omega _{m}$, то $ \Phi(E) \in \Omega _{m}$,
+	\end{enumerate}
+	где $ \Omega _{m}$ --- семейство измеримых по Лебегу множеств.
 \end{thm}
 \begin{proof}
-    $ $
-    \begin{description}
-        \item \boxed{ 1 \Longrightarrow 2} 
+	~\begin{description}
+		\item \boxed{ 1 \Longrightarrow 2}
 			Представим $ E = e \cup \bigcap_{n=1}^{\infty} K_n$, где $ K_n$ --- компактны и $ \lambda (e) = 0$.
 			Так как $ \Phi$ гладкая, она переводит компакт в компакт.
 			\[
 				\Phi(E)  =\Phi(e) \cap \bigcap_{n=1}^{\infty} \Phi(K_n)
-			.\] 
+			.\]
 			$ \bigsqcup\limits_{n=1}^{\infty} \Phi(K_n)$ --- объединение замкнутых, следовательно, само является замкнутым, а поэтому измеримо по Лебегу.
 			По первому пункту $ \Phi(e) $ измеримо. А тогда и $ \Phi(E)$ измеримо.
 		\item \boxed{ 1} Пусть $ \lambda (e) = 0$.
 			\begin{enumerate}
-			    \item Рассмотрим случай, когда $ e$ входит в $ G$ внутри некоторой ячейки.
+				\item Рассмотрим случай, когда $ e$ входит в $ G$ внутри некоторой ячейки.
 					$ e \subset P\subset \overline{P} \subset G$, где $ P$ --- ячейка, поэтому $ \overline{P}$ --- компакт.
 
 					По теореме о конечном приращении $ \Phi\!\!\bigm|_{\overline{P}}$ --- липшицево, то есть\footnote{Здесь под нормой подразумевается евклидова норма, то есть просто модуль. В качестве константы $ c$ достаточно взять максимум дифференциала на $ \overline{P}$.}
 					\[
-						\exists c\colon \forall x, y \in \overline{P} \quad\| \Phi(x) - \Phi(y) \| \le  c \cdot \| x - y \| 
-					.\] 
+						\exists c\colon \forall x, y \in \overline{P} \quad\| \Phi(x) - \Phi(y) \| \le  c \cdot \| x - y \|
+					.\]
 					Воспользуемся регулярностью меры Лебега: зафиксируем $ \varepsilon >0$. Тогда существует открытое $ g$, что
 					\[
-						e \subset g \subset G \text{ и } \lambda (g) < \varepsilon 
-					.\] 
+						e \subset g \subset G \text{ и } \lambda (g) < \varepsilon
+					.\]
 					Теперь представим $ g$ в виде объединения дизъюнктных ячеек: $ g = \bigsqcup\limits_{j=1}^{\infty} Q_j$.
 					Обозначим ребро ячейки $ Q_j$ за $ h_j$ и перепишем условие  $ \lambda (g) < \varepsilon $, используя счетную аддитивность:
 					\[
-						\lambda (g) = \sum_{j=1}^{\infty} h_j^{m} < \varepsilon 
-					.\] 
+						\lambda (g) = \sum_{j=1}^{\infty} h_j^{m} < \varepsilon
+					.\]
 					Заметим, что $ \diam Q_j = h_j \sqrt{ m} $.
 					Так как $ \Phi $ липшицево, $ \diam \Phi (Q_j) \le c \cdot h_j \sqrt{ m} $.
 					Тогда $ \Phi (Q_j)$ можно погрузить в ячейку:
 					\[
-					\begin{aligned}
+						\begin{aligned}
 						&\Phi (Q_j) \subset Q_j, \quad h_j' \le 2ch_j \sqrt{ m} \\
 						& \lambda (Q_j') \le \underbrace{(2c \sqrt{ m} )^{m} }_{\text{не зависит от номера ячейки}}(h_j)^{m}
-					\end{aligned}
+						\end{aligned}
 					\]
 					Мы знаем, что
 					\[
 						\Phi (e) \subset \Phi (g) \subset \bigsqcup_{j=1}^{\infty} \Phi (Q_j) \subset \bigsqcup_{j=1}^{\infty} Q_j'
-					.\] 
+					.\]
 					При этом
 					\[
-						\sum_{j=1}^{\infty} \lambda (Q_j') \le (2c \sqrt{ m} )^{m} \cdot \sum_{j=1}^{\infty} (h_j)^{m} < (2c \sqrt{ m} )^{m} \cdot \varepsilon 
-					.\] 
+						\sum_{j=1}^{\infty} \lambda (Q_j') \le (2c \sqrt{ m} )^{m} \cdot \sum_{j=1}^{\infty} (h_j)^{m} < (2c \sqrt{ m} )^{m} \cdot \varepsilon
+					.\]
 					Следовательно, $ \Phi (e)$ можно покрыть множеством сколь угодно малой меры. Тогда $ \Phi (e)$ измеримо и $ \lambda (\Phi (e)) = 0$.
 					\begin{figure}[ht]
 						\centering
@@ -61,26 +60,61 @@
 						\caption{Отображение $ Q_j$}
 						\label{fig:safe-measure}
 					\end{figure}
-					\item Если $ e$ не помещается в диадическую ячейку: $ e \subset G$. Так как $ G$ открыто, каждая точка входит с некоторой окрестностью $ B$, для можно найти некоторою  ячейку $ P_j$, что точка принадлежит $ P_j$, а $ \overline{P_j}\subset B \subset G$.
+				\item Если $ e$ не помещается в диадическую ячейку: $ e \subset G$. Так как $ G$ открыто, каждая точка входит с некоторой окрестностью $ B$, для можно найти некоторою  ячейку $ P_j$, что точка принадлежит $ P_j$, а $ \overline{P_j}\subset B \subset G$.
 
-						Поэтому 
-						\[
+					Поэтому
+					\[
 						G = \bigcup_{j=1}^{\infty} P_j, \quad P_j \text{ --- ячейки}, ~ \overline{P_j} \subset G
-						.\] 
-						Тогда можем рассмотреть $ e_j = e \cap P_j \subset P_j \subset G$. В этом случае $ \lambda (e \cap P_j) \le  \lambda (e) = 0$ и $ e \cap P_j \subset P_j \subset  \overline{P_j} \subset G$. 
+					.\]
+					Тогда можем рассмотреть $ e_j = e \cap P_j \subset P_j \subset G$. В этом случае $ \lambda (e \cap P_j) \le  \lambda (e) = 0$ и $ e \cap P_j \subset P_j \subset  \overline{P_j} \subset G$.
 
-						Можно применить первый пункт и получить, что
-						\[
-							\Phi (e \cap P_j) \text{ измеримо и }  \lambda (\Phi (e \cap P_j)) = 0
-						.\] 
-						Просуммируем:
-						$
-							e = \bigsqcup_{j=1}^{\infty} (e \cap P_j) 
-							$ и 
-							\[
-								\Phi (e) = \bigcup_{j=1}^{\infty} \Phi (e \cap P_j) \Longrightarrow \lambda (\Phi (e)) \le  \sum_{j=1}^{\infty} \lambda (\Phi (e \cap P_j)) = 0
-							.\] 
-			\end{enumerate} 
-    \end{description} 
+					Можно применить первый пункт и получить, что
+					\[
+						\Phi (e \cap P_j) \text{ измеримо и }  \lambda (\Phi (e \cap P_j)) = 0
+					.\]
+					Просуммируем:
+					$
+					e = \bigsqcup_{j=1}^{\infty} (e \cap P_j)
+					$ и
+					\[
+						\Phi (e) = \bigcup_{j=1}^{\infty} \Phi (e \cap P_j) \Longrightarrow \lambda (\Phi (e)) \le  \sum_{j=1}^{\infty} \lambda (\Phi (e \cap P_j)) = 0
+					.\]
+			\end{enumerate}
+	\end{description}
 \end{proof}
+\begin{rem}
+	На самом деле гладкость не нужна, а достаточно локальной липшицевости.
+\end{rem}
+\begin{rem}
+	Подпространство меньшей размерности, чем объемлющая, имеет меру нуль.
+\end{rem}
+\begin{cor}
+	Возьмем открытое $ G \subset \R^{m} $ и функцию $ f\colon G \to \R$, $ f \in C^{1}(G)$. \[
+		\Gamma _{f} = \{(x, f(x) \mid x \in G\} \subset \R^{m+1}
+	.\]
+	Тогда $ \lambda _{m+1}(\Gamma _f) = 0$.
+\end{cor}
+\begin{proof}
+	Рассмотрим множество $ G\times \{0\} $. $ \lambda _{m+1}(G \times \{0\}) = 0$, так как для любого покрытия параллелепипедами можно сколь угодно уменьшить объем (уменьшаем последнюю сторону, а это можно делать, так как покрыть нужно точку~$ 0$). Теперь возьмем $ \Phi (x, 0) = (x, f(x))$.
+	По доказанной теореме $ \lambda _{m+1}(\Gamma _{f}) = 0$.
+\end{proof}
+\begin{probl}
+	Измеримость не сохраняется при непрерывном отображении. Привести пример. \textit{Намек на решение: канторова лестница.}
+\end{probl}
+
+\section{Инвариантность меры Лебега при движении}
+\begin{thm}[Инвариантность при сдвиге]
+	Рассмотрим $ v \in  \R^{m} $ и $ E \in \mathfrak{A}_{m}$. Тогда
+	$ v + E = \{v + x \mid x \in E\}$ тоже измеримо и $ \lambda (v + E) = \lambda (E)$.
+\end{thm}
+\begin{proof}
+	Так как сдвиг --- липшицево отображение с коэффициентом $ 1$, по прошлой теореме \ref{th:save_measuring},  $ v + E$ измеримо.
+
+	Определим $ \mu(E) = \lambda (v + E)$. $ \mu$ --- мера на $ \A$, так как множества измеримы по $ \lambda $, согда они измеримы по $ \mu$.
+
+	Тогда для ячейки $ P \in \P_m$ верно $ \mu(P) = \lambda (v + P) = \lambda (P)$.
+
+	Так как $ \lambda $ --- стандартное продолжение объема на ячейках, а $ \mu$ --- продолжение Каратеодори, причем они совпадают на полукольце, то по единственности стандартного продолжения они совпадают на $ \A_{m}$. Следовательно, $ \lambda (E) = \lambda (v + E)$.
+\end{proof}
+
 
