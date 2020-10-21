@@ -136,4 +136,72 @@
 	Следовательно, $ \widetilde{ \mu}  = \lambda $ на $ \A_m$.
 \end{proof}
 
+\begin{thm}[Об инвариантности относительно вращения]
+	Пусть $ U\colon \R^{m} \to \R^{m} $ --- ортогональное преобразование. 
+	Тогда, если $ E$ измеримо, то $ U(E)$ тоже измеримо, причем $ \lambda (U(E)) = \lambda (E)$.
+\end{thm}
+\begin{proof}
+	Так как $ U$ липшицево, $ U(E)$ измеримо. Пусть $ \mu(E) = \lambda (U(E))$ --- тоже мера на $ \Am$ (все аксиомы просто наследуются). Притом $ \mu$ точно конечна на всех ограниченных множествах.
 
+	Проверим инвариантность относительно сдвига
+	\[
+		v \in \R^{m} \colon \mu(v + E) = \lambda (U(v + E)) = \lambda (Uv + U(E)) = \lambda (U(E)) = \mu(E)
+	.\] 
+	Тогда существует такое $ k$, что $ \mu = k\cdot \lambda $.
+
+	Но на единичном шаре $ B$ 
+	\[
+		\mu(B) = \lambda (U(B)) = \lambda (B) \Longrightarrow k = 1
+	.\] 
+	Получаем, что $ \lambda $ инвариантно относительно поворота.
+\end{proof}
+\begin{cor}
+    Мера Лебега инвариантна относительно движений.
+\end{cor}
+\begin{prac}
+	~\begin{enumerate}[noitemsep]
+        \item Как меняется мера при проекции?
+		\item Как меняется мера при других преобразованиях, например, гомотетии?
+    \end{enumerate} 
+\end{prac}
+
+\section{Изменение меры Лебега при линейном отображении}
+\begin{lm}
+	Пусть  $ L\colon \R^{m} \to \R^{m} $. Тогда существуют ортонормированные базисы $ \{g_j\}_{j=1}^{m}$ и $ \{e_j\}_{j=1}^{m}$ и $ s_j > 0$ такие, что
+	 \[
+	Lx = \sum_{j=1}^{m} s_j \langle x, g_j \rangle e_j \quad \forall x \in \R^{m} 
+	,\] 
+	при этом  $ \lvert \det L \rvert = \prod_{j=1}^{m} s_j$.
+	Это называется \textsf{полярным разложением оператора}.
+\end{lm}
+\begin{proof}
+	Рассмотрим $ L^{*}$ --- сопряженный оператор и $ A = L L^{*}$ --- самосопряженный оператор. Так как $ L$ определено на $ \R^{m} $, матрица $ A$ будет вещественной, а поэтому еще и симметричной. У симметричной матрицы можем взять ортонормированный базис из собственных векторов $ \{g_j\}_{j=1}^{m}$. 
+
+	Пусть $ g_j$ --- собственный вектор собственного числа $  \lambda _j$.  
+	\[
+		\lambda _j \underbrace{\langle g_j, g_j \rangle}_{=1} = \langle Ag_j , g_j \rangle = \langle LL^{*}g_j, g_j \rangle = \langle L^{*}g_j, L^{*}g_j \rangle \ge 0 \Longrightarrow \lambda _j \ge 0
+	.\] 
+	Пусть $ s_j = \sqrt{ \lambda _j} $. Тогда $ x \in \R^{m}  $ представим в виде $ \sum_{j=1}^{m} \langle x, g_j \rangle g_j$. Тогда
+	\[
+		Lx = \sum_{j=1}^{m} \langle x, g_j \rangle \underbrace{Lg_j}_{s_j e_j}
+	.\] 
+	Поэтому $ \{e_j\} = \{\frac{Lg_j}{s_j}\}$ --- базис. Докажем, что он ортонормированный.
+	\[
+	\begin{aligned}
+		s_ks_n \langle e_k , e_n \rangle &= \langle Le_k, Le_n \rangle = \langle L^{*} L g_k, g_n \rangle = \langle \lambda _kg_k, g_n \rangle s_{k}^2\delta _{k, n} \\
+		&&\delta _{k, n} = 
+		\begin{cases}
+			0 & k\ne n\\
+			1 & k = n
+		\end{cases}
+	\end{aligned}
+	\]
+	Докажем утверждение про определитель:
+	\[
+		\det A = \prod_{j=1}^{m} \lambda_{j} = \left( \prod_{j=1}^{m}s_j \right) ^2
+	.\] 
+	С другой стороны,
+	\[
+		\det  A = \det L \cdot \det L^{*}  =(\det L)^2
+	.\] 
+\end{proof}
