@@ -3,7 +3,7 @@
 \section{Системы множеств}
 
 \begin{defn}[Алгебра подмножеств]
-    Пусть $ T$ --- произвольное множество, $ 2^{T}$ --- система подмножеств. $ \A \subset 2^{T}$ --- {\sf алгебра подмножеств}, если 
+    Пусть $ T$ --- произвольное множество, $ 2^{T}$ --- система подмножеств. $ \A \subset 2^{T}$ --- {\bf алгебра подмножеств}, если 
 \begin{enumerate}[label=(\roman*),noitemsep]
     \item  $ \varnothing \in \A$
 	\item $ A, B \in \A \Longrightarrow  A \cap B \in \A$
@@ -46,15 +46,15 @@
 \end{proof}
 
 \begin{defn}[Борелевская оболочка]
-	$\sigma$-алгебра из прошлой теоремы называется {\sf борелевской оболочкой}.  
+	$\sigma$-алгебра из прошлой теоремы называется {\bf борелевской оболочкой}.  
 		Обозначается $ \mathfrak{B}(\E)$
 \end{defn}
 \begin{defn}
-	Рассмотрим топологическое пространство $ (T, \tau )$ ($ \tau $ --- система отрытых множеств). Тогда $ \mathfrak{B}(\tau )$ --- {\sf борелевская}  $\sigma$-алгебра в $ T$. Обозначается $ \mathfrak{B}(T)$.
+	Рассмотрим топологическое пространство $ (T, \tau )$ ($ \tau $ --- система отрытых множеств). Тогда $ \mathfrak{B}(\tau )$ --- {\bf борелевская}  $\sigma$-алгебра в $ T$. Обозначается $ \mathfrak{B}(T)$.
 \end{defn}
 
 \begin{defn}[Полукольцо]
-    Набор подмножеств $ \P \subset 2^{T}$ называется {\sf полукольцом}, если выполнены следующие аксиомы:
+    Набор подмножеств $ \P \subset 2^{T}$ называется {\bf полукольцом}, если выполнены следующие аксиомы:
 \begin{enumerate}[label=(\roman*),noitemsep]
     \item  $ \varnothing \in \P$
 	\item $ P_1, P_2 \in \P \Longrightarrow  P_1 \cap P_2 \in \P$
@@ -98,12 +98,12 @@
 	\end{aligned}
 	, \quad \forall i\colon b_i \ge a_i
 	\]
-	Тогда $ [a, b) = \{x \in \R^{n} \mid \forall j \colon a_j \le x < b_j\} = \prod [a_j, b_j)$ --- {\sf ячейка}.
+	Тогда $ [a, b) = \{x \in \R^{n} \mid \forall j \colon a_j \le x < b_j\} = \prod [a_j, b_j)$ --- {\bf ячейка}.
 
-	Ячейка называется {\sf кубической}, если $ \forall j, k \colon  \lvert a_j - b_j \rvert  = \lvert a_k - b_k \rvert $.
+	Ячейка называется {\bf кубической}, если $ \forall j, k \colon  \lvert a_j - b_j \rvert  = \lvert a_k - b_k \rvert $.
 
 	Возьмем $ e = (1, \ldots 1)$ и $ \overline{k} = (k_1, \ldots k_n), ~ k_j \in \Z, ~ \overline{k} \in \Z^{n}$.
-	$ [\overline{k}, \overline{k}+e)$ --- кубик с целочисленными координатами. Такие ячейки назовем {\sf ячейками ранка I}. Они покрывают все $ \R^{n} $ и дизъюнктны.  
+	$ [\overline{k}, \overline{k}+e)$ --- кубик с целочисленными координатами. Такие ячейки назовем {\bf ячейками ранка I}. Они покрывают все $ \R^{n} $ и дизъюнктны.  
 
 	Такие ячейки можно разбить на $ 2^{n}$ меньших ячеек второго ранга: $ \left[ \frac{\overline{k}}{2}, \frac{\overline{k}+e}{2}\right)$. Аналогично можно продолжить до ранга $ S+1$:  $ \left[ \frac{\overline{k}}{2^{S}}, \frac{\overline{k}+e}{2^{S}} \right)$.
 	\begin{prop}
@@ -141,7 +141,7 @@
 
 \section{Объем}
 \begin{defn}[Объем]
-    Рассмотрим множество $ T$, полукольцо $ \P \subset 2^{T}$. Тогда $ \mu\colon \P \to \R \cup \{+\infty\}$ --- {\sf объем}, если
+    Рассмотрим множество $ T$, полукольцо $ \P \subset 2^{T}$. Тогда $ \mu\colon \P \to \R \cup \{+\infty\}$ --- {\bf объем}, если
 \begin{enumerate}[label=(\roman*),noitemsep]
     \item  $ \mu \ge 0$
 	\item $ \mu(\varnothing) = 0$
@@ -227,7 +227,7 @@
 
 \section{Мера и ее свойства}
 \begin{defn}[Мера]
-    Пусть $ \P$ --- подкольцо, $ \mu $ --- объем на $ \P$. $ \mu$ называется {\sf мерой}, если $ \mu $ счетно-аддитивен:
+    Пусть $ \P$ --- подкольцо, $ \mu $ --- объем на $ \P$. $ \mu$ называется {\bf мерой}, если $ \mu $ счетно-аддитивен:
 	\[
 		P, P_k \in \P, ~ P_k \text{ --- дизъюнктны}, \bigsqcup_{k=1}^{\infty} P_k = P \Longrightarrow \mu (P) = \sum_{k=1}^{\infty} \mu (P_k)
 	.\]\footnote{Сумма в этом ряду не зависит от порядка, так как он положительный.}
@@ -309,7 +309,7 @@ $ $
     \end{description} 
 \end{proof}
 \begin{defn}[Конечный объем]
-	Рассмотрим множество $ T$,  полукольцо $ \P$ и объем $ \mu $ на $ \P$. Тогда  $ \mu$ называется {\sf конечным объемом}, если  $ \mu (T) < \infty$. 
+	Рассмотрим множество $ T$,  полукольцо $ \P$ и объем $ \mu $ на $ \P$. Тогда  $ \mu$ называется {\bf конечным объемом}, если  $ \mu (T) < \infty$. 
 \end{defn}
 \begin{thm}[о непрерывности меры сверху]
 	Пусть $ \A$ --- алгебра, $ \mu $ --- конечный объем на $ \A$. Тогда следующие утверждения эквивалентны:
@@ -357,7 +357,7 @@ $ $
 
 \section{Продолжение меры. Построение меры по внешней мере.}
 \begin{defn}[Внешняя мера]
-    $ T$ --- произвольное множество, $ \tau \colon 2^{T} \to \R \cup \{+\infty\}$. $ \tau $ --- {\sf внешняя мера}, если  
+    $ T$ --- произвольное множество, $ \tau \colon 2^{T} \to \R \cup \{+\infty\}$. $ \tau $ --- {\bf внешняя мера}, если  
 \begin{enumerate}[label=(\roman*),noitemsep]
     \item  $\tau \ge 0$
 	\item $ \tau (\varnothing) = 0$
@@ -373,7 +373,7 @@ $ $
 \end{note}
 \end{defn}
 \begin{defn}[$ \tau $-измеримо]
-	Пусть $ \tau $ --- внешняя мера на $ T$. Множество $ A$ --- {\sf $ \tau $-измеримо}, если для любого $ E \subset T$\footnote{В этом неравенстве знак $ \le $ есть всегда}
+	Пусть $ \tau $ --- внешняя мера на $ T$. Множество $ A$ --- {\bf $ \tau $-измеримо}, если для любого $ E \subset T$\footnote{В этом неравенстве знак $ \le $ есть всегда}
 	\begin{equation}\label{eq:meas}
 		\tau (E) = \tau (E \cap A) + \tau (E \setminus A).
 	\end{equation}

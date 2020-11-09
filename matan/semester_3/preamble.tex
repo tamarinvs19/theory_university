@@ -89,11 +89,13 @@
 \renewcommand{\P}{\mathcal{P}}
 
 \def\mydef{\mathrel{\stackrel{\rm def}=}}
-\def\mybf#1{{\usefont{T2A}{cmr}{m}{n}\textbf{#1}}}
+\def\mybf#1{\textbf{#1}}
+% \def\mybf#1{{\usefont{T2A}{cmr}{m}{n}\textbf{#1}}}
 
-% \usefont{T2A}{lmr}{m}{n}
-\usepackage{gentium}
-\usefont{T2A}{gentium}{m}{n}
+\usefont{T2A}{lmr}{m}{n}
+% \usepackage{gentium}
+% \usepackage{CormorantGaramond}
+% \usefont{T2A}{gentium}{m}{n}
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
@@ -116,7 +118,7 @@
     frametitleaboveskip=3pt,
 }
 \theoremstyle{definition}
-\mdtheorem[style=defstyle]{defn}{\underline{Определение}}
+\mdtheorem[style=defstyle]{defn}{Определение}
 
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
