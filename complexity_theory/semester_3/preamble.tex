@@ -1,0 +1,137 @@
+\usepackage[typewriter,full]{complexity}
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
+\usepackage {amsfonts}
+% \usepackage{eufrak}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{cancel}
+
+% разметка страницы и колонтитул
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1cm,bindingoffset=0cm]{geometry}
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+% \fancyfoot[RO,LE]{\thesection}
+\fancyfoot[C]{\leftmark}
+\addtolength{\headheight}{13pt}
+
+\pagestyle{fancy}
+
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{epstopdf}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\usepackage{xifthen}
+\makeatother
+\def\@lecture{}%
+\newcommand{\lecture}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #3}%
+    }%
+    \subsection*{\@lecture}
+    \marginpar{\small\textsf{\mbox{#2}}}
+}
+\makeatletter
+\usepackage[]{xcolor}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\sign}{\operatorname{sign}}
+
+\renewcommand{\o}{o}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\def\mybf#1{\textbf{#1}}
+\def\selectedFont#1{\textbf{#1}}
+% \def\mybf#1{{\usefont{T2A}{cmr}{m}{n}\textbf{#1}}}
+
+% \usefont{T2A}{lmr}{m}{n}
+% \usepackage{gentium}
+% \usepackage{CormorantGaramond}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=red,
+	linewidth=3pt,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    frametitlebackgroundcolor=red!0,%
+    innertopmargin=4pt,innerbottommargin=4pt,innerleftmargin=7pt
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=3pt,
+}
+\mdfdefinestyle{thmstyle}{%
+    linecolor=cyan!100,
+	linewidth=2pt,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    frametitlebackgroundcolor=cyan!20,%
+    innertopmargin=4pt,innerbottommargin=4pt,
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=3pt,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
+\theoremstyle{plain}
+% \mdtheorem[style=thmstyle]{thm}{Теорема}
+\newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+
+\theoremstyle{plain}
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{definition}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{prac}{Упражнение}
+\newtheorem*{probl}{Задача}
+
+\usepackage{fontawesome}
+\renewcommand{\proofname}{Доказательство}
+\renewenvironment{proof}
+{ \small \hspace{\stretch{1}}\\ \faSquareO\quad  }
+{ \hspace{\stretch{1}}  \faSquare \normalsize }
+
+%{\fontsize{50}{60}\selectfont \faLinux}
+
+\numberwithin{ex}{section}
+\numberwithin{thm}{section}
+\numberwithin{equation}{section}
+
+
+
+
