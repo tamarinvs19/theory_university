@@ -3,6 +3,10 @@
 
 Ставьте <bold style='font-size=16pt'>★</bold>,  если вам помогают мои конспекты.
 
+## Неточности, ошибки
+Буду рад, если сообщите об ошибках или предложите более качественную запись какого-то места в конспекте.
+Пишите по почте (`tambarsuk239@gmail.com`), в ВК, или исправляйте самостоятельно и делайте `pull request`, или [`issue`](https://github.com/tamarinvs19/theory_university/issues/new/choose).
+
 ## Информация о конспектах
 ### Третий семестр (МКН, Современное программирование)
 * Набираю конспект по матанализу. Прогресс 5 из 11.
@@ -28,9 +32,3 @@
 #### Примечания
 * В `/imgs` лежат картинки для конспектов МКН.
 * Пишу конспекты в [`vim`](https://www.vim.org), для картинок использую [`inkscape`](https://inkscape.org) с менеджером сочетаний [`inkscape-shortcut-manager`](https://github.com/gillescastel/inkscape-shortcut-manager) и удобной программой для управления изображениями [`inkscape-figures`](https://github.com/gillescastel/inkscape-figures).
-
-## Неточности, ошибки
-Буду рад, если сообщите об ошибках или предложите более качественную запись какого-то места в конспекте.
-Пишите по почте (`tambarsuk239@gmail.com`), в ВК, или исправляйте самостоятельно и делайте `pull request`, или [`issue`](https://github.com/tamarinvs19/theory_university/issues/new/choose).
-
-Спасибо всем, кто пишет о найденных ошибках!
