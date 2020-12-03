@@ -1,21 +1,25 @@
-\usepackage[sanserif,full]{complexity}
-\newcommand{\tP}{\widetilde{\P}}
-\newcommand{\tNP}{\widetilde{\NP}}
-\newcommand{\tBH}{\widetilde{\BH}}
-\newclass{\UNSAT}{UNSAT}
-\newcommand{\Class}{{\ComplexityFont{C}}}
-\newcommand{\CircuitSat}{{\ComplexityFont{CIRCUIT\_SAT}}}
-\newcommand{\tCircuitSat}{\widetilde{{\ComplexityFont{CIRCUIT\_SAT}}}}
-\newcommand{\tSAT}{\widetilde{{\ComplexityFont{SAT}}}}
-\newcommand{\tThreeSAT}{\widetilde{{\ComplexityFont{3\text{-}SAT}}}}
-\newcommand{\ThreeSAT}{{\ComplexityFont{3\text{-}SAT}}}
-\newcommand{\kQBF}{{\ComplexityFont{QBF_{k}}}}
-
-\usepackage [utf8] {inputenc}
-\usepackage [T2A] {fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage[T2A]{fontenc}
 \usepackage[english, russian]{babel}
-\usepackage {amsfonts}
 % \usepackage{eufrak}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{mathpazo}
+\usepackage{fontspec}
+
+\defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+
+\setmainfont[
+ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/},
+BoldFont=STIX2Text-Bold.otf,
+ItalicFont=STIX2Text-Italic.otf,
+BoldItalicFont=STIX2Text-BoldItalic.otf
+]
+{STIX2Text-Regular.otf}
+\setmathrm{STIX2Math.otf}[
+ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
+]
+
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -40,7 +44,7 @@
 \setlength{\parindent}{3ex}
 \setlength{\parskip}{3pt}
 
-\usepackage[pdftex]{graphicx}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{epstopdf}
 
@@ -67,7 +71,11 @@
     \marginpar{\small\textsf{\mbox{#2}}}
 }
 \makeatletter
-\usepackage[]{xcolor}
+
+\usepackage{xcolor}
+\definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
+\definecolor{Cyan}{cmyk}{56, 0, 0, 100}
+\definecolor{Gray}{gray}{0.3}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
@@ -118,9 +126,9 @@
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
-\theoremstyle{plain}
 % \mdtheorem[style=thmstyle]{thm}{Теорема}
 \newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\theoremstyle{plain}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 
 \theoremstyle{plain}
@@ -149,6 +157,26 @@
 \numberwithin{thm}{section}
 \numberwithin{equation}{section}
 
+\def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
+\renewcommand{\P}{\ComplexityFont{P}}
+\newcommand{\DTIME}{\ComplexityFont{Dtime}}
+\newcommand{\NTIME}{\ComplexityFont{Ntime}}
+\newcommand{\SAT}{\ComplexityFont{SAT}}
+\newcommand{\poly}{\ComplexityFont{poly}}
+\newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
+\newcommand{\NP}{\ComplexityFont{NP}}
+\newcommand{\BH}{\ComplexityFont{BH}}
+\newcommand{\tP}{\widetilde{\P}}
+\newcommand{\tNP}{\widetilde{\NP}}
+\newcommand{\tBH}{\widetilde{\BH}}
+\newcommand{\UNSAT}{{\ComplexityFont{UNSAT}}}
+\newcommand{\Class}{{\ComplexityFont{C}}}
+\newcommand{\CircuitSat}{{\ComplexityFont{CIRCUIT\_SAT}}}
+\newcommand{\tCircuitSat}{\widetilde{{\ComplexityFont{CIRCUIT\_SAT}}}}
+\newcommand{\tSAT}{\widetilde{{\ComplexityFont{SAT}}}}
+\newcommand{\tThreeSAT}{\widetilde{{\ComplexityFont{3\text{-}SAT}}}}
+\newcommand{\ThreeSAT}{{\ComplexityFont{3\text{-}SAT}}}
+\newcommand{\kQBF}{{\ComplexityFont{QBF{\tiny k}}}}
 
-
+\newcommand{\const}{\textmd{const}}
 
