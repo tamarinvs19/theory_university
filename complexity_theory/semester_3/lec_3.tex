@@ -136,7 +136,7 @@ $ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
 \begin{proof}
     Пусть есть машина $ M$ с оракулом $ A$. Рассмотрим оракул $ \overline{A}$ и построим машину $ M'$, чтобы $ M'^{\overline{A}}$ вела себя аналогично $ M^{A}$. Для этого просто $ M'$ будет переворачивать любой ответ, полученный от оракула, все остальные действия повторяем за $ M$.
 
-	Из этого следует, что можно поменять $ \PI^{i}\P$ на $ \overline{\PI^{i}\P} = \coNP^{\PI^{i}\P} = \SIGMA^{i}\P$.
+	Из этого следует, что можно поменять $ \PI^{i}\P$ на $ \overline{\PI^{i}\P} = \coNP^{\PI^{i-1}\P} = \SIGMA^{i}\P$.
 \end{proof}
 
 \begin{thm}
@@ -183,7 +183,7 @@ $ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
 		x \in L \Longleftrightarrow \forall  y \colon R(x, y)
 	.\] 
 \end{thm}
-\begin{cor}
+\begin{cor}\label{cor:polysigkpi}
     $ L \in \SIGMA^{k}\P$, согда существует полиномиально ограниченное отношение $ R \in \P$ такое, что для всех $ x$:
 	\[
 		x \in L \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots R(x, y_1, y_2, \ldots y_k)

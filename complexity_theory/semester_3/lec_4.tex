@@ -1,8 +1,267 @@
 \lecture{4}{26 nov}{\dag}
-
-Рассмотрим язык $ \kQBF $, состоящий из замкнутых истинных формул вида
+\section{$ \SIGMA^{k}\P $-полная задача}
+\begin{defn}[Язык $ \kQBF$]
+	\selectedFont{Язык $ \kQBF $} --- язык, состоящий из замкнутых истинных формул вида
  \[
 \exists X_1 \forall X_2 \exists X_3 \ldots X_k \varphi 
 ,\] 
 где $ \varphi $ --- формула в КНФ или ДНФ, а  $ \{X_i\}^{k}_{i=1}$ --- разбиение множества переменных этой формулы на непустые подмножества.
+\end{defn}
+
+\begin{thm}
+    $ \kQBF$ ---  $ \SIGMA^{k}\P$-полный язык.
+\end{thm}
+\begin{proof}
+	\begin{itemize}
+		\item Во-первых, проверим принадлежность. 
+			По следствию из прошлой теоремы достаточно найти полиномиально ограниченное отношение $R \in \P$ такое, что $ \forall x \colon x \in \kQBF \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots R(x, y_1, y_2, y_3, \ldots )$.
+
+			Возьмем просто $ R$, которое для $ R(\text{формула с } \varphi, x_1, x_2, \ldots ) $ выдает результат подстановки $ x_i$ в $ \varphi $.
+
+			Проверка будет работать за полином, так как $ R \in \P$.
+		\item Докажем, что к этой задаче сводится любой язык из $ \SIGMA^{k}\P$.
+
+			Пусть есть язык $ L \in \SIGMA^{k}\P$. Тогда существует полиномиально ограниченное отношение $ R \in \P$ :
+			\[
+				\forall x \colon x \in L \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots R(x, y_1, y_2, \ldots )
+			.\] 
+			\begin{itemize}
+				\item
+					Если в конце формулы идет квантор $ \exists $, то запишем язык $ R$ в таком виде (как в теореме Кука-Левина):
+			\[
+				R(z) \Longleftrightarrow \exists w \Phi (z, w)
+			.\] 
+			Тогда определение языка будет иметь следующий вид:
+			\[
+				\forall x \colon x \in L \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots \exists y_k \exists w \Phi (x, y_1, y_2, \ldots , y_k, w)
+			.\] 
+			Но так как последние два квантора можно объединить в один, получаем формулу из $ \kQBF$.
+		\item 
+			Иначе запишем $ \overline{R}$ в виде булевой формулы $ \Psi$, как в теореме Кука-Левина:
+			\[
+				\overline{R}(z) \Longleftrightarrow \exists w \Psi(z, w)
+			.\] 
+			Тогда определение языка будет иметь следующий вид:
+			\[
+				\forall x \colon x \in L \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots \forall  y_k \forall  w \overline{\Psi} (x, y_1, y_2, \ldots , y_k, w)
+			.\] 
+			Аналогично можно объединить последние два квантора.
+			\end{itemize}
+	\end{itemize}    
+\end{proof}
+
+\begin{cor}
+	Если в определении $ \kQBF$ заменить кванторы существования на кванторы
+	всеобщности и наоборот, получится $ \PI^{k}\P$-полный язык.
+\end{cor}
+
+\subsection{Коллапс полиномиальной иерархии}
+\begin{thm}
+    Если $ \SIGMA^{k}\P = \PI^{k}$, то $ \PH = \SIGMA^{k}\P$.
+\end{thm}
+\begin{proof}
+    Достаточно показать, что следующий уровень равен текущему: $ \SIGMA^{k+1}\P = \PI^{k}\P$.
+
+	Пусть $ L \in \SIGMA^{k+1}\P$, то есть  $ L = \{x \mid \exists y \colon R(x, y)\}$ для $ R \in \PI^{k}\P = \SIGMA^{k}\P$.
+
+	Тогда существует $ S \in \PI^{k}\P$  такое, что 
+	 \[
+		 R(x, y) \Longleftrightarrow \exists z \colon S(x, y, z)
+	.\] 
+	После подстановки получаем
+	\[
+		x \in L \Longleftrightarrow \underbrace{\exists y\exists z}_{\exists t} \colon \underbrace{S(x, y, z)}_{S(x, t)}
+	.\] 
+	То есть $ L \in \SIGMA^{k}\P$.
+\begin{note}
+	Доказали про следующие $ \SIGMA$ классы, но из этого следует и, что  $ \PI$ классы тоже будут совпадать.
+\end{note}
+\end{proof}
+
+\begin{cor}
+	Если существует $ \PH$-полная задача, то полиномиальная иерархия коллапсирует (конечна).
+\end{cor}
+\begin{proof}
+    Полный язык лежит в каком-то $ \SIGMA^{k}\P$, при этом все остальные к нему сводятся, следовательно, они тоже лежат в $ \SIGMA^{k}\P$.
+\end{proof}
+
+\section{Классы, ограниченные по времени и памяти}
+\begin{defn}[$ \DSpace$]
+	\[
+		\DSpace[f(n)] = \{L \mid L \text{ принимается ДМТ с памятью } \O(f(n))\}
+	,\] 
+	где $ f(n)$ должна быть неубывающей и вычислимой с памятью $ \O(f(n)) $ (на входе $ 1^{n}$, на выходе двоично представление $ f(n)$).
+	 \[
+		 \PSPACE = \bigcup_{k \ge 0} \DSpace[n^{k}]
+	.\] 
+\end{defn}
+
+\subsection{$ \PSPACE$-полная задача}
+\begin{defn}[Язык $ \QBF$]
+	\selectedFont{Язык $ \QBF$} --- язык, состоящий из замкнутых истинных формул вида \[
+	q_1 x_1 q_2 x_2 \ldots \varphi 
+	,\]    
+	где $ \varphi $ --- формула в КНФ, $ q_i \in \{ \forall , \exists \}$.
+\end{defn}
+\begin{thm}
+	Язык $ \QBF$ $ \PSPACE $-полон.
+\end{thm}
+\begin{proof}
+	\begin{itemize}
+		\item $ \QBF \in \PSPACE$. Рассмотрим дерево перебора всех значений переменных. В каждом листе будет записано значение формулы.
+	\begin{figure}[ht]
+		\centering
+		\incfig{qbf-tree}
+		\caption{Дерево перебора}
+		\label{fig:qbf-tree}
+	\end{figure}
+	Значение булевой формулы можем вычислить поиском в глубину.
+	 Для этого понадобится память равная глубине дерева, то есть пропорциональная количеству кванторов, еще нужна память для вычисления значения $ \varphi $, для этого тоже вполне хватит полинома.
+ \item Сведем $ L \in \PSPACE$ к $ \QBF$. Для языка  $ L$ есть МТ. Модифицируем ее немного: если у нее было многого принимающих состояний, например, из-за каких-то рабочих данных на других лентах, будем перед переходом в принимающее состояние очищать все, кроме $ q_{acc}$.
+
+	 Теперь построим граф, где состояния будут вершинами, а ребрами будут означать, что из одно конфигурации можно получить другую.
+
+	 Так как МТ детерминированная, выходит будет ровно одно ребро (кроме конечной).
+
+	 Поскольку память полиномиальна, всего вершин будет $ 2^{p(n)}$, где $ p(n)$ --- некоторый полином.
+
+	 Длина пути точно не более $ 2^{p(n)}+1$, либо он зацикливается.
+
+	 Запишем теперь это в формулу.
+	 Пусть
+	 \[
+		 \varphi_i (c_1, c_2) = \text{существует путь из } c_1 \text{ в } c_2 \text{ длины } \le 2^{i}
+	 .\] 
+	 Возьмем вершину $ d$ посередине пути $ c_1 \to c_2$. Заметим, что можно записать так
+	 \[
+		 \varphi_i(c_1, c_2) = \exists d  ~\forall x \forall y \colon   \left( (x = c_1 \wedge  y = d) \vee (x = d \wedge  y = c_2) \right)  \Longrightarrow \varphi _{i-1}(x, y)
+	 .\] 
+	 Формула, которую мы будем получать рекурсивно подставляя в $ \varphi _{p(n)}(q_0, q_{acc})$, будет иметь длину $ p(n^2)$, то есть полином.
+
+	 \[
+		 \varphi _0(c_1, c_2) = \text{можно ли из первого состояния за один шаг получить второе}
+	 .\] 
+    \end{itemize}
+	\begin{note}
+	    После построения формулы нужно будет привести ее к нужному виду: перенести кванторы в начало, перевести формулы в КНФ. 
+	\end{note}
+\end{proof}
+\begin{cor}
+    Если $ \PH = \PSPACE$, то $ \PH$ коллапсирует.
+\end{cor}
+
+
+\subsection{Иерархия по памяти}
+\begin{thm}
+	$ \DSpace[s(n)] \ne  \DSpace[S(n)]$, где $ s(n) = \o(S(n))$ и для всех $ n > n_0\colon S(n) \ge  \log n$.
+\end{thm}
+\begin{proof}
+    Рассмотрим следующий язык:
+	\[
+		L = \left\{ x = M 01^{k}
+			\,\middle\vert\,
+			\begin{aligned}
+				&k \in \N \cup \{0\}, \\
+				&\lvert M \rvert  < S(\lvert x \rvert ), \\
+				&M \text{ отвергает } x  \text{ с памятью }  \le S(\lvert x \rvert )
+			\end{aligned}
+		\right\} 
+	.\] 
+	Заметим, что $ L \in \DSpace[S(n)]$, так как можем промоделировать работу на универсальной машине Тьюринга, а памяти дополнительной она почти не использует.
+
+	Докажем, что $ L \not\in \DSpace[s(n)]$.
+	Пусть $ M_{*}$ распознает $ L$ с памятью $ s_{*}(\lvert x \rvert ) = \O(s(\lvert x \rvert ))$.
+
+	Выберем $ N_1 $ таким, что $ \forall n > N_1\colon s_{*}(n) < S(n)$.
+
+	Еще найдем такое $ N_{*} > \max(N_1, 2^{\lvert M_{*} \rvert })$.
+
+	Теперь посмотрим как себя ведет $ M^{*}$.
+	Если $ M_{*}\underbrace{\left( M_{*}01^{N_{*}-\lvert M_{*} \rvert -1} \right)}_{x} = 1 $, то 
+	$ M_{*}$ точно не отвергает $ x$, имеет размер меньше $ S(\lvert x \rvert )$ и использует не более $ S(\lvert x \rvert )$ памяти. Но тогда $ x \not\in L$.
+
+	Иначе все условия принадлежности к $ L$ выполнены и $ x \in L$.
+
+	Противоречие.  Получили, что $ \DSpace[s(n)] \subset \DSpace[S(n)]$.
+\end{proof}
+
+\subsection{Если памяти совсем мало\ldots}
+Две теоремы без доказательств для общего развития.
+\begin{thm}
+	$ \DSpace[\log \log n] \ne  \DSpace[\O(1)]$
+\end{thm}
+
+\begin{thm}
+	$ \DSpace[(\log \log n)^{1-\varepsilon }] =  \DSpace[\O(1)]$
+\end{thm}
+
+\subsection{Иерархия по времени}
+\begin{thm}
+	$ \DTIME[t(n)] \ne \DTIME[T(n)]$, где $ t(n)\log t(n) = \o(T(n))$, $ T(n) = \Omega (n)$.
+\end{thm}
+\begin{proof}
+    Аналогично ситуации с памятью рассмотрим следующий язык:
+	\[
+		L = \left\{ x = M 01^{k}
+			\,\middle\vert\,
+			\begin{aligned}
+				&k \in \N \cup \{0\}, \\
+				&\lvert M \rvert  < T(\lvert x \rvert ), \\
+				&M \text{ отвергает } x  \text{ за время }  \le (S\frac{\lvert x \rvert }{\log T(\lvert x \rvert )})
+			\end{aligned}
+		\right\} 
+	.\] 
+	Также за счет универсальной МТ получаем принадлежность $ \DTIME[T(\lvert x \rvert )]$ (именно из-за этого нам нужны логарифмы), она $ f(n)$ шагов произвольной МТ моделирует за $ \O(f(n) \log f(n)) $ шагов.
+
+	Остальное полностью аналогично иерархии по памяти.
+\end{proof}
+
+
+\[
+	\P \subseteq \NP \subseteq \ldots \subseteq \PSPACE \subset \EXP = \bigcup_{k \ge 0} \DTIME[2^{n^{k}}]
+.\] 
+Про $ \PSPACE$ мы доказали, что внутри есть неравенство. Следовательно, в каком-то из этих включений тоже должно быть строгое, но пока не известно какое.
+
+\section{Полиномиальные схемы}
+\begin{defn}
+	$ L \in \Size[f(n)]$, если существует семейство булевых схем $ \{C_n\}_{n \in \N}$ такое, что
+	\begin{itemize}[noitemsep]
+		\item $ \forall n\colon \lvert C_n \rvert \le f(n)$;
+		\item $ \forall x \colon x \in L \Longleftrightarrow C_{\lvert x \rvert }(x) = 1$.
+	\end{itemize}
+\end{defn}
+\begin{defn}[Полиномиальные схемы]
+    \[
+		\Ppoly = \bigcup_{k \in \N} \Size[n^{k}]
+    .\] 
+\end{defn}
+\begin{st}
+    $ \P \subsetneq \Ppoly$.
+\end{st}
+\begin{proof}
+	Например, $ L = \{1^{n} \mid n \text{ --- номер останавливающейся МТ}, M_n(n) = 1\}$. $ L \not\in \P$, но легко вычисляется схемами 
+	\[
+		C_{n}(x) = 
+		\begin{cases}
+			0, &1^{n} \not\in L\\
+			0, &x \ne 1^{n}\\
+			1, &1^{n} \in L
+		\end{cases}
+	\] 
+\end{proof}
+\begin{defn}
+	$ L \in \Size[f(n)]$, если имеются $ R \in \P$ и последовательность строк (подсказка) $ \{y_{n}\}_{n \in \N}$ полиномиальной длины такие, что
+	\[
+		\forall x\colon x \in L \Longleftrightarrow R(x, y_{\lvert x \rvert }) = 1
+	.\] 
+\end{defn}
+\begin{note}[связь определений]
+	$ $
+	\begin{description}[noitemsep]
+	    \item \boxed{ 1 \Longrightarrow 2} 
+	$ \{C_n\}$ --- подсказки, $ R(x, C_{\lvert x \rvert } = C_{\lvert x \rvert }(x)$.
+	    \item \boxed{ 2 \Longrightarrow 1} 
+			Берем $ R$, строим $ C_n = C_n' (\ldots, y_n) $ --- подставили $ y_n$.
+	\end{description} 
+\end{note}
 
