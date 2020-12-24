@@ -74,9 +74,14 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 
 \usepackage{xcolor}
 \definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
+\definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
+\definecolor{Pink}{cmyk}{0, 100, 0, 0}
 \definecolor{Cyan}{cmyk}{56, 0, 0, 100}
 \definecolor{Gray}{gray}{0.3}
 
+\newcommand{\Cclass}{\mathcal{C}}
+\newcommand{\Dclass}{\mathcal{D}}
+\newcommand{\K}{\mathcal{K}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Real}{\mathbb{R}}
@@ -128,8 +133,7 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
 % \mdtheorem[style=thmstyle]{thm}{Теорема}
 \newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
-\theoremstyle{plain}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Mulberry!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 
 \theoremstyle{plain}
 \newtheorem*{st}{Утверждение}
@@ -165,6 +169,7 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\poly}{\ComplexityFont{poly}}
 \newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
 \newcommand{\NP}{\ComplexityFont{NP}}
+\newcommand{\NPcomp}{\ComplexityFont{NP-complete}}
 \newcommand{\BH}{\ComplexityFont{BH}}
 \newcommand{\tP}{\widetilde{\P}}
 \newcommand{\tNP}{\widetilde{\NP}}
@@ -177,6 +182,14 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\tThreeSAT}{\widetilde{{\ComplexityFont{3\text{-}SAT}}}}
 \newcommand{\ThreeSAT}{{\ComplexityFont{3\text{-}SAT}}}
 \newcommand{\kQBF}{{\ComplexityFont{QBF{\tiny k}}}}
+\newcommand{\coC}{\ComplexityFont{co-}\mathcal{C}}
+\newcommand{\coNP}{\ComplexityFont{co-NP}}
+\newcommand{\PH}{\ComplexityFont{PH}}
 
 \newcommand{\const}{\textmd{const}}
+
+\usepackage{ upgreek }
+\newcommand{\PI}{\Uppi}
+\newcommand{\SIGMA}{\Upsigma}
+\newcommand{\DELTA}{\Updelta}
 
