@@ -152,7 +152,7 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \usepackage{fontawesome}
 \renewcommand{\proofname}{Доказательство}
 \renewenvironment{proof}
-{ \small \hspace{\stretch{1}}\\ \faSquareO\quad  }
+{ \hspace{\stretch{1}}\\ \faSquareO\quad \small  }
 { \hspace{\stretch{1}}  \faSquare \normalsize }
 
 %{\fontsize{50}{60}\selectfont \faLinux}
@@ -160,9 +160,6 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \numberwithin{ex}{section}
 \numberwithin{thm}{section}
 \numberwithin{equation}{section}
-
-\newcommand{\readonly}{\textsf{read-only}}
-\newcommand{\writeonly}{\textsf{write-only}}
 
 \def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
 \renewcommand{\P}{\ComplexityFont{P}}
@@ -177,6 +174,8 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\poly}{\ComplexityFont{poly}}
 \newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
 \newcommand{\NP}{\ComplexityFont{NP}}
+\newcommand{\NL}{\ComplexityFont{NL}}
+\renewcommand{\L}{\ComplexityFont{L}}
 \newcommand{\NPcomp}{\ComplexityFont{NP-complete}}
 \newcommand{\BH}{\ComplexityFont{BH}}
 \newcommand{\tP}{\widetilde{\P}}
@@ -189,19 +188,30 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\tSAT}{\widetilde{{\ComplexityFont{SAT}}}}
 \newcommand{\tThreeSAT}{\widetilde{{\ComplexityFont{3\text{-}SAT}}}}
 \newcommand{\ThreeSAT}{{\ComplexityFont{3\text{-}SAT}}}
-\newcommand{\kQBF}{{\ComplexityFont{QBF{\tiny k}}}}
-\newcommand{\QBFk}{{\ComplexityFont{QBF{\tiny k}}}}
-\newcommand{\QBF}{{\ComplexityFont{QBF}}}
 \newcommand{\coC}{\ComplexityFont{co-}\mathcal{C}}
 \newcommand{\coNP}{\ComplexityFont{co-NP}}
 \newcommand{\PH}{\ComplexityFont{PH}}
 \newcommand{\EXP}{\ComplexityFont{EXP}}
 \newcommand{\Size}{\ComplexityFont{Size}}
 \newcommand{\Ppoly}{\ComplexityFont{P}/\ComplexityFont{poly}}
+\newcommand{\NC}{\ComplexityFont{NC}}
+
+
+\newcommand{\kQBF}{{\ComplexityFont{QBF{\tiny k}}}}
+\newcommand{\QBFk}{{\ComplexityFont{QBF{\tiny k}}}}
+\newcommand{\QBF}{{\ComplexityFont{QBF}}}
 \newcommand{\STCON}{\ComplexityFont{STCON}}
+\newcommand{\USTCON}{\ComplexityFont{USTCON}}
+
 
 \newcommand{\const}{\textmd{const}}
+\newcommand{\logspace}{\textmd{logspace}}
 \newcommand{\PATH}{\textmd{PATH}}
+
+
+\newcommand{\readonly}{\textsf{read-only}}
+\newcommand{\writeonly}{\textsf{write-only}}
+
 
 \usepackage{ upgreek }
 \newcommand{\PI}{\Uppi}
