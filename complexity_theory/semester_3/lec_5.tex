@@ -1,0 +1,102 @@
+\lecture{5}{3 dec}{\dag}
+
+\begin{thm}[Карп-Липтон]
+    $ \NP \subseteq \Ppoly \Longrightarrow \PH = \SIGMA^2\P$.
+\end{thm}
+\begin{proof}
+    Покажем, что $ \SIGMA^3\P$-полный язык лежит в $ \SIGMA^2\P$.  Тогда все следующие классы тоже схлопываются.
+	Мы знаем $ \SIGMA^3\P$-полный язык
+	\[
+		\QBF_3 = \{F \text{ --- формула в КНФ} \mid  \exists x \forall y \exists x ~ F(x, y, z)\}
+	.\] 
+	Докажем, что он лежит в $ \SIGMA^2\P$.
+
+	Заметим, что корректность некоторой схемы $ G \in \SAT$ можно проверить так: подставим в первую переменную сначала $ 0$, а потом $ 1$ и проверим полученные схемы. Исходная корректна, согда хотя бы одна из полученных корректна.
+	Можно записать это так:
+	\[
+		\forall G \colon C_{\lvert G \rvert } \stackrel{?}{=} C_{\lvert G[x_1 \coloneqq 0] \rvert }\left( G[x_1\coloneqq 0] \right) \vee C_{\lvert G[x_1\coloneqq 1] \rvert }\left( G[x_1\coloneqq 1] \right) 
+	.\] 
+
+	Хотим доказать, что $ \QBF_3$ можно уложить в два квантора. Сделаем это следующим образом:
+	\[
+	\begin{aligned}
+		\left( \exists x \forall y \exists z ~ F \right) \in \QBF_3 &\Longleftrightarrow \\
+		& \exists \text{ схемы } C_1, \ldots C_{\lvert F \rvert } \text{ размера, ограниченного полиномом} \\
+		& \exists x \\
+		& \forall y \\
+		& \forall G \text{ --- булева формула длина не более } \lvert F \rvert \\
+		& \left( \text{семейство } \{C_i\} \text{ корректно для } G\right)  \wedge C_{\lvert F \rvert }(F(x, y, z)) = 1
+	\end{aligned}
+	\]
+	Такая запись принадлежит $ \SIGMA^2\P$.
+\end{proof}
+
+\subsection{Схемы фиксированного полиномиального размера}
+
+\begin{thm}
+	$ \forall k\colon \SIGMA^{4}\P \nsubseteq \Size[n^{k}]$
+\end{thm}
+\begin{proof}
+    Заметим, что существует функция $ f\colon \{0, 1\}^{n} \to  \{0, 1\}$, зависящая только от первых $ c\cdot k\cdot \log n$ битов, для которой нет булевой схемы размера $ n^{k}$, так как всего функций с ограничением на биты $ 2^{2^{c\cdot k\cdot \log n}}$, а схем $ 2^{n^{k}\log n}$.
+
+Найдем такую в $ \SIGMA^{4}\P$:
+\[
+	\begin{aligned}
+		y \in L &\Longleftrightarrow \exists f ~ \forall c \text{ (схемы размера $ n^{k} $) } \forall f'~  \exists x \exists c' \text{ (схема размера $ n^{k}$) } \forall x'\colon \\
+				&\underbrace{f(x) \ne c(x)}_{\text{не принимается схемой}} \wedge \underbrace{\left( (f < f') \vee f'(x') = c'(x')
+\right) }_{\text{лексикографически первая $ f$ }} \wedge  \underbrace{\left( f(y)=1 \right) }_{\text{значение}}
+	\end{aligned}
+\] 
+Все кванторы имеют полиномиальные размеры.
+\end{proof}
+\begin{cor}
+	$ \forall k\colon \SIGMA^{2}\P \cap \PI^2\P \nsubseteq \Size[n^{k}]$\footnote{Здесь берется пересечение, так как схемам все равно, выдавать $ 0$ или $ 1$}.
+\end{cor}
+\begin{proof}
+	Пусть $ \SIGMA^{2}\P \cap \PI^2\P \subseteq \Size[n^{k}]$. Тогда $ \NP \subseteq \Ppoly$, поэтому можно применить теорему Карпа-Липтона:
+	\[
+		\PH = \SIGMA^2 \P \cap \PI^2\P \subseteq \Size[n^{k}]
+	.\] 
+	Но $ \SIGMA^{4}\P \subseteq \PH \subseteq \Size[n^{k}]$. Противоречие. 
+\end{proof}
+
+\subsection{Класс $ \NSpace$}
+\begin{defn}[$ \NSpace$]
+	$ \NSpace[f(n)] = \{L \mid L \text{ принимается НМТ с пасятью } \O(f(n))\}$.
+\end{defn}
+\begin{note}
+	\begin{itemize}
+		\item  $ f(n)$ должна быть конструируемая по памяти;
+		\item входная лента \readonly, выходная лента \writeonly, память на них не учитывается;
+		\item ленту подсказки можно читать только слева направо.
+    \end{itemize}
+\end{note}
+\[
+	\NPSPACE = \bigcup_{k \ge 0} \NSpace[n^{k}]
+.\] 
+
+\section{Логарифмическая память}
+\begin{defn}
+	$ \STCON = \{(G, s, t) \mid  G \text{ --- ориентированный граф}, ~ s \rightsquigarrow t\}$.
+\end{defn}
+\begin{lm}
+	$ \STCON \in \DSpace[\log ^2 n]$.
+\end{lm}
+\begin{proof}
+    Будем делить путь пополам и искать путь от начала до середины и от середины до конца.
+	Пусть $ \PATH(x, y, i)$ равно $ 1$, если есть путь из $ x$ в $ y$ длины не более $ 2^{i}$.
+	\[
+	\begin{aligned}
+		&\PATH(x, y, 0) &&= (x, y) \in E \\
+		&\PATH(x, x, 1) &&= 1 \\
+		&\PATH(x, y, i) &&= \bigvee_{z} \left( \PATH(x, z, i-1) \wedge \PATH(z, y, i-1) \right) 
+	\end{aligned}
+	\]
+	Перебираем промежуточную вершину. Будем хранить <<задания>> (пары, для которых проверяем путь) в стеке. Достаем оттуда одно <<задание>> и заменяем его на два меньших. Когда-то мы либо найдем $ 1$, тогда нужно вернуться к проверке второй половины, либо $ 0$, тогда нужно перейти к следующей промежуточной вершине, так как с текущей пути нет.
+
+	Оценим память: на счетчик промежуточных вершин и на стек нужен логарифм. Тогда всего не более $ \log^2$. 
+\end{proof}
+
+% 35:30
+
+

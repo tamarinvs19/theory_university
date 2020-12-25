@@ -161,12 +161,18 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \numberwithin{thm}{section}
 \numberwithin{equation}{section}
 
+\newcommand{\readonly}{\textsf{read-only}}
+\newcommand{\writeonly}{\textsf{write-only}}
+
 \def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
 \renewcommand{\P}{\ComplexityFont{P}}
-\newcommand{\DTIME}{\ComplexityFont{Dtime}}
+\newcommand{\DTIME}{\ComplexityFont{DTime}}
+\newcommand{\DTime}{\ComplexityFont{DTime}}
 \newcommand{\DSpace}{\ComplexityFont{DSpace}}
 \newcommand{\PSPACE}{\ComplexityFont{PSPACE}}
-\newcommand{\NTIME}{\ComplexityFont{Ntime}}
+\newcommand{\NTIME}{\ComplexityFont{NTime}}
+\newcommand{\NSpace}{\ComplexityFont{NSpace}}
+\newcommand{\NPSPACE}{\ComplexityFont{NPSPACE}}
 \newcommand{\SAT}{\ComplexityFont{SAT}}
 \newcommand{\poly}{\ComplexityFont{poly}}
 \newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
@@ -192,8 +198,10 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\EXP}{\ComplexityFont{EXP}}
 \newcommand{\Size}{\ComplexityFont{Size}}
 \newcommand{\Ppoly}{\ComplexityFont{P}/\ComplexityFont{poly}}
+\newcommand{\STCON}{\ComplexityFont{STCON}}
 
 \newcommand{\const}{\textmd{const}}
+\newcommand{\PATH}{\textmd{PATH}}
 
 \usepackage{ upgreek }
 \newcommand{\PI}{\Uppi}
