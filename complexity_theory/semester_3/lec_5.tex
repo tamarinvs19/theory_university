@@ -183,19 +183,9 @@
 
 \begin{thm}
 	Если $ L$ --- $ \P$-полный (относительно $ \logspace$-сводимости), то
-	\begin{itemize}[noitemsep]
-		\item $ L \in \NC \Longrightarrow \NC$, то есть все параллелизуется;
-		\item $ L \in \L \Longrightarrow  \P = \L$.
-	\end{itemize}
+		$$ L \in \L \Longrightarrow  \P = \L.$$
 \end{thm}
 \begin{proof}
-	\begin{itemize}
-		\item 
-			Если $ L' \in \P$, его можно свести к $ L$, а $ L \in \NC$. В $ \NC$ генерируется $ \logspace$-алгоритмом схема. 
-
-			Сначала перерабатываем результат $ L'$ во вход для схемы, а потом передаем его схеме.
-
-		\item Если $ L' \in L$, то он сводится к $ L$, так как второй $ \L$-полный. А $ L$ решается $ \logspace$-алгоритмом. 
+		Если $ L' \in L$, то он сводится к $ L$, так как второй $ \L$-полный. А $ L$ решается $ \logspace$-алгоритмом. 
 			Получили дыве функции, обе $ \logspace$, значит, $ L' \in \L$.
-	\end{itemize}
 \end{proof}

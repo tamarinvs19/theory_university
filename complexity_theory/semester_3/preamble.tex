@@ -169,25 +169,19 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\PSPACE}{\ComplexityFont{PSPACE}}
 \newcommand{\NTIME}{\ComplexityFont{NTime}}
 \newcommand{\NSpace}{\ComplexityFont{NSpace}}
+\newcommand{\coNSpace}{\ComplexityFont{coNSpace}}
 \newcommand{\NPSPACE}{\ComplexityFont{NPSPACE}}
-\newcommand{\SAT}{\ComplexityFont{SAT}}
 \newcommand{\poly}{\ComplexityFont{poly}}
 \newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
 \newcommand{\NP}{\ComplexityFont{NP}}
 \newcommand{\NL}{\ComplexityFont{NL}}
+\newcommand{\coNL}{\ComplexityFont{co-NL}}
 \renewcommand{\L}{\ComplexityFont{L}}
 \newcommand{\NPcomp}{\ComplexityFont{NP-complete}}
-\newcommand{\BH}{\ComplexityFont{BH}}
 \newcommand{\tP}{\widetilde{\P}}
 \newcommand{\tNP}{\widetilde{\NP}}
 \newcommand{\tBH}{\widetilde{\BH}}
-\newcommand{\UNSAT}{{\ComplexityFont{UNSAT}}}
 \newcommand{\Class}{{\ComplexityFont{C}}}
-\newcommand{\CircuitSat}{{\ComplexityFont{CIRCUIT\_SAT}}}
-\newcommand{\tCircuitSat}{\widetilde{{\ComplexityFont{CIRCUIT\_SAT}}}}
-\newcommand{\tSAT}{\widetilde{{\ComplexityFont{SAT}}}}
-\newcommand{\tThreeSAT}{\widetilde{{\ComplexityFont{3\text{-}SAT}}}}
-\newcommand{\ThreeSAT}{{\ComplexityFont{3\text{-}SAT}}}
 \newcommand{\coC}{\ComplexityFont{co-}\mathcal{C}}
 \newcommand{\coNP}{\ComplexityFont{co-NP}}
 \newcommand{\PH}{\ComplexityFont{PH}}
@@ -197,11 +191,21 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\NC}{\ComplexityFont{NC}}
 
 
-\newcommand{\kQBF}{{\ComplexityFont{QBF{\tiny k}}}}
-\newcommand{\QBFk}{{\ComplexityFont{QBF{\tiny k}}}}
-\newcommand{\QBF}{{\ComplexityFont{QBF}}}
-\newcommand{\STCON}{\ComplexityFont{STCON}}
-\newcommand{\USTCON}{\ComplexityFont{USTCON}}
+\def\LanguageFont#1{{\textbf{\texttt{#1}}}}
+\newcommand{\kQBF}{{\LanguageFont{QBF{\tiny k}}}}
+\newcommand{\QBFk}{{\LanguageFont{QBF{\tiny k}}}}
+\newcommand{\QBF}{{\LanguageFont{QBF}}}
+\newcommand{\STCON}{\LanguageFont{STCON}}
+\newcommand{\USTCON}{\LanguageFont{USTCON}}
+\newcommand{\CircuitSat}{{\LanguageFont{CIRCUIT\_SAT}}}
+\newcommand{\tCircuitSat}{\widetilde{{\LanguageFont{CIRCUIT\_SAT}}}}
+\newcommand{\SAT}{\LanguageFont{SAT}}
+\newcommand{\tSAT}{\widetilde{{\LanguageFont{SAT}}}}
+\newcommand{\UNSAT}{{\LanguageFont{UNSAT}}}
+\newcommand{\tThreeSAT}{\widetilde{{\LanguageFont{3\text{-}SAT}}}}
+\newcommand{\ThreeSAT}{{\LanguageFont{3\text{-}SAT}}}
+\newcommand{\BH}{\LanguageFont{BH}}
+\newcommand{\CircuitEval}{{\LanguageFont{CIRCUIT\_EVAL}}}
 
 
 \newcommand{\const}{\textmd{const}}
