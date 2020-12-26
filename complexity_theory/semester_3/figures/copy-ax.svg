@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="240mm"
+   height="43mm"
+   viewBox="0 0 240 43"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="copy-ax.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.406257"
+     inkscape:cx="413.89041"
+     inkscape:cy="235.40423"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showborder="true"
+     width="200mm"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1054"
+     inkscape:window-x="0"
+     inkscape:window-y="26"
+     inkscape:window-maximized="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       units="mm"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4"
+       dotted="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-254)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.28088164;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:none"
+       id="rect8"
+       width="60"
+       height="40"
+       x="87.991661"
+       y="257" />
+    <text
+       id="text12"
+       xml:space="preserve"
+       style="font-size:3.02443933px;font-family:'Iosevka Term';-inkscape-font-specification:'Iosevka Term, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="321.08359"
+       x="122.94962"
+       transform="scale(1.2247449,0.81649657)"><tspan
+         id="tspan10"
+         sodipodi:role="line"
+         x="122.94962"
+         y="321.08359"
+         style="stroke-width:0.26458332">$\{0, 1\}^{p(n)}$</tspan></text>
+    <text
+       id="text28"
+       xml:space="preserve"
+       style="font-size:3.02443933px;font-family:'Iosevka Term';-inkscape-font-specification:'Iosevka Term, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="320.95007"
+       x="77.692795"
+       transform="scale(1.2247449,0.81649657)"><tspan
+         id="tspan26"
+         sodipodi:role="line"
+         x="77.692795"
+         y="320.95007"
+         style="stroke-width:0.26458332">$A_x$</tspan></text>
+    <path
+       style="opacity:0.3;fill:#19aeff;fill-opacity:1;stroke:#19aeff;stroke-width:0.28088164;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:none"
+       d="m 87.991669,277 v -19.75546 h 14.956871 14.95686 l 2.95026,1.04926 c 13.32654,4.73956 19.77085,8.74049 20.6548,12.82346 0.20783,0.95996 -0.33355,2.48618 -1.25203,3.52963 -0.43895,0.49867 -1.60475,1.49946 -2.59068,2.22399 -4.23604,3.11295 -6.75357,6.6096 -8.48304,11.78228 -0.72911,2.18072 -1.49395,5.95304 -1.49395,7.3684 v 0.73389 H 107.84121 87.991669 Z"
+       id="path297"
+       inkscape:connector-curvature="0" />
+    <path
+       style="opacity:0.3;fill:#009100;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 147.99169,267 c 0,0 -10,10 -20,10 -10,0 -10,-20 -40.000022,-10 l 10e-7,30 h 60.000021 z"
+       id="path4807"
+       inkscape:connector-curvature="0" />
+    <text
+       id="text4811"
+       xml:space="preserve"
+       style="font-size:3.70416665px;font-family:'Iosevka Term';-inkscape-font-specification:'Iosevka Term, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="294.46561"
+       x="132.43518"><tspan
+         id="tspan4809"
+         sodipodi:role="line"
+         x="132.43518"
+         y="294.46561"
+         style="stroke-width:0.26458332">$t \oplus A_x$</tspan></text>
+    <text
+       id="text4901"
+       xml:space="preserve"
+       style="font-size:3.70416665px;font-family:'Iosevka Term';-inkscape-font-specification:'Iosevka Term, Normal';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       y="284.15823"
+       x="153.82271"><tspan
+         id="tspan4899"
+         sodipodi:role="line"
+         x="153.82271"
+         y="284.15823"
+         style="stroke-width:0.26458332">$t \oplus A_x = \{t \oplus w \mid w \in A_x\}$</tspan></text>
+  </g>
+</svg>
