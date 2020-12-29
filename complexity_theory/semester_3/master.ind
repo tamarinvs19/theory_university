@@ -4,6 +4,7 @@
   \item $ \PI^i\P$ , \hyperpage{14}
   \item $ \SIGMA^{i}\P$, \hyperpage{14}
   \item $ \tNP$, \hyperpage{9}
+  \item $\NC^{i}$, \hyperpage{22}
   \item $\kQBF$, \hyperpage{16}
   \item $\tP$, \hyperpage{9}
   \item $\tThreeSAT$, \hyperpage{12}
@@ -16,6 +17,7 @@
   \item \DSpace, \hyperpage{17}
   \item \DTIME, \hyperpage{8}
   \item \L, \hyperpage{22}
+  \item \NC, \hyperpage{22}
   \item \NL, \hyperpage{22}
   \item \NP, \hyperpage{9, 10}
   \item \NPSPACE, \hyperpage{21}
