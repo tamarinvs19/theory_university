@@ -1,13 +1,13 @@
 \lecture{3}{19 nov}{\dag}
 
 \section{Теорема Кука-Левина}
-$ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
+$ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.\index{$\tThreeSAT$}
 \begin{ex}
     \[
 		\left( (\neg x \vee \neg y \vee \neg z) \wedge (y \vee \neg z) \wedge (x), [x = 0, y= 1,  z=1] \right) \in  \tThreeSAT 
     .\] 
 \end{ex}
-\begin{thm}[Кук-Левин]
+\begin{thm}[Кук-Левин]\index{теорема Кука-Левина}
 	$ \tThreeSAT$ --- \NP-полная задача. 
 \end{thm}
 \begin{proof}
@@ -103,7 +103,7 @@ $ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
 \begin{name}
 Пусть есть два класса языков $ \Cclass, \Dclass$. Можно построить класс $ \Cclass ^{\Dclass}$, который состоит из  языков вида $ C^{D} $, где $ D \in \Dclass$ и $ C$ --- машина для языка из $ \Cclass$.
 \end{name}
-\begin{defn}[Класс дополнений]
+\begin{defn}[Класс дополнений]\index{класс дополнений}
     \[
     \coC = \{L \mid \overline{L} \in \Cclass\}
     .\] 
@@ -112,7 +112,7 @@ $ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
 	$ \SAT \in \NP$, дополнение к $ \SAT$, то есть $ \{\text{всюду ложные формул}\} \in \coNP$.
 \end{ex}
 
-\subsection{Полиномиальная иерархия}
+\subsection{Полиномиальная иерархия}\index{полиномиальная иерархия}
 Самый нижний класс иерархии --- $ \P$. Остальные классы строятся также из  $ \NP$ и $ \coNP$.
 \begin{figure}[b!]
     \centering
@@ -127,7 +127,7 @@ $ \tThreeSAT = \{(F, A) \mid F \text{ --- в 3-КНФ}, F(A) = 1\}$.
 	& \PI^{i+1}\P = \coNP^{\SIGMA ^{i}\P}\\
 	& \DELTA ^{i+1}\P = \P^{\SIGMA ^{i}\P} \\
 	& \PH = \bigcup_{i \ge 0} \SIGMA ^{i} \P
-\end{aligned}
+\end{aligned}\index{\PH}\index{$ \SIGMA^{i}\P$}\index{$ \PI^i\P$ }\index{$ \Delta ^{i}\P$ }
 \]
 
 \begin{lm}

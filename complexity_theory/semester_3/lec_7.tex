@@ -2,7 +2,7 @@
 
 \section{Вероятностные вычисления}
 \subsection{Классы с односторонней ошибкой}
-\begin{defn}[Класс $ \RP$]
+\begin{defn}[Класс $ \RP$]\index{\RP}
 	$ L \in \RP$, если существует п.о.п.п. отношение $ R$ такое, что $ \forall x \in \{0, 1\}^{*}$ :
 	\[
 		\begin{aligned}
@@ -11,11 +11,11 @@
 		\end{aligned}
 	\]
 \end{defn}
-\begin{defn}[Классы без ошибки]
+\begin{defn}[Классы без ошибки]\index{\ZPP}
 	$ \ZPP = \RP \cap \coRP$.
 \end{defn}
 
-\begin{defn}[Классы с двухстронней ошибкой]
+\begin{defn}[Классы с двухстронней ошибкой]\index{\BPP}
 	$ L \in \BPP$, если существует п.o.п.п. отношение $ R$ такое, что $ \forall x \in \{0, 1\}^{*}$ :
 	\[
 		\begin{aligned}
@@ -50,7 +50,7 @@
 	В данной задаче $ x_i$ --- наличие ошибки при $ i$-ом вычислении, $ p = \frac{1}{3}$, $ \varepsilon  = \frac{1}{2}$.
 \end{proof}
 
-\begin{defn}[Альтернативное определение $ \ZPP$]
+\begin{defn}[Альтернативное определение $ \ZPP$]\index{\ZPP}
 	$ \ZPP$ --- алгоритмы без ошибок с полиномиальным матожиданием времени работы.
 \end{defn}
 \begin{proof}
@@ -141,11 +141,12 @@
 			\[
 			\begin{aligned}
 				\Pr \left[ \neg \left( \forall r \in U ~\bigvee_{i=1}^{k}(r \in A_x \oplus t_i) \right)  \right] &= \Pr \left[ \exists r \in U ~ \bigwedge_{i=1}^{k}\left( r \notin A_x \oplus t_i \right)  \right] \le \\
-																												 & \le \sum_{r \in U}^{} \Pr \left[ \bigwedge_{i=1}^{k} (t \notin A_x \oplus t_i) \right]  \stackrel{\text{выбирали независимо}}{=} \sum_{r \in U}^{} \prod_{i=1}^{k} \Pr [r \notin A_x \oplus t_i] \le \frac{1}{2^{nk}}\cdot 2 ^{p(n)}
+																												 & \le \sum_{r \in U}^{} \Pr \left[ \bigwedge_{i=1}^{k} (t \notin A_x \oplus t_i) \right]  \stackrel{\text{выбирали независимо}}{=} \sum_{r \in U}^{} \prod_{i=1}^{k} \Pr [r \notin A_x \oplus t_i] \le \\
+																												 & \le \frac{1}{2^{nk}}\cdot 2 ^{p(n)}
 			\end{aligned}
 			\]
 			Чтобы сделать $ \frac{2^{p(n)}}{2^{nk}} < 1$, возьмем, например, $k= p(n)$.
-		\item Посчитать $ \vee$ для $ k$ значений посчитать легко. 
+		\item Посчитать $ \vee$ для $ k$ значений легко. 
 			Заметим, что 
 			\[
 			r \in A_x \oplus t_i \Longleftrightarrow r \oplus t_i \in A_x
@@ -232,6 +233,6 @@ x \longmapsto xA \longmapsto xA^2 \longmapsto \ldots
 	Если же применить дважды, так как матрица обратная к себе, получим только $ 0$.
 \end{ex}
 
-\begin{defn}
+\begin{defn}\index{\BQP}
 $ \BQP$ --- класс решаемых квантовым компьютером за полиномиальное время  с ограниченной ошибкой.
 \end{defn}

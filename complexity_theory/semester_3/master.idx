@@ -1,0 +1,57 @@
+\indexentry{язык|hyperpage}{5}
+\indexentry{индивидуальная задача|hyperpage}{5}
+\indexentry{массовая задача|hyperpage}{5}
+\indexentry{машина Тьюринга детерминированная|hyperpage}{6}
+\indexentry{время работы МТ|hyperpage}{6}
+\indexentry{используемая память|hyperpage}{6}
+\indexentry{конструируемая по времени функция|hyperpage}{8}
+\indexentry{\DTIME|hyperpage}{8}
+\indexentry{\P|hyperpage}{8}
+\indexentry{полиномиально ограниченная задача|hyperpage}{8}
+\indexentry{полиномиально проверяемая задача|hyperpage}{9}
+\indexentry{$ \tNP$|hyperpage}{9}
+\indexentry{$\tP$|hyperpage}{9}
+\indexentry{\NP|hyperpage}{9}
+\indexentry{\P|hyperpage}{9}
+\indexentry{машина Тьюринга недетерминированная|hyperpage}{9}
+\indexentry{\NP|hyperpage}{10}
+\indexentry{сведение по Карпу|hyperpage}{10}
+\indexentry{сведение по Левину|hyperpage}{10}
+\indexentry{машина Тьюринга оракульная|hyperpage}{11}
+\indexentry{сведение по Тьюрингу|hyperpage}{11}
+\indexentry{трудная задача|hyperpage}{11}
+\indexentry{полная задача|hyperpage}{11}
+\indexentry{\BH, задача об ограниченной подстановке|hyperpage}{11}
+\indexentry{булевы схемы|hyperpage}{12}
+\indexentry{\CircuitSat|hyperpage}{12}
+\indexentry{$\tThreeSAT$|hyperpage}{12}
+\indexentry{теорема Кука-Левина|hyperpage}{12}
+\indexentry{класс дополнений|hyperpage}{14}
+\indexentry{полиномиальная иерархия|hyperpage}{14}
+\indexentry{\PH|hyperpage}{14}
+\indexentry{$ \SIGMA^{i}\P$|hyperpage}{14}
+\indexentry{$ \PI^i\P$ |hyperpage}{14}
+\indexentry{$ \Delta ^{i}\P$ |hyperpage}{14}
+\indexentry{$\kQBF$|hyperpage}{16}
+\indexentry{\DSpace|hyperpage}{17}
+\indexentry{\PSPACE|hyperpage}{17}
+\indexentry{ $ \QBF$ |hyperpage}{17}
+\indexentry{\Size|hyperpage}{19}
+\indexentry{полиномиальные схемы|hyperpage}{19}
+\indexentry{\Ppoly|hyperpage}{19}
+\indexentry{\Size|hyperpage}{19}
+\indexentry{теорема Карпа-Липтона|hyperpage}{20}
+\indexentry{\NSpace|hyperpage}{21}
+\indexentry{\NPSPACE|hyperpage}{21}
+\indexentry{\STCON|hyperpage}{21}
+\indexentry{\L|hyperpage}{22}
+\indexentry{\NL|hyperpage}{22}
+\indexentry{равномерное семейство схем|hyperpage}{22}
+\indexentry{\logspace-равномерное семейство схем|hyperpage}{22}
+\indexentry{\CircuitEval|hyperpage}{23}
+\indexentry{теорема Иммермана-Клапана|hyperpage}{25}
+\indexentry{\RP|hyperpage}{26}
+\indexentry{\ZPP|hyperpage}{26}
+\indexentry{\BPP|hyperpage}{26}
+\indexentry{\ZPP|hyperpage}{26}
+\indexentry{\BQP|hyperpage}{30}

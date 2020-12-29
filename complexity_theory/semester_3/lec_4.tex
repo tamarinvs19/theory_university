@@ -1,6 +1,6 @@
 \lecture{4}{26 nov}{\dag}
 \section{$ \SIGMA^{k}\P $-полная задача}
-\begin{defn}[Язык $ \kQBF$]
+\begin{defn}[Язык $ \kQBF$]\index{$\kQBF$}
 	\selectedFont{Язык $ \kQBF $} --- язык, состоящий из замкнутых истинных формул вида
  \[
 \exists X_1 \forall X_2 \exists X_3 \ldots X_k \varphi 
@@ -87,17 +87,19 @@
 
 \section{Классы, ограниченные по времени и памяти}
 \begin{defn}[$ \DSpace$]
+	\index{\DSpace}
 	\[
 		\DSpace[f(n)] = \{L \mid L \text{ принимается ДМТ с памятью } \O(f(n))\}
 	,\] 
 	где $ f(n)$ должна быть неубывающей и вычислимой с памятью $ \O(f(n)) $ (на входе $ 1^{n}$, на выходе двоично представление $ f(n)$).
+	\index{\PSPACE}
 	 \[
 		 \PSPACE = \bigcup_{k \ge 0} \DSpace[n^{k}]
 	.\] 
 \end{defn}
 
 \subsection{$ \PSPACE$-полная задача}
-\begin{defn}[Язык $ \QBF$]
+\begin{defn}[Язык $ \QBF$]\index{ $ \QBF$ }
 	\selectedFont{Язык $ \QBF$} --- язык, состоящий из замкнутых истинных формул вида \[
 	q_1 x_1 q_2 x_2 \ldots \varphi 
 	,\]    
@@ -215,22 +217,20 @@
 
 	Остальное полностью аналогично иерархии по памяти.
 \end{proof}
-
-
 \[
 	\P \subseteq \NP \subseteq \ldots \subseteq \PSPACE \subseteq \EXP = \bigcup_{k \ge 0} \DTIME[2^{n^{k}}]
 .\] 
 Про $ \PSPACE$ мы доказали, что внутри есть неравенство. Следовательно, в каком-то из этих включений тоже должно быть строгое, но пока не известно какое.
 
 \section{Полиномиальные схемы}
-\begin{defn}
+\begin{defn}[\Size]\index{\Size}
 	$ L \in \Size[f(n)]$, если существует семейство булевых схем $ \{C_n\}_{n \in \N}$ такое, что
 	\begin{itemize}[noitemsep]
 		\item $ \forall n\colon \lvert C_n \rvert \le f(n)$;
 		\item $ \forall x \colon x \in L \Longleftrightarrow C_{\lvert x \rvert }(x) = 1$.
 	\end{itemize}
 \end{defn}
-\begin{defn}[Полиномиальные схемы]
+\begin{defn}[Полиномиальные схемы]\index{полиномиальные схемы}\index{\Ppoly}
     \[
 		\Ppoly = \bigcup_{k \in \N} \Size[n^{k}]
     .\] 
@@ -249,7 +249,7 @@
 		\end{cases}
 	\] 
 \end{proof}
-\begin{defn}
+\begin{defn}[Альтернативное определение $ \Size$]\index{\Size}
 	$ L \in \Size[f(n)]$, если имеются $ R \in \P$ и последовательность строк (подсказка) $ \{y_{n}\}_{n \in \N}$ полиномиальной длины такие, что
 	\[
 		\forall x\colon x \in L \Longleftrightarrow R(x, y_{\lvert x \rvert }) = 1

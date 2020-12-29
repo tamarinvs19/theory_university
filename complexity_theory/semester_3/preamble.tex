@@ -4,21 +4,22 @@
 % \usepackage{eufrak}
 \usepackage{xltxtra}
 \usepackage{polyglossia}
+
 \usepackage{mathpazo}
-\usepackage{fontspec}
 
 \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
 
-\setmainfont[
+\setmainfont{STIX2Text-Regular.otf}[
 ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/},
 BoldFont=STIX2Text-Bold.otf,
 ItalicFont=STIX2Text-Italic.otf,
 BoldItalicFont=STIX2Text-BoldItalic.otf
 ]
-{STIX2Text-Regular.otf}
 \setmathrm{STIX2Math.otf}[
 ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 ]
+
+\usepackage{makeidx}
 
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}

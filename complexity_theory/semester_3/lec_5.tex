@@ -1,6 +1,6 @@
 \lecture{5}{3 dec}{\dag}
 
-\begin{thm}[Карп-Липтон]
+\begin{thm}[Карп-Липтон]\index{теорема Карпа-Липтона}
     $ \NP \subseteq \Ppoly \Longrightarrow \PH = \SIGMA^2\P$.
 \end{thm}
 \begin{proof}
@@ -61,22 +61,23 @@
 \end{proof}
 
 \subsection{Класс $ \NSpace$}
-\begin{defn}[$ \NSpace$]
+\begin{defn}[$ \NSpace$]\index{\NSpace}
 	$ \NSpace[f(n)] = \{L \mid L \text{ принимается НМТ с пасятью } \O(f(n))\}$.
 \end{defn}
 \begin{note}
-	\begin{itemize}
+	~\begin{itemize}
 		\item  $ f(n)$ должна быть конструируемая по памяти;
 		\item входная лента \readonly, выходная лента \writeonly, память на них не учитывается;
 		\item ленту подсказки можно читать только слева направо.
     \end{itemize}
 \end{note}
+\index{\NPSPACE}
 \[
 	\NPSPACE = \bigcup_{k \ge 0} \NSpace[n^{k}]
 .\] 
 
 \section{Логарифмическая память}
-\begin{defn}
+\begin{defn}\index{\STCON}
 	$ \STCON = \{(G, s, t) \mid  G \text{ --- ориентированный граф}, ~ s \rightsquigarrow t\}$.
 \end{defn}
 \begin{lm}
@@ -121,6 +122,14 @@
     $ \PSPACE = \NPSPACE$
 \end{cor}
 
+\begin{defn}[$ \L$ и $ \NL$]
+	\index{\L}
+   Класс языков $ \L$ --- множество языков, разрешимых на детерминированной машине Тьюринга с использованием $\O(\log n)$ дополнительной памяти для входа длиной $ n$. 
+   
+   \noindent
+   \index{\NL}
+	Класс языков $\NL$ --- множество языков, разрешимых на недетерминированной машине Тьюринга с использованием $\O(\log n)$ дополнительной памяти для входа длиной $n$.
+\end{defn}
 \begin{lm}
 	$ \STCON$ является $ \NL$-полной (относительно $ \logspace$-сведений, то есть сводящая функция использует логарифмическую память).
 \end{lm}
@@ -142,7 +151,7 @@
 \end{st}
 
 \section{Равномерные полиномиальные схемы}
-\begin{defn}
+\begin{defn}\index{равномерное семейство схем}
 	Семейство схем $ \{C_n\}_{n \in \N}$ \selectedFont{равномерно}, если существует полиномиальный алгоритм $ A$ такой, что $ A(1^{n}) = C_{n}$. 
 \end{defn}
 \begin{lm}
@@ -153,7 +162,7 @@
 
 	Наоборот, пусть дана полиномиальная МТ, про вход мы знаем, что  $ \lvert x \rvert = n$, тогда  можно нарисовать схему из состояний, которая будет работать как МТ. Каждый уровень можно породить алгоритмом, который будет их пересчитывать по функции перехода. 
 \end{proof}
-\begin{defn}
+\begin{defn}\index{\logspace-равномерное семейство схем}
 	Семейство схем $ \{C_n\}_{n \in \N}$ \selectedFont{$\logspace$-равномерно}, если существует полиномиальный алгоритм $ A$, использующий $ \O(\log n)$ памяти, такой, что $ A(1^{n}) = C_{n}$. 
 \end{defn}
 
