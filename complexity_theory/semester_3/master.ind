@@ -1,37 +1,37 @@
 \begin{theindex}
 
-  \item $ \Delta ^{i}\P$ , \hyperpage{14}
-  \item $ \PI^i\P$ , \hyperpage{14}
-  \item $ \SIGMA^{i}\P$, \hyperpage{14}
+  \item $ \Delta ^{i}\P$ , \hyperpage{15}
+  \item $ \PI^i\P$ , \hyperpage{15}
+  \item $ \SIGMA^{i}\P$, \hyperpage{15}
   \item $ \tNP$, \hyperpage{9}
-  \item $\NC^{i}$, \hyperpage{22}
+  \item $\NC^{i}$, \hyperpage{23}
   \item $\kQBF$, \hyperpage{16}
   \item $\tP$, \hyperpage{9}
   \item $\tThreeSAT$, \hyperpage{12}
   \item \BH, задача об ограниченной подстановке, 
 		\hyperpage{11}
-  \item \BPP, \hyperpage{26}
-  \item \BQP, \hyperpage{30}
-  \item \CircuitEval, \hyperpage{23}
+  \item \BPP, \hyperpage{27}
+  \item \BQP, \hyperpage{31}
+  \item \CircuitEval, \hyperpage{24}
   \item \CircuitSat, \hyperpage{12}
   \item \DSpace, \hyperpage{17}
   \item \DTIME, \hyperpage{8}
   \item \L, \hyperpage{22}
-  \item \NC, \hyperpage{22}
+  \item \NC, \hyperpage{23}
   \item \NL, \hyperpage{22}
   \item \NP, \hyperpage{9, 10}
   \item \NPSPACE, \hyperpage{21}
   \item \NSpace, \hyperpage{21}
   \item \P, \hyperpage{8, 9}
-  \item \PH, \hyperpage{14}
+  \item \PH, \hyperpage{15}
   \item \PSPACE, \hyperpage{17}
   \item \Ppoly, \hyperpage{19}
-  \item \RP, \hyperpage{26}
+  \item \RP, \hyperpage{27}
   \item \STCON, \hyperpage{21}
-  \item \Size, \hyperpage{19}
-  \item \ZPP, \hyperpage{26}
+  \item \Size, \hyperpage{19, 20}
+  \item \ZPP, \hyperpage{27}
   \item \logspace-равномерное семейство схем, 
-		\hyperpage{22}
+		\hyperpage{23}
 
   \indexspace
 
