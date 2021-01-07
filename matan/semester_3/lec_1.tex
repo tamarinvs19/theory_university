@@ -1,7 +1,3 @@
-% \documentclass[11pt,dvipsnames]{report}
-% \input{preamble.tex}
-% \begin{document}
-
 \chapter{Функциональные последовательности и ряды}
 \lecture{1}{2 Sept}{\dag}
 \section{Равномерная и поточечная сходимости}
@@ -28,9 +24,12 @@
 		\forall n > N ~ \forall x \in E \colon \lvert f_n(x) - f(x)  \rvert < \varepsilon
 	.\]
 \end{defn}
+
 \begin{ex}
 	Рассмотрим функции $ f_n(x) = x^{n}$ на отрезке $ (0, 1)$. Так как $ \forall x \in  (0, 1)\colon  x^{n} \mathrel{\rightarrow}_{n \to  \infty} 0$, $ f_n \to  f \equiv 0$. Но $ f_n \not\rightrightarrows 0$, потому что, например, для  $ \varepsilon = \frac{1}{2}$ каким бы ни было $ N$ для всех $ n > N$ можно взять такое $ x$ рядом с единицей, что  $ \lvert x^{n}-0 \rvert > \frac{1}{2}$.
 \end{ex}
+
+\fontAwesomeSymbol{\faArrowCircleRight}
 
 \begin{st}
 	$ f_n \rightrightarrows f$ на $ E$ равносильно тому, что
@@ -145,6 +144,8 @@
 	\end{enumerate}
 \end{prop}
 
+\fontAwesomeSymbol{\faSlack}
+
 \section{Равномерные и поточечные сходимости рядов}
 \begin{defn}[Функционоальный ряд]
 	Рассмотрим функции $ u_n \colon E \to  \R(\Cm)$. Тогда
@@ -195,7 +196,11 @@
 			\begin{proof}
 				Применить признак Коши.
 			\end{proof}
+
 		\item Если $ \sum_{n=1}^{\infty} \lvert u_n(x) \rvert $ сходится равномерно, то и ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно.
+
+		\fontAwesomeSymbol{\faVk}
+
 		\item \mybf{Признак Дирихле}. Пусть $ u_n, v_n \colon E \to \R(\Cm)$, обозначим  $ U_n(x) = \sum_{k=1}^{n} u_k(x)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
 			\begin{enumerate}[noitemsep]
 				\item ряд $ U_n$ равномерно ограничен на $ E$, то есть
@@ -225,6 +230,7 @@
 				\]
 				Так как $ v_n \rightrightarrows 0$, $ \lvert v_1(x) - v_n(x) \rvert \underset{n \to \infty}{\longrightarrow} \lvert v_1(x) \rvert $. Значит, частичная сумма ряда стремится к $ M \cdot \lvert v_1(x) \rvert $, следовательно\footnote{Например, по признаку сравнения}, второе слагаемое тоже равномерно сходится, а тогда и сумма равномерно сходится.
 			\end{proof}
+
 		\item \mybf{Признак Лейбница}. Если выполнены следующие условия, то ряд $ \sum_{n=1}^{\infty} (-1)^{n}v_n(x)$ равномерно сходится:
 			\begin{enumerate}[noitemsep]
 				\item $ v_n \rightrightarrows 0$ на $ E$;
@@ -233,21 +239,6 @@
 			\begin{proof}
 				Обозначим за $ u_n(x) \coloneqq (-1)^{n}$. Заметим, что ряд $ U_n(x) = \sum_{k=1}^{n} u_k(x)$ ограничен, тогда по признаку Дирихле $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ равномерно сходится.
 			\end{proof}
-			\begin{ex}
-				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{\sin(nx)}{n}$. Обозначим $ u_n(x) = \sin(nx)$ и $ v_n(x) = \frac{1}{n}$. Последний равномерно сходится к нулю и монотонно убывает.
-				\[
-					\begin{aligned}
-						U_n(x) &= \sum_{k=0}^{n} \sin(kx) = \\
-							   &= \im\left(  \sum_{k=0}^{n} e^{ikx}  \right) = \im \left( \frac{1-e^{i(n+1)x}}{1 - e^{ix}} \right) = \\
-							   &= \im\left( \frac{e^{ix\cdot \frac{n+1}{2}} \cdot \left( e^{ix\cdot \frac{n+1}{2}}- e^{-ix\cdot \frac{n+1}{2}} \right)}{e^{\frac{ix}{2} - e^{-\frac{ix}{2}}}}  \right)  = \\
-							   &= \im \left( e^{\frac{ixn}{2}} \right) \cdot \frac{\sin \frac{n+1}{2}x }{\sin  \frac{x}{2} } = \\
-							   &= \frac{\sin \frac{nx}{2} \cdot \sin\frac{n+1}{2}x}{\sin \frac{x}{2}}
-					\end{aligned}
-				\]
-			\end{ex}
-			\begin{ex}
-				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{(-1)^{n}x^{n}}{n}$ при $ x \in (0, 1)$. Обозначим $ v_n(x) = \frac{x^{n}}{n}$. $ v_n(x)$ монотонна для всех $ x \in (0, 1)$, так же  $ \lvert v_n(x) \rvert \le \frac{1}{n}$, поэтому $ v_n$ равномерно сходится к нулю.  По признаку Лейбница исходный ряд равномерно сходится.
-			\end{ex}
 		\item \mybf{Признак Абеля}.  Пусть $ u_n, v_n \colon E \to \R(\Cm)$. Если выполнены следующие условия, ряд $ \sum_{n=1}^{\infty} u_n(x)v_n(x)$ сходится равномерно:
 			\begin{enumerate}[noitemsep]
 				\item ряд $ \sum_{n=1}^{\infty} u_n$ равномерно сходится на $ E$;
@@ -284,11 +275,27 @@
 	\end{enumerate}
 \end{prop}
 
+		\fontAwesomeSymbol{\faWindows}
+
+			\begin{ex}
+				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{\sin(nx)}{n}$. Обозначим $ u_n(x) = \sin(nx)$ и $ v_n(x) = \frac{1}{n}$. Последний равномерно сходится к нулю и монотонно убывает.
+				\[
+					\begin{aligned}
+						U_n(x) &= \sum_{k=0}^{n} \sin(kx) = \\
+							   &= \im\left(  \sum_{k=0}^{n} e^{ikx}  \right) = \im \left( \frac{1-e^{i(n+1)x}}{1 - e^{ix}} \right) = \\
+							   &= \im\left( \frac{e^{ix\cdot \frac{n+1}{2}} \cdot \left( e^{ix\cdot \frac{n+1}{2}}- e^{-ix\cdot \frac{n+1}{2}} \right)}{e^{\frac{ix}{2} - e^{-\frac{ix}{2}}}}  \right)  = \\
+							   &= \im \left( e^{\frac{ixn}{2}} \right) \cdot \frac{\sin \frac{n+1}{2}x }{\sin  \frac{x}{2} } = \\
+							   &= \frac{\sin \frac{nx}{2} \cdot \sin\frac{n+1}{2}x}{\sin \frac{x}{2}}
+					\end{aligned}
+				\]
+			\end{ex}
+			\begin{ex}
+				Рассмотрим ряд $ \sum_{n=1}^{\infty} \frac{(-1)^{n}x^{n}}{n}$ при $ x \in (0, 1)$. Обозначим $ v_n(x) = \frac{x^{n}}{n}$. $ v_n(x)$ монотонна для всех $ x \in (0, 1)$, так же  $ \lvert v_n(x) \rvert \le \frac{1}{n}$, поэтому $ v_n$ равномерно сходится к нулю.  По признаку Лейбница исходный ряд равномерно сходится.
+			\end{ex}
+
 \section{Свойства равномерно сходящихся функциональных последовательностей и рядов}
-\begin{prop}
-	$ $
 	\begin{enumerate}
-		\item \label{prop:rsf1} Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
+		\item \label{prop:rsf1}\mybf{Перестановка предельных переходов.} Пусть $ f_n, f\colon E \to \R(\Cm)$, $ a$ --- предельная точка  $ E$,  $ f_n$ равномерно сходится к  $ f$ на $ E$ и существует предел $ \lim\limits_{x \to  a}f_n(x) = b_n$.
 			Тогда пределы $ \lim\limits_{n \to  \infty} b_n$, $ \lim\limits_{x \to a} f(x)$ существуют и равны.
 
 			То есть \[
@@ -332,5 +339,3 @@
 				Если $ f_n \colon [a, b] \to \R(\Cm)$, $ f_n \rightrightarrows f$ на $ (a, b)$ и $ f_n$ непрерывна, то $ f_n \rightrightarrows f$ на $ [a, b]$
 			\end{cor}
 	\end{enumerate}
-\end{prop}
-% \end{document}

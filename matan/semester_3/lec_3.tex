@@ -87,7 +87,7 @@
 	\end{enumerate} 
 \end{proof}
 
-\begin{ex}[Важный пример: полукольцо ячеек в $ \R^{n} $ и полукольцо биодических ячеек в $\R^{n}$]
+\begin{ex}[Важный пример: полукольцо ячеек в $ \R^{n} $ и полукольцо диодических ячеек в $\R^{n}$]
 	Первое обозначается $ \P^{n}$,  второе --- $ \P^{n}_{d}$.
 
 	Рассмотрим два вектора
@@ -103,7 +103,7 @@
 	Ячейка называется {\bf кубической}, если $ \forall j, k \colon  \lvert a_j - b_j \rvert  = \lvert a_k - b_k \rvert $.
 
 	Возьмем $ e = (1, \ldots 1)$ и $ \overline{k} = (k_1, \ldots k_n), ~ k_j \in \Z, ~ \overline{k} \in \Z^{n}$.
-	$ [\overline{k}, \overline{k}+e)$ --- кубик с целочисленными координатами. Такие ячейки назовем {\bf ячейками ранка I}. Они покрывают все $ \R^{n} $ и дизъюнктны.  
+	$ [\overline{k}, \overline{k}+e)$ --- кубик с целочисленными координатами. Такие ячейки назовем {\bf ячейками ранга I}. Они покрывают все $ \R^{n} $ и дизъюнктны.  
 
 	Такие ячейки можно разбить на $ 2^{n}$ меньших ячеек второго ранга: $ \left[ \frac{\overline{k}}{2}, \frac{\overline{k}+e}{2}\right)$. Аналогично можно продолжить до ранга $ S+1$:  $ \left[ \frac{\overline{k}}{2^{S}}, \frac{\overline{k}+e}{2^{S}} \right)$.
 	\begin{prop}
@@ -133,11 +133,7 @@
 	Всего ячеек счетное число, поэтому в покрытии тоже будет счетное, при этом $ \bigcup_{x \in G} P_x = G$.
 \end{proof}
 
-\dotfill
-
-{\vspace{20pt} \hspace{\stretch{1}} \fontsize{100}{60}\selectfont \faLinux  \hspace{\stretch{1} }\vspace{20pt}}
-
-\dotfill
+\fontAwesomeSymbol{\faLinux}
 
 \section{Объем}
 \begin{defn}[Объем]
@@ -225,9 +221,11 @@
 	.\] 
 \end{note}
 
+		\fontAwesomeSymbol{\faVolumeUp}
+
 \section{Мера и ее свойства}
 \begin{defn}[Мера]
-    Пусть $ \P$ --- подкольцо, $ \mu $ --- объем на $ \P$. $ \mu$ называется {\bf мерой}, если $ \mu $ счетно-аддитивен:
+    Пусть $ \P$ --- полукольцо, $ \mu $ --- объем на $ \P$. $ \mu$ называется {\bf мерой}, если $ \mu $ счетно-аддитивен:
 	\[
 		P, P_k \in \P, ~ P_k \text{ --- дизъюнктны}, \bigsqcup_{k=1}^{\infty} P_k = P \Longrightarrow \mu (P) = \sum_{k=1}^{\infty} \mu (P_k)
 	.\]\footnote{Сумма в этом ряду не зависит от порядка, так как он положительный.}
@@ -322,7 +320,7 @@ $ $
 
 	\item для всех $ A_k \in \A$ выполнено
 		\[
-			A_{k+1 } \subset A_k , ~ \varnothing= \bigcap_{k=1}^{\infty} \Longrightarrow \mu (A_k) \underset{k \to  \infty}{\longrightarrow} 0
+			A_{k+1 } \subset A_k , ~ \varnothing= \bigcap_{k=1}^{\infty} A_k \Longrightarrow \mu (A_k) \underset{k \to  \infty}{\longrightarrow} 0
 		.\] 
 \end{enumerate} 
 \end{thm}
@@ -354,6 +352,8 @@ $ $
 			Получили, что $ \mu (A) = \sum_{j=0}^{\infty} \mu (B_j)$,  значит, $ \mu $ --- мера.
     \end{description}
 \end{proof}
+
+		\fontAwesomeSymbol{\faMagic}
 
 \section{Продолжение меры. Построение меры по внешней мере.}
 \begin{defn}[Внешняя мера]
@@ -393,7 +393,7 @@ $ $
 			.\] 
 			По определению $ \tau $-измеримости \ref{eq:meas} для всех $ E \subset T$
 			\[
-				\tau (E) = \tau (E \cap A) + \tau (E \setminus A)) = \tau (E \setminus (T\setminus A)) + \tau (E \cap (T \setminus A))
+				\tau (E) = \tau (E \cap A) + \tau (E \setminus A) = \tau (E \setminus (T\setminus A)) + \tau (E \cap (T \setminus A))
 			.\] 
 			Следовательно, $ T \setminus A \in \A_{\tau }$.
 		\item Докажем, что $ A, B \in \A_{\tau } \Longrightarrow A \cup B \in \A_{\tau }$.

@@ -26,6 +26,8 @@
 	А в другую сторону это неравенство верно всегда в силу полуаддитивности внешней меры.
 \end{proof}
 
+		\fontAwesomeSymbol{\faMapO}
+
 \section{Продолжение меры. Построение внешней меры.}
 \begin{name}
     Рассмотрим полукольцо $ \P$ и $ \mu _0$ --- меру на нем. Пусть 
@@ -36,7 +38,7 @@
 \end{name}
 
 \begin{thm}
-	$ \mu ^{*}$ --- внешняя вера и  $ \mu ^{*}(E) = +\infty$.
+	$ \mu ^{*}$ --- внешняя мера и  $ \mu ^{*}\!\!\mid_{\P} = \mu_0$.
 \end{thm}
 \begin{proof}
 	$ $
@@ -50,13 +52,13 @@
 					\item \boxed{\ge}  По теореме о счетной полуаддитивности меры, если $ E \subset \bigcup\limits_{j=1}^{\infty} P_j, ~ P_j \in \P $, то $ \mu _0(E) \le \sum_{j=1}^{\infty} \mu _0(P_j) \le \inf \sum_{j=1}^{\infty} \mu _0(P_j)$.
 			\end{description} 
 			В частности, $ \mu ^{*}(\varnothing) = 0$.
-		\item Проверим счетную полуаддитивность $ \mu ^{*}$, то есть докажем, что
+		\item Первые дыва условия внешней меры очевидны: $ \mu^{*} (\varnothing) = 0$ и $ \mu^{*} \ge 0$. Проверим счетную полуаддитивность $ \mu ^{*}$, то есть докажем, что
 			\[
 				E \subset \bigcup_{j=1}^{\infty} E_n \Longrightarrow \mu ^{*}(E)  \le \sum_{n=1}^{\infty} \mu ^{*}(E_n)
 			.\] 
 			Каждое множество нужно оценить с некоторой точностью разбиения, а потом устремить разницу к нулю.
 
-			Если сумма $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) = +\infty$, то неравенство автоматически выполнено. Предположим, что $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) $ конечно.
+			Если сумма $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) = +\infty$, то неравенство автоматически выполнено. Предположим, что $ \sum_{n=1}^{\infty} \mu ^{*}(E_n) $ конечна.
 
 			Тогда существует такое покрытие $ \{P_j^{(n)}\}$, что ошибка не большая для фиксированного $ \varepsilon > 0$:
 			\[
@@ -66,13 +68,13 @@
 			\[
 				E \subset \bigcup_{n=1}^{\infty} E_n \subset \bigcup_{n=1}^{\infty} \bigcup_{j=1}^{\infty} P_j(n)
 			.\] 
-			Так как $ \mu ^{*}$ --- это инфимум, можно перейти к следующему неравенству
+			Так как $ \mu ^{*}$ --- это инфимум, можно немного отступить, то есть взять покрытие, отстающее на  $ \varepsilon \cdot 2^{-n}$ и перейти к следующему неравенству
 			\[
 				\begin{aligned}
 					\mu ^{*} (E) &\le \sum_{n=1}^{\infty} \sum_{j=1}^{\infty} \mu _{0}(P_j^{(n)}) \le \sum_{n=1}^{\infty} \mu ^{*}(E_n) + \frac{\varepsilon}{2^{n}} = \\
-					\sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon \cdot \sum_{n=1}^{\infty} \frac{1}{2^{n}} = \sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon 
+								 &=\sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon \cdot \sum_{n=1}^{\infty} \frac{1}{2^{n}} = \sum_{n=1}^{\infty} \mu ^{*}(E_n) + \varepsilon 
 				\end{aligned}
-			.\] 
+			\] 
 			Теперь устремим $ \varepsilon \to  0$ и получим
 			\[
 				\mu ^{*} (E) \le \sum_{n=1}^{\infty} \mu ^{*}(E_n)
@@ -87,16 +89,16 @@
 	Тогда $ \P \subset \A_{\mu^{*}}$\footnote{Это содержательная часть} и $ \mu ^{*}\!\mid_{\A_{\mu^{*}}}$ --- продолжение меры $ \mu_0$.
 \end{thm}
 \begin{proof}
-	Хотим проверить, что если $ P \in \P$, то  $ \P \in \A_{\mu^{*}}$, то есть
+	Хотим проверить, что если $ P \in \P$, то  $ P \in \A_{\mu^{*}}$ (измеримо), то есть
 	\[
 		\forall E \in T\colon \mu ^{*}(E)= \mu ^{*}(E \cap P) + \mu^*( E \setminus P )
 	.\] 
 	Так как $ \le $ верно всегда, остается доказать неравенство в обратную сторону. 
 	Разберем два случая:
 	\begin{description}
-		\item[\boxed{E \in P}] Воспользуемся главной аксиомой полукольца:
+		\item[\boxed{E \in \P}] Воспользуемся главной аксиомой полукольца:
 			$E \setminus P = \bigsqcup\limits_{j=1}^{N} Q_j$, где $ Q_j \in \P$ и дизъюнктны.
-			Тогда $ E = \underbrace{(P \setminus E)}_{ \in \P} \cup \bigsqcup\limits_{j=1}^{N} \underbrace{Q_j}_{ \in \P}$, причем это объединение дизъюнктное. Теперь заметим, что для $ \mu_0$ есть конечная аддитивность, а $ \mu^*$ совпадает с $ \mu$ на элементах кольца, и поэтому
+			Тогда $ E = \underbrace{(P \cap  E)}_{ \in \P} \cup \underbrace{\bigsqcup\limits_{j=1}^{N} Q_j}_{ \in E \setminus P}$, причем это объединение дизъюнктное. Теперь заметим, что для $ \mu_0$ есть конечная аддитивность, а $ \mu^*$ совпадает с $ \mu$ на элементах кольца, и поэтому
 			\[
 			\begin{aligned}
 				\mu^*( E )  &= \mu_0(E) = \mu_0(P \cap E) + \mu_0 \Bigl( \bigsqcup\limits_{j=1}^{N} G_j \Bigr) = \\
@@ -105,7 +107,7 @@
 			\]
 			Так как $ \mu^*$ полуаддитивна, $ \sum_{j=1}^{N} \mu^*( Q_j )  \ge \mu^*\Bigl( \bigcup\limits_{j=1}^{N} Q_j \Bigr) = \mu^*( E \setminus P )$. Тогда 
 			\[
-			\mu^*( E  )= \mu^*( P\cap E ) + \mu^*(E\setminus P) 
+			\mu^*( E  ) \ge  \mu^*( P\cap E ) + \mu^*(E\setminus P) 
 			.\] 
 		\item[\boxed{E \text{ \rm произвольное}}] Если $ \mu^*( E ) = +\infty$, то неравенство сразу верно, поэтому будем считать, что $ \mu^*( E ) < +\infty$. Воспользуемся этим и приблизим с точностью до любого $ \varepsilon $ к объединению элементов полукольца.
 
@@ -128,7 +130,7 @@
 	\end{description} 
 \end{proof}
 \begin{defn}[Стандартное продолжение (продолжение Каратеодори)]
-	$ \mu = \mu^{*}\!\mid_{\A_{\mu^{*}}}$ --- {\bf стандартное продолжение}  или {\bf продолжение Каратеодори} меры $ \mu_0$ с полукольца $ \P$. 
+	$ \mu = \mu^{*}\!\mid_{\A_{\mu^{*}}}$ --- \mybf{ стандартное продолжение}  или \mybf{ продолжение Каратеодори} меры $ \mu_0$ с полукольца $ \P$. 
 \end{defn}
 
 \begin{note}
@@ -139,13 +141,15 @@
 			\begin{prac}
 			    Проверить, что внешняя мера получится такой же.
 			\end{prac}
-		\item $ \mu (A) = \inf \left\{ \sum\limits_{j=1}^{\infty} \mu  (P_j) \Biggm| A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~P_j \in \P \right\} $
+		\item $ \mu^{*} (A) = \inf \left\{ \sum\limits_{j=1}^{\infty} \mu  (P_j) \Biggm| A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~P_j \in \P \right\} $
 	\end{enumerate} 
 \end{note}
 
+		\fontAwesomeSymbol{\faSend}
+
 \section{Единственность стандартного построения}
 \begin{defn}[$ \sigma $-конечность объема и меры]
-	Пусть $ \P$ --- полукольцо на $ 2^{T}$, $ \mu$ --- объем или мера. Тогда $ \mu$ называется \textsf{$ \sigma $-конечным(ой)}, если существуют такие $ P_j \in \P, ~  \mu(P_j) < +\infty$, что
+	Пусть $ \P$ --- полукольцо на $ 2^{T}$, $ \mu$ --- объем или мера. Тогда $ \mu$ называется \mybf{$ \sigma $-конечным(ой)}, если существуют такие $ P_j \in \P, ~  \mu(P_j) < +\infty$, что
 	\[
 	T \subset \bigcup_{j=1}^{\infty} P_j
 	.\] 
@@ -163,21 +167,24 @@
 	\begin{enumerate}
 	    \item 
 	\begin{enumerate}[label=\boxed{\arabic*}]
-	    \item Проверим неравенство. Известно, что $ A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~ P_j \in \P$, следовательно, \[
+	    \item Проверим неравенство. 
+			Если $ \mu(A) = \infty$, оно сразу выполнено. 
+
+			Иначе $ A$ покрывается счетным набором: $ A \subset \bigcup\limits_{j=1}^{\infty} P_j, ~ P_j \in \P$, следовательно, \[
 				\nu (A) \le \sum_{j=1}^{\infty} \nu (P_j) \underset{\nu \text{ --- продолжение } \mu_0 }{=} \sum_{j=1}^{\infty} \mu_0(P_j)
 	    .\] 
 		Перейдем к $ \inf$:
 		\[
-			\nu (A) \le  \mu^*( A ) = \mu(A)
+			\nu (A) \le  \inf \sum_{j=1}^{\infty} \mu_0 = \mu^*( A ) = \mu(A)
 		.\] 
-	\item Пусть $ P \in \P$ и $ \mu(P) = \nu (P) < \infty$. Докажем, что $ \nu (P \cap A) = \mu(P \cap A)$. Предположим, что $ \nu (P \cap A) < \mu(P \cap A)$.
+	\item Докажем техническое утверждение. Пусть $ P \in \P$ и $ \mu(P) = \nu (P) < \infty$. Докажем, что $ \nu (P \cap A) = \mu(P \cap A)$. Предположим, что $ \nu (P \cap A) < \mu(P \cap A)$.
 		\[
 		\begin{aligned}
 			\mu(P) &= \nu (P) = \nu (P \cap A) + \nu (P \setminus A) < \\&< \mu(P \cap A) + \mu(P \setminus A) = \mu(P)
 		\end{aligned}
 		\]
 		Противоречие.
-	\item Пусть $ \mu(A)<\infty$, тогда существуют такие $ P_j \in P$, что $ A \subset \bigsqcup\limits_{j=1}^{\infty} P_j$ \footnote{Можно всегда считать объединение дизъюнктным, так как можно заменить на него по стратегии, использованной ранее}, где $ \mu(P_J) = \mu_0(P_j) < \infty$.
+	\item Пусть $ \mu(A)<\infty$, тогда существуют такие $ P_j \in P$, что $ A \subset \bigsqcup\limits_{j=1}^{\infty} P_j$ \footnote{Можно всегда считать объединение дизъюнктным, так как можно заменить на него по стратегии, использованной ранее}, где $ \mu(P_j) = \mu_0(P_j) < \infty$.
 		Тогда из счетной аддитивности $ \nu $
 		\[
 			\nu (A) =  \sum_{j=1}^{\infty} \nu (P_j \cap A) \underset{\text{по 2}}{=} \sum_{j=1}^{\infty} \mu(P_j \cap A) = \mu(A)
@@ -190,6 +197,9 @@
 	.\] 
 	\end{enumerate} 
 \end{proof}
+
+
+		\fontAwesomeSymbol{\faThumbTack}
 
 \section{Определения и простейшие свойства меры Лебега в $ \R^{n}$}
 На полукольце ячеек  $ \P^{n}$ и диодическом полукольце ячеек $ \P^{n}_d$ мы определили классический объем $ \lambda _n = \lambda $.
@@ -274,6 +284,8 @@
 				    Упражнение. Существует неизмеримое множество.
 	\end{enumerate} 
 \end{prop}
+
+		\fontAwesomeSymbol{\faListOl}
 
 \section{Регулярность меры Лебега}
 \begin{defn}[Регулярная мера]

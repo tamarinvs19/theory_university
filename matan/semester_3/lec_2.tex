@@ -1,7 +1,7 @@
 \lecture{2}{9 Sept}{\dag}
 \begin{enumerate}
 	\setcounter{enumi}{1}
-\item Пусть $ u_n \colon E \to  \R(\Cm)$, $ a$ --- предельная точка $ E$ и $ \lim_{x \to  a} u_n(x) = b_n$. Если $ \sum_{n=1}^{\infty}u_n(x) $ равномерно сходится на $ E$, то   $ \sum_{n=1}^{\infty} b_n$ сходится и
+\item \mybf{Перестановка суммирования и предельного перехода.} Пусть $ u_n \colon E \to  \R(\Cm)$, $ a$ --- предельная точка $ E$ и $ \lim_{x \to  a} u_n(x) = b_n$. Если $ \sum_{n=1}^{\infty}u_n(x) $ равномерно сходится на $ E$, то   $ \sum_{n=1}^{\infty} b_n$ сходится и
 	\[
 		\sum_{n=1}^{\infty}  \lim_{x \to  a} u_n(x) = \lim_{x \to  a} \sum_{n=1}^{\infty} u_n(x)
 	.\]
@@ -18,7 +18,7 @@
 			\lim_{n \to \infty} \lim_{x \to a} S_n = \lim_{x \to a} \lim_{n \to \infty} S_n(x)
 		.\]
 	\end{proof}
-\item Пусть  $ f_n \in C[a, b]$ и $ f_{n} \rightrightarrows f$ на $ [a, b]$ \footnote{Из этих двух условий автоматически следует, что $ f$ непрерывна}. Рассмотрим произвольную точку  $ c \in [a, b]$ и первообразную $ \int_{c}^{x} f_{n}(t)dt $. Тогда 
+\item \mybf{Перестановка предела и суммы.} Пусть  $ f_n \in C[a, b]$ и $ f_{n} \rightrightarrows f$ на $ [a, b]$ \footnote{Из этих двух условий автоматически следует, что $ f$ непрерывна}. Рассмотрим произвольную точку  $ c \in [a, b]$ и первообразную $ \int_{c}^{x} f_{n}(t)dt $. Тогда 
 	\[
 		\int_{c}^{x} f_n(t)dt \rightrightarrows \int_{c}^{x} f(t)dt \text{ на } [a, b]  
 	.\] 
@@ -61,12 +61,15 @@
 			f_n(x) = \underbrace{f_n(c)}_{ \to A} + \underbrace{\int_{c}^{x} f_n(t) dt}_{\rightrightarrows \int_{c}^{x} g(t) dt   } \rightrightarrows A + \int_{c}^{x} g(t) dt 
 		.\] 
 	\end{proof}
-	\begin{cor}[дифференцирование равномерно сходящегося ряда]
+	\begin{cor}[Перестановка дифференцирования и суммирования]
 		Пусть есть ряд $ \sum_{n=1}^{\infty} u_n(x)$, $ c \in [a, b]$, $ \sum_{n=1}^{\infty} u_n'(x)$ равномерно сходится и ряд $ \sum_{n=1}^{\infty} u_n(c) $ сходится. Тогда ряд $ \sum_{n=1}^{\infty} u_n(x)$ сходится равномерно и
 		\[
 			\Bigl(\sum_{n=1}^{\infty} u_n(x)\Bigr)' = \sum_{n=1}^{\infty} u_n'(x)
 		.\] 
 	\end{cor}
+
+		\fontAwesomeSymbol{\faRandom}
+
 \end{enumerate}
 
 \section{Степенные ряды}
@@ -146,7 +149,6 @@
 \begin{cor}
 	Сумма степенного ряда непрерывна в шаре $ B(0, R_{\text{сх}})$, так как частичные суммы будут непрерывными функциями, которые равномерно сходятся, следовательно, сходятся к непрерывной функции. 
 \end{cor}
-
 \begin{thm}[Теорема Абеля]
 	Рассмотрим ряд $ \sum_{n=0}^{\infty} a_n z^{n}$,  радиус сходимости равен $ R$. Предположим, что в точке $ z$ есть сходимость. Тогда  $ \sum_{n=0}^{\infty} a_n x^{n}$ сходится на $ [0, R]$ равномерно.
 	В частности,
@@ -191,8 +193,11 @@
 	\end{aligned}
 	\]
 \end{proof}
+
+		\fontAwesomeSymbol{\faEmpire}
+
 \begin{thm}
-	Пусть есть вещественный степенной ряд $ \sum_{n=0}^{\infty} a_{n}(x - x_0)^{n}$, его ряд сходимость равен $ R$.
+	Пусть есть вещественный степенной ряд $ \sum_{n=0}^{\infty} a_{n}(x - x_0)^{n}$, его радиус сходимость равен $ R$.
 	Тогда его можно проинтегрировать почленно для всех $ x$, что $ \lvert x - x_0 \rvert < R$:
 	\[
 		\int_{x_0}^{x} \sum_{n=0}^{\infty} a_{n} (t - x_0) ^{n} dt = \sum_{n=0}^{\infty} \int_{x_0}^{x} a_n (t - x_0)^{n} dt = \sum_{n=0}^{\infty} a_{n} \frac{(x-x_0)^{n+1}}{n+1} 
@@ -275,6 +280,8 @@
 .\] 
 \end{defn}
 
+		\fontAwesomeSymbol{\faTaxi}
+
 \section{Разложение элементарных функций в ряды Тейлора}
 Запишем разложения, которые нам уже известны
 \begin{enumerate}
@@ -284,11 +291,11 @@
     .\] 
 \item $ \sin x$ 
 	\[
-		\forall x \in \R \qquad \sin x = \sum_{n=0}^{\infty} (-1)^{n+1} \frac{x^{2n+1}}{(2n+1)!}
+		\forall x \in \R \qquad \sin x = \sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!}
 	.\] 
 \item $ \cos x$ 
 	\[
-		\forall x \in \R \qquad \cos x =\sum_{n=0}^{\infty} (-1)^{n+1} \frac{x^{2n}}{(2n)!}
+		\forall x \in \R \qquad \cos x =\sum_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!}
 	.\] 
 \end{enumerate} 
 \begin{defn}
