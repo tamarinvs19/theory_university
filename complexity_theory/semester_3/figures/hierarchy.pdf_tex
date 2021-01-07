@@ -54,8 +54,8 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0.49382371,0.00987848){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\P$\end{tabular}}}}%
-    \put(0.63213922,0.01944877){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\NP=\PI^1$\end{tabular}}}}%
-    \put(0.25098676,0.01918595){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\coNP = \SIGMA^1 $\end{tabular}}}}%
+    \put(0.63213922,0.01944877){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\NP=\SIGMA^1\P$\end{tabular}}}}%
+    \put(0.25098676,0.01918595){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\coNP = \PI^1\P $\end{tabular}}}}%
     \put(0.85628039,0.1242261){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\SIGMA ^{2}\P $\end{tabular}}}}%
     \put(0.12323354,0.12311496){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\PI^{2}\P$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{hierarchy.pdf}}%
