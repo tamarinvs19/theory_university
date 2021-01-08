@@ -5,7 +5,7 @@
 
 ## Неточности, ошибки
 Буду рад, если сообщите об ошибках или предложите более качественную запись какого-то места в конспекте.
-Пишите на почту (`tamarin.vs@yandex.ru`), в ВК, или исправляйте самостоятельно и делайте `pull request`, или [`issue`](https://github.com/tamarinvs19/theory_university/issues/new/choose).
+Пишите на почту (`tamarin.vs@yandex.ru`), в ВК, или исправляйте самостоятельно и делайте `pull request` или [`issue`](https://github.com/tamarinvs19/theory_university/issues/new/choose).
 
 ## Информация о конспектах
 ### Третий семестр (МКН, Современное программирование)
