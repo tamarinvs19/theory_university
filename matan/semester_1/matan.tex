@@ -17,6 +17,7 @@
 \usepackage{epstopdf}
 \usepackage{enumitem}
 
+
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=1.5cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
@@ -96,10 +97,18 @@
     Факультет математики и компьютерных наук, СПбГУ\\
 (лекции Кислякова Сергея Витальевича)}
 \author{Тамарин Вячеслав}
+\usepackage{datetime}
+\newdate{date}{20}{01}{2020}
+\date{\displaydate{date}}
+\renewcommand\UrlFont{\color{cyan}\ttfamily}
+
 
 \begin{document}
 \maketitle
 \tableofcontents
+
+\hspace{1em}
+{\center Исходный код на \url{https://github.com/tamarinvs19/theory_university}}
 
 
 \chapter{Введение}
@@ -2505,8 +2514,10 @@ $$[\Phi(x)](h) = \Phi(x; h) = c(x)h$$
 \begin{st}
     $ \Phi = c \cdot dx$, где  $ c$ - некая функция на $ \langle a, b \rangle$
 \end{st}
-$ f' = g \\
-df = f' dx = g dx$
+\begin{align*}
+& f' = g \\
+& df = f' dx = g dx
+\end{align*}
 
 Задача первообразной: дана линейная форма $ \varphi = g dx$ ; найти функцию $ f: df = \varphi $
 \begin{st}
@@ -3558,11 +3569,13 @@ $ f$ имеет $ n+1$ производную на отрезке  $ I$,  $ t, a
 \end{ex}
 $ f(x) = (1+x)^{m}, \qquad m \in \R $
 
-$ f'(x) = m(1+x)^{m-1} \\
-f''(x) = m(m-1)(1+x)^{m-1} \\
-\vdots \\
-f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k}
-$
+\begin{align*}
+& f'(x) = m(1+x)^{m-1} \\
+& f''(x) = m(m-1)(1+x)^{m-1} \\
+& \vdots \\
+& f^{(k)}(x) = m(m-1) \ldots (m-k-1) (1+x) ^{m-k}
+\end{align*}
+
 \begin{name}
     \[
 	{m \choose k} = \frac{m (m-1) \ldots  (m-k+1)}{k!}
