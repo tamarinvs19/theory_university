@@ -1,7 +1,4 @@
-\usepackage[utf8]{inputenc}
-% \usepackage[T2A]{fontenc}
 \usepackage[english, russian]{babel}
-% \usepackage{eufrak}
 \usepackage{xltxtra}
 \usepackage{polyglossia}
 
@@ -19,8 +16,8 @@ BoldItalicFont=STIX2Text-BoldItalic.otf
 ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 ]
 
-\usepackage{makeidx}
 
+\usepackage{makeidx}
 \usepackage{amssymb, amsthm}
 \usepackage{amsmath}
 \usepackage{mathtools}
@@ -28,17 +25,18 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \usepackage{enumitem}
 \usepackage{cancel}
 \usepackage{fdsymbol}
+\usepackage{fontawesome}
+
 
 % разметка страницы и колонтитул
-\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1cm,bindingoffset=0cm]{geometry}
+\usepackage[left=2cm,right=2cm,top=1cm,bottom=1.1cm,bindingoffset=0cm]{geometry}
 \usepackage{fancybox,fancyhdr}
 \fancyhf{}
 \fancyhead[R]{\thepage}
 \fancyhead[L]{\rightmark}
-% \fancyfoot[RO,LE]{\thesection}
-\fancyfoot[C]{\leftmark}
+\fancyfoot{}
+\fancyhfoffset{0pt}
 \addtolength{\headheight}{13pt}
-
 \pagestyle{fancy}
 
 % Отступы
@@ -47,17 +45,16 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{epstopdf}
 
 \usepackage{import}
 \usepackage{xifthen}
 \usepackage{pdfpages}
-\usepackage{transparent}
 
 \newcommand{\incfig}[1]{%
     \def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
 }
+
 
 \usepackage{xifthen}
 \makeatother
@@ -73,6 +70,7 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 }
 \makeatletter
 
+
 \usepackage{xcolor}
 \definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
 \definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
@@ -80,30 +78,6 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \definecolor{Cyan}{cmyk}{56, 0, 0, 100}
 \definecolor{Gray}{gray}{0.3}
 
-\newcommand{\K}{\mathcal{K}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\Cm}{\mathbb{C}}
-\newcommand{\Pm}{\mathbb{P}}
-\newcommand{\ord}{\operatorname{ord}}
-\newcommand{\lcm}{\operatorname{lcm}}
-\newcommand{\sign}{\operatorname{sign}}
-\newcommand{\E}{\mathbb{E}}
-
-\renewcommand{\o}{o}
-\renewcommand{\O}{\mathcal{O}}
-\renewcommand{\le}{\leqslant}
-\renewcommand{\ge}{\geqslant}
-
-\def\mybf#1{\textbf{#1}}
-\def\selectedFont#1{\textbf{#1}}
-% \def\mybf#1{{\usefont{T2A}{cmr}{m}{n}\textbf{#1}}}
-
-% \usefont{T2A}{lmr}{m}{n}
-% \usepackage{gentium}
-% \usepackage{CormorantGaramond}
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
@@ -131,15 +105,13 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
-% \mdtheorem[style=thmstyle]{thm}{Теорема}
 \newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 
-\theoremstyle{plain}
 \newtheorem*{st}{Утверждение}
 \newtheorem*{prop}{Свойства}
 
-\theoremstyle{definition}
+\theoremstyle{plain}
 \newtheorem*{name}{Обозначение}
 
 \theoremstyle{remark}
@@ -149,22 +121,46 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newtheorem*{prac}{Упражнение}
 \newtheorem*{probl}{Задача}
 
-\usepackage{fontawesome}
+
 \renewcommand{\proofname}{Доказательство}
 \renewenvironment{proof}
 { \hspace{\stretch{1}}\\ \faSquareO\quad \small  }
 { \hspace{\stretch{1}}  \faSquare \normalsize }
 
-%{\fontsize{50}{60}\selectfont \faLinux}
 
 \numberwithin{ex}{section}
 \numberwithin{thm}{section}
 \numberwithin{equation}{section}
 
+
+
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\E}{\mathbb{E}}
+
+\renewcommand{\o}{o}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\def\mybf#1{\textbf{#1}}
+\def\selectedFont#1{\textbf{#1}}
+\def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
+\def\LanguageFont#1{{\textbf{\texttt{#1}}}}
+
+
 \newcommand{\Cclass}{\mathcal{C}}
 \newcommand{\Dclass}{\mathcal{D}}
 
-\def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
+
 \renewcommand{\P}{\ComplexityFont{P}}
 \newcommand{\DTIME}{\ComplexityFont{DTime}}
 \newcommand{\DTime}{\ComplexityFont{DTime}}
@@ -175,7 +171,6 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\coNSpace}{\ComplexityFont{coNSpace}}
 \newcommand{\NPSPACE}{\ComplexityFont{NPSPACE}}
 \newcommand{\poly}{\ComplexityFont{poly}}
-\newcommand{\FACTOR}{\ComplexityFont{FACTOR}}
 \newcommand{\RP}{\ComplexityFont{RP}}
 \newcommand{\coRP}{\ComplexityFont{co-RP}}
 \newcommand{\ZPP}{\ComplexityFont{ZPP}}
@@ -200,7 +195,7 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\NC}{\ComplexityFont{NC}}
 
 
-\def\LanguageFont#1{{\textbf{\texttt{#1}}}}
+\newcommand{\FACTOR}{\LanguageFont{FACTOR}}
 \newcommand{\kQBF}{{\LanguageFont{QBF{\tiny k}}}}
 \newcommand{\QBFk}{{\LanguageFont{QBF{\tiny k}}}}
 \newcommand{\QBF}{{\LanguageFont{QBF}}}
@@ -230,4 +225,3 @@ ExternalLocation={/home/vyacheslav/builds/STIXv2.0.2/OTF/}
 \newcommand{\PI}{\Uppi}
 \newcommand{\SIGMA}{\Upsigma}
 \newcommand{\DELTA}{\Updelta}
-
