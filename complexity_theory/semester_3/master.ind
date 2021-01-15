@@ -1,78 +1,80 @@
 \begin{theindex}
 
-  \item $ \Delta ^{i}\P$ , \hyperpage{15}
-  \item $ \PI^i\P$ , \hyperpage{15}
-  \item $ \SIGMA^{i}\P$, \hyperpage{15}
-  \item $ \tNP$, \hyperpage{9}
-  \item $\NC^{i}$, \hyperpage{23}
-  \item $\kQBF$, \hyperpage{16}
-  \item $\tP$, \hyperpage{9}
-  \item $\tThreeSAT$, \hyperpage{12}
+  \item $ \Delta ^{i}\P$ , \hyperpage{12}
+  \item $ \PI^i\P$ , \hyperpage{12}
+  \item $ \SIGMA^{i}\P$, \hyperpage{12}
+  \item $ \tNP$, \hyperpage{7}
+  \item $\DTIME$, \hyperpage{6}
+  \item $\NC^{i}$, \hyperpage{21}
+  \item $\NP$, \hyperpage{7}
+  \item $\P$, \hyperpage{6}
+  \item $\kQBF$, \hyperpage{14}
+  \item $\tP$, \hyperpage{7}
+  \item $\tThreeSAT$, \hyperpage{10}
   \item \BH, задача об ограниченной подстановке, 
-		\hyperpage{11}
-  \item \BPP, \hyperpage{27}
-  \item \BQP, \hyperpage{31}
-  \item \CircuitEval, \hyperpage{24}
-  \item \CircuitSat, \hyperpage{12}
-  \item \DSpace, \hyperpage{17}
-  \item \DTIME, \hyperpage{8}
-  \item \L, \hyperpage{22}
-  \item \NC, \hyperpage{23}
-  \item \NL, \hyperpage{22}
-  \item \NP, \hyperpage{9, 10}
-  \item \NPSPACE, \hyperpage{21}
-  \item \NSpace, \hyperpage{21}
-  \item \P, \hyperpage{8, 9}
-  \item \PH, \hyperpage{15}
-  \item \PSPACE, \hyperpage{17}
-  \item \Ppoly, \hyperpage{19}
-  \item \RP, \hyperpage{27}
-  \item \STCON, \hyperpage{21}
-  \item \Size, \hyperpage{19, 20}
-  \item \ZPP, \hyperpage{27}
+		\hyperpage{9}
+  \item \BPP, \hyperpage{24}
+  \item \BQP, \hyperpage{28}
+  \item \CircuitEval, \hyperpage{21}
+  \item \CircuitSat, \hyperpage{10}
+  \item \DSpace, \hyperpage{15}
+  \item \L, \hyperpage{20}
+  \item \NC, \hyperpage{21}
+  \item \NL, \hyperpage{20}
+  \item \NP, \hyperpage{8}
+  \item \NPSPACE, \hyperpage{19}
+  \item \NSpace, \hyperpage{19}
+  \item \P, \hyperpage{7}
+  \item \PH, \hyperpage{12}
+  \item \PSPACE, \hyperpage{15}
+  \item \Ppoly, \hyperpage{17}
+  \item \RP, \hyperpage{24}
+  \item \STCON, \hyperpage{19}
+  \item \Size, \hyperpage{17, 18}
+  \item \ZPP, \hyperpage{24}
   \item \logspace-равномерное семейство схем, 
-		\hyperpage{23}
+		\hyperpage{20}
 
   \indexspace
 
-  \item  $ \QBF$ , \hyperpage{17}
+  \item  $ \QBF$ , \hyperpage{15}
 
   \indexspace
 
-  \item булевы схемы, \hyperpage{12}
-  \item время работы МТ, \hyperpage{6}
-  \item индивидуальная задача, \hyperpage{5}
-  \item используемая память, \hyperpage{6}
-  \item класс дополнений, \hyperpage{14}
+  \item булевы схемы, \hyperpage{10}
+  \item время работы МТ, \hyperpage{4}
+  \item индивидуальная задача, \hyperpage{3}
+  \item используемая память, \hyperpage{4}
+  \item класс дополнений, \hyperpage{12}
   \item конструируемая по времени функция, 
-		\hyperpage{8}
-  \item массовая задача, \hyperpage{5}
-  \item машина Тьюринга детерминированная, 
 		\hyperpage{6}
+  \item массовая задача, \hyperpage{3}
+  \item машина Тьюринга детерминированная, 
+		\hyperpage{4}
   \item машина Тьюринга недетерминированная, 
-		\hyperpage{9}
+		\hyperpage{7}
   \item машина Тьюринга оракульная, 
-		\hyperpage{11}
-  \item полиномиальная иерархия, \hyperpage{14}
-  \item полиномиально ограниченная задача, 
-		\hyperpage{8}
-  \item полиномиально проверяемая задача, 
 		\hyperpage{9}
-  \item полиномиальные схемы, \hyperpage{19}
-  \item полная задача, \hyperpage{11}
+  \item полиномиальная иерархия, \hyperpage{12}
+  \item полиномиально ограниченная задача, 
+		\hyperpage{7}
+  \item полиномиально проверяемая задача, 
+		\hyperpage{7}
+  \item полиномиальные схемы, \hyperpage{17}
+  \item полная задача, \hyperpage{9}
 
   \indexspace
 
   \item равномерное семейство схем, 
-		\hyperpage{22}
-  \item сведение по Карпу, \hyperpage{10}
-  \item сведение по Левину, \hyperpage{10}
-  \item сведение по Тьюрингу, \hyperpage{11}
+		\hyperpage{20}
+  \item сведение по Карпу, \hyperpage{8}
+  \item сведение по Левину, \hyperpage{8}
+  \item сведение по Тьюрингу, \hyperpage{9}
   \item теорема Иммермана-Клапана, 
-		\hyperpage{25}
-  \item теорема Карпа-Липтона, \hyperpage{20}
-  \item теорема Кука-Левина, \hyperpage{12}
-  \item трудная задача, \hyperpage{11}
-  \item язык, \hyperpage{5}
+		\hyperpage{23}
+  \item теорема Карпа-Липтона, \hyperpage{18}
+  \item теорема Кука-Левина, \hyperpage{11}
+  \item трудная задача, \hyperpage{9}
+  \item язык, \hyperpage{3}
 
 \end{theindex}
