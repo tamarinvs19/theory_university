@@ -73,5 +73,16 @@
     \put(0.49705648,0.04122639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_{i_5}$\end{tabular}}}}%
     \put(0.21197122,0.41744673){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Синхронизация головок}$\end{tabular}}}}%
     \put(0.49615984,0.0956558){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$d_{i_4}$\end{tabular}}}}%
+    \put(0.54916343,0.15541292){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{i_3+1}$\end{tabular}}}}%
+    \put(0.54948037,0.26881276){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_{i_1+1}$\end{tabular}}}}%
+    \put(0.54948037,0.20989494){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i_2+1}$\end{tabular}}}}%
+    \put(0.54973846,0.04523698){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_{i_5+1}$\end{tabular}}}}%
+    \put(0.54884183,0.09966639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$d_{i_4+1}$\end{tabular}}}}%
+    \put(0.81128592,0.38188447){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\begin{minipage}{0.14285711\unitlength}\raggedright \end{minipage}}}%
+    \put(0.42910785,0.15477939){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{i_3-1}$\end{tabular}}}}%
+    \put(0.4294248,0.26817923){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_{i_1-1}$\end{tabular}}}}%
+    \put(0.4294248,0.20926141){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i_2-1}$\end{tabular}}}}%
+    \put(0.42968289,0.04460345){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_{i_5-1}$\end{tabular}}}}%
+    \put(0.42878626,0.09903286){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$d_{i_4-1}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

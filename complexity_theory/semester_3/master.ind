@@ -4,40 +4,40 @@
   \item $ \PI^i\P$ , \hyperpage{13}
   \item $ \SIGMA^{i}\P$, \hyperpage{13}
   \item $ \tNP$, \hyperpage{7}
-  \item $\DTIME$, \hyperpage{6}
-  \item $\NC^{i}$, \hyperpage{21}
+  \item $\DTIME$, \hyperpage{7}
+  \item $\NC^{i}$, \hyperpage{22}
   \item $\NP$, \hyperpage{7}
   \item $\P$, \hyperpage{7}
-  \item $\kQBF$, \hyperpage{14}
+  \item $\kQBF$, \hyperpage{15}
   \item $\tP$, \hyperpage{7}
   \item $\tThreeSAT$, \hyperpage{11}
   \item \BH, задача об ограниченной подстановке, 
 		\hyperpage{10}
-  \item \BPP, \hyperpage{24}
-  \item \BQP, \hyperpage{28}
-  \item \CircuitEval, \hyperpage{22}
+  \item \BPP, \hyperpage{26}
+  \item \BQP, \hyperpage{30}
+  \item \CircuitEval, \hyperpage{23}
   \item \CircuitSat, \hyperpage{10}
-  \item \DSpace, \hyperpage{15}
-  \item \L, \hyperpage{20}
-  \item \NC, \hyperpage{21}
-  \item \NL, \hyperpage{20}
+  \item \DSpace, \hyperpage{16}
+  \item \L, \hyperpage{21}
+  \item \NC, \hyperpage{22}
+  \item \NL, \hyperpage{21}
   \item \NP, \hyperpage{8}
-  \item \NPSPACE, \hyperpage{19}
-  \item \NSpace, \hyperpage{19}
-  \item \P, \hyperpage{7}
+  \item \NPSPACE, \hyperpage{20}
+  \item \NSpace, \hyperpage{20}
+  \item \P, \hyperpage{8}
   \item \PH, \hyperpage{13}
   \item \PSPACE, \hyperpage{16}
-  \item \Ppoly, \hyperpage{18}
-  \item \RP, \hyperpage{24}
-  \item \STCON, \hyperpage{19}
-  \item \Size, \hyperpage{18}
-  \item \ZPP, \hyperpage{24, 25}
+  \item \Ppoly, \hyperpage{19}
+  \item \RP, \hyperpage{25}
+  \item \STCON, \hyperpage{21}
+  \item \Size, \hyperpage{19}
+  \item \ZPP, \hyperpage{26}
   \item \logspace-равномерное семейство схем, 
-		\hyperpage{21}
+		\hyperpage{22}
 
   \indexspace
 
-  \item  $ \QBF$ , \hyperpage{16}
+  \item  $ \QBF$ , \hyperpage{17}
 
   \indexspace
 
@@ -60,21 +60,21 @@
 		\hyperpage{7}
   \item полиномиально проверяемая задача, 
 		\hyperpage{7}
-  \item полиномиальные схемы, \hyperpage{18}
-  \item полная задача, \hyperpage{9}
+  \item полиномиальные схемы, \hyperpage{19}
+  \item полная задача, \hyperpage{10}
 
   \indexspace
 
   \item равномерное семейство схем, 
-		\hyperpage{21}
-  \item сведение по Карпу, \hyperpage{8}
-  \item сведение по Левину, \hyperpage{8}
+		\hyperpage{22}
+  \item сведение по Карпу, \hyperpage{9}
+  \item сведение по Левину, \hyperpage{9}
   \item сведение по Тьюрингу, \hyperpage{9}
   \item теорема Иммермана-Клапана, 
-		\hyperpage{23}
-  \item теорема Карпа-Липтона, \hyperpage{18}
+		\hyperpage{24}
+  \item теорема Карпа-Липтона, \hyperpage{19}
   \item теорема Кука-Левина, \hyperpage{11}
-  \item трудная задача, \hyperpage{9}
+  \item трудная задача, \hyperpage{10}
   \item язык, \hyperpage{3}
 
 \end{theindex}
