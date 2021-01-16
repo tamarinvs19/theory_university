@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{425.5949534bp}%
+    \setlength{\unitlength}{595.27559055bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,23 +50,27 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.66838152)%
+  \begin{picture}(1,0.74238826)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{two-bands.pdf}}%
-    \put(0.03154024,0.62884783){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_1$\end{tabular}}}}%
-    \put(0.097923,0.62906938){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_1$\end{tabular}}}}%
-    \put(0.16474886,0.62906938){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_1$\end{tabular}}}}%
-    \put(0.23181655,0.62930588){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_2$\end{tabular}}}}%
-    \put(0.297716,0.62914937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_2$\end{tabular}}}}%
-    \put(0.37191741,0.62994046){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ldots $\end{tabular}}}}%
+    \put(0.49648145,0.1514023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{i_3}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{two-bands.pdf}}%
-    \put(0.33183505,0.43119414){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Разрезаем и получаем две односторонние ленты}$\end{tabular}}}}%
+    \put(0.23667721,0.69531887){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_1$\end{tabular}}}}%
+    \put(0.27812261,0.695427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_1$\end{tabular}}}}%
+    \put(0.31984517,0.695427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_1$\end{tabular}}}}%
+    \put(0.36171845,0.69554245){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_2$\end{tabular}}}}%
+    \put(0.40286234,0.69546606){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_2$\end{tabular}}}}%
+    \put(0.44918975,0.69585219){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ldots $\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{two-bands.pdf}}%
-    \put(0.54910238,0.22663937){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Первая лента}$\end{tabular}}}}%
-    \put(0.55087461,0.16446552){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Вторая лента}$\end{tabular}}}}%
-    \put(0.55427261,0.10079101){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ldots $\end{tabular}}}}%
-    \put(0.19274932,0.10155202){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Головки}$\end{tabular}}}}%
+    \put(0.21444627,0.72577919){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{По очереди берем по одному элементу из каждой ленты}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=4]{two-bands.pdf}}%
+    \put(0.21426265,0.61032611){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Разрезаем двустороннюю ленту на две односторонние}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{two-bands.pdf}}%
+    \put(0.49679831,0.26480217){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_{i_1}$\end{tabular}}}}%
+    \put(0.49679831,0.20588435){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i_2}$\end{tabular}}}}%
+    \put(0.49705648,0.04122639){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$e_{i_5}$\end{tabular}}}}%
+    \put(0.21197122,0.41744673){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Синхронизация головок}$\end{tabular}}}}%
+    \put(0.49615984,0.0956558){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$d_{i_4}$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

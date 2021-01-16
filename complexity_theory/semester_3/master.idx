@@ -6,7 +6,7 @@
 \indexentry{используемая память|hyperpage}{4}
 \indexentry{конструируемая по времени функция|hyperpage}{6}
 \indexentry{$\DTIME$|hyperpage}{6}
-\indexentry{$\P$|hyperpage}{6}
+\indexentry{$\P$|hyperpage}{7}
 \indexentry{полиномиально ограниченная задача|hyperpage}{7}
 \indexentry{полиномиально проверяемая задача|hyperpage}{7}
 \indexentry{$ \tNP$|hyperpage}{7}
@@ -21,12 +21,12 @@
 \indexentry{сведение по Тьюрингу|hyperpage}{9}
 \indexentry{трудная задача|hyperpage}{9}
 \indexentry{полная задача|hyperpage}{9}
-\indexentry{\BH, задача об ограниченной подстановке|hyperpage}{9}
+\indexentry{\BH, задача об ограниченной подстановке|hyperpage}{10}
 \indexentry{булевы схемы|hyperpage}{10}
 \indexentry{\CircuitSat|hyperpage}{10}
-\indexentry{$\tThreeSAT$|hyperpage}{10}
+\indexentry{$\tThreeSAT$|hyperpage}{11}
 \indexentry{теорема Кука-Левина|hyperpage}{11}
-\indexentry{класс дополнений|hyperpage}{12}
+\indexentry{класс дополнений|hyperpage}{13}
 \indexentry{полиномиальная иерархия|hyperpage}{13}
 \indexentry{\PH|hyperpage}{13}
 \indexentry{$ \SIGMA^{i}\P$|hyperpage}{13}
