@@ -1,8 +1,8 @@
 \begin{theindex}
 
-  \item $ \Delta ^{i}\P$ , \hyperpage{12}
-  \item $ \PI^i\P$ , \hyperpage{12}
-  \item $ \SIGMA^{i}\P$, \hyperpage{12}
+  \item $ \Delta ^{i}\P$ , \hyperpage{13}
+  \item $ \PI^i\P$ , \hyperpage{13}
+  \item $ \SIGMA^{i}\P$, \hyperpage{13}
   \item $ \tNP$, \hyperpage{7}
   \item $\DTIME$, \hyperpage{6}
   \item $\NC^{i}$, \hyperpage{21}
@@ -15,7 +15,7 @@
 		\hyperpage{9}
   \item \BPP, \hyperpage{24}
   \item \BQP, \hyperpage{28}
-  \item \CircuitEval, \hyperpage{21}
+  \item \CircuitEval, \hyperpage{22}
   \item \CircuitSat, \hyperpage{10}
   \item \DSpace, \hyperpage{15}
   \item \L, \hyperpage{20}
@@ -25,19 +25,19 @@
   \item \NPSPACE, \hyperpage{19}
   \item \NSpace, \hyperpage{19}
   \item \P, \hyperpage{7}
-  \item \PH, \hyperpage{12}
-  \item \PSPACE, \hyperpage{15}
-  \item \Ppoly, \hyperpage{17}
+  \item \PH, \hyperpage{13}
+  \item \PSPACE, \hyperpage{16}
+  \item \Ppoly, \hyperpage{18}
   \item \RP, \hyperpage{24}
   \item \STCON, \hyperpage{19}
-  \item \Size, \hyperpage{17, 18}
-  \item \ZPP, \hyperpage{24}
+  \item \Size, \hyperpage{18}
+  \item \ZPP, \hyperpage{24, 25}
   \item \logspace-равномерное семейство схем, 
-		\hyperpage{20}
+		\hyperpage{21}
 
   \indexspace
 
-  \item  $ \QBF$ , \hyperpage{15}
+  \item  $ \QBF$ , \hyperpage{16}
 
   \indexspace
 
@@ -52,21 +52,21 @@
   \item машина Тьюринга детерминированная, 
 		\hyperpage{4}
   \item машина Тьюринга недетерминированная, 
-		\hyperpage{7}
+		\hyperpage{8}
   \item машина Тьюринга оракульная, 
 		\hyperpage{9}
-  \item полиномиальная иерархия, \hyperpage{12}
+  \item полиномиальная иерархия, \hyperpage{13}
   \item полиномиально ограниченная задача, 
 		\hyperpage{7}
   \item полиномиально проверяемая задача, 
 		\hyperpage{7}
-  \item полиномиальные схемы, \hyperpage{17}
+  \item полиномиальные схемы, \hyperpage{18}
   \item полная задача, \hyperpage{9}
 
   \indexspace
 
   \item равномерное семейство схем, 
-		\hyperpage{20}
+		\hyperpage{21}
   \item сведение по Карпу, \hyperpage{8}
   \item сведение по Левину, \hyperpage{8}
   \item сведение по Тьюрингу, \hyperpage{9}

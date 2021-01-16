@@ -13,7 +13,7 @@
 \indexentry{$\tP$|hyperpage}{7}
 \indexentry{$\NP$|hyperpage}{7}
 \indexentry{\P|hyperpage}{7}
-\indexentry{машина Тьюринга недетерминированная|hyperpage}{7}
+\indexentry{машина Тьюринга недетерминированная|hyperpage}{8}
 \indexentry{\NP|hyperpage}{8}
 \indexentry{сведение по Карпу|hyperpage}{8}
 \indexentry{сведение по Левину|hyperpage}{8}
@@ -27,18 +27,18 @@
 \indexentry{$\tThreeSAT$|hyperpage}{10}
 \indexentry{теорема Кука-Левина|hyperpage}{11}
 \indexentry{класс дополнений|hyperpage}{12}
-\indexentry{полиномиальная иерархия|hyperpage}{12}
-\indexentry{\PH|hyperpage}{12}
-\indexentry{$ \SIGMA^{i}\P$|hyperpage}{12}
-\indexentry{$ \PI^i\P$ |hyperpage}{12}
-\indexentry{$ \Delta ^{i}\P$ |hyperpage}{12}
+\indexentry{полиномиальная иерархия|hyperpage}{13}
+\indexentry{\PH|hyperpage}{13}
+\indexentry{$ \SIGMA^{i}\P$|hyperpage}{13}
+\indexentry{$ \PI^i\P$ |hyperpage}{13}
+\indexentry{$ \Delta ^{i}\P$ |hyperpage}{13}
 \indexentry{$\kQBF$|hyperpage}{14}
 \indexentry{\DSpace|hyperpage}{15}
-\indexentry{\PSPACE|hyperpage}{15}
-\indexentry{ $ \QBF$ |hyperpage}{15}
-\indexentry{\Size|hyperpage}{17}
-\indexentry{полиномиальные схемы|hyperpage}{17}
-\indexentry{\Ppoly|hyperpage}{17}
+\indexentry{\PSPACE|hyperpage}{16}
+\indexentry{ $ \QBF$ |hyperpage}{16}
+\indexentry{\Size|hyperpage}{18}
+\indexentry{полиномиальные схемы|hyperpage}{18}
+\indexentry{\Ppoly|hyperpage}{18}
 \indexentry{\Size|hyperpage}{18}
 \indexentry{теорема Карпа-Липтона|hyperpage}{18}
 \indexentry{\NSpace|hyperpage}{19}
@@ -46,14 +46,14 @@
 \indexentry{\STCON|hyperpage}{19}
 \indexentry{\L|hyperpage}{20}
 \indexentry{\NL|hyperpage}{20}
-\indexentry{равномерное семейство схем|hyperpage}{20}
-\indexentry{\logspace-равномерное семейство схем|hyperpage}{20}
+\indexentry{равномерное семейство схем|hyperpage}{21}
+\indexentry{\logspace-равномерное семейство схем|hyperpage}{21}
 \indexentry{$\NC^{i}$|hyperpage}{21}
 \indexentry{\NC|hyperpage}{21}
-\indexentry{\CircuitEval|hyperpage}{21}
+\indexentry{\CircuitEval|hyperpage}{22}
 \indexentry{теорема Иммермана-Клапана|hyperpage}{23}
 \indexentry{\RP|hyperpage}{24}
 \indexentry{\ZPP|hyperpage}{24}
 \indexentry{\BPP|hyperpage}{24}
-\indexentry{\ZPP|hyperpage}{24}
+\indexentry{\ZPP|hyperpage}{25}
 \indexentry{\BQP|hyperpage}{28}
