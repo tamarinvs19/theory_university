@@ -1,11 +1,11 @@
 \begin{theindex}
 
-  \item $ \Delta ^{i}\P$ , \hyperpage{13}
-  \item $ \PI^i\P$ , \hyperpage{13}
-  \item $ \SIGMA^{i}\P$, \hyperpage{13}
+  \item $ \Delta ^{i}\P$ , \hyperpage{14}
+  \item $ \PI^i\P$ , \hyperpage{14}
+  \item $ \SIGMA^{i}\P$, \hyperpage{14}
   \item $ \tNP$, \hyperpage{7}
   \item $\DTIME$, \hyperpage{7}
-  \item $\NC^{i}$, \hyperpage{22}
+  \item $\NC^{i}$, \hyperpage{23}
   \item $\NP$, \hyperpage{7}
   \item $\P$, \hyperpage{7}
   \item $\kQBF$, \hyperpage{15}
@@ -16,22 +16,22 @@
   \item \BPP, \hyperpage{26}
   \item \BQP, \hyperpage{30}
   \item \CircuitEval, \hyperpage{23}
-  \item \CircuitSat, \hyperpage{10}
-  \item \DSpace, \hyperpage{16}
-  \item \L, \hyperpage{21}
-  \item \NC, \hyperpage{22}
-  \item \NL, \hyperpage{21}
-  \item \NP, \hyperpage{8}
-  \item \NPSPACE, \hyperpage{20}
-  \item \NSpace, \hyperpage{20}
+  \item \CircuitSat, \hyperpage{11}
+  \item \DSpace, \hyperpage{17}
+  \item \L, \hyperpage{22}
+  \item \NC, \hyperpage{23}
+  \item \NL, \hyperpage{22}
+  \item \NP, \hyperpage{9}
+  \item \NPSPACE, \hyperpage{21}
+  \item \NSpace, \hyperpage{21}
   \item \P, \hyperpage{8}
-  \item \PH, \hyperpage{13}
-  \item \PSPACE, \hyperpage{16}
+  \item \PH, \hyperpage{14}
+  \item \PSPACE, \hyperpage{17}
   \item \Ppoly, \hyperpage{19}
-  \item \RP, \hyperpage{25}
+  \item \RP, \hyperpage{26}
   \item \STCON, \hyperpage{21}
   \item \Size, \hyperpage{19}
-  \item \ZPP, \hyperpage{26}
+  \item \ZPP, \hyperpage{26, 27}
   \item \logspace-равномерное семейство схем, 
 		\hyperpage{22}
 
@@ -41,13 +41,13 @@
 
   \indexspace
 
-  \item булевы схемы, \hyperpage{10}
+  \item булевы схемы, \hyperpage{11}
   \item время работы МТ, \hyperpage{4}
   \item индивидуальная задача, \hyperpage{3}
   \item используемая память, \hyperpage{4}
   \item класс дополнений, \hyperpage{13}
   \item конструируемая по времени функция, 
-		\hyperpage{6}
+		\hyperpage{7}
   \item массовая задача, \hyperpage{3}
   \item машина Тьюринга детерминированная, 
 		\hyperpage{4}
@@ -55,7 +55,7 @@
 		\hyperpage{8}
   \item машина Тьюринга оракульная, 
 		\hyperpage{9}
-  \item полиномиальная иерархия, \hyperpage{13}
+  \item полиномиальная иерархия, \hyperpage{14}
   \item полиномиально ограниченная задача, 
 		\hyperpage{7}
   \item полиномиально проверяемая задача, 
@@ -69,10 +69,10 @@
 		\hyperpage{22}
   \item сведение по Карпу, \hyperpage{9}
   \item сведение по Левину, \hyperpage{9}
-  \item сведение по Тьюрингу, \hyperpage{9}
+  \item сведение по Тьюрингу, \hyperpage{10}
   \item теорема Иммермана-Клапана, 
-		\hyperpage{24}
-  \item теорема Карпа-Липтона, \hyperpage{19}
+		\hyperpage{25}
+  \item теорема Карпа-Липтона, \hyperpage{20}
   \item теорема Кука-Левина, \hyperpage{11}
   \item трудная задача, \hyperpage{10}
   \item язык, \hyperpage{3}
