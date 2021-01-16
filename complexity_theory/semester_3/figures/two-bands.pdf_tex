@@ -55,10 +55,11 @@
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{two-bands.pdf}}%
     \put(0.49648145,0.1514023){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_{i_3}$\end{tabular}}}}%
+    \put(0.34730514,0.33704363){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{Здесь зафиксированы все головки}$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{two-bands.pdf}}%
-    \put(0.23667721,0.69531887){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_1$\end{tabular}}}}%
+    \put(0.23667722,0.69531887){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_1$\end{tabular}}}}%
     \put(0.27812261,0.695427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_1$\end{tabular}}}}%
-    \put(0.31984517,0.695427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_1$\end{tabular}}}}%
+    \put(0.31984518,0.695427){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_1$\end{tabular}}}}%
     \put(0.36171845,0.69554245){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$a_2$\end{tabular}}}}%
     \put(0.40286234,0.69546606){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_2$\end{tabular}}}}%
     \put(0.44918975,0.69585219){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\ldots $\end{tabular}}}}%

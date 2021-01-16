@@ -7,12 +7,12 @@
   \item $\DTIME$, \hyperpage{6}
   \item $\NC^{i}$, \hyperpage{21}
   \item $\NP$, \hyperpage{7}
-  \item $\P$, \hyperpage{6}
+  \item $\P$, \hyperpage{7}
   \item $\kQBF$, \hyperpage{14}
   \item $\tP$, \hyperpage{7}
-  \item $\tThreeSAT$, \hyperpage{10}
+  \item $\tThreeSAT$, \hyperpage{11}
   \item \BH, задача об ограниченной подстановке, 
-		\hyperpage{9}
+		\hyperpage{10}
   \item \BPP, \hyperpage{24}
   \item \BQP, \hyperpage{28}
   \item \CircuitEval, \hyperpage{22}
@@ -45,7 +45,7 @@
   \item время работы МТ, \hyperpage{4}
   \item индивидуальная задача, \hyperpage{3}
   \item используемая память, \hyperpage{4}
-  \item класс дополнений, \hyperpage{12}
+  \item класс дополнений, \hyperpage{13}
   \item конструируемая по времени функция, 
 		\hyperpage{6}
   \item массовая задача, \hyperpage{3}
