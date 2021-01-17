@@ -1,16 +1,13 @@
 \begin{theindex}
 
-  \item $ \Delta ^{i}\P$ , \hyperpage{14}
-  \item $ \PI^i\P$ , \hyperpage{14}
-  \item $ \SIGMA^{i}\P$, \hyperpage{14}
-  \item $ \tNP$, \hyperpage{7}
-  \item $\DTIME$, \hyperpage{7}
+  \item $\Delta ^{i}\P$, \hyperpage{14}
   \item $\NC^{i}$, \hyperpage{23}
-  \item $\NP$, \hyperpage{7}
-  \item $\P$, \hyperpage{7}
-  \item $\kQBF$, \hyperpage{15}
+  \item $\PI^i\P$ , \hyperpage{14}
+  \item $\SIGMA^{i}\P$, \hyperpage{14}
+  \item $\tNP$, \hyperpage{7}
   \item $\tP$, \hyperpage{7}
   \item $\tThreeSAT$, \hyperpage{11}
+
   \item \BH, задача об ограниченной подстановке, 
 		\hyperpage{10}
   \item \BPP, \hyperpage{26}
@@ -18,26 +15,25 @@
   \item \CircuitEval, \hyperpage{23}
   \item \CircuitSat, \hyperpage{11}
   \item \DSpace, \hyperpage{17}
+  \item \DTIME, \hyperpage{7}
   \item \L, \hyperpage{22}
   \item \NC, \hyperpage{23}
   \item \NL, \hyperpage{22}
-  \item \NP, \hyperpage{9}
+  \item \NP, \hyperpage{7}, \hyperpage{9}
   \item \NPSPACE, \hyperpage{21}
   \item \NSpace, \hyperpage{21}
-  \item \P, \hyperpage{8}
+  \item \P, \hyperpage{7, 8}
   \item \PH, \hyperpage{14}
   \item \PSPACE, \hyperpage{17}
   \item \Ppoly, \hyperpage{19}
+  \item \QBF, \hyperpage{17}
   \item \RP, \hyperpage{26}
   \item \STCON, \hyperpage{21}
   \item \Size, \hyperpage{19}
   \item \ZPP, \hyperpage{26, 27}
+  \item \kQBF, \hyperpage{15}
   \item \logspace-равномерное семейство схем, 
 		\hyperpage{22}
-
-  \indexspace
-
-  \item  $ \QBF$ , \hyperpage{17}
 
   \indexspace
 
@@ -48,6 +44,8 @@
   \item класс дополнений, \hyperpage{13}
   \item конструируемая по времени функция, 
 		\hyperpage{7}
+  \item конструируемая по памяти функция, 
+		\hyperpage{17}
   \item массовая задача, \hyperpage{3}
   \item машина Тьюринга детерминированная, 
 		\hyperpage{4}

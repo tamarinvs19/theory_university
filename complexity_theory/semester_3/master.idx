@@ -5,13 +5,13 @@
 \indexentry{время работы МТ|hyperpage}{4}
 \indexentry{используемая память|hyperpage}{4}
 \indexentry{конструируемая по времени функция|hyperpage}{7}
-\indexentry{$\DTIME$|hyperpage}{7}
-\indexentry{$\P$|hyperpage}{7}
+\indexentry{\DTIME|hyperpage}{7}
+\indexentry{\P|hyperpage}{7}
 \indexentry{полиномиально ограниченная задача|hyperpage}{7}
 \indexentry{полиномиально проверяемая задача|hyperpage}{7}
-\indexentry{$ \tNP$|hyperpage}{7}
+\indexentry{$\tNP$|hyperpage}{7}
 \indexentry{$\tP$|hyperpage}{7}
-\indexentry{$\NP$|hyperpage}{7}
+\indexentry{\NP|hyperpage}{7}
 \indexentry{\P|hyperpage}{8}
 \indexentry{машина Тьюринга недетерминированная|hyperpage}{8}
 \indexentry{\NP|hyperpage}{9}
@@ -29,13 +29,14 @@
 \indexentry{класс дополнений|hyperpage}{13}
 \indexentry{полиномиальная иерархия|hyperpage}{14}
 \indexentry{\PH|hyperpage}{14}
-\indexentry{$ \SIGMA^{i}\P$|hyperpage}{14}
-\indexentry{$ \PI^i\P$ |hyperpage}{14}
-\indexentry{$ \Delta ^{i}\P$ |hyperpage}{14}
-\indexentry{$\kQBF$|hyperpage}{15}
+\indexentry{$\SIGMA^{i}\P$|hyperpage}{14}
+\indexentry{$\PI^i\P$ |hyperpage}{14}
+\indexentry{$\Delta ^{i}\P$|hyperpage}{14}
+\indexentry{\kQBF|hyperpage}{15}
 \indexentry{\DSpace|hyperpage}{17}
+\indexentry{конструируемая по памяти функция|hyperpage}{17}
 \indexentry{\PSPACE|hyperpage}{17}
-\indexentry{ $ \QBF$ |hyperpage}{17}
+\indexentry{\QBF|hyperpage}{17}
 \indexentry{\Size|hyperpage}{19}
 \indexentry{полиномиальные схемы|hyperpage}{19}
 \indexentry{\Ppoly|hyperpage}{19}
