@@ -67,7 +67,7 @@
 		\item Пусть есть алгоритм $A $, для которого $ \E t_{A}(n) \le p(n)$.
 
 			Запустим его  $ k \cdot  p(n)$ раз и прервем.
-			Тогда вероятность неверного ответа по неравенству Чернова, меньше~$ \frac{1}{k}$, а время на выполнения все еще полиномиально.
+			Тогда вероятность неверного ответа по неравенству МАРКОВА, меньше~$ \frac{1}{k}$, а время на выполнения все еще полиномиально.
 	\end{itemize}
 \end{proof}
 
@@ -80,7 +80,7 @@
 		\item
 			Вероятностный алгоритм дополнительно получает случайную строку (подсказку)\footnote{Всегда можно считать, что ее длина не больше времени работы, так как дальше мы ее просто не прочитаем.
 			Еще можно считать, что длины всех случайных срок равны.}.
-			Назовем ее \textit{хорошей} для входа $ x$, если она приводит к правильному ответу, и \textit{плохой} иначе.
+			Назовем ее \textit{хорошей} подсказкой для входа $ x$, если она приводит к правильному ответу, и \textit{плохой} иначе.
 
 			Давайте уменьшим ошибку до $ \frac{1}{4^{n}}$. %Тогда доля хороших будет равна $ 1 - \frac{1}{4^{n}}$.
 
@@ -120,7 +120,7 @@
 
 			Если мы покроем полиномиальным количеством копий, то получим следующее:
 			\[
-				\exists \{t_{i}\}_{i=1}^{k} ~ \forall r \in U ~ \bigvee_{i=1}^{k} (r \in A_k \oplus t_i)
+				\exists \{t_{i}\}_{i=1}^{k} ~ \forall r \in U ~ \bigvee_{i=1}^{k} (r \in A_x \oplus t_i)
 			.\]
 			\begin{figure}[ht]
 				\centering
@@ -141,7 +141,7 @@
 			\[
 			\begin{aligned}
 				\Pr \left[ \neg \left( \forall r \in U ~\bigvee_{i=1}^{k}(r \in A_x \oplus t_i) \right)  \right] &= \Pr \left[ \exists r \in U ~ \bigwedge_{i=1}^{k}\left( r \notin A_x \oplus t_i \right)  \right] \le \\
-																												 & \le \sum_{r \in U}^{} \Pr \left[ \bigwedge_{i=1}^{k} (t \notin A_x \oplus t_i) \right]  \stackrel{\text{выбирали независимо}}{=} \sum_{r \in U}^{} \prod_{i=1}^{k} \Pr [r \notin A_x \oplus t_i] \le \\
+																												 & \le \sum_{r \in U}^{} \Pr \left[ \bigwedge_{i=1}^{k} (r \notin A_x \oplus t_i) \right]  \stackrel{\text{выбирали независимо}}{=} \sum_{r \in U}^{} \prod_{i=1}^{k} \Pr [r \notin A_x \oplus t_i] \le \\
 																												 & \le \frac{1}{2^{nk}}\cdot 2 ^{p(n)}
 			\end{aligned}
 			\]
@@ -162,6 +162,9 @@
 
 
 \section{Общая картина}
+
+Ничего не известно про связь $\BPP$ c $\NP$ и $\coNP$
+
 \begin{figure}[ht]
     \centering
     \incfig{general-picture}

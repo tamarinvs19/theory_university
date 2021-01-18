@@ -1,39 +1,38 @@
 \begin{theindex}
 
-  \item $\Delta ^{i}\P$, \hyperpage{14}
-  \item $\NC^{i}$, \hyperpage{23}
+  \item $\Delta ^{i}\P$ , \hyperpage{14}
+  \item $\NC^{i}$, \hyperpage{24}
   \item $\PI^i\P$ , \hyperpage{14}
   \item $\SIGMA^{i}\P$, \hyperpage{14}
+  \item $\kQBF$, \hyperpage{16}
   \item $\tNP$, \hyperpage{7}
   \item $\tP$, \hyperpage{7}
-  \item $\tThreeSAT$, \hyperpage{11}
-
+  \item $\tThreeSAT$, \hyperpage{12}
   \item \BH, задача об ограниченной подстановке, 
-		\hyperpage{10}
-  \item \BPP, \hyperpage{26}
-  \item \BQP, \hyperpage{30}
-  \item \CircuitEval, \hyperpage{23}
+		\hyperpage{11}
+  \item \BPP, \hyperpage{28}
+  \item \BQP, \hyperpage{32}
+  \item \CircuitEval, \hyperpage{25}
   \item \CircuitSat, \hyperpage{11}
   \item \DSpace, \hyperpage{17}
   \item \DTIME, \hyperpage{7}
-  \item \L, \hyperpage{22}
-  \item \NC, \hyperpage{23}
-  \item \NL, \hyperpage{22}
+  \item \L, \hyperpage{23}
+  \item \NC, \hyperpage{24}
+  \item \NL, \hyperpage{23}
   \item \NP, \hyperpage{7}, \hyperpage{9}
-  \item \NPSPACE, \hyperpage{21}
-  \item \NSpace, \hyperpage{21}
+  \item \NPSPACE, \hyperpage{22}
+  \item \NSpace, \hyperpage{22}
   \item \P, \hyperpage{7, 8}
   \item \PH, \hyperpage{14}
-  \item \PSPACE, \hyperpage{17}
-  \item \Ppoly, \hyperpage{19}
-  \item \QBF, \hyperpage{17}
-  \item \RP, \hyperpage{26}
-  \item \STCON, \hyperpage{21}
-  \item \Size, \hyperpage{19}
-  \item \ZPP, \hyperpage{26, 27}
-  \item \kQBF, \hyperpage{15}
+  \item \PSPACE, \hyperpage{18}
+  \item \Ppoly, \hyperpage{20}
+  \item \QBF, \hyperpage{18}
+  \item \RP, \hyperpage{28}
+  \item \STCON, \hyperpage{22}
+  \item \Size, \hyperpage{20}
+  \item \ZPP, \hyperpage{28}
   \item \logspace-равномерное семейство схем, 
-		\hyperpage{22}
+		\hyperpage{24}
 
   \indexspace
 
@@ -41,7 +40,7 @@
   \item время работы МТ, \hyperpage{4}
   \item индивидуальная задача, \hyperpage{3}
   \item используемая память, \hyperpage{4}
-  \item класс дополнений, \hyperpage{13}
+  \item класс дополнений, \hyperpage{14}
   \item конструируемая по времени функция, 
 		\hyperpage{7}
   \item конструируемая по памяти функция, 
@@ -52,26 +51,26 @@
   \item машина Тьюринга недетерминированная, 
 		\hyperpage{8}
   \item машина Тьюринга оракульная, 
-		\hyperpage{9}
+		\hyperpage{10}
   \item полиномиальная иерархия, \hyperpage{14}
   \item полиномиально ограниченная задача, 
 		\hyperpage{7}
   \item полиномиально проверяемая задача, 
 		\hyperpage{7}
-  \item полиномиальные схемы, \hyperpage{19}
+  \item полиномиальные схемы, \hyperpage{20}
   \item полная задача, \hyperpage{10}
 
   \indexspace
 
   \item равномерное семейство схем, 
-		\hyperpage{22}
+		\hyperpage{24}
   \item сведение по Карпу, \hyperpage{9}
   \item сведение по Левину, \hyperpage{9}
   \item сведение по Тьюрингу, \hyperpage{10}
   \item теорема Иммермана-Клапана, 
-		\hyperpage{25}
-  \item теорема Карпа-Липтона, \hyperpage{20}
-  \item теорема Кука-Левина, \hyperpage{11}
+		\hyperpage{27}
+  \item теорема Карпа-Липтона, \hyperpage{21}
+  \item теорема Кука-Левина, \hyperpage{12}
   \item трудная задача, \hyperpage{10}
   \item язык, \hyperpage{3}
 

@@ -17,44 +17,44 @@
 \indexentry{\NP|hyperpage}{9}
 \indexentry{сведение по Карпу|hyperpage}{9}
 \indexentry{сведение по Левину|hyperpage}{9}
-\indexentry{машина Тьюринга оракульная|hyperpage}{9}
+\indexentry{машина Тьюринга оракульная|hyperpage}{10}
 \indexentry{сведение по Тьюрингу|hyperpage}{10}
 \indexentry{трудная задача|hyperpage}{10}
 \indexentry{полная задача|hyperpage}{10}
-\indexentry{\BH, задача об ограниченной подстановке|hyperpage}{10}
+\indexentry{\BH, задача об ограниченной подстановке|hyperpage}{11}
 \indexentry{булевы схемы|hyperpage}{11}
 \indexentry{\CircuitSat|hyperpage}{11}
-\indexentry{$\tThreeSAT$|hyperpage}{11}
-\indexentry{теорема Кука-Левина|hyperpage}{11}
-\indexentry{класс дополнений|hyperpage}{13}
+\indexentry{$\tThreeSAT$|hyperpage}{12}
+\indexentry{теорема Кука-Левина|hyperpage}{12}
+\indexentry{класс дополнений|hyperpage}{14}
 \indexentry{полиномиальная иерархия|hyperpage}{14}
 \indexentry{\PH|hyperpage}{14}
 \indexentry{$\SIGMA^{i}\P$|hyperpage}{14}
 \indexentry{$\PI^i\P$ |hyperpage}{14}
-\indexentry{$\Delta ^{i}\P$|hyperpage}{14}
-\indexentry{\kQBF|hyperpage}{15}
+\indexentry{$\Delta ^{i}\P$ |hyperpage}{14}
+\indexentry{$\kQBF$|hyperpage}{16}
 \indexentry{\DSpace|hyperpage}{17}
 \indexentry{конструируемая по памяти функция|hyperpage}{17}
-\indexentry{\PSPACE|hyperpage}{17}
-\indexentry{\QBF|hyperpage}{17}
-\indexentry{\Size|hyperpage}{19}
-\indexentry{полиномиальные схемы|hyperpage}{19}
-\indexentry{\Ppoly|hyperpage}{19}
-\indexentry{\Ppoly|hyperpage}{19}
-\indexentry{теорема Карпа-Липтона|hyperpage}{20}
-\indexentry{\NSpace|hyperpage}{21}
-\indexentry{\NPSPACE|hyperpage}{21}
-\indexentry{\STCON|hyperpage}{21}
-\indexentry{\L|hyperpage}{22}
-\indexentry{\NL|hyperpage}{22}
-\indexentry{равномерное семейство схем|hyperpage}{22}
-\indexentry{\logspace-равномерное семейство схем|hyperpage}{22}
-\indexentry{$\NC^{i}$|hyperpage}{23}
-\indexentry{\NC|hyperpage}{23}
-\indexentry{\CircuitEval|hyperpage}{23}
-\indexentry{теорема Иммермана-Клапана|hyperpage}{25}
-\indexentry{\RP|hyperpage}{26}
-\indexentry{\ZPP|hyperpage}{26}
-\indexentry{\BPP|hyperpage}{26}
-\indexentry{\ZPP|hyperpage}{27}
-\indexentry{\BQP|hyperpage}{30}
+\indexentry{\PSPACE|hyperpage}{18}
+\indexentry{\QBF|hyperpage}{18}
+\indexentry{\Size|hyperpage}{20}
+\indexentry{полиномиальные схемы|hyperpage}{20}
+\indexentry{\Ppoly|hyperpage}{20}
+\indexentry{\Ppoly|hyperpage}{20}
+\indexentry{теорема Карпа-Липтона|hyperpage}{21}
+\indexentry{\NSpace|hyperpage}{22}
+\indexentry{\NPSPACE|hyperpage}{22}
+\indexentry{\STCON|hyperpage}{22}
+\indexentry{\L|hyperpage}{23}
+\indexentry{\NL|hyperpage}{23}
+\indexentry{равномерное семейство схем|hyperpage}{24}
+\indexentry{\logspace-равномерное семейство схем|hyperpage}{24}
+\indexentry{$\NC^{i}$|hyperpage}{24}
+\indexentry{\NC|hyperpage}{24}
+\indexentry{\CircuitEval|hyperpage}{25}
+\indexentry{теорема Иммермана-Клапана|hyperpage}{27}
+\indexentry{\RP|hyperpage}{28}
+\indexentry{\ZPP|hyperpage}{28}
+\indexentry{\BPP|hyperpage}{28}
+\indexentry{\ZPP|hyperpage}{28}
+\indexentry{\BQP|hyperpage}{32}
