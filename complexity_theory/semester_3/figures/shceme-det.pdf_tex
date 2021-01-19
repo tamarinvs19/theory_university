@@ -55,23 +55,25 @@
     \setlength\tabcolsep{0pt}%
     \put(0.12702286,0.44223906){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$1$\end{tabular}}}}%
     \put(0.12906617,0.2321582){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$2$\end{tabular}}}}%
-    \put(0.11776052,0.0101497){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(n)$\end{tabular}}}}%
+    \put(0.11524067,0.00762982){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p(n)$\end{tabular}}}}%
     \put(0.51352054,0.4648584){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0.54622972,0.46478908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
+    \put(0.58899284,0.46567998){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i+1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{shceme-det.pdf}}%
-    \put(0.44746764,0.46566574){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i-1$\end{tabular}}}}%
+    \put(0.39935915,0.46522025){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i-1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{shceme-det.pdf}}%
-    \put(0.47694304,0.50556333){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{головка}$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=3]{shceme-det.pdf}}%
-    \put(0.85693223,0.32333473){\color[rgb]{0,0,0}\rotatebox{90}{\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{состояние } q$\end{tabular}}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=4]{shceme-det.pdf}}%
+    \put(0.74074702,0.44135652){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{состояние } q$\end{tabular}}}}%
     \put(0.4291499,0.33679153){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{\tiny выдаем новое значение на месте $i$} $\end{tabular}}}}%
     \put(0.45833183,0.30746007){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{\tiny перемещаем головку}$\end{tabular}}}}%
     \put(0.51489601,0.20460856){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$i$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=5]{shceme-det.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{shceme-det.pdf}}%
     \put(0.23179,0.53709576){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{вход }x$\end{tabular}}}}%
-    \put(0,0){\includegraphics[width=\unitlength,page=6]{shceme-det.pdf}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{shceme-det.pdf}}%
     \put(0.44289124,0.36670035){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{\tiny вычисляем новое состояние}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{shceme-det.pdf}}%
+    \put(0.45992753,0.44052601){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_i$\end{tabular}}}}%
+    \put(0.54905681,0.44079282){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$b_{i+1}$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{shceme-det.pdf}}%
+    \put(0.74613017,0.2285621){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\text{состояние } q$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=7]{shceme-det.pdf}}%
   \end{picture}%
 \endgroup%
