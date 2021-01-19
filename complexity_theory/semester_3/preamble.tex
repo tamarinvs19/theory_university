@@ -1,7 +1,6 @@
 \usepackage[english, russian]{babel}
 \usepackage{xltxtra}
 \usepackage{polyglossia}
-
 \usepackage{mathpazo}
 
 \defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
@@ -18,12 +17,11 @@ ExternalLocation={stix2font/}
 
 
 \usepackage{makeidx}
-\usepackage{amssymb, amsthm}
+\usepackage{amssymb, amsthm, amsfonts}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{needspace}
 \usepackage{enumitem}
-\usepackage{cancel}
 \usepackage{fdsymbol}
 \usepackage{fontawesome}
 
@@ -79,6 +77,13 @@ ExternalLocation={stix2font/}
 \definecolor{Gray}{gray}{0.3}
 
 
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{333333} % цвет ссылок
+\definecolor{urlcolor}{HTML}{af0000} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
@@ -124,8 +129,8 @@ ExternalLocation={stix2font/}
 
 \renewcommand{\proofname}{Доказательство}
 \renewenvironment{proof}
-{ \hspace{\stretch{1}}\\ \faSquareO\quad   }
-{ \hspace{\stretch{1}}  \faSquare  }
+{ \hspace{\stretch{1}}\\ \faSquareO\quad  }
+{ \hspace{\stretch{1}}  \faSquare }
 
 
 \numberwithin{ex}{section}
@@ -151,6 +156,7 @@ ExternalLocation={stix2font/}
 \renewcommand{\le}{\leqslant}
 \renewcommand{\ge}{\geqslant}
 
+
 \def\mybf#1{\textbf{#1}}
 \def\selectedFont#1{\textbf{#1}}
 \def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
@@ -159,7 +165,6 @@ ExternalLocation={stix2font/}
 
 \newcommand{\Cclass}{\mathcal{C}}
 \newcommand{\Dclass}{\mathcal{D}}
-
 
 \renewcommand{\P}{\ComplexityFont{P}}
 \newcommand{\DTIME}{\ComplexityFont{DTime}}
@@ -182,9 +187,6 @@ ExternalLocation={stix2font/}
 \newcommand{\coNL}{\ComplexityFont{co-NL}}
 \renewcommand{\L}{\ComplexityFont{L}}
 \newcommand{\NPcomp}{\ComplexityFont{NP-complete}}
-\newcommand{\tP}{\widetilde{\P}}
-\newcommand{\tNP}{\widetilde{\NP}}
-\newcommand{\tBH}{\widetilde{\BH}}
 \newcommand{\Class}{{\ComplexityFont{C}}}
 \newcommand{\coC}{\ComplexityFont{co-}\mathcal{C}}
 \newcommand{\coNP}{\ComplexityFont{co-NP}}
@@ -194,6 +196,18 @@ ExternalLocation={stix2font/}
 \newcommand{\Ppoly}{\ComplexityFont{P}/\ComplexityFont{poly}}
 \newcommand{\NC}{\ComplexityFont{NC}}
 
+\newcommand{\tP}{\widetilde{\P}}
+\newcommand{\tNP}{\widetilde{\NP}}
+\newcommand{\tBH}{\widetilde{\BH}}
+
+\newcommand{\BH}{\LanguageFont{BH}}
+\newcommand{\CircuitEval}{{\LanguageFont{CIRCUIT\_EVAL}}}
+\newcommand{\tCircuitSat}{\widetilde{{\LanguageFont{CIRCUIT\_SAT}}}}
+\newcommand{\SAT}{\LanguageFont{SAT}}
+\newcommand{\tSAT}{\widetilde{{\LanguageFont{SAT}}}}
+\newcommand{\UNSAT}{{\LanguageFont{UNSAT}}}
+\newcommand{\tThreeSAT}{\widetilde{{\LanguageFont{3\text{-}SAT}}}}
+\newcommand{\ThreeSAT}{{\LanguageFont{3\text{-}SAT}}}
 
 \newcommand{\FACTOR}{\LanguageFont{FACTOR}}
 \newcommand{\kQBF}{{\LanguageFont{QBF{\tiny k}}}}
@@ -202,14 +216,7 @@ ExternalLocation={stix2font/}
 \newcommand{\STCON}{\LanguageFont{STCON}}
 \newcommand{\USTCON}{\LanguageFont{USTCON}}
 \newcommand{\CircuitSat}{{\LanguageFont{CIRCUIT\_SAT}}}
-\newcommand{\tCircuitSat}{\widetilde{{\LanguageFont{CIRCUIT\_SAT}}}}
-\newcommand{\SAT}{\LanguageFont{SAT}}
-\newcommand{\tSAT}{\widetilde{{\LanguageFont{SAT}}}}
-\newcommand{\UNSAT}{{\LanguageFont{UNSAT}}}
-\newcommand{\tThreeSAT}{\widetilde{{\LanguageFont{3\text{-}SAT}}}}
-\newcommand{\ThreeSAT}{{\LanguageFont{3\text{-}SAT}}}
-\newcommand{\BH}{\LanguageFont{BH}}
-\newcommand{\CircuitEval}{{\LanguageFont{CIRCUIT\_EVAL}}}
+
 
 
 \newcommand{\const}{\textmd{const}}
