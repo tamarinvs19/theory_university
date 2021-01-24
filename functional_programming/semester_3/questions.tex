@@ -1,0 +1,272 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+
+\title{Билеты к экзамену по функциональному программированию}
+\author{Тамарин Вячеслав}
+
+\makeindex
+\begin{document}
+\maketitle
+\section{Сравнение функционального и императивного подходов к программированию}
+\subsection{Императивное программирование}
+Вычисление (программа) описывается в терминах \mf{инструкций}, изменяющих \mf{состояние} вычислителя.
+\begin{itemize}
+	\item Инструкции выполняются последовательно;
+	\item Состояние изменяется инструкциями \mf{присваивания} значений изменяемым переменным;
+	\item Если механизм условного исполнения (if, switch);
+	\item Инструкции можно повторять с помощью циклов (while, for);
+	\item Типы данных описываются с оглядкой на их физическое представление в памяти.
+\end{itemize}
+Такой стиль иногда называют стилем фон Неймана.
+\begin{ccode}
+long factorial(int n) {
+	long res = 1;
+	for (int i = 0; i < n; i++) 
+		res *= i;
+	return res;
+}
+\end{ccode}
+Выполнение программы --- переход вычислителя из начального состояния в конечное с помощью последовательных инструкций.
+
+Часть конечного состояния может интерпретироваться как результат вычислений.
+
+\subsection{Функциональное программирование}
+	Функциональная программа --- \mf{выражение}, ее выполнение --- вычисление (\mf{редукция}) этого выражения.
+\begin{hscode}
+factorial n = if n == 0 then 1 else n * factorial(n-1)
+\end{hscode}
+Выполнение программы --- редукция выражения с помощью \mf{подстановки} определений функций в места их ,,вызова'' с заменой формальных параметров на фактические.
+\begin{minted}[fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=lbg]{hs}
+factorial 3
+-> if 3 == 0 then 1 else 3 * factorial (3 - 1)
+-> ...
+-> 3 * factorial (3 - 1)
+-> 3 * if (3 - 1) == 0 then 1 else (3 - 1) * factorial ((3 - 1) - 1)
+-> ...
+-> 3 * 2 * 1 * 1 
+-> 6
+\end{minted}
+
+\begin{minipage}{0.47\linewidth}
+\begin{itemize}
+	\item Нет состояний --- нет изменяемых переменных;
+	\item Нет переменных --- нет присваивания;
+	\item Нет циклов, так как нет различий между итерациями -- состояниями
+	\item Последовательность не важна, поскольку выражения независимы.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\linewidth}
+	\begin{itemize}
+		\item Рекурсия --- замена циклов;
+		\item Функции высших порядков;
+		\item Сопоставление с образцом;
+		\item Все функции --- чистые.
+    \end{itemize}
+\end{minipage}
+\subsection{Сильные стороны ФП}
+\begin{itemize}
+	\item Регулярный синтаксис, удобство анализа кода;
+	\item Мощная типизация, при этом можно практически не использовать типы в коде за счет эффективным алгоритмам вывода типов;
+	\item Возможность генерации программ по набору свойств;
+	\item Эффективная доказуемость свойств программ алгебраическими методами;
+	\item Высокоурвневые оптимизации на базе эквивалентных преобразований.
+\end{itemize}
+
+\section{Основы $ \lambda$-исчисления. $ \lambda$-термы, свободные и связанные переменные.}
+$ \lambda$-исчисление --- формальная система, лежащая в основе ФП. Разработано Алонзо Чёрчем в 1930-х для формализации и анализа понятия вычислимости.
+
+\noindent
+В \LMCисчислении тремя основными понятиями являются:
+\begin{itemize}
+	\item применение (аппликация, application) --- задает синтаксис применения функции к ее фактическим аргументам.
+		Применение функции $ F$ к аргументу $ X$ записывается как $ FX$;
+	\item лямбда-абстрацкия (abstraction) --- описывает синтаксис определения функции на основе параметризованного выражения, представляющего ее тело. Абстракция по x: $ \lam{x}{F}$;
+	\item редукция (reduction) --- определяет отношение вычисления, основывающегося на подстановке фактических параметров вместо формальных.
+\end{itemize}
+\begin{defn}[$ \lambda$-термы]
+	Множество \mf{$ \lambda $-термов} $ \Lambda$ индуктивно строится из переменных  $ V = \{x, y, z, \ldots \}$ с помощью применения и абстракции:
+\[
+\begin{aligned}
+	x \in V && \Longrightarrow &&& x \in \Lambda \\
+	M, N \in \Lambda && \Longrightarrow &&& (MN) \in \Lambda \\
+	M \in \Lambda, ~  x \in  V && \Longrightarrow &&& (\lam{x}{M}) \in \Lambda
+\end{aligned}
+\]
+В абстрактном синтаксисе 
+\[
+	\Lambda \Coloneqq V \mid (\Lambda \Lambda) \mid (\lam{V}{\Lambda})
+.\] 
+\end{defn}
+Терм может быть \textit{переменной} (например, $ x \in \Lambda$), \textit{аппликацией} (например, $ (xy) \in \Lambda$) или \textit{лямбда-абстракцией} (например, $ \lam{x}{((x(yx)))} \in  \Lambda$).
+
+\begin{defn}[Подтермы]
+	Множество \mf{подтермов} терма $ Q$ определяется индуктивно:
+	\[
+	\begin{aligned}
+		&\subterms(x) && = && \{x\} \\
+		&\subterms(MN) && = && \{MN\} \cup \subterms(M) \cup \subterms(N) \\
+		&\subterms(\lam{x}{M}) && = && \{\lam {x}{M}\} \cup \subterms(M)
+	\end{aligned}
+	\]
+\end{defn}
+
+
+\subsection{Соглашения}
+Общеприняты следующие соглашения для термов:
+\begin{itemize}
+	\item Внешние скобки опускаются
+	\item Применение  ассоциативно \textit{влево}:
+		\[
+			FXYZ \equiv (((FX)Y)Z)
+		.\] 
+	\item Абстракция ассоциативна \textit{вправо}:
+		\[
+			\lam{x y z}{M} \equiv (\lam{x}{(\lam{y}{(\lam{z}{M})})})
+		.\] 
+	\item Тело абстракции простирается вправо насколько это возможно:
+		\[
+			\lam{x}{MNK} \equiv \lam{x}{(MNK)}
+		.\] 
+\end{itemize}
+
+\begin{defn}[Свободные переменные]
+	Множество \mf{свободных переменных} в терме $ Q$ ($ FV(Q)$) определяется следующим образом:
+	\[
+	\begin{aligned}
+		& FV(x) && = && \{x\} \\
+		& FV(MN) && = && FV(M) \cup FV(N) \\
+		& FV(\lam{x}{M} && = && FV(M) \setminus \{x\}
+	\end{aligned}
+	\]
+\end{defn}
+
+\begin{defn}[Связвнные переменные]
+	Множество \mf{связанных переменных} в терме $ Q$ ($ BV(Q)$) определяется следующим образом:
+	\[
+	\begin{aligned}
+		& BV(x) && = && \varnothing \\
+		& BV(MN) && = && BV(M) \cup BV(N) \\
+		& BV(\lam{x}{M} && = && BV(M) \cup  \{x\}
+	\end{aligned}
+	\]
+\end{defn}
+
+\subsection{Комбинаторы}
+\begin{defn}[Комбинатор]
+$ M$ --- \mf{замкнутый $ \lambda$-терм (комбинатор)}, если $ FV(M) = \varnothing$. 
+
+\noindent
+Множество замкнутых $ \lambda$-термов обозначается $ \Lambda^{0}$.
+\end{defn}
+\begin{enumerate}[noitemsep]
+	\item $ I = \lam{x}{x}$
+	\item $ \omega = \lam{x} {x x}$
+	\item $ \Omega = \omega \omega = \left( \lam{x}{x x} \right) \left( \lam{x}{x x} \right) $
+	\item $ K = \lam{x y} {x}$
+	\item  $ K_{*} = \lam{x y}{y}$
+	\item $ C = \lam{f x y}{f y x}$ 
+	\item $ B = \lam{f g x}{f (g x)}$
+	\item $ S = \lam{f g x}{f x (g x)}$
+\end{enumerate} 
+
+
+\section{Подстановка $ \lambda$-терма. Лемма подстановки.}
+\begin{defn}[Подстановка]
+	\mf{Подстановка} терма $ N$ вместо \textit{свободных} вхождений переменной $ x$ в терм $ M$ ($ \subst{x}{N}{M}$) задается следующими правилами:
+	\[
+	\begin{aligned}
+		& \subst{x}{N}{x} && = && N \\
+		& \subst{x}{N}{y} && = && y \\
+		& \subst{x}{N}{PQ} && = && \left( \subst{x}{N}{P} \right) \left( \subst{x}{N}{Q} \right)   \\
+		& \subst{x}{N}{\lam{x}{P}} && = && \lam{x}{P} \\
+		& \subst{x}{N}{\lam{y}{P}} && = && \lam{y}{\subst{x}{N}{P}}, && \text{ если } y \notin FV(N)\\
+		& \subst{x}{N}{\lam{y}{P}} && = && \lam{x}{\subst{y}{z}{P}}\left( \subst{y}{z}{P} \right) , && \text{ если } y \in FV(N)
+	\end{aligned}
+	\]
+	Предполагается, что $ x$ и $ y$ различны, а $ z$ --- ,,свежая'' переменная, то есть $ z \notin FV(P) \cup FV(N)$.
+\end{defn}
+\begin{ex}[Пример подстановки]
+    \[
+	\subst{x}{uv}{\left( \left( \lam{\color{red}x}{(\lam{\color{green}x}{{\color{green}x}z}){\color{red}x}} \right) x  \right) } = 
+	\left( \lam{\color{red}x}{(\lam{\color{green}x}{{\color{green}x}z})\color{red}x} \right) (uv)
+    .\] 
+\end{ex}
+\begin{lm}[подстановки]
+	Пусть $ M, N, L \in \Lambda$, $ x \not\equiv y $ и $ x \notin FV(L)$. Тогда 
+	\[
+		\subst{y}{L}{\subst{x}{N}{M}} = \subst{x}{\subst{y}{L}{N}}{\subst{y}{L}{M}}
+	.\] 
+\end{lm}
+
+\section{$ \alpha $- и $ \beta $-конверсии. $ \eta$-конверсия и экстенсиональная эквивалентность.}
+\subsection{$ \alpha $-эквивалентность}
+Позволяет менять переменную на ,,свежую''.
+Главная аксиома $ \alpha $-преобразования:
+\[
+	\tag{правило $\alpha$}
+	\lam{x}{M} \eqa \lam{y}{\subst{x}{y}{M}}, \text{ если } y \notin FV(M)
+.\] 
+Аналогично $ \beta $-эквивалентности можно определить совместимость.
+\subsection{$ \beta $-эквивалентность}
+\subsubsection{$ \beta $-редукция}
+Одношаговая $ \beta $-редукция для редекса $ (\lam{x}{M}) N$:
+ \[
+	 (\lam{x}{M})N \longrightarrow_{\beta } \subst{x}{N}{M}
+.\] 
+Сокращение $ \beta $-редекса --- результат подстановки в правой части:
+\[
+	I z = (\lam{x}{x}) z \longrightarrow_{\beta } \subst{x}{z}{x} = z
+.\] 
+
+Дополнение определения одношаговой $ \beta $-редукции:
+\[
+\begin{aligned}
+	& M \lba N && \Rightarrow && ZM \lba ZN \\
+	& M \lba N && \Rightarrow && MZ \lba NZ \\
+	& M \lba N && \Rightarrow && \lam{x}{M} \lba \lam{x}{N}
+\end{aligned}
+\]
+\subsubsection{Многошаговая $ \beta $-редукция}
+Это рефлексивное транзитивное замыкание одношаговой:
+\[
+	\tag{правила совместимости}
+\begin{aligned}
+	& M \lba N && \Rightarrow && M \llba N \\
+	& && && M \llba M \\
+	& M \llba N, ~ N \llba L && \Rightarrow && M \llba L
+\end{aligned}
+\]
+\begin{defn}[$ \beta $-эквивалентность]
+	Отношение \mf{$ \beta $-эквивалентности ($ \beta $-конвертируемости)} (нотация $ \eqb $) --- симметричное транзитивное замыкание многошаговой редукции:
+	\[
+	\begin{aligned}
+		& M \llba N && \Rightarrow && M \eqb N \\
+		& M \eqb N && \Rightarrow  && N \eqb M \\
+		& M \eqb N, ~ N \eqb L && \Rightarrow  && M \eqb L
+	\end{aligned}
+	\]
+\end{defn}
+
+\mf{Основная схема аксиом}: для любых $ M, N \in \Lambda$:
+\[
+	(\lam{x}{M})N \eqb \subst{x}{N}{M}
+.\] 
+Если $ M \eqb N$ доказуемо в $ \lambda$-исчислении, пишут 
+ \[
+\lambda \vdash M \eqb N
+.\] 
+\subsection{$ \eta$-эквивалентность}
+Схема аксиом $ \eta$-преобразования:
+\[
+	\tag{правило $ \eta$ }
+	\lam{x}{Mx} \eqn M, \text{ если } x \notin FV(M)
+.\] 
+Аналогично можем определить правила и совместимость, как для $ \beta $.
+
+Смысл этой эквивалентности в том, что поведение данных двух термов одинаково; для произвольного $ N$ будет верно
+\[
+	(\lam{x}{M})N \eqb MN
+.\] 
+
+\end{document}

@@ -1,0 +1,67 @@
+\usepackage{ccfonts,eulervm}
+\usepackage{iwona}
+\usepackage[utf8] {inputenc}
+\usepackage[T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{fullpage}
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{upgreek}
+
+\usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
+
+\def\lam#1#2{\lambda\,{#1}.\:{#2}}
+\def\subst#1#2#3{[#1 \mapsto #2] #3}
+\def\mf#1{\textbf{#1}}
+\def\LMC{$\lambda$-}
+\def\lba{\longrightarrow_{\beta}}
+\def\llba{\twoheadrightarrow_{\beta}}
+\def\laa{\longrightarrow_{\alpha}}
+\def\eqb{=_{\beta}}
+\def\eqa{=_{\alpha}}
+\def\eqn{=_{\eta}}
+
+\newcommand{\subterms}{\operatorname{subterms}}
+
+\usepackage{color}
+\usepackage[]{xcolor}
+\definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
+\definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
+\definecolor{Pink}{cmyk}{0, 100, 0, 0}
+\definecolor{Cyan}{cmyk}{56, 0, 0, 100}
+\definecolor{Gray}{gray}{0.3}
+
+
+\usepackage[newfloat]{minted}
+\definecolor{cbg}{rgb}{0.95,0.95,0.95}
+\definecolor{rbg}{rgb}{0.87,1,1}
+\definecolor{lbg}{rgb}{0.9,0.95,1}
+\newminted{c}{fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=cbg}
+\newminted{hs}{fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=rbg}
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=red,
+	linewidth=3pt,rightline=false,topline=false,bottomline=false,%
+    frametitlerule=false,%
+    frametitlebackgroundcolor=red!0,%
+    innertopmargin=4pt,innerbottommargin=4pt,innerleftmargin=7pt
+    frametitlebelowskip=1pt,
+    frametitleaboveskip=3pt,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
+\newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+
