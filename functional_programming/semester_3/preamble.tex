@@ -14,28 +14,30 @@
 \usepackage{enumitem}
 \usepackage{upgreek}
 
+\usepackage{tikz-cd}
+
 \usepackage[left=2cm,right=2cm,top=1.5cm,bottom=1.5cm,bindingoffset=0cm]{geometry}
 
-\def\lam#1#2{\lambda\,{#1}.\:{#2}}
-\def\subst#1#2#3{[#1 \mapsto #2] #3}
-\def\mf#1{\textbf{#1}}
-\def\LMC{$\lambda$-}
-\def\lba{\longrightarrow_{\beta}}
-\def\llba{\twoheadrightarrow_{\beta}}
-\def\laa{\longrightarrow_{\alpha}}
-\def\eqb{=_{\beta}}
-\def\eqa{=_{\alpha}}
-\def\eqn{=_{\eta}}
+\usepackage{graphicx}
+\usepackage{hyperref}
 
-\newcommand{\subterms}{\operatorname{subterms}}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
 
 \usepackage{color}
 \usepackage[]{xcolor}
 \definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
-\definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
+\definecolor{ForestGreen}{cmyk}{10, 0, 19, 10}
 \definecolor{Pink}{cmyk}{0, 100, 0, 0}
-\definecolor{Cyan}{cmyk}{56, 0, 0, 100}
-\definecolor{Gray}{gray}{0.3}
+\definecolor{Gray}{rgb}{0, 0, 0}
 
 
 \usepackage[newfloat]{minted}
@@ -60,8 +62,50 @@
 \mdtheorem[style=defstyle]{defn}{Определение}
 
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
-\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
-\newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+\newmdtheoremenv[nobreak=false,backgroundcolor=cyan!15,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!15,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+\newmdtheoremenv[nobreak=true,backgroundcolor=purple!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{st}{Утверждение}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+
+\def\lam#1#2{\lambda\,{#1}.\:{#2}}
+\def\subst#1#2#3{[#1 \mapsto #2] #3}
+\def\mf#1{\textbf{#1}}
+\def\LMC{$\lambda$-}
+\def\lba{\longrightarrow_{\beta}}
+\def\llba{\twoheadrightarrow_{\beta}}
+\def\laa{\longrightarrow_{\alpha}}
+\def\eqb{=_{\beta}}
+\def\eqa{=_{\alpha}}
+\def\eqn{=_{\eta}}
+\def\Y{\textbf{Y}}
+\def\bNF{$\beta$-NF}
+
+\newcommand{\subterms}{\operatorname{subterms}}
+\newcommand{\tru}{\operatorname{\mathtt{tru}}}
+\newcommand{\fls}{\operatorname{\mathtt{fls}}}
+\newcommand{\fpif}{\operatorname{\mathtt{if}}}
+\newcommand{\fpnot}{\operatorname{\mathtt{not}}}
+\newcommand{\fpand}{\operatorname{\mathtt{and}}}
+\newcommand{\fpor}{\operatorname{\mathtt{or}}}
+\newcommand{\pair}{\operatorname{\mathtt{pair}}}
+\newcommand{\fst}{\operatorname{\mathtt{fst}}}
+\newcommand{\snd}{\operatorname{\mathtt{snd}}}
+\newcommand{\iszero}{\operatorname{\mathtt{iszero}}}
+\newcommand{\fpsucc}{\operatorname{\mathtt{succ}}}
+\newcommand{\fppred}{\operatorname{\mathtt{pred}}}
+\newcommand{\fpminus}{\operatorname{\mathtt{minus}}}
+\newcommand{\plus}{\operatorname{\mathtt{plus}}}
+\newcommand{\pred}{\operatorname{\mathtt{pred}}}
+\newcommand{\fpmult}{\operatorname{\mathtt{mult}}}
+\newcommand{\fac}{\operatorname{\mathtt{fac}}}
+\newcommand{\fpsp}{\operatorname{\mathtt{sp}}}
+\newcommand{\zp}{\operatorname{\mathtt{zp}}}
+\newcommand{\fpxz}{\operatorname{\mathtt{xz}}}
+\newcommand{\fpfs}{\operatorname{\mathtt{fs}}}
+\newcommand{\fprec}{\operatorname{\mathtt{rec}}}
 
