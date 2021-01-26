@@ -37,15 +37,16 @@
 \definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
 \definecolor{ForestGreen}{cmyk}{10, 0, 19, 10}
 \definecolor{Pink}{cmyk}{0, 100, 0, 0}
-\definecolor{Gray}{rgb}{0, 0, 0}
 
 
 \usepackage[newfloat]{minted}
 \definecolor{cbg}{rgb}{0.95,0.95,0.95}
 \definecolor{rbg}{rgb}{0.87,1,1}
 \definecolor{lbg}{rgb}{0.9,0.95,1}
+\definecolor{gr}{rgb}{0.9,0.9,0.9}
+
 \newminted{c}{fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=cbg}
-\newminted{hs}{fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=rbg}
+\newminted{hs}{tabsize=2,fontsize=\footnotesize,numbersep=3pt,framesep=1mm,linenos,bgcolor=rbg}
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
@@ -62,7 +63,7 @@
 \mdtheorem[style=defstyle]{defn}{Определение}
 
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
+\newmdtheoremenv[nobreak=true,backgroundcolor=black!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
 \newmdtheoremenv[nobreak=false,backgroundcolor=cyan!15,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Pink!15,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 \newmdtheoremenv[nobreak=true,backgroundcolor=purple!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{st}{Утверждение}
@@ -84,6 +85,8 @@
 \def\eqn{=_{\eta}}
 \def\Y{\textbf{Y}}
 \def\bNF{$\beta$-NF}
+
+\def\hs#1{\mintinline{haskell}|#1|}
 
 \newcommand{\subterms}{\operatorname{subterms}}
 \newcommand{\tru}{\operatorname{\mathtt{tru}}}

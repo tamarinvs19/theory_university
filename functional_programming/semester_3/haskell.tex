@@ -1,0 +1,943 @@
+\documentclass[11pt,a4paper]{article}
+\input{preamble.tex}
+
+\title{Билеты к экзамену по функциональному программированию. Haskell}
+\author{Тамарин Вячеслав}
+
+\makeindex
+
+\begin{document}
+\maketitle
+
+
+\section{Основы программирования на Haskell. Связывание. Рекурсия. Базовые конструкции языка.}
+% Базовыми ,,строительными кирпичиками'' для выражения служат \textit{Литералы}: символьные ('a', 'X', '\''); строковые ("Hello, world!"); целочисленные (42) и с плавающей точной (3.14159).
+% Булевы значение определены через пользовательский тип данных.
+\section{Основные встроенные типы языка Haskell. Система модулей. Частичное применение, каррирование.}
+
+
+\section{Операторы и их сечения в Haskell. Бесточечный тип.}
+
+
+\section{Ошибки. Основание. Строгие и нестрогие функции. Ленивое и энергичное исполнение.}
+\subsection{Ошибки}
+Специальное обозначение ошибки исполнения: $ \bot$ --- основание, дно, bottom. Библиотечная константа \mintinline{haskell}|undefined| --- пример реализации $\bot$. Другая реализация:
+\begin{hscode}
+bot = 1 + bot
+fortyTwos = 42 : fortyTwos
+\end{hscode}
+Это пример продуктивной расходимости --- \mintinline{haskell}|take 5 fortyTwos|.
+
+Теперь мы можем написать более ,,аккуратную'' версию факториала
+\begin{hscode}
+factorial n =
+	if n < 0
+	then error "factorial: negative argument"
+	else if n > 1
+		then n * factorial (n-1)
+		else 1
+\end{hscode}
+Использованная здесь библиотечная функция \mintinline{haskell}|error| --- это гибкая версия \mintinline{haskell}|undefined| с настраеваемым сообщением об ошибке:
+\begin{minted}{c}
+GHCi> factorial (-3)
+*** Exception: factorial: negative argument
+\end{minted}
+Тип \mintinline{haskell}|Bool| будет иметь три значения: \mintinline{haskell}|True, False, undefined|, так как вычисление могло не завершится.
+\begin{hscode}
+\bot :: forall {a}. a
+\end{hscode}
+
+\subsection{Строгость функций}
+Haskell гарантирует вызов по необходимости, если мы запустим функцию, игнорирующую аргумент даже с расходимостью, то получим ответ. Функции, игнорирующие значение своего аргумента, называются \textit{нестрогими} по этому аргументу.
+
+Для \textit{строгих} функций всегда результатом расходимости будет расходимость.
+
+Небольшой неэффективностью ленивого вычисления является удержание всех незавершенных вычислений через указатели. Компилятор борется с этим с помощью анализатора строгости -- если вычисления гарантировано строгие, он снимает нестрогость.
+
+Другая неэффективность --- нарастание отложенных вычислений (thunk). Чтобы форсировать вычисление можно использовать следующую функцию:
+\begin{hscode}
+seq :: a -> b -> b
+seq :: \bot b =  \bot
+seq a b = b, если a != \bot
+\end{hscode}
+Форсирование происходит до слабой головной нормальной формы, то есть до барьера распространения $ \bot$: конструктор данных, лямбда-абстрацкия, частично примененная функция.
+\begin{hscode}
+GHCi> seq (undefined, undefined) 42
+42
+GHCi> seq (\x -> undefined) 42
+42
+GHCi> seq ((+) undefined) 42
+42
+\end{hscode}
+Через \mintinline{haskell}|seq| определяется энергичная аппликация
+(с вызовом-по-значению):
+\begin{hscode}
+infixr 0 $!
+($!) :: (a -> b) -> a -> b
+f $! x = x `seq` f x
+\end{hscode}
+Форсирование приводит к ,,худшей определенности''
+\begin{hscode}
+GHCi> ignore undefined
+42
+GHCi> ignore $! undefined
+*** Exception: Prelude.undefined
+\end{hscode}
+Пример использования \mintinline{haskell}|seq|:
+вспомним факториал c аккумулирующим параметром
+\begin{hscode}
+factorial n = helper 1 n where
+  helper acc k | k > 1 = helper (acc * k) (k - 1)
+               | otherwise = acc
+\end{hscode}
+Из-за ленивости \mintinline{haskell}|acc| будет содержать thunk вида
+$$(...((1 * n) * (n - 1)) * (n - 2) * ... * 2)$$
+
+Оптимизатор GHC обычно справляется, имея встроенный
+анализатор строгости. Но можно, не полагаясь на него,
+написать
+\begin{hscode}
+factorial n = helper 1 n where
+  helper acc k | k > 1 = (helper $! acc * k) (k - 1)
+               | otherwise = acc
+\end{hscode}
+
+
+\section{Алгебраические типы данных. Сопоставление с образцом, его семантика.}
+Из базовых кирпичиков типов можно строить новые с помощью суммы, произведения и возведения в степень.							
+
+\subsection{Сопоставление с образцом}
+Пусть мы хотим поменять местами два элемента в паре:
+\begin{hscode}
+swap :: (a, b) -> (b, a)
+swap :: (x, y) = (y, x)
+\end{hscode}
+Здесь конструкция \mintinline{haskell}|(x, y)| представляет собой \mf{образец}.
+\begin{hscode}
+GHCi> swap (5 + 2, True)
+(True, 7)
+\end{hscode}
+При вызове функции происходит \mf{сопоставление с  образцом}:
+\begin{itemize}
+	\item проверяется, что конструктор \hs{(, )} подходящий
+	\item переменные \hs{x} и \hs{y} связываются с выражениями \hs{5 + 2} и \hs{True}
+	\item осуществляется подстановка вместо переменных в теле функции \hs{swap}
+\end{itemize}
+
+\subsection{Тип суммы}
+\mf{Перечисление} --- тип с 0-арными конструкторами данных:
+\begin{hscode}
+data CardinalDirection = North | East | South | West deriving Show
+\end{hscode}
+Конструкторы данных имеют тип \hs{CardinalDirection}:
+\begin{hscode}
+GHCi> dir = North
+GHCi> :t dir
+dir :: CardinalDirection
+\end{hscode}
+Сопоставление с образцом происходит сверху вниз
+\begin{hscode}
+hasPole :: CardinalDirection -> Bool
+hasPole North = True
+hasPole South = True
+hasPole _ = False
+\end{hscode}
+Подчеркивание (или переменная) задают неопровержимый
+образец.
+\begin{hscode}
+GHCi> hasPole North
+True
+GHCi> hasPole West
+False
+\end{hscode}
+Встроенные типы данных (\hs{Char, Int, Integer}) ведут себя так, как будто определены как перечисления, поэтому можно использовать литералы как образцы.
+
+\subsection{Декартово произведение}
+Тип-произведение с одним конструктором данных
+\begin{hscode}
+data PointDouble = PtD Double Double
+deriving Show
+
+GHCi> :type PtD
+PtD :: Double -> Double -> PointDouble
+
+midPointDouble :: PointDouble -> PointDouble
+-> PointDouble
+midPointDouble (PtD x1 y1) (PtD x2 y2) =
+PtD ((x1 + x2) / 2) ((y1 + y2) / 2)
+
+GHCi> midPointDouble (PtD 3.0 5.0) (PtD 9.0 8.0)
+PtD 6.0 6.5
+\end{hscode}
+Можно параметризовывать типовым параметром:
+\begin{hscode}
+data Point a = Pt a a
+deriving Show
+
+GHCi> :type Pt
+Pt :: a -> a -> Point a
+\end{hscode}
+\hs{Point} --- оператор над типами, конкретный тип получается его аппликацией к некоторому типу, например, \hs{Int}.
+\begin{hscode}
+GHCi> :kind Point
+Point :: * -> *
+
+GHCi> :kind Point Int
+Int :: *
+\end{hscode}
+\mf{Кайнды} --- система типов над системой типов Haskell.
+\subsection{Экспоненциальные типы}
+\mf{Экспоненциальный} тип --- это тип функции.
+\begin{hscode}
+data Endom a = Endom (a -> a)
+appEndom :: Endom a -> a -> a
+appEndom (Endom f) = f
+
+GHCi> e = Endom (\n -> 2 * n + 3)
+GHCi> :t e
+e :: Num a => Endom a
+GHCi> :t appEndom e
+appEndom e :: Num a => a -> a
+GHCi> e `appEndom` 5
+13
+\end{hscode}
+\subsection{Рекурсивные типы}
+При объявлении типов можно использовать рекурсию. Это значит, что допустимо указывать объявляемый тип в качестве аргумента конструктора данных:
+\begin{hscode}
+GHCi> data Nat = Zero | Suc Nat deriving Show
+\end{hscode}
+Конструктор \hs{Suc} при этом оказывается эндоморфизмом над типом \hs{Nat}
+\begin{hscode}
+GHCi> :t Zero
+Zero :: Nat
+GHCi> :t Suc
+Suc :: Nat -> Nat
+\end{hscode}
+Это позволяет строить неограниченное число обитателей данного типа:
+\begin{hscode}
+GHCi> one = Suc Zero
+GHCi> two = Suc (Suc Zero)
+GHCi> three = Suc two
+GHCi> four = Suc three
+\end{hscode}
+Это так называемые числа Пеано. Их можно рассматривать как способ кодирования натуральных чисел в унарной системе исчисления. Поскольку тип \hs{Nat} это тип суммы, тотальные функции над ним, использующие опровержимые образцы, определяются
+несколькими равенствами
+\begin{hscode}
+GHCi> {pred (Suc n) = n; pred Zero = Zero}
+GHCi> pred two
+Suc Zero
+\end{hscode}
+
+\subsection{Стандартные алгебраические типы}
+\begin{itemize}
+\item Тип \hs{Maybe a} позволяет задать ,,необязательное'' значение
+\begin{hscode}
+data Maybe a = Nothing | Just a
+maybe :: b -> (a -> b) -> Maybe a -> b
+find :: (a -> Bool) -> [a] -> Maybe a
+\end{hscode}
+\item Тип \hs{Either a b} описывает одно значение из двух
+\begin{hscode}
+data Either a b = Left a | Right b
+either :: (a -> c) -> (b -> c) -> Either a b -> c
+
+head' :: [a] -> Either String a
+head' (x:_) = Right x
+head' [] = Left "head': empty list"
+\end{hscode}
+\end{itemize}
+
+\subsection{Сопоставление с образцом}
+Сопоставление происходит сверху вниз, затем слева направо.
+Сопоставление бывает
+\begin{itemize}
+	\item
+успешным (succeed);
+\item 
+неудачным (fail);
+\item
+расходящимся (diverge).
+\end{itemize}
+\begin{hscode}
+bar (1, 2) = 3
+bar (0, _) = 5
+\end{hscode}
+\begin{itemize}[noitemsep]
+	\item(0, 7) --- неудача в первом, успех во втором;
+	\item(2, 1) --- две неудачи и, как следствие, расходимость;
+	\item(1, 5-3) --- успех, так как для сопоставления нужно приходится форсировать
+	\item(1, undefined) --- расходимость, так как форсируем undefined 
+	\item(0, undefined) --- неудача на первом, успех на втором
+\end{itemize}
+
+
+\section{Объявления \texttt{type, newtype}. Метки полей.}
+
+
+\section{Списки, стандартные функции работы с ними. Генерация (выделение) списков.}
+Списки встроены, но мы можем определить их сами:
+\begin{hscode}
+data [] a = [] | a : ([] a)
+infixr 5 :
+\end{hscode}
+Для удобства введён синтаксический сахар
+\begin{hscode}
+[1,2,3] = 1:(2:(3:[])) = 1:2:3:[]
+\end{hscode}
+\subsection{Стандартные функции из \hs{Data.List}}
+
+\begin{hscode}
+head :: [a] -> a
+head (x:_) = x
+head [] = error "Prelude.head: empty list"
+
+tail :: [a] -> [a]
+tail (x:xs) = xs
+tail [] = error "Prelude.tail: empty list"
+\end{hscode}
+Это частичная функция, в современном Haskell использовать
+их не рекомендуется.
+
+Еще одним важнейшим оператором для списков служит оператор бинарной конкатенации: он делает из двух списков один, присоединяя первый к началу второго.
+\begin{hscode}
+infixr 5 ++
+(++) :: [a] -> [a] -> [a]
+[] ++ ys = ys
+(x:xs) ++ ys = x : xs ++ ys
+\end{hscode}
+Из реализации оператора видно, что его сложность (число рекурсивных вызовов до наступления терминирующего условия) линейно зависит от размера первого списка и не зависит от второго.
+
+\begin{hscode}
+length :: [a] -> Int
+
+concat :: [[a]] -> [a]
+concat [] = []
+concat (xs:xss) = xs ++ concat xss
+
+infix 4 `elem`
+elem :: (Eq a) => a -> [a] -> Bool
+elem _ [] = False
+elem x (y:ys) = x == y || elem x ys
+\end{hscode}
+
+Функция, осуществляющая поиск значения с заданным ключом в ассоциативном списке (то есть списке пар ключ-значение)
+\begin{hscode}
+lookup :: Eq a => a -> [(a,b)] -> Maybe b
+lookup _ [] = Nothing
+lookup key ((k,v):kvs)
+  | key == k = Just v
+  | otherwise = lookup key kvs
+\end{hscode}
+
+Оператор, возвращающий элемент списка с заданным индексом
+\begin{hscode}
+infixl 9 !!
+(!!) :: [a] -> Int -> a
+xs     !! n | n < 0 = error "Prelude.!!: negative index"
+[]     !! _         = error "Prelude.!!: index too large"
+(x:_)  !! 0         = x
+(_:xs) !! n         = xs !! (n-1)
+\end{hscode}
+Левая ассоциативность позволяет удобно обслуживать вложенные списки:
+\begin{hscode}
+GHCi> ["Hello","world"] !! 0 !! 1
+'e'
+GHCi> ["Hello","world"] !! 1 !! 2
+'r'
+\end{hscode}
+\subsubsection{Подсписки}
+Функция \hs{take} получает целое число $ n$ и список и возвращает первые $ n$ элементов списка. Если элементов меньше, чем $ n$, возвращается сколько есть. Если $ n$ не положительно, возвращается пустой список.
+\begin{hscode}
+take :: Int -> [a] -> [a]
+take n _ | n <= 0 = []
+take _ []         = []
+take n (x:xs)     = x : take (n - 1) xs
+\end{hscode}
+
+\begin{hscode}
+drop :: Int -> [a] -> [a]
+drop n xs | n <= 0 = xs
+drop _ []          = []
+drop n (_:xs)      = drop (n - 1) xs
+\end{hscode}
+
+\subsubsection{Функции высших порядков над списками}
+В библиотеке \hs{Data.List} много функций высших порядков. У следующих двух функций первый аргумент --- функция типа \hs{a -> Bool}, то есть унарный предикат.
+\begin{hscode}
+filter :: (a -> Bool) -> [a] -> [a]
+filter _ [] = []
+filter p (x:xs) 
+  | p x = x : filter p xs
+  | otherwise = filter p xs
+
+takeWhile :: (a -> Bool) -> [a] -> [a]
+takeWhile _ [] = []
+takeWhile p (x:xs)
+  | p x = x : takeWhile p xs
+  | otherwise = []
+\end{hscode}
+У функции высшего порядка map функциональный аргумент — произвольная функция:
+\begin{hscode}
+map :: (a -> b) -> [a] -> [b]
+map _ [] = []
+map f (x:xs) = f x : map f xs
+\end{hscode}
+
+Функция map обрабатывает каждый элемент списка переданной функцией-обработчиком, формируя список результатов той же длины, но, возможно, другого типа.
+\subsubsection{Семейства \hs{zip} и \hs{zipWith}}
+\begin{hscode}
+zip :: [a] -> [b] -> [(a,b)]
+zip [] _ = []
+zip _ [] = []
+zip (a:as) (b:bs) = (a,b) : zip as bs
+
+zip3 :: [a] -> [b] -> [c] -> [(a,b,c)]
+zip4 :: [a] -> [b] -> [c] -> [d] -> [(a,b,c,d)]
+...
+
+unzip :: [(a,b)] -> ([a],[b])
+unzip3 :: [(a,b,c)] -> ([a],[b],[c])
+...
+
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith _ [] _ = []
+zipWith _ _ [] = []
+zipWith f (a:as) (b:bs) = f a b : zipWith f as bs
+
+zipWith3 :: (a -> b -> c -> d) -> [a] -> [b] -> [c] -> [d]
+...
+\end{hscode}
+Все перечисленные семейства содержат функции вплоть до 7 аргументов.
+\subsubsection{Способы генерации списков}
+\begin{hscode}
+GHCi> take 2 ones
+[1,1]
+GHCi> take 4 (numsFrom 3)
+[3,4,5,6]
+
+take 2 ones → -- (1)
+take 2 (1 : ones) → -- (2)
+1 : take (2-1) ones) → -- (3)
+1 : take 1 (1 : ones) → -- (4)
+1 : 1 : take (1-1) ones) → -- (5)
+1 : 1 : take 0 ones) → -- (6)
+1 : 1 : []
+\end{hscode}
+
+\begin{itemize}
+\item (1) сопоставление с образцом форсирует вычисление ones до $WHNF$;
+\item (2) подходит последнее уравнение в определении \hs{take}, используем его;
+\item (3) сопоставление с образцом форсирует вычисление до $WHNF$ обоих аргументов \hs{take}: первого, чтобы отвергнуть первое из уравнений в определении \hs{take}, второго — чтобы отвергнуть второе;
+\item (4) используем последнее уравнение в определении \hs{take};
+	\item (5) сопоставление с образцом форсирует вычисление до $WHNF$ первого аргумента \hs{take};
+	\item (6) подходит первое уравнение в определении \hs{take}, используем его.
+\end{itemize}
+
+\begin{hscode}
+GHCi> squares = map (^2) (numsFrom 0)
+GHCi> takeWhile (<=100) squares
+[0,1,4,9,16,25,36,49,64,81,100]
+
+GHCi> fibs = 0 : 1 : zipWith (+) fibs (drop 1 fibs)
+GHCi> take 10 fibs
+[0,1,1,2,3,5,8,13,21,34]
+\end{hscode}
+
+Для формирования ,,нелинейных'' последовательностей имеется другая техника, носящая название выделение списка (\mf{list comprehension}) 
+\begin{hscode}
+GHCi> digits = [0..9]
+GHCi> [ x^2 | x <- digits ]
+[0,1,4,9,16,25,36,49,64,81]
+\end{hscode}
+Часть справа от вертикальной черты носит название генератора: элементы, связываемые с переменной \hs{x} пробегают по всему списку \hs{digits}. Слева от вертикальной черты находится выражение, в котором можно использовать \hs{x}. 
+
+При наличии нескольких генераторов чаще обновляется тот, что правее:
+\begin{hscode}
+GHCi> [ [x,y] | x <- "ABC", y <- "de" ]
+["Ad","Ae","Bd","Be","Cd","Ce"]
+\end{hscode}
+Генераторы могут ссылаться на значения из предыдущих генераторов; кроме того можно использовать предикаты над этими значениями для фильтрации результатов.
+
+\subsubsection{Последовательности}
+\begin{hscode}
+GHCi> [1..10]
+[1,2,3,4,5,6,7,8,9,10]
+GHCi> [1,3..17]
+[1,3,5,7,9,11,13,15,17]
+
+ones = 1 : ones
+numsFrom n = n : numsFrom (n + 1)
+\end{hscode}
+
+\section{Специальный полиморфизм. Классы типов. Объявление представителей. Классы типов \texttt{Eq, Ord, Enum, Bound}.}
+\subsection{Параметрический полиморфизм}
+Когда в определение функции входит тип как параметр, и мы вместо него можем подставить любой тип. Например,
+\begin{hscode}
+id :: a -> a
+id x = x
+
+id True     :: Bool
+id "Badger" :: [Char]
+id id       :: a -> a
+\end{hscode}
+Этот код универсален: можем использовать любой тип параметра и реализация не зависит от какой-то специфики типа.
+
+Изучим функцию, определяющую принадлежность списку:
+\begin{hscode}
+elem :: a -> [a] -> Bool
+elem _ [] = False
+elem x (y:ys) = x == y || elem x ys
+\end{hscode}
+Очевидно, для элементов нужно отношение равенства. Если для встроенных типов сравнение определено, для пользовательских типов тоже можно определить отношение равенства, то для функций все сложнее:
+\begin{hscode}
+suc :: (forall a. (a -> a) -> a -> a) -> (a -> a) -> a -> a
+suc = \n s z -> n s (s z)
+
+suc' :: (forall a. (a -> a) -> a -> a) -> (a -> a) -> a -> a
+suc' = \n s z -> s (n s z)
+
+suc ?= suc'
+\end{hscode}
+С точки зрения $ \beta $-эквивалентности это две разные функции в \bNF. За счет использования \hs{forall} передать можно только числа Черча.
+
+Эти функции поточечно равны, но не равны \textit{интенсинонально} (совпали по \bNF). Такие называются \textit{экстенсионально} равными.
+Чтобы доказать, что функции равны придется для всех различные рассуждения использовать, поэтому в хаскеле функции несравнимы. 
+
+\subsection{Специальный полиморфизм}
+Это вид полиморфизма, противоположный параметрическому: интерфейс полностью общий (полиморфный), но реализация специализирована для конкретных типов. Например, так устроено сложение чисел.
+
+\subsection{Классы типов}
+\mf{Класс типов} --- именованный набор имен функций с сигнатурами, параметризованными общим типовыми параметром:
+\begin{hscode}
+class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+\end{hscode}
+Имя класса типов задает ограничение, называемое \textit{контекстом}.
+\begin{hscode}
+(==) :: Eq a => a -> a -> Bool
+
+elem :: Eq a => a -> [a] -> Bool
+elem _ [] = False
+elem x (y:ys) = x == y || elem x ys
+\end{hscode}
+Чтобы сделать тип \textit{представителем класса}, нужно реализовать требуемые функции класса:
+\begin{hscode}
+instance Eq Bool where
+  True  == True  = True
+  False == False = True
+  _     == _     = False
+  x /= y = not (x == y)
+\end{hscode}
+Тип-представитель может быть полиморфным:
+\begin{hscode}
+instance Eq a => Eq [a] where
+  [] == [] = True
+  (x:xs) == (y:ys) = x == y && xs == ys
+  _     == _     = False
+\end{hscode}
+Можно не реализовывать неравенство, оно определено по умолчанию.
+Для механической реализации можно использовать \hs{deriving Eq}.
+
+\subsection{Расширение класса}
+Класс \hs{Ord} наследует все методы \hs{Eq} и содержит новые методы:
+\begin{hscode}
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) , (<=), (>=), (>) :: a -> a -> Bool
+  max, min :: a -> a -> a
+
+  compate x y = if x == y then EQ 
+                else if x <= y then LT
+                else GT
+
+  x < y = case compare x y of {LT -> True; _ -> False}
+  x <= y = case compare x y of {GT -> False; _ -> True}
+  x > y = case compare x y of {GT -> True; _ -> False}
+  x >= y = case compare x y of {LT -> False; _ -> True}
+  max x y = if x <= y then y else x
+  min x y = if x <= y then x else y
+
+sort :: Ord a => [a] -> [a]
+\end{hscode}
+
+Допустимо множественное наследование:
+\begin{hscode}
+class (Eq a, Show a) => MyClass a where
+  ...
+\end{hscode}
+
+\subsection{\hs{Enum}, \hs{Bounded}}
+\begin{hscode}
+class Enum a where 
+  succ, pred     :: a -> a
+  toEnum         :: Int -> a
+  fromEnum       :: a -> Int
+
+  enumFrom       :: a -> [a]            -- [n..]
+  enumFromThen   :: a -> a -> [a]       -- [n, n'..]
+  enumFromTo     :: a -> a -> [a]       -- [n..m]
+  enumFromThenTo :: a -> a -> a -> [a]  -- [n, n'..m]
+
+class Bounded a where
+  minBound, maxBound :: a
+\end{hscode}
+Класс \hs{Integer} потенциально бесконечен в обе стороны, поэтому он является \hs{Enum}, но не является \hs{Bounded}.
+
+
+\section{Внутренняя реализация классов типов.}
+Организована через механизм передачи словарей. Словарь для класса --- запись его методов.
+\begin{hscode}
+data Eq' a = MkEq { eq, ne :: a -> a -> Bool}
+\end{hscode}
+Здесь хранится две \textit{функции-селекторы}, они выбирают методы равенства и неравенства из данного словаря.
+\begin{hscode}
+GHCi> :t eq
+eq :: Eq' a -> a -> a -> Bool
+GHCi> :i ne
+eq :: Eq' a -> a -> a -> Bool
+\end{hscode}
+Теперь вместо того, что называлось контекстом, теперь просто дополнительный параметр.
+
+Объявления представителей транслируются в функции, возвращающие словарь или в функции, принимающие словарь и возвращающие более сложный словарь:
+\begin{hscode}
+dEqInt :: Eq' Int
+dEqInt = MkEq {
+	eq = eqInt, -- это низкоуровневый способ сравнивать Intы
+	ne = \x y -> not $ eqInt x y
+}
+
+dEqList :: Eq' a -> Eq' [a]
+dEqList (MkEq e _) = MkEq el (\x y -> not $ el x y) -- e - словарь для сравнения элементов списка
+  where el [] [] = True
+        el (x:xs) (y:ys) = x `e` y && xs `el` ys
+        el _ _ = False
+\end{hscode}
+Теперь можем написать \hs{enum'}: он требует, чтобы ему дали словарь для сравнения элементов типа \hs{a} первым аргументом, а остальное аналогично.
+\begin{hscode}
+elem' :: Eq' a -> a -> [a] -> Bool
+elem' _ _ [] = False
+elem' d x (y:ys) = eq d x y || elem' d x ys
+
+GHCi> elem' dEqInt 2 [3, 5, 2]
+True
+GHCi> elem (dEqList dEqInt) [3, 5] [[4], [1, 2, 3], [3, 5]]
+True
+\end{hscode}
+
+
+\section{Стандартные классы типов: \texttt{Num} и его наследники, \texttt{Show} и \texttt{Read}.}
+\begin{hscode}
+class (Eq a, Show a) => Num a where
+  (+), (-), (*) :: a -> a -> a
+  negate        :: a -> a
+  abs, signum   :: a -> a
+  fromInteger   :: Integer -> a
+
+  x - y = x + negate y
+  negate x = 0 - x
+\end{hscode}
+\begin{tikzcd}%
+	Enum\arrow[ddd] &&& Eq\arrow[ld]\arrow[rd] && Show\arrow[ld] \\
+				  && Ord\arrow[ld]\arrow[rd] && Num\arrow[ld]\arrow[d]&\\
+				  & Ix && Real\arrow[llld]\arrow[d] & Fractional\arrow[ld]\arrow[rd]& \\
+	Integral\arrow[d]\arrow[rd] &&& RealFrac\arrow[rd] && Floating\arrow[ld] \\
+	Int & Integer &&& RealFloat\arrow[ld]\arrow[rd] & \\
+		&&& Double && Float
+\end{tikzcd}
+
+Автоматического приведения типов в Хаскеле нет. Всегда нужно использовать приведение.
+
+
+\section{Полугруппы и моноиды. Представители класса типов \hs{Semigroup} и \hs{Monoid}.}
+\subsection{Полугруппы}
+\mf{Полугруппа} --- множество с ассоциативной бинарной операцией над ним.
+\begin{hscode}
+infixr 6 <>
+class Semigroup a where
+  (<>) :: a -> a -> a
+  sconcat :: NonEmpty a -> a  -- конкатенация, все : заменяем на <>
+  stimes :: Integral b => b -> a -> a  -- повторяем b раз и вставляем между копиями <>
+
+infixr 5 :|
+data NonEmpty a = a :| [a]  -- произведение a и [a]
+\end{hscode}
+За счет ассоциативности операции, можно достичь логарифмической трудности операций.
+Для любой полугруппы должен выполняться закон:
+\begin{hscode}
+(x <> y) <> z = x <> (y <> z)
+\end{hscode}
+Список --- полугруппа относительно конкатенации:
+\begin{hscode}
+class Semigroup [a] where
+  (<>) = (++)
+\end{hscode}
+Можем использовать в функциях, которые не работают на пустых списках:
+\begin{hscode}
+GHCi> import Data.List.NonEmpty
+GHCi> sconcat $ "AB" :| ["CDE", "FG"]
+"ABCDEFG"
+GHCi> stimes 5 "Ab"
+"AbAbAbAbAb"
+\end{hscode}
+\subsection{Моноиды}
+\mf{Моноид} --- множество с ассоциативной бинарной операцией над ним и нейтральным элементом для этой операции.
+\begin{hscode}
+class Semigroup a => Monoid a where
+  mempty :: a  -- нейтарльный элемент
+  mappend :: a -> a -> a  -- операция
+  mappend = (<>)
+  mconcat :: [a] -> a
+  mconcat = foldr mappend mempty
+\end{hscode}
+Законы:
+\begin{hscode}
+mempty <> x = x
+x <> mempty = x
+(x `mappend` y) `mappend` z = x `mappend` (y `mappend` z)
+\end{hscode}
+Список --- моноид относительно \hs{(++)}, нейтральный --- пустой список:
+\begin{hscode}
+instance Semigroup [a] where
+  (<>) = (++)
+instance Monoid [a] where
+  mempty = []
+  mconcat = concat
+\end{hscode}
+Числа тоже моноид, причем четырежды: сложение -- нуль, умножение -- единица, минимум -- \hs{maxBound}, максимум -- \hs{minBound}.
+Для разделения этих вариантов при реализации можем обернуть числа в \hs{newtype}-коробочку:
+\begin{hscode}
+newtype Sum a = Sum { getSum :: a} deriving (Eq, Ord, Read, Show, Bounded)
+instance Num a => Semigroup (Sum a) where
+  Sum x <> Sum y = Sum (x + y)
+instance Num a => Monoid (Sum a) where
+  mempty = Sum 0
+
+GHCi> Sum 3 <> Sum 2 
+Sum {getSum = 5}
+\end{hscode}
+\hs{mconcat} --- сумма нескольких чисел, \hs{stimes} --- умножение.
+
+Теперь напишем для умножения, используя \hs{coerce} -- безопасное приведение, если мы имеем два одинаковых рантаймовых представления, то можем привести одно к другому автоматически:
+\begin{hscode}
+newtype Product a = Product { getProduct :: a} deriving (Eq, Ord, Read, Show, Bounded)
+instance Num a => Semigroup (Product a) where
+  (<>) = coerce ((*) :: a -> a -> a)  -- Data.Coerce
+instance Num a => Monoid (Product a) where
+  mempty = Product 1
+
+GHCi> Product 3 <> Product 2 
+Product {getProduct = 6}
+\end{hscode}
+Для использования \hs{coerce}, нужно подключить расширение \hs{ScopedTypeVariables}, чтобы расширить область видимости \hs{a} из типа.
+
+\hs{Integer} не имеет максимума, поэтому, хотя это и полугруппа, моноидом быть не может. Также не существует моноида для строк.
+
+Для решения такой проблемы можем перейти к полугрупповой операции \hs{sconcat} и от списка к  \hs{NoEmpty}:
+\begin{hscode}
+GHCi> (getMin . sconcat . fromList . fmap Min) ["Hello", "Hi"]
+"Hello"
+-- вместо
+GHCi> (getMin . mconcat . fmap Min) ["Hello", "Hi"]
+<interactive>: error: No instance for (Bounded [Char])
+\end{hscode}
+
+Булев тип тоже является моноидом относительно конъюнкции и дизъюнкции.
+\begin{hscode}
+newtype All = All { getAll :: Bool} deriving (Eq, Ord, Read, ShowBounded)
+instance Semigroup All where
+  (<>) = coerce (&&)
+instance Monoid All where
+  mempty = All True
+
+newtype Any = Any { getAny :: Bool} deriving (Eq, Ord, Read, ShowBounded)
+instance Semigroup Any where
+  (<>) = coerce (||)
+instance Monoid Any where
+  mempty = Any False
+\end{hscode}
+
+
+\section{Свертки списков. Правая и левая свертки. Энергичные версии. Развертки.}
+\subsection{Правая свертка}
+\begin{hscode}
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f ini [] = ini
+foldr f ini (x:xs) = x `f` (foldr f ini xs)
+
+p : q : r : []  ======>  p `f` (q `f` (r `f` ini))
+\end{hscode}
+Примеры  использования:
+\begin{hscode}
+sum :: [Integer] -> Integer
+sum = foldr (+) 0
+
+concat :: [[a]] -> [a]
+concat = foldr (++) []
+
+allOdd :: [Integer] -> Bool
+allOdd = foldr (\n b -> odd n && b) True
+
+id = foldr (:) []
+\end{hscode}
+Правые свертки позволяют работать с бесконечными списками.
+\subsection{Левая свертка}
+\begin{hscode}
+foldl :: (b -> a -> b) -> b -> [a] -> b
+foldl f ini [] = ini
+foldl f ini (x:xs) = foldl f (ini `f` x) xs
+
+p : q : r : []  ======>  ((ini `f` p) `f` q) `f` r
+\end{hscode}
+Здесь хвостовая рекурсия оптимизируется, но нарастает thunk из цепочки вызовов: запустятся вычисления только, когда список кончится, так как форсирования нет (нет \hs{seq} или сопоставления с образцом).
+
+\begin{hscode}
+foldl' :: (b -> a -> b) -> b -> [a] -> b
+foldl' f ini [] = ini
+foldl' f ini (x:xs) = arg `seq` foldl' f arg xs
+                        where arg = f ini x
+\end{hscode}
+Здесь thunk не нарастает, вычисление \hs{arg} форсируется на каждом шаге, это самая эффективная из сверток, но, как и любая левая свертка, не работает с бесконечным циклом.
+
+\subsection{Версии без начального значения}
+\begin{hscode}
+foldr1 :: (a -> a -> a) -> [a] -> a
+foldr1 _ [x] = x
+foldr1 f (x:xs) = f x (foldr1 f xs)
+foldr1 _ [] = error "foldr1: EmptyList"
+\end{hscode}
+\begin{hscode}
+foldl1 :: (a -> a -> a) -> [a] -> a
+foldl1 f (x:xs) = foldl f x xs
+foldl1 _ [] = error "foldl1: EmptyList"
+\end{hscode}
+Аналогично можно сделать строгую версию \hs{foldl1'}.
+
+ \subsection{Сканы}
+Это списки последовательных шагов свертки:
+\begin{hscode}
+scanl :: (b -> a -> b) -> b -> [a] -> [b]
+scanl _ z [] = [z]
+scanl (#) z (x:xs) = z : scanl (#) (z # x) xs
+
+GHCi> scanl (++) "!" ["a", "b", "c"]
+["!", "!a", "!ab", "!abc"]
+GHCi> scanl (*) 1 [1..] !! 5 -- факториал
+120
+\end{hscode}
+В отличие от \hs{foldl} может работать и с бесконечными списками.
+
+\noindent Правый скан накапливает результаты в обратном порядке:
+\begin{hscode}
+scanr :: (a -> b -> b) -> b -> [a] -> [b]
+scanr _ z [] = [z]
+scanr f z (x:xs) = f x q : qs
+                     where qs@(q:_) = scanr f z xs  -- здесь используем псевдоним
+\end{hscode}
+Тождества для сканов:
+\begin{hscode}
+head (scanr f z xs) = foldr f z xs
+last (scanl f z xs) = foldl f z xs
+\end{hscode}
+\subsection{Развертка}
+Двойственная свертке операция.
+\begin{hscode}
+unfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+unfoldr g ini 
+  | Nothing     <- next = []
+  | Just (a, b) <- next = a : unfoldr g b
+  where next = g ini
+
+GHCi> helper x = if x == 0 then Nothing else Just (x, x - 1)
+GHCi> unfoldr helper 10
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+\end{hscode}
+Пример использования --- возможное определение \hs{iterate}
+\begin{hscode}
+iterate f = unfoldr (\x -> Just (x, f x))
+\end{hscode}
+
+
+\section{Класс типов \hs{Foldable} и его представители.}
+Идея: обобщить свертки на более общий тип, то есть  заменить скобки на букву.
+\begin{hscode}
+class Foldable t where
+  fold :: Monoid m => t m -> m
+  fold = foldMap id
+
+  foldMap :: Monoid m => (a -> m) -> t a -> m
+  foldMap f = foldr (mappend . f) mempty
+
+  foldr, foldr' :: (a -> b -> b) -> b -> t a -> b
+  foldr f z t = appEndo (foldMap (Endo . f) t) z
+
+  foldl, foldl' :: (b -> a -> b) -> a -> t b -> a
+  foldl f z t = appEndo (getDual (foldMap (Dual . Endo . flip f) t)) z
+
+  foldr1, foldl1 :: (a -> a -> a) -> t a -> a
+\end{hscode}
+Минимальное определение \hs{foldMap} или  \hs{foldr}.
+Изучим  полезные функции:
+\begin{hscode}
+class Foldable t where
+  toList :: t a -> [a]
+
+  null :: t a -> Bool
+  null = foldr (\_ _ -> False) True
+
+  lenght :: t a -> Int
+  length = foldl' (\c _ -> c + 1) 0
+
+  elem :: Eq a => a -> t a -> Bool
+  elem x = foldr f False
+             where f result elem = result || x == elem 
+  
+  maximum, minimum :: Ord a => t a -> a
+
+  sum, product :: Num a => t a -> a
+  sum = getSum . foldMap Sum
+\end{hscode}
+\subsection{Представители}
+\begin{hscode}
+instance Foldable [] where
+  foldr = Prelude.foldr
+  foldl = Prelude.foldl
+  foldr1 = Prelude.foldr1
+  foldl1 = Prelude.foldl1
+
+instance Foldable Maybe where
+  foldr _ z Nothing = z
+  foldr f z (Just x) = f x z
+\end{hscode}
+Еще много контейнеров: \mf{Set, Map, Tree, Seq}. Также \hs{Either, Pair}. Чтобы объявить представителя двухпараметрического типа, первый параметр нужно связать.
+\begin{hscode}
+GHCi> foldr (+) 5 (Right 37)
+42
+GHCi> foldr (+) 5 (Left 37)
+5
+GHCi> foldr (+) 5 ("Answer", 37)
+42
+
+GHCi> maximum (Right 37)
+37
+GHCi> maximum (Left 37)
+*** Exception: maximum: empty structure
+GHCi> maximum (100, 42)
+42
+\end{hscode}
+Реализация:
+\begin{hscode}
+foldr f z t = appEndo (foldMap (Endo . f) t ) z
+foldl f z t = appEndo
+  (getDual (foldMap (Dual . Endo . flip f) t)) z
+fold        = foldMap id
+length      = getSum . foldMap (Sum . const 1)
+sum         = getSum . foldMap Sum
+product     = getProduct . foldMap Product
+minimum     = getMin . foldMap Min
+maximum     = getMax . foldMap Max
+foldr f z   = foldr f z . toList
+foldl f z   = foldl f z . toList 
+\end{hscode}
+
+\end{document}

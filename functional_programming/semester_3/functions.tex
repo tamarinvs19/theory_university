@@ -19,4 +19,48 @@
 	\item $ B = \lam{f g x}{f (g x)}$
 	\item $ S = \lam{f g x}{f x (g x)}$
 \end{enumerate} 
+\section{Функции}
+\begin{enumerate}
+\item 
+\begin{hscode}
+seq :: a -> b -> b
+seq :: \bot b =  \bot
+seq a b = b, если a != \bot
+\end{hscode}
+\item
+\begin{hscode}
+swap :: (a, b) -> (b, a)
+swap :: (x, y) = (y, x)
+\end{hscode}
+\item
+\begin{hscode}
+data Maybe a = Nothing | Just a
+maybe :: b -> (a -> b) -> Maybe a -> b
+find :: (a -> Bool) -> [a] -> Maybe a
+\end{hscode}
+\item
+\begin{hscode}
+data Either a b = Left a | Right b
+either :: (a -> c) -> (b -> c) -> Either a b -> c
+
+head' :: [a] -> Either String a
+head' (x:_) = Right x
+head' [] = Left "head': empty list"
+\end{hscode}
+\item
+\begin{hscode}
+head :: [a] -> a
+head (x:_) = x
+head [] = error "Prelude.head: empty list"
+\end{hscode}
+\item
+\begin{hscode}
+tail :: [a] -> [a]
+tail (x:xs) = xs
+tail [] = error "Prelude.tail: empty list"
+\end{hscode}
+
+
+\end{enumerate} 
+
 \end{document}
