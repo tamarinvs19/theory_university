@@ -928,8 +928,7 @@ GHCi> maximum (100, 42)
 Реализация:
 \begin{hscode}
 foldr f z t = appEndo (foldMap (Endo . f) t ) z
-foldl f z t = appEndo
-  (getDual (foldMap (Dual . Endo . flip f) t)) z
+foldl f z t = appEndo (getDual (foldMap (Dual . Endo . flip f) t)) z
 fold        = foldMap id
 length      = getSum . foldMap (Sum . const 1)
 sum         = getSum . foldMap Sum
@@ -939,5 +938,469 @@ maximum     = getMax . foldMap Max
 foldr f z   = foldr f z . toList
 foldl f z   = foldl f z . toList 
 \end{hscode}
+
+Другие моноиды: \hs{Ordering, SortedList, a -> b}.
+\begin{hscode}
+newtype Endo a = Endo { appEndo :: a -> a }
+instance Semigroup (Endo a) where
+  Endo f <> Endo g = Endo $ f . g
+instance Monoid (Endo a) where
+  mempty = Endo id
+
+newtype Dual a = Dual { getDual :: a}  -- разворачивает агрументы
+instance Semigroup a => Semigroup (Dual a) where
+  Dual a <> Dual b = Dual (b <> a)
+instance Monoid a => Monoid (Dual a) where
+  mempty = Dual mempty
+\end{hscode}
+
+
+\section{Класс типов \hs{Functor} и его представители.}
+Функтор определятся следующим образом: 
+\begin{hscode}
+class Functor f where
+  fmap :: (a -> b) -> (f a -> f b)
+  (<$) :: a -> f b -> f a  -- стрелка направлена в ту сторону, откуда берется значение
+  (<$) = fmap . const
+
+(<$>) :: Functor f => (a -> b) -> f a -> f b
+(<$>) fmap
+
+($>) :: Functor f => f a -> b -> f b
+($>) = flip (<$)
+
+void :: Functor f => f a -> f ()  -- это unittype, ровно одно значение
+void x = () <$ x
+
+infixl 1 <&>
+(<&>) :: Functor f => f a -> (a -> b) -> f b
+xs <&> f = f <&> xs
+\end{hscode}
+Представители этого класса должны быть конструкторами типа с одним параметром: \hs{f :: * -> *}.
+\begin{hscode}
+instance Functor [] where
+  fmap _ [] = []
+  fmap g (x:xs) = g x : fmap g xs
+
+instance Functor Maybe where
+  fmap _ Nothing = Nothing
+  fmap g (Just a) - Just (g a)
+
+data Tree a = Leaf | Branch (Tree a) a (Tree a)
+instance Functor Tree where
+  fmap :: (a -> b) -> Tree a -> Tree b
+  fmap g (Leaf x) = Leaf (g x)
+  fmap g (Branch l x r) = Branch (fmap g l) (g x) (fmap g r)
+\end{hscode}
+Структурно ничего не меняется после применения \hs{fmap}, \mintinline{haskell}|<$>| --- инфиксный аналог.
+
+Расширение \hs{InstanceSigs} позволяет указывать сигнатуры методов в представителе класса типов.
+
+Представители для двухпараметрических типов: так как \hs{Either, (,), (->) :: * -> * -> *} мы должны связать первый параметр.
+\begin{hscode}
+instance Functor (Either e) where
+  fmap :: (a -> b) -> Either e a -> Either e b
+  fmap _ (Left x) = Left x
+  fmap g (Right y) = Right (g y)
+
+instance Functor ((,) s) where
+  fmap :: (a -> b) -> (s, a) -> (s, b)
+  fmap g (x, y) = (x, g y)
+
+instance Functor ((->) e) where
+  fmap :: (a -> b) -> ((->) e a) -> ((->) e b)
+  fmap = (.)
+\end{hscode}
+\subsection{Законы}
+Вообще, в Хаскеле из первого следует второй закон.
+\begin{hscode}
+fmap id = id
+fmap (f . g) = fmap f . fmap g
+\end{hscode}
+Смысл законов --- сохраняем структуру контейнера, воздействуя только на элементы.
+Всегда нужно следить за соблюдением законов, например, есть такой нарушитель:
+\begin{hscode}
+instance Functor [] where
+  fmap _ [] = []
+  fmap g (x:xs) = g x : g x : fmap g xs
+\end{hscode}
+\subsection{Не-функторы}
+Единственная реализация не удовлетворяет первому закону:
+\begin{hscode}
+instance Functor Endo where
+  fmap :: (a -> b) -> Endo a -> Endo b
+  fmap _ (Endo _) = Endo id
+\end{hscode}
+Вообще не допускает реализации:
+\begin{hscode}
+newtype RevArr c a = RevArr { appRevArr :: a -> c }
+\end{hscode}
+
+
+\section{Класс типов \hs{Applicative} и его представители}
+Хотим вынуть стрелку из контейнера.
+\begin{hscode}
+class Functor f => Applicative f where
+  {-# Minimal pure, ((<*>) | liftA2) #-}
+  pure :: a -> f a
+
+  (<*>) :: f (a -> b) -> f a -> f b
+  (<*>) = liftA2 id
+
+  liftA2 :: (a -> b -> c) -> f a -> f b -> f c
+  liftA2 g a b = g <$> a <*> b
+
+  (*>) :: f a -> f b -> fb
+  a1 *> a2 = (id <$ a1) <*> a2
+
+  (<*) :: f a -> f b -> f a
+  (<*) = liftA2 const
+
+infixl 4 <*>, *>, <*, <**>
+\end{hscode}
+\hs{pure} --- чистая упаковка, вложение без эффекта.
+
+Вспомогательные функции из \hs{Control.Applicative} 
+\begin{hscode}
+liftA :: Applicatice f => (a -> b) -> f a -> f b
+liftA f a = pure f <*> a
+
+liftA3 :: Applicative f => (a -> b -> c -> d) -> f a -> f b -> f c -> f d
+liftA3 g a b c = g <$> a <*> b <*> c
+
+(<**>) :: Applicative f => f a -> f (a -> b) -> f b
+(<**>) = liftA2 (&)
+\end{hscode}
+
+\subsection{Законы}
+\begin{itemize}
+	\item Закон, связывающий \hs{Applicative} и \hs{Functor}: \hs{fmap g xs =  pure g <*> xs}
+	\item Identity: \hs{pure id <*> v = v}
+	\item Homomorphism: \hs{pure g <*> pure x = pure (g x)}
+	\item Interchange: \mintinline{haskell}|u <*> pure x = pure ($ x) <*> u|
+	\item Composition: \hs{pure (.) <*> u <*> x = u <*> (v <*> x)}
+\end{itemize}
+
+
+\subsection{Представители}
+Контекст с возможно отсутствующим значением (примитивная обработка ошибок):
+\begin{hscode}
+instance Applicative Maybe where
+  pure = Just
+  Nothing <*> _ = Nothing
+  (Just g) <*> x = fmap g x
+
+GHCi> Just (+2) <*> Just 5
+Just 7
+GHCi> Just (+2) <*> Nothing
+Nothing
+GHCi> Just (+) <*> Just 2 <*> Just 5
+Just 7
+\end{hscode}
+Для списков есть две семантики \hs{fs <*> xs}: либо каждый с каждым (множественные результаты недетерминированного вычисления), либо \hs{zip} (коллекция упорядоченных элементов).
+Список определен только для первой, так как одна расширяется до \hs{Monad}.
+\begin{hscode}
+instance Applicative [] where
+  pure x = [x]
+  gs <*> xs = [ g x | g <- gs, x <- xs ]
+
+newtype ZipList a = ZipList { getZipList :: [a] }
+
+instance Functor Ziplist where
+  fmap f (ZipList xs) = ZipList (map f xs)
+instance Applicative ZipList where
+  pure x = x : pure x  -- или repeat x из Data.List
+  ZipList gs <*> ZipList xs = ZipList (zipWith ($) gs xs)
+\end{hscode}
+Для пары выполняется семантика логгирования:
+\begin{hscode}
+instance Monoid s => Applicative ((,), s) where
+  pure x = (mempty, x)
+  (u, f) <*> (v, x) = (u <> v, f x)
+
+GHCi> ("Answer to ", (*)) <*> ("the Ultimate ", 6) <*> ("Question ", 7)
+("Answer to the Ultimate Question ", 42)
+\end{hscode}
+
+
+\section{Классы типов \hs{Alternative, MonadPlus} и их представители.}
+\subsection{\hs{Alternative}}
+\begin{hscode}
+class Applicative f => Alternative f where
+	empty :: f a
+	(<|>) :: f a -> f a -> f a
+infixl 3 <|>
+\end{hscode}
+Мы наделяем аппликативный функтор дополнительной моноидальной операцией с семантикой  сложения:
+\begin{hscode}
+instance Alternative [] where
+	empty :: [a]
+	empty = []
+	(<|>) :: [a] -> [a] -> [a]
+	(<|>) = (++)
+\end{hscode}
+\begin{hscode}
+instance Alternative Maybe where
+	empty :: Maybe a
+	empty = Nothing
+	
+	(<|>) :: Maybe a -> Maybe a -> Maybe a
+	Nothing <|> m = m
+	m <|> _ = m
+
+	some, many :: f a -> f [a]
+	some v = (:) <$> v <*> many v  -- One or more
+	many v = some v <|> pure []  -- Zero or more
+
+optional :: Alternative f => f a -> f (Maybe a)
+optional v = Just <$> v <|> pure Nothing
+\end{hscode}
+Представитель \hs{Alternative} для \hs{Maybe} ведет себя, как упаковка \hs{First}, возвращая первый не-\hs{Nothing} в цепочке альтернатив:
+\begin{hscode}
+GHCi> Nothing <|> (Just 3) <|> (Just 5) <|> Nothing
+Just 3
+\end{hscode}
+Интерфейс для парсера
+\begin{hscode}
+instance Alternative (Parser tok) where
+	empty :: Parser tok a
+	empty = Parser $ \_ -> Nothing
+
+	(<|>) :: Parser tok a -> Parser tok a -> Parser tok a
+	Parser u <|> Parser v = Parser f where
+		f xs = case u xs of
+			Nothing -> v xs
+			z -> z
+\end{hscode}
+СЕМАНТИКА:
+\hs{empty} --- парсер, всегда возвращающий неудачу;
+\hs{(<|>)} --- пробуем первый, при неудаче пробуем второй на исходной строке.
+
+Рекурсивный парсер
+\begin{hscode}
+lowers :: Parser Char String
+lowers = (:) <$> lower <*> lowers <|> pure ""
+
+GHCi> runParser lowers "abCd"
+Just ("Cd","ab")
+GHCi> runParser lowers "abcd"
+Just ("","abcd")
+GHCi> runParser lowers "Abcd"
+Just ("Abcd","")
+\end{hscode}
+
+\subsection{\hs{MonadPlus}}
+
+
+
+\section{Аппликативные парсеры}
+\begin{defn}
+	\mf{Парсер} --- программа, принимающая на вход строку и возвращающая некоторую структуру данных, если строка удовлетворяет заданной грамматике, или сообщение об ошибке в противном случае.
+\end{defn}
+Различные парсеры:
+\begin{itemize}
+	\item Простой, но неудобный: \hs{type Parser a = String -> a}
+	\item Храним неразобранный остаток: \hs{type Parser a = String -> (String, a)}
+	\item Обрабатываем ошибки: \hs{type Parser a = String -> Maybe (String, a)} или 
+
+		\hs{type Parser a = String -> Either String (String, a)}
+	\item Разбираем неоднозначные грамматики: \hs{type Parser a = String -> [(String, a)]}
+\end{itemize}
+Выберем третий вариант. Также существует обобщение на список токенов, который мы обрабатываем вместо строки, если перед этим мы разбили текст на лексемы / токены.
+\begin{hscode}
+newtype Parser tok a = Parser { runParser :: [tok] -> Maybe ([tok], a) }
+\end{hscode}
+Можно написать простой парсер, распознающий строку, начинающуюся с символа \hs{'A'}:
+\begin{hscode}
+charA :: Parser Char Char
+charA = Parser f where
+  f (c:cs) | c == 'A' = Just (cs, c)
+  f _ = Nothing
+
+GHCi> runParser charA "ABC"
+Just ("BC", 'A')
+\end{hscode}
+Напишем более общую функцию, которая разбирает токен, если он удовлетворяет предикату, а иначе выдает ошибку:
+\begin{hscode}
+satisfy :: (tok -> Bool) -> Parser tok tok
+satisfy pr = Parser f where
+	f (c:cs) | pr c = Just (cs,c)
+	f _ = Nothing
+
+GHCi> runParser (satisfy isUpper) "ABC"  -- можно использовать функции из Data.Char, Data.Punctuation 
+Just ("BC",'A')
+GHCi> runParser (satisfy isLower) "ABC"
+Nothing
+
+lower :: Parser Char Char
+lower = satisfy isLower
+char :: Char -> Parser Char Char
+char c = satisfy (== c) 
+\end{hscode}
+Чтобы поменять тип возвращаемого значения, например, возвращать цифру, а не символ, нужно сделать парсер функтором:
+\begin{hscode}
+digit :: Parser Char Int
+digit = digitToInt <$> satisfy isDigit
+
+instance Functor (Parser tok) where
+	fmap :: (a -> b) -> Parser tok a -> Parser tok b
+	fmap g (Parser p) = Parser f where
+		f xs = case p xs of
+			Just (cs, c) -> Just (cs, g c)
+			Nothing -> Nothing
+\end{hscode}
+Можно сделать это компактнее, так как \hs{Parser} --- композиция трех функторов \hs{(->) [tok]}, \hs{Maybe}, \hs{(,) [tok]}:
+\begin{hscode}
+newtype Parser tok a = Parser { runParser :: [tok] -> Maybe ([tok], a) }
+
+instance Functor (Parser tok) where
+  fmap :: (a -> b) -> Parser tok -> Parser tok b
+  fmap g (Parser p) = Parser $ (fmap . fmap . fmap) g p
+\end{hscode}
+Основной эффект парсера состоит в том, что мы постепенно едем по строке и отжираем от нее кусочки.
+
+Семантика \hs{pure} --- ничего не откусить, семантика \hs{<*>} --- получить результат первого парсера, затем второго на остатке и применить первый ко второму.
+
+Тогда можем сделать парсер аппликативным:
+\begin{hscode}
+instance Applicative (Parser tok) where
+	pure :: a -> Parser tok a
+	pure x = Parser $ \s -> Just (s, x)
+
+	(<*>) :: Parser tok (a -> b) -> Parser tok a -> Parser tok b
+	Parser u <*> Parser v = Parser f where
+		f xs = case u xs of
+			Nothing -> Nothing
+			Just (xs', g) -> case v xs' of
+				Nothing -> Nothing
+				Just (xs'', x) -> Just (xs'', g x)
+
+GHCi> runParser (pure 42) "ABCD"
+Just ("ABCD",42)
+GHCi> runParser (pure (,) <*> digit <*> digit) "12AB"
+Just ("AB",(1,2))
+GHCi> runParser ((,) <$> digit <*> digit) "1AB2"
+Nothing
+\end{hscode}
+Постоим  парсер, который перемножает два числа:
+\begin{hscode}
+multiplication :: Parser Char Int
+multiplication = (*) <$> digit <* char '*' <*> digit  -- <* говорит, что резуьтат звездочки просто игнорируем
+
+GHCi> runParser multiplication "6*7"
+Just ("",42)
+\end{hscode}
+
+
+\section{Класс типов \hs{Traversable} и его представители.}
+Пусть есть список с аппликативными функторами, а мы хотим вытащить функтор наружу:
+\begin{hscode}
+dist :: Applicative f => [f a] -> f [a]
+dist [] = pure []
+dist (ax:axs) = pure (:) <*> ax <*> dist axs
+
+GHCi> dist [Just 3,Just 5]
+Just [3,5]
+GHCi> dist [Just 3,Nothing]
+Nothing
+GHCi> getZipList $ dist $ map ZipList [[1,2],[3,4],[5,6]]
+[[1,3,5],[2,4,6]]
+\end{hscode}
+Использование в теле определения dist тех же самых
+конструкторов, что и в образцах, приводит к сохранению
+трехэлементной структуры списка.
+
+Обобщим до любого однопараматрического типа.
+\begin{hscode}
+class (Functor t, Foldable t) => Traversable t where
+	sequenceA :: Applicative f => t (f a) -> f (t a)
+	sequenceA = traverse id
+	traverse :: Applicative f => (a -> f b) -> t a -> f (t b)
+	traverse g = sequenceA . fmap g
+\end{hscode}
+Минимальное определение: \hs{traverse} или \hs{sequenceA}.
+\begin{itemize}
+	\item \hs{sequenceA}: обеспечиваем правило коммутации нашего функтора \hs{t} с произвольным аппликативным функтором \hs{f}.
+
+		Структура внешнего контейнера \hs{t} сохраняется, а аппликативные эффекты внутренних \hs{f} объединяются в результирующем \hs{f}.
+	\item 
+		\hs{traverse} --- это \hs{fmap} с эффектами: проезжаем по структуре \hs{t a}, последовательно применяя функцию к элементам типа \hs{a} и монтируем в точности ту же структуру из результатов типа \hs{b}, параллельно ,,коллекционируя'' эффекты.
+\end{itemize}
+Если реализовать \hs{Traversable}, то он будет и функтором и \hs{Foldable}.
+\subsection{Представители}
+\begin{hscode}
+instance Traversable Maybe where
+	traverse :: Applicative f => (a -> f b) -> Maybe a -> f (Maybe b)
+	traverse _ Nothing = pure Nothing
+	traverse g (Just x) = Just <$> g x
+
+instance Traversable [] where
+	traverse :: Applicative f => (a -> f b) -> [a] -> f [b]
+	traverse _ [] = pure []
+	traverse g (x:xs) = (:) <$> g x <*> traverse g xs
+\end{hscode}
+Можно заметить, что с функтором очень схожий код, просто все происходит поднятым на уровень выше.
+
+\subsection{Законы}
+\begin{hscode}
+newtype Identity a = Identity { runIdentity :: a }
+
+instance Functor Identity where
+	fmap g (Identity x) = Identity (g x)
+
+instance Applicative Identity where
+	pure = Identity
+	Identity g <*> v = fmap g v
+\end{hscode}
+Первый закон (Identity):
+\begin{hscode}
+traverse Identity = Identity
+
+GHCi> traverse Identity [1,2,3]
+Identity [1,2,3]
+\end{hscode}
+Всякий \hs{Traversable} --- это \hs{Functor}: имея \hs{traverse} мы можем универсальным образом реализовать \hs{fmap}, удовлетворяющий законам функтора.
+\begin{hscode}
+fmapDefault :: Traversable t => (a -> b) -> t a -> t b
+fmapDefault g = runIdentity . traverse (Identity . g)
+\end{hscode}
+
+\begin{hscode}
+Identity :: b -> Identity b
+(Identity . g) :: a -> Identity b
+traverse (Identity . g) :: Identity (t b)
+runIdentity . traverse (Identity . g) :: t b
+\end{hscode}
+Второй закон (Composition):
+\begin{hscode}
+traverse (Compose . fmap f2 . f1) = Compose . fmap (traverse f2) . traverse f1
+\end{hscode}
+Здесь обе части имеют тип \hs{t a -> Compose g2 g1 (t с)} в предположении, что \hs{f1 :: a -> g1 b} и \hs{f2 :: b -> g2 c}.
+
+Третий закон (Naturality):
+\begin{hscode}
+h . traverse f = traverse (h . f)
+\end{hscode}
+Здесь \hs{h :: (Applicative f, Applicative g) => f b -> g b} -- произвольный аппликативный гомоморфизм, то есть функция удовлетворяющая требованиям:
+\begin{itemize}
+	\item \hs{h (pure x) = pure x};
+	\item \hs{h (x <*> y) = h x <*> h y}.
+\end{itemize}
+В предположении, что \hs{f :: a -> f b}, обе части имеют тип \hs{t a -> g (t b)}.
+\subsection{Практический смысл законов}
+Законы \hs{Traversable} дают следующие гарантии:
+\begin{itemize}
+	\item Траверсы не пропускают элементов.
+	\item Траверсы посещают элементы не более одного раза. 
+	\item \hs{traverse pure} дает \hs{pure}.
+	\item Траверсы не изменяют исходную структуру --- она либо сохраняется, либо полностью исчезает.
+\end{itemize}
+\begin{hscode}
+GHCi> traverse Just [1,2,3]
+Just [1,2,3]
+GHCi> traverse (const Nothing) [1,2,3]
+Nothing
+\end{hscode}
+
 
 \end{document}
