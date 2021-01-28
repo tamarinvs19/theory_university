@@ -1,0 +1,2 @@
+ana :: Functor f => (a -> f a) -> a -> Fix f
+ana psi x = In $ fmap (ana psi) (psi x)

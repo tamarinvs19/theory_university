@@ -631,7 +631,7 @@ $ \lambda$-терм $ M$ \textit{имеет} $\beta $-нормальную фо�
 \[
 \begin{aligned}
 	\fpxz & \equiv \lam{x}{\pair x \, 0} \\
-	\fpfs & \equiv \lam {f \, p}{\pair (f (\fst p) (\snd p)) (\succ (\snd p))} \\
+	\fpfs & \equiv \lam {f \, p}{\pair (f (\fst p) (\snd p)) (\fpsucc (\snd p))} \\
 	\fprec & \equiv \lam{m\,f\,x}{\fst (m (\fpfs f) (\fpxz x))}
 \end{aligned}
 \]
@@ -1235,7 +1235,7 @@ E = \{ \sigma _1 \sim \tau _1, \ldots \sigma _n \sim \tau _n\}
 \subsection{Алгоритм PP}
 \[
 \begin{aligned}
-PP(M) \mid U(E(\Gamma_0 , M, \sigma _0 )) \equiv  error = error
+PP(M) \mid U(E(\Gamma_0 , M, \sigma _0 )) \equiv  error = error \\
 PP(M) \mid U(E(\Gamma_0 , M, \sigma _ 0 )) \equiv  S = (S(\Gamma_0 ), S(\sigma_0 ))
 \end{aligned}
 \]

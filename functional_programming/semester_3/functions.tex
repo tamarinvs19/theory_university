@@ -1,13 +1,13 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \input{preamble.tex}
 
 \title{Список сигнатур функций}
 \author{Тамарин Вячеслав}
 
-\makeindex
 \begin{document}
-\maketitle
+% \maketitle
 
+\begin{minipage}{0.47\textwidth}
 \section{Комбинаторы}
 \begin{enumerate}[noitemsep]
 	\item $ I = \lam{x}{x}$
@@ -19,63 +19,483 @@
 	\item $ B = \lam{f g x}{f (g x)}$
 	\item $ S = \lam{f g x}{f x (g x)}$
 \end{enumerate} 
-\section{Функции}
-\begin{enumerate}
-\item 
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\section{Теория}
+\begin{enumerate}[noitemsep]
+    \item $ \fpsucc = \lam{nsz}{s(nsz)}$ 
+	\item $ \plus = \lam{mnsz}{ms(nsz)}$
+	\item $ \fpmult = \lam{mn}{m(\plus n)0}$ 
+	\item $ \pred = \lam{m}{\fst (m \fpsp \zp)}$
+	\item  $ \fpxz = \lam{x}{\pair x 0}$
+	\item  $ \fpfs = \lam{fp}{\pair(f(fst p)(snd p))(\fpsucc (\snd p))}$
+	\item $ \fprec  \equiv \lam{m\,f\,x}{\fst (m (\fpfs f) (\fpxz x))}$
+	\item $ \nil = \lam{c n}{n}$
+	\item  $ \cons = \lam{e l c n}{c e (l c n)}$
+\end{enumerate} 
+\end{minipage}
+
+
+
+
+\section{Haskell}
+\begin{minipage}{0.47\textwidth}
 \begin{hscode}
 seq :: a -> b -> b
 seq :: \bot b =  \bot
 seq a b = b, если a != \bot
 \end{hscode}
-\item
 \begin{hscode}
-swap :: (a, b) -> (b, a)
-swap :: (x, y) = (y, x)
-\end{hscode}
-\item
-\begin{hscode}
-data Maybe a = Nothing | Just a
-maybe :: b -> (a -> b) -> Maybe a -> b
-find :: (a -> Bool) -> [a] -> Maybe a
-\end{hscode}
-\item
-\begin{hscode}
-data Either a b = Left a | Right b
-either :: (a -> c) -> (b -> c) -> Either a b -> c
-
 head' :: [a] -> Either String a
 head' (x:_) = Right x
 head' [] = Left "head': empty list"
 \end{hscode}
-\item
 \begin{hscode}
 head :: [a] -> a
 head (x:_) = x
 head [] = error "Prelude.head: empty list"
 \end{hscode}
-\item
 \begin{hscode}
 tail :: [a] -> [a]
 tail (x:xs) = xs
 tail [] = error "Prelude.tail: empty list"
 \end{hscode}
-
-
-
-\item
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
 \begin{hscode}
-	($)    ::                  (a -> b) -> a -> b
-	(<$>)  :: Functor f =>     (a -> b) -> f a -> f b
-	(<*>)  :: Applicative f => f (a -> b) -> f a -> f b
-	(=<<)  :: Monad m =>       (a -> m b) -> m a -> m b
+length :: [a] -> Int
 
-	(&)    ::                  a -> (a -> b) -> b
-	(<&>)  :: Functor f =>     f a -> (a -> b) -> f b
-	(<**>) :: Applicative f => f a -> f (a -> b) -> f b
-	(>>=)  :: Monad m =>       m a -> (a -> m b) -> m b
+concat :: [[a]] -> [a]
+concat [] = []
+concat (xs:xss) = xs ++ concat xss
+\end{hscode}
+\begin{hscode}
+infix 4 `elem`
+elem :: (Eq a) => a -> [a] -> Bool
+elem _ [] = False
+elem x (y:ys) = x == y || elem x ys
+\end{hscode}
+\begin{hscode}
+infixl 9 !!
+(!!) :: [a] -> int -> a
+xs     !! n | n < 0 = error "prelude.!!: negative index"
+[]     !! _         = error "prelude.!!: index too large"
+(x:_)  !! 0         = x
+(_:xs) !! n         = xs !! (n-1)
+\end{hscode}
+\end{minipage}
+
+\subsection{\hs{sequence}, \hs{mapM}, \hs{replicateM}}
+\begin{hscode}
+sequence_ :: (Foldable t, Monad m) => t (m a) -> m ()
+sequence_ = foldr (>>) (return ())
+sequence :: (Traversable t, Monad m) => t (m a) -> m (t a)
+sequence = sequenceA
+
+replicateM :: Applicative m => Int -> m a -> m [a]
+replicateM n = sequenceA . replicate n 
+plus' :: Int -> Int -> Int
+plus' n x = execState (replicateM n tick) x
+
+mapM_ :: (Foldable t, Monad m) => (a -> m b) -> t a -> m ()
+mapM_ f = sequence_ . fmap f
+mapM :: (Traversable t, Monad m) => (a -> m b) -> t a -> m (t b)
+mapM f = sequence . fmap f  -- traverse
+\end{hscode}
+\subsection{Свертки}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f ini [] = ini
+foldr f ini (x:xs) = x `f` (foldr f ini xs)
+
+foldl :: (b -> a -> b) -> b -> [a] -> b
+foldl f ini [] = ini
+foldl f ini (x:xs) = foldl f (ini `f` x) xs
+
+scanl :: (b -> a -> b) -> b -> [a] -> [b]
+scanl _ z [] = [z]
+scanl (#) z (x:xs) = z : scanl (#) (z # x) xs
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+scanr :: (a -> b -> b) -> b -> [a] -> [b]
+scanr _ z [] = [z]
+scanr f z (x:xs) = f x q : qs
+                     where qs@(q:_) = scanr f z xs
+
+unfoldr :: (b -> Maybe (a, b)) -> b -> [a]
+unfoldr g ini 
+  | Nothing     <- next = []
+  | Just (a, b) <- next = a : unfoldr g b
+  where next = g ini
+\end{hscode}
+\end{minipage}
+
+
+
+
+\subsection{Операторы}
+\begin{hscode}
+($)    ::                  (a -> b) -> a -> b
+(<$>)  :: Functor f =>     (a -> b) -> f a -> f b
+(<*>)  :: Applicative f => f (a -> b) -> f a -> f b
+(=<<)  :: Monad m =>       (a -> m b) -> m a -> m b
+
+(&)    ::                  a -> (a -> b) -> b
+(<&>)  :: Functor f =>     f a -> (a -> b) -> f b
+(<**>) :: Applicative f => f a -> f (a -> b) -> f b
+(>>=)  :: Monad m =>       m a -> (a -> m b) -> m b
 \end{hscode}
 
 
-\end{enumerate} 
+\section{\hs{Maybe, Either}}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+data Maybe a = Nothing | Just a
+maybe :: b -> (a -> b) -> Maybe a -> b
+find :: (a -> Bool) -> [a] -> Maybe a
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+data Either a b = Left a | Right b
+either :: (a -> c) -> (b -> c) -> Either a b -> c
+\end{hscode}
+\end{minipage}
+
+
+
+\section{Классы типов}
+\subsection{\hs{Eq, Ord, Enum, Num, Bounded}}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+\end{hscode}
+\begin{hscode}
+class Enum a where 
+  succ, pred     :: a -> a
+  toEnum         :: Int -> a
+  fromEnum       :: a -> Int
+
+  enumFrom       :: a -> [a]            
+  enumFromThen   :: a -> a -> [a]       
+  enumFromTo     :: a -> a -> [a]       
+  enumFromThenTo :: a -> a -> a -> [a]  
+
+class Bounded a where
+  minBound, maxBound :: a
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+class Eq a => Ord a where
+  compare :: a -> a -> Ordering
+  (<) , (<=), (>=), (>) :: a -> a -> Bool
+  max, min :: a -> a -> a
+\end{hscode}
+\begin{hscode}
+class (Eq a, Show a) => Num a where
+  (+), (-), (*) :: a -> a -> a
+  negate        :: a -> a
+  abs, signum   :: a -> a
+  fromInteger   :: Integer -> a
+
+  x - y = x + negate y
+  negate x = 0 - x
+\end{hscode}
+\end{minipage}
+
+\subsection{}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+infixr 6 <>
+class Semigroup a where
+  (<>) :: a -> a -> a
+  sconcat :: NonEmpty a -> a  
+  stimes :: Integral b => b -> a -> a 
+
+infixr 5 :|
+data NonEmpty a = a :| [a] 
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+class Semigroup a => Monoid a where
+  mempty :: a  
+  mappend :: a -> a -> a
+  mappend = (<>)
+  mconcat :: [a] -> a
+  mconcat = foldr mappend mempty
+\end{hscode}
+\end{minipage}
+\begin{hscode}
+class Foldable t where
+  fold :: Monoid m => t m -> m
+  fold = foldMap id
+  foldMap :: Monoid m => (a -> m) -> t a -> m
+  foldMap f = foldr (mappend . f) mempty
+  foldr, foldr' :: (a -> b -> b) -> b -> t a -> b
+  foldr f z t = appEndo (foldMap (Endo . f) t) z
+  foldl, foldl' :: (b -> a -> b) -> a -> t b -> a
+  foldl f z t = appEndo (getDual (foldMap (Dual . Endo . flip f) t)) z
+  foldr1, foldl1 :: (a -> a -> a) -> t a -> a
+\end{hscode}
+
+\noindent
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+class Functor f where
+  fmap :: (a -> b) -> (f a -> f b)
+  (<$) :: a -> f b -> f a 
+  (<$) = fmap . const
+(<$>) :: Functor f => (a -> b) -> f a -> f b
+(<$>) fmap
+infixl 1 <&>
+(<&>) :: Functor f => f a -> (a -> b) -> f b
+xs <&> f = f <$> xs
+\end{hscode}
+\begin{hscode}
+class Applicative f => Alternative f where
+	empty :: f a
+	(<|>) :: f a -> f a -> f a
+	some, many :: f a -> f [a]
+	some v = (:) <$> v <*> many v 
+	many v = some v <|> pure [] 
+infixl 3 <|>
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\begin{hscode}
+class Functor f => Applicative f where
+  pure :: a -> f a
+  (<*>) :: f (a -> b) -> f a -> f b
+  (<*>) = liftA2 id
+  liftA2 :: (a -> b -> c) -> f a -> f b -> f c
+  liftA2 g a b = g <$> a <*> b
+infixl 4 <*>, *>, <*, <**>
+liftA :: Applicatice f => (a -> b) -> f a -> f b
+liftA f a = pure f <*> a
+\end{hscode}
+\begin{hscode}
+class (Alternative m, Monad m) => MonadPlus m where
+	mzero :: m a
+	mzero = empty
+	mplus :: m a -> m a -> m a
+	mplus = (<|>)
+\end{hscode}
+\end{minipage}
+\begin{minipage}{0.52\textwidth}
+\begin{hscode}
+class (Functor t, Foldable t) => Traversable t where
+	sequenceA :: Applicative f => t (f a) -> f (t a)
+	sequenceA = traverse id
+	traverse :: Applicative f => 
+					(a -> f b) -> t a -> f (t b)
+	traverse g = sequenceA . fmap g
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.43\textwidth}
+\begin{hscode}
+class Applicative m => Monad m where
+	return :: a -> m a
+	(>>=) :: m a -> (a -> m b) -> m b
+	(>>) :: m a -> m b -> m b
+	m1 >> m2 = m1 >>= \_ -> m2
+class Monad m => MonadFail m where
+	fail :: String -> m a
+	fail s = error s
+infixl 1 >>, >>=
+\end{hscode}
+\end{minipage}
+
+\subsection{Ввод и вывод}
+\begin{minipage}{0.6\textwidth}
+\begin{hscode}
+newtype IO a = IO (RealWorld -> (RealWorld, a))
+unIO :: IO a -> RealWorld -> (RealWorld, a)
+unIO (IO a) = a
+instance Monad IO where
+	return x = IO $ \w -> (w, x)
+	(>>=) (IO m) k = IO $ 
+		\w -> case m w of (new_w, a) -> unIO (k a) new_w
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\textwidth}
+\begin{hscode}
+getChar :: IO Char
+putChar :: Char -> IO ()
+print :: Show a => a -> IO ()
+putStr''' :: String -> IO ()
+putStr''' = mapM_ putChar
+\end{hscode}
+\end{minipage}
+\begin{hscode}
+newtype Reader r a = Reader { runReader :: r -> a }
+reader :: (r -> a) -> Reader r a
+runReader :: Reader r a -> r -> a
+instance Monad (Reader r) where
+	return x = reader $ \_ -> x
+	m >>= k = reader $ \e -> let v = runReader m e in runReader (k v) e
+ask :: Reader r r
+asks :: (r -> a) -> Reader r a
+\end{hscode}
+\begin{minipage}{0.55\textwidth}
+\begin{hscode}
+newtype Writer w a = Writer { runWriter :: (a, w) }
+writer :: (a, w) -> Writer w a
+runWriter :: Writer w a -> (a, w)
+execWriter :: Writer w a -> w
+
+instance Monoid w => Monad (Writer w) where
+	return x = writer (x, mempty)
+	m >>= k = let ~(x, u) = runWriter m 
+                  ~(y, v) = runWriter $ k x
+                in writer (y, u `mappend` v)
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\begin{hscode}
+tell :: Monoid w => w -> Writer w ()
+listen :: Monoid w => 
+		Writer w a -> Writer w (a, w)
+listens :: Monoid w =>
+		(w -> b) -> Writer w a -> Writer w (a, b)
+censor :: Monoid w => 
+		(w -> w) -> Writer w a -> Writer w a
+\end{hscode}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+\begin{hscode}
+newtype State s a = State { runState :: s -> (a, s) }
+
+state :: (s -> (a, s)) -> State s a
+runState :: State s a -> s -> (a, s)
+execState :: State s a -> s -> s
+evalState :: State s a -> s -> a
+
+instance Monad (State s) where 
+	return x = state $ \st -> (x, st)
+	m >>= k = state $ \st -> let (x, st') = runState m st
+	                             m' =  k x
+                             in runState m' st'
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\begin{hscode}
+get :: State s s
+get = state $ \s -> (s, s)
+put s :: s -> State s ()
+put = state $ \_ -> ((), s)
+modify :: (s -> s) -> State s ()
+modify f = do s <- get
+              put (f s)
+gets :: (s -> a) -> State s a 
+gets f = do s <- get
+         return (f s) 
+\end{hscode}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+\begin{hscode}
+newtype Except e a = Except {runExcept :: Either e a}
+except :: Either e a -> Except e a
+except = Except
+
+instance Monad (Except e) where
+	return a = Except $ Right a
+	m >>= k = case runExcept m of
+		Left e -> Except $ Left e
+		Right x -> k x
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.42\textwidth}
+\begin{hscode}
+throwE :: e -> Except e a
+throwE = except . Left
+catchE :: Except e a ->
+		(e -> Except e' a) -> Except e' a
+m `catchE` h = case runExcept m of
+	Left l -> h l
+	Right r -> Except $ Right r
+\end{hscode}
+\end{minipage}
+\subsection{В mtl}
+\begin{hscode}
+class Monad m => MonadReader r m | m -> r where
+	ask:: m r
+	local :: (r -> r) -> m a -> m a
+class (Monoid w, Monad m) => MonadWriter w m | m -> w where
+	tell :: w -> m ()
+	listen :: m a -> m (a, w)
+class Monad m => MonadState s m | m -> s where
+	get :: m s
+	put :: s -> m ()
+class Monad m => MonadError e m | m -> e where
+	throwError :: e -> m a
+	catchError :: m a -> (e -> m a) -> m a
+\end{hscode}
+
+
+
+\section{Трансформеры}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+newtype Monad m => MaybeT m a = 
+	MaybeT { runMaybeT :: m (Maybe a) }
+MaybeT :: Monad m => m (Maybe a) -> MaybeT m a
+runMaybeT :: Monad m => MaybeT m a -> m (Maybe a)
+instance MonadTrans MaybeT where
+	lift :: m a -> MaybeT m a
+	lift = MaybeT . liftM Just
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+return :: a -> MaybeT m a
+return = lift . return
+(>>=) :: MaybeT m a -> (a -> MaybeT m b) -> MaybeT m b
+mx >>= k = MaybeT $ do
+	v <- runMaybeT mx
+	case v of
+		Nothing -> return Nothing
+		Just y -> runMaybeT (k y)
+\end{hscode}
+\end{minipage}
+
+
+
+
+
+\section{... морфизмы}
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+cata :: Functor f => (f a -> a) -> Fix f -> a
+cata phi (In x) = phi $ fmap (cata phi) x
+\end{hscode}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\begin{hscode}
+ana :: Functor f => (a -> f a) -> a -> Fix f
+ana psi x = In $ fmap (ana psi) (psi x)
+\end{hscode}
+\end{minipage}
+
 
 \end{document}

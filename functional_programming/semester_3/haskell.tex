@@ -332,9 +332,9 @@ lookup key ((k,v):kvs)
 Оператор, возвращающий элемент списка с заданным индексом
 \begin{hscode}
 infixl 9 !!
-(!!) :: [a] -> Int -> a
-xs     !! n | n < 0 = error "Prelude.!!: negative index"
-[]     !! _         = error "Prelude.!!: index too large"
+(!!) :: [a] -> int -> a
+xs     !! n | n < 0 = error "prelude.!!: negative index"
+[]     !! _         = error "prelude.!!: index too large"
 (x:_)  !! 0         = x
 (_:xs) !! n         = xs !! (n-1)
 \end{hscode}
@@ -974,7 +974,7 @@ void x = () <$ x
 
 infixl 1 <&>
 (<&>) :: Functor f => f a -> (a -> b) -> f b
-xs <&> f = f <&> xs
+xs <&> f = f <$> xs
 \end{hscode}
 Представители этого класса должны быть конструкторами типа с одним параметром: \hs{f :: * -> *}.
 \begin{hscode}
@@ -1129,6 +1129,10 @@ GHCi> ("Answer to ", (*)) <*> ("the Ultimate ", 6) <*> ("Question ", 7)
 class Applicative f => Alternative f where
 	empty :: f a
 	(<|>) :: f a -> f a -> f a
+
+	some, many :: f a -> f [a]
+	some v = (:) <$> v <*> many v  -- One or more
+	many v = some v <|> pure []  -- Zero or more
 infixl 3 <|>
 \end{hscode}
 Мы наделяем аппликативный функтор дополнительной моноидальной операцией с семантикой  сложения:
@@ -1147,10 +1151,6 @@ instance Alternative Maybe where
 	(<|>) :: Maybe a -> Maybe a -> Maybe a
 	Nothing <|> m = m
 	m <|> _ = m
-
-	some, many :: f a -> f [a]
-	some v = (:) <$> v <*> many v  -- One or more
-	many v = some v <|> pure []  -- Zero or more
 
 optional :: Alternative f => f a -> f (Maybe a)
 optional v = Just <$> v <|> pure Nothing
@@ -2005,7 +2005,7 @@ Sum {getSum = 55.0}),(("AGRH!!",0.0),Sum {getSum = 0.0})],
 Sum {getSum = 100.5})
 \end{hscode}
 \subsection{Функция \hs{listens}}
-Есть более гибкая альтернатива, можем фильтровать то, что выводим
+Есть более гибкая альтернатива, можем обрабатывать то, что выводим
 
 \hs{listens :: Monoid w => (w -> b) -> Writer w a -> Writer w (a, b)}
 \begin{hscode}
