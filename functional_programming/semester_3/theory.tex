@@ -1041,4 +1041,222 @@ I \colon \alpha \to \alpha
 	То есть любой допустимый терм в $ \lambda_{\to}$ всегда редуцируется к нормальной форме независимо от выбранной стратегии редукции.
 \end{thm}
 
+
+\section{Понятие главного (наиболее общего) типа. Подстановка типа и их композиция.}
+Для систем Карри и {\color{red}Черча} верна \textit{лемма подстановки типа}:
+\[
+	\Gamma \vdash M\colon \sigma  \Longrightarrow \subst{ \alpha }{ \tau } {\Gamma} \vdash {\color{red} \subst{\alpha}{\tau}{}}M \colon \subst{\alpha}{\tau}{\sigma}
+.\] 
+В версии Черча $ \lambda_{\to}$ термы атрибутированы типами, поэтому тип терма единственен:
+\[
+\begin{aligned}
+	& \lam{f^{ \sigma \to \tau \to \rho} g^{ \sigma \to  \tau } z^{ \sigma }}{f\,z(g\,z)} \colon ( \sigma \to  \tau \to  \rho) \to (\sigma \to \tau ) \to  \sigma \to  \rho \\
+	& \lam{f^{ \sigma \to \tau \to \sigma} g^{ \sigma \to  \tau } z^{ \sigma }}{f\,z(g\,z)} \colon ( \sigma \to  \tau \to  \sigma) \to (\sigma \to \tau ) \to  \sigma \to  \sigma \\
+	& \lam{f^{ (\tau \to \rho) \to \tau \to \rho} g^{ (\tau \to \rho) \to  \tau } z^{ (\tau \to \rho) }}{f\,z(g\,z)} \colon ( (\tau \to \rho) \to  \tau \to  \rho) \to ((\tau \to \rho) \to \tau ) \to  (\tau \to \rho) \to  \rho 
+\end{aligned}
+\]
+Любой из этих типов можно приписать терму
+$S = \lam{f\, g\, z}{f\, z (g\, z)}$ в версии Карри.
+
+Однако, первый ,,лучше'' в том смысле, что остальные получаются из него подстановками типа вместо типовых переменных. Он называется \mf{главным (principle)}. Также он отличается тем, что в нем меньше всего стрелок и максимальное разнообразие типов. 
+
+\subsection{Вывод главного типа}
+Пусть у нас есть комбинатор
+\[
+	S = \lam{x\,y}{y(\lam{z}{y\,x})}
+.\] 
+Припишем всем термовым переменным типовую метапеременную:
+\[
+	\lam{x^{\alpha}\,y^{\beta}}{y^{\beta}(\lam{z^{\gamma}}{y^{\beta}\,x^{\alpha}})}
+.\] 
+Припишем типовую переменную метапеременную всем аппликативным подтермам: $ (y\,x) '\colon \delta , ~ y(\lam{z}{y\,z})\colon \varepsilon $
+\[
+	\lam{x^{\alpha}\,y^{\beta}}{\underbrace{y^{\beta}(\lam{z^{\gamma}}{\overbrace{y^{\beta}\,x^{\alpha}}^{\delta}})}_{\varepsilon}}
+.\] 
+Теперь можем связать некоторые метапеременные уравнениями, необходимыми для типизируемости терма:
+\[
+	\beta \sim \alpha \to \delta , \quad \beta \sim ( \gamma \to \delta ) \to \varepsilon 
+.\] 
+Найдем главный унификатор для типовых переменных (подстановку), дающий решения уравнений:
+\[
+	\alpha \coloneqq \gamma \to  \delta , ~ \beta \coloneqq (\gamma \to \delta ) \to  \varepsilon , ~ \delta \coloneqq  \varepsilon 
+.\] 
+Главный тип 
+\[
+	\lam{x\,y}{y(\lam{z}{y\,z})} \colon ( \gamma \to  \varepsilon ) \to (( \gamma \to  \varepsilon ) \to \varepsilon) \to  \varepsilon 
+.\] 
+\begin{defn}[Подстановка типа]
+	\mf{Подстановка типа} --- операция $ S \colon \T \to  \T$ такая, что
+	\[
+		S( \sigma \to \tau ) \equiv  S( \sigma ) \to S( \tau )
+	.\] 
+\end{defn}
+Можно представлять типы как вершины бинарного дерева, пара ребер соответствует подстановке.
+Обычно подстановка тождественна на всех типовых переменных, кроме конечного носителя
+\[
+	\sup (S) = \{ \alpha \mid S( \alpha ) \not \equiv \alpha \}
+.\] 
+Пример подстановки:
+\[
+S = [a \coloneq \gamma \to  \beta , \beta \coloneqq   \alpha \to  \gamma ]
+.\] 
+Тождественная подстановка (то есть с пустым носителем) обозначают $ []$.
+
+Все подстановки происходят \textit{параллельно}: для  $ \tau = \alpha \to \beta \to \gamma $ :
+\[
+\begin{aligned}
+	S( \tau ) & = [ \alpha \coloneq \gamma \to \beta , \beta \coloneqq \alpha \to  \gamma ] ( \alpha \to  \beta \to \gamma ) = \\
+			  &= ( \gamma \to  \beta ) \to ( \alpha \to \gamma ) \to  \gamma 
+\end{aligned}
+\]
+\begin{defn}[Композиция подстановок]
+	\mf{Композиция двух подстановок} --- подстановка с носителем,
+являющимся объединением носителей, над которым
+последовательно выполнены обе подстановки.
+\end{defn}
+Подстановки образуют моноид относительно композиции и с $ []$ в роли нейтрального элемента.
+
+\begin{defn}[Унификатор]
+	\mf{Унификатор для типов} $ \sigma $ и $ \tau $ --- подстановка $ S$ такая, что $ S( \sigma ) \equiv S( \tau )$.
+\end{defn}
+\begin{ex}
+	Пусть $ \sigma  = \alpha \to \beta \to \gamma $, $ \tau  = (\delta \to  \varepsilon ) \to  \phi$.
+	Унификатор:
+	\[
+		S = [ \alpha \coloneqq \delta \to  \varepsilon , \varphi \coloneqq \beta \to \gamma ]
+	.\] 
+	В результате такой подстановки
+	\[
+		S( \sigma ) \equiv S( \tau ) \equiv ( \delta \to \varepsilon ) \to (\beta \to \gamma )
+	.\] 
+\end{ex}
+Когда выделяем одну элементарную подстановку нужно сразу выполнить ее повсюду.
+
+\begin{defn}[Главный унификатор]
+	Унификатор $ S$ --- \mf{главный унификатор} для $ \sigma $ и $ \tau $, если для любого другого унификатора $ S'$ существует подстановка $ T$ такая,  что
+	\[
+	S' \equiv T \circ S 
+	.\] 
+\end{defn}
+
+
+\section{Алгоритм унификации}
+\begin{thm}[Робинсон, 1965]
+    Существует алгоритм унификации $U$, который для заданных типов $ \sigma $ и $ \tau $ возвращает:
+	\begin{itemize}
+		\item главный унификатор $ S$ для $\sigma$ и $ \tau $, если $ \sigma $ и $ \tau $ могут быть унифицированы;
+		\item сообщение об ошибке в противном случае.
+	\end{itemize}
+\end{thm}
+Алгоритм $ U( \sigma , \tau )$ позволяет искать минимальное решение уравнения на типы $ \sigma \sim \tau $.
+
+\mf{Ключевой момент} всех рассуждений про унификацию:
+\[
+\sigma _1 \to \sigma _2 \equiv \tau _1 \to  \tau _2 \Longleftrightarrow \sigma _1 \equiv \tau _1 \wedge \sigma _2 == \tau _2
+.\] 
+
+\subsection{Алгоритм }
+Опишем алгоритм:
+\[
+\begin{aligned}
+	& U( \alpha , \alpha ) &&=&& [] \\
+	& U( \alpha , \tau ) \mid \alpha \in FV( \tau ) &&=&& error \\
+	& U( \alpha , \tau ) \mid \alpha \notin FV( \tau ) &&=&& [ \alpha \coloneqq \tau ] \\
+	& U( \sigma _1 \to \sigma _2, \alpha ) && = && U( \alpha , \sigma _1, \sigma _2) \\
+	& U( \sigma _1 \to \sigma _2, \tau _1 \to \tau _2) &&=&& U(U_2 \sigma _1, U_2 \sigma _1) \circ U_2 \quad \text{where } U_2 = U( \sigma _2, \sigma _1)
+\end{aligned}
+\]
+\begin{itemize}
+	\item $ U( \sigma , \tau )$ завершается, так как деревья типа конечны и количество типовых переменных сокращается на $ 1$ через конечное число шагов: интересен только последний шаг (остальные сразу точно завершаются), но мы дойдем до переменных, так как увеличение происходит из-за обход по поддереву, а его высота каждый раз уменьшается, с некоторого момента, общая высота станет уменьшаться; когда мы дошли до переменной, их количество уменьшиться.
+	\item $ U( \sigma, \tau )$ унифицирует: по индукции, если $ S$ унифицирует $ ( \sigma, \tau )$, то $ S \circ [ \alpha \coloneqq \rho]$ унифицирует $ ( \sigma \to \alpha , \tau \to \rho)$.
+	\item $ U ( \sigma , \tau )$ выдает главный унификатор.
+\end{itemize}
+
+
+\section{Алгоритм построения системы ограничений.}
+Наша первая цель --- построить систему ограничений на типы для терма $M$ (возможно незамкнутого).
+
+Для типизации таких термов необходим контекст $ \Gamma $, в котором объявляются типы всех свободных переменных.
+
+Для подстановки $ S$, унифицирующей систему уравнений на типы
+\[
+E = \{ \sigma _1 \sim \tau _1, \ldots \sigma _n \sim \tau _n\}
+,\] 
+введем обозначение $ S \vDash E$.
+\begin{thm}[Теорема о существовании системы ограничений]
+	Для любых терма $ M \in \Lambda$, контекста $ \Gamma $ ($ FV(M) \subseteq \dom(\Gamma)$) и типа $ \sigma \in \T$ существует конечное множество уравнений на типы $E = E(\Gamma , M, \sigma )$, такое что для некоторой подстановки $ S$:
+	\begin{itemize}
+		\item
+			$ S \vDash E( \Gamma , M, \sigma ) \Longrightarrow S(\Gamma) \vdash M\colon S(\sigma)$ 
+		\item $ S(\Gamma) \vdash M \colon S(\sigma) \Longrightarrow S' \vDash E( \Gamma , M, \sigma )$, для некоторого $ S'$, имеющего тот же эффект, что и $ S$, на типовых переменных в $ \Gamma $ и $ \sigma $.
+	\end{itemize}
+\end{thm}
+\subsection{Алгоритм}
+\[
+\begin{aligned}
+	&E(\Gamma, x, \sigma ) &&=&& \{\sigma \Gamma (x)\} \\
+	&E( \Gamma , MN, \sigma ) &&=&& E( \Gamma , M, \alpha \to \sigma )\\
+	&E( \Gamma , \lam{x}{M}, \sigma ) &&=&& E( \Gamma \cup \{x \colon \alpha \}, M, \beta ) \cup \{ \alpha \to \beta ~ \sigma \}
+\end{aligned}
+\]
+В первом равенстве контекст $ \Gamma$ рассматривается как функция из множества переменных в множество типов.
+
+Переменные $ \alpha $ во втором и третьем равенствах и $ \beta $ в третьем всякий раз должны быть ,,свежими''!
+
+
+\section{Главная пара и главный тип. Теорема Хиндли-Миллера.}
+\begin{defn}[Главная пара]
+	\mf{Главная пара} для $ M \in \Lambda$ --- пара $ ( \Gamma , \sigma )$ такая, что
+	\begin{itemize}
+		\item $ \Gamma \vdash M \colon \sigma $
+		\item $ \Gamma ' \vdash M \colon \sigma ' \Longrightarrow \exists S \colon S(\Gamma) \subseteq \Gamma ' \wedge S(\sigma) \equiv \sigma '$
+\end{itemize}
+\end{defn}
+\begin{ex}
+	Для $M = \lam{x}{x\, y}$ имеем
+	\[
+	\begin{aligned}
+		&PP(M) = (y\colon \alpha , ( \alpha \to  \beta ) \to  \beta 
+		\\
+		& y\colon \alpha \vdash (\lam{x}{x\,y})\colon ( \alpha \to \beta ) \to \beta 
+	\end{aligned}
+	\]
+\end{ex}
+\begin{thm}[Теорема Хиндли – Милнера]
+Существует алгоритм $PP$, возвращающий для $M \in  \Lambda$ главную пару $(\Gamma , \sigma )$, если $ M$ имеет тип и сообщение об ошибке в противном случае.
+\end{thm}
+Пусть 
+\[
+	FV(M) = \{x_1 , \ldots  , x_n \}
+\]
+\[
+	\Gamma_ 0 = {x_1 \colon  \alpha _1 , \ldots  , x_n \colon  \alpha _n }, \quad\sigma_0 = \beta 
+.\] 
+\subsection{Алгоритм PP}
+\[
+\begin{aligned}
+PP(M) \mid U(E(\Gamma_0 , M, \sigma _0 )) \equiv  error = error
+PP(M) \mid U(E(\Gamma_0 , M, \sigma _ 0 )) \equiv  S = (S(\Gamma_0 ), S(\sigma_0 ))
+\end{aligned}
+\]
+Стартуем с произвольных переменных типа, приписанных свободным переменным типизируемого терма $M$ и всему терму.
+
+\subsection{Главный тип (Principle Type)}
+\begin{defn}[Главный тип]
+	Для $M \in  \Lambda_0$ \mf{главным типом} называют тип $ \sigma $, такой что
+	\begin{itemize}
+		\item
+			$ M \colon \sigma $
+		\item $ M \colon \sigma ' \Longrightarrow \exists S\colon S(\sigma) \equiv \sigma '$
+\end{itemize}
+\end{defn}
+\begin{cor}[Следствие теоремы Хиндли – Милнера]
+Существует алгоритм $PT$ , возвращающий для $M \in  \Lambda_0$ главный тип $ \sigma $, если $ M$ имеет тип и сообщение об ошибке в противном случае.
+\end{cor}
+
+
+
+
+
+
 \end{document}
