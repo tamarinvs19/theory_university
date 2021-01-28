@@ -186,7 +186,7 @@ $ M$ --- \mf{замкнутый $ \lambda$-терм (комбинатор)}, е�
 		& \subst{x}{N}{PQ} && = && \left( \subst{x}{N}{P} \right) \left( \subst{x}{N}{Q} \right)   \\
 		& \subst{x}{N}{\lam{x}{P}} && = && \lam{x}{P} \\
 		& \subst{x}{N}{\lam{y}{P}} && = && \lam{y}{\subst{x}{N}{P}}, && \text{ если } y \notin FV(N)\\
-		& \subst{x}{N}{\lam{y}{P}} && = && \lam{x}{\subst{y}{z}{P}}\left( \subst{y}{z}{P} \right) , && \text{ если } y \in FV(N)
+		& \subst{x}{N}{\lam{y}{P}} && = && \lam{x}{\subst{x}{N}{\left( \subst{y}{z}{P} \right) }}, && \text{ если } y \in FV(N)
 	\end{aligned}
 	\]
 	Предполагается, что $ x$ и $ y$ различны, а $ z$ --- ,,свежая'' переменная, то есть $ z \notin FV(P) \cup FV(N)$.
