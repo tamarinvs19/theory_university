@@ -1190,6 +1190,64 @@ Just ("Abcd","")
 \end{hscode}
 
 \subsection{\hs{MonadPlus}}
+Расширение дополнительной моноидальной операцией. Очень похоже на \hs{Alternative}.
+\begin{hscode}
+class (Alternative m, Monad m) => MonadPlus m where
+	mzero :: m a
+	mzero = empty
+	mplus :: m a -> m a -> m a
+	mplus = (<|>)
+\end{hscode}
+Минимальное полное определение: ничего не делать.
+\begin{hscode}
+instance MonadPlus Maybe
+instance Alternative [] where
+	empty = []
+	(<|>) = (++)
+
+instance MonadPlus []
+\end{hscode}
+\subsubsection{Законы}
+Помимо ,,унаследованных'' законов требуют выполнения (Left and Right Zero)
+\begin{hscode}
+mzero >>= k = mzero
+v >> mzero = mzero
+\end{hscode}
+и по крайней мере одного из двух (Left Distribution, Left Catch law)
+\begin{hscode}
+(a `mplus` b) >>= k = (a >>= k) `mplus` (b >>= k)
+return a `mplus` b = return a
+\end{hscode}
+\subsubsection{Использование}
+\begin{hscode}
+-- Haskell 2010 :: MonadPlus m => Bool -> m ()
+guard :: Alternative f => Bool -> f ()
+guard True = pure ()
+guard False = empty
+
+pythags = do
+	z <- [1..]
+	x <- [1..z]
+	y <- [x..z]
+	guard (x^2 + y^2 == z^2)
+	return (x, y, z)
+
+GHCi> take 5 pythags
+[(3,4,5),(6,8,10),(5,12,13),(9,12,15),(8,15,17)]
+
+asum :: (Foldable t, Alternative f) => t (f a) -> f a
+asum = foldr (<|>) empty
+
+msum :: (Foldable t, MonadPlus m) => t (m a) -> m a
+msum = asum  -- foldr mplus mzero
+
+mfilter :: MonadPlus m => (a -> Bool) -> m a -> m a
+mfilter p ma = do
+	a <- ma
+	if p a
+	then return a
+	else mzero
+\end{hscode}
 
 
 
@@ -1400,6 +1458,762 @@ GHCi> traverse Just [1,2,3]
 Just [1,2,3]
 GHCi> traverse (const Nothing) [1,2,3]
 Nothing
+\end{hscode}
+
+
+\section{Монады. Класс типов \hs{Monad}. Законы для монад \hs{do}-нотация.}
+\subsection{Эффект}
+Хотим вместо простой чистой функции повесить на результат некоторый контекст.
+\begin{itemize}
+	\item иногда могут завершиться неудачей: \hs{a -> Maybe b}
+	\item могут возвращать много результатов: \hs{a -> [b]}
+	\item иногда могут завершиться ошибкой: \hs{a -> (Either s) b}
+	\item могут делать записи в лог: \hs{a -> (s, b)}
+	\item могут читать из внешнего окружения: \hs{a -> ((->) e) b}
+	\item работают с мутабельным состоянием: \hs{a -> (State s) b}
+	\item делают ввод/вывод (файлы, консоль): \hs{a -> IO b}
+	\item не делают ничего: \hs{a -> Identity b}
+\end{itemize}
+Обобщая, получим \mf{стрелку Клейсли}: \hs{a -> m b}. Она обобщает зависимость \textit{эффекта от значения}.
+
+На оператор над типами накладываются требования:
+\begin{itemize}
+	\item Должен иметься универсальный интерфейс для упаковки значения в контейнер \hs{m}
+	\item Должен иметься универсальный интерфейс для композиции вычислений с эффектом (стрелок Клейсли)
+\begin{hscode}
+(<=<) :: (b -> m c) -> (a -> m b) -> (a -> m c)
+\end{hscode}
+Но используя только интерфейс функтора не реализовать, нужно сделать контекст плоским:
+\begin{hscode}
+k1 <=< k2 = \x -> k1 <$> (k2 x) -- увы :: m (m c)
+\end{hscode}
+	\item  Но нет универсального интерфейса для извлечения из контекста.
+\end{itemize}
+\begin{hscode}
+class Applicative m => Monad m where
+	return :: a -> m a
+	(>>=) :: m a -> (a -> m b) -> m b -- произносят bind
+	(>>) :: m a -> m b -> m b
+	m1 >> m2 = m1 >>= \_ -> m2
+
+	fail :: String -> m a  -- изгнан в MonadFali с >= 8.6
+	fail s = error s
+infixl 1 >>, >>=
+\end{hscode}
+Из обычной функции можно получить стрелку Клейсли:
+\begin{hscode}
+toKleisli :: Monad m => (a -> b) -> (a -> m b)
+toKleisli f = \x -> return (f x)
+\end{hscode}
+Связыватель  \hs{(>>=)} похож на \hs{(&)}, только имеет дополнительный контекст:
+\begin{hscode}
+(>>=) m a -> (a -> m b) -> m b
+
+($) :: (a -> b) -> a -> b
+(&) :: a -> (a -> b) -> b
+(&) = flip ($)
+infixl 1 &
+
+GHCi> 2 & (+3) & (*9) & (+(-3)) 
+42
+\end{hscode}
+
+Напишем представителя \hs{Monad} для простейшего типа \hs{Identity}, представляющего собой простую упаковку для другого типа:
+\begin{hscode}
+newtype Identity a = Identity { runIdentity :: a }
+
+instance Monad Identity where
+	return x = Identity x
+	Identity x >>= k = k x
+\end{hscode}
+В стрелку Клейсли k передается ,,распакованное'' значение.
+\begin{hscode}
+return :: a -> Identity a
+(>>=) :: Identity a -> (a -> Identity b) -> Identity b
+\end{hscode}
+Нетривиальная стрелка Клейсли:
+\begin{hscode}
+wrap'n'succ :: Integer -> Identity Integer
+wrap'n'succ x = Identity (succ x)
+
+GHCi> runIdentity $ wrap'n'succ 3
+4
+GHCi> runIdentity $ wrap'n'succ 3 >>= wrap'n'succ
+5
+GHCi> runIdentity $ wrap'n'succ 3 >>= wrap'n'succ >>=
+wrap'n'succ
+6
+\end{hscode}
+\subsection{Законы}
+Первые два закона выражают тривиальную природу \hs{return}, третий ---задает некоторое подобие ассоциативности.
+\begin{hscode}
+return a >>= k = k a
+m >>= return = m
+(m >>= k) >>= k' = m >>= (\x -> k x >>= k')
+
+GHCi> runIdentity $ wrap'n'succ 3
+4
+GHCi> runIdentity $ return 3 >>= wrap'n'succ
+4
+GHCi> runIdentity $ wrap'n'succ 3 >>= return
+4	
+
+GHCi> runIdentity $ wrap'n'succ 3 >>= wrap'n'succ >>= w
+rap'n'succ
+6
+GHCi> runIdentity $ wrap'n'succ 3 >>= (\x -> wrap'n'suc
+c x >>= wrap'n'succ)
+6
+\end{hscode}
+Запишем в одно выражение несколько строк из примера (по третьему закону, так можно) и прицепим \hs{return} (по второму):
+\begin{hscode}
+goWrap0 = wrap'n'succ 3 >>=
+          wrap'n'succ >>=
+          wrap'n'succ >>=
+          return
+goWrap1 = wrap'n'succ 3 >>= (\x ->
+          wrap'n'succ x >>= (\y ->
+          wrap'n'succ y >>= \z ->
+          return z))
+goWrap2 = wrap'n'succ 3 >>= (\x ->  -- это примерно присваивание!
+          wrap'n'succ x >>= (\y ->
+          wrap'n'succ y >>= \z ->
+          return (x,y,z)))
+\end{hscode}
+Если нас не интересует какое-то  значение  можем его пропускать через \hs{>>}.
+Для упрощения этой записи есть do-нотация:
+\begin{hscode}
+do {e}                  = e
+do {e; stmts}           = e >> do {stmts}
+do {p <- e; stmts}      = e >>= \p -> do {stmts} 
+do {let v = exp; stmts} = let v = exp in do {stmts}    
+\end{hscode}
+Здесь все \hs{e :: m a}, а вот \hs{exp} может быть любым. В третьем правиле сопоставление с образцом p могло быть неудачным, и тогда вызывается  \hs{fail}.
+\begin{hscode}
+goWrap3 = let i = 3 in
+          wrap'n'succ i >>= (\x ->
+          wrap'n'succ x >>= (\y ->
+          wrap'n'succ y >>
+          return (i,x,y)))
+goWrap4 = do
+  let i = 3
+  x <- wrap'n'succ i
+  y <- wrap'n'succ x
+  wrap'n'succ y
+  return (i,x,y)
+\end{hscode}
+
+
+\section{Класс типов \hs{MonadFail}, его история и представители.}
+Вызов \hs{fail} в современном GHC (>=8.6) ссылается на функцию из класса типов \\ \hs{Control.Monad.Fail.MonadFail}:
+\begin{hscode}
+class Monad m => MonadFail m where
+	fail :: String -> m a
+
+instance MonadFail Maybe where 
+	fail _ = Nothing
+\end{hscode}
+При реализации представителей \hs{Monad} функцию \hs{fail} в 8.6
+допустимо реализовывать, но уже бессмысленно.
+
+Предназначен для обработки неудачного сопоставления с образцом слева от \hs{<-} в do-нотации.
+\begin{hscode}
+GHCi> do {3 <- Just 5; return 'Z'}
+Nothing
+GHCi> do {3 <- Identity 5; return 'Z'} 
+error: Could not deduce (MonadFail Identity) arising from a do statement with the failable pattern `3'
+\end{hscode}
+\subsection{Трансляция в \hs{Kernel}}
+do-нотация транслируется в Haskell Kernel по-разному, в
+зависимости от того является ли образец ,,failable'' или нет:
+\begin{hscode}
+GHCi> :t do {x <- return 5; return 'Z'}
+do {x <- return 5; return 'Z'} :: Monad m => m Char
+GHCi> :t do {3 <- return 5; return 'Z'}
+do {3 <- return 5; return 'Z'} :: MonadFail m => m Char
+GHCi> :t do {~3 <- return 5; return 'Z'}
+do {~3 <- return 5; return 'Z'} :: Monad m => m Char
+\end{hscode}
+Неопровержимые образцы не являются ,,failable''.
+
+\hs{data} с одним конструктором и \hs{newtype} не ,,failable'' сами по себе, но могут оказаться ,,failable'' при вложении образцов.
+\begin{hscode}
+GHCi> :t do {(s,x) <- return ("Answer",42); return 'Z'}
+do {(s,x) <- return ("Answer",42); return 'Z'} :: Monad m => m Char
+
+GHCi> :t do {(s,42) <- return ("Answer",42); return 'Z'}
+do {(s,42) <- return ("Answer",42); return 'Z'} :: MonadFail m => m Char
+
+GHCi> :t do {Left x <- return (Left 42); return 'Z'}
+do {Left x <- return (Left 42); return 'Z'} :: MonadFail m => m Cha
+\end{hscode}
+
+
+\section{Стандартные монады: \hs{Maybe} и списки.}
+\subsection{\hs{Maybe}}
+\begin{hscode}
+instance Mondad Maybe where 
+	return = Just
+	(Just x) >>= k = k x
+	Nothing >>= _ = Nothing
+
+	(Just _) >> m = m
+	Nothing >> _ = Nothing
+
+	fail _ = Nothing
+\end{hscode}
+Рассмотрим такую ,,базу данных'':
+\begin{hscode}
+type Name = String
+type DataBase = [(Name, Name)]
+
+fathers, mothers :: DataBase
+fathers =
+	[("Bill","John"),("Ann","John"),("John","Piter")]
+mothers =
+	[("Bill","Jane"),("Ann","Jane"),("John","Alice") ,("Jane","Dorothy"),("Alice","Mary")]
+
+getM, getF :: Name -> Maybe Name
+getM person = lookup person mothers
+getF person = lookup person fathers
+
+lookup :: Eq a => a -> [(a, b)] -> Maybe b
+\end{hscode}
+Найдем прабабушку Билла по материнской линии отца:
+\begin{hscode}
+GHCi> getF "Bill" >>= getM >>= getM
+Just "Mary"
+GHCi> do { f <- getF "Bill"; m <- getM f; getM m }
+Just "Mary"
+\end{hscode}
+\underline{Функция поиска бабушек}:
+\begin{hscode}
+granmas person = do
+	m <- getM person
+	gmm <- getM m
+	f <- getF person
+	gmf <- getM f
+	return (gmm, gmf)
+
+GHCi> granmas "Ann"
+Just ("Dorothy","Alice")
+GHCi> granmas "John"
+Nothing  -- так как есть только одна бабушка
+\end{hscode}
+
+\subsection{Списки}
+Монада списка представляет вычисление с нулём или большим
+числом возможных результатов.
+\begin{hscode}
+instance Monad [] where
+	return x = [x]
+	xs >>= k = concat (map k xs)
+	fail _ = []
+\end{hscode}
+Связывание \hs{(>>=)} отображает стрелку \hs{k :: a -> [b]} на список \hs{xs :: [a]} и выполняет конкатенацию получившегося списка списков типа \hs{[[b]]}.
+\begin{hscode}
+GHCi> "abc" >>= replicate 3
+"aaabbbccc"
+\end{hscode}
+Следующие три списка --- одно и то же:
+\begin{hscode}
+list1 = [ (x, y) | x <- [1, 2, 3], y <- [1, 2, 3], x /= y ]
+
+list2 = do
+	x <- [1, 2, 3]
+	y <- [1, 2, 3]
+	True <- return (x /= y)
+	return (x, y)
+
+list3 = 
+	[1, 2, 3] >>= (\x ->
+	[1, 2, 3] >>= (\y ->
+	return (x /= y) >>= (\r ->
+	case r of 
+		True -> return (x, y)
+		_ -> fail "Will be ignored :)")))
+\end{hscode}
+Отличие \hs{Monad} от \hs{Applicative} --- в монадах результат предыдущего значения может влиять на структуру последующего:
+\begin{hscode}
+GHCi> do {a <- [1..3]; b <- [a..3]; return (a,b)}
+[(1,1),(1,2),(1,3),(2,2),(2,3),(3,3)]
+\end{hscode}
+
+
+\section{Ввод-вывод в чистых языках. Монада \hs{IO}. Взаимодействие с файловой системой.}
+В чистых языках, где значение функции зависит только от её
+параметров, ввод-вывод представляет собой проблему.
+Функция
+\begin{hscode}
+getCharFromConsole :: Char
+\end{hscode}
+всегда должна возвращать одно и то же!
+
+Как с этим справиться?
+\begin{hscode}
+getCharFromConsole :: RealWorld -> (RealWorld, Char)
+\end{hscode}
+При этом доступ к значениям типа \hs{RealWorld} (это то, с чем связан пользователь) должен быть
+ограничен.
+
+\subsection{\hs{IO}}
+\begin{itemize}
+	\item Значение типа \hs{IO} --- это вычисление, которое при выполнении может осуществлять действие ввода-вывода.
+	\item Реализация в GHC (неофициально, упрощено, меняется от версии к версии)
+		\begin{hscode}
+newtype IO a = IO (RealWorld -> (RealWorld, a))
+		\end{hscode}
+	\item Про тип \hs{RealWorld} в документации сказано ,,deeply magical'', он не экспортируется из модуля, поэтому программист не имеет к нему доступа.
+	\item И это очень хорошо, поскольку один и тот же \hs{RealWorld} нельзя использовать два раза!
+	\item Единственный способ выполнить действие ввода-вывода --- связать его с функцией \hs{main} программы.
+\end{itemize}
+\begin{hscode}
+newtype IO a = IO (RealWorld -> (RealWorld, a))
+
+unIO :: IO a -> RealWorld -> (RealWorld, a)
+unIO (IO a) = a
+
+instance Monad IO where
+	return x = IO $ \w -> (w, x)
+	(>>=) (IO m) k = IO $ \w -> case m w of (new_w, a) -> unIO (k a) new_w
+\end{hscode}
+Гарантии, которые должны выполняться:
+\begin{itemize}
+	\item Побочные эффекты происходят в заданном порядке.
+	\item Побочный эффект каждого действия происходит один раз.
+\end{itemize}
+
+\subsection{Функции}
+У нас есть примитивы \hs{getChar, putChar}, про которые мы не знаем реализации, это базовые кирпичики
+\begin{itemize}
+	\item Ввод:
+		\begin{hscode}
+getChar :: IO Char
+getLine :: IO String
+getContents :: IO String
+		\end{hscode}
+	\item Вывод:
+\begin{hscode}
+putChar :: Char -> IO ()
+putStr, putStrLn :: String -> IO ()
+print :: Show a => a -> IO ()
+\end{hscode}
+\item Ввод-вывод: читаем ввод, обрабатываем, пишем ответ обратно
+	\begin{hscode}
+interact :: (String -> String) -> IO ()
+	\end{hscode}
+\end{itemize}
+\subsection{Пример}
+\hs{main} имеет такой же тип \hs{IO ()}
+\begin{hscode}
+main = do
+	putStrLn "What is your name?"
+	name <- getLine
+	putStrLn $ "Nice to meet you, " ++ name ++ "!"
+\end{hscode}
+Как, имея \hs{getChar}, сделать \hs{getLine}?
+\begin{hscode}
+getLine' :: IO String
+getLine' = do
+	c <- getChar
+	if c == '\n' then
+		return []
+	else do
+		cs <- getLine'
+		return (c:cs)
+\end{hscode}
+Как, имея \hs{putChar}, сделать \hs{putStr}?
+\begin{hscode}
+putStr' :: String -> IO ()
+putStr' [] = return ()
+putStr' (x:xs) = putChar x >> putStr' xs
+\end{hscode}
+Можно выделить общий шаблон свёртки
+\begin{hscode}
+sequence_ :: (Foldable t, Monad m) => t (m a) -> m ()
+sequence_ = foldr (>>) (return ())
+\end{hscode}
+Тогда
+\begin{hscode}
+putStr'' :: String -> IO ()
+putStr'' = sequence_ . map putChar
+\end{hscode}
+\hs{sequence_ . map} тоже можно обобщить:
+\begin{hscode}
+mapM_ :: (Foldable t, Monad m) => (a -> m b) -> t a -> m ()
+mapM_ f = sequence_ . fmap f
+
+putStr''' :: String -> IO ()
+putStr''' = mapM_ putChar
+\end{hscode}
+
+\paragraph{Еще более полновесные аналоги}
+\begin{hscode}
+sequence :: (Traversable t, Monad m) => t (m a) -> m (t a)
+sequence = sequenceA
+
+mapM :: (Traversable t, Monad m) => (a -> m b) -> t a -> m (t b)
+mapM f = sequence . fmap f  -- traverse
+
+GHCi> mapM_ putChar "Hello"
+HelloGHCi> mapM putChar "Hello"
+Hello[(),(),(),(),()]
+\end{hscode}
+
+
+
+
+\section{Монада \hs{Reader}.}
+Вычисление, допускающее чтение значений из разделяемого окружения.
+\begin{hscode}
+instance Monad ((->) r) where
+	return :: a -> (r -> a)  -- просто игнорим окружение 
+	retrun x = \_ -> x
+
+	(>>=) :: (r -> a) -> (a -> (r -> b)) -> (r -> b)  -- передаем полученное окружение в оба вычисления
+	m >>= k = \e -> k (m e) e
+
+GHCi> do {a <- (^2); b <- (*5); return (a + b)} $ 3
+24
+\end{hscode}
+Для большей универсальности введем тип:
+\begin{hscode}
+newtype Reader r a = Reader { runReader :: r -> a }
+\end{hscode}
+На самом деле этот тип определен по-другому, а нам интересен публичный интерфейс сборки и разборка:
+\begin{hscode}
+reader :: (r -> a) -> Reader r a
+runReader :: Reader r a -> r -> a
+
+instance Monad (Reader r) where
+	return x = reader $ \_ -> x
+	m >>= k = reader $ \e -> let v = runReader m e in runReader (k v) e
+\end{hscode}
+Напишем простейший \hs{Reader}, отчитывающийся о значении окружная:
+\begin{hscode}
+simpleReader :: Show r => Reader r Strins
+simpleReader = reader (\e -> "Enviroment is " ++ show e)
+
+GHCi> runReader simpleReader 42
+"Enviroment is 42"
+\end{hscode}
+\subsection{Функция \hs{ask}}
+Функция \hs{ask :: Reader r r} возвращает окружение
+\begin{hscode}
+type User = String
+type Password = String
+type UsersTable = [(User,Password)]
+
+pwds :: UsersTable
+pwds = [("Bill","123"),("Ann","qwerty"),("John","2sR")]
+firstUser = do
+	e <- ask
+	let name = fst (head e)
+	return name
+
+GHCi> runReader firstUser pwds
+"Bill"
+\end{hscode}
+\subsection{Функция \hs{asks}}
+Функция \hs{asks :: (r -> a) -> Reader r a} возвращает
+результат выполнения функции над окружением:
+\begin{hscode}
+getPwdLen :: User -> Reader UsersTable Int
+getPwdLen person = do
+	mbPwd <- asks $ lookup person
+	let mbLen = fmap length mbPwd
+	let len = fromMaybe (-1) mbLen
+	return len
+GHCi> runReader (getPwdLen "Ann") pwds
+6
+GHCi> runReader (getPwdLen "Ann") []
+-1
+\end{hscode}
+
+
+\section{Монада \hs{Writer}.}
+Это вычисление, допускающее запись в лог. В первом элементе пары лежит значение, во втором --- лог.
+\begin{hscode}
+newtype Writer w a = Writer { runWriter :: (a, w) }
+
+writer :: (a, w) -> Writer w a
+runWriter :: Writer w a -> (a, w)
+\end{hscode}
+Контекст \hs{Monoid} обеспечивает полноценное конструирование
+лога.
+\begin{hscode}
+instance Monoid w => Monad (Writer w) where
+	return x = writer (x, mempty)
+	m >>= k = let ~(x, u) = runWriter m  -- ~ для ленивого вычисления
+                  ~(y, v) = runWriter $ k x
+                in writer (y, u `mappend` v)
+\end{hscode}
+Есть два способа запустить вычисление
+\begin{hscode}
+runWriter :: Writer w a -> (a, w)
+execWriter :: Writer w a -> w  -- если хотим только логгирование получить
+
+GHCi> runWriter (return 3 :: Writer String Int)
+(3,"")
+GHCi> runWriter (return 3 :: Writer (Sum Int) Int)
+(3,Sum {getSum = 0})
+GHCi> execWriter (return 3 :: Writer (Product Int) Int)
+Product {getProduct = 1}
+\end{hscode}
+База данных для интернет-магазина «Овощи-Фрукты».
+\begin{hscode}
+type Vegetable = String
+
+type Price = Double
+type Qty = Double
+type Cost = Double
+
+type PriceList = [(Vegetable, Price)]
+prices :: PriceList
+prices = [("Potato", 13),("Tomato", 55),("Apple", 48)]
+\end{hscode}
+\subsection{Функция \hs{tell}}
+Функция \hs{tell :: Monoid w => w -> Writer w ()} позволяет задать вывод, здесь возвращаемый unitype () подчеркивает, что задача функции породить эффект, а не вернуть что-то.
+\begin{hscode}
+addVegetable :: Vegetable -> Qty -> Writer (Sum Cost) (Vegetable, Price)
+addVegetable veg qty = do
+	let pr = fromMaybe 0 $ lookup veg prices
+	let cost = qty * pr
+	tell $ Sum cost
+	return (veg, pr)
+
+GHCi> runWriter $ addVegetable "Apple" 100
+(("Apple",48.0), Sum {getSum = 4800.0})
+GHCi> runWriter $ addVegetable "Pear" 100
+(("Pear",0.0), Sum {getSum = 0.0})
+\end{hscode}
+\subsection{Функция \hs{listen}}
+Если хотим знать промежуточные стоимости, используем
+
+\hs{listen :: Monoid w => Writer w a -> Writer w (a, w)}
+\begin{hscode}
+myCart1 :: Writer (Sum Cost) [((Vegetable, Price), Sum Cost)]
+myCart1 = do
+	x1 <- listen $ addVegetable "Potato" 3.5
+	x2 <- listen $ addVegetable "Tomato" 1.0
+	x3 <- listen $ addVegetable "AGRH!!" 1.6
+	return [x1,x2,x3]
+
+GHCi> runWriter myCart1
+([(("Potato",13.0),Sum {getSum = 45.5}),(("Tomato",55.0), 
+Sum {getSum = 55.0}),(("AGRH!!",0.0),Sum {getSum = 0.0})],
+Sum {getSum = 100.5})
+\end{hscode}
+\subsection{Функция \hs{listens}}
+Есть более гибкая альтернатива, можем фильтровать то, что выводим
+
+\hs{listens :: Monoid w => (w -> b) -> Writer w a -> Writer w (a, b)}
+\begin{hscode}
+myCart1' :: Writer (Sum Cost) [((Vegetable, Price), Cost)]
+myCart1' = do
+	x1 <- listens getSum $ addVegetable "Potato" 3.5
+	x2 <- listens getSum $ addVegetable "Tomato" 1.0
+	x3 <- listens getSum $ addVegetable "AGRH!!" 1.6
+	return [x1,x2,x3]
+
+GHCi> runWriter myCart1'
+([(("Potato",13.0),45.5),(("Tomato",55.0),55.0),(("AGRH!!",0.0),0.0)],Sum {getSum = 100.5})
+\end{hscode}
+\subsection{Функция \hs{censor}}
+Для модификации лога используем
+
+\hs{censor :: Monoid w => (w -> w) -> Writer w a -> Writer w a}
+\begin{hscode}
+myCart0' :: Writer (Sum Cost) [(Vegetable, Price)]
+myCart0' = censor (discount 10) myCart0
+
+discount :: Double -> Sum Cost -> Sum Cost
+discount proc s@(Sum x)
+	| x < 100 = s
+	| x >= 100 = Sum $ x * (100 - proc) / 100
+
+GHCi> execWriter myCart0
+Sum {getSum = 100.5}
+GHCi> execWriter myCart0'
+Sum {getSum = 90.45}
+\end{hscode}
+
+
+\section{Монада \hs{State}.}
+Вычисление,позволяющее работать с изменяемым состоянием.
+\begin{hscode}
+newtype State s a = State { runState :: s -> (a, s) }
+
+state :: (s -> (a, s)) -> State s a
+runState :: State s a -> s -> (a, s)
+
+instance Monad (State s) where 
+	return x = state $ \st -> (x, st)
+	m >>= k = state $ \st -> let (x, st') = runState m st
+	                             m' =  k x
+                             in runState m' st'
+\end{hscode}
+\hs{return} упаковывает значение в функцию, не меняющую состояние. \hs{(>>=)} передает обновленное первым вычислением состояние во второе вычисление.
+
+Помимо пары, в вычислении с состоянием можно получить либо только итоговое состояние, либо только итоговое значение вычисления:
+\begin{hscode}
+runState :: State s a -> s -> (a,s)
+execState :: State s a -> s -> s
+evalState :: State s a -> s -> a
+
+GHCi> runState (return 3 :: State String Int) "Hi, State!"
+(3,"Hi, State!")
+GHCi> execState (return 3 :: State String Int) "Hi, State!"
+"Hi, State!"
+GHCi> evalState (return 3 :: State String Int) "Hi, State!"
+3
+\end{hscode}
+\subsection{Функции стандартного интерфейса}
+\begin{hscode}
+get :: State s s  -- ask
+get = state $ \s -> (s, s)
+
+put s :: s -> State s ()  -- tell, но мы портим прошлое состояние
+put = state $ \_ -> ((), s)
+
+modify :: (s -> s) -> State s ()  -- обработка
+modify f = do s <- get
+              put (f s)
+
+gets :: (s -> a) -> State s a 
+gets f = do s <- get
+         return (f s) 
+\end{hscode}
+\subsection{Примеры}
+\begin{hscode}
+tick :: State Int Int  -- увеличиваем состояние на 1, возвразаемое значение оставляем
+tick = do n <- get
+          put (n + 1)
+          return n
+GHCi> runState tick 3
+(3,4)
+
+succ' :: Int -> Int
+succ' n = execState tick n
+
+plus :: Int -> Int -> Int
+plus n x = execState (sequence $ replicate n tick) x 
+\end{hscode}
+Конструкция \hs{sequence . replicate n} встречается довольно часто, поэтому в \hs{Control.Monad} определено
+\begin{hscode}
+replicateM :: Applicative m => Int -> m a -> m [a] -- (Раньше контекст был Monad m)
+replicateM n = sequenceA . replicate n 
+
+plus' :: Int -> Int -> Int
+plus' n x = execState (replicateM n tick) x
+\end{hscode}
+
+\paragraph{Другие инструменты для работы с состоянием}
+\begin{itemize}
+	\item \hs{State} это чистая функциональная конструкция.
+	\item Монада \hs{ST} позволяет локально работать с настоящим изменяемым состоянием. Имеется удобный вспомогательный ссылочный тип \hs{STRef}. Локальность обеспечивается типом второго ранга 
+
+		\hs{runST :: (forall s. ST s a) -> a}
+	\item \hs{IORef} это \hs{STRef} без локальности и соответствующих гарантий безопасности.
+	\item \hs{MVar} это \hs{IORef} с блокировками, поддерживающими конкурентный доступ.
+	\item \hs{TVar} это изменяемые ячейки памяти в рамках \hs{STM} (Software transactional memory).
+\end{itemize}
+
+
+\section{Монада \hs{Except}.}
+Вычисление, допускающее возбуждение и перехват
+исключений.
+\begin{hscode}
+newtype Except e a = Except {runExcept :: Either e a}  -- как обычно такого на самом деле нет
+
+except :: Either e a -> Except e a
+except = Except
+
+instance Monad (Except e) where
+	return a = Except $ Right a
+	m >>= k = case runExcept m of
+		Left e -> Except $ Left e
+		Right x -> k x
+\end{hscode}
+\subsection{Стандартный интерфейс}
+\begin{hscode}
+throwE :: e -> Except e a
+throwE = except . Left
+
+catchE :: Except e a -> (e -> Except e' a) -> Except e' a
+m `catchE` h = case runExcept m of
+	Left l -> h l
+	Right r -> Except $ Right r
+\end{hscode}
+\subsection{Использование}
+\begin{hscode}
+do { action1; action2; action3 } `catchE` handler
+\end{hscode}
+В библиотеке mtl по историческим причинам \hs{throwError} и
+\hs{catchError}.
+\subsection{Примеры}
+\begin{hscode}
+data DivByError = ErrZero | Other String deriving (Eq,Show)
+
+(/?) :: Double -> Double -> Except DivByError Double
+_ /? 0 = throwE ErrZero
+x /? y = return $ x / y
+
+example0 :: Double -> Double -> Except DivByError String
+example0 x y = action `catchE` handler where
+	action = do q <- x /? y
+	return $ show q
+	handler = return . show
+GHCi> runExcept $ example0 5 2
+Right "2.5"
+GHCi> runExcept $ example0 5 0
+Right "ErrZero"
+\end{hscode}
+Можем захотеть расширить функциональность, работать с ошибками хитрее,
+можем использовать функциональность \hs{MonadPlus}, то
+есть \hs{guard, msum, mfilter}, для этого нужно сделать \hs{Except e} представителем:
+(это, например, ошибка по умолчанию, операция накапливания ошибок)
+\begin{hscode}
+instance Monoid e => MonadPlus (Except e) where
+	mzero = Except $ Left mempty
+	Except x `mplus` Except y = Except $
+		case x of
+			Left e -> either (Left . mappend e) Right y
+			r -> r
+\end{hscode}
+Семантика:
+\begin{itemize}
+	\item \hs{mzero} --- ошибка по умолчанию для \hs{guard}, задается \hs{mempty};
+	\item \hs{mplus} --- накапливает ошибки слева направо, но если
+происходит удачная попытка, то возвращает удачу.
+\end{itemize}
+\begin{hscode}
+instance Monoid DivByError where
+	mempty = Other ""
+	Other s1 `mappend` Other s2 = Other $ s1 ++ s2
+	Other s1 `mappend` ErrZero = Other $ s1 ++ "zero;"
+	ErrZero `mappend` Other s2 = Other $ "zero;" ++ s2
+	ErrZero `mappend` ErrZero = Other $ "zero;zero;"
+
+example2 :: Double -> Double -> Except DivByError String
+example2 x y = action `catchE` handler where
+	action = do
+		q <- x /? y
+		guard $ y >= 0
+		return $ show q
+	handler = \err -> return $ show err
+\end{hscode}
+
+Посмотрим, как это работает
+\begin{hscode}
+GHCi> runExcept $ example2 5 0
+Right "ErrZero"
+GHCi> runExcept $ example2 5 (-2)
+Right "Other \"\""
+GHCi> runExcept $ msum [5/?0, 7/?0, 2/?0]
+Left (Other "zero;zero;zero;")
+GHCi> runExcept $ msum [5/?0, 7/?0, 2/?4]
+Right 0.5
 \end{hscode}
 
 
