@@ -1,0 +1,464 @@
+\chapter{Частичные рекурсивные функции.} 
+\section{Система вычислимости по Клини}
+
+\lecture{1}{11 feb}{\dag}
+\begin{defn}[]\index{$ k$-местная частичная функция}
+	Пусть функция $ f\colon \N^{k} \to  \N, ~ k \in \N$, где $ \N = \{0, 1, 2, \ldots \}$. Такая функция называется \selectedFont{$ k $-местной частичной функцией}. Если $ k = 0$, то $ f = \const$.
+\end{defn}
+
+\subsection{Простейшие функции} \index{простейшие функции}
+\selectedFont{Простейшими} будем называть следующие функции:
+\begin{itemize}
+	\item Нуль местный нуль --- функция без аргументов, возвращающая $ 0$;
+	\item Одноместный нуль --- $ 0(x) = 0$;
+	\item Функция следования --- $ s(x) = x + 1$;
+	\item Функция выбора (проекция) ---  $ I_{n}^{m}(x_1, \ldots x_{n}) = x_m$
+\end{itemize}
+\subsection{Операторы}
+\begin{defn}\index{оператор суперпозиции}
+	Функция $ f$ \selectedFont{получается оператором суперпозиции} из функций $ h$ и $ g$, где
+	\[
+		h(y_1, \ldots , y_m), ~ g_i(x_1, \ldots , x_n); ~ 1 \le i \le n
+	,\] 
+	если 
+	\[
+		f = h(g_1(x_1, \ldots, x_{n}), \ldots g_m(x_1, \ldots , x_{n}))
+	.\] 
+	Оператор обозначается $\S$.
+\end{defn}
+\begin{defn}\index{оператор примитивной рекурсии}
+	Функция $ f^{(n)} $\footnote{Здесь и далее $ f^{(n)}$ обозначается функция, принимающая $ n$ аргументов, то есть $ n$-местная}
+	\selectedFont{получается оператором примитивной рекурсией} из $ g^{(n)}$  и $ h^{(n+2)}$, если 
+	\[
+	\begin{cases}
+		f(x_1, \ldots x_{n}, 0) = g(x_1, \ldots x_{n}) \\
+		f(x_1, \ldots x_{n}, y+1) = h(x_1, \ldots x_{n}, y, f(x_1, \ldots x_{n}, y))
+	\end{cases}
+	.\] 
+	Оператор обозначается $ \R$.
+\end{defn}
+
+
+\begin{defn}[Примитивно рекурсивная функция]\index{примитивно рекурсивная функция}
+	Функция $ f$ называется \selectedFont{примитивно рекурсивной} (\prf), если 
+	существует последовательность $ f_1, \ldots f_k$ такая, что
+	все $ f_i$ либо простейшие, либо получены из предыдущих $ f_1, \ldots f_{i-1}$ с помощью одного из операторов $\S$ и $\R$ и $ f = f_k$.
+\end{defn}
+
+
+\begin{ex}\label{ex:1}
+	Докажем, что $ f(x, y) = x + y$ --- \prf. По  $ \R$ можем получить $ f$ так:
+	\[
+	\begin{cases}
+		f(x, 0) &= x = I^{1}_{1} (x) =g \\
+		f(x, y+1) &= (x + y) + 1 = s(f(x, y)) = \S(I^{3}_{3} (x, y, f(x, y)) = h 
+	\end{cases}
+	.\] 
+	Теперь построим последовательность функций $ f_i$, где последним элементом будет $ f$, полученный с помощью $ \R$: 
+	\[
+		I^{1}_{1} , ~s, ~I^{3}_{3} , ~ h = \S(s, I^{3}_{3}) ,~ f
+	.\] 
+\end{ex}
+
+
+\begin{lm}
+    Следующие функции являются \prf:
+	\begin{enumerate}
+	\item $ \const ^{(n)}$ 
+	\item $ x + y$ 
+	\item $ x\cdot y$ 
+	\item $ x ^{y}$, где $ 0^{0}$ можем определить, как хотим
+	\item $ \sg(x) = \begin{cases}
+			1 & x= 0 \\
+			0 & x\ne 0
+		\end{cases}$
+	\item $ \bsg(x) = \begin{cases}
+			1 & x= 0 \\
+			0 & x\ne 0
+		\end{cases}$
+	\item $ x \dotminus 1 = \begin{cases}
+			0 & x = 0 \\
+			x - 1 & x > 0
+		\end{cases}$ 
+	\item $ x \dotminus y = \begin{cases}
+			0 & x < y \\
+			x - y & else
+		\end{cases}$ 
+	\item $ \lvert x - y \rvert $
+	\end{enumerate}
+\end{lm}
+\begin{proof*}
+	\begin{enumerate}
+		\item Сначала можем получить нужное число последовательной суперпозицией функции следования (получили константу от одной переменной), затем проецируем $ I^{n}_{1}$, чтобы получить $ n$ переменных.
+		\item Доказали выше \hyperref[ex:1]{в примере \ref{ex:1}}.
+		\item $ f(x, y) = xy$ определим так:
+			\[
+			\begin{cases}
+				f(x, 0) &= 0\\
+				f(x, y+1) &= f(x, y) + x
+			\end{cases}
+			\] 
+			а складывать мы умеем.
+		\item $ f(x, y) = x^{y}$ :
+			\[
+			\begin{cases}
+				f(x, 0) &= 1 = s(0) \\
+				f(x, y+1) &= f(x, y) * y
+			\end{cases}
+			\] 
+			Умножать тоже можно по пролому пункту.
+		\item  $ \sg(x) = \begin{cases}
+				1&x=0 \\
+				0& x\ne 0
+		\end{cases}$
+		\[
+		\begin{cases}
+			\sg(0) &= 0 \\
+			\sg(x+1) &= 1 = s(0)
+		\end{cases}
+		\] 
+	\item Аналогично
+	\item $ f(x) = x \dotminus 1$ 
+		\[
+		\begin{cases}
+			f(0) &=0 \\
+			f(x+1) &= x = I^{1}_{1} (x)
+		\end{cases}
+		\] 
+	\item $ f(x, y) = x \dotminus y$
+		\[
+		\begin{cases}
+			f(x, 0) &= x = I^{1}_{1}(x)  \\
+			f(x, y+1) &= f(x, y) \dotminus 1
+		\end{cases}
+		\] 
+	\item $ f(x, y) = \lvert x - y \rvert  = (x \dotminus y) + (y \dotminus x)$
+    \end{enumerate}
+\end{proof*}
+\begin{note}
+    Обычное вычитание на является \prf, так как не везде определено на $ \N$.
+\end{note}
+
+
+\begin{defn}[Оператор минимизации] \index{оператор минимизации}
+	Функция $ f$ задается \selectedFont{оператором минимизации} ($ \R$), если она получается из \textit{любой} функции  $ g$ следующим образом:
+	\[
+	\begin{aligned}
+		f(x_1, \ldots x_{n}) & = \mu y \bigl[ g(x_1, \ldots x_{n}, y) = 0 \bigr] = \\
+							 &= 
+							 \begin{cases}
+								 y & g(x_1, \ldots x_{n}, y) = 0 \wedge g(x_1, \ldots x_{n}, i)\footnote{подразумевается, что функция определена в этих точках} \ne 0 ~ \forall i < y \\
+								 \uparrow\footnote{не определена} & else
+							 \end{cases}
+	\end{aligned}
+	\]
+\end{defn}
+
+
+\begin{ex}
+    \[
+    x - y = \begin{cases}
+		x - y, & x \ge  y \\
+		\uparrow, & x < y
+    \end{cases}
+    \] 
+	Можно задать по другому, чтобы $ g$ была \prf:
+	\[
+		x - y = \mu y [\lvert (x+z) - y \rvert = 0]
+	.\] 
+\end{ex}
+
+
+\begin{defn}[Частично рекурсивная функция]\index{частично рекурсивная функция}
+	Функция $ f$ называется \selectedFont{частично рекурсивной функцией} (\crf), если существует последовательность функций $ f_1, \ldots f_k$, таких что $ f_i$ либо простейшая, либо получается из предыдущих с помощью одного из операторов  $ \S, \R, \M$.
+\end{defn}
+
+\begin{note}
+    Частично рекурсивная функция может быть не везде определена. Но примитивно рекурсивная определена везде.
+\end{note}
+\begin{note}
+    Существуют частично рекурсивные функции, которые всюду определены, но при этом не являются \prf.
+\end{note}
+\begin{defn}\index{общерекурсивная функция}
+	\selectedFont{Общерекурсивная функция} --- всюду определенная частично рекурсивная.
+\end{defn}
+
+
+\begin{ex}
+	$ \mu y [x + y + 1 = 0]$ --- нигде не определена, но получается из последовательности других функций с помощью операторов.
+\end{ex}
+
+
+\begin{defn}[Оператор ограниченной минимизации]\index{оператор ограниченной минимизации}
+	Функция $ f^{(n)}$ задается \selectedFont{оператором ограниченной минимизации} из функций $ g^{(n+1)}$ и $ h^{(n)}$, если
+	 \[
+		\mu y \le h(\overline{x}) \bigl[ g(\overline{x}), y) = 0\bigr]\footnote{Здесь и далее $ \overline{x} = x_1, \ldots x_{n}$.} \\
+	 .\]
+	 Это означает, что
+	 \[
+		 f(\overline{x}) = 
+		 \begin{cases}
+			 y & g(\overline{x}, y) = 0 \wedge y \le h(\overline{x}) \wedge g(\overline{x}, i) \ne 0\footnote{Аналогично, подразумевается, что функция определена в этих точках} ~ \forall i < y \\
+			 h(\overline{x})+1 & else
+		 \end{cases}
+	 .\] 
+\end{defn}
+
+
+\begin{st}
+    Пусть $ g, h$ --- примитивно рекурсивные функции, $ f$ получается из $ g$ и $ h$ с помощью ограниченной минимизации, то $ f$ тоже \prf.
+\end{st}
+\begin{proof*}
+	Пока без доказательства. Основная идея --- нет неопределенности.
+\end{proof*}
+
+
+\begin{note}
+	$ {\color{red}0(x)}$ можно исключить из определения простейших функций, так как она получается с помощью $ \R$ для нульмерного $ {\color{green}0}$ и $ I^{2}_{2} (x, y)$ :
+	\[
+		{\color{red}0(y)} = 
+		\begin{cases}
+			{\color{red}0(0)} &= {\color{green}0} \\
+			{\color{red}0(y+1)} &=I^{2}_{2} (y, {\color{green}0})
+		\end{cases}
+	\] 
+\end{note}
+
+
+\begin{defn}\index{предикаты}
+	Предикат --- условие задающее подмножество: $ R \subset \N^{k}$.
+	
+	\noindent
+	Предикат называется \selectedFont{примитивно рекурсивным (общерекурсивным)}, его характеристическая функция примитивно рекурсивная (общерекурсивная).
+\[
+	\chi_{R}(\overline{x})= 
+	\begin{cases}
+		1, &\overline{x} \in  R \\
+		0, &\overline{x} \notin R
+	\end{cases}
+.\] 
+\end{defn}
+
+
+\begin{st}
+	~\begin{itemize}
+		\item Если  $ R, Q$ --- примитивно рекурсивные (общерекурсивные) предикаты, то $ P \vee Q, ~ P \wedge Q, ~ P \to Q, \neg P$ тоже примитивно рекурсивные (общерекурсивные).
+		\item Предикаты $ = , ~\le , ~\ge , ~<, ~>$ тоже примитивно и общерекурсивны.
+    \end{itemize}
+\end{st}
+\begin{proof*}
+	~\begin{itemize}
+		\item Проверим, что характеристические функции примитивно / общерекурсивны: 
+			\[
+			\begin{aligned}
+				\chi_{P\vee Q}(\overline{x}) & = \chi_{P}(\overline{x}) \cdot \chi_{Q}(\overline{x}) \\
+				\chi_{P \wedge Q}(\overline{x}) & = \sg(\chi_{P}(\overline{x}) + \chi_{Q}(\overline{x})) \\
+				\chi_{P \to Q}(\overline{x}) &= \bsg(\chi_{P}(\overline{x}) + \bsg(\chi_{Q}(\overline{x}))) \\
+				\chi_{\neg P} (\overline{x}) & = \bsg(\chi_{P}(\overline{x}))
+			\end{aligned}
+			\]
+		\item Аналогично выразим, через простейшие:  
+			\[
+			\begin{aligned}
+				\chi_{x=y} (x) &= \bsg(\lvert x - y \rvert ) = \begin{cases}
+					1, &x=y \\
+					0, &x\ne y
+				\end{cases} \\
+					\chi_{x< y}(x) &= \sg(x \dotminus y)
+			\end{aligned}
+			\]
+			Остальные можем выразить также или через уже проверенные $ <$ и $ \neg$.
+    \end{itemize}
+\end{proof*}
+
+
+\begin{lm}
+    Следующие функции являются примитивно рекурсивными:
+	\begin{enumerate}
+		\item $ \left\lfloor \frac{x}{y} \right\rfloor$, считаем, что $ \left\lfloor \frac{x}{0} \right\rfloor = x$
+		\item $\Div(x, y) = 
+\begin{cases}
+	1, & y \mid x \\
+	0, & else
+\end{cases}$
+\item $ \Prime(x) = \begin{cases}
+		1, & x \in \Pm\\
+		0, & else
+\end{cases}$
+\item  $ f(x) = p_{x}$, где $ p_{x} $ --- $ x$-тое простое число, $ p_0 \coloneqq  2$
+\item  $ \expp(i, x) $ --- степень простого числа $ p_i$ разложении $ x$, $ \expp(i, 0) \coloneqq 0$
+	\end{enumerate}
+\end{lm}
+\begin{proof*}
+    \begin{enumerate}
+		\item $ \left\lfloor \frac{x}{y} \right\rfloor = ?$ 
+		\item $ \Div(x, y) = \left\lfloor \frac{x}{y} \right\rfloor \cdot y = x$
+		\item Определим  $ \Div'(x, y) = (y \le  1) \vee (\neg\Div(x, y))$, эта функция проверяет, что $ y$ не является нетривиальным делителем $ x$.
+
+			Теперь, используя ограниченную минимизацию, выразим  $ \Prime(x)$ :
+			\[
+				\Prime(x) = \Bigl(\mu y \le h(x) [\Div'(x, y) = 0]\Bigr) = x, \text{ где } h(x) = x - 1 
+				.\]
+				То есть мы посмотрели на все меньшие числа, если среди них найдется нетривиальный делитель, то число не простое.
+			\item $ f(x) $
+    \end{enumerate} 
+\end{proof*}
+
+
+\begin{thm}[Канторовская нумерация]
+    Пусть $ \pi\colon \N \times \N \to  \N$ :
+	\[
+		\pi(x, y) = \frac{1}{2}(x+y) (x+y+1)+y
+	.\] 
+	\begin{itemize}
+	\item
+	Тогда для любого $ z$ существует единственное представление $ z = \pi(x, y)$.
+\item Причем функции $ x(z), y(z)$ примитивно рекурсивные.
+	\end{itemize}
+\end{thm}
+\begin{proof*}
+	\begin{itemize}
+		\item
+	Запишем $ \pi(x, y) = {{x+y}\choose{2}} + y$. Заметим, что для $ n > m$ верно  
+	$$ {n \choose 2} - {m \choose 2} \ge {n \choose 2} - {n-1 \choose 2} = n-1.$$
+	Предположим, что $ x + y > x' + y'$ и  $ \pi(x, y) = \pi(x',y')$. Тогда
+	 \[
+		 y' - y = {x+y \choose 2} - {x'+y' \choose 2} \ge x + y - 1 \ge x' + y'
+	.\] 
+	Но $ y \ge 0, ~ x' \ge 0$,  поэтому единственный возможный вариант, когда они равны нулю, а $ x+y = x'+y'+1$. Проверим на равенство  $ \pi(x, y)$ и $ \pi(x', y')$:
+	\[
+	\begin{aligned}
+		\pi(x, y) & = \frac{1}{2}x(x+1) = \frac{1}{2}(y'+1)(y'+2) = \frac{1}{2}y'(y'+1) + y' + 1 \\
+		\pi(x', y') &= \frac{1}{2}y'(y'+1) + y'
+	\end{aligned}
+	\]
+	Равенства нет.
+\item  Можно по-честному все посчитать и выразить $ x(z), ~y(z)$.
+	Пусть 
+	\[
+	\begin{aligned}
+		w &= x+y \\
+		t &= \frac{1}{2}w(w+1) = \frac{w^2+w}{2} \\
+		z &= t +y
+	\end{aligned}
+	\]
+	Решим квадратное уравнение, чтобы выразить $ w$ через $ t$ (отрицательный корень можем сразу отбросить):
+	\[
+		w = \frac{-1 + \sqrt{ 8t + 1}}{2}
+	.\] 
+	Запишем неравенство:
+	\[
+		t \le z = t + y < t + (w +1) = \frac{(w+1)^2+(w+1)}{2}
+	.\] 
+	Отсюда
+	\[
+		w \le \frac{-1  + \sqrt{ 8z +1} }{2} < w+1
+	.\] 
+	Тогда 
+	\[
+	\begin{aligned}
+		w &= \left\lfloor \frac{-1 + \sqrt{ 8z+1} }{2} \right\rfloor \\
+		t &= \frac{w^2+w}{2} \\
+		y &= z - t \\
+		x &= w - y
+	\end{aligned}
+	\]
+	Таким образом, мы выразили через $ z$ обе координаты. Единственный момент --- нужно извлекать корень, в натуральную степень возводить мы умеем, поэтому можем с помощью ограниченной минимизации перебрать все меньшие числа, возвести их в квадрат и сравнить с нашим числом.
+	\end{itemize}
+\end{proof*}
+
+
+\begin{thm}[Возвратная рекурсия]
+    Зафиксируем $ s$. Пусть 
+	\[
+	\begin{cases}
+		f(\overline{x}, 0) &= g(x) \\
+		f(\overline{x}, y+1) &= h(\overline{x}, y, f(\overline{x}, t_1(y)), \ldots f(\overline{x}, t_{s}(y)))
+	\end{cases}
+	\] 
+	где $ t_i(g) \le y ~ \forall 1 \le i \le s$, $ g^{(n)}, h^{(n+1+s)}, t_i^{(1)}$.
+
+	\noindent
+	Тогда, если $ g, h, t_i$ --- примитивно / общерекурсивные, то и $ f$ тоже.
+\end{thm}
+\begin{proof*}
+    Пока без доказательства.
+\end{proof*}
+
+
+\begin{thm}[Совместная рекурсия]
+	Пусть $ f_i, ~ 1 \le i \le k$ --- рекурсии,
+	\[
+	\begin{cases}
+		f_i(\overline{x}, 0) &= g_i(\overline{x}) \\
+		f_i(\overline{x}, y+1) &= h_i (\overline{x}, y, f_1(\overline{x}, y), \ldots f_{k}(\overline{x}, y))
+	\end{cases}
+	\] 
+	Если $ g_i, h_i, ~1 \le i \le k$ --- примитивно / общерекурсивные, то $ f_i$ тоже.
+\end{thm}
+\begin{proof*}
+    Пока без доказательства. Полезно использовать канторову нумерацию.
+\end{proof*}
+
+
+\begin{thm}[Кусочное задание функции]
+    Пусть $ R_0, \ldots R_k $ --- отношения, такие что $ \bigcup\limits_{i=0}^{k} R_i = \N$ и для $ i \ne  j$ верно $ R_{i} \cap R_j = \varnothing$. Для $ \lvert \overline{x} \rvert = n$:
+\[
+	f(\overline{x}) = \begin{cases}
+		f_0(\overline{x}) & \text{если }R_0(\overline{x}) \\
+		f_1(\overline{x}) &  \text{если }R_1(\overline{x}) \\
+		\vdots & \vdots \\
+		f_k(\overline{x}) &  \text{если }R_k(\overline{x}) \\
+	\end{cases}
+\] 
+Если $ f_i, R_i$ --- примитивно / общерекурсивны, то и $ f$ тоже.
+\end{thm}
+\begin{proof*}
+    Пока без доказательства.
+\end{proof*}
+
+
+\begin{thm}
+    Функция вычисляется машиной Тьюринга тогда и только тогда, когда она частично рекурсивная.
+\end{thm}
+\begin{proof}
+			Если $ f(x_1, \ldots x_n) = y$, то считаем, что МТ получаем $ 1^{x_1}01^{x_2}0\ldots 01^{x_n}$ и должна выдать $ 1^{y}$; если  $ f$ не определена, МТ должна зацикливаться и наоборот.
+    \begin{description}
+        \item \boxed{ 2 \Longrightarrow 1} 
+			\begin{itemize}
+				\item Для простых функций можем построить МТ напрямую.
+				\item Для операторов $ \S, \R, \M$:
+					\begin{description}
+						\item[$ \S$:]
+							Пусть есть набор функций $ h^{(n)}, ~ g_1^{(m)}, \ldots , ~ g_n^{(m)} \Longleftarrow f^{(m)}$, для каждой из которых есть машина Тьюринга $ M_{h}$ и $ M_{g_{i}}$. 
+
+							Хотим построить МТ $ M_{S}$ для $ S$.
+
+							Сделаем это так:
+							\begin{itemize}
+								\item Копируем весь вход $ n$ раз:
+									\[
+										\Bigl(1^{x_1}01^{x_2}\ldots 01^{x_n} \ast \Bigr)^{n}
+									.\] 
+								\item Запускаем $ M_{g_i}$ на соответствующей части полученного входа. 
+
+							Если нужно что-то записать, то будем сдвигать всю правую часть на нужное число клеток, чтобы освободить для место.
+
+							МТ запускаем  псведопараллельно (по очереди даем поработать).
+
+							В каждой часть после окончания работы оставляем только ответ:
+							\[
+								1^{y_1}\ast_1^{y_2}\ldots \ast1^{y_n}
+							,\] 
+							где $ y_i = g_i(x_1, \ldots x_m)$.
+						\item Запускаем на этом результате $ M_{h}$.
+							\end{itemize}
+
+						\item[$ \R$:]
+						\item[$ \M$:]
+					\end{description}
+			\end{itemize}
+        \item \boxed{ 1 \Longrightarrow 2} 
+    \end{description} 
+\end{proof}
+
