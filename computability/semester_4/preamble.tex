@@ -88,12 +88,12 @@ ExternalLocation={stix2font/}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
     linecolor=red,
-	linewidth=3pt,rightline=false,topline=false,bottomline=false,%
+	linewidth=1pt,leftline=true,topline=false,bottomline=false, rightline=false,%
     frametitlerule=false,%
     frametitlebackgroundcolor=red!0,%
     innertopmargin=4pt,innerbottommargin=4pt,innerleftmargin=7pt
-    frametitlebelowskip=1pt,
-    frametitleaboveskip=3pt,
+    frametitlebelowskip=10pt,
+    frametitleaboveskip=7pt,
 }
 \mdfdefinestyle{thmstyle}{%
     linecolor=cyan!100,
@@ -110,7 +110,7 @@ ExternalLocation={stix2font/}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!20,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
-\newmdtheoremenv[nobreak=false,backgroundcolor=Cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=false,backgroundcolor=cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
 \newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
 
 \newtheorem*{st}{Утверждение}
