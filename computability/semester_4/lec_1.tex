@@ -215,10 +215,26 @@
     Пусть $ g^{(n-1)}, h^{(n)}$ --- примитивно рекурсивные функции, $ f^{(n)}$ получается из $ g$ и $ h$ с помощью ограниченной минимизации, то $ f$ тоже \prf.
 \end{st}
 \begin{proof*}
-Заметим, что функцию $f$ можно получить следующим образом:
-\[
-f(
-\]
+	Заметим, что $ f$ можно получить следующим образом:
+	\[
+		f(\overline{x}) = \sum_{y=0}^{h(x)}	\prod_{i=0}^{y}\sg(g(\overline{x}, i))
+	.\] 
+	Внутреннее произведение равно единице только тогда, когда все $ g(\overline{x}, i) \ne 0$. Если для некоторого $ y$ обнуляется $ g(\overline{x}, y)$, то все произведения, начиная с $ y+1$, будут равны нулю, поэтому просуммируются только  $ y$ единиц. 
+	Если же такого $ y$ нет, получим сумму из $ h(\overline{x}) + 1$ единицы. Именно это и нужно.
+
+	Проверим, что можно получить $ a(\overline{x}, y) = \sum_{i=0}^{y} g(\overline{x}, i)$ и $ m(\overline{x}, y) = \prod{i=0}^{y} g(\overline{x}, i)$ с помощью примитивной рекурсии:
+	\[
+	\begin{aligned}
+		&\begin{cases}
+			a(\overline{x}, 0) &= g(\overline{x}, 0) \\
+			a(\overline{x}, y+1) &= a(\overline{x}, y) + g(\overline{x}, y+1)
+		\end{cases}
+		&\begin{cases}
+			m(\overline{x}, 0) &= g(\overline{x}, 0) \\
+			m(\overline{x}, y+1) &= m(\overline{x}, y) \cdot g(\overline{x}, y+1)
+		\end{cases}
+	\end{aligned}
+	\]
 \end{proof*}
 
 
