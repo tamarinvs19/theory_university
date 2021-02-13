@@ -291,7 +291,10 @@
 \end{lm}
 \begin{proof*}
     \begin{enumerate}
-		\item $ \left\lfloor \frac{x}{y} \right\rfloor = ?$ 
+		\item $ f(x, y) = \left\lfloor \frac{x}{y} \right\rfloor $. Найдем минимальное $ k$, что $ f'(x, y, k) = yk > x$. Чтобы получить  $ f(x, y) = \min(k \mid f'(x, y, k)) - 1$. Используем оператор минимизации:
+			 \[
+				 f(x, y) = \mu k [ \neg f'(x, y, k) = 0] - 1
+			.\] 
 		\item $ \Div(x, y) = \left\lfloor \frac{x}{y} \right\rfloor \cdot y = x$
 		\item Определим  $ \Div'(x, y) = (y \le  1) \vee (\neg\Div(x, y))$, эта функция проверяет, что $ y$ не является нетривиальным делителем $ x$.
 
@@ -300,7 +303,18 @@
 				\Prime(x) = \Bigl(\mu y \le h(x) [\Div'(x, y) = 0]\Bigr) = x, \text{ где } h(x) = x - 1 
 				.\]
 				То есть мы посмотрели на все меньшие числа, если среди них найдется нетривиальный делитель, то число не простое.
-			\item $ f(x) $
+			\item Пусть $ f'(x) = \text{ количество простых } \le x $. 
+				\[
+					\begin{cases}
+						f'(0) &= 0 \\
+						f'(x+1) &= \Prime(x+1) + f(x)
+					\end{cases}
+				\] 
+				Теперь можно вычислить $ f(x)$: для этого определим функцию $ g(x, y) = (f'(y) = x)$,
+				 \[
+					 f(x) = \mu y [ \neg f'(x, y)  = 0] 
+				.\] 
+			\item Чтобы найти степень вхождения простого числа $ p_i$ в $ x$, сначала находим это простое число по номеру, затем находим минимальное $ k$, что $ x$ не делится на $ p_i^{k}$ и вычитаем единицу.
     \end{enumerate} 
 \end{proof*}
 
