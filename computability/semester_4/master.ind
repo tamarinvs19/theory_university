@@ -5,6 +5,7 @@
 
   \indexspace
 
+  \item кусочное задание функции, \hyperpage{10}
   \item общерекурсивная функция, \hyperpage{4}
   \item оператор минимизации, \hyperpage{4}
   \item оператор ограниченной минимизации, 
@@ -19,6 +20,8 @@
 
   \indexspace
 
+  \item рекурсия возвратная, \hyperpage{9}
+  \item рекурсия совместная, \hyperpage{10}
   \item частично рекурсивная функция, 
 		\hyperpage{4}
 

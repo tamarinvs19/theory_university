@@ -409,53 +409,101 @@
 \end{proof*}
 
 
-\begin{thm}[Возвратная рекурсия]
+\begin{thm}[Возвратная рекурсия]\index{рекурсия возвратная}
     Зафиксируем $ s$. Пусть 
 	\[
 	\begin{cases}
-		f(\overline{x}, 0) &= g(x) \\
+		f(\overline{x}, 0) &= g(\overline{x}) \\
 		f(\overline{x}, y+1) &= h(\overline{x}, y, f(\overline{x}, t_1(y)), \ldots f(\overline{x}, t_{s}(y)))
 	\end{cases}
 	\] 
-	где $ t_i(g) \le y ~ \forall 1 \le i \le s$, $ g^{(n)}, h^{(n+1+s)}, t_i^{(1)}$.
+	где $ t_i(y) \le y ~ \forall 1 \le i \le s$, $ g^{(n)}, h^{(n+1+s)}, t_i^{(1)}, $.
 
 	\noindent
 	Тогда, если $ g, h, t_i$ --- примитивно / общерекурсивные, то и $ f$ тоже.
 \end{thm}
+Основная идея этой теоремы --- можем использовать все ранее вычисленные значения функции, а не только предыдущее.
 \begin{proof*}
-    Пока без доказательства.
+	Построим с помощью примитивной рекурсии функцию $ m(\overline{x}, y)$, которая возвращает закодированную последовательность $ f(\overline{x}, i), ~ 0 \le i \le y$.
+
+	Кодировать будем так: каждому $ f(\overline{x}, i)$ будет соответствовать $ p_i$ ($ i$-ое простое число) в степени $ 1 + f(\overline{x}, i)$. 
+
+	Если мы построим эту функцию, то $ f(\overline{x}, y)$ --- уменьшенная на $ 1$ степень $ y$-ого простого, обозначим функцию, которая это делает:
+	\[
+		f(\overline{x}, y) = \ith(y, m(\overline{x}, y))
+	.\] 
+	Вернемся к построению $ m$:
+	\[
+	\begin{cases}
+		m(\overline{x}, 0) &= 2^{1+g(\overline{x})} \\
+		m(\overline{x}, y+1) &= m(\overline{x}, y) \cdot p_{y+1}^{1+h\left( 
+			\overline{x}, y, \ith(t_1(y), m(\overline{x}, y)), \ldots \ith(t_{k}(y), m(\overline{x}, y))
+	\right)
+}
+	\end{cases}
+	\] 
 \end{proof*}
 
 
-\begin{thm}[Совместная рекурсия]
-	Пусть $ f_i, ~ 1 \le i \le k$ --- рекурсии,
+\begin{thm}[Совместная рекурсия]\index{рекурсия совместная}
+	Пусть $ f_i^{(n+1)}, ~ 1 \le i \le k$ --- рекурсии,
 	\[
 	\begin{cases}
 		f_i(\overline{x}, 0) &= g_i(\overline{x}) \\
 		f_i(\overline{x}, y+1) &= h_i (\overline{x}, y, f_1(\overline{x}, y), \ldots f_{k}(\overline{x}, y))
 	\end{cases}
 	\] 
-	Если $ g_i, h_i, ~1 \le i \le k$ --- примитивно / общерекурсивные, то $ f_i$ тоже.
+	Если $ g_i^{(n)}, h_i^{(k+2)}, ~1 \le i \le k$ --- примитивно / общерекурсивные, то $ f_i$ тоже.
 \end{thm}
+Основная идея этой теоремы --- можем использовать $ y$-е значение каждой из $ k$ функций.
 \begin{proof*}
-    Пока без доказательства. Полезно использовать канторову нумерацию.
+	Заметим, что канторовскую функцию можно, последовательно применив несколько раз, расширить до $ k$-местной. Обозначим полученную функцию за $ c$, а обратные за $ c_1, \ldots c_{k}$.
+
+	Давайте просто объединим все $ f_i$ в одну функцию 
+	\[
+		m (\overline{x}, y) = c\left(f_1(\overline{x}, y), \ldots f_k(\overline{x}, y)\right)
+	.\]
+	Теперь каждую $ f_i$  можно вычислить
+	\[
+		f_i(\overline{x}, y) = c_i(m (\overline{x}, y))
+	.\] 
+	Чтобы получить $ m$ достаточно использовать примитивную рекурсию:
+	\[
+	\begin{cases}
+		m(\overline{x}, 0) &= c\left(g_1(\overline{x}), \ldots g_k(\overline{x})\right) \\
+		m(\overline{x}, y+1) &= c ( \\
+							 &\quad\begin{aligned}
+				&h_1\left( \overline{x}, y, c_1(m(\overline{x}, y)), \ldots c_k(m(\overline{x}, y)) \right), \\
+				&\quad\vdots \\
+				&h_k\left( \overline{x}, y, c_1(m(\overline{x}, y)), \ldots c_k(m(\overline{x}, y)) \right)
+			\end{aligned} \\
+							 &) 
+	\end{cases}
+	\] 
 \end{proof*}
 
 
-\begin{thm}[Кусочное задание функции]
-    Пусть $ R_0, \ldots R_k $ --- отношения, такие что $ \bigcup\limits_{i=0}^{k} R_i = \N$ и для $ i \ne  j$ верно $ R_{i} \cap R_j = \varnothing$. Для $ \lvert \overline{x} \rvert = n$:
+\begin{thm}[Кусочное задание функции]\index{кусочное задание функции}
+	Пусть $ R_0, \ldots R_k $ --- отношения\footnote{Набор предикатов}, такие что $ \bigsqcup\limits_{i=0}^{k} R_i = \N^{m}$
+	\footnote{То есть для $ i \ne  j$ верно $ R_{i} \cap R_j = \varnothing$.}.
+	Для $ \lvert \overline{x} \rvert = n$ кусочно зададим функцию $ f^{(n)}$:
 \[
 	f(\overline{x}) = \begin{cases}
-		f_0(\overline{x}) & \text{если }R_0(\overline{x}) \\
-		f_1(\overline{x}) &  \text{если }R_1(\overline{x}) \\
-		\vdots & \vdots \\
-		f_k(\overline{x}) &  \text{если }R_k(\overline{x}) \\
+		f_0(\overline{x}), & \text{если }R_0(\overline{x}) \\
+		f_1(\overline{x}), &  \text{если }R_1(\overline{x}) \\
+		\quad\vdots & \quad\vdots \\
+		f_k(\overline{x}), &  \text{если }R_k(\overline{x}) \\
 	\end{cases}
 \] 
-Если $ f_i, R_i$ --- примитивно / общерекурсивны, то и $ f$ тоже.
+Если $ f_i^{(n)}, R_i$ --- примитивно / общерекурсивны, то и $ f$ тоже.
 \end{thm}
 \begin{proof*}
-    Пока без доказательства.
+	Рассмотрим характеристические функции $ \chi_{R_{i}} $ для $ R_i$.
+	Тогда 
+	\[
+		f(\overline{x}) = \sum_{i=0}^{k} f_i(\overline{x}) \cdot \chi_{R_{i}}(\overline{x})
+	.\] 
+	А это просто сумма произведений, которые мы можем вычислять.
 \end{proof*}
 
 
