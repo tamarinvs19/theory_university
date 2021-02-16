@@ -1,0 +1,62 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage {amsfonts}
+\usepackage{amssymb, amsthm}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{cmap}
+\usepackage[pdftex]{graphicx}
+\usepackage{fullpage}
+\usepackage{textcomp}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.PDF_Tex}
+}
+
+\def\ml{\mathcal}
+
+\begin{document}
+\section{Лекция 1}
+\begin{figure}[ht]
+    \centering
+    \incfig{example-orientation}
+    \caption{Однорукий червяк на Земле и на ленте Мёбиуса}
+    \label{fig:example-orientation}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{smooth-manifold}
+    \label{fig:smooth-manifold}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{matched-maps}
+    \label{fig:matched-maps}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{orientation}
+    \caption{Ориентация через нормали}
+    \label{fig:orientation}
+\end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \incfig{proof-second-theorem}
+    \label{fig:proof-second-theorem}
+\end{figure}
+	
+\end{document}
