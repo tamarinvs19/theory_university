@@ -114,7 +114,7 @@
 
 
 
-\begin{lm}
+\begin{lm}\label{lm:rec}
     Следующие функции являются \prf:
 	\begin{enumerate}
 	\item $ \const ^{(n)}$ 
@@ -509,14 +509,19 @@
 
 \section{Равносильность МТ и \crf}
 \begin{thm}
-    Функция вычисляется машиной Тьюринга тогда и только тогда, когда она частично рекурсивная.
+	Функция вычисляется машиной Тьюринга тогда и только тогда, когда она частично рекурсивная (то есть вычислима по Клини).
 \end{thm}
 \begin{proof}
-			Если $ f(x_1, \ldots x_n) = y$, то считаем, что МТ получаем $ 1^{x_1}01^{x_2}0\ldots 01^{x_n}$ и должна выдать $ 1^{y}$; если  $ f$ не определена, МТ должна зацикливаться и наоборот.
     \begin{description}
         \item \boxed{ 2 \Longrightarrow 1} 
+			Если $ f(x_1, \ldots x_n) = y$, то считаем, что МТ получаем $ 1^{x_1}01^{x_2}0\ldots 01^{x_n}$ и должна выдать $ 1^{y}$; если  $ f$ не определена, МТ должна зацикливаться и наоборот.
 			\begin{itemize}
-				\item Для простых функций можем построить МТ напрямую.
+				\item Для простых функций можем построить МТ напрямую:
+					\begin{itemize}
+						\item Если мы хотим выдавать нуль, просто стираем вход.
+						\item Если нужно увеличить число на один, приписываем $ 1$ в конец справа.
+						\item Если нужно вернуть $ k$-ую проекцию, стираем все до начала $ k$-ого числа (то есть нужно отсчитать $ k-1$ нуль на входе), далее стереть все после.
+					\end{itemize}
 				\item Для операторов $ \S, \R, \M$:
 					\begin{description}
 						\item[$ \S$:]
@@ -544,11 +549,174 @@
 						\item Запускаем на этом результате $ M_{h}$.
 							\end{itemize}
 
+\lecture{2}{18 feb}{\dag}
 						\item[$ \R$:]
-						\item[$ \M$:]
+							Пусть рекурсия задает $ f^{(m+1)} (x_1, \ldots x_m, y)$ из $ g^{(m)}$ и $ h^{(m+2)}$.
+							\[
+							\begin{cases}
+								f(\overline{x}, 0) & = g(\overline{x}) \\
+								f(\overline{x}, y+1) &= h(\overline{x}, y, f(\overline{x}, y))
+							\end{cases}
+							\] 
+							Считаем, что для $ g, h$ уже есть МТ ($M_{g}$ и $M _{h}$), и мы хотим построить $ M_{f}$, которая будет вычислять $ f$.
+
+							Построим вспомогательные МТ:
+							\begin{itemize}
+								\item $ M_1$:  для входа $ 1^{x_1}0\ldots 01^{x_m}01^{y}$ построим $ 1^{y}01^{x_1}0\ldots 01^{x_m}001^{g(x_1, \ldots x_m)}$. Для этого просто запустим $ M_ g$ на входе, но не будем стирать его, а результат просто припишем после двух нулей справа.
+								\item $ M_2$:  для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}01^{z}$ построим $ 1^{y}01^{x_1}0\ldots 01^{x_m}01^{u+1}01^{h(x_1, \ldots x_{m}, u, z)}$, аналогично, используя $ M_{h}$, допишем в конец вместо $ z$ результат $ h$ и допишем единицу к $ 1^{u}$. Здесь  $ u+1$ обозначает текущее значение $ y'$, а значение $ h$ --- значение $ f(y')$. 
+								\item $ M_3$:  для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}0^{z}$ оставим только $ 1^{z}$.
+								\item $ \Phi $: для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}01^{z}$ проверим, что $ u \ne y$. 
+							\end{itemize}
+							Теперь соберем все вместе: сначала запустим $ M_1$, далее пока $ \Phi $ возвращает неравенство, запускаем $ M_2$ (увеличиваем $ u$ на один, вычисляем следующее значение функции), и в конце стираем лишнее, запустив $ M_3$.
+						\item[$ \M$:] Хотим по МТ $ M_{g}$ построить $ M_{f}$, вычисляющую 
+							\[
+								f(\overline{x}, y) = \begin{cases}
+									y & g(\overline{x}, y) = 0 \wedge g(\overline{x}, z) \ne  0 \quad \forall z < y \\
+									\uparrow & else
+								\end{cases}
+							\] 
+							Аналогично построим несколько вспомогательных МТ:
+							\begin{itemize}
+								\item $ N_1$ :  приписывает $ 0$ ко входу:
+									\[
+									1^{x_1}0 \ldots 01^{x_{m}} \longrightarrow 1^{x_1}0\ldots 01^{x_{m}}0
+									.\] 
+								\item $ N_2$ :  дублирует вход, разделяя решеткой: $ w \longrightarrow w\#w$ 
+								\item $ N_3$ :  в продублированному входе меняет вторую половину на результат $ M_{g}$ 
+									\[
+										1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{x_1}0\ldots 01^{x_{m}}01^{y} \stackrel{M_{g}}{\longrightarrow} 	1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{g(x_1, \ldots x_{m}, y}
+									.\] 
+								\item $ N_4$ :  очищает все после решетки и дописывает единицу в конец
+									\[
+1^{x_1}0\ldots 01^{x_{m}}01^{y} \# w \longrightarrow 
+1^{x_1}0\ldots 01^{x_{m}}01^{y+1}
+									.\] 
+								\item $ N_5$ : стирает  все, кроме ответа
+									\[
+1^{x_1}0\ldots 01^{x_{m}}01^{y} \# w \longrightarrow 1^{y}
+									.\] 
+								\item $ \Phi $ : проверяет, что после решетки что-то еще есть
+									$ w\# v \longrightarrow v \ne \varepsilon $.
+							\end{itemize}
+							Теперь можем построить $ M_{\mu}$ так: 
+							\[
+								N_1; ~ N_2; ~ N_3; \operatorname{while} \Phi \operatorname{do} N_4, ~ N_2, ~ N_3; ~ N_5
+							.\] 
 					\end{description}
 			\end{itemize}
         \item \boxed{ 1 \Longrightarrow 2} 
+			Теперь мы хотим промоделировать работу МТ с помощью частично рекурсивной функции. На вход должны либо выдать результат, либо зациклится. 
+			Так как машины Тьюринга работают со строками, а функции с натуральными числами, нужно придумать правила кодирования.
+
+			Пусть есть конфигурация МТ 
+			$$ \alpha q_i a_j \beta ,$$ где $ \alpha $ --- строка слева от головки, $ q_i$ --- состояние, $ a_j$ --- текущий символ, $ \beta $ --- справа от головки.
+
+			Пронумеруем рабочий алфавит $ \Gamma = \{a_0, \ldots a_{m-1}\}$, где $ a_0$ --- пустой символ (\textvisiblespace).
+
+			\begin{description}
+				\item[Кодирование конфигураций]
+			Теперь можем конфигурацию записать как 
+			 \[
+				 \widetilde{ \alpha } , \widetilde{ q_i} , \widetilde{ a_j} , \widetilde{ \beta } 
+			,\] 
+			где $ \widetilde{ \alpha } $ --- число, соответствующее $ \alpha $  в $  m$-ичной записи, $ \widetilde{ q_i} $ --- просто номер состояния, $ \widetilde{ a_j} $ --- номер  в алфавите ($ j$), $ \widetilde{ \beta } $ --- число, соответствующее $ \beta $ в $ m$-ичной записи, записанное справа налево. 
+
+			Сдвиги обозначать будем $ d$: вправо  $d= 1$, влево $ d= 2$.
+
+			Терминальное состояние --- $ z$. 
+			Множество состояний тоже пронумеруем и получим множество состояний $ \widetilde{ Q}  = \{0, 1, \ldots \lvert Q \rvert - 1\}$.
+
+			\begin{ex}
+			    Рассмотрим небольшой пример. $ \Gamma = \{a_0, a_1\}$, тогда состояние 
+				$
+					\underbrace{a_1a_0a_1a_1a_0}_{ \alpha } q_3 \underbrace{a_1 a_1 a_0 a_1a_1}_{ \beta }
+					$
+				будет записано так:
+				$
+					(22, 3, 1, 13)
+					$.
+			\end{ex}
+
+		\item [Кодирование команд]
+			Пусть есть переход $ (q, a) \to (p, b, d)$. Сопоставим $ p, b, d$ тройку функций $ \varphi _{q}, \varphi _{a}, \varphi _{d}$:
+			\[
+			\begin{aligned}
+				&\varphi _a \colon \widetilde{ Q} \times \widetilde{ \Gamma  }  \to \widetilde{ \Gamma } \\
+				& \varphi _{q} \colon \widetilde{ Q} \times \widetilde{ \Gamma }  \to  \widetilde{ Q} \\
+				& \varphi _{d} \colon \widetilde{ Q} \times \widetilde{ \Gamma } \to \{1, 2\}
+			\end{aligned}
+			\]
+			Эти функции будут примитивно рекурсивными, так как заданы на конечном множестве, на остальных можем доопределить нулем.
+		\item[Преобразование конфигураций]
+			Пусть у нас есть переход между двумя конфигурациями: 
+			$$ K = \alpha q_i a_j \beta  \to \alpha ' q_i' a_j' b' = K'.$$
+			Зададим функцию на числах, которая проделает этот переход $ \Phi \colon K \to  K'$. На самом деле эта функция состоит из четырех, которые мы сейчас и определим.
+
+			Пусть 
+			\[
+			\begin{aligned}
+				&\widetilde{ q_i}'  (\widetilde{ \alpha } , \widetilde{ q_i}, \widetilde{ a_j} , \widetilde{ \beta } ) &&= \varphi_{q}(\widetilde{ q_i} , \widetilde{ a_i} ) \\
+				&\widetilde{ \alpha } ' (\widetilde{ \alpha } , \widetilde{ q_i} , \widetilde{ a_j} , \widetilde{ \beta } ) &&= 
+				\begin{cases}
+					\widetilde{ \alpha } \cdot m + \varphi_{a}(\widetilde{ q_i} , a_j), & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
+					\left\lfloor \frac{\widetilde{ \alpha } }{m} \right\rfloor, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2
+				\end{cases}
+					\\
+				&\widetilde{ \beta } ' (\widetilde{ \alpha } , \widetilde{ q_i} , \widetilde{ a_j} , \widetilde{ \beta } ) &&= 
+				\begin{cases}
+					\widetilde{ \beta } \cdot m + \varphi_{a}(\widetilde{ q_i} , a_j), & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
+					\left\lfloor \frac{\widetilde{ \beta } }{m} \right\rfloor, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2
+				\end{cases}
+		\\
+				& \widetilde{ a_j} ' &&= 
+		\begin{cases}
+			\widetilde{ \beta }  \mod m, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
+			\widetilde{ \alpha  }  \mod m, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2 
+		\end{cases}
+			\end{aligned}
+	\]
+	Заметим, что все эти формулы примитивно рекурсивные\footnote{Единственное, чего нет явно в \hyperref[lm:rec]{лемме \ref{lm:rec} выше}, это остаток по модулю, но его легко получить из деления нацело.}.
+\item[Общая работа МТ]
+	Пусть $ K(0) = \left( \widetilde{ \alpha _0} , \widetilde{ q_0}, \widetilde{ a_0} , \widetilde{ \beta _0} \right) $ --- начальная конфигурация.
+	Чтобы получить новую конфигурацию для шага $ t$, посчитаем все четыре параметра:
+	\[
+	\begin{aligned}
+		K(t) &= ( \\
+			 &K_{ \alpha }(\widetilde{ \alpha_0} , \widetilde{ q_0} , \widetilde{ a_0}, \widetilde{ \beta_0}, t) \\ 
+			 &K_{ q }(\widetilde{ \alpha_0} , \widetilde{ q_0} , \widetilde{ a_0}, \widetilde{ \beta_0}, t) \\ 
+			 &K_{ a }(\widetilde{ \alpha_0} , \widetilde{ q_0} , \widetilde{ a_0}, \widetilde{ \beta_0}, t) \\ 
+			 &K_{ \beta  }(\widetilde{ \alpha_0} , \widetilde{ q_0} , \widetilde{ a_0}, \widetilde{ \beta_0}, t) \\ 
+			 &)
+	\end{aligned}
+	\]
+	Теперь запишем совместную рекурсию для $ K_{ \alpha }, K_{ q}, K_{a}, K_{ \beta }$:
+	\[
+	\begin{aligned}
+		\begin{cases}
+			K_{ \alpha }(\widetilde{ \alpha _0} , \widetilde{ q_0} , \widetilde{ a_0} , \widetilde{ \beta _0} , 0) &= \widetilde{ \alpha _0} \\
+			K_{ \alpha }(\widetilde{ \alpha _0} , \widetilde{ q_0} , \widetilde{ a_0} , \widetilde{ \beta _0} , t+1) &= \widetilde{ \alpha } ' \Bigl(  
+				K_{ \alpha }( \ldots , t), K_{q} (\ldots , t), K_{a} (\ldots , t) , K_{ \beta }(\ldots , t)
+			\Bigr)
+		\end{cases}
+	\end{aligned}
+	\]
+	Для остальных точно также.
+
+\item[Результат] 
+	Пусть начальное состояние $ q_0 a_0 \beta_0$ (стоим на самом левом символе), конечное  --- $ q_{z} a_{z} \beta _{z}$, причем $ z$ встречаем впервые. 
+	То есть нам нужно вычислить функцию, которая переводит $ \widetilde{ a_0} + \widetilde{ b_0} m \longrightarrow a_z + \beta _z m$, если машина Тьюринга пришла сюда и не определена, если МТ зацикливается:
+	\[
+		t_z = \mu t[K_{q}(t) = z]
+	.\] 
+	Тогда результатом работы МТ будет
+	\[
+	\begin{aligned}
+		\varphi (x) =& m \cdot  K _{\beta} \Bigl(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor , \\
+					 &\mu t[K_{q}(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor, t) = z]\Bigr) +\\ 
+				   &+ K_{a}(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor)
+	\end{aligned}
+	\]
+			\end{description}
     \end{description} 
 \end{proof}
 
