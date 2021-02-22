@@ -13,6 +13,7 @@
   \item оператор примитивной рекурсии, 
 		\hyperpage{3}
   \item оператор суперпозиции, \hyperpage{3}
+  \item перечислимое множество, \hyperpage{15}
   \item предикаты, \hyperpage{7}
   \item примитивно рекурсивная функция, 
 		\hyperpage{4}
@@ -20,8 +21,11 @@
 
   \indexspace
 
+  \item равносильность МТ и \crf, \hyperpage{11}
+  \item разрешимое множество, \hyperpage{15}
   \item рекурсия возвратная, \hyperpage{9}
   \item рекурсия совместная, \hyperpage{10}
+  \item функция Аккермана, \hyperpage{14}
   \item частично рекурсивная функция, 
 		\hyperpage{4}
 
