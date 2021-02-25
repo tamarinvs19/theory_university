@@ -41,7 +41,7 @@
 			\[
 				b(n) = \begin{cases}
 					n, & \text{если } A \text{ заканчивает работать на } n \\
-					\up , & \text{если } A \text{ зацикливается на } n
+					\uparrow , & \text{если } A \text{ зацикливается на } n
 				\end{cases}
 			\] 
 			Теперь $ X$ --- область значений $ b(n)$, а она вычислима.
@@ -81,10 +81,10 @@
 			$ A $ разрешимо, можем рассмотреть $ \chi_{A}(n)$, которая вычислима.
 
 			Построим полухрарактеристические для $ A$ и $ \overline{A}$:
-			\begin{iteimze}
+			\begin{itemize}
 			\item если $ n \in A$, то $ \chi_{A}' = 1$, иначе $ \chi_{A}'(n)$ расходится
 			\item для $ \overline{A}$ аналогично, только наоборот.
-			\end{iteimze}
+			\end{itemize}
         \item \boxed{ 2 \Longrightarrow 1} 
 			Запускаем одновременно по шагам алгоритм, перечисляющий $ A$ и $ \overline{A}$, ждем появления $ n$-ого. Рано или поздно должно появиться. Теперь, если его выдал алгоритм для $ A$, то $ \chi_A(n) = 1$, а если для $\overline{A}$, то $ \chi_A(n) = 0$.
     \end{description} 
@@ -115,7 +115,7 @@
 \begin{thm}[О графике]
     Частичная функция $ f\colon \N \to \N$ вычислима тогда и только тогда, когда ее график 
 	\[
-		F = \{(x, y) \mid f(x) \text{ определена и } $ f(x) = y$\}
+		F = \{(x, y) \mid f(x) \text{ определена и } f(x) = y\}
 	\] 
 	перечислим.
 \end{thm}
@@ -126,6 +126,7 @@
 
 \begin{note}
 	Различные обозначения в других источниках
+	\begin{center}
 	\begin{tabular}{c|c}
 		перечислимое & разрешимое \\
 		\hline
@@ -135,6 +136,7 @@
 		enumerable & recursive \\
 		semi-decidable & \ldots 
     \end{tabular}
+	\end{center}
 \end{note}
 
 
@@ -168,10 +170,10 @@
 	% написать подробнее 12:20
 \end{proof}
 
-\begin{descriprion}
+\begin{name}
 	$ \mathcal{F}^{m}$ --- вычислимые функции от $  m$ аргументов
 	$ \mathcal{F}^{m}_{*}$ --- всюду определенные вычислимые функции от $  m$ аргументов
-\end{descriprion}
+\end{name}
 
 \begin{cor}
     Существует $ U \in  \F^{m+1}$, универсальная для $ \F^{m}$.
@@ -250,10 +252,10 @@ $ W \subset \N^2$
 			рассмотрим 
 			 \[
 				 g(x) = \begin{cases}
-					 f(x), & x \in F \text{ -- вычислимое, всюду определенное} &
+					 f(x), & x \in F \text{ -- вычислимое, всюду определенное} \\
 					 0, & x \notin F \text{ -- продолжение } f
 				 \end{cases}
-			.\] 
+			\] 
 	\end{itemize}
 \begin{note}
 	$ F = \{n \mid U(n, n) \text{ определено}\}$ --- переформулировка $ L_1$ (останавливающиеся на своем входе МТ.
@@ -280,7 +282,7 @@ $ W \subset \N^2$
 		d'''(n) = \begin{cases}
 		1, & U(n, n) = 0 \\
 		0, & U(n, n) > 0 \\
-		\up, & U(n, n) \up
+		\uparrow, & U(n, n) \uparrow
 	\end{cases}
 	\] 
 	Любое доопределение будет отличаться от $ U(n, n)$
