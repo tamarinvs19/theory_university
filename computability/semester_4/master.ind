@@ -5,6 +5,7 @@
 
   \indexspace
 
+  \item Свойство функций, \hyperpage{23}
   \item кусочное задание функции, \hyperpage{10}
   \item общерекурсивная функция, \hyperpage{4}
   \item оператор минимизации, \hyperpage{4}
@@ -26,8 +27,10 @@
   \item разрешимое множество, \hyperpage{15}
   \item рекурсия возвратная, \hyperpage{9}
   \item рекурсия совместная, \hyperpage{10}
+  \item сводимость по Тьюрингу, \hyperpage{28}
   \item универсальная функция, \hyperpage{19}
   \item функция Аккермана, \hyperpage{14}
+  \item функция с оракулом, \hyperpage{28}
   \item частично рекурсивная функция, 
 		\hyperpage{4}
 
