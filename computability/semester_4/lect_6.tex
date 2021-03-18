@@ -1,0 +1,108 @@
+\lecture{6}{18 march}{\dag}
+\section{Арифметическая иерархия}
+
+\ref{свойство про проекцию (было)}
+Можем считать $ A, B$ свойствами (предикатами):  $ A(x) \-> x \in A$
+
+Тогда можем переписать так
+\[
+    A(x) \Longleftrightarrow \exists y \colon\quad B(x, y)
+.\] 
+
+Какие множества представимы в виде $ \forall y \colon B(x, y)$? Это равносильно
+\[
+    \neg \left( \exists  y ~ \neg B(x, y) \right) 
+.\] 
+Это поперечислимые (то есть дополнение до перечислимого)
+
+\begin{defn}
+    $ A \in \Sigma_{n} $, если его можно представить в виде 
+    \[
+	A(x) \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots B(x, y_1, \ldots , y_{n})
+    ,\] 
+    где $ B$ разрешимо.
+
+     $ B \in \Pi_{n}$, если
+     \[
+	 A(x) \Longleftrightarrow \forall y_1 \exists y_2 \forall y_3 \ldots B(x, y_1, \ldots , y_{n})
+     .\] 
+\end{defn}
+\begin{prop}
+    \begin{enumerate}
+        \item Определение не изменится, если разрешить несколько одинаковых вкванторов подряд, так как можем заменить повторные на один с помощью канторовой нумерации
+	\item $ A(x) \in  \Sigma _{n} \Longleftrightarrow \neg (x) \in \Pi_{n}$
+    \end{enumerate}
+\end{prop}
+
+\begin{thm}
+    Если $ A(x), B(x) \in \Sigma _n $ (или $ \Pi_n$), то
+     \[
+	 A(x) \cap B(x) \in \Sigma_n , \quad B(x) \in \Sigma_n
+    \] 
+    (или $ \Pi_n$)
+\end{thm}
+\begin{proof}
+    \begin{align*}
+	A(x) & \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots P(x, y_1, \ldots y_{n}) \\
+	B(x) & \Longleftrightarrow \exists z_1 \forall z_2 \exists z_3 \ldots Q(x, z_1, \ldots z_{n}) 
+    \end{align*}
+    \[
+	A(x) \cap B(x) \Longleftrightarrow \underbrace{\exists y_1 \exists z_1}_{\exists c(y_1, z_1)} \forall y_2 \forall z_2 \ldots \underbrace{P(x, y_1, \ldots y_{n}) \cap Q(x, z_1, \ldots z_n)}_{l(c(y, z))}
+    .\] 
+\end{proof}
+
+\begin{note}
+    Аналогично можно определить $ \Sigma _n, \Pi_n$ для подмножеств $ \N^{m}$.
+\end{note}
+\begin{prop}
+    %12:31
+\end{prop}
+
+\begin{thm}
+    $ A \le _m B ,  ~ B \in \Sigma _n$, то $ A \in \Sigma _{n}$ (аналогично с $ \Pi_n$)
+\end{thm}
+\begin{proof}
+    По определению
+    % дописать
+\end{proof}
+
+\begin{thm}
+    Для любого $ n >0$ в классе $ \Sigma_n $ (соответственно $ \Pi_n$ ) существует множество, универсальное для всех множеств в $ \Sigma _n$ (соответственно $ \Pi_n $ ) 
+\end{thm}
+\begin{note}
+    Если $ A$ -универсальное в $ \Sigma _n$, то $ \overline{A}$ --- универсальное в $ \Pi_n$
+\end{note}
+\begin{proof}
+    Для $ \Sigma _1$ -- перечислимое, уже строили.
+    Для $ \Pi_2$
+     \[
+     \forall y \underbrace{\exists z \underbrace{R(x, y, z)}_{\text{разрешимо}}}_{P(x, y)} \Longrightarrow \forall y \underbrace{P(x, y)}_{\text{перечислимо}}
+    .\] 
+    Рассмотрим $ U(n, x, y)$ --- универсальное множество для перечислимых. Тогда 
+     \[
+	 T(n, x) = \forall y U(n, x, y) \text{ --- универсальное для } \Pi_2
+    .\] 
+    Следовательно,
+    существует универсальное для $ \Sigma _2$ --- дополнение до $ T(n, x)$ 
+
+    Продолжаем далее по индукции, для $ 3$ начинаем с  $ \Sigma _3$
+    \[
+	\Sigma _3 \colon \exists y \forall z \exists t R(x, y, z, t) \Longleftrightarrow \exists y \forall z P(x, y, z)
+    .\] 
+    Универсальное для $ \Sigma _3$::
+    \[
+	T(n, x) = \exists y \forall z U(n, x, y, z), \text{где } $ U$ \text{ --- универсальное перечислимое}
+    .\] 
+\end{proof}
+
+% Дописать определения для множеств
+
+\begin{thm}
+    Универсальное множество для $ \Simga_n$ не принадлежит $ \Pi_n$ и наоборот
+\end{thm}
+
+Цель: доказать, что $ \forall \exists A \subset \N$, такое что $ \Sigma_n = \{X \mid X~ A \text{перечислимо}\}$
+ 
+\section{Еще про $ T$}
+
+
