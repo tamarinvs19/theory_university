@@ -1,0 +1,152 @@
+\subsection{Жизненные применения}
+Мы хотим решать задачу выполнимости.
+
+\textbf{Вход:} $ \Phi = \wedge C_i $  --- формула в КНФ.
+
+Подставим $ x_i = 0$. Если один из слозов нарушился, вернемся на шаг назад и подставим $  x_j = 1$, а иначе подставляем дальше.
+
+\begin{figure}[ht]
+    \centering
+    \incfig{cnf-algo}
+    \label{fig:cnf-algo}
+\end{figure}
+
+Это достаточно эффективный алгоритм, причем мы не ограничиваем выбор последовательности подстановок, порядок $ 0$ и $ 1$.
+
+\subsubsection{Раcсадка голубей}
+\begin{figure}[ht]
+    \centering
+    \incfig{golub-img}
+    \label{fig:golub-img}
+\end{figure}
+Вопросы --- сажаем ли мы голубя в клетку $ i$?
+
+Пусть один игрок загадал расстановку голубей, а второй хочет найти дизъюнкт, для которого нарушается эта расстановка.
+
+% Дописать рассуждения
+
+
+\section{Новая мера информации}
+На прошлой лекции поняли, что не всегда можем отличить некоторые множества.
+
+Попробуем исправить данную ситуацию. Хотим понять состояния в $ Y$, зная информацию об $ X$. В среднем нам нужно сильно меньше информации, чем в крайнем случае.
+
+Введем новую меру информации $  \mu ( \alpha )$, где $  \alpha $ --- распределение (множество и вероятности каждого элемента). Причем хотим, чтобы основные свойства были согласованы: \footnote{$ \mu(x, y) = \mu((x, y))$}
+\begin{enumerate}
+	\item $  \mu(U_n) = \log n$;
+	\item $ \mu( \alpha ) \ge 0$;
+	\item $\mu ( \alpha,  \beta ) = \mu ( \alpha ) + \mu ( \beta )$, если  $  \alpha $ и $  \beta $ независимы.
+\end{enumerate} 
+
+Если действовать как настоящие математики, можно переписать эти свойства в более общие:
+\begin{enumerate}
+	\item $ \mu(U_{M}) \ge \mu(U_{M'})$, если $ \lvert M \rvert \ge \lvert M' \rvert $ ;
+	\item $\mu ( \alpha,  \beta ) = \mu ( \alpha ) + \mu ( \beta )$, если  $  \alpha $ и $  \beta $ независимы;
+	\item $ \mu(B_p)$ непрерывно по $ p \in [0, 1]$, где $ B_p  $ --- распределение для монетки, вероятность орла -- $ p$. 
+	\item $ \mu(B_p, \alpha ) = \mu(B_p) + Pr[B_p = 0]\cdot \mu( \alpha \mid B_p = 0) + Pr[B_p = 1]\cdot \mu( \alpha \mid B_p = 1)$.
+\end{enumerate} 
+
+\begin{defn}[Энтропия]\index{энтропия}
+	Этим аксиомам удовлетворяет примерно одна функция $  \mu( \alpha ) \coloneqq k \cdot H( \alpha )$, где $ H( \alpha )$ --- \selectedFont{энтропия}.\footnote{$ \supp \alpha $ --- все возможные события, то есть имеющие ненулевую вероятность}
+\[
+	H( \alpha ) = \sum_{i = 1}^{\lvert \supp ( \alpha ) \rvert } p_i \log \frac{1}{p_i}
+.\] 
+Энтропия обозначает среднее по распределению $  \alpha $ необходимое количество информации для записи элемента.
+\end{defn}
+\begin{note}
+    Энтропия равномерного распределения равна $ \log n$, если $ p_i = n$.
+\end{note}
+\begin{note}
+	Далее $ H(p) $ обозначает энтропию для распределения монетки.
+\end{note}
+
+\begin{thm}
+	$ H( \alpha ) \le  \log \lvert \supp ( \alpha ) \rvert $
+\end{thm}
+\begin{proof}
+	Применим неравенство Йенсена
+	 \[
+	\begin{aligned}
+		\sum_{i = 1}^{\lvert \supp ( \alpha ) \rvert } p_i \log \frac{1}{p_i} \le  \log \left( \sum_{i}^{} p_i \frac{1}{p_i} \right)  = \lvert \supp ( \alpha ) \rvert 
+	\end{aligned}
+	\]
+\end{proof}
+\begin{thm}
+	$ H( \alpha , \beta ) \le H( \alpha ) + H ( \beta )$
+\end{thm}
+\begin{proof}
+    \[
+    \begin{aligned}
+		H( \alpha , \beta ) &= \sum_{i, j}^{} p_{i, j} \log \frac{1}{p_{i, j}} \\
+		H( \alpha ) + H( \beta ) &= \sum_{i}^{} p_i\log  \frac{1}{p_i} + \sum_{j}^{} p_j \log \frac{1}{p_j}
+	\end{aligned}
+	\]
+	Заметим, что $ p_i = \sum_{j}^{} p_{i, j}$ и $ p_j = \sum_{i}^{} p_{i, j}$.
+	\[
+		H( \alpha , \beta ) -H( \alpha ) - H( \beta )= \sum_{i, j}^{} p_{i, j} \log \frac{1}{p_{i, j}}
+		- \sum_{i}^{} p_i\log  \frac{1}{p_i} + \sum_{j}^{} p_j \log \frac{1}{p_j} = \sum_{i, j}^{ } p_{i, j} \log \frac{p_i p_j}{p_{i, j}}
+	.\] 
+	Если $  \alpha $ и $ \beta $ независимы, то все логарифмы обнуляются. Иначе по неравенству Йенсена
+	\[
+		\sum_{i, j}^{ } p_{i, j} \log \frac{p_i p_j}{p_{i, j}} \le  \log \left( \sum_{i, j}^{ } p_i p_j \right)  = 0
+	.\] 
+\end{proof}
+
+\begin{defn}[Условная энтропия]
+	\[
+	H( \alpha \mid \beta  = b) = \sum_{i}^{} Pr[ \alpha = i \mid  \beta  = b] \cdot  \log \frac{1}{Pr [ \alpha  = i \mid \beta  = b]}
+.\]
+\[
+	H( \alpha  \mid \beta ) = \E_{b = \beta } H( \alpha  \mid p = b)  = \sum_{b}^{ } H ( \alpha  \mid \beta = b) Pr[beta = b]
+.\] 
+\end{defn}
+\begin{prop}
+    ~\begin{enumerate}
+		\item $ \forall f \colon ~ H( \alpha  \mid \beta  ) \ge  H( f( \alpha ) \mid \beta )$
+		\item $ H( \alpha , \beta ) = H( \alpha ) + H( \beta  \mid \alpha )$
+		\item $ H( \alpha ) \ge  H ( \alpha \mid \beta )$
+			\begin{proof}
+			    \[
+				H( \alpha \mid \beta ) - H ( \alpha ) = \sum_{ }^{ } p_{i, j} \frac{1}{\log Pr [ \alpha  = i \mid \beta  = j]} - \sum_{ }^{ } p_{i, j} \log \frac{1}{p_i} \le  \sum_{ }^{ } p_{i, j} \log \frac{p_i}{Pr [ \alpha = i \mid \beta  = j]} 
+			    .\] 
+				По неравенству Йенсена полученное выражение меньше нуля.
+			\end{proof}
+		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $
+    \end{enumerate} 
+\end{prop}
+
+Попробуем решить задачу с монетками. Мы взвешиваем $ 14$ монеток и хотим найти фальшивую за три взвешивания, причем неизвестен относительный вес. В нашем графе есть только один исход со всеми равенствами. Докажем, что нет такой стратегии.
+
+Пусть нам дали текущее состояние и стратегия % расписать. 
+Сделаем так, чтобы каждый лист был равновероятен.
+Вернем  с вероятностью $ \frac{1}{27}$, что $ i$ фальшивая, и с $ \frac{1}{27}$ -- больше ($ l > i$ фальшивая), и также с $ l < i$ --  $ \frac{1}{27}$.
+
+При равномерном распределении энтропия $ 3\log 3$.
+
+Если стратегия верная, то
+\begin{align*}
+\log 27 &\le  H( \alpha, q_1, q_2, q_3) \le \\ &\le H( q_1 ) + H(q_{2} \mid q_1 )+ H(q_3 \mid q_1, q_2)+ H( \alpha  \mid q_1, q_2, q_3 ) \le \tag{Cain rule}\\  
+			& \le  H(q_1) + H(q_2) + H(q_3) + 0
+\end{align*}
+
+Так как $ H(q_i) \le  \log 3$, для все $ i$ выполнено равенство.
+
+Чтобы было так, мы должны в каждый ход равновероятно получать все три ответа.
+Пусть мы взвешиваем кучки из $ k$ монет\footnote{Очевидно, что взвешивать кучки разного размера, информацию извлечь не получиться даже по Хартли}. Вероятность равенства должна быть
+$ \frac{2k}{27} \frac{1}{3} $, то есть $ k \notin \N$. Противоречие.
+
+\section{Биномиальное распределение}
+\[
+	\sum_{i=0}^{k} {n \choose i} \le  2^{n H(\frac{k}{n})}
+.\] 
+Обозначим сумму за $ C$.
+
+Будем выбирать множество размера не больше $ k$, а затем проверять, попало ли  $ i$ наше множество.
+Пусть $ X$ --- индикатор того, что $ i$ выбрали. 
+\begin{align*}
+	\log C = H(X) &\le  H( X_1, \ldots , X_n) \le \\ \tag{Chain rule}
+				  & \le \sum_{ }^{ } H( X_i \mid X_{<i}) \le \\
+				  & \le \sum_{  }^{ } H(X_i) =  n H(X_1) \le  \tag{считаем, что $ k \le \frac{n}{2}$} \\ 
+				  & \le n H\left( \tfrac{k}{n} \right)  
+\end{align*}
+
