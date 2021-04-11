@@ -1,0 +1,338 @@
+\lecture{6}{18 march}{\dag}
+\section{Арифметическая иерархия}
+
+Вспомним следующее свойство:
+	$ A \subset \N$ перечислимо, согда $\exists  B \subset \N \times \N$, такое что $ A$ --- проекция $ B$,
+	или 
+	\begin{equation}\label{eq:2.8.1}
+	x \in A \Longleftrightarrow \exists  y ~ (x, y) \in  B
+	\end{equation}
+Можем считать $ A, B$ свойствами (предикатами), то есть  
+$ A(x) \hookrightarrow x \in A  $.
+Тогда можем переписать \ref{eq:2.8.1} так
+\[
+    A(x) \Longleftrightarrow \exists y ~ B(x, y)
+.\] 
+Какие множества представимы в виде $ \forall y \colon B(x, y)$? Это равносильно
+\[
+    \neg \left( \exists  y ~ \neg B(x, y) \right) 
+.\] 
+Это \selectedFont{коперечислимые} (то есть дополнение до перечислимого)
+
+\begin{defn}\index{$\Sigma_n$}\index{$\Pi_n$}
+    $ A \in \Sigma_{n} $, если его можно представить в виде 
+    \[
+	A(x) \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots B(x, y_1, \ldots , y_{n})
+    ,\] 
+    где $ B$ разрешимо.
+
+	\noindent
+     $ A \in \Pi_{n}$, если
+     \[
+	 A(x) \Longleftrightarrow \forall y_1 \exists y_2 \forall y_3 \ldots B(x, y_1, \ldots , y_{n})
+     .\] 
+\end{defn}
+
+\begin{prop}
+    ~\begin{enumerate}
+        \item Определение не изменится, если разрешить несколько одинаковых кванторов подряд, так как можем заменить повторные на один с помощью канторовой нумерации
+	\item $ A(x) \in  \Sigma _{n} \Longleftrightarrow \neg A(x) \in \Pi_{n}$
+    \end{enumerate}
+\end{prop}
+
+\begin{thm}
+    Если $ A(x), B(x) \in \Sigma _n $ (или $ \Pi_n$), то
+     \[
+		 A(x) \cup B(x) \in \Sigma_n ~ \text{(или $ \Pi_n$)}
+    \] 
+     \[
+		 A(x) \cap  B(x) \in \Sigma_n ~ \text{(или $ \Pi_n$)}
+    .\] 
+\end{thm}
+\begin{proof}
+	Запишем определения
+    \begin{align*}
+	A(x) & \Longleftrightarrow \exists y_1 \forall y_2 \exists y_3 \ldots P(x, y_1, \ldots y_{n}) \\
+	B(x) & \Longleftrightarrow \exists z_1 \forall z_2 \exists z_3 \ldots Q(x, z_1, \ldots z_{n}) 
+    \end{align*}
+	Скомбинируем кванторы
+    \[
+	A(x) \cap B(x) \Longleftrightarrow \underbrace{\exists y_1 \exists z_1}_{\exists c(y_1, z_1)} \forall y_2 \forall z_2 \ldots \underbrace{P(x, y_1, \ldots y_{n}) \cap Q(x, z_1, \ldots z_n)}_{l(c(y, z))}
+    .\] 
+	Так как $ P$ и $ Q$ разрешимы их объединения и пересечения тоже разрешимы.
+\end{proof}
+
+\begin{note}
+    Аналогично можно определить $ \Sigma _n, \Pi_n$ для подмножеств $ \N^{m}$.
+\end{note}
+\begin{prop}
+	~\begin{itemize}
+		\item $ \Sigma _n, ~ \Pi _n \subseteq \Sigma _{n+1}, ~\Pi_{n+1}$
+	\item $ \Sigma _n \cup \Pi _n \subseteq \Sigma _{n+1} \cap \Pi _{n+1}$
+	\end{itemize}
+\end{prop}
+\begin{proof}
+    Аналогично прошлой теореме сворачиваем кванторы в группы, добавляем кванторы.
+\end{proof}
+
+В итоге получается следующая картина
+\begin{align*}
+	& \Sigma_0 \subseteq \Sigma _1 \subseteq  \Sigma _2 \subseteq \Sigma _3 \subseteq \ldots \\
+	&\rotatebox[origin=c]{90}{=} \quad \rotatebox[origin=c]{135}{$\subseteq$} \quad~  \rotatebox[origin=c]{45}{$\subseteq$}\\
+	& \Pi_0 \subseteq \Pi _1 \subseteq  \Pi _2 \subseteq \Pi _3 \subseteq \ldots
+\end{align*}
+
+\begin{thm}
+    $ A \le _m B ,  ~ B \in \Sigma _n$, то $ A \in \Sigma _{n}$ (аналогично с $ \Pi_n$)   
+\end{thm}
+\begin{proof}
+	Распишем согласно определениям
+	\[
+		A \le _m B \stackrel{\operatorname{def}}{\Longleftrightarrow }  \exists f \in \F_{*}\colon x \in A \Longleftrightarrow f(x) \in  B
+	\] 
+	и
+	\[
+		B \in \Sigma _n \stackrel{\operatorname{def}}{\Longleftrightarrow } x \in B \Longleftrightarrow \exists y_1 \forall y_2 \ldots R(x, y_1, y_2, \ldots y_n)
+	.\] 
+	Тогда 
+	\[
+		x \in A \Longleftrightarrow f(x) \in B \Longleftrightarrow \exists y_1 \forall y_2 \ldots R(f(x), y_1, \ldots y_{n})
+	.\] 
+	Так как $ f$ вычислима, то и $ R(f(x), y_1, \ldots y_2)$ разрешимо.
+\end{proof}
+
+\begin{thm}
+    Для любого $ n>0$ в классе $ \Sigma_n $ (соответственно $ \Pi_n$ ) существует множество, универсальное для всех множеств в $ \Sigma _n$ (соответственно $ \Pi_n $ ) 
+\end{thm}
+\begin{note}
+    Если $ A$ -универсальное в $ \Sigma _n$, то $ \overline{A}$ --- универсальное в $ \Pi_n$
+\end{note}
+
+\begin{defn}[Универсальное множество]
+	Множество $ W \subset \N \times \N$ \selectedFont{универсальное} для перечислимого подмножества $ \N$, если
+	\begin{itemize}
+		\item $ W $ перечислимое;
+		\item для всех перечислимых $ B \subset \N$ существует номер $ n$,такой что $ W_n = B$.
+	\end{itemize}
+\end{defn}
+\begin{defn}[Главное универсальное множество]
+	Множество $ W \subset \N \times \N$ \selectedFont{главное универсальное} для всех перечислимых подмножеств $ \N$, если
+для любого $ V \in \N \times \N$ существует функция $ s \colon \N \to  \N$:
+	\begin{itemize}
+		\item $s$ вычислима и всюду определена;
+		\item $ \forall x, n\colon  (n, x) \in  V \Longleftrightarrow (s(n), x) \in  W$
+	\end{itemize}
+	Например, таким будет область определения универсальной функции.
+\end{defn}
+\begin{proof}
+	Докажем по индукции.
+
+    Для $ \Sigma _1$ -- перечислимое, уже строили.
+    Для $ \Pi_2$
+     \[
+     \forall y \underbrace{\exists z \underbrace{R(x, y, z)}_{\text{разрешимо}}}_{P(x, y)} \Longrightarrow \forall y \underbrace{P(x, y)}_{\text{\tiny перечислимое свойство}}
+    .\] 
+
+    Рассмотрим $ U(n, x, y)$ --- универсальное множество для перечислимых. Тогда 
+     \[
+	 T(n, x) \coloneqq  \forall y U(n, x, y)
+    .\] 
+
+	$ T(n, x)$ получается универсальным для  $  \Pi_2$.
+
+    Следовательно, 
+    существует универсальное для $ \Sigma _2$ --- дополнение до $ T(n, x)$.
+
+    Продолжаем далее по индукции: для $ 3$ начинаем с  $ \Sigma _3$
+    \[
+	\Sigma _3 \colon \exists y \forall z \exists t R(x, y, z, t) \Longleftrightarrow \exists y \forall z P(x, y, z)
+    .\] 
+
+    Универсальное для $ \Sigma _3$:
+    \[
+	T(n, x) = \exists y \forall z U(n, x, y, z), \text{где }  U \text{ --- универсальное перечислимое}
+    .\] 
+	И так далее
+\end{proof}
+
+\begin{thm}
+    Универсальное множество для $ \Sigma_n$ не принадлежит $ \Pi_n$ и наоборот.
+\end{thm}
+\begin{proof}
+	Пусть $ T(m, x)$  --- универсальное $  \Sigma _n$-свойство. И предположим, что $ T(m, x) \in \Pi_n$.  
+
+	Рассмотрим $ D(x) = T(x, x) \in \Pi_n$, так как $ D \le _m T$.
+
+	Поэтому $ \neg D(x) \in \Sigma_n$, но оно отличается от всех сечений $ T(n, x)$. Противоречие. 
+\end{proof}
+\begin{cor}
+    $ \Sigma_n \subsetneq \Sigma_{n+1}$ и $ \Pi_n \subsetneq \Pi_{n+1}$. 
+\end{cor}
+
+
+
+\textbf{Цель:} доказать, что $ \forall \exists A \subset \N$, такое что $ \Sigma_n = \{X \mid X~ A\text{-перечислимо\footnote{то есть перечислимо с оракулом $ A$}}\}$
+
+\section{Еще про $ T$-сводимость}
+Зафиксируем некоторую функцию-оракула $  \alpha $. Вся теория вычислимости может быть <<релятивизована>> относительно вычислений с оракулом $  \alpha $.
+\begin{defn}
+    Функцию, вычислимую с оракулом $  \alpha $ будем называть $  \alpha $-вычислимой.
+\end{defn}
+\begin{name}
+    $ F_{\alpha}^{m}$ --- класс $  \alpha $-вычислимых функций от $ m $ аргументов.
+\end{name}
+
+    \begin{thm}
+        Пусть $ \alpha $ --- всюду определенная функция. Тогда 
+		$
+			\exists U_{ \alpha } (n, x) \in \F_{ \alpha} ^2
+			$
+		--- универсальная для класса $ \F^{1}_{ \alpha }$
+    \end{thm}
+	\begin{proof}
+		Пусть $ U_{ \alpha }(i, x)$ --- результат применения $ i$-ой МТ c оракулом $  \alpha $ к $ x$.
+		Как устроен оракул нам не важно, поэтому можем просто вшить обращение к нему во входные данные.
+	\end{proof}
+
+Аналогично перечислимым множествам можем определить $  \alpha$-перечислимые множества как:
+\begin{itemize}
+	\item область определения $  \alpha $-вычислимой функции 
+	\item область значений $  \alpha $-вычислимой функции
+	\item проекция  $  \alpha $-разрешимого множества
+\end{itemize}
+
+\begin{thm}
+	~\begin{enumerate}
+	    \item Для любого $X \subset \N  $ существует универсальное $ X$-перечислимое множество для $ X$-перечислимых.
+		\item Это множество будет $ m$-полным в классе $ X$-перечислимых.
+	\end{enumerate} 
+\end{thm}
+	\begin{proof}
+	    Доказательство полностью аналогично такой же теореме для обычной перечислимости.
+	\end{proof}
+
+\begin{defn}[]
+	Множества $ P$ и $ Q$ являются \selectedFont{ $ m$-эквивалентными} ($ P \equiv _m Q$), если $ P \le _m Q$ и $ Q \le _m P$.
+
+	\noindent
+	\selectedFont{$ m$-степень} --- $ \deg_m(P) = \{Q \mid Q \equiv _m P\} $.
+\end{defn}
+
+\begin{defn}[]
+	Множества $ P$ и $ Q$ являются \selectedFont{ $ T$-эквивалентными} ($ P \equiv _T Q$), если $ P \le _T Q$ и $ Q \le _T P$.
+
+	\noindent
+	\selectedFont{$ T$-степень} --- $ \deg_T(P) = \{Q \mid Q \equiv _T P\} $.
+\end{defn}
+
+\begin{note}
+	Если $ P, Q \in \deg_T(X)$, то $ \F_P = \F_Q$ и  $ P$-перечислимость  эквивалентна  $ Q$-перечислимости.
+
+	Поэтому можем говорить о $\deg_T X$-неперечислимости.
+\end{note}
+
+\begin{defn}[Операция скачка]
+	\selectedFont{Операция скачка} $ J\colon \deg_T \to \deg_T $ (или $ \deg_m \to \deg_m) $ выбирает для $ X$ какое-то $ m$-полное относительно $ X$-перечислимости.
+
+	\noindent
+	То есть по всем эквивалентным $ \deg_T(X)$ получаем $ X$-перечислимые и среди них выбираем полные. 
+\end{defn}
+\begin{figure}[ht]
+    \centering
+    \incfig{jump-img}
+    \label{fig:jump-img}
+\end{figure}
+
+\paragraph{$ T$-степени}
+\begin{itemize}
+	\item $ \mathbb{O}$ --- все разршимые.
+	\item $ \mathbb{O}' = J(\mathbb{O}) $ --- степень $ m$-полного перечислимого неразрешимого. Один из представителей --- ООП универсальной функции.
+	\item $ \mathbb{O}^{(n+1)}= \left(\mathbb{O}^{(n)}\right)'$
+\end{itemize}
+Можно считать, что $ \mathbb{O}'$ --- разрешимые с оракулом проблемы остановки. 
+
+\begin{thm}
+	$  \forall n \ge 1 \colon \Sigma _n = \{\mathbb{O}^{(n-1)} \text{ --- перечислимые множества}\}$
+\end{thm}
+\begin{proof}
+    Для $ n = 1$ уже знаем.
+	\begin{description}
+	    \item \boxed{  \subset } 
+			Рассмотрим $ X \in \Sigma _2$, тогда
+			\[
+				x \in X \Longleftrightarrow \exists y \forall z \underbrace{R(x, y,z)}_{ \text{разрешимо}}
+			.\] 
+			Навешиваем отрицание
+			\[
+				\neg \left( \forall z R(x, y, z) \right)  \in \Sigma _1
+			.\] 
+			Принадлежность $  \Sigma _1$ дает $ m$-сводимость к $ m$-полному перечислимому множество. А так как $ m$-сводимость влечет $ T$-сводимость, по определению $ \mathbb{O}'$ множество  $ \mathbb{O}'$-разрешимо.
+
+			Следовательно, его проекция $ \mathbb{O}'$-перечислима.
+
+			Аналогично действуем для больших  $ n$: 
+			\[ x \in \Sigma_n\colon x \in X \Longleftrightarrow \exists y \underbrace{R(x, y)}_{ \in \Pi _2}\]
+			Тогда $ \neg R \in \Sigma _{n-1} .$ 
+
+		На предыдущем слое доказали, что тогда $ \neg R $ будет $ \mathbb{O}^{(n-2)}$-перечислимо, а тогда он $ \mathbb{O}^{(n-1)}$-разрешимо. Тогда его проекция $ \mathbb{O}^{(n-1)}$-перечислима.
+	    \item \boxed{\supset } 
+
+	\end{description} 
+\end{proof}
+
+\subsection{Утверждения для доказательства цели}
+\begin{defn}
+    Рассмотрим некоторую вычислимую нумерацию конченых множество. Путсь $ D_x$ --- множество с номером  $ x$.
+
+	Возьмем $ A \subset \N$ (не обязательно конченое).
+
+	Определим $ \Subsetm(A) = \{x \mid D_x \subset A\}$ --- множество номеров конечных подмножество $ A$.
+\end{defn}
+\begin{lm}[о $ \Subsetm$]
+	Если $ A \in \Sigma_n$ (или $ \Pi_n$), то  $ \Subsetm(A) \in \Sigma_n$ (или $ \Pi_n$)
+\end{lm}
+\begin{proof}
+	Пусть $ A \in \Sigma_3$,
+	\[
+	x \in A \Longleftrightarrow \exists y \forall z \exists t \underbrace{T(x, y, z, t)}_{\text{разрешимо}}
+	.\] 
+	Для конечного набора
+	\[
+		\{x_1, \ldots x_m\} \subset A \Longleftrightarrow \exists (y_1, \ldots y_m) \forall (z_1, \ldots , z_m) \exists (t_1, \ldots t_m) \bigwedge_{i=1}^{m} R(x_i, y_i, z_i, t_i)
+	.\] 
+	А это равносильно $ c(x_1, \ldots x_m) \in \Subsetm(A)$.
+\end{proof}
+
+\paragraph{Относительная вычислимость: эквивалентные определения}
+\begin{defn}[Образец]
+	\selectedFont{Образец} --- функция $ \N \to \N$, определенная на конечном множестве значений. Задается конченым множеством пар, то етсь  можем вычислимо пронумеровать образцы.
+	
+	\noindent
+	Образцы \selectedFont{совместимы}, если объединение их графиков есть график функции.
+\end{defn}
+\begin{defn}[]
+	$ M$ --- множество троек $ (x, y, t)$, где  $ x, y \in \N$, а $ t$ --- образец.
+
+	\noindent
+	Две тройки $ (x_1, y_1, t_1), (x_2, y_2, t_2)$ \selectedFont{противоречат друг другу}, если $  x_1= x_2$, $  y_1 \ne  y_2$ и $  t_1$ и $  t_2$ совместны.
+
+	\noindent
+	Мноежство $ M$ \selectedFont{корректно}, если оно не содержит противоречащих троек.
+\end{defn}
+\begin{defn}
+    Пусть  $  M$ --- корректное множество троек, $ \alpha $ --- функция.
+	\[
+	\begin{aligned}
+		M_1& = \{(x, y, t) \mid (x, y, t) \in M, t \text{ --- подмножество графика } \alpha \} \\
+		M_2&= \{(x, y) \mid \exists t\colon (x, y, t) \in M_1\}
+	\end{aligned}
+	\]
+	Тогда $  M_2$ определяет график некоторой функции $ M[ \alpha ]$. Причем определение корректно, так как для всех $ x$ не больше одного значения.
+\end{defn}
+\begin{thm}
+	Частичная функция $ f \in \F^{(1)}_{ \alpha }$, где $  \alpha \colon \N \to  \N$ всюду определена, равностильно тому, что существует корректное множество троек $ M$, такое что  $ f = M[ \alpha ]$.
+\end{thm}
+\begin{proof}
+    
+\end{proof}
+
