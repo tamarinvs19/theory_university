@@ -2,6 +2,8 @@
 
   \item $ k$-местная частичная функция, 
 		\hyperpage{3}
+  \item $\Pi_n$, \hyperpage{29}
+  \item $\Sigma_n$, \hyperpage{29}
 
   \indexspace
 
@@ -28,6 +30,8 @@
   \item рекурсия возвратная, \hyperpage{9}
   \item рекурсия совместная, \hyperpage{10}
   \item сводимость по Тьюрингу, \hyperpage{28}
+  \item теорема об арифметической иерархии, 
+		\hyperpage{33}
   \item универсальная функция, \hyperpage{19}
   \item функция Аккермана, \hyperpage{14}
   \item частично рекурсивная функция, 

@@ -251,7 +251,9 @@ $ A(x) \hookrightarrow x \in A  $.
 \end{itemize}
 Можно считать, что $ \mathbb{O}'$ --- разрешимые с оракулом проблемы остановки. 
 
-\begin{thm}
+\section{Теорема об арифметической иерархии}
+
+\begin{thm}[Об арифметической иерархии]\index{теорема об арифметической иерархии}
 	$  \forall n \ge 1 \colon \Sigma _n = \{\mathbb{O}^{(n-1)} \text{ --- перечислимые множества}\}$
 \end{thm}
 \begin{proof}
@@ -276,20 +278,25 @@ $ A(x) \hookrightarrow x \in A  $.
 
 		На предыдущем слое доказали, что тогда $ \neg R $ будет $ \mathbb{O}^{(n-2)}$-перечислимо, а тогда он $ \mathbb{O}^{(n-1)}$-разрешимо. Тогда его проекция $ \mathbb{O}^{(n-1)}$-перечислима.
 	    \item \boxed{\supset } 
-
+			См. \hyperref[proof:main_thm]{далее}
 	\end{description} 
 \end{proof}
 
-\subsection{Утверждения для доказательства цели}
+
+\subsection{Утверждения для доказательства в обратную сторону}
 \begin{defn}
-    Рассмотрим некоторую вычислимую нумерацию конченых множество. Путсь $ D_x$ --- множество с номером  $ x$.
+    Рассмотрим некоторую вычислимую нумерацию конченых множество.
+
+	Пусть $ D_x$ --- множество с номером  $ x$.
 
 	Возьмем $ A \subset \N$ (не обязательно конченое).
 
 	Определим $ \Subsetm(A) = \{x \mid D_x \subset A\}$ --- множество номеров конечных подмножество $ A$.
+
+	Аналогично $ \Disjointm(A) = \{x \mid D_x \cap A = \varnothing\}$.
 \end{defn}
 \begin{lm}[о $ \Subsetm$]
-	Если $ A \in \Sigma_n$ (или $ \Pi_n$), то  $ \Subsetm(A) \in \Sigma_n$ (или $ \Pi_n$)
+	Если $ A \in \Sigma_n$ (или $ \Pi_n$), то  $ \Subsetm(A) \in \Sigma_n$ (или $ \Pi_n$ соответственно).
 \end{lm}
 \begin{proof}
 	Пусть $ A \in \Sigma_3$,
@@ -301,6 +308,21 @@ $ A(x) \hookrightarrow x \in A  $.
 		\{x_1, \ldots x_m\} \subset A \Longleftrightarrow \exists (y_1, \ldots y_m) \forall (z_1, \ldots , z_m) \exists (t_1, \ldots t_m) \bigwedge_{i=1}^{m} R(x_i, y_i, z_i, t_i)
 	.\] 
 	А это равносильно $ c(x_1, \ldots x_m) \in \Subsetm(A)$.
+\end{proof}
+
+\begin{lm}[о $ \Disjointm$]
+	Если $ A \in \Sigma_n$ (или $ \Pi_n$), то $ \Disjointm \in \Pi_n$ (или $ \Sigma_n$ соответственно).
+\end{lm}
+\begin{proof}
+    \[
+		D_x \cap A = \varnothing  \Longleftrightarrow D_x \in \overline{A} \Longleftrightarrow x \in \Subsetm (\overline{A})
+	\]
+	То есть $ \Disjointm(A) = \Subsetm(\overline{A})$.
+	Тогда
+	\begin{align*}
+		A \in \Sigma_n &\Longleftrightarrow \overline{A} \in \Pi_n \Longrightarrow  \tag{по лемме о $ \Subsetm$} \\
+		&\Disjointm(A) \in \Pi_n
+	\end{align*}
 \end{proof}
 
 \paragraph{Относительная вычислимость: эквивалентные определения}
@@ -329,10 +351,4 @@ $ A(x) \hookrightarrow x \in A  $.
 	\]
 	Тогда $  M_2$ определяет график некоторой функции $ M[ \alpha ]$. Причем определение корректно, так как для всех $ x$ не больше одного значения.
 \end{defn}
-\begin{thm}
-	Частичная функция $ f \in \F^{(1)}_{ \alpha }$, где $  \alpha \colon \N \to  \N$ всюду определена, равностильно тому, что существует корректное множество троек $ M$, такое что  $ f = M[ \alpha ]$.
-\end{thm}
-\begin{proof}
-    
-\end{proof}
 
