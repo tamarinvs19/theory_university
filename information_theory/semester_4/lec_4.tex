@@ -1,0 +1,72 @@
+\lecture{4}{22 April}{\dag}
+% Эта тема пложо написана в прошлогоднем конспекте
+\section{}
+Пусть есть алфавит $ \Sigma$ размером  $ k$, `кодер`  $ E \colon [k]^{n} \to  \{0, 1\}^{L_n}$ и `декодер` $ D\colon \{0, 1\}^{L_n} \to [k]^{n}$.
+
+Пусть есть распределение на буквах $  p_1, p_2, \ldots p_k$. \footnote{считаем, что слово состоит из независимых букв}
+
+Обозначим $ \varepsilon _n \coloneqq Pr [D(E(x))] \ne x$, где $\lvert x  \rvert = n$. Хотим $ \varepsilon _n \to  0$.\footnote{если сделать равенство, то особого сжатия не будет}
+
+\begin{thm}
+	Если $ L_n > \lceil h n \rceil $ и  $ h > H(p)$, то кодирование есть. Если  $ L_n < \lceil hn \rceil$ и $ h < H(p)$, то  $ \varepsilon _n \to 1$.
+\end{thm}
+\begin{proof}
+Будем называть код $ W$  $ \delta $-типичным, если 
+\[
+\forall i \left| n_\frac{i}{n} - p_i \right| \le \delta, \quad n_i = \# \text{входа буквы} 
+.\] 
+Зафиксируем $  \delta   = n^{-0.02}$.
+
+\begin{itemize}
+\item Докажем, что можем закодировать такие типичные слова в первой части.
+Пусть $ X_{ij}$ --- характеристическая функция того, что в слове на позиции $ j$ находится буква  $ i$.
+
+Также рассмотрим $ X_i = \sum_{j}^{} X_{ij}$ и применим неравенство Чебышева:
+ \[
+	 Pr [ \lvert X_i - \mu \rvert \ge \delta  n ] \le  \frac{\Var  [x_i]}{( \delta  n) ^2} =  \frac{np_i (1-p_i)}{( \delta  n)^2} =  \O\left(\tfrac{1}{ \delta^2  n}\right)
+	 \text{\footnote{Здесь $ \Var[X_i]$ --- дисперсия,  $ \mu$ --- матожидание $ X_i$,  $ \mu = n p_i$.}}
+ .\] 
+
+ Так как букв константное количество, вероятность нетипичности все равно останется очень маленьким и будет стремиться к нулю.
+
+Теперь докажем, что типичных слов не очень много. Количество слов, где буквы встречаются в количествах $  n_1, \ldots , n_k$ равно
+\[
+	N = \frac{n!}{n_1! \cdot \ldots \cdot n_k!}
+.\] 
+
+\begin{align*}
+	\log N &= \tag{так как $n! = \poly(n) \left( \frac{n}{e} \right) ^{n }$}\\ 
+		   &= \log \left( \left( \frac{n}{n_1} \right)^{n_1} \cdot \left( \frac{n}{n_2} \right)^{n_2} \cdot \ldots \cdot \left( \frac{n}{n_k} \right)^{n_k} \right)  + \O( \log n)=  \\
+		   & =\sum_{}^{} n_i \log \frac{n}{n_i} + \O(\log n) = \tag{$n_i$ по определению}\\
+		   &= n \sum_{}^{} (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O(\log n) \tag{$ \lvert   \delta _i \rvert< \delta $, так как типичное, $  \delta _i$ --- отклонение $i $-ой буквы в языке}
+\end{align*}
+
+Теперь оценим число типичных слов
+\begin{align*}
+	\log\Bigl(	\# (\text{$\delta$-типичных слов})\Bigr) \le \\
+	& \le \log \left( n^{k} \cdot \max_{ \delta _i} N \right) \le  \\
+	& \le \max_{ \delta _i} H(p_1 + \delta _1 , p_2+\delta_2 , \ldots ) \cdot n + \O( \log n) = \tag{Переход за кадром\footnote{Написать честную формулу энтропии как частную производную}} \\
+	= nH(p) + \O( \delta \cdot n)
+\end{align*}
+Если теперь кодер может отобразить инъективно все типичные слова в набор битовых слов длины $ h n$, при этом ошибаться он будет на нетипичных, количество которых стремиться к нулю.
+ \item Во второй части докажем, что мы не сможем закодировать все типичные слова.
+
+	 Покажем, что вероятность того, что мы выкинем $ \delta$-типичное слово очень мала.
+\begin{figure}[ht]
+    \centering
+    \incfig{delta-words}
+    \label{fig:delta-words}
+\end{figure}
+Пусть $ L_n \le h n$. Посмотрим на любое кодовое распределение слов. Покажем, что вероятность по нашему определению для $  \delta $-типичных слов больше, чем $ \frac{1}{2^{L_n}}$.
+\begin{align*}
+	Pr[w] &= p_1^{n_1} \cdot p_2^{n_2} \cdot  \ldots \cdot p_k^{n_k} = \\
+		  & = 2^{- \sum_{i=1}^{k} (p_i + \delta) \log \frac{1}{p_i} n}  \le \\
+		  & \le 2^{-H(p) n + \O( \delta n)}
+\end{align*}
+С какой вероятностью декодер декодер ответит правильно? % расписать подробнее 12:40
+\[
+	Pr[\text{правильного ответа}] \le 2^{L_n} \cdot \max_{w} Pr[w] \le 2^{((L_n - H(p)) \cdot n + \O( \delta n)} \to 2^{0}
+.\] 
+\end{itemize}
+% формальнее про правильный ответ в самом конце и на скрине
+\end{proof}
