@@ -97,7 +97,8 @@ ExternalLocation={stix2font/}
     frametitleaboveskip=7pt,
 }
 \theoremstyle{definition}
-\mdtheorem[style=defstyle]{defn}{Определение}
+% \mdtheorem[style=defstyle]{defn}{Определение}
+\newmdtheoremenv[nobreak=false,backgroundcolor=red!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{defn}{Определение}
 
 \newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
@@ -160,6 +161,8 @@ ExternalLocation={stix2font/}
 \newcommand{\sign}{\operatorname{sign}}
 \newcommand{\sg}{\operatorname{sg}}
 \newcommand{\bsg}{\operatorname{\overline{sg}}}
+\newcommand{\KW}{\operatorname{KW}}
+\newcommand{\NP}{\operatorname{NP}}
 
 \newcommand{\Div}{\operatorname{Div}}
 \newcommand{\Prime}{\operatorname{Prime}}
