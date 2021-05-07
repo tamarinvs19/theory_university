@@ -1,0 +1,70 @@
+\section{Теория информации в коммуникационной сложности}
+\lecture{6}{6 May}{\dag}
+\subsection{Подсчет функции индексов}
+Определим \[
+	\Ind \colon [n]\times \{0, 1\}^{n} \to \{0, 1\}, \quad \Ind(x, y) = y_x
+.\] 
+Алиса и Боб хотят посчитать эту величину, причем $ x$ у Алисы, а  $ y $ у Боба.
+
+Пусть сообщения идут только от Боба до Алисы. Несложно понять, что Бобу придется послать всю информацию.
+
+Теперь предположим, что они хотят, чтобы Алиса посчитала $ \Ind$  верно с вероятностью $ \frac{1}{2} + \delta $, если $ x$ и $ y$ выбираются равномерно. Очевидно, для $  \delta  = 0$, просто ничего не нужно пересылать. А вот для других положительных значений все испортится.
+
+
+\dotfill
+
+
+Пусть $ M(y)$ --- случайная величина.  
+\begin{align*}
+	I(M : y)& = \tag{Chain rule} \\
+			&= \sum_{i}^{} I(M: y_i \mid y_{<i} = \\
+			&= \sum H(y_i \mid y_{<i}) - H(y_i \mid M, y_{<i}) = \tag{$ y_i$ независимы} \\
+			&= \sum H(y_i) - H(y_i \mid M, y_{<i}) \le \tag{Выкинули часть условий} \\
+			& \le \sum H(y_i) - H(y_i \mid M) = \\
+			&= \sum I(M : y_i)
+\end{align*}
+
+Покажем, что полученная сумма большая.
+
+Зафиксируем $ i$ и распишем по определению взаимной информации: 
+\begin{align*}
+	I(M : y_i) &= H(y_i) - H(y_i \mid M) = \tag{$ H(y_i) = 1$} \\
+			   &= 1 - \E _{m} \left( H(y_i \mid M= m_i, x= i \right)  = \\
+			   &= \sum_{i}^{} 1 - H(r_m^{i}) =  \\
+			   &= n - n \sum_{i}^{} \frac{1}{n} H(\E(r_m^{i})) = \\
+			   &= n \cdot (1 - H(\E_{m, i} (r_m^{'}))) \le  \\
+			   & \le  n \cdot  (1 - H(\tfrac{1}{2} - \delta )) = \\
+			   &= \Omega ( \delta ^2 n)
+\end{align*}
+Здесь $ r_m^{i} $ --- характеристическая функция ошибки  $ M=m$,  $ x = i$.
+
+Чтобы алгоритм был корректен, $ \E_{i, m} (r_m^{i}) \le \frac{1}{2} - \delta $.
+
+Теперь $ \log \lvert M \rvert  \ge H(M) \ge \Omega ( \delta ^2 n) \le  \delta n$.
+
+\[
+	\frac{1}{2} (1 - 2\delta )  + o \le 2\delta  n
+.\] 
+
+\dotfill
+
+\begin{defn}
+Пусть $  \mu$ --- мера на $ X \times Y$. 
+
+$ \IC_{\mu}^{ext} \coloneqq I( \pi(x, y): (X, Y))$.
+
+$ \IC_{\mu}^{int} \coloneqq I( \pi(x, y) : X \mid Y) + I( \pi(x, y) : Y | X) $.
+\end{defn}
+
+\begin{thm}
+	$ D( \pi) \ge  \IC_{\mu}^{ext}( \pi) \ge \IC_{ \mu}^{\int}$
+\end{thm}
+\begin{proof}
+    Первое неравенство очевидно. Второе докажем потом.
+\end{proof}
+\begin{thm}[Храпченко]
+	$ L( XOR) \ge \Omega (n^2)$
+\end{thm}
+\begin{proof}
+   ... 
+\end{proof}
