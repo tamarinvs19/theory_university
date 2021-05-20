@@ -1,0 +1,118 @@
+\lecture{7}{20 May}{\dag}
+Докажем $ I( \pi : x, y) \ge I( \pi : x \mid y) + I(\pi : y  \mid x)$. 
+
+Если оставить только одно слагаемое,  слева останется
+$ H( \pi ) - H( \pi \mid x, y) $
+, а справа 
+$ H( \pi \mid y ) - H( \pi \mid x, y) $, которое точно не больше.
+
+Пусть $  \pi_i$ -- префикс $  \pi$, то есть то, что Алиса и Боб отправили за $ i$-ый раунд ($ i$-ый бит).
+\begin{align*}
+	I( \pi : x, y) &= \sum_{i}^{} I( \pi_i : x, y \mid \pi_{< i}) 
+\end{align*}
+Аналогично попробуем нарезать слагаемые правой части:
+\begin{align*}
+	I( \pi : x \mid y) & = \sum_{i}^{} I( \pi_i : x \mid y, \pi_i) \\
+	I( \pi : y \mid x) & = \sum_{i}^{} I( \pi_i : y \mid x, \pi_i) 
+\end{align*}
+
+В ход Боба первое слагаемое <<равно нулю>>\footnote{Это и есть баг, на самом деле это случная величина}, так как $  \pi_i$ определяется $ y $-ом. Аналогично <<второе равно>> нулю, когда ходит Алиса. Поэтому каждый раз неравенство сохраняется. 
+
+Чтобы исправить скрытую фундаментальную ошибку распишем через матожидания
+\begin{align*}
+	I( \pi : x, y) &= \sum_{i}^{} \E_{m}I( \pi_i : x, y \mid \pi_{< i} = m) \\
+	\E I( \pi : x \mid y) & = \sum_{i}^{} \E_m I( \pi_i : x \mid y, \pi_i = m) \\
+	\E I( \pi : y \mid x) & = \sum_{i}^{} \E_mI( \pi_i : y \mid x, \pi_i = m) 
+\end{align*}
+Это уже корректное утверждение.
+
+
+\chapter{Колмогоровская сложность}
+\section{Определения}
+
+Пусть $ F$ --- вычислимая декодирующая функция.
+Определим $ K_F(x) \coloneqq \min \{\lvert p \rvert \mid F(p) = x\}$. Это <<критерий сжимаемости>> функции $ F$.
+
+Будем считать, что $ F \prec G$ ($ F$ не хуже  $ G$ ), если $ \forall x ~ K_F(x) \le K_G(x) + c_{FG}$.
+
+Назовем способ описания (функцию) оптимальным, если она не хуже всех остальных.
+
+\begin{thm}
+    Существует оптимальный способ описания.
+\end{thm}
+
+\begin{defn}[]
+	Колмогоровская сложность для $ x$ --- $ K(x) \coloneqq K_U(x)$, где $ U$ --- оптимальный способ описания.
+\end{defn}
+\begin{prop}
+	\begin{enumerate}
+		\item
+	$ K(x) \le \lvert x \rvert +c$, так как можно взять $ K_{id}(x) = \lvert x \rvert $
+	I
+\item $ K(XX) \le \lvert x \rvert +c$, можно взять описание $ F(p) = pp$ 
+\item Пусть $G x$ не более $ p$ единиц, тогда $ K(x) \le H(p) \cdot \lvert x \rvert + c$.
+
+	Можем взять $ F(p) = p\text{-ое слово с не более } p \text{единицами}$.
+	\[
+		\sum_{i=0}^{n} {i \choose n} \le 2 ^{H(p) n}
+	.\] 
+	\end{enumerate}
+\end{prop}
+
+\begin{thm}
+	Пусть $ M$ --- всюду вычислимая функция. Если $ M(x) \le K(x)$ и $ \forall c ~ \exists x \colon M(x) \ge c$, то $ M$ не вычислима.
+\end{thm}
+\begin{proof}
+	Зафиксируем $ c$. Найдем  $ x_c$ --- первое слово, где  $ M(x_c) \ge c$. Так как $ M$ вычислима всюду, определено $ F(c)$. 
+	Тогда из $ F(c) = x_c$ следует, что  $ K(x) \le  \log c + c_0$ по определению.
+\end{proof}
+
+\begin{cor}
+    У почти всех слов колмогоровская сложность равна $ n- const$.
+\end{cor}
+
+\section{Применение}
+Мы лишаемся вычислимости, поэтому мы лишаемся практических применений, как с энтропией. Но есть математическое применение, так как это оптимальный алгоритм.
+
+Можно доказать, что одноленточная машина Тьюринга, копирующая вход будет работать $ \Omega( \lvert x \rvert ^2)$.
+
+\section{Условная сложность}
+\[
+	K(x \mid y) = K_{U}\left( x \mid y \right) 
+.\] 
+Это способ описания, который может еще использовать $ y$ : 
+$ K_{F}(x \mid y) \coloneqq \min \{\lvert p \rvert \mid F(p, y) = x\}$. Аналогично $ U$ --- оптимальный способ описания\footnote{Упражнении --- аналогично доказать существования}.
+
+\begin{note}
+	$ K(x) - K(x \mid \varnothing) + const$
+\end{note}
+\[
+	K(x, y) \coloneqq K(\langle x, y \rangle) \qquad \langle\cdot  , \cdot \rangle\text{ --- какая-то кодировка пары}
+.\] 
+\begin{prop}
+    \begin{enumerate}
+		\item $ K(x \mid y) \le  K(x) + \O(1)$
+		\item $ K(x, y) \le  K(x) + K(y \mid x)$
+    \end{enumerate}
+\end{prop}
+
+\begin{thm}[Колмогоров, Левин]
+	$ K(x, y) =  K(x) + K(y \mid x)$
+\end{thm}
+\begin{proof}
+	В одну сторону по свойству. Пусть  $ n = K(x, y) $ 
+\begin{figure}[ht]
+    \centering
+    \incfig{kolmo-thm}
+    \caption{kolmo thm}
+    \label{fig:kolmo-thm}
+\end{figure}
+Пусть $ S \coloneqq \{(a, b) \mid K(a, b) \le n\}$,
+\[
+	K(y \mid x) \le  \underbrace{\log \lvert   S_x\rvert}_{m} + \O(\log n)
+.\] 
+Рассмотрим все $ x$, для которых $ \log \lvert S_x \rvert  \ge  m$. Таких не более $ 2^{n-m + с}$, так как мы знаем, что $ K(x, y) = n$, то внутри множества размером  $ 2^{n}$, есть элемент с большой сложностью, теперь множество $ S$ по размеру не более  $ 2^{n+c}$, но так как в одном сечении не более $ 2^{m}$, получаем  $ 2^{n-m+c}$.
+
+Тогда $ K(x) \le n -m $. Если мы подставим в неравенство выше, то получим то, что хотели.
+\end{proof}
+Конец.
