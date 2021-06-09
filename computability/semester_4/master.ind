@@ -9,14 +9,14 @@
 
   \item Свойство функций, \hyperpage{23}
   \item кусочное задание функции, \hyperpage{10}
-  \item общерекурсивная функция, \hyperpage{4}
+  \item общерекурсивная функция, \hyperpage{5}
   \item оператор минимизации, \hyperpage{4}
   \item оператор ограниченной минимизации, 
 		\hyperpage{6}
   \item оператор примитивной рекурсии, 
 		\hyperpage{3}
   \item оператор суперпозиции, \hyperpage{3}
-  \item перечислимое множество, \hyperpage{16}
+  \item перечислимое множество, \hyperpage{15}
   \item предикаты, \hyperpage{7}
   \item примитивно рекурсивная функция, 
 		\hyperpage{4}
@@ -25,13 +25,13 @@
 
   \indexspace
 
-  \item равносильность МТ и \crf, \hyperpage{11}
+  \item равносильность МТ и \crf, \hyperpage{10}
   \item разрешимое множество, \hyperpage{15}
   \item рекурсия возвратная, \hyperpage{9}
   \item рекурсия совместная, \hyperpage{10}
   \item сводимость по Тьюрингу, \hyperpage{28}
   \item теорема об арифметической иерархии, 
-		\hyperpage{33}
+		\hyperpage{32}
   \item универсальная функция, \hyperpage{19}
   \item функция Аккермана, \hyperpage{14}
   \item частично рекурсивная функция, 

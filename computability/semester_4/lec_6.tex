@@ -78,7 +78,7 @@ $ A(x) \hookrightarrow x \in A  $.
 В итоге получается следующая картина
 \begin{align*}
 	& \Sigma_0 \subseteq \Sigma _1 \subseteq  \Sigma _2 \subseteq \Sigma _3 \subseteq \ldots \\
-	&\rotatebox[origin=c]{90}{=} \quad \rotatebox[origin=c]{135}{$\subseteq$} \quad~  \rotatebox[origin=c]{45}{$\subseteq$}\\
+	&\rotatebox[origin=c]{90}{=} \quad \rotatebox[origin=c]{-45}{$\subseteq$} \quad~  \rotatebox[origin=c]{45}{$\subseteq$}\\
 	& \Pi_0 \subseteq \Pi _1 \subseteq  \Pi _2 \subseteq \Pi _3 \subseteq \ldots
 \end{align*}
 
@@ -171,7 +171,7 @@ $ A(x) \hookrightarrow x \in A  $.
 
 
 
-\textbf{Цель:} доказать, что $ \forall \exists A \subset \N$, такое что $ \Sigma_n = \{X \mid X~ A\text{-перечислимо\footnote{то есть перечислимо с оракулом $ A$}}\}$
+\textbf{Цель:} доказать, что $ \forall n ~ \exists A \subset \N$, такое что $ \Sigma_n = \{X \mid X~ A\text{-перечислимо\footnote{то есть перечислимо с оракулом $ A$}}\}$
 
 \section{Еще про $ T$-сводимость}
 Зафиксируем некоторую функцию-оракула $  \alpha $. Вся теория вычислимости может быть <<релятивизована>> относительно вычислений с оракулом $  \alpha $.
@@ -253,7 +253,7 @@ $ A(x) \hookrightarrow x \in A  $.
 
 \section{Теорема об арифметической иерархии}
 
-\begin{thm}[Об арифметической иерархии]\index{теорема об арифметической иерархии}
+\begin{thm}[Об арифметической иерархии]\index{теорема об арифметической иерархии}\label{thm:main_thm}
 	$  \forall n \ge 1 \colon \Sigma _n = \{\mathbb{O}^{(n-1)} \text{ --- перечислимые множества}\}$
 \end{thm}
 \begin{proof}

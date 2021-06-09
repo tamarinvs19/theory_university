@@ -88,30 +88,42 @@ ExternalLocation={stix2font/}
 \definecolor{linkcolor}{HTML}{3f888f} % цвет ссылок
 \definecolor{urlcolor}{HTML}{af0000} % цвет гиперссылок
  
-\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+\hypersetup{pdfstartview=FitH,
+	linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
 
 
 \usepackage{mdframed}
 \mdfsetup{skipabove=3pt,skipbelow=3pt}
 \mdfdefinestyle{defstyle}{%
     linecolor=red,
-	linewidth=4pt,leftline=true,topline=false,bottomline=false, rightline=false,%
+	linewidth=4pt,leftline=true,topline=false,bottomline=false,rightline=false,%
     frametitlerule=false,%
     % frametitlebackgroundcolor=red!5,%
-    backgroundcolor=red!5,%
+    backgroundcolor=red!3,%
     innertopmargin=0pt,innerbottommargin=4pt,innerleftmargin=7pt
     frametitlebelowskip=10pt,
     frametitleaboveskip=7pt,
 }
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{exstyle}{%
+    linecolor=gray,
+	linewidth=4pt,leftline=false,topline=false,bottomline=false,rightline=true,%
+    frametitlerule=false,%
+    backgroundcolor=gray!0,%
+    innertopmargin=0pt,innerbottommargin=4pt,innerleftmargin=0pt,innerrightmargin=7pt
+    frametitlebelowskip=10pt,
+    frametitleaboveskip=7pt,
+	font=\small,
+}
 \theoremstyle{definition}
 \mdtheorem[style=defstyle]{defn}{Определение}
+\mdtheorem[style=exstyle]{ex}{Пример}
 
-
-\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!3,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{cor}{Следствие}
 \newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Gray!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
-\newmdtheoremenv[nobreak=false,backgroundcolor=cyan!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{thm}{Теорема}
-\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!10,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{lm}{Лемма}
+% \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!0,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
+\newmdtheoremenv[nobreak=false,backgroundcolor=cyan!7,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!5,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{lm}{Лемма}
 
 \newtheorem*{st}{Утверждение}
 \newtheorem*{prop}{Свойства}
@@ -175,7 +187,7 @@ ExternalLocation={stix2font/}
 
 
 \def\mybf#1{\textbf{#1}}
-\def\selectedFont#1{\textbf{#1}}
+\def\selectedFont#1{\textit{\textbf{#1}}}
 \def\prf{\textbf{ПРФ}}
 \def\crf{\textbf{ЧРФ}}
 \def\orf{\textbf{ОРФ}}
