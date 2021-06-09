@@ -381,7 +381,7 @@
 	Аналогично выразим $ w+1$ через $ z$: имеем $ z < \frac{(w+1)^2+(w+1)}{2}$, решаем неравенство, а далее вспоминаем, что все числа положительные и можно забыть про отрицательные корни.
 	Отсюда
 	\[
-		w \le \frac{-1  + \sqrt{ 8z +1} }{2} < w+1
+		w = \frac{-1 + \sqrt{ 8t + 1}}{2} \le \frac{-1  + \sqrt{ 8z +1} }{2} < w+1
 	.\] 
 	Тогда 
 	\[
@@ -423,8 +423,9 @@
 	\[
 	\begin{cases}
 		m(\overline{x}, 0) &= 2^{1+g(\overline{x})} \\
-		m(\overline{x}, y+1) &= m(\overline{x}, y) \cdot p_{y+1}^{1+h\left( 
-			\overline{x}, y, \ith(t_1(y), m(\overline{x}, y)), \ldots \ith(t_{k}(y), m(\overline{x}, y))
+		m(\overline{x}, y+1) &= m(\overline{x}, y) \cdot p_{y+1}^{1 + h\left(\overline{x}, ~y, ~f(\overline{x}, t_1(y)), ~\ldots, ~f(\overline{x}, t_s(y))\right)} \\
+		&= m(\overline{x}, y) \cdot p_{y+1}^{1+h\left( 
+			\overline{x}, ~y, ~\ith(t_1(y), m(\overline{x}, t_1(y))), ~\ldots, ~ \ith(t_{s}(y), m(\overline{x}, t_{s}(y)))
 	\right)
 }
 	\end{cases}
@@ -514,7 +515,7 @@
 						\item[$ \S$:]
 							Пусть есть набор функций $ h^{(n)}, ~ g_1^{(m)}, \ldots , ~ g_n^{(m)} \longrightarrow f^{(m)}$, для каждой из которых есть машина Тьюринга $ M_{h}$ и $ M_{g_{i}}$. 
 
-							Хотим построить МТ $ M_{S}$ для $ S$.
+							Хотим построить МТ $ M_{f}$ для вычисления $ f$.
 
 							Сделаем это так:
 							\begin{itemize}
@@ -524,11 +525,11 @@
 									.\] 
 								\item Запускаем $ M_{g_i}$ на соответствующей части полученного входа. 
 
-							Если нужно что-то записать, то будем сдвигать всю правую часть на нужное число клеток, чтобы освободить для место.
+							Если нужно что-то записать, то будем сдвигать всю правую часть на нужное число клеток, чтобы освободить место.
 
 							МТ запускаем  псведопараллельно (по очереди даем поработать).
 
-							В каждой часть после окончания работы оставляем только ответ:
+							В каждой части после окончания работы оставляем только ответ:
 							\[
 								1^{y_1}\ast 1^{y_2}\ldots \ast1^{y_n}
 							,\] 
@@ -549,18 +550,19 @@
 
 							Построим вспомогательные МТ:
 							\begin{itemize}
-								\item $ M_1$:  для входа $ 1^{x_1}0\ldots 01^{x_m}01^{y}$ построим $ 1^{y}01^{x_1}0\ldots 01^{x_m}001^{g(x_1, \ldots x_m)}$. Для этого просто запустим $ M_ g$ на входе, но не будем стирать его, а результат просто припишем после двух нулей справа.
+								\item $ M_1$:  для входа $ 1^{x_1}0\ldots 01^{x_m}01^{y}$ построим $ 1^{y}01^{x_1}0\ldots 01^{x_m}0(1^0)01^{g(x_1, \ldots x_m)}$.
+									Для этого просто запустим $ M_ g$ на входе, но не будем стирать его, а результат просто припишем после двух нулей справа. Далее мы будем накапливать значение $ u$ между этими нулями, а сейчас там ничего нет, то есть  $ u = 0$.
 								\item $ M_2$:  для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}01^{z}$ построим $ 1^{y}01^{x_1}0\ldots 01^{x_m}01^{u+1}01^{h(x_1, \ldots x_{m}, u, z)}$. 
 									Для этого, используя $ M_{h}$, допишем в конец вместо $ z$ результат $ h$ и допишем единицу к $ 1^{u}$.
 
 									Здесь  $ u+1$ обозначает текущее значение $ y'$, а значение $ h$ --- значение $ f(y')$. 
-								\item $ M_3$:  для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}0^{z}$ оставим только $ 1^{z}$.
+								\item $ M_3$:  для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}01^{z}$ оставим только $ 1^{z}$.
 								\item $ \Phi $: для входа $ 1^{y}01^{x_1}0\ldots 01^{x_{m}}01^{u}01^{z}$ проверим, что $ u \ne y$. 
 							\end{itemize}
 							Теперь соберем все вместе: сначала запустим $ M_1$, далее пока $ \Phi $ возвращает неравенство, запускаем $ M_2$ (увеличиваем $ u$ на один, вычисляем следующее значение функции), и в конце стираем лишнее, запустив $ M_3$.
 						\item[$ \M$:] Хотим по МТ $ M_{g}$ построить $ M_{f}$, вычисляющую 
 							\[
-								f(\overline{x}, y) = \begin{cases}
+								f(\overline{x}) = \begin{cases}
 									y & g(\overline{x}, y) = 0 \wedge g(\overline{x}, z) \ne  0 \quad \forall z < y \\
 									\uparrow & else
 								\end{cases}
@@ -574,7 +576,7 @@
 								\item $ N_2$ :  дублирует вход, разделяя решеткой: $ w \longrightarrow w\#w$ 
 								\item $ N_3$ :  в продублированному входе меняет вторую половину на результат $ M_{g}$ 
 									\[
-										1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{x_1}0\ldots 01^{x_{m}}01^{y} \stackrel{M_{g}}{\longrightarrow} 	1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{g(x_1, \ldots x_{m}, y}
+										1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{x_1}0\ldots 01^{x_{m}}01^{y} \stackrel{M_{g}}{\longrightarrow} 	1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{g(x_1, \ldots x_{m}, y)}
 									.\] 
 								\item $ N_4$ :  очищает все после решетки и дописывает единицу в конец
 									\[
@@ -588,7 +590,7 @@
 								\item $ \Phi $ : проверяет, что после решетки что-то еще есть
 									$ w\# v \longrightarrow v \ne \varepsilon $.
 							\end{itemize}
-							Теперь можем построить $ M_{\mu}$ так: 
+							Теперь можем построить $ M_{f}$ так: 
 							\[
 								N_1; ~ N_2; ~ N_3; \operatorname{while} \Phi \operatorname{do} N_4, ~ N_2, ~ N_3; ~ N_5
 							.\] 
@@ -599,7 +601,7 @@
 			Так как машины Тьюринга работают со строками, а функции с натуральными числами, нужно придумать правила кодирования.
 
 			Пусть есть конфигурация МТ 
-			$$ \alpha q_i a_j \beta ,$$ где $ \alpha $ --- строка слева от головки, $ q_i$ --- состояние, $ a_j$ --- текущий символ, $ \beta $ --- справа от головки.
+			$$ \alpha q_i a_j \beta ,$$ где $ \alpha $ --- строка слева от головки, $ q_i$ --- состояние, $ a_j$ --- текущий символ, $ \beta $ --- строка справа от головки.
 
 			Пронумеруем рабочий алфавит $ \Gamma = \{a_0, \ldots a_{m-1}\}$, где $ a_0$ --- пустой символ (\textvisiblespace).
 
@@ -621,16 +623,17 @@
 				$ \Gamma = \{a_0, a_1\}$, тогда следующее состояние 
 				будет записано как $ (22, 3, 1, 13) $:
 				\[
-					\underbrace{a_1a_0a_1a_1a_0}_{ \alpha } q_3 \underbrace{a_1 a_1 a_0 a_1a_1}_{ \beta }
+					\underbrace{a_1a_0a_1a_1a_0}_{ \alpha } q_3 a_1 \underbrace{a_1 a_0 a_1a_1}_{ \beta }
 				\]
 			\end{ex}
 
 		\item [Кодирование команд]
-			Пусть есть переход $ (q, a) \to (p, b, d)$. Сопоставим $ p, b, d$ тройку функций $ \varphi _{q}, \varphi _{a}, \varphi _{d}$:
+			Пусть есть переход $ (q, a) \to (p, b, d) = $ ($ p$ -- новое состояние, $ b$ -- новый символ, $ d$ -- направление движения головки).
+			Сопоставим $ p, b, d$ тройку функций $ \varphi _{q}, \varphi _{a}, \varphi _{d}$:
 			\[
 			\begin{aligned}
-				&\varphi _a \colon \widetilde{ Q} \times \widetilde{ \Gamma  }  \to \widetilde{ \Gamma } \\
 				& \varphi _{q} \colon \widetilde{ Q} \times \widetilde{ \Gamma }  \to  \widetilde{ Q} \\
+				&\varphi _a \colon \widetilde{ Q} \times \widetilde{ \Gamma  }  \to \widetilde{ \Gamma } \\
 				& \varphi _{d} \colon \widetilde{ Q} \times \widetilde{ \Gamma } \to \{1, 2\}
 			\end{aligned}
 			\]
@@ -643,23 +646,23 @@
 			Пусть 
 			\[
 			\begin{aligned}
-				&\widetilde{ q_i}'  (\widetilde{ \alpha } , \widetilde{ q_i}, \widetilde{ a_j} , \widetilde{ \beta } ) &&= \varphi_{q}(\widetilde{ q_i} , \widetilde{ a_i} ) \\
+				&\widetilde{ q_i}'  (\widetilde{ \alpha } , \widetilde{ q_i}, \widetilde{ a_j} , \widetilde{ \beta } ) &&= \varphi_{q}(\widetilde{ q_i} , \widetilde{ a_j} ) \\
 				&\widetilde{ \alpha } ' (\widetilde{ \alpha } , \widetilde{ q_i} , \widetilde{ a_j} , \widetilde{ \beta } ) &&= 
 				\begin{cases}
-					\widetilde{ \alpha } \cdot m + \varphi_{a}(\widetilde{ q_i} , a_j), & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
-					\left\lfloor \frac{\widetilde{ \alpha } }{m} \right\rfloor, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2
+					\widetilde{ \alpha } \cdot m + \varphi_{a}(\widetilde{ q_i} , \widetilde {a_j}), & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
+					\left\lfloor \frac{\widetilde{ \alpha } }{m} \right\rfloor, & \varphi _{d}(\widetilde {q_i},\widetilde {a_j}) = 2
 				\end{cases}
 					\\
-				&\widetilde{ \beta } ' (\widetilde{ \alpha } , \widetilde{ q_i} , \widetilde{ a_j} , \widetilde{ \beta } ) &&= 
+				&\widetilde{ \beta } ' (\widetilde{ \alpha } , \widetilde {q_i}, \widetilde {a_j}, \widetilde{ \beta } ) &&= 
 				\begin{cases}
-					\widetilde{ \beta } \cdot m + \varphi_{a}(\widetilde{ q_i} , a_j), & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
-					\left\lfloor \frac{\widetilde{ \beta } }{m} \right\rfloor, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2
+					\widetilde{ \beta } \cdot m + \varphi_{a}(\widetilde {q_i}, \widetilde {a_j}), & \varphi _{d}(\widetilde {q_i} ,\widetilde {a_j} ) = 1 \\
+					\left\lfloor \frac{\widetilde{ \beta } }{m} \right\rfloor, & \varphi _{d}(\widetilde {q_i},\widetilde {a_j} ) = 2
 				\end{cases}
 		\\
-				& \widetilde{ a_j} ' &&= 
+				& \widetilde {a_j} ' &&= 
 		\begin{cases}
-			\widetilde{ \beta }  \mod m, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 1 \\
-			\widetilde{ \alpha  }  \mod m, & \varphi _{d}(\widetilde{ q_i} ,\widetilde{ a_j} ) = 2 
+			\widetilde{ \beta }  \mod m, & \varphi _{d}(\widetilde {q_i} ,\widetilde {a_j} ) = 1 \\
+			\widetilde{ \alpha  }  \mod m, & \varphi _{d}(\widetilde{ q_i} ,\widetilde {a_j} ) = 2 
 		\end{cases}
 			\end{aligned}
 	\]
@@ -691,19 +694,18 @@
 	Для остальных точно также.
 
 \item[Результат] 
-	Пусть начальное состояние $ q_0 a_0 \beta_0$ (стоим на самом левом символе), конечное  --- $ q_{z} a_{z} \beta _{z}$, причем $ z$ встречаем впервые. 
+	Пусть начальное состояние $ q_0 a_0 \beta_0$ (стоим на самом левом символе), конечное  --- $ q_{z} a_{z} \beta _{z}$, причем его встречаем впервые. 
 	То есть нам нужно вычислить функцию, которая переводит 
-	$$ \widetilde{ a_0} + \widetilde{ b_0} m \longrightarrow a_z + \beta _z m,$$
-	если машина Тьюринга пришла сюда и не определена, если МТ зацикливается:
+	$$ x = \widetilde{ a_0} + \widetilde{ b_0} m \longrightarrow a_z + \beta _z m,$$
+	если машина Тьюринга пришла сюда, и не определена, если МТ зацикливается:
 	\[
 		t_z = \mu t[K_{q}(t) = z]
 	.\] 
 	Тогда результатом работы МТ будет
 	\[
 	\begin{aligned}
-		\varphi (x) =& m \cdot  K _{\beta} \Bigl(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor , \\
-					 &\mu t[K_{q}(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor, t) = z]\Bigr) +\\ 
-				   &+ K_{a}(0, 0, x \mod m, \lfloor \tfrac{x}{m} \rfloor)
+		\varphi (x) = m \cdot  &K _{\beta} \Bigl(0, ~0, ~x \mod m, ~\lfloor \tfrac{x}{m} \rfloor, ~\mu t[K_{q}(0, ~0, ~x \mod m, ~\lfloor \tfrac{x}{m} \rfloor, t) = z]\Bigr)\\
+		+ &K_{a}\Bigl(0, ~0, ~x \mod m, ~\lfloor \tfrac{x}{m} \rfloor, ~\mu t[K_{q}(0, ~0, ~x \mod m, ~\lfloor \tfrac{x}{m} \rfloor, t) = z ]\Bigr)
 	\end{aligned}
 	\]
 			\end{description}
