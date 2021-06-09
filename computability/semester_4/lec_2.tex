@@ -1,11 +1,11 @@
 \begin{cor}
-    Любую частично рекурсивную функцию можно представить так, что минимизация использовалась только один раз.
+    Любую частично рекурсивную функцию можно представить так, чтобы минимизация использовалась только один раз.
 \end{cor}
 \begin{proof}
     Сначала запишем для нее МТ, а потом постоим обратно функцию. В итоге получим эквивалентную функцию, причем по построению оператор минимизации использовался лишь один раз.
 \end{proof}
 \begin{cor}
-	Функция, вычислимая за примитивно рекурсивное время \footnote{время, ограниченное примитивно рекурсивной функцией}, является примитивно рекурсивной.
+	Функция, вычислимая за примитивно рекурсивное время \footnote{время, ограниченное примитивно рекурсивной функцией}, тоже является примитивно рекурсивной.
 \end{cor}
 \begin{proof}
     В построении функции использовали минимизацию по числу шагов МТ,  поэтому, если работаем примитивно рекурсивное время, можем применить ограниченную минимизацию. 
@@ -17,17 +17,124 @@
 	\selectedFont{Функция Аккермана}  --- функция от двух аргументов $ \alpha _n(x)$, определенная следующим образом:
 	\[
 		\begin{cases}
-			a_0(x) &= x+1 \\ 
-			a_{n+1}(x) &= a_{n}^{[x+2]}(x) = \underbrace{a_{n} (a_n( \ldots (x)))}_{x+2 \text{ раза}}  
+			\alpha_0(x) &= x+1 \\ 
+			\alpha_{n+1}(x) &= \alpha _{n}^{[x+2]}(x) = \underbrace{\alpha_{n} ( \alpha _n( \ldots (x)))}_{x+2 \text{ раза}}  
 		\end{cases}
 	\] 
 \end{defn}
+\begin{lm}\label{lm:akk_1}
+	$ \alpha _n(x) \ge x + n+1$. В частности, $ \alpha _n(x) > x$.
+\end{lm}
+\begin{proof}
+    Докажем по индукции по $ n$.
+	\begin{itemize}
+		\item База: $ n = 0$. $  \alpha _0(x) = x+1 = x + 0 + 1$.
+		\item Переход: $ n -1\to n $. 
+			\begin{align*}
+				\alpha _n(x) &= \alpha _{n-1} ^{[x+2]}(x) \ge  a_{n-1}^{[x+1]}(x) + 1 > \tag{т.к. $ \alpha _{n-1}(t) > t$ по предположению индукции} \\
+							 & > \alpha _{n-1}^{[x]}(x) + 1 > \alpha _{n-1}^{[x-1]} > \ldots >\tag{продолжаем до кратности 1} \\
+							 &> \alpha _{n-1} (x) + 1 \ge x + (n - 1) + 1 + 1 = x + n + 1
+			\end{align*}
+	\end{itemize}
+\end{proof}
+\begin{lm}\label{lm:akk_2}
+	Если $ x > y$, то $ \alpha _n (x) > \alpha _n(y)$.
+\end{lm}
+\begin{proof}
+    Индукция по $ n$.
+	\begin{itemize}
+		\item База: $ n = 0$. $  \alpha _0 (x) = x + 1 > y + 1 = \alpha _0(y)$.
+		\item Переход: $ n-1 \to  n$. 
+			\begin{align*}
+				\alpha_n(x) &= \alpha _{n-1}^{[x+2]}(x) > \alpha _{n-1}^{[x+2]}(y) \tag{по предположению для $  n-1$} \\
+							&> \alpha _{n_1}^{[x+1]}(y) > \ldots > \alpha _{n-1}^{[y+2]}(y) \tag{по \hyperref[lm:akk_1]{прошлой лемме \ref{lm:akk_1}}} \\
+							&= \alpha _n(y)
+			\end{align*}
+	\end{itemize}
+\end{proof}
+\begin{lm}\label{lm:akk_3}
+	Если $ n > m$, то $  \alpha _n(x) > \alpha _m(x)$.
+\end{lm}
+\begin{proof}
+    Индукция по $ m$.
+	\begin{itemize}
+		\item База: $ m=0$. По \hyperref[lm:akk_1]{лемме \ref{lm:akk_1}} $ \alpha _{n}(x) \ge x + n + 1 \ge  x + 1 = \alpha _0(x)$. 
+		\item Переход: $ m -1 \to  m$. По определению $  \alpha _n(x) = \alpha _{n-1}^{[x+1]}(x)$. Применим индукционное предположение ко всем $ \alpha _{n-1}$  и  заменим на $ \alpha _{m-1}$, после каждой замены значения будут уменьшаться:
+			\[
+				\alpha _{n-1}^{[x+2]}(x) > \alpha _{n-1}^{[x+1]}( \alpha _{m-1}(x)) > \ldots > \alpha _{n-1}\bigl( \alpha _{m-1}^{[x+1]}(x) \bigr) > \alpha _{m-1}^{[x+2]}(x)
+			.\] 
+	\end{itemize}
+\end{proof}
+\begin{lm}\label{lm:akk_4}
+	Если $ n > 1$, то $  \alpha _{n}(x) > \alpha _{n-1}^{[2]}(x)$.
+\end{lm}
+\begin{proof}
+    Очевидно по \hyperref[lm:akk_1]{лемме \ref{lm:akk_1}}. 
+\end{proof}
+\begin{lm}\label{lm:akk_5}
+	Для любой \prf $ f(x_1, \ldots x_n)$ существует константа $ k$, что $ f(x_1, \ldots x_{n}) \le \alpha _k( \max \{x_1, \ldots, x_{n}\})$. Если $ f$ имеет 0 аргументов, подставим  $ 0$.
+\end{lm}
+\begin{proof}
+	\begin{itemize}
+		\item Для примитивных функций подойдет $ k = 0$: для нульместного и одноместного нулей,  $ s(x)$ и проекции $ I_{a}^{b}(x_1, \ldots , x_a)$ неравенство верно, так как $  \alpha _0(x) = x + 1$. 
+		\item Если применяется оператор суперпозиции для других функций с найденными $ k_{i}$, можно взять наибольшее из них (пусть $ k$). Докажем, что подойдет $ \alpha _{k+1}(x)$. 
+
+			Пусть суперпозиция применяется к $ h(x_1, \ldots x_m)$ и $ g_{i}(x_1, \ldots x_{n})$.
+			\begin{align*}
+				\alpha _{k+1}(\overline{x}) &\ge \alpha _{k}^{[2]} \tag{\hyperref[lm:akk_5]{лемма \ref{lm:akk_5}}} \\
+				& \ge \alpha _{k} \bigl( \max_{i \in [1, m]} g_i(\overline{x}) \bigr)\tag{\hyperref[lm:akk_5]{лемма \ref{lm:akk_4}}} \\
+				& \ge h(g_1(\overline{x}), g_2(\overline{x}), \ldots g_m(\overline{x}))
+			\end{align*}
+		\item Если функция $ f(\overline{x}, n)$ получена из $ g(\overline{x}) $ и $ h(\overline{x}, n, t)$ с помощью примитивной рекурсии, сначала найдем $k$, чтобы $g(\overline{x}) \le \alpha _k( \max \overline{x})$ и $ h(\overline{x}, n, t) \le \alpha _k(\max(\overline{x}, n, t))$. 
+
+			Оценим функцию $ f$.
+			\[
+			\begin{cases}
+				f(\overline{x}, 0) = g(\overline{x})\\
+				f(\overline{x}, n+1) = h(\overline{x}, n, f(\overline{x} , n))
+			\end{cases}
+			\] 
+			Докажем, что $ f(\overline{x}, n) \le \alpha _k ^{[n+1]}( \max (\overline{x}, n))$.\footnote{Здесь под $ \max(\overline{x}, \text{что-то еще})$ подразумевается максимум по всем координатам и $ n$:  $ \max(x_1, \ldots , x_m, \text{что-то еще})$.}
+			\begin{itemize}
+				\item База: $ n= 0$. Верно, по определению  $ f$.
+				\item Переход:  $ n-1 \to  n$. 
+					\begin{align*}
+						f(\overline{x}, n+1)& 
+											 \le \alpha _k\bigl( \max (\overline{x}, n, f(\overline{x}, n))\bigr) \le 
+											 \alpha _k\Bigl( \max\bigl(\overline{x}, n, \alpha _k ^{[n+1]} (\max (\overline{x}, n))\bigr)\Bigr) 
+											 \tag{индукционное предположение} \\
+											& = \alpha _k\bigl( \alpha _k (\max (\overline{x}, n)) \bigr) = \alpha _{k}^{[n+2]} (\max (\overline{x}, n)) 
+					\end{align*}
+					То есть 
+					 \[
+						 f(\overline{x}, n) \le \alpha _k^{[n+1]}(\max (\overline{x}, n)) < \alpha _k ^{[\max (\overline{x}, n) + 2]}(\max( \overline{x}, n) = \alpha _{k+1}(\max (\overline{x}, n))
+					 .\] 
+			\end{itemize}
+    \end{itemize}
+\end{proof}
+
+\begin{lm}\label{lm:akk_6}
+	Для любой \prf $ f(n)$ найдется такое  $ N \in \N$, что при $ n > \N$ выполнено  $  \alpha _n(n) > f(n)$.
+\end{lm}
+\begin{proof}
+	По \hyperref[lm:akk_5]{лемме \ref{lm:akk_5}} для $ f(n) + 1$ найдется такое $ N$, что $  \alpha _N(n) \ge  f(n) + 1 > f(n)$. А тогда и для всех больших $ m \ge N$ верно неравенство $  \alpha _m(n) > f(n)$.
+\end{proof}
 \begin{thm}
 	$ \alpha _{n}(n) \colon \N \to \N$  растет быстрее любой примитивно рекурсивной.
 \end{thm}
 \begin{proof*}
-    <<Доказательство -- упражнение>>, занимает пару страниц, в ближайшее время появится здесь.
+	По \hyperref[lm:akk_5]{лемме \ref{lm:akk_6}} для любой примитивно рекурсивной функции есть константа $ N$, начиная с которой  $  \alpha _n(n) > f(n)$, то есть она будет расти быстрее.
+
+	Из этого также следует, что $  \alpha _n(n)$ не \prf.
 \end{proof*}
+\begin{lm}\label{lm:akk_7}
+	$ \alpha _n(x)$ является общерекурсивной функцией двух аргументов. В частности, $  \alpha _n(n)$ --- одного аргумента.
+\end{lm}
+\begin{proof}
+	Построим машину Тьюринга $ A$, вычисляющую $ \alpha _n(x)$ по $ n$ и  $ x$: $ x+2$ раза повторяем рекурсивно вызывать себя для $ n-1$ и результата рекурсивных вызовов. Когда доходим до $ n  = 0$, возвращаем число, увеличенное на один. 
+
+	В итоге мы построили МТ строго по определению.
+\end{proof}
 
 \chapter{Разрешимые и перечислимые множества}
 \section{Определения}
