@@ -54,7 +54,7 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{golub-img.pdf}}%
-    \put(0.41184584,0.23200258){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n+1$\end{tabular}}}}%
+    \put(0.40630248,0.2336656){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n+1$\end{tabular}}}}%
     \put(0.58017546,0.23033956){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$n$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

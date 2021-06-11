@@ -28,6 +28,7 @@ ExternalLocation={stix2font/}
 
 % разметка страницы и колонтитул
 \usepackage[left=1.5cm,right=2cm,top=1.5cm,bottom=1.1cm,bindingoffset=0cm]{geometry}
+
 \usepackage{fancybox,fancyhdr}
 \fancyhf{}
 \fancyhead[R]{\thepage}
@@ -56,6 +57,7 @@ ExternalLocation={stix2font/}
 }
 
 
+\let\lectionnumber=1
 \usepackage{xifthen}
 \makeatother
 \def\@lecture{}%
@@ -163,6 +165,7 @@ ExternalLocation={stix2font/}
 \newcommand{\Cm}{\mathbb{C}}
 \newcommand{\Pm}{\mathbb{P}}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\D}{\mathbb{D}}
 
 \renewcommand{\o}{o}
 \renewcommand{\O}{\mathcal{O}}
@@ -191,7 +194,7 @@ ExternalLocation={stix2font/}
 
 
 \def\mybf#1{\textbf{#1}}
-\def\selectedFont#1{\textbf{#1}}
+\def\selectedFont#1{\textit{\textbf{#1}}}
 \def\prf{\textbf{ПРФ}}
 \def\crf{\textbf{ЧРФ}}
 \def\orf{\textbf{ОРФ}}

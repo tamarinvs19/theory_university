@@ -13,7 +13,7 @@
 \begin{proof}
 Будем называть код $ W$  $ \delta $-типичным, если 
 \[
-\forall i \left| n_\frac{i}{n} - p_i \right| \le \delta, \quad n_i = \# \text{входа буквы} 
+\forall i \left| \frac{n_i}{n} - p_i \right| \le \delta, \quad n_i = \#\text{входа буквы } i 
 .\] 
 Зафиксируем $  \delta   = n^{-0.02}$.
 
@@ -23,7 +23,7 @@
 
 Также рассмотрим $ X_i = \sum_{j}^{} X_{ij}$ и применим неравенство Чебышева:
  \[
-	 Pr [ \lvert X_i - \mu \rvert \ge \delta  n ] \le  \frac{\Var  [x_i]}{( \delta  n) ^2} =  \frac{np_i (1-p_i)}{( \delta  n)^2} =  \O\left(\tfrac{1}{ \delta^2  n}\right)
+	 Pr [ \lvert X_i - \mu \rvert \ge \delta  n ] \le  \frac{\Var  [X_i]}{( \delta  n) ^2} =  \frac{np_i (1-p_i)}{( \delta  n)^2} =  \O\left(\tfrac{1}{ \delta^2  n}\right)
 	 \text{\footnote{Здесь $ \Var[X_i]$ --- дисперсия,  $ \mu$ --- матожидание $ X_i$,  $ \mu = n p_i$.}}
  .\] 
 
@@ -34,22 +34,26 @@
 	N = \frac{n!}{n_1! \cdot \ldots \cdot n_k!}
 .\] 
 
+Обозначим $\delta_i = \frac{n_i}{n} - p_i$.
 \begin{align*}
 	\log N &= \tag{так как $n! = \poly(n) \left( \frac{n}{e} \right) ^{n }$}\\ 
 		   &= \log \left( \left( \frac{n}{n_1} \right)^{n_1} \cdot \left( \frac{n}{n_2} \right)^{n_2} \cdot \ldots \cdot \left( \frac{n}{n_k} \right)^{n_k} \right)  + \O( \log n)=  \\
-		   & =\sum_{}^{} n_i \log \frac{n}{n_i} + \O(\log n) = \tag{$n_i$ по определению}\\
-		   &= n \sum_{}^{} (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O(\log n) \tag{$ \lvert   \delta _i \rvert< \delta $, так как типичное, $  \delta _i$ --- отклонение $i $-ой буквы в языке}
+		   & =\sum_{i} n_i \log \frac{n}{n_i} + \O(\log n) = \tag{$n_i$ по определению}\\
+		   &= n \sum_{i} (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O(\log n) 
 \end{align*}
+В последнем переходе $ \lvert   \delta _i \rvert< \delta $, так как типичное, $  \delta _i$ --- отклонение $i $-ой буквы в языке
 
-Теперь оценим число типичных слов
+Теперь оценим число типичных слов. Для этого можно посчитать для каждого распределения букв, сколько слов с таким распределением будут типичными. Число разбиений грубо оценивается сверху как $n^k$. А число слов в соответствующем разбиении можно оценить максимумом по всем $\delta _i$,  таким что $|\delta _i| \le \delta$ (так как слово $\delta$-типичное).
 \begin{align*}
-	\log\Bigl(	\# (\text{$\delta$-типичных слов})\Bigr) \le \\
-	& \le \log \left( n^{k} \cdot \max_{ \delta _i} N \right) \le  \\
+	\log\Bigl(	\# (\text{$\delta$-типичных слов})\Bigr) 
+	& \le \log \left( n^{k} \cdot \max_{ \delta _i} N \right) \le \\
 	& \le \max_{ \delta _i} H(p_1 + \delta _1 , p_2+\delta_2 , \ldots ) \cdot n + \O( \log n) = \tag{Переход за кадром\footnote{Написать честную формулу энтропии как частную производную}} \\
-	= nH(p) + \O( \delta \cdot n)
+	& \le n \cdot \max \sum_i (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O( \log n) \le \\
+	& \le n \cdot \left(\max \sum_i p_i \log \frac{1}{p_i} + k\delta \max \log\frac{1}{p_i}\right) + \O(\log n) = \\
+	&= nH(p) + \O( \delta \cdot n)
 \end{align*}
 Если теперь кодер может отобразить инъективно все типичные слова в набор битовых слов длины $ h n$, при этом ошибаться он будет на нетипичных, количество которых стремиться к нулю.
- \item Во второй части докажем, что мы не сможем закодировать все типичные слова.
+ \item Во второй части докажем, что вероятность ошибки декодера на $\delta$-типичныx словаx равна 1. Понятно, что этого будет достаточно.
 
 	 Покажем, что вероятность того, что мы выкинем $ \delta$-типичное слово очень мала.
 \begin{figure}[ht]
@@ -63,10 +67,11 @@
 		  & = 2^{- \sum_{i=1}^{k} (p_i + \delta) \log \frac{1}{p_i} n}  \le \\
 		  & \le 2^{-H(p) n + \O( \delta n)}
 \end{align*}
-С какой вероятностью декодер декодер ответит правильно? % расписать подробнее 12:40
-\[
-	Pr[\text{правильного ответа}] \le 2^{L_n} \cdot \max_{w} Pr[w] \le 2^{((L_n - H(p)) \cdot n + \O( \delta n)} \to 2^{0}
-.\] 
+С какой вероятностью декодер декодер ответит правильно?
+\begin{align*}
+	Pr[\D(\E(w)) = w] &= \sum_{x}\Pr[\D(x) = \\
+					  &=w \mid \E(w) = x] \cdot \Pr[\E(w)=x] \le \sum_{x}\Pr[\E(w)=x] \le \\
+					  &\le 2^{L_n} \cdot \max_{w} \Pr[w] \le 2^{((L_n - H(p)) \cdot n + \O( \delta n)} \to 2^{0}
+\end{align*}
 \end{itemize}
-% формальнее про правильный ответ в самом конце и на скрине
 \end{proof}
