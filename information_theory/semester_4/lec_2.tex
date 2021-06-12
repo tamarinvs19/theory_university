@@ -143,6 +143,39 @@
     \end{enumerate} 
 \end{prop}
 
+\section{Взаимная информация}
+\begin{defn}
+	\selectedFont{Взаимная информация} между случайными величинами $  \alpha $ и $ \beta $:
+	\[
+		I( \alpha  \colon \beta ) \coloneqq H( \alpha ) - H( \alpha \mid \beta )
+	.\] 
+	\selectedFont{Взаимная информация в $  \alpha $ и $ \beta$ при условии $ \gamma $ }:
+		\[
+			I ( \alpha \colon \beta \mid \gamma ) \coloneqq H( \alpha  \mid \beta , \gamma )
+		.\] 
+\end{defn}
+\begin{prop}
+	~\begin{enumerate}
+		\item $ I( \alpha \colon \beta ) = I( \beta \colon \alpha )$.
+			\begin{proof*}
+				$ I( \alpha \colon \beta ) = H( \alpha ) - H( \alpha \mid \beta ) = H( \alpha ) - H( \alpha , \beta ) + H( \beta ) = H( \beta ) - H( \beta \mid \alpha ) = I( \beta \mid \alpha )$
+			\end{proof*}
+
+		\item $  \alpha $ и $  \beta $ независимы тогда и только тогда, когда $ I( \alpha \colon \beta ) = 0$.
+			\begin{proof*}
+				$ I( \alpha \colon \beta ) = 0 \Longleftrightarrow H( \alpha ) = H( \alpha \mid \beta ) \Longleftrightarrow $ независимы $  \alpha $ и $ \beta $.
+			\end{proof*}
+		\item $ I( f( \alpha ) \colon \beta ) \le I ( \alpha \colon \beta )$ для любой функции $ f$.
+		\item  Следующие формулы для взаимной информации эквивалентны
+			\begin{align*}
+				I( \alpha \colon \beta ) &= H( \alpha) - H( \alpha  \mid \beta  ) \\
+										 &= H( \beta ) - H( \beta \mid \alpha ) \\
+										 &= H\left( \alpha  \right) + H( \beta ) - H( \alpha , \beta ) \\
+										 &= H( \alpha , \beta ) - H( \alpha \mid \beta ) - H( \beta \mid \alpha )
+			\end{align*}
+	\end{enumerate}
+\end{prop}
+
 \section{Применение энтропии}
 \subsection{Взвешивания монеток}
 Попробуем решить задачу с монетками. Мы взвешиваем $ 14$ монеток и хотим найти фальшивую за три взвешивания, причем неизвестен относительный вес. В нашем графе есть только один исход со всеми равенствами. Докажем, что нет такой стратегии.
