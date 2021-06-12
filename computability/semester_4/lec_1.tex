@@ -132,7 +132,7 @@
 			0 & x\ne 0
 		\end{cases}$
 	\item $ x \dotminus 1 = \begin{cases}
-			u & x = 0 \\
+			0 & x = 0 \\
 			x - 1 & x > 0
 		\end{cases}$ 
 	\item $ x \dotminus y = \begin{cases}
@@ -158,7 +158,7 @@
 			\[
 			\begin{cases}
 				f(x, 0) &= 1 = s(0) \\
-				f(x, y+1) &= f(x, y) * y
+				f(x, y+1) &= f(x, y) \cdot  x
 			\end{cases}
 			\] 
 			Умножать тоже можно по третьему пункту.
@@ -258,7 +258,7 @@
 	Предикат --- условие задающее подмножество: $ R \subset \N^{k}$.
 	
 	\noindent
-	Предикат называется \selectedFont{примитивно рекурсивным (общерекурсивным)}, его характеристическая функция примитивно рекурсивная (общерекурсивная).
+	Предикат называется \selectedFont{примитивно рекурсивным (общерекурсивным)}, если его характеристическая функция примитивно рекурсивная (общерекурсивная).
 \[
 	\chi_{R}(\overline{x})= 
 	\begin{cases}
@@ -282,18 +282,18 @@
 			\begin{aligned}
 				\chi_{P \wedge  Q}(\overline{x}) & = \chi_{P}(\overline{x}) \cdot \chi_{Q}(\overline{x}) \\
 				\chi_{P \vee Q}(\overline{x}) & = \sg(\chi_{P}(\overline{x}) + \chi_{Q}(\overline{x})) \\
-				\chi_{P \to Q}(\overline{x}) &= \bsg(\chi_{P}(\overline{x}) + \bsg(\chi_{Q}(\overline{x}))) \\
+				\chi_{P \to Q}(\overline{x}) &= \sg(\bsg(\chi_{P}(\overline{x})) + \sg(\chi_{Q}(\overline{x}))) \\
 				\chi_{\neg P} (\overline{x}) & = \bsg(\chi_{P}(\overline{x}))
 			\end{aligned}
 			\]
 		\item Аналогично выразим, через простейшие:  
 			\[
 			\begin{aligned}
-				\chi_{x=y} (x) &= \bsg(\lvert x - y \rvert ) = \begin{cases}
+				\chi_{=} (x, y) &= \bsg(\lvert x - y \rvert ) = \begin{cases}
 					1, &x=y \\
 					0, &x\ne y
 				\end{cases} \\
-					\chi_{x< y}(x) &= \sg(x \dotminus y)
+					\chi_{<}(x, y) &= \bsg (y \dotminus x)
 			\end{aligned}
 			\]
 			Остальные можем выразить также или через уже проверенные $ <$ и $ \neg$.
@@ -320,11 +320,11 @@
 \end{lm}
 \begin{proof*}
     \begin{enumerate}
-		\item $ f(x, y) = \left\lfloor \frac{x}{y} \right\rfloor $. Найдем минимальное $ k$, что $ f'(x, y, k) = yk > x$. Чтобы получить  $$ f(x, y) = \min(k \mid f'(x, y, k)) - 1,$$ используем оператор минимизации:
+		\item $ f(x, y) = \left\lfloor \frac{x}{y} \right\rfloor $. Найдем минимальное $ k$, что $ f'(x, y, k) = yk > x$. Чтобы получить  $$ f(x, y) = \min(k \mid f'(x, y, k)) - 1,$$ используем оператор ограниченной минимизации, где $ h(x) = x$:
 			 \[
-				 f(x, y) = \mu k [ \neg f'(x, y, k) = 0] - 1
+				 f(x, y) = (\mu k \le h(x) )[ \neg f'(x, y, k) = 0] - 1
 			.\] 
-		\item $ \Div(x, y) = \left\lfloor \frac{x}{y} \right\rfloor \cdot y = x$
+		\item $ \Div(x, y) = \left( \left\lfloor \frac{x}{y} \right\rfloor \cdot y == x\right)$
 		\item Определим  $ \Div'(x, y) = (y \le  1) \vee (\neg\Div(x, y))$, эта функция проверяет, что число $ y$ не является нетривиальным делителем $ x$.
 
 			Теперь, используя ограниченную минимизацию, выразим  $ \Prime(x)$ :
@@ -332,17 +332,18 @@
 				\Prime(x) = \Bigl(\mu y \le h(x) [\Div'(x, y) = 0]\Bigr) = x, \text{ где } h(x) = x - 1 
 				.\]
 				То есть мы посмотрели на все меньшие числа, если среди них найдется нетривиальный делитель, то число не простое.
-			\item Пусть $ f'(x) = \text{ количество простых } \le x $. 
+		\item Пусть $ f'(y) = \text{ количество простых } \le y $. 
 				\[
 					\begin{cases}
 						f'(0) &= 0 \\
-						f'(x+1) &= \Prime(x+1) + f(x)
+						f'(y+1) &= \Prime(y+1) + f'(y)
 					\end{cases}
 				\] 
 				Теперь можно вычислить $ f(x)$: для этого определим функцию $ g(x, y) = (f'(y) = x)$,
 				 \[
-					 f(x) = \mu y [ \neg g(x, y)  = 0] 
+					 f(x) = (\mu y \le h(x) )[ \neg g(x, y)  = 0] 
 				.\] 
+				Можно ограничить какой-нибудь функцией $ h$.
 			\item Чтобы найти степень вхождения простого числа $ p_i$ в $ x$, сначала находим это простое число по номеру, затем находим минимальное $ k$, что $ x$ не делится на $ p_i^{k}$ и вычитаем единицу.
     \end{enumerate} 
 \end{proof*}
@@ -425,7 +426,7 @@
 		m(\overline{x}, 0) &= 2^{1+g(\overline{x})} \\
 		m(\overline{x}, y+1) &= m(\overline{x}, y) \cdot p_{y+1}^{1 + h\left(\overline{x}, ~y, ~f(\overline{x}, t_1(y)), ~\ldots, ~f(\overline{x}, t_s(y))\right)} \\
 		&= m(\overline{x}, y) \cdot p_{y+1}^{1+h\left( 
-			\overline{x}, ~y, ~\ith(t_1(y), m(\overline{x}, t_1(y))), ~\ldots, ~ \ith(t_{s}(y), m(\overline{x}, t_{s}(y)))
+			\overline{x}, ~y, ~\ith(t_1(y), m(\overline{x}, y)), ~\ldots, ~ \ith(t_{s}(y), m(\overline{x}, y))
 	\right)
 }
 	\end{cases}
@@ -472,7 +473,7 @@
 
 
 \begin{thm}[Кусочное задание функции]\index{кусочное задание функции}
-	Пусть $ R_0, \ldots R_k $ --- отношения\footnote{Набор предикатов}, такие что $ \bigsqcup\limits_{i=0}^{k} R_i = \N^{m}$
+	Пусть $ R_0, \ldots R_k $ --- отношения\footnote{Набор предикатов}, такие что $ \bigsqcup\limits_{i=0}^{k} R_i = \N^{n}$
 	\footnote{То есть для $ i \ne  j$ верно $ R_{i} \cap R_j = \varnothing$.}.
 	Для $ \lvert \overline{x} \rvert = n$ кусочно зададим функцию $ f^{(n)}$:
 \[
@@ -502,7 +503,7 @@
 \begin{proof}
     \begin{description}
 		\item[\boxed{ 2 \Longrightarrow 1}]
-			Если $ f(x_1, \ldots x_n) = y$, то считаем, что МТ получаем $ 1^{x_1}01^{x_2}0\ldots 01^{x_n}$ и должна выдать $ 1^{y}$; если  $ f$ не определена, МТ должна зацикливаться и наоборот.
+			Если $ f(x_1, \ldots x_n) = y$, то считаем, что МТ получает $ 1^{x_1}01^{x_2}0\ldots 01^{x_n}$ и должна выдать $ 1^{y}$; если  $ f$ не определена, МТ должна зацикливаться и наоборот.
 			\begin{itemize}
 				\item Для простых функций можем построить МТ напрямую:
 					\begin{itemize}
@@ -534,7 +535,7 @@
 								1^{y_1}\ast 1^{y_2}\ldots \ast1^{y_n}
 							,\] 
 							где $ y_i = g_i(x_1, \ldots x_m)$.
-						\item Запускаем на этом результате $ M_{h}$.
+						\item Запускаем на этом результате $ M_{h}$, предварительно, конечно, поменяв $\ast$ на $0$.
 							\end{itemize}
 
 \lecture{2}{18 feb}{\dag}
@@ -569,12 +570,12 @@
 							\] 
 							Аналогично построим несколько вспомогательных МТ:
 							\begin{itemize}
-								\item $ N_1$ :  приписывает $ 0$ ко входу:
+								\item $ N_1$ :  приписывает $ 0(1^0)$ ко входу, это инициализация $y=0$:
 									\[
-									1^{x_1}0 \ldots 01^{x_{m}} \longrightarrow 1^{x_1}0\ldots 01^{x_{m}}0
+									1^{x_1}0 \ldots 01^{x_{m}} \longrightarrow 1^{x_1}0\ldots 01^{x_{m}}0(1^0)
 									.\] 
 								\item $ N_2$ :  дублирует вход, разделяя решеткой: $ w \longrightarrow w\#w$ 
-								\item $ N_3$ :  в продублированному входе меняет вторую половину на результат $ M_{g}$ 
+								\item $ N_3$ :  в продублированном входе меняет вторую половину на результат $ M_{g}$ 
 									\[
 										1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{x_1}0\ldots 01^{x_{m}}01^{y} \stackrel{M_{g}}{\longrightarrow} 	1^{x_1}0\ldots 01^{x_{m}}01^{y} \# 1^{g(x_1, \ldots x_{m}, y)}
 									.\] 
@@ -640,7 +641,7 @@
 			Эти функции будут примитивно рекурсивными, так как заданы на конечном множестве, на остальных можем доопределить нулем.
 		\item[Преобразование конфигураций]
 			Пусть у нас есть переход между двумя конфигурациями: 
-			$$ K = \alpha q_i a_j \beta  \to \alpha ' q_i' a_j' b' = K'.$$
+			$$ K = \alpha q_i a_j \beta  \to \alpha ' q_i' a_j' \beta' = K'.$$
 			Зададим функцию на числах, которая проделает этот переход $ \Phi \colon K \to  K'$. На самом деле эта функция состоит из четырех, которые мы сейчас и определим.
 
 			Пусть 
@@ -696,7 +697,7 @@
 \item[Результат] 
 	Пусть начальное состояние $ q_0 a_0 \beta_0$ (стоим на самом левом символе), конечное  --- $ q_{z} a_{z} \beta _{z}$, причем его встречаем впервые. 
 	То есть нам нужно вычислить функцию, которая переводит 
-	$$ x = \widetilde{ a_0} + \widetilde{ b_0} m \longrightarrow a_z + \beta _z m,$$
+	$$ x = \widetilde{ a_0} + \widetilde{ \beta_0} m \longrightarrow \widetilde{a_z} + \widetilde{\beta _z} m,$$
 	если машина Тьюринга пришла сюда, и не определена, если МТ зацикливается:
 	\[
 		t_z = \mu t[K_{q}(t) = z]

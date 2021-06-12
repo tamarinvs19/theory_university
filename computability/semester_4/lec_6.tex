@@ -2,7 +2,7 @@
 \section{Арифметическая иерархия}
 
 Вспомним следующее свойство:
-	$ A \subset \N$ перечислимо, согда $\exists  B \subset \N \times \N$, такое что $ A$ --- проекция $ B$,
+	$ A \subset \N$ перечислимо тогда и только тогда, когда $\exists  B \subset \N \times \N$, такое что $ A$ --- проекция $ B$,
 	или 
 	\begin{equation}\label{eq:2.8.1}
 	x \in A \Longleftrightarrow \exists  y ~ (x, y) \in  B
@@ -98,32 +98,37 @@ $ A(x) \hookrightarrow x \in A  $.
 	\[
 		x \in A \Longleftrightarrow f(x) \in B \Longleftrightarrow \exists y_1 \forall y_2 \ldots R(f(x), y_1, \ldots y_{n})
 	.\] 
-	Так как $ f$ вычислима, то и $ R(f(x), y_1, \ldots y_2)$ разрешимо.
+	Так как $ f$ вычислима, то и $ R(f(x), y_1, \ldots y_n)$ разрешимо.
 \end{proof}
 
-\begin{thm}
-    Для любого $ n>0$ в классе $ \Sigma_n $ (соответственно $ \Pi_n$ ) существует множество, универсальное для всех множеств в $ \Sigma _n$ (соответственно $ \Pi_n $ ) 
-\end{thm}
-\begin{note}
-    Если $ A$ -универсальное в $ \Sigma _n$, то $ \overline{A}$ --- универсальное в $ \Pi_n$
-\end{note}
-
 \begin{defn}[Универсальное множество]
-	Множество $ W \subset \N \times \N$ \selectedFont{универсальное} для перечислимого подмножества $ \N$, если
+	Множество $ W \subset \N \times \N$ \selectedFont{универсальное} для перечислимых подмножеств $ \N$, если
 	\begin{itemize}
 		\item $ W $ перечислимое;
 		\item для всех перечислимых $ B \subset \N$ существует номер $ n$,такой что $ W_n = B$.
 	\end{itemize}
 \end{defn}
+
 \begin{defn}[Главное универсальное множество]
 	Множество $ W \subset \N \times \N$ \selectedFont{главное универсальное} для всех перечислимых подмножеств $ \N$, если
-для любого $ V \in \N \times \N$ существует функция $ s \colon \N \to  \N$:
+для любого перечислимого $ V \in \N \times \N$ существует функция $ s \colon \N \to  \N$:
 	\begin{itemize}
 		\item $s$ вычислима и всюду определена;
 		\item $ \forall x, n\colon  (n, x) \in  V \Longleftrightarrow (s(n), x) \in  W$
 	\end{itemize}
-	Например, таким будет область определения универсальной функции.
 \end{defn}
+
+\begin{ex} 
+Например, таким множеством будет область определения главной универсальной функции.
+\end{ex}
+
+\begin{thm}
+    Для любого $ n>0$ в классе $ \Sigma_n $ (соответственно $ \Pi_n$ ) существует множество, универсальное для всех множеств в $ \Sigma _n$ (соответственно $ \Pi_n $ ) 
+\end{thm}
+\begin{note}
+    Если $ A$ --- универсальное в $ \Sigma _n$, то $ \overline{A}$ --- универсальное в $ \Pi_n$
+\end{note}
+
 \begin{proof}
 	Докажем по индукции.
 
@@ -163,15 +168,15 @@ $ A(x) \hookrightarrow x \in A  $.
 
 	Рассмотрим $ D(x) = T(x, x) \in \Pi_n$, так как $ D \le _m T$.
 
-	Поэтому $ \neg D(x) \in \Sigma_n$, но оно отличается от всех сечений $ T(n, x)$. Противоречие. 
+	Поэтому $ \neg D(x) \in \Sigma_n$, но оно отличается от всех сечений $ T(m, x)$. Противоречие. 
 \end{proof}
 \begin{cor}
     $ \Sigma_n \subsetneq \Sigma_{n+1}$ и $ \Pi_n \subsetneq \Pi_{n+1}$. 
 \end{cor}
 
-
-
-\textbf{Цель:} доказать, что $ \forall n ~ \exists A \subset \N$, такое что $ \Sigma_n = \{X \mid X~ A\text{-перечислимо\footnote{то есть перечислимо с оракулом $ A$}}\}$
+\begin{proof}
+    Знаем, что $ \exists x \in \Pi_n \setminus \Sigma_n$, а также что $ \Pi_n \subseteq \Sigma_{n + 1}$, то есть $ x \notin \Sigma_n$ и $ x \in \Sigma_{n + 1}$.
+\end{proof}
 
 \section{Еще про $ T$-сводимость}
 Зафиксируем некоторую функцию-оракула $  \alpha $. Вся теория вычислимости может быть <<релятивизована>> относительно вычислений с оракулом $  \alpha $.
@@ -179,7 +184,7 @@ $ A(x) \hookrightarrow x \in A  $.
     Функцию, вычислимую с оракулом $  \alpha $ будем называть $  \alpha $-вычислимой.
 \end{defn}
 \begin{name}
-    $ F_{\alpha}^{m}$ --- класс $  \alpha $-вычислимых функций от $ m $ аргументов.
+    $ \F_{\alpha}^{m}$ --- класс $  \alpha $-вычислимых функций от $ m $ аргументов.
 \end{name}
 
     \begin{thm}
@@ -228,7 +233,7 @@ $ A(x) \hookrightarrow x \in A  $.
 \begin{note}
 	Если $ P, Q \in \deg_T(X)$, то $ \F_P = \F_Q$ и  $ P$-перечислимость  эквивалентна  $ Q$-перечислимости.
 
-	Поэтому можем говорить о $\deg_T X$-неперечислимости.
+	Поэтому можем говорить о $\deg_T X$-перечислимости.
 \end{note}
 
 \begin{defn}[Операция скачка]
@@ -245,16 +250,16 @@ $ A(x) \hookrightarrow x \in A  $.
 
 \paragraph{$ T$-степени}
 \begin{itemize}
-	\item $ \mathbb{O}$ --- все разршимые.
-	\item $ \mathbb{O}' = J(\mathbb{O}) $ --- степень $ m$-полного перечислимого неразрешимого. Один из представителей --- ООП универсальной функции.
+	\item $ \mathbb{O}$ --- все разрешимые.
+	\item $ \mathbb{O}' = J(\mathbb{O}) $ --- степень $ m$-полного перечислимого неразрешимого. Один из представителей --- область определения универсальной функции.
 	\item $ \mathbb{O}^{(n+1)}= \left(\mathbb{O}^{(n)}\right)'$
 \end{itemize}
-Можно считать, что $ \mathbb{O}'$ --- разрешимые с оракулом проблемы остановки. 
+Можно считать, что $ \mathbb{O}'$ --- множества, разрешимые с оракулом проблемы остановки. 
 
 \section{Теорема об арифметической иерархии}
 
 \begin{thm}[Об арифметической иерархии]\index{теорема об арифметической иерархии}\label{thm:main_thm}
-	$  \forall n \ge 1 \colon \Sigma _n = \{\mathbb{O}^{(n-1)} \text{ --- перечислимые множества}\}$
+	$  \forall n \ge 1 \colon \Sigma _n = \{\mathbb{O}^{(n-1)} \text{-перечислимые множества}\}$
 \end{thm}
 \begin{proof}
     Для $ n = 1$ уже знаем.
@@ -266,17 +271,17 @@ $ A(x) \hookrightarrow x \in A  $.
 			.\] 
 			Навешиваем отрицание
 			\[
-				\neg \left( \forall z R(x, y, z) \right)  \in \Sigma _1
+				X' := \neg \left( \forall z R(x, y, z) \right)  \in \Sigma _1
 			.\] 
-			Принадлежность $  \Sigma _1$ дает $ m$-сводимость к $ m$-полному перечислимому множество. А так как $ m$-сводимость влечет $ T$-сводимость, по определению $ \mathbb{O}'$ множество  $ \mathbb{O}'$-разрешимо.
+			Принадлежность $  \Sigma _1$ дает $ m$-сводимость к $ m$-полному перечислимому множество. А так как $ m$-сводимость влечет $ T$-сводимость, то по определению $ \mathbb{O}'$ множество $ X'$ будет $ \mathbb{O}'$-разрешимо, следовательно, его дополнение тоже $ \mathbb{O}'$-разрешимо.
 
-			Следовательно, его проекция $ \mathbb{O}'$-перечислима.
+			А значит проекция $ \neg X'$ будет $ \mathbb{O}'$-перечислима, так как можно перебрать $ y$.
 
 			Аналогично действуем для больших  $ n$: 
-			\[ x \in \Sigma_n\colon x \in X \Longleftrightarrow \exists y \underbrace{R(x, y)}_{ \in \Pi _2}\]
+			\[ x \in \Sigma_n\colon x \in X \Longleftrightarrow \exists y \underbrace{R(x, y)}_{ \in \Pi _{n - 1}}\]
 			Тогда $ \neg R \in \Sigma _{n-1} .$ 
 
-		На предыдущем слое доказали, что тогда $ \neg R $ будет $ \mathbb{O}^{(n-2)}$-перечислимо, а тогда он $ \mathbb{O}^{(n-1)}$-разрешимо. Тогда его проекция $ \mathbb{O}^{(n-1)}$-перечислима.
+		На предыдущем слое доказали, что тогда $ \neg R $ будет $ \mathbb{O}^{(n-2)}$-перечислимо, а тогда оно $ \mathbb{O}^{(n-1)}$-разрешимо. Тогда его проекция $ \mathbb{O}^{(n-1)}$-перечислима.
 	    \item \boxed{\supset } 
 			См. \hyperref[proof:main_thm]{далее} (страница \pageref{proof:main_thm}).
 	\end{description} 
@@ -285,13 +290,13 @@ $ A(x) \hookrightarrow x \in A  $.
 
 \subsection{Утверждения для доказательства в обратную сторону}
 \begin{defn}
-    Рассмотрим некоторую вычислимую нумерацию конченых множество.
+    Рассмотрим $ c$ --- некоторую вычислимую нумерацию конечных множеств.
 
 	Пусть $ D_x$ --- множество с номером  $ x$.
 
-	Возьмем $ A \subset \N$ (не обязательно конченое).
+	Возьмем $ A \subset \N$ (не обязательно конечное).
 
-	Определим $ \Subsetm(A) = \{x \mid D_x \subset A\}$ --- множество номеров конечных подмножество $ A$.
+	Определим $ \Subsetm(A) = \{x \mid D_x \subset A\}$ --- множество номеров конечных подмножеств $ A$.
 
 	Аналогично $ \Disjointm(A) = \{x \mid D_x \cap A = \varnothing\}$.
 \end{defn}
@@ -301,7 +306,7 @@ $ A(x) \hookrightarrow x \in A  $.
 \begin{proof}
 	Пусть $ A \in \Sigma_3$,
 	\[
-	x \in A \Longleftrightarrow \exists y \forall z \exists t \underbrace{T(x, y, z, t)}_{\text{разрешимо}}
+	x \in A \Longleftrightarrow \exists y \forall z \exists t \underbrace{R(x, y, z, t)}_{\text{разрешимо}}
 	.\] 
 	Для конечного набора
 	\[
@@ -315,7 +320,7 @@ $ A(x) \hookrightarrow x \in A  $.
 \end{lm}
 \begin{proof}
     \[
-		D_x \cap A = \varnothing  \Longleftrightarrow D_x \in \overline{A} \Longleftrightarrow x \in \Subsetm (\overline{A})
+		D_x \cap A = \varnothing  \Longleftrightarrow D_x \subset \overline{A} \Longleftrightarrow x \in \Subsetm (\overline{A})
 	\]
 	То есть $ \Disjointm(A) = \Subsetm(\overline{A})$.
 	Тогда
@@ -327,10 +332,10 @@ $ A(x) \hookrightarrow x \in A  $.
 
 \paragraph{Относительная вычислимость: эквивалентные определения}
 \begin{defn}[Образец]
-	\selectedFont{Образец} --- функция $ \N \to \N$, определенная на конечном множестве значений. Задается конченым множеством пар, то етсь  можем вычислимо пронумеровать образцы.
+	\selectedFont{Образец} --- функция $ \N \to \N$, область определения которой конечна. Задается конечным множеством пар, то есть  можем вычислимо пронумеровать образцы.
 	
 	\noindent
-	Образцы \selectedFont{совместимы}, если объединение их графиков есть график функции.
+	Образцы \selectedFont{совместны}, если объединение их графиков есть график функции. Т.е. если оба определены для какого-то $ x$, то значение на этом $ x$ должно совпадать.
 \end{defn}
 \begin{defn}[]
 	$ M$ --- множество троек $ (x, y, t)$, где  $ x, y \in \N$, а $ t$ --- образец.
@@ -339,7 +344,7 @@ $ A(x) \hookrightarrow x \in A  $.
 	Две тройки $ (x_1, y_1, t_1), (x_2, y_2, t_2)$ \selectedFont{противоречат друг другу}, если $  x_1= x_2$, $  y_1 \ne  y_2$ и $  t_1$ и $  t_2$ совместны.
 
 	\noindent
-	Мноежство $ M$ \selectedFont{корректно}, если оно не содержит противоречащих троек.
+	Множество $ M$ \selectedFont{корректно}, если оно не содержит противоречащих троек.
 \end{defn}
 \begin{defn}
     Пусть  $  M$ --- корректное множество троек, $ \alpha $ --- функция.
