@@ -103,43 +103,110 @@
 
 \subsection{Условная энтропия}
 \begin{defn}[Условная энтропия]
-	\selectedFont{Энтропией $  \alpha $ при $ \beta = b$} будем называть энтропию распределения $  \alpha $ при условии, что $ \beta  = b$, то есть:
+	\selectedFont{Энтропией $  \alpha $ при $ \beta = b$} будем называть энтропию распределения $  \alpha $ при условии, что $ \beta = b$, то есть:
 	\[
 	H( \alpha \mid \beta  = b) \coloneqq  \sum_{i}^{} \Pr[ \alpha = i \mid  \beta  = b] \cdot  \log \frac{1}{\Pr [ \alpha  = i \mid \beta  = b]}
 .\]
 Тогда \selectedFont{энтропией $  \alpha $ при условии $ \beta$} назовем среднее значение по $ \beta$ энтропии $  \alpha $ при $ \beta = b$:
 \[
-	H( \alpha  \mid \beta ) \coloneqq  \E_{\beta \to b } H( \alpha  \mid p = b)  = \sum_{b} H ( \alpha  \mid \beta = b) \cdot  \Pr[\beta = b]
+	H( \alpha  \mid \beta ) \coloneqq  \E_{\beta \to b } H( \alpha  \mid \beta = b)  = \sum_{b} H ( \alpha  \mid \beta = b) \cdot  \Pr[\beta = b]
 .\] 
 \end{defn}
 \begin{prop}
     ~\begin{enumerate}
 		\item $ H( \alpha \mid \beta ) \ge  0$
-		\item $ H( \alpha  \mid \beta ) = 0 \Longleftrightarrow \alpha  \text{ однозначно определяется } \beta $
+		\item $ H( \alpha  \mid \beta ) = 0 \Longleftrightarrow \alpha  \text{ однозначно определяется } \beta $ 
+		\begin{proof*}
+		    \[ 
+		        H( \alpha \mid \beta ) = 0 
+		        \Longleftrightarrow 
+		        \forall b ~H(\alpha \mid \beta = b) = 0 
+		        \Longleftrightarrow 
+		        \forall b: ~\Pr[\alpha = i \mid \beta = b] = 1
+		    \]
+	    \end{proof*}
 		\item $ \forall f \colon ~ H( \alpha  \mid \beta  ) \ge  H( f( \alpha ) \mid \beta )$
+		\begin{proof*} 
+		    Заметим, что достаточно показать неравенство $ H(\alpha \mid \beta = b) \ge H(f(\alpha) \mid \beta = b)$, поэтому будем считать, что все дальнейшие рассуждения проводятся при условии $ \beta = b$. \\
+		    Пусть $ \alpha$ принимает значения $ a_1, \ldots, a_n$ с вероятностями $ p_1, \ldots, p_n$, а $ f(\alpha)$ принимает значения $ f_1, \ldots, f_k$ так, что для $ \forall j ~f_i := f(a_{i_j})$ (разбили $ a_i$-ые на $ k$ частей). Обозначим $ P_i := \sum_j p_{i_j}$ - вероятность $ f_i$. 
+		    \begin{align*}
+		        H(\alpha \mid \beta = b) &= 
+		        \sum_i \Pr[\alpha = i \mid \beta = b] \cdot \log \frac{1}{\Pr[\alpha = i \mid \beta = b]}
+		        \tag{по определению $ H$} \\
+		        &= \sum_i p_i \cdot \log \frac{1}{p_i} 
+		        \tag{по определению $ p_i$} \\
+		        &= \sum_i \left( \sum_j p_{i_j} \cdot \log \frac{1}{p_{i_j}} \right) 
+		        \tag{перегруппировали слагаемые}\\
+		        &\ge \sum_i \left( \log \frac{1}{P_i} \cdot \sum_j p_{i_j} \right) \tag{оценили максимум: $ P_i \ge p_{i_j}$}\\
+		        &= \sum_i P_i \cdot \log \frac{1}{P_i}
+		        \tag{свернули сумму в $ P_i$} \\
+		        &= H(f(\alpha) \mid \beta = b) 
+		    \end{align*} 
+		\end{proof*}
 		\item $ H( \alpha , \beta ) = H( \alpha ) + H( \beta  \mid \alpha ) = H(  \beta ) + H( \alpha \mid \beta )$
+		\begin{proof*}
+		    \[
+    		    H( \beta ) + H( \alpha  \mid \beta ) = \sum_j p_j \log \frac{1}{p_j} + \sum_{j} H ( \alpha  \mid \beta = j) \cdot  \Pr[\beta = j] = \]\[ \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i \mid  \beta  = j] \cdot  \log \frac{1}{\Pr [ \alpha  = i \mid \beta  = j]}\right) \cdot  \Pr[\beta = j] = 
+		    \]
+		    \[ 
+		        \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i,  \beta  = j] \cdot  \log \frac{\Pr [\beta = j]}{\Pr [ \alpha  = i,  \beta  = j]}\right) = 
+		    \]
+		     \[ 
+		         \sum_j \sum_i p_{i,j} \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} p_{i,j} \cdot  \log \frac{p_j}{p_{i,j}}\right) = \sum_{i,j}p_{i,j}\log \frac{1}{p_{i,j}} = H(\alpha, \beta)
+		    \]
+		    подсказка: $\Pr [A, B] = \Pr[A \mid B] \cdot \Pr[B]$
+		\end{proof*}
 		\item $ H( \alpha , \beta ) \ge H( \alpha )$
+		\begin{proof*}
+		    Очевидно из предыдущего свойства.
+		\end{proof*}
 		\item $ H( \alpha ) \ge  H ( \alpha \mid \beta )$
-			\begin{proof}
-			    \[
-				H( \alpha \mid \beta ) - H ( \alpha ) = \sum_{ }^{ } p_{i, j} \frac{1}{\log \Pr [ \alpha  = i \mid \beta  = j]} - \sum_{ }^{ } p_{i, j} \log \frac{1}{p_i} \le  \sum_{ }^{ } p_{i, j} \log \frac{p_i}{\Pr [ \alpha = i \mid \beta  = j]} 
-			    \] 
-				По неравенству Йенсена полученное выражение меньше нуля.
-			\end{proof}
+			\begin{proof*}
+			    \begin{align*}
+    			    H( \alpha \mid \beta ) - H ( \alpha ) 
+    			    &= \sum_j \sum_i\left( \Pr [\alpha = i \mid \beta = j] \log \frac{1}{ \Pr [ \alpha = i \mid \beta = j]}\right)\cdot \Pr[\beta = j] - \sum p_{i} \log \frac{1}{p_i} \\
+    				&= \sum p_{i,j}\log\frac{p_j}{p_{i,j}} - \sum p_{i,j}\log\frac{1}{p_i} \\
+    				&= \sum p_{i, j} \log \frac{p_i p_i}{p_{i,j}} \\
+    				&\le \log \sum p_i p_j = \log 1 = 0 \tag{по нер-ву Йенсена}
+			    \end{align*}
+			\end{proof*}
 		\item Формула условной энтропии через отдельные вероятности
-			\begin{align*}
-				H( \alpha \mid \beta ) &= \sum_{j} \Pr[ \beta = b_j] \cdot  \sum_{i}^{} \Pr[ \alpha = a_i, \beta = b_j] \cdot \log \frac{1}{\Pr[ \alpha = a_i, \beta = b_j]} \\
-									   &= \sum_{i, j}^{} p_{i,j} \cdot \log \frac{p_{*, j}}{p_{i, j}}
-			\end{align*}
-		\item 
-			$ 2H( \alpha , \beta , \gamma ) ≤ H( \alpha , \beta ) + H( \alpha,  \gamma ) + H( \beta , \gamma ).$
+		    \begin{proof*}
+    			\begin{align*}
+    				H( \alpha \mid \beta ) 
+    				&= \sum_j H(\alpha \mid \beta = b_j) \cdot \Pr[\beta = b_j] \\
+    				&= \sum_{j} \Pr[ \beta = b_j] \cdot  \sum_{i}^{} \Pr[ \alpha = a_i \mid \beta = b_j] \cdot \log \frac{1}{\Pr[ \alpha = a_i \mid \beta = b_j]} \\
+    				&= \sum_{i, j}^{} p_{i,j} \cdot \log \frac{p_{j}}{p_{i, j}}
+    			\end{align*}
+			\end{proof*}
 		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $
-			% \begin{proof*}
-			% 	\begin{align*}
-			% 		H( \alpha \mid \beta ) &= \sum_{b} H( \alpha \mid \beta  = b) \cdot \Pr[ \beta  = b] \\
-			% 		H( \alpha \mid \beta, \gamma  ) &= \sum_{b,c} H( \alpha \mid \beta  = b, ~ \gamma = c) \cdot \Pr[ \beta  = b, ~ \gamma = c] 
-			% 	\end{align*}
-			% \end{proof*}
+		    \begin{proof*}
+		        \begin{align*}
+		            H(\alpha \mid \beta) &= H(\alpha, \beta) - H(\beta)\\
+		            H(\alpha \mid \beta, \gamma) &= H(\alpha, \beta, \gamma) - H(\beta, \gamma)\\
+		            H(\alpha \mid \beta) - H(\alpha \mid \beta, \gamma) &= H(\alpha, \beta) - H(\beta) - \Big(H(\alpha, \beta, \gamma) - H(\beta, \gamma)\Big) \\
+		            &=  H(\beta, \gamma) - H(\beta) - \Big(H(\alpha, \beta, \gamma) - H(\alpha, \beta)\Big) \\
+		            &= H(\gamma \mid \beta) - H(\gamma \mid \alpha, \beta)
+		        \end{align*}
+		    \end{proof*}
+		\item 
+			$ 2H( \alpha , \beta , \gamma ) \le H( \alpha , \beta ) + H( \alpha,  \gamma ) + H( \beta , \gamma ).$
+		\begin{proof*}
+        \\
+		 Заметим, что $H(\alpha, \beta, \gamma) = H(\alpha) + H(\beta, \gamma \mid \alpha) = H(\alpha) + H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)$.\\
+		 Теперь распишем аналогичное для правой части и воспользуемся $H(\alpha) \ge H(\alpha \mid \beta)$:
+		 \[
+		    H(\alpha, \beta) = H(\alpha) + H(\beta \mid \alpha)
+		 \]
+		 \[
+		    H(\alpha, \gamma) = H(\alpha) + H(\gamma \mid \alpha) \ge H(\alpha) + H(\gamma \mid \alpha, \beta)
+		 \]
+		 \[
+		    H(\beta, \gamma) = H(\beta) + H(\gamma \mid \beta) \ge H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)
+		 \]
+		 Теперь если сложить все три формулы, то получим то, что надо.
+		\end{proof*}
+		
     \end{enumerate} 
 \end{prop}
 
@@ -147,28 +214,51 @@
 \begin{defn}
 	\selectedFont{Взаимная информация} между случайными величинами $  \alpha $ и $ \beta $:
 	\[
-		I( \alpha  \colon \beta ) \coloneqq H( \alpha ) - H( \alpha \mid \beta )
+		I( \alpha  : \beta ) \coloneqq H( \alpha ) - H( \alpha \mid \beta )
 	.\] 
 	\selectedFont{Взаимная информация в $  \alpha $ и $ \beta$ при условии $ \gamma $ }:
 		\[
-			I ( \alpha \colon \beta \mid \gamma ) \coloneqq H( \alpha  \mid \beta , \gamma )
+			I ( \alpha : \beta \mid \gamma ) \coloneqq  H( \alpha  \mid \gamma ) - H( \alpha  \mid \beta , \gamma )
 		.\] 
 \end{defn}
 \begin{prop}
 	~\begin{enumerate}
-		\item $ I( \alpha \colon \beta ) = I( \beta \colon \alpha )$.
+		\item $ I( \alpha : \beta ) = I( \beta : \alpha )$.
 			\begin{proof*}
-				$ I( \alpha \colon \beta ) = H( \alpha ) - H( \alpha \mid \beta ) = H( \alpha ) - H( \alpha , \beta ) + H( \beta ) = H( \beta ) - H( \beta \mid \alpha ) = I( \beta \mid \alpha )$
+				$ I( \alpha : \beta ) = H( \alpha ) - H( \alpha \mid \beta ) = H( \alpha ) - H( \alpha , \beta ) + H( \beta ) = H( \beta ) - H( \beta \mid \alpha ) = I( \beta : \alpha )$
 			\end{proof*}
 
-		\item $  \alpha $ и $  \beta $ независимы тогда и только тогда, когда $ I( \alpha \colon \beta ) = 0$.
+		\item $  \alpha $ и $  \beta $ независимы тогда и только тогда, когда $ I( \alpha : \beta ) = 0$.
 			\begin{proof*}
-				$ I( \alpha \colon \beta ) = 0 \Longleftrightarrow H( \alpha ) = H( \alpha \mid \beta ) \Longleftrightarrow $ независимы $  \alpha $ и $ \beta $.
+				$ I( \alpha : \beta ) = 0 \Longleftrightarrow H( \alpha ) = H( \alpha \mid \beta ) \Longleftrightarrow $ независимы $  \alpha $ и $ \beta $.
 			\end{proof*}
-		\item $ I( f( \alpha ) \colon \beta ) \le I ( \alpha \colon \beta )$ для любой функции $ f$.
+		\item $ I( f( \alpha ) \colon \beta ) \le I ( \alpha : \beta )$ для любой функции $ f$.
+		\begin{proof*}
+		    Для начала перепишем взаимную информацию:
+		    \begin{align*}
+		        I(\alpha : \beta) &= H(\alpha) - H(\alpha \mid \beta) \\
+		        &= \sum_{i,j}p_{i,j}\log\frac{1}{p_i} - \sum_{i,j}p_{i,j}\log\frac{p_j}{p_{i,j}} \\
+		        &= \sum_{i,j} p_{i,j}\log\frac{p_{i,j}}{p_i p_j} = \sum_{k,j}\sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_{i,j}}{p_i p_j}
+		        \tag{сгруппировали с помощью прообразов}
+		    \end{align*}
+		    Аналогично
+		    \begin{align*}
+		        I(f(\alpha) : \beta) &= \sum_{k, j}\Pr[f(\alpha) = k, \beta = j]\log\frac{\Pr[f(\alpha) = k, \beta = j]}{\Pr[f(\alpha) = k]\Pr[\beta = j]}\\
+		        &= \sum_{k,j}\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)\log\frac{\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)}{\left(\sum_{i \in f^{-1}(k)}p_{i}\right)p_j}
+		    \end{align*}
+		    Теперь для каждой пары $k,j$ покажем неравенство отдельно
+		    \begin{align*}
+		        &-\sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_{i,j}}{p_i p_j} = \sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_i p_j}{p_{i,j}}\\
+		        &=\left(\sum_{c \in f^{-1}(k)}p_{c,j}\right)\sum_{i\in f^{-1}(k)}\frac{p_{i,j}}{\left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)}\log\frac{p_i p_j}{p_{i,j}}
+		        \tag{поделили и домножили для того чтобы сумма коэффициентов была 1}\\
+		        &\le \left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)\log\left(\sum_{i\in f^{-1}(k)}\frac{p_{i}p_j}{\left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)}\right)
+		        \tag{по нер-ву Йенсена}\\
+		        &=\left(\sum_{i\in f^{-1}(k)}p_{c,j}\right)\log\frac{(\sum_{i\in f^{-1}(k)} p_{i})p_j}{\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)} = -\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)\log\frac{\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)}{(\sum_{i\in f^{-1}(k)} p_{i})p_j}
+		    \end{align*}
+		\end{proof*}
 		\item  Следующие формулы для взаимной информации эквивалентны
 			\begin{align*}
-				I( \alpha \colon \beta ) &= H( \alpha) - H( \alpha  \mid \beta  ) \\
+				I( \alpha : \beta ) &= H( \alpha) - H( \alpha  \mid \beta  ) \\
 										 &= H( \beta ) - H( \beta \mid \alpha ) \\
 										 &= H\left( \alpha  \right) + H( \beta ) - H( \alpha , \beta ) \\
 										 &= H( \alpha , \beta ) - H( \alpha \mid \beta ) - H( \beta \mid \alpha )
@@ -194,7 +284,7 @@
 			& \le  H(q_1) + H(q_2) + H(q_3) + 0
 \end{align*}
 
-Так как $ H(q_i) \le  \log 3$, для все $ i$ выполнено равенство.
+Так как $ H(q_i) \le  \log 3$, для всех $ i$ выполнено равенство.
 
 Чтобы было так, мы должны в каждый ход равновероятно получать все три ответа.
 Пусть мы взвешиваем кучки из $ k$ монет\footnote{Очевидно, что если взвешивать кучки разного размера, информацию извлечь не получиться даже по Хартли}. 
