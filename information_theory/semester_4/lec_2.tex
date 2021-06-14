@@ -51,7 +51,7 @@
 
 \subsection{Энтропия}
 \begin{defn}[Энтропия]\index{энтропия}
-	Для случайной величины $  \alpha $ с вероятностями событий $ (p_1, p_2, \ldots )$ меру
+	Для случайной величины $  \alpha $ с вероятностями событий $ (p_1, p_2, \ldots, p_n)$ меру
 \[
 	H( \alpha ) = \sum_{i = 1}^{\lvert \supp ( \alpha ) \rvert } p_i \log \frac{1}{p_i}
 \] 
@@ -128,7 +128,7 @@
 		\item $ \forall f \colon ~ H( \alpha  \mid \beta  ) \ge  H( f( \alpha ) \mid \beta )$
 		\begin{proof*} 
 		    Заметим, что достаточно показать неравенство $ H(\alpha \mid \beta = b) \ge H(f(\alpha) \mid \beta = b)$, поэтому будем считать, что все дальнейшие рассуждения проводятся при условии $ \beta = b$. \\
-		    Пусть $ \alpha$ принимает значения $ a_1, \ldots, a_n$ с вероятностями $ p_1, \ldots, p_n$, а $ f(\alpha)$ принимает значения $ f_1, \ldots, f_k$ так, что для $ \forall j ~f_i := f(a_{i_j})$ (разбили $ a_i$-ые на $ k$ частей). Обозначим $ P_i := \sum_j p_{i_j}$ - вероятность $ f_i$. 
+		    Пусть $ \alpha$ принимает значения $ a_1, \ldots, a_n$ с вероятностями $ p_1, \ldots, p_n$ соответственно, а $ f(\alpha)$ принимает значения $ f_1, \ldots, f_k$ так, что для $ \forall j ~f_i := f(a_{i_j})$ (разбили $ a_i$-ые на $ k$ частей). Обозначим $ P_i := \sum_j p_{i_j}$ - вероятность $ f_i$. 
 		    \begin{align*}
 		        H(\alpha \mid \beta = b) &= 
 		        \sum_i \Pr[\alpha = i \mid \beta = b] \cdot \log \frac{1}{\Pr[\alpha = i \mid \beta = b]}
@@ -137,7 +137,7 @@
 		        \tag{по определению $ p_i$} \\
 		        &= \sum_i \left( \sum_j p_{i_j} \cdot \log \frac{1}{p_{i_j}} \right) 
 		        \tag{перегруппировали слагаемые}\\
-		        &\ge \sum_i \left( \log \frac{1}{P_i} \cdot \sum_j p_{i_j} \right) \tag{оценили максимум: $ P_i \ge p_{i_j}$}\\
+		        &\ge \sum_i \left( \log \frac{1}{P_i} \cdot \sum_j p_{i_j} \right) \tag{оценили $ P_i \ge p_{i_j}$}\\
 		        &= \sum_i P_i \cdot \log \frac{1}{P_i}
 		        \tag{свернули сумму в $ P_i$} \\
 		        &= H(f(\alpha) \mid \beta = b) 
@@ -167,7 +167,7 @@
     			    &= \sum_j \sum_i\left( \Pr [\alpha = i \mid \beta = j] \log \frac{1}{ \Pr [ \alpha = i \mid \beta = j]}\right)\cdot \Pr[\beta = j] - \sum p_{i} \log \frac{1}{p_i} \\
     				&= \sum p_{i,j}\log\frac{p_j}{p_{i,j}} - \sum p_{i,j}\log\frac{1}{p_i} \\
     				&= \sum p_{i, j} \log \frac{p_i p_i}{p_{i,j}} \\
-    				&\le \log \sum p_i p_j = \log 1 = 0 \tag{по нер-ву Йенсена}
+    				&\le \log \sum p_i p_j = \log 1 = 0 \tag{по неравенству Йенсена}
 			    \end{align*}
 			\end{proof*}
 		\item Формула условной энтропии через отдельные вероятности
@@ -175,24 +175,50 @@
     			\begin{align*}
     				H( \alpha \mid \beta ) 
     				&= \sum_j H(\alpha \mid \beta = b_j) \cdot \Pr[\beta = b_j] \\
-    				&= \sum_{j} \Pr[ \beta = b_j] \cdot  \sum_{i}^{} \Pr[ \alpha = a_i \mid \beta = b_j] \cdot \log \frac{1}{\Pr[ \alpha = a_i \mid \beta = b_j]} \\
+    				&= \sum_{j} \left( \Pr[ \beta = b_j] \cdot  \sum_{i}^{} \Pr[ \alpha = a_i \mid \beta = b_j] \cdot \log \frac{1}{\Pr[ \alpha = a_i \mid \beta = b_j]} \right) \\
     				&= \sum_{i, j}^{} p_{i,j} \cdot \log \frac{p_{j}}{p_{i, j}}
     			\end{align*}
 			\end{proof*}
-		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $
+		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $, причем равенство достигается, если величина $ \alpha$ независимо с $ \gamma$
 		    \begin{proof*}
+		        \\
+		        Обозначим $ p_{ijk} := \Pr[\alpha = i, \beta = j, \gamma = k]$, аналогично $ p_{ij}, p_{jk}$.\\
+		        Распишем левую и правую части по определению:
 		        \begin{align*}
-		            H(\alpha \mid \beta) &= H(\alpha, \beta) - H(\beta)\\
-		            H(\alpha \mid \beta, \gamma) &= H(\alpha, \beta, \gamma) - H(\beta, \gamma)\\
-		            H(\alpha \mid \beta) - H(\alpha \mid \beta, \gamma) &= H(\alpha, \beta) - H(\beta) - \Big(H(\alpha, \beta, \gamma) - H(\beta, \gamma)\Big) \\
-		            &=  H(\beta, \gamma) - H(\beta) - \Big(H(\alpha, \beta, \gamma) - H(\alpha, \beta)\Big) \\
-		            &= H(\gamma \mid \beta) - H(\gamma \mid \alpha, \beta)
+		            H(\alpha \mid \beta) &= \sum_{ij} p_{ij} \log \frac{p_j}{p_{ij}} \\
+		            H(\alpha \mid \beta, \gamma) &= \sum_{ij} \left( \sum_k p_{ijk} \log \frac{p_{jk}}{p_{ijk}} \right)
+		        \end{align*}
+		        Достаточно показать неравенство для фиксированных $ i, j$:
+		        \begin{align*}
+		            \sum_k p_{ijk} \log \frac{p_{jk}}{p_{ijk}} 
+		            &= p_{ij} \sum_k \frac{p_{ijk}}{p_{ij}} \log \frac{p_{jk}}{p_{ijk}}
+		            \tag{чтобы сумма коэффициентов была 1} \\
+		            &\le p_{ij} \log \left( \sum_k \frac{p_{jk}}{p_{ij}} \right)
+		            \tag{по неравенству Йенсена} \\
+		            &= p_{ij} \log \left( \frac{ \sum_k p_{jk}}{p_{ij}} \right) \\
+		            &= p_{ij} \log \frac{p_j}{p_{ij}}
+		        \end{align*}
+		        Для независимых $ \alpha$ и $ \gamma$:
+		        \begin{align*}
+		            H(\alpha \mid \beta, \gamma) 
+		            &= \sum_{jk} p_{jk} H(\alpha \mid \beta = j, \gamma = k) \\
+		            &= \sum_{jk} p_{jk} \left( 
+		                \sum_i \Pr[\alpha = i \mid \beta = j, \gamma = k] \log \frac{1}{\Pr[\alpha = i \mid \beta = j, \gamma = k]}
+		            \right) \\
+		            &= \sum_{jk} p_{jk} \left( 
+		                \sum_i \Pr[\alpha = i \mid \beta = j] \log \frac{1}{\Pr[\alpha = i \mid \beta = j]}
+		            \right)
+		            \tag{по независимости} \\
+		            &= \sum_j \left( \sum_k p_{jk} \right) \cdot \left( 
+		                \sum_i \Pr[\alpha = i \mid \beta = j] \log \frac{1}{\Pr[\alpha = i \mid \beta = j]}
+		            \right) \\
+		            &= \sum_{j} p_{j} H(\alpha \mid \beta = j) \\
+		            &= H(\alpha \mid \beta)
 		        \end{align*}
 		    \end{proof*}
 		\item 
 			$ 2H( \alpha , \beta , \gamma ) \le H( \alpha , \beta ) + H( \alpha,  \gamma ) + H( \beta , \gamma ).$
 		\begin{proof*}
-        \\
 		 Заметим, что $H(\alpha, \beta, \gamma) = H(\alpha) + H(\beta, \gamma \mid \alpha) = H(\alpha) + H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)$.\\
 		 Теперь распишем аналогичное для правой части и воспользуемся $H(\alpha) \ge H(\alpha \mid \beta)$:
 		 \[
@@ -232,36 +258,43 @@
 			\begin{proof*}
 				$ I( \alpha : \beta ) = 0 \Longleftrightarrow H( \alpha ) = H( \alpha \mid \beta ) \Longleftrightarrow $ независимы $  \alpha $ и $ \beta $.
 			\end{proof*}
-		\item $ I( f( \alpha ) \colon \beta ) \le I ( \alpha : \beta )$ для любой функции $ f$.
+		\item $ I( f( \alpha ) : \beta ) \le I ( \alpha : \beta )$ для любой функции $ f$.
 		\begin{proof*}
-		    Для начала перепишем взаимную информацию:
+	    	Сначала распишем левую часть:
 		    \begin{align*}
 		        I(\alpha : \beta) &= H(\alpha) - H(\alpha \mid \beta) \\
-		        &= \sum_{i,j}p_{i,j}\log\frac{1}{p_i} - \sum_{i,j}p_{i,j}\log\frac{p_j}{p_{i,j}} \\
-		        &= \sum_{i,j} p_{i,j}\log\frac{p_{i,j}}{p_i p_j} = \sum_{k,j}\sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_{i,j}}{p_i p_j}
+		        &= \sum_{i,j}p_{i,j}\log\frac{1}{p_i} - \sum_{i,j}p_{i,j}\log\frac{p_j}{p_{i,j}} 
+		        \tag{расписали энтропию через вероятности} \\
+		        &= \sum_{i,j} p_{i,j}\log\frac{p_{i,j}}{p_i p_j} \\
+		        &= \sum_{k,j} \left( \sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_{i,j}}{p_i p_j} \right)
 		        \tag{сгруппировали с помощью прообразов}
 		    \end{align*}
-		    Аналогично
+		    Аналогично правую часть:
 		    \begin{align*}
 		        I(f(\alpha) : \beta) &= \sum_{k, j}\Pr[f(\alpha) = k, \beta = j]\log\frac{\Pr[f(\alpha) = k, \beta = j]}{\Pr[f(\alpha) = k]\Pr[\beta = j]}\\
-		        &= \sum_{k,j}\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)\log\frac{\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)}{\left(\sum_{i \in f^{-1}(k)}p_{i}\right)p_j}
+		        &= \sum_{k,j}\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)\log\frac{\left(\sum_{i \in f^{-1}(k)}p_{i,j}\right)}{\left(\sum_{i \in f^{-1}(k)}p_{i}\right)p_j} \\
+		        &= \sum_{kj} P_{kj} \log \frac{P_{kj}}{P_k p_j}
 		    \end{align*}
+		    Где $ P_k := \Pr[f(\alpha) = k] = \sum_{i \in f^{-1}(k)} p_i$, аналогично $ P_{kj} := \Pr[f(\alpha) = k, \beta = j]$.\\ 
 		    Теперь для каждой пары $k,j$ покажем неравенство отдельно
 		    \begin{align*}
-		        &-\sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_{i,j}}{p_i p_j} = \sum_{i\in f^{-1}(k)}p_{i,j}\log\frac{p_i p_j}{p_{i,j}}\\
-		        &=\left(\sum_{c \in f^{-1}(k)}p_{c,j}\right)\sum_{i\in f^{-1}(k)}\frac{p_{i,j}}{\left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)}\log\frac{p_i p_j}{p_{i,j}}
-		        \tag{поделили и домножили для того чтобы сумма коэффициентов была 1}\\
-		        &\le \left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)\log\left(\sum_{i\in f^{-1}(k)}\frac{p_{i}p_j}{\left(\sum_{c\in f^{-1}(k)}p_{c,j}\right)}\right)
-		        \tag{по нер-ву Йенсена}\\
-		        &=\left(\sum_{i\in f^{-1}(k)}p_{c,j}\right)\log\frac{(\sum_{i\in f^{-1}(k)} p_{i})p_j}{\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)} = -\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)\log\frac{\left(\sum_{i\in f^{-1}(k)}p_{i,j}\right)}{(\sum_{i\in f^{-1}(k)} p_{i})p_j}
+		        &- \sum_{i \in f^{-1}(k)} p_{i, j} \log \frac{p_{i, j}}{p_i p_j} 
+		        = \sum_{i \in f^{-1}(k)} p_{i, j} \log \frac{p_i p_j}{p_{i, j}} \\
+		        &= P_{kj} \sum_{i \in f^{-1}(k)}\frac{p_{i, j}}{P_{kj}} \log \frac{p_i p_j}{p_{i, j}}
+		        \tag{поделили и домножили, чтобы сумма коэффициентов была 1}\\
+		        &\le P_{kj} \log \left(\sum_{i \in f^{-1}(k)} \frac{p_i p_j}{P_{kj}} \right)
+		        \tag{по неравенству Йенсена} \\
+		        &= P_{kj} \log \frac{P_k p_j}{P_{kj}} 
+		        = -P_{kj} \log \frac{P_{kj}}{P_k p_j}
 		    \end{align*}
 		\end{proof*}
 		\item  Следующие формулы для взаимной информации эквивалентны
 			\begin{align*}
-				I( \alpha : \beta ) &= H( \alpha) - H( \alpha  \mid \beta  ) \\
-										 &= H( \beta ) - H( \beta \mid \alpha ) \\
-										 &= H\left( \alpha  \right) + H( \beta ) - H( \alpha , \beta ) \\
-										 &= H( \alpha , \beta ) - H( \alpha \mid \beta ) - H( \beta \mid \alpha )
+				I( \alpha : \beta ) 
+				&= H( \alpha) - H( \alpha  \mid \beta  ) \\
+				&= H( \beta ) - H( \beta \mid \alpha ) \\
+				&= H\left( \alpha  \right) + H( \beta ) - H( \alpha , \beta ) \\
+			    &= H( \alpha , \beta ) - H( \alpha \mid \beta ) - H( \beta \mid \alpha )
 			\end{align*}
 	\end{enumerate}
 \end{prop}
@@ -293,11 +326,11 @@
 
 \subsection{Оценка на биноминальные коэффициенты}
 \[
-	\sum_{i=0}^{k} {n \choose i} \le  2^{n H(\frac{k}{n})}
+	\sum_{i=0}^{k} {n \choose i} \le  2^{n H\left(\frac{k}{n}\right)}
 .\] 
 Обозначим сумму за $ C$.
 
-Будем выбирать множество размера не больше $ k$ равновероятно, а затем проверять, попало ли  $ i$ наше множество.
+Будем выбирать множество размера не больше $ k$ равновероятно, а затем проверять, попало ли $ i$ в наше множество.
 Пусть $ X_i$ --- индикатор того, что $ i$ выбрали. 
 \begin{align*}
 	\log C = H(X) &\le  H( X_1, \ldots , X_n) \le \\ \tag{Chain rule}
@@ -307,7 +340,7 @@
 \end{align*}
 \textit{Пояснение к последнему переходу.} $H(\frac{k}{n}) = \frac{k}{n} \log \frac{n}{k} + (1 - \frac{k}{n}) \log \frac{1}{1 - \frac{k}{n}}$. С другой стороны $H(X_1) = p \log \frac{1}{p} + (1-p) \log \frac{1}{1-p}$, где $p$~--- вероятность того, что первый элемент попал в множество. Заметим, что функция $f(x) = x \log \frac{1}{x} + (1 - x) \log \frac{1}{1-x}$ возрастает на $(0, \frac{1}{2})$. То есть нужно лишь показать, что $p \le \frac{k}{n}$. Для этого посчитаем матожидание числа элементов, которые вошли в выбранное множество.
 \begin{align*}
-    k \ge \E(N) = \E(\sum X_i) = \sum \E(X_i) = \sum p_i
+    k \ge \E(X) = \E(\sum X_i) = \sum \E(X_i) = \sum p_i
 \end{align*}
 Но каждый элемент войдет в множество равновероятно, тогда $p \le \frac{k}{n}$.
 
