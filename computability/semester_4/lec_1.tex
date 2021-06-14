@@ -3,7 +3,7 @@
 
 \lecture{1}{11 feb}{\dag}
 \begin{defn}[]\index{$ k$-местная частичная функция}
-	Пусть функция $ f\colon \N^{k} \to  \N, ~ k \in \N$, где $ \N = \{0, 1, 2, \ldots \}$\footnote{Мы здесь считаем ноль натуральным числом}. Такая функция называется \selectedFont{$ k $-местной частичной функцией}. Если $ k = 0$, то $ f = \const$.
+	Пусть функция $ f\colon \N^{k} \to  \N \cup \{\uparrow\}, ~ k \in \N$, где $ \N = \{0, 1, 2, \ldots \}$\footnote{Мы здесь считаем ноль натуральным числом}. Такая функция называется \selectedFont{$ k $-местной частичной функцией}. Если $ k = 0$, то $ f = \const$.
 \end{defn}
 
 \subsection{Простейшие функции} \index{простейшие функции}
@@ -27,7 +27,7 @@
 	,\] 
 	если 
 	\[
-		f = h(g_1(x_1, \ldots, x_{n}), \ldots g_m(x_1, \ldots , x_{n}))
+		f(x_1, \ldots, x_n) = h(g_1(x_1, \ldots, x_{n}), \ldots g_m(x_1, \ldots , x_{n}))
 	.\] 
 	Оператор обозначается $\S$.
 \item \index{оператор примитивной рекурсии}
@@ -656,8 +656,8 @@
 					\\
 				&\widetilde{ \beta } ' (\widetilde{ \alpha } , \widetilde {q_i}, \widetilde {a_j}, \widetilde{ \beta } ) &&= 
 				\begin{cases}
-					\widetilde{ \beta } \cdot m + \varphi_{a}(\widetilde {q_i}, \widetilde {a_j}), & \varphi _{d}(\widetilde {q_i} ,\widetilde {a_j} ) = 1 \\
-					\left\lfloor \frac{\widetilde{ \beta } }{m} \right\rfloor, & \varphi _{d}(\widetilde {q_i},\widetilde {a_j} ) = 2
+					\widetilde{ \beta } \cdot m + \varphi_{a}(\widetilde {q_i}, \widetilde {a_j}), & \varphi _{d}(\widetilde {q_i} ,\widetilde {a_j} ) = 2 \\
+					\left\lfloor \frac{\widetilde{ \beta } }{m} \right\rfloor, & \varphi _{d}(\widetilde {q_i},\widetilde {a_j} ) = 1
 				\end{cases}
 		\\
 				& \widetilde {a_j} ' &&= 
