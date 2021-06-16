@@ -1,40 +1,40 @@
 \begin{theindex}
 
   \item $ k$-местная частичная функция, 
-		\hyperpage{3}
-  \item $\Pi_n$, \hyperpage{31}
-  \item $\Sigma_n$, \hyperpage{31}
+		\hyperpage{4}
+  \item $\Pi_n$, \hyperpage{35}
+  \item $\Sigma_n$, \hyperpage{35}
 
   \indexspace
 
-  \item Свойство функций, \hyperpage{25}
-  \item кусочное задание функции, \hyperpage{10}
-  \item общерекурсивная функция, \hyperpage{5}
-  \item оператор минимизации, \hyperpage{4}
+  \item Свойство функций, \hyperpage{27}
+  \item кусочное задание функции, \hyperpage{11}
+  \item общерекурсивная функция, \hyperpage{6}
+  \item оператор минимизации, \hyperpage{5}
   \item оператор ограниченной минимизации, 
-		\hyperpage{6}
+		\hyperpage{7}
   \item оператор примитивной рекурсии, 
-		\hyperpage{3}
-  \item оператор суперпозиции, \hyperpage{3}
-  \item перечислимое множество, \hyperpage{17}
-  \item предикаты, \hyperpage{7}
-  \item примитивно рекурсивная функция, 
 		\hyperpage{4}
-  \item проекция, \hyperpage{20}
-  \item простейшие функции, \hyperpage{3}
+  \item оператор суперпозиции, \hyperpage{4}
+  \item перечислимое множество, \hyperpage{18}
+  \item предикаты, \hyperpage{8}
+  \item примитивно рекурсивная функция, 
+		\hyperpage{5}
+  \item проекция, \hyperpage{21}
+  \item простейшие функции, \hyperpage{4}
 
   \indexspace
 
-  \item равносильность МТ и \crf, \hyperpage{10}
-  \item разрешимое множество, \hyperpage{17}
-  \item рекурсия возвратная, \hyperpage{9}
-  \item рекурсия совместная, \hyperpage{10}
-  \item сводимость по Тьюрингу, \hyperpage{30}
+  \item равносильность МТ и \crf, \hyperpage{12}
+  \item разрешимое множество, \hyperpage{18}
+  \item рекурсия возвратная, \hyperpage{10}
+  \item рекурсия совместная, \hyperpage{11}
+  \item сводимость по Тьюрингу, \hyperpage{34}
   \item теорема об арифметической иерархии, 
-		\hyperpage{34}
-  \item универсальная функция, \hyperpage{21}
-  \item функция Аккермана, \hyperpage{14}
+		\hyperpage{39}
+  \item универсальная функция, \hyperpage{22}
+  \item функция Аккермана, \hyperpage{15}
   \item частично рекурсивная функция, 
-		\hyperpage{4}
+		\hyperpage{5}
 
 \end{theindex}
