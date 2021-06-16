@@ -5,11 +5,13 @@
 
 Пусть есть распределение на буквах $  p_1, p_2, \ldots p_k$. \footnote{считаем, что слово состоит из независимых букв}
 
-Откажемся от условия однозначного декодирования, но будем требовать, чтобы 
- $$ \varepsilon _n \coloneqq \Pr [D(E(x)) \ne x],$$ где $\lvert x  \rvert = n$ стремилось к нулю $ \varepsilon _n \to  0$ при $ n \to  \infty$.\footnote{Если сделать равенство нулю, то особого сжатия не будет}
+Откажемся от условия однозначного декодирования, но будем требовать 
+ $$ \varepsilon _n \underset{n \to \infty}{\to} 0\footnote{Если сделать равенство нулю, то особого сжатия не будет}$$
+ где $\lvert x  \rvert = n,
+ \varepsilon _n \coloneqq \Pr [D(E(x)) \ne x]$
 
 
-\begin{thm}
+\begin{thm}[Шеннон]
 	~\begin{enumerate}
 		\item Если $ L_n > \lceil h n \rceil $, где  $ h > H(p)$, то кодирование есть, то есть существуют такие функции $ E$ и  $ D$, что  $ \varepsilon _n \to 0$.
 		\item Если  $ L_n < \lceil hn \rceil$, где $ h < H(p)$, то  $ \varepsilon _n \to 1$ для любых $ E$ и $ D$.
@@ -28,9 +30,9 @@
 \begin{itemize}
 \item Пусть $ X_{ij}$ --- характеристическая функция того, что в слове на позиции $ j$ находится буква  $ i$.
 
-Для случайной величины $ X_i \coloneqq  \sum\limits_{j} X_{ij}$ применим неравенство Чебышева для вероятности того, что условие типичности не выполняется для конкретной буквы:\footnote{Здесь $ \Var[X_i]$ --- дисперсия.}
+Для случайной величины $ X_i \coloneqq  \sum\limits_{j} X_{ij}$ применим неравенство Чебышева для вероятности того, что условие типичности не выполняется для конкретной буквы:
  \[
-	 \Pr [ \lvert X_i - np_i \rvert \ge \delta  n ] \le  \frac{\Var  [X_i]}{( \delta  n) ^2} =
+	 \Pr [ \lvert X_i - np_i \rvert \ge \delta  n ] \le  \frac{\mathbb{D}  [X_i]}{( \delta  n) ^2} =
 	 \frac{np_i (1-p_i)}{( \delta  n)^2} =  \O\left(\tfrac{1}{ \delta^2  n}\right)
  ,\]  так как $\E X_i = n p_i$. \\
 Мы расписали вероятность, что какой-то символ нарушает условие $ \delta$-типичности.
@@ -50,13 +52,14 @@
 	N_{n_1, \ldots n_k} = \frac{n!}{n_1! \cdot \ldots \cdot n_k!}
 .\] 
 
-Обозначим $\delta_i = \frac{n_i}{n} - p_i$.
+Обозначим $\delta_i \coloneqq \frac{n_i}{n} - p_i$.
 \begin{align*}
 	\log N_{n_1, \ldots n_k} 
 	       &= \tag{так как $n! = \poly(n) \left( \frac{n}{e} \right) ^{n }$}\\ 
 		   &= \log \left( \left( \frac{n}{n_1} \right)^{n_1} \cdot \left( \frac{n}{n_2} \right)^{n_2} \cdot \ldots \cdot \left( \frac{n}{n_k} \right)^{n_k} \right)  + \O( \log n)=  \\
-		   & =\sum_{i} n_i \log \frac{n}{n_i} + \O(\log n) = \tag{$n_i$ по определению}\\
+		   & =\sum_{i} n_i \log \frac{n}{n_i} + \O(\log n) = \\
 		   &= n \sum_{i} (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O(\log n) 
+		   \tag{$n_i$ по определению}
 \end{align*}
 % В последнем переходе $ \lvert   \delta _i \rvert< \delta $, так как типичное, $  \delta _i$ --- отклонение $i $-ой буквы в языке
 
@@ -64,16 +67,22 @@
 
 	Для этого можно посчитать для каждого распределения букв, сколько слов с таким распределением будут типичными.
 
-	Число способов разбить $ n$ на $ k$ слагаемых грубо оценивается сверху как $n^k$. А число слов в соответствующем разбиении можно оценить максимумом по всем $\delta _i$,  таким что $\lvert\delta _i\rvert \le \delta$ (так как слово $\delta$-типичное).
+	Число способов разбить $ n$ на $ k$ слагаемых грубо оценивается сверху как $n^k$\footnote{Выбираем распределение $n$ букв по $k$ возможным значениям.}. А число слов в соответствующем разбиении можно оценить максимумом по всем $\delta _i$,  таким что $\lvert\delta _i\rvert \le \delta$ (так как слово $\delta$-типичное).
 \begin{align*}
 	\log\Bigl(	\# (\text{$\delta$-типичных слов})\Bigr) 
-	& \le \log \left( n^{k} \cdot \max_{ \delta _i} N \right) \le \\
+	& \le \log \left( n^{k} \cdot \max_{ \delta _i} N_{n_1, \ldots n_k} \right) \le \\
 	%& \le \max_{ \delta _i} H(p_1 + \delta _1 , p_2+\delta_2 , \ldots ) \cdot n + \O( \log n) = \tag{Переход за кадром\footnote{Написать честную формулу энтропии как частную производную}} \\
-	& \le n \cdot \max_{ \delta_i} \sum_i (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O( \log n) \le \\
-	& \le n \cdot \left(\max_{ \delta _i} \sum_i p_i \log \frac{1}{p_i} + k\delta \max_{ \delta _i} \log\frac{1}{p_i}\right) + \O(\log n) = \\
+	&\le n \cdot \max_{ \delta_i} \sum_i (p_i + \delta _i) \cdot \log \frac{1}{p_i + \delta _i} + \O( \log n) \le \\
+	& \le n \cdot \left(\sum_i p_i \log \frac{1}{p_i} + \delta\cdot \log\frac{1}{p_i}\right) + \O(\log n) = \\
 	&= nH(p) + \O( \delta \cdot n)
 \end{align*}
-Если теперь <<кодер>> может отобразить инъективно все типичные слова в набор битовых слов длины $ h n$, при этом ошибаться он будет на нетипичных, количество которых стремиться к нулю, $\frac{\#\text{$\delta$-типичных слов}}{2^{L_n}} \le 2^{nH(p) - L_n + O(\delta n)} \to 0$
+Если теперь <<кодер>> может отобразить инъективно все типичные слова в набор битовых слов длины $ h n$, при этом ошибаться он будет на нетипичных, количество которых стремиться к нулю.
+\[
+    \frac{\log{(\#\text{$\delta$-типичных слов)}}}{L_n} 
+    = \frac{nH(p) + O(\delta n)}{L_n}
+    \le \frac{nH(p) + O(n^{0.98})}{hn} = \frac{H(p)}{h} + O(n^{-0.02})
+\] 
+Так как $H(p)  < h$ и $n$ растет быстрее $\O(\delta n) = \O(n^{0.98})$, то с какого то момента выражение меньше единицы
 \end{itemize}
  \item Во второй части докажем, что вероятность ошибки декодера на $\delta$-типичныx словах равна 1. 
 	 Понятно, что этого будет достаточно.
@@ -86,21 +95,23 @@
 % \end{figure}
 
 Пусть $ L_n \le h n$.
-Посмотрим на любое кодовое распределение слов. Покажем, что вероятность по нашему определению для $  \delta $-типичных слов больше, чем $ \frac{1}{2^{L_n}}$.
+Посмотрим на любое распределение кодовых слов. Покажем, что вероятность по нашему определению для $ \delta $-типичных слов больше, чем $ \frac{1}{2^{L_n}}$.
 \begin{align*}
-	\Pr[w] 
-	&= p_1^{n_1} \cdot p_2^{n_2} \cdot \ldots \cdot p_k^{n_k} = \\
+	\Pr[w = x] 
+	&= p_1^{n_1} \cdot p_2^{n_2} \cdot \ldots \cdot p_k^{n_k} = 
+	\tag{$x$ -- конкретное слово}\\
 	&= 2^{\log \Pi_i p_i^{n_i}} = \\
 	&= 2^{-\sum n_i \log \frac{1}{p_i}} = \\
-    &= 2^{- \sum_i (p_i + \delta_i) \log \frac{1}{p_i} n} \le \\
-	&\le 2^{-H(p) n + \O( \delta n)}
+    &= 2^{-n \sum_i (p_i + \delta_i) \log \frac{1}{p_i}} \le  \\
+	&= 2^{-H(p) n + \O( \delta n)}
 \end{align*} 
 С какой вероятностью декодер ответит правильно?
 \begin{align*}
 	\Pr[D(E(w)) = w] 
-	&= \sum_{x}\Pr[D(x) = w \mid E(w) = x] \cdot \Pr[E(w)=x] \\
-	&\le \sum_{x}\Pr[E(w)=x] \le \\
-	&\le 2^{L_n} \cdot \max_{w} \Pr[w] \le \\
+	&= \sum_{x}\Pr[D(x) = w, E(w) = x] \\
+	&\le \sum_{x}\Pr[D(x)=w] \le 
+	\tag{$D(x)$ --- какое-то фиксированное слово}\\
+	&\le 2^{L_n} \cdot \max_{t \text{ -- слово}} \Pr[w = t] \le \\
 	&\le 2^{L_n - H(p) n + \O( \delta n)} \to 0
 \end{align*}
 Предельный переход верен, потому что $L_n - H(p)n + O(\delta n) \le (h - H(p))n + O(\delta n) \to -\infty$, т.к. $h - H(p) < 0$ константа.

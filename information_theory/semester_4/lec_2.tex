@@ -1,6 +1,6 @@
 \lecture{2}{8 April}{\dag}
 \section{Задача выполнимости}
-\textbf{Вход:} $ \Phi = \wedge C_i $  --- формула в КНФ.
+\textbf{Вход:} $ \Phi = \bigwedge\limits_{i=1}^n C_i $  --- формула в КНФ.
 
 Будем подставлять значения во все переменные по очереди, тем самым перемещаться по двоичному дереву.
 
@@ -12,7 +12,9 @@
     \label{fig:cnf-algo}
 \end{figure}
 
-Это достаточно эффективный алгоритм, причем мы не ограничиваем выбор последовательности подстановок, порядок $ 0$ и $ 1$. Таким образом, если есть выполняющий набор, и мы на первом шаге подберем верное значение первой переменной, на второй для второй и т.д., то получим оптимальное решение. Однако не всегда такой алгоритм работает быстро. Пример: задача про рассадку голубей.
+Это достаточно эффективный алгоритм, причем мы не ограничиваем выбор последовательности подстановок, порядок $ 0$ и $ 1$.
+
+Таким образом, если есть выполняющий набор, и мы на первом шаге подберем верное значение первой переменной, на второй для второй и так далее, то получим оптимальное решение. Однако не всегда такой алгоритм работает быстро. Пример: задача про рассадку голубей.
 
 \section{Раcсадка голубей}
 У нас есть $n+1$ голубь и $n$ клеток, хотим показать, что нельзя рассадить в клетку по одному голубю.
@@ -145,15 +147,12 @@
 		\end{proof*}
 		\item $ H( \alpha , \beta ) = H( \alpha ) + H( \beta  \mid \alpha ) = H(  \beta ) + H( \alpha \mid \beta )$
 		\begin{proof*}
-		    \[
-    		    H( \beta ) + H( \alpha  \mid \beta ) = \sum_j p_j \log \frac{1}{p_j} + \sum_{j} H ( \alpha  \mid \beta = j) \cdot  \Pr[\beta = j] = \]\[ \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i \mid  \beta  = j] \cdot  \log \frac{1}{\Pr [ \alpha  = i \mid \beta  = j]}\right) \cdot  \Pr[\beta = j] = 
-		    \]
-		    \[ 
-		        \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i,  \beta  = j] \cdot  \log \frac{\Pr [\beta = j]}{\Pr [ \alpha  = i,  \beta  = j]}\right) = 
-		    \]
-		     \[ 
-		         \sum_j \sum_i p_{i,j} \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} p_{i,j} \cdot  \log \frac{p_j}{p_{i,j}}\right) = \sum_{i,j}p_{i,j}\log \frac{1}{p_{i,j}} = H(\alpha, \beta)
-		    \]
+		\begin{align*}
+    		H( \beta ) + H( \alpha  \mid \beta ) &= \sum_j p_j \log \frac{1}{p_j} + \sum_{j} H ( \alpha  \mid \beta = j) \cdot  \Pr[\beta = j] = \\
+    		&= \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i \mid  \beta  = j] \cdot  \log \frac{1}{\Pr [ \alpha  = i \mid \beta  = j]}\right) \cdot  \Pr[\beta = j] = \\
+		    &= \sum_j p_j \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} \Pr[ \alpha = i,  \beta  = j] \cdot  \log \frac{\Pr [\beta = j]}{\Pr [ \alpha  = i,  \beta  = j]}\right) = \\
+		    &= \sum_j \sum_i p_{i,j} \log \frac{1}{p_j} + \sum_{j} \left(\sum_{i}^{} p_{i,j} \cdot  \log \frac{p_j}{p_{i,j}}\right) = \sum_{i,j}p_{i,j}\log \frac{1}{p_{i,j}} = H(\alpha, \beta)
+		    \end{align*}
 		    подсказка: $\Pr [A, B] = \Pr[A \mid B] \cdot \Pr[B]$
 		\end{proof*}
 		\item $ H( \alpha , \beta ) \ge H( \alpha )$
@@ -179,9 +178,8 @@
     				&= \sum_{i, j}^{} p_{i,j} \cdot \log \frac{p_{j}}{p_{i, j}}
     			\end{align*}
 			\end{proof*}
-		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $, причем равенство достигается, если величина $ \alpha$ независимо с $ \gamma$
+		\item $ H( \alpha \mid \beta) \ge H( \alpha  \mid \beta, \gamma ) $, причем равенство достигается, если $(\gamma \mid \beta)$ не зависимо с $(\alpha \mid \beta)$.
 		    \begin{proof*}
-		        \\
 		        Обозначим $ p_{ijk} := \Pr[\alpha = i, \beta = j, \gamma = k]$, аналогично $ p_{ij}, p_{jk}$.\\
 		        Распишем левую и правую части по определению:
 		        \begin{align*}
@@ -198,7 +196,13 @@
 		            &= p_{ij} \log \left( \frac{ \sum_k p_{jk}}{p_{ij}} \right) \\
 		            &= p_{ij} \log \frac{p_j}{p_{ij}}
 		        \end{align*}
-		        Для независимых $ \alpha$ и $ \gamma$:
+		        Для независимых $ (\alpha \mid \beta)$ и $(\gamma \mid \beta)$, то есть:
+		        \begin{align*}
+		            &\Pr[\alpha, \gamma \mid \beta] = \Pr[\alpha \mid \beta] \cdot \Pr[\gamma \mid \beta] \implies\\
+		            &\frac{p_{ijk}}{p_{j}} = \frac{p_{ij}}{p_j}\cdot\frac{p_{jk}}{p_j} \implies \frac{p_{ijk}}{p_{jk}} = \frac{p_{ij}}{p_j} \implies\\
+		          &\Pr[\alpha = i \mid \beta = j, \gamma = k] = \Pr[\alpha = i \mid \beta = j]
+		        \end{align*}
+		        Теперь можем расписать энтропию:
 		        \begin{align*}
 		            H(\alpha \mid \beta, \gamma) 
 		            &= \sum_{jk} p_{jk} H(\alpha \mid \beta = j, \gamma = k) \\
@@ -218,19 +222,15 @@
 		    \end{proof*}
 		\item 
 			$ 2H( \alpha , \beta , \gamma ) \le H( \alpha , \beta ) + H( \alpha,  \gamma ) + H( \beta , \gamma ).$
-		\begin{proof*}
+		\begin{proof*}\\
 		 Заметим, что $H(\alpha, \beta, \gamma) = H(\alpha) + H(\beta, \gamma \mid \alpha) = H(\alpha) + H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)$.\\
 		 Теперь распишем аналогичное для правой части и воспользуемся $H(\alpha) \ge H(\alpha \mid \beta)$:
-		 \[
-		    H(\alpha, \beta) = H(\alpha) + H(\beta \mid \alpha)
-		 \]
-		 \[
-		    H(\alpha, \gamma) = H(\alpha) + H(\gamma \mid \alpha) \ge H(\alpha) + H(\gamma \mid \alpha, \beta)
-		 \]
-		 \[
-		    H(\beta, \gamma) = H(\beta) + H(\gamma \mid \beta) \ge H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)
-		 \]
-		 Теперь если сложить все три формулы, то получим то, что надо.
+		 \begin{align*}
+		     H(\alpha, \beta) &= H(\alpha) + H(\beta \mid \alpha)\\
+		     H(\alpha, \gamma) &= H(\alpha) + H(\gamma \mid \alpha) \ge H(\alpha) + H(\gamma \mid \alpha, \beta)\\
+		     H(\beta, \gamma) &= H(\beta) + H(\gamma \mid \beta) \ge H(\beta \mid \alpha) + H(\gamma \mid \alpha, \beta)
+		 \end{align*}
+		 Теперь, если сложить все три формулы, то получим то, что надо.
 		\end{proof*}
 		
     \end{enumerate} 
@@ -301,27 +301,29 @@
 
 \section{Применение энтропии}
 \subsection{Взвешивания монеток}
-Попробуем решить задачу с монетками. Мы взвешиваем $ 14$ монеток и хотим найти фальшивую за три взвешивания, причем неизвестен относительный вес. В нашем графе есть только один исход со всеми равенствами. Докажем, что нет такой стратегии.
+Попробуем решить задачу с монетками. Мы взвешиваем $ 14$ монеток и хотим найти фальшивую за три взвешивания, причем неизвестен относительный вес. Всего будет $14 \cdot 2$ исходов (одна из $14$ монет фальшивая и относительный вес).
 
-Пусть нам дана такая стратегия первого игрока.
-Тогда мы получаем дерево с $ 27$ листьями, где во всех листьях, кроме одного, записана пара:
+Предположим, что есть стратегия, позволяющая решить задачу.
+
+Построим граф, соответствующий взвешиваниям: каждое имеет три исхода, всего три взвешивания. Получается дерево с $27$ листьями, где во всех листьях, кроме одного, записана пара:
 номер фальшивой монетки и ее относительный вес.
-В единственной ветке, где все взвешивания давали равенство, будет записан только номер фальшивой монетки.
+В единственной ветке, где все взвешивания давали равенство, будет записан только номер фальшивой монетки (теперь количество листьев совпадает с нужным количеством исходов\footnote{Далее будем считать, что исходов $27$}).
 Построим равномерное распределение на этих исходах.
 
 При равномерном распределении энтропия $ \log 27$.
 
 Если стратегия верная, то
 \begin{align*}
-\log 27 = H(\alpha) &\le  H( \alpha, q_1, q_2, q_3) \le \\ &\le H( q_1 ) + H(q_{2} \mid q_1 )+ H(q_3 \mid q_1, q_2)+ H( \alpha  \mid q_1, q_2, q_3 ) \le \tag{Chain rule}\\  
+\log 27 = H(\alpha) &\le  H( \alpha, q_1, q_2, q_3) = \\ &= H( q_1 ) + H(q_{2} \mid q_1 )+ H(q_3 \mid q_1, q_2)+ H( \alpha  \mid q_1, q_2, q_3 ) \le \tag{Chain rule}\\  
 			& \le  H(q_1) + H(q_2) + H(q_3) + 0
 \end{align*}
 
-Так как $ H(q_i) \le  \log 3$, для всех $ i$ выполнено равенство.
+Так как $ H(q_i) \le  \log 3$, для всех $ i$ должно быть $H(q_i) = \log 3$.
 
 Чтобы было так, мы должны в каждый ход равновероятно получать все три ответа.
-Пусть мы взвешиваем кучки из $ k$ монет\footnote{Очевидно, что если взвешивать кучки разного размера, информацию извлечь не получиться даже по Хартли}. 
-Вероятность того, что левая кучка будет легче в результате первого взвешивания $\frac{2k}{27}$ (так как у нас либо в левой кучке фальшивая, и она легче, либо в правой кучке фальшивая, и она тяжелее). Тогда $\frac{2k}{27} = \frac{1}{3}$. $k$ получилось нецелым.
+
+Пусть мы первым ходом взвешиваем кучки из $ k$ монет\footnote{Очевидно, что если взвешивать кучки разного размера, информацию извлечь не получиться даже по Хартли, так как мы не знаем ничего про относительный вес}. 
+Вероятность того, что левая кучка будет легче в результате взвешивания $\frac{2k}{27}$ (так как у нас либо в левой кучке фальшивая, и она легче, либо в правой кучке фальшивая, и она тяжелее). Тогда $\frac{2k}{27} = \frac{1}{3}$. $k$ получилось нецелым.
 Противоречие.
 
 \subsection{Оценка на биноминальные коэффициенты}
@@ -333,8 +335,8 @@
 Будем выбирать множество размера не больше $ k$ равновероятно, а затем проверять, попало ли $ i$ в наше множество.
 Пусть $ X_i$ --- индикатор того, что $ i$ выбрали. 
 \begin{align*}
-	\log C = H(X) &\le  H( X_1, \ldots , X_n) \le \\ \tag{Chain rule}
-				  & \le \sum_{ }^{ } H( X_i \mid X_{<i}) \le \\
+	\log C = H(X) &=  H( X_1, \ldots , X_n) = \tag{Chain rule} \\ 
+				  & = \sum_{ }^{ } H( X_i \mid X_{<i}) \le \\
 				  & \le \sum_{  }^{ } H(X_i) =  n H(X_1) \le  \tag{считаем, что $ k \le \frac{n}{2}$} \\ 
 				  & \le n H\left( \tfrac{k}{n} \right)  
 \end{align*}

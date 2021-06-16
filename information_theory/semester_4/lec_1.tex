@@ -42,7 +42,11 @@
 \end{enumerate} 
 \end{st}
 \begin{proof}
-    Очевидно, следует из определения.
+    \begin{enumerate}
+        \item Очевидно
+        \item $\lvert A_X \rvert \le \lvert A \rvert$
+        \item $\chi(A) \le \chi(A_X \times A_Y) \le \chi(A_X) + \chi(A_Y)$
+    \end{enumerate}
 \end{proof}
 
 \begin{figure}[h]
@@ -87,7 +91,7 @@
 \begin{proof*}
 	Перепишем неравенство из условия:
 	\begin{align*}
-		2 \log \lvert A \rvert &\le \log \lvert A_{12} \rvert  + \log  \lvert A_{13} \rvert  + \log \lvert 23 \rvert  \\
+		2 \log \lvert A \rvert &\le \log \lvert A_{12} \rvert  + \log  \lvert A_{13} \rvert  + \log \lvert A_{23} \rvert  \\
 		\log \lvert A \rvert^2 & \le \log \bigl(\lvert A_{12} \rvert \cdot \lvert A_{13} \rvert \cdot \lvert A_{23} \rvert\bigr)   \\
 		\lvert A \rvert ^2 &\le \lvert A_{12} \rvert \cdot \lvert A_{13} \rvert \cdot \lvert A_{23} \rvert \tag{$ \log$  --- возрастающая функция}  
 	\end{align*}
@@ -104,8 +108,7 @@
 		A_{13, 23} = \{(x_i, z_s, y_j, z_l) \mid (x_i, z_s) \in A_{13}, ~ (y_j, z_l)  \in A_{23}\}
 	.\] 
 
-	Оценим размер множества $ A_{13,23}$ сверху и снизу.
-	Очевидно $ \lvert A_{13, 23} \rvert \le \lvert A_{13} \rvert \cdot \lvert A_{23} \rvert $.
+	Если внимательно посмотреть на определение, можно понять, что $ \lvert A_{13, 23} \rvert = \lvert A_{13} \rvert \cdot \lvert A_{23} \rvert $.
 
 	Теперь опишем элементы, которые заведомо есть в $ A_{13, 23}$, чтобы оценить его размер снизу.
 	Для этого зафиксируем $ x_i, y_j$, тогда все $ z_k$ из $ B_{ij}$ точно сюда подходят в качестве $ z_s$ или $ z_l$.
@@ -114,15 +117,29 @@
 
 	Таким образом,
 	\[
-		\lvert A_{13} \rvert 	\cdot  \lvert A_{23} \rvert  \ge \lvert A_{13,23} \rvert \ge \sum K_{ij}^2 
+		\lvert A_{13} \rvert 	\cdot  \lvert A_{23} \rvert  = \lvert A_{13,23} \rvert \ge \sum K_{ij}^2 
 	.\] 
 
-	Домножим на $ \lvert A_{12} \rvert $, которое не меньше количества $ K_{ij}$ (обозначим его за $ n$), так как каждый набор $ B_{ij}$ соответствует одному элементу $ A_{12}$:
+    При этом заметим, что 
+    $\lvert A_{12} \rvert = \lvert\{B_{ij} \neq \emptyset \}\rvert$, поскольку если $B_{ij} \neq \emptyset$, то пара $(x_i, y_j)$ лежит в $A_{12}$. В таком случае 
+    $$\lvert A_{12} \rvert = \lvert \{ B_{ij} \neq \emptyset \} \rvert = \lvert \{ K_{ij} \neq 0 \} \rvert = n$$
+
+    Получим итоговое неравенство
 	\begin{align*}
 		\lvert A_{12} \rvert  \cdot \left( \lvert A_{13} \rvert \cdot \lvert A_{23} \rvert   \right) &\ge  n \cdot \sum K_{ij}^2 \ge \tag{неравенство о средних} \\
-																									 & \ge \left( \sum K_{ij} \right)^2 = \lvert A \rvert ^2 
+        & \ge \left( \sum K_{ij} \right)^2 = \lvert A \rvert ^2 
 	\end{align*}
 	А это то, что мы и хотели доказать.
+	
+	\noindent
+	\textit{Пояснение неравенства о средних:}
+	\begin{align*}
+	    n \cdot \sum K_{ij}^2 &\ge \left( \sum K_{ij} \right)^2\\
+	    \sqrt{\left( \sum K_{ij} \right)^2} &\le \sqrt{n \cdot \sum K_{ij}^2}\\
+	    \frac{\sum K_{ij}}{n} &\le \frac{\sqrt{n \cdot \sum K_{ij}^2}}{n}\\
+	    \frac{ \sum K_{ij}}{n} &\le \sqrt{\frac{\sum K_{ij}^2}{n}}
+	\end{align*}
+	Это неравенство между средним арифметическим и средним квадратичным.
 \end{proof*}
 
 \section{Угадывание числа}
@@ -159,7 +176,7 @@ $$ B \coloneqq Q_1 \times \ldots \times Q_h,$$
 	\item $ \chi _{[n] \mid B}(A) = 0$. Ответы на запросы должны однозначно определять число $ m$. Это свойство говорит о корректности протокола, то есть нам ничего не нужно, чтобы, зная ответы, получить $ m$.
 	\item $ \chi(A) \ge \log n$, так как уже первая проекция $A$ имеет $n$ элементов. 
 
-		С другой стороны, $ \chi(A) \le \chi_{B}(A) + \chi_{[n] \mid B}(A) = \chi_{B}(A) \le \chi(B) = \sum_{i=1}^{h} \chi(Q_i)$. 
+		С другой стороны, $ \chi(A) \le \chi(A_{B}) + \chi_{[n] \mid B}(A) = \chi_{B}(A) \le \chi(B) \le \sum_{i=1}^{h} \chi(Q_i)$. 
 
 		А так как $ \chi(Q_i) = 1$, $  h \ge \log n $.
 \end{enumerate} 
@@ -192,10 +209,10 @@ $$ B \coloneqq Q_1 \times \ldots \times Q_h,$$
 Обозначим $ \lvert A_i \rvert = k$, $ \lvert T_i \rvert  = t$ и решим уравнение:
 \begin{align*}
 	k = \frac{t^2}{k-t} & \Longleftrightarrow t^2 = k(k-t) = k^2 -kt \Longleftrightarrow \\
-	t^2 + kt - k^2 = 0 &\Longleftrightarrow t = \frac{-k \pm \sqrt{ k^2 + 4k^2} }{2} = k \cdot \frac{-1 \pm \sqrt{ 5}}{2}  = k \cdot \varphi 
+	t^2 + kt - k^2 = 0 &\Longleftrightarrow t = \frac{-k \pm \sqrt{ k^2 + 4k^2} }{2} = k \cdot \frac{-1 + \sqrt{ 5}}{2}  = k \cdot \varphi 
 \end{align*}
 
-То есть нужно выбирать $ T_i$, чтобы $\varphi \cdot \lvert T_i \rvert = \lvert A_i \rvert$. 
+То есть нужно выбирать $ T_i$, чтобы $\lvert T_i \rvert = \varphi \cdot  \lvert A_i \rvert $. 
 
 Тогда <<средняя цена>> бита будет равна $ 2(\chi(A_i) - \chi(T_i)) = 2 \log \frac{1}{\varphi}$
 
@@ -209,11 +226,12 @@ $$ B \coloneqq Q_1 \times \ldots \times Q_h,$$
 \begin{prac}[Задача про взвешивания монеток]
 	Есть $ n$ монеток и рычажные весы. Хотим найти фальшивую (она одна). 
 \begin{enumerate}
-    \item Пусть $ n = 30$ и весы показывают, что больше, что меньше. Теперь запрос приносит $  \log 3$ информации, так как три ответа.
+    \item Пусть $ n = 30$ и мы знаем тяжелее фальшивка или легче. Теперь запрос приносит $  \log 3$ информации, так как три ответа.
 		\[
 			\log 30 \le  \sum_{i=1}^{h} \chi(a_i) \le h \log 3 
 		.\] 
 	\item $ n = 15$, но мы не знаем относительный вес фальшивой монеты. В прошлом неравенстве можно заменить  $ 30$ на $ 29$. Если в какой-то момент у нас было неравенство, можем в конце узнать не только номер, но и относительный вес, поэтому у нас $ 29$ исходов.
 	\item Вопрос: можно ли при $ n=14$?  Нет. 
 \end{enumerate} 
+То есть информация по Хартли нам помогла понять два раза, что $3$ взвешиваний не хватит. Но её не хватает для того, чтобы решить $3$ задачу.
 \end{prac}
