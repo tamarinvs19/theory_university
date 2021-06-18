@@ -213,7 +213,7 @@ $ D(\EQ) \ge \log 2^{n} + 1= n +1$.
 	\selectedFont{Формульная (схемная) сложность} $ L(f)$ формулы  $ f$ --- минимальное возможное число вершин двоичного дерева, вычисляющего  $ f$.
 \end{defn}
 
-\begin{thm}[Шеннон]
+\begin{thm}[Шеннон]\label{thm:hard}
 	Существует $ f \colon \{0, 1\}^{n} \to  \{0, 1\}$, такая что 
 	$$ L(f) \ge \Omega\left( \tfrac{2^{n}}{n} \right) .$$
 \end{thm}
@@ -245,11 +245,36 @@ $ D(\EQ) \ge \log 2^{n} + 1= n +1$.
 		2^{S \cdot  2( \log S + \log n) + 3S} &\ge  2^{2^n} \\
 		S \cdot  ( 2\log S + 2\log n + 3)&\ge  2^n 
 	\end{align*}
+	
 	Пусть для всех схем $S < \frac{1}{4}\cdot\frac{2^n}{n}$, тогда 
 	\begin{align*}
 	    &S\cdot(2\log S + 2 \log n + 3) < \frac{2^n}{4n}(2n - 4 + 3) = 2^n\left(\frac{1}{2} - \frac{1}{4n}\right) \le 2^n \cdot \frac{1}{2} < 2^n
 	\end{align*}
 	Противоречие. Значит есть схема со сложностью $\ge \frac{1}{4}\cdot\frac{2^n}{n}$.
+	
+\end{proof}
+
+\begin{thm}[Существование сложной монотонной функции]
+	Существует монотонная $ f \colon \{0, 1\}^{n} \to  \{0, 1\}$, такая что 
+	$$ L(f) \ge 2^{n} - \o(2^{n}) .$$
+\end{thm}
+\begin{proof}
+Оценим снизу количество монотонных функций. Рассмотрим такие функции $g$, что $g(u) = 0$, если в $u < \lfloor \frac{n}{2} \rfloor$ единиц, и $g(u) = 1$, если в $u > \lfloor \frac{n}{2} \rfloor$ единиц. Если же единиц ровно $\lfloor \frac{n}{2} \rfloor$, то функция может быть определена как угодно. 
+Заметим, что всего функций такого вида будет $2^{n \choose \lfloor \frac{n}{2} \rfloor}$, так как на входах, где  $\lfloor \frac{n}{2} \rfloor$ единиц, ответ может быть любым из 0 или 1, входов с $\lfloor \frac{n}{2} \rfloor$  единиц как раз ${n \choose \lfloor \frac{n}{2} \rfloor}$. 
+%По формуле Стирлинга, $2^{C_n^{\lfloor \frac{n}{2} \rfloor}} = \frac{n!}{(\frac{n}{2})! \cdot (\frac{n}{2})!} = \frac{\sqrt{n} \cdot (\frac{n}{e})^ n}{(\sqrt{\frac{n}{2}} \cdot (\frac{n}{2e})^ \frac{n}{2})^2} = \frac{2^{n+1}}{\sqrt{n}} $.
+Можем оценить ${n \choose {\lfloor \frac{n}{2} \rfloor}} \le 2^n$, например, через бином Ньютона: $(1+1)^n = \sum_{k=0}^n {n \choose k} \ge {n \choose \lfloor \frac{n}{2} \rfloor}$.
+
+В предыдущей \hyperref[thm:hard]{теореме \ref{thm:hard}} показали, что всего схем сложности $S$ может быть $2^{S \cdot  2( \log S + \log n) + 3S} $. Тогда для схем, вычисляющих монотонные функции, имеем неравенство:
+\begin{align*}
+		2^{S \cdot  2( \log S + \log n) + 3S} &\ge  2^ {{n \choose \lfloor \frac{n}{2} \rfloor}} \\
+		S \cdot  ( 2\log S + 2\log n + 3)&\ge 2^n \ge {{n \choose \lfloor \frac{n}{2} \rfloor}} 
+		%= \frac{2^{n+1}}{\sqrt{n}}
+		\\
+		\log S \ge n - \log \bigl( 2 \log S + 2 \log n + 3 \bigr) &= n - \o(n) 
+\end{align*}
+
+%Неравенство достигается, когда $S$ хотя бы  %$\frac{2^{n+1}}{\sqrt{n}} - o(\frac{2^{n+1}}{\sqrt{n}}) = 2^{n+1} - o(2^{n+1})$
+
 \end{proof}
 
 \textbf{Открытый вопрос:} Можно ли предъявить $ f \in \NP$, что $ L(f) \ge  10n$

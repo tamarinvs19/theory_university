@@ -39,6 +39,7 @@
 			   &= \sum_{i} 1 - \E_{m}(H(r_m^{i})) \ge \tag{Неравенство Йенсена для выпуклой вверх $ H(q)$} \\
 			   &\ge \sum_{i} 1 - H(\E_{m}(r_m^{i})) = \\
 			   &= n - n \sum_{i}^{} \frac{1}{n} H(\E_{m}(r_m^{i})) \ge \tag{Опять неравенство Йенсена для $ H(q)$}\\
+               &\ge n \cdot \Big(1 - H\left(\sum_i \tfrac{1}{n} \E_{m} (r_m^{i})\right)\Big) = n \cdot \Big(1 - H\left(\E_i(\E_{m} (r_m^{i}))\right)\Big) \\
 			   &\ge n \cdot \Big(1 - H\big(\E_{m, i} (r_m^{i})\big)\Big) \ge \tag{Монотонность энтропии на $(0, \tfrac{1}{2})$} \\
 			   & \ge n \cdot \bigg(1 - H\Big(\tfrac{1}{2} - \delta \Big)\bigg) = \tag{Ряд Тейлора для энтропии}\\
 			   &= \Omega(\delta ^2 n)
