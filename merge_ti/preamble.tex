@@ -1,0 +1,344 @@
+\usepackage[english, russian]{babel}
+\usepackage{xltxtra}
+\usepackage{polyglossia}
+\usepackage{mathpazo}
+
+\defaultfontfeatures{Ligatures=TeX,Mapping=tex-text}
+
+\setmainfont{STIX2Text-Regular.otf}[
+ExternalLocation={stix2font/},
+BoldFont=STIX2Text-Bold.otf,
+ItalicFont=STIX2Text-Italic.otf,
+BoldItalicFont=STIX2Text-BoldItalic.otf
+]
+\setmathrm{STIX2Math.otf}[
+ExternalLocation={stix2font/}
+]
+
+
+\usepackage{makeidx}
+\usepackage{amssymb, amsthm, amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{enumitem}
+\usepackage{fdsymbol}
+\usepackage{fontawesome}
+
+
+% Отступы
+\setlength{\parindent}{3ex}
+\setlength{\parskip}{3pt}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+
+\let\lectionnumber=0
+\usepackage{xifthen}
+\makeatother
+\def\@lecture{}%
+\newcommand{\lecture}[3]{
+    \ifthenelse{\isempty{#3}}{%
+        \def\@lecture{Лекция #1}%
+    }{%
+        \def\@lecture{Лекция #1: #3}%
+    }%
+    % \subsection*{\@lecture}
+	\let\lectionnumber=#1
+    \marginpar{
+	\tiny Лекция #1\\
+	\small\textsf{\mbox{#2}}}
+}
+\makeatletter
+
+
+% разметка страницы и колонтитул
+\usepackage[left=1.4cm,right=2cm,top=1.5cm,bottom=1.1cm,bindingoffset=0cm]{geometry}
+
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[C]{\bf\rightmark}
+
+% \let\lectionnumber=0
+\newcommand{\lecturename}[1]{
+	\ifthenelse{\isempty{#1}}
+	{%
+		Еще не начались
+	}{%
+	Лекция \lectionnumber
+	}
+}
+\fancyhead[L]{\lecturename{\lectionnumber}}
+
+\fancyfoot{}
+\fancyhfoffset{0pt}
+\addtolength{\headheight}{13pt}
+\pagestyle{fancy}
+
+
+\usepackage{xcolor}
+\definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
+\definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
+\definecolor{CarnationPink}{cmyk}{0, 0.349, 0.2118, 0}
+\definecolor{Pink}{cmyk}{0, 100, 0, 0}
+\definecolor{Cyan}{cmyk}{56, 0, 0, 100}
+\definecolor{Gray}{gray}{0.3}
+
+
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{3f888f} % цвет ссылок
+\definecolor{urlcolor}{HTML}{af0000} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,
+	linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+
+\usepackage{mdframed}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{defstyle}{%
+    linecolor=red,
+	linewidth=4pt,leftline=true,topline=false,bottomline=false,rightline=false,%
+    frametitlerule=false,%
+    % frametitlebackgroundcolor=red!5,%
+	backgroundcolor=red!0,%
+    innertopmargin=0pt,innerbottommargin=4pt,innerleftmargin=7pt
+    frametitlebelowskip=10pt,
+    frametitleaboveskip=7pt,
+}
+\mdfsetup{skipabove=3pt,skipbelow=3pt}
+\mdfdefinestyle{exstyle}{%
+    linecolor=gray,
+	linewidth=4pt,leftline=false,topline=false,bottomline=false,rightline=true,%
+    frametitlerule=false,%
+    backgroundcolor=gray!0,%
+    innertopmargin=0pt,innerbottommargin=4pt,innerleftmargin=0pt,innerrightmargin=7pt
+    frametitlebelowskip=10pt,
+    frametitleaboveskip=7pt,
+	font=\small,
+}
+\theoremstyle{definition}
+\mdtheorem[style=defstyle]{defn}{Определение}
+\mdtheorem[style=exstyle]{ex}{Пример}
+
+\newmdtheoremenv[nobreak=true,backgroundcolor=Aquamarine!3,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{cor}{Следствие}
+\newmdtheoremenv[nobreak=true,backgroundcolor=CarnationPink!30,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt]{desc}{Описание}
+% \newmdtheoremenv[nobreak=true,backgroundcolor=Gray!0,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,font={\small}]{ex}{Пример}
+\newmdtheoremenv[nobreak=false,backgroundcolor=cyan!7,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{thm}{Теорема}
+\newmdtheoremenv[nobreak=true,backgroundcolor=Pink!5,linewidth=0pt,innertopmargin=0pt,innerbottommargin=7pt,innerleftmargin=5pt,innerrightmargin=5pt]{lm}{Лемма}
+
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{plain}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{prac}{Упражнение}
+\newtheorem*{probl}{Задача}
+
+
+\renewcommand{\proofname}{Доказательство}
+\renewenvironment{proof}
+{ \hspace{\stretch{1}}\\ \faSquareO\quad  }
+{ \hspace{\stretch{1}}  \faSquare }
+
+\newenvironment{proof*}
+{ \hspace{\stretch{1}}\\ {\color{orange}\faSquareO}\quad  }
+{ \hspace{\stretch{1}}  {\color{orange}\faSquare} }
+
+
+\numberwithin{ex}{section}
+\numberwithin{thm}{section}
+\numberwithin{equation}{section}
+
+
+
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\K}{\mathcal{K}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Cm}{\mathbb{C}}
+\newcommand{\Pm}{\mathbb{P}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\sign}{\operatorname{sign}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\D}{\mathbb{D}}
+
+\newcommand{\EQ}{\operatorname{EQ}}
+\newcommand{\GT}{\operatorname{GT}}
+\newcommand{\rk}{\operatorname{rk}}
+
+\renewcommand{\o}{o}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+
+\def\mybf#1{\textbf{#1}}
+\def\selectedFont#1{\textit{\textbf{#1}}}
+\def\ComplexityFont#1{\textmd{\textbf{\textsf{#1}}}}
+\def\LanguageFont#1{{\textbf{\texttt{#1}}}}
+
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\sg}{\operatorname{sg}}
+\newcommand{\bsg}{\operatorname{\overline{sg}}}
+\newcommand{\KW}{\operatorname{KW}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\IC}{\operatorname{IC}}
+
+\newcommand{\Cclass}{\mathcal{C}}
+\newcommand{\Dclass}{\mathcal{D}}
+
+\renewcommand{\P}{\ComplexityFont{P}}
+\newcommand{\DTIME}{\ComplexityFont{DTime}}
+\newcommand{\DTime}{\ComplexityFont{DTime}}
+\newcommand{\DSpace}{\ComplexityFont{DSpace}}
+\newcommand{\PSPACE}{\ComplexityFont{PSPACE}}
+\newcommand{\NTIME}{\ComplexityFont{NTime}}
+\newcommand{\NSpace}{\ComplexityFont{NSpace}}
+\newcommand{\coNSpace}{\ComplexityFont{coNSpace}}
+\newcommand{\NPSPACE}{\ComplexityFont{NPSPACE}}
+\newcommand{\poly}{\ComplexityFont{poly}}
+\newcommand{\RP}{\ComplexityFont{RP}}
+\newcommand{\coRP}{\ComplexityFont{co-RP}}
+\newcommand{\ZPP}{\ComplexityFont{ZPP}}
+\newcommand{\BPP}{\ComplexityFont{BPP}}
+\newcommand{\BQP}{\ComplexityFont{BQP}}
+\newcommand{\coBPP}{\ComplexityFont{co-BPP}}
+\newcommand{\NP}{\ComplexityFont{NP}}
+\newcommand{\NL}{\ComplexityFont{NL}}
+\newcommand{\coNL}{\ComplexityFont{co-NL}}
+\renewcommand{\L}{\ComplexityFont{L}}
+\newcommand{\NPcomp}{\ComplexityFont{NP-complete}}
+\newcommand{\Class}{{\ComplexityFont{C}}}
+\newcommand{\coC}{\ComplexityFont{co-}\mathcal{C}}
+\newcommand{\coNP}{\ComplexityFont{co-NP}}
+\newcommand{\PH}{\ComplexityFont{PH}}
+\newcommand{\EXP}{\ComplexityFont{EXP}}
+\newcommand{\Size}{\ComplexityFont{Size}}
+\newcommand{\Ppoly}{\ComplexityFont{P}/\ComplexityFont{poly}}
+\newcommand{\NC}{\ComplexityFont{NC}}
+
+\newcommand{\tP}{\widetilde{\P}}
+\newcommand{\tNP}{\widetilde{\NP}}
+\newcommand{\tBH}{\widetilde{\BH}}
+
+\newcommand{\BH}{\LanguageFont{BH}}
+\newcommand{\CircuitEval}{{\LanguageFont{CIRCUIT\_EVAL}}}
+\newcommand{\tCircuitSat}{\widetilde{{\LanguageFont{CIRCUIT\_SAT}}}}
+\newcommand{\SAT}{\LanguageFont{SAT}}
+\newcommand{\tSAT}{\widetilde{{\LanguageFont{SAT}}}}
+\newcommand{\UNSAT}{{\LanguageFont{UNSAT}}}
+\newcommand{\tThreeSAT}{\widetilde{{\LanguageFont{3\text{-}SAT}}}}
+\newcommand{\ThreeSAT}{{\LanguageFont{3\text{-}SAT}}}
+
+\newcommand{\FACTOR}{\LanguageFont{FACTOR}}
+\newcommand{\kQBF}{{\LanguageFont{QBF{\tiny k}}}}
+\newcommand{\QBFk}{{\LanguageFont{QBF{\tiny k}}}}
+\newcommand{\QBF}{{\LanguageFont{QBF}}}
+\newcommand{\STCON}{\LanguageFont{STCON}}
+\newcommand{\USTCON}{\LanguageFont{USTCON}}
+\newcommand{\CircuitSat}{{\LanguageFont{CIRCUIT\_SAT}}}
+
+\newcommand{\Div}{\operatorname{Div}}
+\newcommand{\Prime}{\operatorname{Prime}}
+\newcommand{\expp}{\operatorname{ex}}
+\newcommand{\ith}{\operatorname{ith}}
+\newcommand{\Subsetm}{\operatorname{Subset}}
+\newcommand{\Disjointm}{\operatorname{Disjoint}}
+
+
+\newcommand{\const}{\textmd{const}}
+\newcommand{\logspace}{\textmd{logspace}}
+\newcommand{\PATH}{\textmd{PATH}}
+ 
+\def\prf{\textbf{ПРФ}}
+\def\crf{\textbf{ЧРФ}}
+\def\orf{\textbf{ОРФ}}
+\def\prec{п.р.}
+\def\orec{о.р.}
+
+\newcommand{\R}{\mathbf{R}}
+\renewcommand{\S}{\mathbf{S}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\F}{\mathcal{F}}
+
+\newcommand{\readonly}{\textsf{read-only}}
+\newcommand{\writeonly}{\textsf{write-only}}
+
+
+\usepackage{ upgreek }
+\newcommand{\PI}{\Uppi}
+\newcommand{\SIGMA}{\Upsigma}
+\newcommand{\DELTA}{\Updelta}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes}
+
+\tikzset{
+  dot hidden/.style={},
+  line hidden/.style={},
+  dot colour/.style={dot hidden/.append style={color=#1}},
+  dot colour/.default=black,
+  line colour/.style={line hidden/.append style={color=#1}},
+  line colour/.default=black
+}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\domino}{mm}{
+\begin{tikzpicture}[x=2em,y=2em,radius=0.1]
+\draw[rounded corners=0.5,line hidden] (0,0) rectangle (1,2);
+
+\draw[line hidden] (0,1) -- (1,1);
+\ifodd#1
+  \fill[dot hidden] (0.5,1.5) circle;
+\fi
+\ifnum#1>1
+   \fill[dot hidden] (0.2,1.2) circle;
+   \fill[dot hidden] (0.8,1.8) circle;
+   \ifnum#1>3
+      \fill[dot hidden] (0.8,1.2) circle;
+      \fill[dot hidden] (0.2,1.8) circle;
+   \fi
+   \ifnum#1>5
+      \fill[dot hidden] (0.2,1.5) circle;
+      \fill[dot hidden] (0.8,1.5) circle;
+   \fi
+\fi
+\ifodd#2
+   \fill[dot hidden] (0.5,0.5) circle;
+\fi
+\ifnum#2>1
+   \fill[dot hidden] (0.2,0.2) circle;
+   \fill[dot hidden] (0.8,0.8) circle;
+   \ifnum#2>3
+      \fill[dot hidden] (0.8,0.2) circle;
+      \fill[dot hidden] (0.2,0.8) circle;
+   \fi
+   \ifnum#2>5
+      \fill[dot hidden] (0.2,0.5) circle;
+      \fill[dot hidden] (0.8,0.5) circle;
+   \fi
+\fi
+\end{tikzpicture}
+}
+
