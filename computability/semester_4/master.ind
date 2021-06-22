@@ -2,13 +2,13 @@
 
   \item $ k$-местная частичная функция, 
 		\hyperpage{4}
-  \item $\Pi_n$, \hyperpage{35}
-  \item $\Sigma_n$, \hyperpage{35}
+  \item $\Pi_n$, \hyperpage{36}
+  \item $\Sigma_n$, \hyperpage{36}
 
   \indexspace
 
-  \item Свойство функций, \hyperpage{27}
-  \item кусочное задание функции, \hyperpage{11}
+  \item Свойство функций, \hyperpage{28}
+  \item кусочное задание функции, \hyperpage{12}
   \item общерекурсивная функция, \hyperpage{6}
   \item оператор минимизации, \hyperpage{5}
   \item оператор ограниченной минимизации, 
@@ -16,24 +16,24 @@
   \item оператор примитивной рекурсии, 
 		\hyperpage{4}
   \item оператор суперпозиции, \hyperpage{4}
-  \item перечислимое множество, \hyperpage{18}
+  \item перечислимое множество, \hyperpage{20}
   \item предикаты, \hyperpage{8}
   \item примитивно рекурсивная функция, 
 		\hyperpage{5}
-  \item проекция, \hyperpage{21}
+  \item проекция, \hyperpage{22}
   \item простейшие функции, \hyperpage{4}
 
   \indexspace
 
   \item равносильность МТ и \crf, \hyperpage{12}
-  \item разрешимое множество, \hyperpage{18}
-  \item рекурсия возвратная, \hyperpage{10}
+  \item разрешимое множество, \hyperpage{19}
+  \item рекурсия возвратная, \hyperpage{11}
   \item рекурсия совместная, \hyperpage{11}
-  \item сводимость по Тьюрингу, \hyperpage{34}
+  \item сводимость по Тьюрингу, \hyperpage{35}
   \item теорема об арифметической иерархии, 
-		\hyperpage{39}
-  \item универсальная функция, \hyperpage{22}
-  \item функция Аккермана, \hyperpage{15}
+		\hyperpage{40}
+  \item универсальная функция, \hyperpage{23}
+  \item функция Аккермана, \hyperpage{16}
   \item частично рекурсивная функция, 
 		\hyperpage{5}
 
