@@ -1,0 +1,303 @@
+\documentclass[11pt]{book}
+\input{preamble.tex}
+
+\title{Дебильник}
+\date{\today}
+\author{Вячеслав Тамарин}
+
+\begin{document}
+\chapter{Дебильник}
+\section{Многомерное нормальное распределение}
+\begin{definition}
+	\selectedFont{Стандартный гауссовский вектор} --- случайный $n$-мерный вектор $ Z = (Z_1, Z_2, \ldots Z_{n})$, координаты которого независимы и имеют распределение $ \N(0, 1)$.
+\end{definition}
+
+\begin{definition}[]
+	\selectedFont{Гауссовский вектор} (\selectedFont{Нормальный вектор}) --- вектор, для которого существует матрица $ {\bf A} \in \R^{n \times m} $, стандартный гауссовский вектор $ Z \in \R^{m}$, и вектор $ b \in \R^{n}$ такие, что $ X = {\bf A}Z + b $.
+\end{definition}
+
+\begin{definition}[]
+	\selectedFont{Распределение нормального вектора} $ X \in \R^{n}$ --- $ \N(\mu, {\bf \Sigma}) $ или $ \N_n(\mu, {\bf \Sigma}) $, где $ \mu = \E X$ и $ {\bf \Sigma} = \cov(X) $.
+\end{definition}
+
+\begin{definition}[]
+	\selectedFont{Распределение хи-квадрат} с $ n$ степенями свободы --- распределение $ \chi^2(n) $ величины $ \chi^2 = Z_1^2 + Z_2^2 + \ldots + Z_{n}^2 $, где $ Z_{1}, Z_2, \ldots Z_{n}$ --- независимы $ \N(0, 1)$ величины. 
+\end{definition}
+
+\begin{definition}[]
+	\selectedFont{Распределение Стьюдента} с $n$ степенями свободы --- распределение $T(n)$ величины $\frac{\sqrt{n}X}{\sqrt{Y}}$, где $X \sim \N(0, 1)$, $Y \sim \chi^2(n)$ и независимы.
+\end{definition}
+
+\begin{definition}[]
+	\selectedFont{Распределение Фишера} со степенями свободы $n$ и $m$ --- распределение $F(n, m)$ величины $\frac{X / n}{Y / m}$, где $X \sim \chi^2(n)$, $Y \sim \chi^2(m)$ и независимы.
+\end{definition}
+
+\section{Условное матожидание}
+\begin{definition}[]
+	\selectedFont{Условное матожидание} $\E (Y \mid X)$ случайной величины $Y$ при условии случайной величины $X$ --- такая измеримая функция $g_0$ величины $X$, при которой $\E(Y - g(X))^2$ минимально для всех измеримых функций $g$.
+\end{definition}
+Условное матожидание --- ортогональная проекция $Y$ на линейное пространство всех измеримых функций $X$. То есть УМО --- единственная измеримая функция, которая удовлетворяет условию ортогональности:
+ \[
+\forall g \colon\E(Y - \E(Y \mid X)) g(X) = 0
+.\] 
+
+\section{Статистическая модель, выборка}
+\begin{definition}[]
+	\selectedFont{Статистическая модель} --- множество распределений $\PP$, которое, по нашему мнению, адекватно приближает $\P_D$. 
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Данные} $d$ --- реализация случайного элемента $D$, имеющего распределение $\P_D$.
+\end{definition}
+Статистические модели делят на:
+\begin{itemize}
+	\item \selectedFont{параметрические}, если $\PP = \{\P_0 \mid \theta \in \Theta \subset \R^{k}\}$.
+
+		Пример: $\PP = \{\N(\mu, \sigma^2) \mid \mu \in \R, \sigma^2 \ge 0\}$.
+	\item \selectedFont{непараметрические}, если $\PP = \{\P_0 \mid \theta \in  \Theta \subset V\}$, где $V$ не обязательно конечномерное.
+
+		Пример: $\PP = \{\P^{\otimes n} \mid \int_{\mathfrak{X}}^{} x \P(dx) = 0 \}$
+	\item \selectedFont{семипараметрические}, если $\PP = \{\P_0 \mid \theta \in \Theta \subset \R^{k} \times V\}$.
+
+		Пример: линейная регрессия $Y = X \beta + \varepsilon$, $\beta \in \R^{k}$, $\E \varepsilon = 0$, $\D \varepsilon = \sigma^2$.
+\end{itemize}
+Если $D = [X_1, \ldots X_n]$ и $X_i$ независимы и имеют одинаковое распределение $\P_{X}$, $D$ называется \selectedFont{выборкой объема} $n$ и обозначается $X_{[n]}$, $\P_{X}$ --- генеральная совокупность.
+В этом случае модель приобретает вид
+$ \PP = \{\P^{\otimes n} \mid \P \in \PP_X\} $, где $\PP_X$ --- модель для $\P_X$.
+
+\section{Формула Байеса, априорное, апостериорное распределение}
+\begin{itemize}
+	\item \selectedFont{Априорное распределение} --- наше ощущение относительно значения параметра до проведения эксперимента.
+	\item \selectedFont{Апостериорное распределение} --- ощущение после получения данных эксперимента.
+\end{itemize}
+\begin{definition}[Формула Байеса]
+	Здесь $p$ --- вероятность, $d$ --- данные, $\theta$ --- параметры.
+	\[
+	p(\theta \mid d) = \frac{p(d \mid \theta) \cdot p(\theta)}{p(d)}
+	.\] 
+	\begin{itemize}
+		\item $p(\theta \mid d)$ --- апостериорное распределение,
+		\item $p(d \mid \theta)$ --- правдоподобие,
+		\item $p(\theta)$ --- априорное распределение,
+		\item $p(d)$ --- вероятность данных.
+	\end{itemize}
+\end{definition}
+
+\section{Расстояние Кульбака-Лейблера, энтропия}
+Пусть мы принимаем случайные символы $x_1, \ldots x_{k}$, вероятность появления $x_{i}$ равна $p_i$, записываем с помощью битовой строки длины $l_i$. Тогда средняя длина символа равна 
+\[
+l = \sum_{i=1}^{k} p_i \cdot l_i
+.\] 
+Чтобы минимизировать $l$, необходимо подобрать следующие $l_i = - \log_2{p_i}$. И тогда средняя длина будет равна $H(x) \coloneqq - \sum_{i=1}^{k} p_i \cdot  \log_2{p_i}$, эта величина называется \selectedFont{двоичной энтропией сообщения}. Аналогично можно брать любой другой логарифм, мы будем использовать натуральный.
+
+Для непрерывной величины можно завести \selectedFont{дифференциальную энтропию}:
+\[
+H(X) = - \int_{}^{} p(x) \log{p(x)} dx 
+.\] 
+Пусть случайная величина $X$ имеет функцию вероятности $p$, но мы кодируем символы, как-будто она имеет функцию вероятности $q$. Тогда средняя длина сообщения будет равна $- \sum_{i=1}^{k} p_i \cdot \log{q_i}$, эта величина называется \selectedFont{кросс-энтропией} $H(p \mid q)$ распределений $p$ и $q$.
+
+$H(p \mid q)$ всегда будет больше $H(p)$, так как $H(p)$ минимально.
+\begin{definition}[]
+	Величина потери информации из-за использования $q$ вместо $p$ называется \selectedFont{расстоянием Кульбака-Лейблера} между $p$ и $q$:
+	\[
+	D_{KL} (p, q) = H(p \mid q) - H(p) = - \sum_{i=1}^{k} p_i \cdot \log{\frac{q_i}{p_i}}
+	.\] 
+\end{definition}
+Для непрерывных величин все обобщается следующим образом 
+\[
+D_{KL} = - \int p_i \cdot \log{\frac{q_{i}}{p_i}}
+.\] 
+
+\section{Статистика...}
+\subsection{Статистика}
+Параметр или характеристика распределения --- функционал от этого распределения.
+\begin{definition}[]
+	\selectedFont{Статистика} ---  функция $\theta^*$ от данных $d$.
+\end{definition}
+
+Пусть модель $\PP_{[n]} = \{\P ^{\otimes n} \mid \P \in \PP\}$, искомая характеристика $\theta\colon \PP \to \R^{k}$.
+
+\subsection{Несмещенность}
+Чему равна оценка как случайная величина в среднем, если она равна характеристике?
+
+\begin{definition}[]
+	Оценка $\Theta^*$ называется
+	\begin{itemize}
+		\item \selectedFont{несмещенной}, если $\forall \P \in \PP\colon \E \theta^*(X_{[n]}) = \theta(\P)$, где $X_{[n]} \sim \P^{\otimes n}$,
+		\item \selectedFont{асимптотически несмещенной}, если $\forall \P \in \PP\colon \E \theta^*(X_{[n]}) \to \theta(\P)$.
+	\end{itemize}
+
+	\selectedFont{Смещение} --- величина $b(\theta^*) = \E(\theta^*(X_{[n]})) - \theta(\P)$.
+
+	\selectedFont{Среднеквадратичная ошибка} --- величина $\MSE(\theta^*) = \E \left( \theta^*(X_{[n]}) - \theta(\P) \right) ^2$.
+\end{definition}
+В общем случае 
+\[
+\MSE(\theta^*) = \D \theta^*(X_{[n]} + b^2(\theta^*)
+.\] 
+\begin{itemize}
+	\item Выборочное среднее как оценка матожидания --- несмещенная оценка,
+	\item Выборочная дисперсия как оценка дисперсии --- асимптотически несмещенная,
+	\item Исправленная выборочная дисперсия как оценка дисперсии --- несмещенная оценка.
+\end{itemize}
+
+\subsection{Состоятельность}
+\begin{definition}[]
+	Оценка $\theta^*$ называется
+	\begin{itemize}
+		\item \selectedFont{состоятельной}, если $\forall \P \in \PP\colon \theta^*(X_{[n]}) \xrightarrow{\mathbb{P}} \theta(\P)$, где $X_{[n]} \sim \P^{\otimes n}$,
+		\item \selectedFont{сильно состоятельной}, если $\theta^*(X_{[n]}) \xrightarrow{\text{п. н.}} \theta(\P)$.
+	\end{itemize}
+\end{definition}
+
+\subsection{Асимптотическая нормальность}
+\begin{definition}[]
+	Оценка $\theta^*$ называется \selectedFont{асимптотически нормальной} с коэффициентом рассеивания (или просто дисперсией) $\sigma^2\bigl(\theta(\P)\bigr > 0$, если 
+		\[
+		\sqrt{n} \left( \theta^*(X_{[n]}) - \theta(\P) \right) \xrightarrow{d} \eta \sim \N(0, \sigma^2(\theta^*(\P)))
+		.\] 
+	В многомерном случае рассматривается ковариационная матрица вместо дисперсии.
+\end{definition}
+\begin{itemize}
+	\item Выборочная дисперсия и второй момент --- асимптотически нормальная оценка.
+	\item Из асимптотической нормальности следует состоятельность.
+\end{itemize}
+
+\subsection{Эффективность}
+Рассмотрим класс оценок $K = \{\hat{\theta}\}$ параметра $\theta$.
+\begin{definition}[]
+	Оценка $\theta^* \in K$ называется \selectedFont{эффективной в классе} $K$, если \it{для любой другой оценки} $\hat{\theta} \in  K$ и \it{для любого исследуемого параметра} $\theta \in \Theta$ выполняется
+	\[
+	\MSE_{\theta}(\theta^*) \le \MSE_{\theta}(\hat{\theta})
+	.\] 
+\end{definition}
+Класс несмещенных оценок
+ \[
+K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\}
+.\] 
+\begin{definition}[]
+		\selectedFont{Эффективная оценка} $\theta^*$, если эффективна в классе $K_0$.
+\end{definition}
+\begin{definition}[]
+		\selectedFont{Асимптотически эффективной в классе} $K$, если для любой оценки $\hat{\theta} \in K$ и для любого $\theta \in  \Theta$ выполняется
+			\[
+			\overline{\lim_{n \to \infty}} \frac{\MSE(\theta^*)}{\MSE(\hat{\theta}}
+			.\] 
+\end{definition}
+
+\subsection{Робастность}
+\begin{definition}[]
+	\selectedFont{Робастность} --- свойство оценки быть устойчивой к хвостам распределения.
+\end{definition}
+	Пусть $F$ --- распределение,  $\{G_{n}\}$ --- последовательность распределений, что
+	\[
+	\lvert F - G_{n}\rvert \coloneqq \underset{x}{\sup} \lvert F(x) - G_n(x) \rvert \to 0
+	.\] 
+\begin{definition}[]
+	Характеристика $\theta$ обладает \selectedFont{качественной робастностью}, если $\theta(G_{n}) \to \theta(F)$
+\end{definition}
+Пусть также $\delta_x$ --- вырожденное распределение в точке $x$.
+\begin{definition}[]
+	\selectedFont{Загрязненное распределение} --- смесь $F_{x, \varepsilon} = (1-\varepsilon) F + \varepsilon \delta_x$.	
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Функция влияния} характеристики $\theta$ --- величина $$IF(x) = \lim_{\varepsilon \to 0+} \frac{\theta(F_{x, \varepsilon}) - \theta(F)}{\varepsilon}.$$
+\end{definition}
+\begin{definition}[]
+	Характеристика $\theta$ называется \selectedFont{$B$-робастной} или \selectedFont{инфинитезимально робастной}, если $IF(x)$ ограничена.
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Асимптотическая толерантность} характеристики $\theta$ ---
+	\[
+	\tau = \inf \bigl\{ \varepsilon \mid \underset{x}{\sup}\lvert \theta(F_{x, \varepsilon} - \theta(F) \rvert = \infty \bigr\}	
+	.\] 
+\end{definition}
+
+\subsection{Достаточность}
+\begin{definition}[]
+	Статистика $T(x) = \{T_1(x), \ldots , T_m(x))\}$ называется \selectedFont{достаточной}, если для всех 
+	\begin{itemize}[noitemsep]
+		\item $\theta \in \Theta$,
+		\item $B \in \PP(\R^{n})$ и 
+		\item $t = (t_1, \ldots , t_m)$
+	\end{itemize}
+	 условная вероятность $\mathbb{P}(X_{[n]} \in B \mid T(X_{[n]}) = t)$ не зависит от $\theta$.
+
+	 То есть информация о $\theta$ в выборке полностью содержится в значении $T(x_{[n]})$.
+\end{definition}
+\begin{theorem}[факторизации]
+	$T(x)$ достаточна, согда существуют функции $g$ и  $h$, что
+	\[
+	p(X_{[n]} = x_{[n]} \mid \theta) = g(T(x_{[n]}), \theta) h(x_{[n]})
+	,\] 
+	где $p$ --- вероятность или плотность.
+\end{theorem}
+
+\subsection{Полнота}
+\begin{definition}[]
+	Статистика $T$ называется \selectedFont{полной}, если для любой \it{измеримой} $g$ верно следствие
+	\[
+	 \forall \theta \in  \Theta\colon\E {g (T(X_{[n]}))} \equiv 0 \quad \implies \quad g(T(X_{[n]})) \overset{\text{п.н.}}{=} 0
+	.\] 
+\end{definition}
+
+
+\section{Теоремы Колмогорова-Блэкуэлла-Рао и Лемана-Шеффе}
+\begin{theorem}[Колмогорова-Блэкуэлла-Рао]
+    Пусть $\theta^*$ --- оценка параметра $\theta$, $T$ --- достаточная статистика. Тогда \[
+    \MSE(\theta^*) \ge \MSE(\E(\theta^* \mid T))
+    .\] 
+\end{theorem}
+\begin{theorem}[Лемана-Шеффе]
+    Пусть $\theta^*$ --- оценка параметра $\theta$, $T$ --- достаточная и полная статистика. Тогда $\E(\theta^* \mid T)$ --- единственная эффективная оценка в классе оценок со смещением $b(\theta^*)$.
+\end{theorem}
+
+\section{Доверительный интервал}
+Пусть есть модель $\PP_{[n]} = \{\P^{\otimes n} \mid \P \in \PP\}$ и $\theta\colon \PP \to \R^{k}$ --- искомая характеристика.
+
+\begin{definition}[]
+	\selectedFont{Доверительный интервал} (точный доверительный интервал) с уровнем доверия $\gamma$ --- пара статистик $(\theta^*_L, \theta^*_R)$, такая что для любого $\P \in \PP$  и $X_{[n]} \sim \P^{\otimes n}$
+	\[
+	\mathbb{P} \left( \theta^*_L(X_{[n]}) \le \theta(\P) \le \theta^*_R(X_{[n]}) \right) = \gamma 
+	.\] 
+
+	Интервал называется
+	\begin{itemize}
+		\item \selectedFont{асимптотическим}, если
+	\[
+	\mathbb{P} \left( \theta^*_L(X_{[n]}) \le \theta(\P) \le \theta^*_R(X_{[n]}) \right) \xrightarrow{n \to \infty} \gamma 
+	.\] 
+		\item \selectedFont{центральным}, если
+			\[
+			\mathbb{P} \left( \theta^*_L(X_{[n]}) > \theta(\P) \right) = \mathbb{P} \left( \theta^*_R(X_{[n]}) < \theta(\P) \right) 
+			.\] 
+		\item \selectedFont{левым}, если
+			\[
+			\mathbb{P} \left( \theta^*_L(X_{[n]}) > \theta(\P) \right) = 0
+			.\] 
+		\item \selectedFont{правым}, если
+			\[
+			\mathbb{P} \left( \theta^*_R(X_{[n]}) < \theta(\P) \right) = 0
+			.\] 
+	\end{itemize}
+\end{definition}
+
+\section{Бутстреп}
+\subsection{Параметрический бутстреп}
+Если работаем с параметрической моделью, можем заменить $X=X(\theta)$ не на $X^*$, а на $X(\theta^*)$ и сэмплировать из этого распределения.
+\subsection{Непараметрический бутстреп }
+\paragraph{Рецепт}
+\begin{enumerate}
+	\item изготовим $N$ выборок $x^*_{[n], 1}, \ldots , x^*_{[n], N}$ из эмпирического распределения (рандом с возвращением)
+	\item вычисляем $\theta^{b}_{i} = \theta^*(x^*_{[n], i}$, получаем бутстреповскую выборку $\theta^{b}_{[N]}$,
+	\item по бутстреповской выборке оцениваем, что нужно.
+\end{enumerate}
+\paragraph{Ограничения}
+\begin{itemize}
+	\item $\theta^*$ --- plug-in оценка
+    \item $\theta^*$ --- достаточно гладкая (обычно дифференцируема)
+	\item у  $X$ достаточно много моментов (обычно конечная дисперсия)
+	\item нужно генерировать большие выборки
+	\item на очень больших данных трудозатратен
+	\item на маленьких данных велика неустранимая ошибка
+\end{itemize}
+\end{document}

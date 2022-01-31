@@ -1,0 +1,99 @@
+\usepackage [utf8] {inputenc}
+\usepackage [T2A] {fontenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{amssymb, amsthm, amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{needspace}
+\usepackage{enumitem}
+
+% разметка страницы и колонтитул
+% \usepackage[left=1.5cm,right=2cm,top=1.5cm,bottom=1.1cm,bindingoffset=0cm]{geometry}
+\usepackage{geometry}
+ \geometry{
+ a5paper,
+%  total={148mm,210mm},
+ left=10mm,
+ top=15mm,
+ right=10mm,
+ bottom=10mm,
+ }
+
+\usepackage{fancybox,fancyhdr}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\rightmark}
+\fancyfoot{}
+\fancyhfoffset{0pt}
+\addtolength{\headheight}{13pt}
+\pagestyle{fancy}
+
+
+% Отступы
+\setlength{\parindent}{0ex}
+\setlength{\parskip}{3mm}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\usepackage{xcolor}
+\definecolor{Aquamarine}{cmyk}{50, 0, 17, 100}
+\definecolor{ForestGreen}{cmyk}{76, 0, 76, 45}
+\definecolor{CarnationPink}{cmyk}{0, 0.349, 0.2118, 0}
+\definecolor{Pink}{cmyk}{0, 100, 0, 0}
+\definecolor{Cyan}{cmyk}{56, 0, 0, 100}
+\definecolor{Gray}{gray}{0.3}
+
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{3f888f} % цвет ссылок
+\definecolor{urlcolor}{HTML}{af0000} % цвет гиперссылок
+ 
+\hypersetup{pdfstartview=FitH,
+	linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{\underline{{\bf def}}}
+
+\theoremstyle{theorem}
+\newtheorem*{theorem}{\underline{{\bf thm}}}
+
+\newtheorem*{st}{Утверждение}
+\newtheorem*{prop}{Свойства}
+
+\theoremstyle{plain}
+\newtheorem*{name}{Обозначение}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Ремарка}
+\newtheorem*{com}{Комментарий}
+\newtheorem*{note}{Замечание}
+\newtheorem*{prac}{Упражнение}
+\newtheorem*{probl}{Задача}
+
+
+\renewcommand{\o}{o}
+\renewcommand{\O}{\mathcal{O}}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\newcommand{\N}{\mathcal{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\PP}{\mathfrak{P}}
+\newcommand{\cov}{\operatorname{cov}}
+\newcommand{\MSE}{\operatorname{MSE}}
+
+\def\selectedFont#1{\textsf{#1}}
