@@ -300,4 +300,219 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 	\item на очень больших данных трудозатратен
 	\item на маленьких данных велика неустранимая ошибка
 \end{itemize}
+
+\section{Гипотеза, альтернатива...}
+Пусть $\PP$ --- модель.
+\subsection{Гипотеза и альтернатива}
+\begin{definition}[]
+	\selectedFont{Гипотеза} --- утверждение вида $H\colon \P_X \in  \PP_0 \subset \PP$.
+
+	Если $\lvert \PP_0 \rvert = 1$, гипотеза называется \selectedFont{простой}, иначе \selectedFont{сложной}.
+
+	\selectedFont{Нулевая гипотеза} --- гипотеза $H_0$, которую мы хотим проверить. Проверка гипотезы --- процесс принятия решения о том, противоречит ли она наблюдаемой выборке данных.
+
+	\selectedFont{Альтернатива} --- гипотеза $H_1$, которая отражает, какие отклонения от нулевой гипотезы нам интересны.
+\end{definition}
+\subsection{Критерий}
+\begin{definition}[]
+	\selectedFont{Нерандомизированный критерий} (критерий) --- отображение $\varphi \colon d \to \{\text{принимаем}, \text{отвергаем}\} = \{H_0, H_1\} = \{0, 1\}$.
+\end{definition}
+Часто критерий устроен так: имеется
+\vspace{-1.5em}
+\begin{itemize}[noitemsep]
+	\item \selectedFont{статистика критерия} $T$ и
+	\item \selectedFont{критическое множество} $C$, и
+\end{itemize}
+\vspace{-1.5em}
+\[
+\varphi(d) = [T(d) \in C] = [d \in T^{-1}(C)]
+.\] 
+\begin{definition}[]
+	\selectedFont{Рандомизированный критерий} --- отображение $\varphi\colon d \to [0, 1]$. Значение на данных $d$ определяется как реализация случайной величины $D(\varphi(d))$.
+\end{definition}
+Пусть мы согласны отвергать нулевую гипотезу пр условии, что она верна, но хотим делать это не очень часто. Пусть зафиксирован \selectedFont{уровень значимости}
+\[
+	\alpha\coloneqq \mathbb{P} (\varphi(D) = 1 \mid H_0) 
+,\] 
+который обычно является \textit{параметром критерия}, то есть, задавая его, мы определяем \textit{критическое множество} $C_{\alpha}$ такое, что
+\[
+	\mathbb{P} (T(D) \in C_{\alpha} \mid H_0) = \alpha
+.\] 
+Таким образом, для одного критерия определено семейство критических областей $\{C_{\alpha} \mid \alpha \in  [0, 1]\}$, где обычно $C_{\alpha} \subset C_{\alpha'}$, если $\alpha < \alpha'$.
+
+\begin{definition}[]
+	\selectedFont{Уровень значимости} --- параметр критерия, который регулирует, насколько часто мы будем отвергать нулевую гипотезу при условии, что она верна.
+\end{definition}
+
+\subsection{p-value}
+Хотим оценить, насколько гипотеза противоречит наблюдаемым данным.
+\begin{definition}[]
+	\selectedFont{p-value} --- характеристика противоречия гипотезы наблюдаемым данным:
+	\[
+	\text{p-value} \coloneqq \arg \min \{\alpha \in [0, 1] \mid T(d) \in C_{\alpha}\}
+	.\] 
+	Другими словами, p-value --- минимальное значение уровня значимости для данного значения статистики критерия, при котором $H_0$ может быть отвергнута.
+
+	Чем меньше p-value, тем больше гипотеза противоречит данным.
+\end{definition}
+\subsection{Ошибки разных родов}
+\begin{definition}[]
+	\selectedFont{Ошибка первого рода} --- событие $\varphi(D) = 1 \mid H_{0}$.
+	Если уровень значимости совпадает с вероятностью ошибки первого роба, То критерий называется \selectedFont{точным}.
+\end{definition}
+Уровень значимости --- вероятность ошибки первого рода.
+
+\begin{definition}[]
+	\selectedFont{Ошибка второго рода} $\beta$ --- событие $\varphi(D) = 0 \mid H_{1}$, не отклонили нулевую гипотезу при условии, что была верна альтернатива.
+
+	\selectedFont{Мощность} критерия --- вероятность $1 - \beta$ отклонить $H_0$ при условии, что верна $H_1$.
+\end{definition}
+Для заданного уровня значимости мы хотим иметь как можно более мощный критерий.
+\subsection{Свойства критериев}
+\begin{definition}[]
+	\selectedFont{Несмещенность} --- мощность всегда не меньше ошибки первого рода, критерий не отдает предпочтение альтернативе. $1 - \beta \ge \alpha$ для всех простых гипотез из $\PP_0$ и простых альтернатив из $\PP_1$.
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Состоятельность} --- $\beta \xrightarrow{n \to \infty} 0$ для всех простых альтернатив из $\PP_1$.
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Асимптотичность} --- $\alpha \xrightarrow{n \to \infty}$ для всех простых гипотез из $\PP_0$.
+\end{definition}
+\begin{definition}[]
+	\selectedFont{Наиболее мощный критерий} для данного уровня значимости $\alpha_0$ и простой альтернативы --- такой критерий $\varphi_1$, что для любого критерия $\varphi_2$ такого, что $\alpha(\varphi_2) \le \alpha_0$:
+	\[
+	\beta(\varphi_1) \le \beta(\varphi_2)
+	.\] 
+\end{definition}
+\subsection{Размер эффекта}
+Во многих случаях важна не только информация о p-value, но и величина наблюдаемого эффекта. Размеры эффекта бывают разные, использование того или иного размера эффекта зависит от контекста.
+
+Вместо сравнения p-value с уровнем значимости для принятия статистического решения можно считать размер эффекта, сравнивать с минимальным практически интересным.
+
+\section{Постановка гипотезы согласия. Критерии Колмогорова и Андерсона-Дарлинга}
+\subsection{Постановка гипотезы согласия}
+\begin{definition}[]
+	\selectedFont{Гипотеза согласия} --- гипотеза о соответствии эмпирического распределения теоретическому распределению вероятностей. 
+\end{definition}
+Критерии для гипотез согласия бывают
+\begin{itemize}
+	\item общие --- применимые к любому предполагаемому распределению выборки,
+	\item специальные --- применимые к гипотезам, формулирующие согласие с определенным свойством распределений;
+\end{itemize}
+\begin{itemize}
+	\item для простых гипотез,
+	\item для сложных гипотез.
+\end{itemize}
+\subsection{Критерий Колмогорова}
+Сравнивает эмпирическое и истинное распределение. Для простой гипотезы.
+
+Пусть $F_0$ непрерывна на $\R$. Определим статистику Колмогорова:
+\[
+	D_n(x_{[n]}) = \underset{x \in \R}{\sup} \lvert F_{n}^* - F_0(x) \rvert
+.\] 
+\begin{itemize}
+	\item Если $H_0$ верна, то $D_n \left( X_[n] \right) \xrightarrow{\text{п.н.}} 0$;
+	\item Если $H_0$ неверна, то $D_{n} \left( X_{[n]} \right) \xrightarrow{\text{п.н.}} \underset{x \in \R}{\sup} \lvert F_X(x) - F_0(x) \rvert > 0$.
+\end{itemize}
+
+\subsection{Критерий Андерсона-Дарлинга}
+Для простой гипотезы.
+
+Определим статистику критерия Андерсона-Дарлинга:
+\begin{align*}
+	A^2 &= n \int_{\R}^{} \frac{ \left( F_n^*(x) - F_0(x) \right) ^2}{F_0(x) \left( 1 - F_0(x) \right) } d F_0(x) = \\
+		&= -n - \sum_{i=1}^{n} \frac{2i-1}{n} \left[ \ln F_0(X_{(i)} \mid \theta) + \ln \left( 1 - F_0(X_{(n+1-i)} \mid \theta \right)  \right] 
+\end{align*}
+Статистика $A^2$ при выполнении $H_0$ и непрерывности $F_0$ подчиняется табличному распределению. $C_{\alpha} = (a^2_{1-\alpha}, \infty)$.
+
+\section{Постановка гипотезы о параметрах, проверка через доверительные интервалы, z-test, t-test, бутстреп из нулевой гипотезы}
+\subsection{Постановка гипотезы о параметрах}
+Пусть $\theta$ --- параметр ($X \sim F(x, \theta)$ ) или характеристика ($\theta = \varphi(F_x)$ ) распределения.
+
+Нулевая гипотеза: $H_0 \colon \theta = \theta_0$.
+Типичные альтернативы:
+\begin{itemize}
+	\item $H_1\colon \theta = \theta_1 \neq \theta_0$,
+	\item $H_{>}\colon \theta > \theta_0$,
+	\item $H_{<}\colon \theta < \theta_0$,
+	\item $H_{\neq}\colon \theta \neq \theta_0$.
+\end{itemize}
+
+Усредненный рецепт:
+\begin{enumerate}
+	\item Выбираем оценку $\theta^*$ параметра $\theta$, распределение которой приближенно известно при данном $\theta$.
+	\item В зависимости от альтернативы строим критическое множество:
+		\begin{itemize}
+			\item $H_1\colon \theta = \theta_1 > \theta_0$ или $H_{>}$, то $C_{\alpha} = (\theta^*_{1-\alpha}, \infty)$ \footnote{Здесь $\theta^*_{x}$ --- квантиль уровня $x$ распределения $\theta^* \mid H_0$} --- правое критическое множество;
+			\item $H_1\colon \theta = \theta_1 < \theta_0$ или $H_{<}$, то $C_{\alpha} = (-\infty, \theta^*_{\alpha})$ --- левое критическое множество;
+			\item $H_{\neq}$, то $C_{\alpha} = (-\infty, \theta^*_{\frac{\alpha}{2}} \cup (\theta^*_{1 - \frac{\alpha}{2}}, \infty)$ --- двустороннее критическое множество.
+		\end{itemize}
+	\item Если $\theta^* \in  C_{\alpha}$, то гипотезу можно отклонить, иначе --- нельзя.
+\end{enumerate}
+
+\subsection{Проверка через доверительные интервалы}
+Усредненный рецепт:
+\begin{enumerate}
+	\item В зависимости от альтернативы строим доверительный интервал с уровнем доверия $\gamma = 1 - \alpha$:
+		\begin{itemize}
+			\item $H_1\colon \theta = \theta_1 > \theta_0$ или $H_{>}$, то $(\theta^*_{L}, \infty)$ --- правый доверительный интервал;
+			\item $H_1\colon \theta = \theta_1 < \theta_0$ или $H_{<}$, то $(-\infty, \theta^*_{R})$ --- левый доверительный интервал;
+			\item $H_{\neq}$, то $(\theta^*_{L} , \theta^*_{R})$ --- центральный доверительный интервал.
+		\end{itemize}
+\end{enumerate}
+
+\subsection{z-test}
+Пусть $X \sim \N(\mu, \sigma^2)$, $\mu$ неизвестно, $\sigma^2$ известно.
+
+Если $H_0$ верна, то $Z = \frac{\sqrt{n} (\overline{X} - \mu_0)}{\sigma} \sim \N(0, 1)$ и $\overline{X} \sim N(\mu_0, \frac{\sigma^2}{n})$.
+
+В зависимости от альтернативы подбираем критическую область:
+\begin{table}[htpb]
+	\centering
+	\label{tab:crytical_space_z_test}
+
+	\begin{tabular}{cccc}
+		 & $\theta_1 > \theta_0$, $H_{>}$ & $\theta_1 < \theta_0$, $H_{<}$  & $H_{\neq}$ 
+		\\
+		\hline
+		$C_{\alpha}$ & $(\mu_0 + z_{1-\alpha} \frac{\sigma}{\sqrt{n}}, \infty)$ &$(- \infty, \mu_0 + z_{\alpha} \frac{\sigma}{\sqrt{n}})$ & $\R \setminus (\mu_0 \pm z_{1-\frac{\alpha}{2}} \frac{\sigma}{\sqrt{n}})$
+		\\
+		\hline
+		p-value & $1 - \Phi^{-1}(z)$ & $\Phi^{-1}(z)$ & $2(1-\Phi^{-1}(\lvert z \rvert))$
+	\end{tabular}
+	\caption{Критическая область для альтернативы}
+\end{table}
+\subsection{t-test}
+Пусть $X \sim \N(\mu, \sigma^2)$, $\mu$ неизвестно, $\sigma^2$ неизвестно.
+
+Если $H_0$ верна, то $T = \frac{\sqrt{n} (\overline{X} - \mu_0)}{s} \sim T(n-1)$.
+
+В зависимости от альтернативы подбираем критическую область:
+\begin{table}[htpb]
+	\centering
+	\label{tab:crytical_space_t_test}
+
+	\begin{tabular}{cccc}
+		 & $\theta_1 > \theta_0$, $H_{>}$ & $\theta_1 < \theta_0$, $H_{<}$  & $H_{\neq}$ 
+		\\
+		\hline
+		$C_{\alpha}$ & $(\mu_0 + t_{1-\alpha} \frac{s}{\sqrt{n}}, \infty)$ &$(- \infty, \mu_0 + t_{\alpha} \frac{s}{\sqrt{n}})$ & $\R \setminus (\mu_0 \pm t_{1-\frac{\alpha}{2}} \frac{s}{\sqrt{n}})$
+		\\
+		\hline
+		p-value & $1 - T^{-1}(t)$ & $T^{-1}(t)$ & $2(1-T^{-1}(\lvert t \rvert))$
+	\end{tabular}
+	\caption{Критическая область для альтернативы}
+\end{table}
+
+\subsection{Бутстреп из нулевой гипотезы}
+Пусть мы хотим проверить гипотезу $H_0\colon \E X = \theta_0$.
+
+Рецепт:
+\begin{enumerate}
+	\item Назначим каждому наблюдению $x_i$ в выборке вероятность $p_i$.
+	\item Из пар $(x_i, p_i)$ изготовим дискретное распределение $F^*_p$.
+	\item Подберем $p_i$ так, чтобы с одной стороны $\overline{x} = \theta_0$, а с другой $p_i$ максимизировали правдоподобие выборки $\mathcal{L}(p \mid x_{[n]}) = p_1 p_2 \ldots p_{n}$.
+	\item Бутстрепим кучу выборок из получившегося $F_{p}^{*}$, считаем по ним выборочное среднее.
+	\item Построим критическое множество в зависимости от альтернативы и проверим, лежит ли в нем выборочное среднее исходной выборки.
+\end{enumerate}
 \end{document}
