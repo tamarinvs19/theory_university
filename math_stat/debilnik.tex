@@ -515,4 +515,253 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 	\item Бутстрепим кучу выборок из получившегося $F_{p}^{*}$, считаем по ним выборочное среднее.
 	\item Построим критическое множество в зависимости от альтернативы и проверим, лежит ли в нем выборочное среднее исходной выборки.
 \end{enumerate}
+
+\section{Постановка гипотезы однородности, ранговые критерии, permutation.}
+\subsection{Гипотеза однородности}
+Пусть $D = (x_1, x_2, \ldots , x_{n}, y_1, y_2, \ldots , y_{m})$ и
+\begin{itemize}
+	\item $\bf\sf X_{\text{\bf\sf нез}}$ --- $X_1, \ldots , X_{n}$ независимы и имеют одну функцию распределения $F(x)$,
+	\item $\bf\sf Y_{\text{\bf\sf нез}}$ --- $Y_1, \ldots , Y_{n}$ независимы и имеют одну функцию распределения $G(x)$,
+	\item $\bf\sf FG_{\text{\bf\sf c}}$ --- $F$ и $G$ непрерывны.
+\end{itemize}
+Гипотеза однородности: $H_0\colon F = G$.
+
+Альтернативы:
+\begin{itemize}
+	\item неоднородности: $H_{ \neq }\colon \exists x ~ F(x) \neq G(x)$;
+	\item доминирования $H_{ \ge }\colon \forall x ~F(x) \ge G(x) \wedge \exists x ~ F(x) > G(x)$;
+	\item правого сдвига $H_{ \to }\colon \forall x ~F(x) = G(x + \theta) \wedge \theta > 0$;
+	\item масштаба $H_{ \leftrightarrow }\colon \forall x ~F(x) = G(x \theta) \wedge 1 \neq \theta > 0$;
+\end{itemize}
+\subsection{Ранговые критерии}
+\subsubsection{Критерий Уилкоксона ранговых сумм}
+Используется для проверки гипотезы $H_0$ против $H_{ \ge }$ и $H_{ \to }$.
+
+Идея: Если $H_0$ верна, то $Y_{(i)}$ распределены в вариационном ряду $Z$ равномерно.
+
+Статистика критерия: $W = \sum_{i=1}^{m} R(Y_i)$.
+\[
+W \in \left[ \frac{m(m+1)}{2},  mn + \frac{m(m+1)}{2} \right] 
+.\] 
+\[
+C_{\alpha} = \left( c_{\alpha}, mn+\frac{m(m+1)}{2}  \right)
+.\] 
+\subsubsection{Критерий Манна-Уитни}
+Используется для проверки гипотезы $H_0$ против $H_{ \ge }$ и $H_{ \to }$.
+
+Идея аналогичная.
+
+Статистика критерия: $U = \sum_{i=1}^{n} \sum_{j=1}^{m} [x_i < y_j]$.
+
+Нетрудно видеть, что $U = W - \frac{m(m+1)}{2}$, поэтому $U \in [0, mn]$.
+\[
+C_{\alpha} = (c_{\alpha}, mn)
+.\] 
+
+Ценность этих критериев в том, что можно проверять выборки из величин, сравнимых только качественно.
+
+\subsubsection{Критерий знаковых рангов Уилкоксона}
+Пусть 
+\begin{itemize}
+	\item $\bf\sf E_{\text{\bf\sf нез}}$ --- $E_1, \ldots , E_{n}$ независимы,
+	\item $\bf\sf E_{\text{\bf\sf сим}}$ --- $E_1, \ldots , E_{n}$ распределены одинаково и симметричны относительно нуля.
+\end{itemize}
+Рассматриваем вариационный ряд величин $\lvert z_i \rvert$.
+
+Статистика критерия: $T = \sum_{i=1}^{n} R(\lvert z_{i} \rvert) [z_i < 0]$.
+
+Для маленьких $n$ квантили смотрим в таблице, для больших можем использовать Монте-Карло или аппроксимацию:
+\[
+	\frac{T - \frac{n(n+1)}{4}}{\sqrt{\frac{n(n+1)(2n+1)}{24}}} \to \eta \sim \N(0, 1)
+.\] 
+\subsection{Permutation}
+Пусть выполнено $\bf\sf E_{\text{\bf\sf нез}}$ и $\bf\sf E_{\text{\bf\sf сим}}$. 
+ \begin{enumerate}
+	\item Случайно умножаем $z_i$ на $1$ и $-1$ ;
+	\item Для полученного вектора считаем медиану;
+	\item Повторяем так $N$ раз;
+	\item Считаем, сколько медиан меньше $\operatorname{med}(z)$ и делим на  $N $.
+\end{enumerate}
+
+Пусть $y_{[n]}^{p}$ --- случайная перестановка $y_{[n]}$. Если верна $H_0$, то все выборки $(x, y^{p})_{[n]}$ <<равновероятны>>.
+План-капкан:
+\begin{enumerate}
+	\item генерируем случайную перестановку $y^{p}$,
+	\item вычисляем значение требуемой статистики $r(x, y^{p})$,
+	\item повторяем $N$ раз,
+	\item считаем, какая доля оказалась меньше, чем $r(x, y)$.
+\end{enumerate}
+
+Пусть есть статистика $\theta^*(x_{[n]}, y_{[m]})$. Мы можем представить ее в виде $\theta^* = \theta^*(z_v, u)$.
+
+Пусть $u^{p}$ --- случайная перестановка $u$. Тогда, если верна $H_0$, то
+\[
+\mathbb{P} \left( \theta^*(z_v, u^{p}) < \theta^*(z_v, u) \right)  =
+\frac{\# \{u^{p} \mid \theta^*(z_v, u^{p}) < \theta^*(z_v, u) \} }
+{{{n+m} \choose{n}}}
+.\] 
+Статистика критерия:
+\[
+C(x_{[n]}, y_{[m]}) = 
+\frac{\# \{u^{p} \mid \theta^*(z_v, u^{p}) < \theta^*(z_v, u) \} }
+{{{n+m} \choose{n}}}
+,\] 
+\[
+C_{\alpha} \in \left\{  (1- \alpha, 1), ~ (0, \alpha), ~ (0, \tfrac{\alpha}{2}) \cup (1 - \tfrac{\alpha}{2}, 1) \right\}
+.\] 
+{\bf Killer Feature}: ошибка первого рода в точности равна  $\alpha$.
+
+\section{Дисперсионного анализ, корреляционного анализ, таблицы сопряженности.}
+ANOVA --- ANalysis Of VAriance.
+\subsection{Однофакторный дисперсионный анализ}
+\begin{itemize}
+	\item имеется несколько выборок $x^{1}_{[n_1]}, \ldots , x^{k}_{[n_k]}$,
+	\item которые являются наблюдениями случайных величин
+		\[
+		X_{i, j} = \mu + \beta_j + \varepsilon_{i, j}, \quad i = 1, \ldots n, j = 1, \ldots k
+		,\] 
+		где $\mu$ --- общее среднее, $\beta_j$ --- систематическая ошибка (или эффект фактора) выборки $x^{j}_{[n_j]}$ и $\varepsilon_{i, j}$ --- случайная ошибка.
+\end{itemize}
+\subsubsection{Постановка задачи дисперсионного анализа}
+Пусть $\mu_j = \mu + \beta_j$, $N = n_1 + \ldots + n_j$ и
+\begin{itemize}
+	\item $\bf\sf E_{\text{\bf\sf нез}} $ --- все ошибки $\varepsilon_{i, j}$ независимы,
+	\item $\bf\sf E_{\text{\bf\sf с}} $ --- все ошибки $\varepsilon_{i, j}$ имеют одинаковое непрерывное распределение.
+\end{itemize}
+Гипотеза $H_0\colon \mu_1 = \mu_2 = \ldots = \mu_{k}$.
+
+Альтернатива $H_1\colon \exists i, j\colon \mu_{i} \neq \mu_{j}$.
+
+\subsubsection{Критерий Андерсона-Дарлинга для ANOVA}
+Пусть выборки $X_{[n_i]}^{i}$ независимы и имеют распределение $F_i$.
+
+Гипотеза $H_0\colon F_1 = F_2 = \ldots = F_{k}$.
+
+Альтернатива $H_1\colon \exists i, j\colon F_i \neq F_j$.
+\[
+A^2_{k, N} = \sum_{i=1}^{k} n_i \int_{\R}^{} \frac{ \left( F_{n_i}^2(x) - H_N(x) \right) ^2}{H_{N}(x) \left( 1 - H_N(x) \right) } d H_N (x)
+,\] 
+где $H_{N} = \frac{1}{n} \sum_{i=1}^{k} n_i F_{n_i}^*$ --- эмпирическая функция распределения объединенной выборки $Z = \left( X_{[n_1]}, \ldots , X_{[n_k]} \right) $.
+
+Если повторений нет, то можно переписать следующим образом:
+\[
+A_{k, N}^2 = \frac{1}{N} \sum_{j=1}^{k} \frac{1}{n_j} \sum_{i=1}^{N-1} \frac{(Nc_{i, j} - j n_j)^2}{i(N-i)}
+,\] 
+где $c_{i, j}$ --- количество наблюдений $X_{[n_j]}^{j}$ меньших  $Z_{(i)}$.
+
+\subsection{Постановка задачи корреляционного анализа}
+\paragraph{Гипотеза независимости}
+Имеется выборка $(x, y)_{[n]}$ --- реализация $(X, Y)_{[n]}$, при этом $X_i$ имеет функцию распределения $F_{X}$, а $Y_i$ имеет $F_Y$.
+
+Гипотеза $H_0\colon F_{X, Y}(x, y) = F_{X}(x) F_{Y}(y)$.
+
+Предполагаем гипотезу независимости, но проверять будем отсутствие корреляции.
+
+\subsection{Таблица сопряженности}
+\begin{figure}
+	\centering
+    \includegraphics[scale=0.5]{./figures/table.png}
+\end{figure}
+Три схемы, в которых они возникают:
+\begin{itemize}
+	\item Гипотеза однородности: строка $i$ --- реализация случайной величины $x_i$ с вероятностями $\mathbb{P}(x_i = y_j) = q_{i, j}$, $\sum_{}^{} q_{i, j} = 1$ и с заданным числом наблюдений $n$ (то есть $ \forall i\colon n =  n_{i, +}$).
+		\[
+		H_{I}\colon q_{i, j} = q_{+, j}, \quad q_{+, j} = \frac{1}{k} \sum_{i}^{} q_{i, j}
+		.\] 
+		Пример: $k$ кубиков, каждый подбросили $n$ раз, $n_{i, j}$ --- количество выпадений числа $j$ у кубика $i$.
+	\item Гипотеза независимости: вся таблица --- реализация случайной величины $\xi$ с 
+		$\mathbb{P}\left(\xi = (x_i, y_j)\right) = p_{i, j}$,
+		где $\sum_{i, j}^{} p_{i, j} = 1$, и с $n_{*, *}$ наблюдениями.
+		\[
+		H_{II}\colon \mathbb{P}\left(\xi = (x_i, y_j)\right) = \mathbb{P}(\xi_{x} = x_i) \mathbb{P}(\xi_{y} = y_j)
+		.\] 
+		Пример: выборка двумерной случайной величины $(x, y)_{[n]}$, для которой построена гистограмма с ячейками $\delta^{x}_i \times \delta^{y}_j$.
+	\item Гипотеза мультипликативности: каждая ячейка --- реализация случайной величины.
+		
+		Важный частный случай: когда $n_{i, j}$ независимы и имеют распределение Пуассона с параметрами $\lambda_{i, j}$. Тогда их сумма тоже имеет распределение Пуассона.
+		\[
+		H_{III} \colon  \lambda_{i, j} = \frac{a_{i} b_{j}}{c}, \quad a_i = \sum_j \lambda_{i, j}, b_{j} = \sum_i \lambda_{i, j}, c = \sum_{i, j}^{} \lambda_{i, j}
+		.\] 
+		Пример: $n_{i, j}$ --- количество заболевших с диагнозом $i$ в районе $j$ за некоторый фиксированный промежуток времени.
+\end{itemize}
+Все три гипотезы проверяются с помощью критерия хи-квадрат.
+
+Статистика критерия:  \[
+\xi^2 = n_{+, +} \sum_{i, j}^{} \frac{\left( n_{i, j} - \frac{n_{i, +} n_{+, j}}{n_{+, +}}\right) ^2}{n_{i, +}n_{+, j}}
+.\] 
+Если гипотеза $H_{I}$, $H_{II}$ или $H_{III}$ верна, то
+\[
+\xi^2 \xrightarrow{d} \eta \sim \xi^2\left((k-1)(l-1)\right)
+,\] 
+\[
+C_{\alpha} = (\xi^2_{1-\alpha}, \infty)
+.\] 
+
+\section{Линейная регрессия: постановка, теорема Гаусса-Маркова, базовые свойства, беды с регрессией.}
+\subsection{Регрессионный анализ}
+\begin{itemize}
+	\item Данные: многомерная выборка $(X, Y)_{[n]}$, $X_i \in \R^{k}$, $Y_i \in \R$ и семейство функционалов $\{f(\cdot \mid \beta) \mid \beta \in B\}$.
+	\item $Y \coloneqq Y_{[n]}$ --- зависимая переменная, target.
+	\item $X \coloneqq X_{[n]}$ --- факторы, фичи.
+\end{itemize}
+Считаем, что $y_i \approx f(X_i, \beta_0)$, то есть $y_i = f(X_i, \beta_0) + \varepsilon_i$, где $\varepsilon_i$ --- шум, обладающий какими-то свойствами, например, $\E \varepsilon_i = 0$.
+
+Хотим по $(X, Y)$ найти наилучшую в каком-то смысле оценку $\beta^*$ параметра $\beta_0$. Смысл задается функционалом качества $Q(\beta)$.
+
+\subsection{Линейная регрессия}
+\subsubsection{Модель:}
+\begin{itemize}
+	\item $D = (X, Y)$
+	\item  $Y \in \R^{n}$, $Y = X \beta_0 + \varepsilon$,
+	\item $X \in \R^{n \times k}$ фиксирована и известна, $\operatorname{rank} X = k$,
+	\item  $\beta_0 \in \R^{k}$ фиксирован и неизвестен,
+	\item $\varepsilon \in  \R^{n}$, $\E \varepsilon = 0$,
+	\item $\D \varepsilon_i = \sigma^2$ --- \selectedFont{гомоскедастичность}б
+	\item  $ \forall i \neq j\colon\cov(\varepsilon_i, \varepsilon_j) = 0$ --- некоррелированность.
+		\[
+		\cov (\varepsilon) = \sigma^2 I
+		.\] 
+\end{itemize}
+Ищем оценку $\beta^*$ в виде $\arg \min_{\beta \in \R^{k}} \sum_{i=1}^{n} \left( y_i - X_{i, *} \beta \right) ^2$.
+Она называется оценкой \selectedFont{метода наименьших квадратов} или \selectedFont{МНК-оценкой}.
+\begin{theorem}[Гаусс-Марков]
+	Если $X$ имеет ранг $k$, ошибки гомоскедастичны и некоррелированы, то
+	\begin{itemize}
+		\item $\beta^*$ --- несмещенная оценка $\beta_0$,
+		\item $\cov(\beta^*) = \sigma^2(X^{\top} X)^{-1}$,
+		\item $\beta^*$ --- эффективная оценка в классе несмещенный линейных оценок\footnote{Линейные оценки --- оценки вида $\beta = f(X) y$, оптимальность означает, что $ \forall c \in \R^{k} \colon c^{\top}\cov(\beta^*) c \le c^{\top} \cov( \beta^*) c$ }.
+	\end{itemize}
+\end{theorem}
+\subsubsection{Базовые свойства}
+\begin{itemize}
+	\item $\frac{\beta^*_i-\beta_i}{s(\beta^*_i)} \to \N(0, 1)$, где $s^2(\beta^*_i = \hat{\sigma} \left( X^{\top} X \right)^{-1}_{i, i}$ и $\hat{\sigma}^2 = \frac{RSS}{(n-k)}$,
+	\item $\hat{\sigma}^2$ является несмещенной и состоятельной оценкой $\sigma^2$. 
+\end{itemize}
+
+Дисперсия target --- сумма дисперсии предсказания и дисперсии ошибки:
+\[
+\D y_i = \D \left( f (X_i \mid \beta_0) + \varepsilon_i \right)  = \D \left( f(X_i \mid \beta_0) \right) + \D \varepsilon_i
+.\] 
+\begin{itemize}
+	\item $TSS = \sum (Y_i - \overline{Y})^2 $ --- total sum of squares (типа $n \D y_i$),
+	\item $ESS = \sum (Y_i^* - \overline{Y})^2 $ --- explained sum of squares (типа $n \D \left( f(X_i \mid \beta_0 \right)	$),
+	\item $RSS = \sum (Y_i - Y_i^*)^2 $ --- residual sum of squares (типа $n \D \varepsilon_i$),
+\end{itemize}
+\[
+TSS = ESS + RSS
+.\] 
+\subsubsection{Беды с регрессией}
+\paragraph{Беды с предположениями}
+\begin{itemize}
+	\item Неверная спецификация модели: $Y$ не линейно выражаются через $X$. Смотрим на график остатков против предсказания. Надо чтобы было линейно. Можно переделать модель.
+	\item Непостоянная дисперсия остатков: дисперсия (ковариация) зависит от $X_i$.
+	\item Корреляция остатков: возникает, когда наблюдения близки во времени или пространстве.
+\end{itemize}
+\paragraph{Беды с данными}
+\begin{itemize}
+	\item Выбросы: $X_i$ типичный, а $Y_i$ нетипичный.
+	\item Разбалансировка: $X$ большой и $Y$ большой.
+	\item Мультиколлинеарность:  $k$ факторов, но $\operatorname{rank} X < k$, есть линейные зависимости или нестрогая $\operatorname{rank} X = k, \operatorname{cond} \gg 1$.
+\end{itemize}
+
 \end{document}
