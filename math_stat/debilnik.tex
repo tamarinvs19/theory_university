@@ -120,7 +120,7 @@ D_{KL} = - \int p_i \cdot \log{\frac{q_{i}}{p_i}}
 Чему равна оценка как случайная величина в среднем, если она равна характеристике?
 
 \begin{definition}[]
-	Оценка $\Theta^*$ называется
+	Оценка $\theta^*$ называется
 	\begin{itemize}
 		\item \selectedFont{несмещенной}, если $\forall \P \in \PP\colon \E \theta^*(X_{[n]}) = \theta(\P)$, где $X_{[n]} \sim \P^{\otimes n}$,
 		\item \selectedFont{асимптотически несмещенной}, если $\forall \P \in \PP\colon \E \theta^*(X_{[n]}) \to \theta(\P)$.
@@ -151,7 +151,7 @@ D_{KL} = - \int p_i \cdot \log{\frac{q_{i}}{p_i}}
 
 \subsection{Асимптотическая нормальность}
 \begin{definition}[]
-	Оценка $\theta^*$ называется \selectedFont{асимптотически нормальной} с коэффициентом рассеивания (или просто дисперсией) $\sigma^2\bigl(\theta(\P)\bigr > 0$, если 
+	Оценка $\theta^*$ называется \selectedFont{асимптотически нормальной} с коэффициентом рассеивания (или просто дисперсией) $\sigma^2\bigl(\theta(\P)\bigr) > 0$, если 
 		\[
 		\sqrt{n} \left( \theta^*(X_{[n]}) - \theta(\P) \right) \xrightarrow{d} \eta \sim \N(0, \sigma^2(\theta^*(\P)))
 		.\] 
@@ -180,7 +180,7 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 \begin{definition}[]
 		\selectedFont{Асимптотически эффективной в классе} $K$, если для любой оценки $\hat{\theta} \in K$ и для любого $\theta \in  \Theta$ выполняется
 			\[
-			\overline{\lim_{n \to \infty}} \frac{\MSE(\theta^*)}{\MSE(\hat{\theta}}
+			\overline{\lim_{n \to \infty}} \frac{\MSE(\theta^*)}{\MSE(\hat{\theta})} \le 1
 			.\] 
 \end{definition}
 
