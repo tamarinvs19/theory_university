@@ -473,7 +473,7 @@
 \begin{proof}
     $ $
     \begin{description}
-	\item $ \boxed{ \Longrightarrow }$ По определению  первое утверждение равносильно тому, что $ \Omega _2 \subset \Omega _2 \Longleftrightarrow \forall A \in \Omega _2: A \in \Omega _1$.
+	\item $ \boxed{ \Longrightarrow }$ По определению  первое утверждение равносильно тому, что $ \Omega _1 \subset \Omega _2 \Longleftrightarrow \forall A \in \Omega _2: A \in \Omega _1$.
 
 	    Пусть $ B(x)$ --- открытый шар в метрике  $ d_2$.
 	    \[
@@ -483,14 +483,14 @@
 	\item $ \boxed{ \Longleftarrow  }$
 	    $ A \in \Omega _2$
 	    \[
-		\forall x \in A : \exists B \text{ --- открытый шар в метрике } d_2 \Longrightarrow \exists B' \subset B \text{ --- открытый в метрике } d_1
+		\forall x \in A \colon \exists B \text{ --- открытый шар в метрике } d_2 \Longrightarrow \exists B' \subset B \text{ --- открытый в метрике } d_1
 	    .\]
     \end{description}
 \end{proof}
 \begin{cor}
     $ d_1, d_2$ --- метрики на $ X$.
     \[
-	\exists c >0 : d_2 \le cd_1 \quad \Bigl( \forall x, y \in  X: d_2(x, y) = c d_1(x, y)\Bigr)
+	\exists c >0 \colon d_2 \le cd_1 \quad \Bigl( \forall x, y \in  X: d_2(x, y) \le c d_1(x, y)\Bigr)
     .\]
     Тогда $ d_2$ слабее $ d_1$ ($ \Omega _2$ слабее $ \Omega _1$).
 \end{cor}
@@ -603,7 +603,7 @@ $ \Sigma \subset \Omega $ --- база топологии $ \Omega $, если $
     \end{enumerate}
 \end{proof}
 \begin{thm}
-    $A \cap X$ -- замкнуто, $B \cap Y$ -- замкнуто. Тогда $A \times B $ -- замкнуто в $X \times Y$.
+    $A \subset X$ -- замкнуто, $B \subset Y$ -- замкнуто. Тогда $A \times B $ -- замкнуто в $X \times Y$.
 \end{thm}
 \begin{proof}
     Докажем, что дополнение открыто.
