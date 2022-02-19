@@ -1,0 +1,39 @@
+\chapter{Пути и циклы} 
+\section{Введение}
+
+\lecture{1}{15 feb}{\dag}
+Все материалы на сайте \url{https://logic.pdmi.ras.ru/~dvk/MKN/graph_th}.
+
+\begin{theorem}
+	Связный граф $G$ --- эйлеров, согда степени всех вершин $G$ четны.
+\end{theorem}
+
+\begin{definition}[]
+	\selectedFont{Гамильтонов путь} 
+	\selectedFont{Гамильтонов цикл} 
+	\selectedFont{Гамильтонов граф} 
+\end{definition}
+
+\begin{st}
+    Пусть $n > 2$, $a_1 \ldots a_n$ --- максимальный путь (по ребрам) в графе $G$, причем $d_{G}(a_1) + d_{G}(a_{n}) \ge n$. Тогда в графе есть цикл длины $n$.
+\end{st}
+\begin{proof}
+    Если $a_1$ и $a_{n}$ смежны, то $a_1a_2\ldots a_{n}$ --- искомый цикл.
+
+	Иначе $N_{G}(a_1), N_{G}(a_{n}) \subset \{a_2, \ldots a_{n-1}\}$.
+\end{proof}
+
+\begin{theorem}[Критерий Оре]
+	\begin{enumerate}
+		\item Если для любых двух несмежных вершин $u, v \in V(G)$ выполняется 
+			\[
+			d_G(u) + d_{G}(v) \ge v(G) - 1
+			,\] 
+			то в графе $G$ есть гамильтонов путь.
+		\item Если  $v(G) > 2$ и для любых двух несмежных вершин  $u, v \in V(G)$ выполняется
+			\[
+			d_{G}(u) + d_{G}(v) \ge v(G)
+			,\] 
+			то в графе $G$ есть гамильтонов цикл.
+	\end{enumerate}
+\end{theorem}
