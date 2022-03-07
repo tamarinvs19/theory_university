@@ -17,6 +17,10 @@
 \end{definition}
 
 \begin{definition}[]
+	$X = (X_1, \ldots , X_{n})$ --- \selectedFont{нормальный вектор}, согда для любого вектора  $a \in \R^{k}$ величина $a X^{\top}$ имеет нормальное распределение (или вырожденное).
+\end{definition}
+
+\begin{definition}[]
 	\selectedFont{Распределение нормального вектора} $ X \in \R^{n}$ --- $ \N(\mu, {\bf \Sigma}) $ или $ \N_n(\mu, {\bf \Sigma}) $, где $ \mu = \E X$ и $ {\bf \Sigma} = \cov(X) $.
 \end{definition}
 
@@ -376,7 +380,7 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 	\selectedFont{Состоятельность} --- $\beta \xrightarrow{n \to \infty} 0$ для всех простых альтернатив из $\PP_1$.
 \end{definition}
 \begin{definition}[]
-	\selectedFont{Асимптотичность} --- $\alpha \xrightarrow{n \to \infty}$ для всех простых гипотез из $\PP_0$.
+	\selectedFont{Асимптотичность} --- $\alpha \xrightarrow{n \to \infty} 1$ для всех простых гипотез из $\PP_0$.
 \end{definition}
 \begin{definition}[]
 	\selectedFont{Наиболее мощный критерий} для данного уровня значимости $\alpha_0$ и простой альтернативы --- такой критерий $\varphi_1$, что для любого критерия $\varphi_2$ такого, что $\alpha(\varphi_2) \le \alpha_0$:
@@ -410,8 +414,11 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 \[
 	D_n(x_{[n]}) = \underset{x \in \R}{\sup} \lvert F_{n}^* - F_0(x) \rvert
 .\] 
+\[
+F_{n}^{*} = \frac{1}{n} \sum_{i=1}^{n} I_{X_i \le x}
+.\] 
 \begin{itemize}
-	\item Если $H_0$ верна, то $D_n \left( X_[n] \right) \xrightarrow{\text{п.н.}} 0$;
+	\item Если $H_0$ верна, то $D_n \left( X_{[n]} \right) \xrightarrow{\text{п.н.}} 0$;
 	\item Если $H_0$ неверна, то $D_{n} \left( X_{[n]} \right) \xrightarrow{\text{п.н.}} \underset{x \in \R}{\sup} \lvert F_X(x) - F_0(x) \rvert > 0$.
 \end{itemize}
 
@@ -421,7 +428,7 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 Определим статистику критерия Андерсона-Дарлинга:
 \begin{align*}
 	A^2 &= n \int_{\R}^{} \frac{ \left( F_n^*(x) - F_0(x) \right) ^2}{F_0(x) \left( 1 - F_0(x) \right) } d F_0(x) = \\
-		&= -n - \sum_{i=1}^{n} \frac{2i-1}{n} \left[ \ln F_0(X_{(i)} \mid \theta) + \ln \left( 1 - F_0(X_{(n+1-i)} \mid \theta \right)  \right] 
+		&= -n - \sum_{i=1}^{n} \frac{2i-1}{n} \left[ \ln F_0(X_{(i)} \mid \theta) + \ln \left( 1 - F_0(X_{(n+1-i)}) \mid \theta \right)  \right] 
 \end{align*}
 Статистика $A^2$ при выполнении $H_0$ и непрерывности $F_0$ подчиняется табличному распределению. $C_{\alpha} = (a^2_{1-\alpha}, \infty)$.
 
@@ -445,7 +452,7 @@ K_0 = \{\hat{\theta} \mid \E {\hat{\theta}} = \theta, \forall \theta \in \Theta\
 		\begin{itemize}
 			\item $H_1\colon \theta = \theta_1 > \theta_0$ или $H_{>}$, то $C_{\alpha} = (\theta^*_{1-\alpha}, \infty)$ \footnote{Здесь $\theta^*_{x}$ --- квантиль уровня $x$ распределения $\theta^* \mid H_0$} --- правое критическое множество;
 			\item $H_1\colon \theta = \theta_1 < \theta_0$ или $H_{<}$, то $C_{\alpha} = (-\infty, \theta^*_{\alpha})$ --- левое критическое множество;
-			\item $H_{\neq}$, то $C_{\alpha} = (-\infty, \theta^*_{\frac{\alpha}{2}} \cup (\theta^*_{1 - \frac{\alpha}{2}}, \infty)$ --- двустороннее критическое множество.
+			\item $H_{\neq}$, то $C_{\alpha} = (-\infty, \theta^*_{\frac{\alpha}{2}}) \cup (\theta^*_{1 - \frac{\alpha}{2}}, \infty)$ --- двустороннее критическое множество.
 		\end{itemize}
 	\item Если $\theta^* \in  C_{\alpha}$, то гипотезу можно отклонить, иначе --- нельзя.
 \end{enumerate}
@@ -611,7 +618,7 @@ C_{\alpha} \in \left\{  (1- \alpha, 1), ~ (0, \alpha), ~ (0, \tfrac{\alpha}{2}) 
 .\] 
 {\bf Killer Feature}: ошибка первого рода в точности равна  $\alpha$.
 
-\section{Дисперсионного анализ, корреляционного анализ, таблицы сопряженности.}
+\section{Дисперсионный анализ, корреляционный анализ, таблицы сопряженности.}
 ANOVA --- ANalysis Of VAriance.
 \subsection{Однофакторный дисперсионный анализ}
 \begin{itemize}
