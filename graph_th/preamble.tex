@@ -24,8 +24,8 @@
 \fancyhf{}
 % \fancyhead[R]{\thepage}
 % \fancyhead[L]{\thesection}
-\fancyhead[R]{\thepage}
-\fancyhead[L]{\bf\rightmark}
+\fancyhead[RO,LE]{\thepage}
+\fancyhead[LO]{\bf\rightmark}
 % \fancyhead[L]{Лекция \lectionnumber}
 \fancyfoot{}
 \fancyhfoffset{0pt}
@@ -38,6 +38,7 @@
 \setlength{\parskip}{3mm}
 
 \usepackage{graphicx}
+\usepackage{subcaption}
 \usepackage{hyperref}
 
 \usepackage{import}
@@ -86,8 +87,8 @@
 \newtheorem*{theorem}{\underline{{\bf thm}}}
 
 \theoremstyle{plain}
-\newtheorem*{corollary}{{\bf cor}}
-\newtheorem*{lemma}{{\bf lm}}
+\newtheorem{corollary}{{\bf cor}}
+\newtheorem{lemma}{{\bf lm}}
 \newtheorem*{statement}{{\bf st}}
 \newtheorem*{property}{{\bf prop}}
 
@@ -105,8 +106,16 @@
 \renewcommand{\ge}{\geqslant}
 
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
 \newcommand{\R}{\mathbb{R}}
+\newcommand{\RR}{\mathfrak{R}}
+\newcommand{\T}{\mathfrak{T}}
+\renewcommand{\S}{\mathfrak{S}}
+\newcommand{\G}{\mathcal{G}}
 
 \newcommand{\dist}{\operatorname{dist}}
-
+% \newcommand{\ch}{\operatorname{ch}}
+\newcommand{\Int}{\operatorname{Int}}
+\newcommand{\Part}{\operatorname{Part}}
+\newcommand{\Bound}{\operatorname{Bound}}
 \def\selectedFont#1{\textsf{#1}}

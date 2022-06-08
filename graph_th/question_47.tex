@@ -1,0 +1,54 @@
+\section{Хроматический многочлен графа.}
+\begin{definition}
+    Для любого натурального числа $k$  обозначим через $\chi_{G}(k)$ количество правильных раскрасок вершин графа $G$ в $k$ цветов.
+
+	Функция  $\chi_G(k)$ называется \selectedFont{хроматическим числом} графа $G$.
+\end{definition}
+\begin{note}
+    \begin{itemize}
+		\item $\chi_G(\chi(G)) \neq 0$ 
+		\item $ \forall k < \chi(G) \colon\chi_G(k) = 0$
+    \end{itemize}
+\end{note}
+
+\begin{lemma}\label{lm:coloring_12}
+	Пусть $G$ --- непустой граф, а $e = uv$ --- его ребро. Тогда  \[
+	\chi_{G-uv}(k) = \chi_G(k) + \chi_{G \cdot uv}(k)
+	.\] 
+\end{lemma}
+\begin{proof}
+	Разобьем правильные раскраски графа $G-e$ в $k$ цветов на два типа:
+	\begin{enumerate}
+		\item где вершины $u$ и $v$ разного цвета;
+		\item где вершины $u$ и $v$ одного цвета.
+	\end{enumerate}
+	Количество раскрасок первого типа равно $\chi_{G}(k)$, а второго --- $\chi_{G \cdot  ab}(k)$.
+\end{proof}
+
+\begin{theorem}
+    Для любого графа $G$ без петель выполнены следующие утверждения:
+	\begin{enumerate}
+		\item Функция $\chi_G(k) \in \Z[k]$ --- унитарный многочлен с целыми коэффициентами степени $v(G)$ ;
+		\item Знаки коэффициентов $\chi_G(k)$ чередуются, причем старший не меньше нуля.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+    Индукция по размеру графа $G$ и количеству ребер.
+	\begin{description}
+		\item[База:] Для пустого графа на $n$ вершинах $\overline{K_n}$, очевидно, 
+			$\chi_{\overline{K_n}}(k) = k^{n}$, поэтому все утверждения верны.
+		\item[Переход:] Пусть $G$ --- непустой граф, $e $ --- его ребро. По лемме \ref{lm:coloring_12} 
+			\[
+			\chi_G(k) = \chi_{G-e}(k) - \chi_{G \cdot e}(k)
+			.\] 
+			Для меньших графов $G \cdot e$ и $G-e$ утверждения доказаны:
+			\begin{itemize}
+				\item $\chi_{G-e}(k)$ --- многочлен степени $v(G)$;
+				\item $\chi_{G \cdot e}(k)$ --- многочлен степени $v(G \cdot e) = v(G) - 1$.
+			\end{itemize}
+			
+			Старший коэффициент $\chi_G(k)$ равен старшему коэффициенту $\chi_{G - e}(k)$, то есть $1$.
+
+			Так как $\deg(\chi_{G \cdot e}) = \deg(\chi_{G-e}) - 1$, в $\chi_G$ чередование знаков сохранится.
+	\end{description}
+\end{proof}

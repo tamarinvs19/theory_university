@@ -1,0 +1,52 @@
+\section{Теорема Плесника о совершенном паросочетании в регулярном графе.}
+\begin{theorem}[Плесник, 1972]
+    Пусть $G$ --- регулярный граф степени  $k$ с четным числом вершин, причем $\lambda(G) \ge k-1$, а граф $G'$ получен из $G$ удалением не более, чем $k-1$ ребра. Тогда в графе $G'$ есть совершенное паросочетание.
+\end{theorem}
+\begin{proof}
+    Пусть множество $F \subset E(G)$ таково, что $G' = G - F$. Тогда $\lvert F \rvert \le k-1$.
+
+	Предположим, что условие теоремы Татта не выполняется. Рассмотрим множество Татта $S \subset V(G')$. Так как  \[
+		o(G'-S) + \lvert S \rvert  \equiv v(G) \pmod 2
+	,\] 
+	из $o(G'-S) > \lvert S \rvert$ следует, что $o(G'-S) \ge \lvert S \rvert + 2$.
+
+	Пусть $U_1, \ldots , U_n$ --- нечетные, а $U_{n+1}, \ldots , U_t$ --- четные компоненты связности графа $G'-S$.
+
+	Для каждого $i \in [1..t]$ пусть:
+	\begin{itemize}
+		\item $\alpha_i$ --- количество ребер из $E(G')$, соединяющих $U_i $ c $S$ ;
+		\item $\beta_i$ --- количество ребер из $F$, соединяющих с $U_i$ с $S$;
+		\item $\gamma_i$ --- количество ребер из $F$, соединяющих $U_i$ с остальными компонентами связности $G'-S$;
+		\item  $m_i = \alpha_i + \beta_i + \gamma_i$  --- количество ребер графа $G$, соединяющих $U_i$ c $V(G) \setminus U_i$.
+	\end{itemize}
+	Для нечетных компонент связности имеем $m_i \equiv k \pmod 2$. Также $m_i \ge \lambda(G) \ge k-1$, поэтому $m_i \ge k$. Отсюда:
+	\begin{equation}\label{eq:1}
+		\sum_{i=1}^{n} \alpha_i + \sum_{i=1}^{n} \beta_i + \sum_{i=1}^{n} \gamma_i \ge kn
+	\end{equation}
+
+	Очевидно, что
+	\[
+	\sum_{i=1}^{t} \alpha_i + \sum_{i=1}^{t} \beta_i \le k \cdot \lvert S \rvert
+	\] 
+	и 
+	\[
+	2 \sum_{i=1}^{t} \beta_i + \sum_{i=1}^{t} \gamma_i \le 2 \cdot \lvert F \rvert \le 2k-2
+	.\] 
+	Сложим:
+	\begin{equation}\label{eq:2}
+		\sum_{i=1}^{t} \alpha_i + 3 \sum_{i=1}^{t} \beta_i + \sum_{i=1}^{t} \gamma_i \le k(\lvert S \rvert + 2) - 2
+	\end{equation}
+
+	Из неравенств \ref{eq:1} и \ref{eq:2} получаем $
+	kn \le k(\lvert S \rvert+2)-2
+	$,
+	следовательно, $o(G'-S) < \lvert S \rvert + 2$. А мы выше доказали противное. Противоречие. 
+\end{proof}
+\begin{corollary}\label{cor:matching_2}
+    Пусть $G$ --- регулярный граф степени $k$ с четным числом вершин, причем  $\lambda(G) \ge k-1$. Тогда для любого ребра $e \in E(G)$ существует совершенное паросочетание графа, содержащее $e$.
+\end{corollary}
+\begin{proof}
+    Пусть $e = ab$, $e_1, \ldots , e_{k-1}$ --- остальные ребра, инцидентные вершине $a$.
+
+	По теореме Плесника в графе $G - \{e_1, \ldots , e_{k-1}\}$ есть совершенное паросочетание, которое должно содержать $e$, так как содержит $a$.
+\end{proof}

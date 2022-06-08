@@ -1,0 +1,46 @@
+\section{Гамильтонов цикл в кубе связного графа.}
+\begin{definition}
+    Для графа $G$ и натурального числа  $d$ обозначим через $G^{d}$ граф на вершинах из  $V(G)$, в котором вершины $x$ и $y$ смежны, согда $\dist_G(x, y) \le d$.
+\end{definition}
+\begin{theorem}[Чартранд, Капур, 1969]
+	Для любого связного графа $G$ с $v(G) \ge 3$ и ребра $e \in E(G)$ в графе $G^3$ существует гамильтонов цикл, содержащий ребро $e$.
+\end{theorem}
+\begin{proof}
+    Достаточно доказать теорему для дерева, так как иначе можем просто выделить остовное.
+
+	Будем доказывать индукцией по количеству вершин. 
+
+	\begin{description}
+		\item[База:] для трех или четырех вершин очевидно, так как $G^3$ --- полный граф.
+		\item[Переход:] пусть для меньших деревьев теорема доказана. 
+
+			Рассмотрим ребро $uv$. $G$ --- дерево, поэтому в $G-uv$ разбивается на две компоненты связности $U \ni u$ и $V \ni v$. Пусть $G_u = G(U)$, $G_v = G(V)$. НУО  $\lvert U \rvert \ge 3$. Тогда в $G_u^3$ по предположению индукции есть гамильтонов цикл, содержащий ребро $ux \in E(G(U))$.
+
+			\begin{enumerate}[label=(\alph*)]
+				\item Если $\lvert V \rvert \ge 3$, аналогично строим гамильтонов цикл в $G_v^3$, содержащий инцидентное вершине $v$ ребро $vy \in E(G(V))$, и соединяем эти циклы в один, заменив $ux$ и $vy$ на $uv$ и $xy$ (ребро $xy \in E(G^3)$, так как $\dist_G(x, y) \le 3$). 
+				\item Если $\lvert V \rvert =2$, точно есть ребро $vy \in E(G)$, которое мы просто присоединяем к циклу из $U$ вместо ребра $ux$.
+				\item Если  $\lvert V \rvert = 1$, заменяем ребро $ux$ на $uv$ и $vx$.
+			\end{enumerate}
+	\begin{figure}[ht]
+		\centering
+		\begin{subfigure}{0.32\linewidth}
+			\centering
+			\incfig{capoor-thm}
+			\caption{}
+			\label{fig:capoor-thm}
+		\end{subfigure}
+		\begin{subfigure}{0.32\linewidth}
+			\centering
+			\incfig{capoor-thm-b}
+			\caption{}
+			\label{fig:capoor-thm-b}
+		\end{subfigure}
+		\begin{subfigure}{0.32\linewidth}
+			\centering
+			\incfig{capoor-thm-c}
+			\caption{}
+			\label{fig:capoor-thm-c}
+		\end{subfigure}
+	\end{figure}
+	\end{description}
+\end{proof}
