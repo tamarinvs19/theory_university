@@ -95,7 +95,7 @@
 	    f(x+h)-f(x) = Lh + \alpha (x, h)
 	.\] 
 	\[
-	    \lim_{h \to  0} \frac{\| \alpha (x, h) \| _Y}{\| h \| _X} = 0
+	    \lim_{\| h \|  \to  0} \frac{\| \alpha (x, h) \| _Y}{\| h \| _X} = 0
 	.\] 
     \end{note}
 \begin{defn}
@@ -136,9 +136,9 @@
 \end{note}
 \paragraph{Правила дифференцирования}
 \begin{description}
-    \item[Линейность] $ f_1, f_2: E \subset X to Y$, $ f_1, f_2$ непрерывны в точке $ x \in E$. Тогда $ \forall \lambda_1, \lambda_2$ --- скаляры:
+    \item[Линейность] $ f_1, f_2: E \subset X \to Y$, $ f_1, f_2$ непрерывны в точке $ x \in E$. Тогда $ \forall \lambda_1, \lambda_2$ --- скаляры:
 	$\lambda_1f_1 + \lambda_2 f_2 $ дифференцируема в точке $ x$ и $ d(\lambda_1 f_1 + \lambda_2 f_2) (x) = \lambda_1df_1(x) + \lambda_2df_2(x)$
-    \item[Дифференциал композиции] $ X, Y, Z$ --- линейные нормируемые пространства, $ U \subset X, ~ V \subset Y$, $ U, V$ открыты, $ f: U to Y, g : V \to  Z$, $ x \in U, f(x) in V$, f дифференцируема в точке $ x$, $ g$  дифференцируема в точке $ f(x)$. Тогда $ g \circ f$ дифференцируема в точке $ x$.
+    \item[Дифференциал композиции] $ X, Y, Z$ --- линейные нормируемые пространства, $ U \subset X, ~ V \subset Y$, $ U, V$ открыты, $ f: U \to Y, g : V \to  Z$, $ x \in U, f(x) \in V$, f дифференцируема в точке $ x$, $ g$  дифференцируема в точке $ f(x)$. Тогда $ g \circ f$ дифференцируема в точке $ x$.
 	 \[
 	     d(g \circ f)(x) = dg(f(x)) \circ df(x))
 	.\] 
