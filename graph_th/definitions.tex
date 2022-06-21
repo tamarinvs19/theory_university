@@ -1,0 +1,20 @@
+\begin{definition}
+    Цикл $C$ графа $G$ \selectedFont{неразделяющий}, если граф $G - V(C)$ связен. 
+\end{definition}
+\begin{definition}
+    Цикл $C$ \selectedFont{индуцированный}, если не имеет хорд.
+\end{definition}
+\begin{definition}
+    Пусть $G$ и $G'$ --- два плоских графа, а биекция $\varphi \colon V(G) \to V(G')$ удовлетворяет следующим условиям:
+	\begin{enumerate}
+		\item $xy \in E(G) \Longleftrightarrow \varphi(x) \varphi(y) \in E(G')$ ;
+		\item $U \subset V(G)$ является множестов граничных вершин некоторой грани графа $ G$, согда $\varphi(U) = \{\varphi(x) \colon x \in  U\}$ является множеством граничных вершин некторой грани графа $G'$.
+	\end{enumerate}
+	Тогда $\varphi$ --- \selectedFont{изоморфизм плоских графов} $G$ и $G'$, а плоские графе $G$ и $G'$ \selectedFont{изоморфны}.
+\end{definition}
+
+\begin{definition}
+    Граф $H'$ --- \selectedFont{подразбиение} графа $H$, если $H'$ может быть получен из $H$ заменой некоторый ребре на простые пути, все добавленные вершины различны и имеют степень 2.
+
+	Вершины $H'$, соответствующие вершинам $H$, называются \selectedFont{главными}.
+\end{definition}
